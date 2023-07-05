@@ -1,5 +1,5 @@
-gitee.com/gkdgo/kk_go_kit v0.0.0-20230704131948-713429335fbf h1:WjxCUT7P7PaamYpIyOU1mQYeQ8eVPC7cXkFnU2BdYHE=
-gitee.com/gkdgo/kk_go_kit v0.0.0-20230704131948-713429335fbf/go.mod h1:8Rxj8MJWqu3fdnS/Kta22dyo8S3cDOb1C7/ZIavbM9o=
+gitee.com/cruvie/kk_go_kit v0.0.0-20230705085841-74c5cc293359 h1:X+OW6h1DaTZJpSKMnqJfZXtxum0h1wDojBvepFFNH0Y=
+gitee.com/cruvie/kk_go_kit v0.0.0-20230705085841-74c5cc293359/go.mod h1:MvSf+ksgPm/FG9iqTvr4FxvNi2nT9305IWpIcduRXH8=
 github.com/KyleBanks/depth v1.2.1 h1:5h8fQADFrWtarTdtDudMmGsC7GPbOAu6RVB3ffsVFHc=
 github.com/KyleBanks/depth v1.2.1/go.mod h1:jzSb9d0L43HxTQfT+oSA1EEp2q+ne2uh6XgeJcm8brE=
 github.com/benbjohnson/clock v1.1.0 h1:Q92kusRqC1XV2MjkWETPvjJVqKetz1OzxZB7mHJLju8=

@@ -1,8 +1,8 @@
 package middleware
 
 import (
-	"gitee.com/gkdgo/kk_go_kit/kk_utils/kku_http"
-	"gitee.com/gkdgo/kk_go_kit/kk_utils/kku_jwt"
+	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_http"
+	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_jwt"
 	"github.com/gin-gonic/gin"
 	"kk_etcd_go/handler/service"
 	"kk_etcd_go/utils/api_resp"

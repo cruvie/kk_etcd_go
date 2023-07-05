@@ -13,8 +13,8 @@ import (
 	"strings"
 	"time"
 
-	"gitee.com/gkdgo/kk_go_kit/kk_utils/kku_encrypt"
-	"gitee.com/gkdgo/kk_go_kit/kk_utils/kku_jwt"
+	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_encrypt"
+	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_jwt"
 )
 
 func Login(user *models.PBUser) (tokenString string, res int) {

@@ -1,7 +1,7 @@
 package handler
 
 import (
-	"gitee.com/gkdgo/kk_go_kit/kk_utils/kku_http"
+	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_http"
 	"github.com/gin-gonic/gin"
 	"kk_etcd_go/consts"
 	"kk_etcd_go/handler/service"

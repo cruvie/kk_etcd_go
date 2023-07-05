@@ -3,7 +3,7 @@ module kk_etcd_go
 go 1.20
 
 require (
-	gitee.com/gkdgo/kk_go_kit v0.0.0-20230704131948-713429335fbf
+	gitee.com/cruvie/kk_go_kit v0.0.0-20230705085841-74c5cc293359
 	github.com/gin-contrib/cors v1.4.0
 	github.com/gin-gonic/gin v1.9.1
 	github.com/swaggo/swag v1.16.1

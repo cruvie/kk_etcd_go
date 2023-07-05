@@ -1,7 +1,7 @@
 package api_etcd
 
 import (
-	"gitee.com/gkdgo/kk_go_kit/kk_swagger"
+	"gitee.com/cruvie/kk_go_kit/kk_swagger"
 	"github.com/gin-gonic/gin"
 	"kk_etcd_go/config"
 	"kk_etcd_go/handler"
