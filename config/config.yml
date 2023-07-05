@@ -1,0 +1,8 @@
+ServerAddr: 0.0.0.0:2333
+Admin:
+  UserName: kk_etcd # username cannot be root
+  Password: kk_etcd
+Etcd:
+  Endpoint: http://127.0.0.1:2379
+JWT:
+  ExpireTime: 24  # hours

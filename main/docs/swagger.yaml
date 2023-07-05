@@ -1,0 +1,280 @@
+basePath: /User
+definitions:
+  base_proto_type.PBListString:
+    properties:
+      ListString:
+        items:
+          type: string
+        type: array
+    type: object
+  models.PBKV:
+    properties:
+      Key:
+        type: string
+      Value:
+        type: string
+    type: object
+  models.PBRole:
+    properties:
+      Key:
+        type: string
+      Name:
+        type: string
+      PermissionType:
+        type: integer
+      RangeEnd:
+        type: string
+    type: object
+  models.PBUser:
+    properties:
+      Password:
+        type: string
+      Roles:
+        items:
+          type: string
+        type: array
+      UserName:
+        type: string
+    type: object
+host: localhost:2333
+info:
+  contact:
+    email: kk_etcd_go@qq.com
+    name: kk_etcd_go
+    url: http://kk_etcd_go/support
+  description: kk_etcd_go terms.
+  license:
+    name: Secret
+    url: http://kk_etcd_go/licenses/LICENSE-2.0.html
+  termsOfService: http://kk_etcd_go/terms/
+  title: kk_etcd_go API
+  version: "1.0"
+paths:
+  /AddRole:
+    post:
+      consumes:
+      - application/octet-stream
+      description: Add role
+      parameters:
+      - description: Add role info
+        in: body
+        name: pbRole
+        required: true
+        schema:
+          $ref: '#/definitions/models.PBRole'
+      produces:
+      - application/octet-stream
+      responses: {}
+  /AddUser:
+    post:
+      consumes:
+      - application/octet-stream
+      description: Add user
+      parameters:
+      - description: Add user info
+        in: body
+        name: pbUser
+        required: true
+        schema:
+          $ref: '#/definitions/models.PBUser'
+      produces:
+      - application/octet-stream
+      responses: {}
+  /DeleteRole:
+    post:
+      consumes:
+      - application/octet-stream
+      description: Delete role
+      parameters:
+      - description: Delete role info
+        in: body
+        name: pbRole
+        required: true
+        schema:
+          $ref: '#/definitions/models.PBRole'
+      produces:
+      - application/octet-stream
+      responses: {}
+  /DeleteUser:
+    post:
+      consumes:
+      - application/octet-stream
+      description: Delete user
+      parameters:
+      - description: Delete user info
+        in: body
+        name: pbUser
+        required: true
+        schema:
+          $ref: '#/definitions/models.PBUser'
+      produces:
+      - application/octet-stream
+      responses: {}
+  /GetUser:
+    post:
+      consumes:
+      - application/octet-stream
+      description: Get user
+      parameters:
+      - description: Get user info
+        in: body
+        name: pbUser
+        required: true
+        schema:
+          $ref: '#/definitions/models.PBUser'
+      produces:
+      - application/octet-stream
+      responses: {}
+  /KVDelConfig:
+    post:
+      consumes:
+      - application/octet-stream
+      description: Del config
+      parameters:
+      - description: Del config info
+        in: body
+        name: pbKV
+        required: true
+        schema:
+          $ref: '#/definitions/models.PBKV'
+      produces:
+      - application/octet-stream
+      responses: {}
+  /KVGetConfig:
+    post:
+      consumes:
+      - application/octet-stream
+      description: Get config
+      parameters:
+      - description: Get config info
+        in: body
+        name: pbKV
+        required: true
+        schema:
+          $ref: '#/definitions/models.PBKV'
+      produces:
+      - application/octet-stream
+      responses: {}
+  /KVGetConfigList:
+    post:
+      consumes:
+      - application/octet-stream
+      description: Get config list
+      produces:
+      - application/octet-stream
+      responses: {}
+  /KVPutConfig:
+    post:
+      consumes:
+      - application/octet-stream
+      description: Put config
+      parameters:
+      - description: Put config info
+        in: body
+        name: pbKV
+        required: true
+        schema:
+          $ref: '#/definitions/models.PBKV'
+      produces:
+      - application/octet-stream
+      responses: {}
+  /Login:
+    post:
+      consumes:
+      - application/octet-stream
+      description: Log in
+      parameters:
+      - description: Login info
+        in: body
+        name: pbUser
+        required: true
+        schema:
+          $ref: '#/definitions/models.PBUser'
+      produces:
+      - application/octet-stream
+      responses: {}
+  /Logout:
+    post:
+      consumes:
+      - application/octet-stream
+      description: Log out
+      parameters:
+      - description: Logout info
+        in: body
+        name: pbUser
+        required: true
+        schema:
+          $ref: '#/definitions/models.PBUser'
+      produces:
+      - application/octet-stream
+      responses: {}
+  /MyInfo:
+    post:
+      consumes:
+      - application/octet-stream
+      description: Get my info
+      produces:
+      - application/octet-stream
+      responses: {}
+  /RoleGet:
+    post:
+      consumes:
+      - application/octet-stream
+      description: Get role
+      parameters:
+      - description: Get role info
+        in: body
+        name: pbRole
+        required: true
+        schema:
+          $ref: '#/definitions/models.PBRole'
+      produces:
+      - application/octet-stream
+      responses: {}
+  /RoleGrantPermission:
+    post:
+      consumes:
+      - application/octet-stream
+      description: Grant permission to role
+      parameters:
+      - description: Grant permission to role info
+        in: body
+        name: pbRole
+        required: true
+        schema:
+          $ref: '#/definitions/models.PBRole'
+      produces:
+      - application/octet-stream
+      responses: {}
+  /RoleList:
+    post:
+      consumes:
+      - application/octet-stream
+      description: Get role list
+      produces:
+      - application/octet-stream
+      responses: {}
+  /UserGrantRole:
+    post:
+      consumes:
+      - application/octet-stream
+      description: Grant role to user
+      parameters:
+      - description: Grant role to user info
+        in: body
+        name: pBListString
+        required: true
+        schema:
+          $ref: '#/definitions/base_proto_type.PBListString'
+      produces:
+      - application/octet-stream
+      responses: {}
+  /UserList:
+    post:
+      consumes:
+      - application/octet-stream
+      description: Get user list
+      produces:
+      - application/octet-stream
+      responses: {}
+swagger: "2.0"

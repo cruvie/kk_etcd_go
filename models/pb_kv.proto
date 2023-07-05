@@ -1,0 +1,19 @@
+syntax = "proto3";
+package models;
+
+option go_package = "./;models";
+
+// protoc -I=. --go_out=./ *.proto
+
+
+// protoc -I=. --dart_out=./dart *.proto
+
+message PBKV {
+  string  Key = 1;
+  string  Value = 2;
+}
+
+
+message PBListKV {
+  repeated PBKV ListKV = 1;
+}

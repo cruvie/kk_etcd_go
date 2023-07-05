@@ -1,0 +1,427 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "kk_etcd_go terms.",
+        "title": "kk_etcd_go API",
+        "termsOfService": "http://kk_etcd_go/terms/",
+        "contact": {
+            "name": "kk_etcd_go",
+            "url": "http://kk_etcd_go/support",
+            "email": "kk_etcd_go@qq.com"
+        },
+        "license": {
+            "name": "Secret",
+            "url": "http://kk_etcd_go/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0"
+    },
+    "host": "localhost:2333",
+    "basePath": "/User",
+    "paths": {
+        "/AddRole": {
+            "post": {
+                "description": "Add role",
+                "consumes": [
+                    "application/octet-stream"
+                ],
+                "produces": [
+                    "application/octet-stream"
+                ],
+                "parameters": [
+                    {
+                        "description": "Add role info",
+                        "name": "pbRole",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.PBRole"
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/AddUser": {
+            "post": {
+                "description": "Add user",
+                "consumes": [
+                    "application/octet-stream"
+                ],
+                "produces": [
+                    "application/octet-stream"
+                ],
+                "parameters": [
+                    {
+                        "description": "Add user info",
+                        "name": "pbUser",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.PBUser"
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/DeleteRole": {
+            "post": {
+                "description": "Delete role",
+                "consumes": [
+                    "application/octet-stream"
+                ],
+                "produces": [
+                    "application/octet-stream"
+                ],
+                "parameters": [
+                    {
+                        "description": "Delete role info",
+                        "name": "pbRole",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.PBRole"
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/DeleteUser": {
+            "post": {
+                "description": "Delete user",
+                "consumes": [
+                    "application/octet-stream"
+                ],
+                "produces": [
+                    "application/octet-stream"
+                ],
+                "parameters": [
+                    {
+                        "description": "Delete user info",
+                        "name": "pbUser",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.PBUser"
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/GetUser": {
+            "post": {
+                "description": "Get user",
+                "consumes": [
+                    "application/octet-stream"
+                ],
+                "produces": [
+                    "application/octet-stream"
+                ],
+                "parameters": [
+                    {
+                        "description": "Get user info",
+                        "name": "pbUser",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.PBUser"
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/KVDelConfig": {
+            "post": {
+                "description": "Del config",
+                "consumes": [
+                    "application/octet-stream"
+                ],
+                "produces": [
+                    "application/octet-stream"
+                ],
+                "parameters": [
+                    {
+                        "description": "Del config info",
+                        "name": "pbKV",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.PBKV"
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/KVGetConfig": {
+            "post": {
+                "description": "Get config",
+                "consumes": [
+                    "application/octet-stream"
+                ],
+                "produces": [
+                    "application/octet-stream"
+                ],
+                "parameters": [
+                    {
+                        "description": "Get config info",
+                        "name": "pbKV",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.PBKV"
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/KVGetConfigList": {
+            "post": {
+                "description": "Get config list",
+                "consumes": [
+                    "application/octet-stream"
+                ],
+                "produces": [
+                    "application/octet-stream"
+                ],
+                "responses": {}
+            }
+        },
+        "/KVPutConfig": {
+            "post": {
+                "description": "Put config",
+                "consumes": [
+                    "application/octet-stream"
+                ],
+                "produces": [
+                    "application/octet-stream"
+                ],
+                "parameters": [
+                    {
+                        "description": "Put config info",
+                        "name": "pbKV",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.PBKV"
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/Login": {
+            "post": {
+                "description": "Log in",
+                "consumes": [
+                    "application/octet-stream"
+                ],
+                "produces": [
+                    "application/octet-stream"
+                ],
+                "parameters": [
+                    {
+                        "description": "Login info",
+                        "name": "pbUser",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.PBUser"
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/Logout": {
+            "post": {
+                "description": "Log out",
+                "consumes": [
+                    "application/octet-stream"
+                ],
+                "produces": [
+                    "application/octet-stream"
+                ],
+                "parameters": [
+                    {
+                        "description": "Logout info",
+                        "name": "pbUser",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.PBUser"
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/MyInfo": {
+            "post": {
+                "description": "Get my info",
+                "consumes": [
+                    "application/octet-stream"
+                ],
+                "produces": [
+                    "application/octet-stream"
+                ],
+                "responses": {}
+            }
+        },
+        "/RoleGet": {
+            "post": {
+                "description": "Get role",
+                "consumes": [
+                    "application/octet-stream"
+                ],
+                "produces": [
+                    "application/octet-stream"
+                ],
+                "parameters": [
+                    {
+                        "description": "Get role info",
+                        "name": "pbRole",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.PBRole"
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/RoleGrantPermission": {
+            "post": {
+                "description": "Grant permission to role",
+                "consumes": [
+                    "application/octet-stream"
+                ],
+                "produces": [
+                    "application/octet-stream"
+                ],
+                "parameters": [
+                    {
+                        "description": "Grant permission to role info",
+                        "name": "pbRole",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.PBRole"
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/RoleList": {
+            "post": {
+                "description": "Get role list",
+                "consumes": [
+                    "application/octet-stream"
+                ],
+                "produces": [
+                    "application/octet-stream"
+                ],
+                "responses": {}
+            }
+        },
+        "/UserGrantRole": {
+            "post": {
+                "description": "Grant role to user",
+                "consumes": [
+                    "application/octet-stream"
+                ],
+                "produces": [
+                    "application/octet-stream"
+                ],
+                "parameters": [
+                    {
+                        "description": "Grant role to user info",
+                        "name": "pBListString",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/base_proto_type.PBListString"
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/UserList": {
+            "post": {
+                "description": "Get user list",
+                "consumes": [
+                    "application/octet-stream"
+                ],
+                "produces": [
+                    "application/octet-stream"
+                ],
+                "responses": {}
+            }
+        }
+    },
+    "definitions": {
+        "base_proto_type.PBListString": {
+            "type": "object",
+            "properties": {
+                "ListString": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "models.PBKV": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "type": "string"
+                },
+                "Value": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.PBRole": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "type": "string"
+                },
+                "Name": {
+                    "type": "string"
+                },
+                "PermissionType": {
+                    "type": "integer"
+                },
+                "RangeEnd": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.PBUser": {
+            "type": "object",
+            "properties": {
+                "Password": {
+                    "type": "string"
+                },
+                "Roles": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "UserName": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
