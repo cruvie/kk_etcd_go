@@ -1,4 +1,4 @@
-module kk_etcd_go
+module github.com/cruvie/kk_etcd_go
 
 go 1.20
 
