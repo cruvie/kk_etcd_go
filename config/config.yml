@@ -4,6 +4,5 @@ Admin:
   Password: kk_etcd
 Etcd:
   Endpoint: http://127.0.0.1:2379
-#  Endpoint: http://etcd:2379 # docker
 JWT:
   ExpireTime: 24  # hours

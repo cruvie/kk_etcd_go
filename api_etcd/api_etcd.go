@@ -20,10 +20,12 @@ func ApiEtcd() {
 
 	r.Use(middleware.ParseHeader)
 
+	r.POST("/User/Login", handler.Login)
+
+	r.Use(middleware.JWTAuth)
+
 	userAPI := r.Group("/User")
 	{
-		userAPI.POST("/Login", handler.Login)
-		userAPI.Use(middleware.JWTAuth)
 		userAPI.POST("/Logout", handler.Logout)
 		userAPI.POST("/AddUser", handler.AddUser)
 		userAPI.POST("/DeleteUser", handler.DeleteUser)
