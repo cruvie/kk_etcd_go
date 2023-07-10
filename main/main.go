@@ -4,7 +4,7 @@ import (
 	"gitee.com/cruvie/kk_go_kit/kk_config/kkcfg_log"
 	"kk_etcd_go/api_etcd"
 	"kk_etcd_go/config"
-	"kk_etcd_go/handler/service"
+	"kk_etcd_go/kk_etcd"
 	_ "kk_etcd_go/main/docs"
 )
 
@@ -27,7 +27,7 @@ func main() {
 	kkcfg_log.InitLog()
 	config.InitConfig()
 
-	service.InitEtcd()
+	kk_etcd.InitEtcd([]string{config.GlobalConfig.Etcd.Endpoint})
 	api_etcd.ApiEtcd()
 }
 func mainClose() {

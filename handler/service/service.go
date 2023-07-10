@@ -7,6 +7,7 @@ import (
 	"go.etcd.io/etcd/client/v3"
 	"kk_etcd_go/config"
 	"kk_etcd_go/consts"
+	"kk_etcd_go/kk_etcd"
 	"kk_etcd_go/models"
 	"kk_etcd_go/utils/global_model"
 	"log"
@@ -90,7 +91,7 @@ func AddUser(user *models.PBUser) (res int) {
 		log.Println("failed to add user kv:", user.UserName, err)
 		return -1
 	}
-	_, err = EtcdClient.UserAdd(context.Background(), user.UserName, user.Password)
+	_, err = kk_etcd.EtcdClient.UserAdd(context.Background(), user.UserName, user.Password)
 	if err != nil && err.Error() != "etcdserver: user name already exists" {
 		log.Println("failed to add user to etcd user:", user.UserName, err)
 		return -1
@@ -104,13 +105,13 @@ func DeleteUser(c *gin.Context, userName string, admin bool) (res int) {
 		return 2
 	}
 
-	_, err := EtcdClient.Delete(context.Background(), consts.EtcdUserPrefix+userName)
+	_, err := kk_etcd.EtcdClient.Delete(context.Background(), consts.EtcdUserPrefix+userName)
 	if err != nil {
 		log.Println("failed to delete user kv:", userName, err)
 		return -1
 	}
 
-	_, err = EtcdClient.UserDelete(context.Background(), userName)
+	_, err = kk_etcd.EtcdClient.UserDelete(context.Background(), userName)
 	if err != nil {
 		log.Println("failed to delete user:", userName, err)
 		return -1
@@ -119,7 +120,7 @@ func DeleteUser(c *gin.Context, userName string, admin bool) (res int) {
 }
 
 func GetUser(userName string) (user *models.PBUser, res int) {
-	rolesResp, err := EtcdClient.UserGet(context.Background(), userName)
+	rolesResp, err := kk_etcd.EtcdClient.UserGet(context.Background(), userName)
 	if err != nil {
 		log.Println(err)
 		return nil, -1
@@ -131,7 +132,7 @@ func GetUser(userName string) (user *models.PBUser, res int) {
 }
 
 func UserList() (res int, users *models.PBListUser) {
-	list, err := EtcdClient.UserList(context.Background())
+	list, err := kk_etcd.EtcdClient.UserList(context.Background())
 	if err != nil {
 		log.Println("failed to get user list:", err)
 		return -1, nil
@@ -153,7 +154,7 @@ func AddRole(role *models.PBRole) (res int) {
 		log.Println("illegal add root role!")
 		return -1
 	}
-	_, err := EtcdClient.RoleAdd(context.Background(), role.Name)
+	_, err := kk_etcd.EtcdClient.RoleAdd(context.Background(), role.Name)
 	if err != nil {
 		log.Println("failed to add role:", role.Name, err)
 		return -1
@@ -166,7 +167,7 @@ func DeleteRole(roleName string) (res int) {
 		log.Println("illegal delete root role!")
 		return -1
 	}
-	_, err := EtcdClient.RoleDelete(context.Background(), roleName)
+	_, err := kk_etcd.EtcdClient.RoleDelete(context.Background(), roleName)
 	if err != nil {
 		log.Println("failed to delete role:", roleName, err)
 		return -1
@@ -174,7 +175,7 @@ func DeleteRole(roleName string) (res int) {
 	return 1
 }
 func RoleList() (res int, roles *models.PBListRole) {
-	list, err := EtcdClient.RoleList(context.Background())
+	list, err := kk_etcd.EtcdClient.RoleList(context.Background())
 	if err != nil {
 		log.Println("failed to get role list:", err)
 		return -1, nil
@@ -191,7 +192,7 @@ func RoleList() (res int, roles *models.PBListRole) {
 	return 1, roles
 }
 func RoleGet(roleName string) (role *models.PBRole, res int) {
-	r, err := EtcdClient.RoleGet(context.Background(), roleName)
+	r, err := kk_etcd.EtcdClient.RoleGet(context.Background(), roleName)
 	if err != nil {
 		log.Println("failed to get role:", roleName, err)
 		return nil, -1
@@ -209,7 +210,7 @@ func RoleGrantPermission(role *models.PBRole) (res int) {
 		log.Println("illegal change root role permission!")
 		return -1
 	}
-	_, err := EtcdClient.RoleGrantPermission(context.Background(), role.Name, role.Key, role.RangeEnd, clientv3.PermissionType(role.PermissionType))
+	_, err := kk_etcd.EtcdClient.RoleGrantPermission(context.Background(), role.Name, role.Key, role.RangeEnd, clientv3.PermissionType(role.PermissionType))
 	if err != nil {
 		log.Println("failed to grant permission:", role.Name, err)
 		return -1
@@ -221,7 +222,7 @@ func UserGrantRole(userName string, roleName string) (res int) {
 		log.Println("illegal change root role!")
 		return -1
 	}
-	_, err := EtcdClient.UserGrantRole(context.Background(), userName, roleName)
+	_, err := kk_etcd.EtcdClient.UserGrantRole(context.Background(), userName, roleName)
 	if err != nil {
 		log.Println("failed to grant role:", userName, err)
 		return -1
@@ -230,7 +231,7 @@ func UserGrantRole(userName string, roleName string) (res int) {
 }
 
 func KVPut(key string, value string) (res int) {
-	_, err := EtcdClient.Put(context.Background(), key, value)
+	_, err := kk_etcd.EtcdClient.Put(context.Background(), key, value)
 	if err != nil {
 		log.Println("failed to put kv:", key, err)
 		return -1
@@ -239,7 +240,7 @@ func KVPut(key string, value string) (res int) {
 }
 
 func KVGet(key string) (res int, value []byte) {
-	getResponse, err := EtcdClient.Get(context.Background(), key)
+	getResponse, err := kk_etcd.EtcdClient.Get(context.Background(), key)
 	if err != nil {
 		log.Println("failed to get kv:", key, err)
 		return -1, nil
@@ -248,7 +249,7 @@ func KVGet(key string) (res int, value []byte) {
 }
 
 func KVDel(key string) (res int) {
-	_, err := EtcdClient.Delete(context.Background(), key)
+	_, err := kk_etcd.EtcdClient.Delete(context.Background(), key)
 	if err != nil {
 		log.Println("failed to delete kv:", key, err)
 		return -1
@@ -258,7 +259,7 @@ func KVDel(key string) (res int) {
 
 func KVGetConfigList() (res int, list *models.PBListKV) {
 	list = &models.PBListKV{}
-	getResponse, err := EtcdClient.Get(context.Background(), consts.EtcdConfig, clientv3.WithPrefix())
+	getResponse, err := kk_etcd.EtcdClient.Get(context.Background(), consts.EtcdConfig, clientv3.WithPrefix())
 	if err != nil {
 		log.Println("failed to get config list:", err)
 		return -1, nil
