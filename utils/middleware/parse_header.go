@@ -12,16 +12,13 @@ import (
 // ParseHeader parse header middleware
 func ParseHeader(c *gin.Context) {
 
-	//log.Println("request url", c.Request.URL.Path)
-
-	global_model.ClearRequestHeader(c)
-
 	var header global_model.RequestHeader
 	// bind header
 	err := c.ShouldBindHeader(&header)
 	if err != nil {
 		log.Println("fail to bind header", err)
 		kku_http.ResponseProtoBuf(c, api_resp.Fail())
+		c.Abort()
 		return
 	} else {
 		// store header to gin context

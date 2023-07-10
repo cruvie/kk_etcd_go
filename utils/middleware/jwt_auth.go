@@ -14,24 +14,20 @@ import (
 // JWTAuth jwt auth middleware
 func JWTAuth(c *gin.Context) {
 
-	global_model.ClearLoginUser(c)
-
-	if c.Request.URL.Path == "/User/Login" {
-		c.Next()
-		return
-	}
 	token := global_model.GetAuthorizationToken(c)
 	if token == "" {
 		log.Println("token is empty")
 		kku_http.ResponseProtoBuf(c, api_resp.FailCodeMsg(http.StatusUnauthorized, "LogIn again"))
+		c.Abort()
 		return
 	}
-	myClaims := kku_jwt.VerifyToken(token)
+	myClaims := kku_jwt.VerifyToken[string](token)
 	//get user from etcd
-	user, res := service.GetUser(myClaims.UserId.(string))
+	user, res := service.GetUser(myClaims.UserId)
 	if res != 1 {
 		log.Println("fail to get user from etcd")
 		kku_http.ResponseProtoBuf(c, api_resp.FailCodeMsg(http.StatusUnauthorized, "LogIn again"))
+		c.Abort()
 		return
 	}
 	//store user to gin context

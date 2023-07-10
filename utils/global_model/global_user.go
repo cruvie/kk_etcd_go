@@ -20,8 +20,3 @@ func GetLoginUser(c *gin.Context) *models.PBUser {
 	}
 	return value.(*models.PBUser)
 }
-
-// ClearLoginUser clear current login user from gin context
-func ClearLoginUser(c *gin.Context) {
-	delete(c.Keys, globalUser)
-}

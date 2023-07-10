@@ -48,7 +48,7 @@ func Login(user *models.PBUser) (tokenString string, res int) {
 		return
 	}
 	//generate token
-	tokenString = kku_jwt.GenerateToken(userTemp.UserName, time.Duration(config.GlobalConfig.JWT.ExpireTime)*time.Hour)
+	tokenString = kku_jwt.GenerateToken[string](userTemp.UserName, 0, time.Duration(config.GlobalConfig.JWT.ExpireTime)*time.Hour)
 	//put into etcd
 	res = KVPut(consts.EtcdJwtPrefix+userTemp.UserName, tokenString)
 	if res != 1 {

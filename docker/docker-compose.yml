@@ -21,3 +21,9 @@ services:
     restart: unless-stopped
     volumes:
       - ./config/config.yml:/kk_etcd_go/config/config.yml
+    networks:
+      - in-so-net
+
+networks:
+  in-so-net:
+    external: true

@@ -3,6 +3,6 @@ Admin:
   UserName: kk_etcd # username cannot be root
   Password: kk_etcd
 Etcd:
-  Endpoint: http://192.168.0.20:2379
+  Endpoint: http://etcd:2379
 JWT:
   ExpireTime: 24  # hours

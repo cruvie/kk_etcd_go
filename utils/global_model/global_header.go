@@ -24,11 +24,6 @@ func GetRequestHeader(c *gin.Context) RequestHeader {
 	return header.(RequestHeader)
 }
 
-// ClearRequestHeader clear current request header from gin context
-func ClearRequestHeader(c *gin.Context) {
-	delete(c.Keys, globalHeader)
-}
-
 // GetAuthorizationToken get AuthorizationToken from globalHeader
 func GetAuthorizationToken(c *gin.Context) string {
 	return GetRequestHeader(c).AuthorizationToken

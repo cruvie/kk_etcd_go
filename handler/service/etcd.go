@@ -50,11 +50,8 @@ func InitEtcd() {
 		Password: config.GlobalConfig.Admin.Password,
 		Roles:    []string{consts.RoleRoot},
 	}
-	res := DeleteUser(nil, user.UserName, true)
-	if res != 1 {
-		log.Fatalln("delete pre admin user failed")
-	}
-	res = AddUser(user)
+	DeleteUser(nil, user.UserName, true)
+	res := AddUser(user)
 	if res != 1 {
 		log.Fatalln("add root user as an administrator of the system failed")
 	}
