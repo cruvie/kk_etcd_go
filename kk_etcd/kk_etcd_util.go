@@ -2,15 +2,17 @@ package kk_etcd
 
 import (
 	"context"
+	"github.com/cruvie/kk_etcd_go/consts"
+	"github.com/cruvie/kk_etcd_go/kk_etcd_client"
 	"gopkg.in/yaml.v3"
-	"kk_etcd_go/consts"
+
 	"log"
 )
 
 // GetConfig get config from etcd and unmarshal to configStruct
 // eg: GetConfig("go_rec_dev", &config.GlobalConfig)
 func GetConfig(configKey string, configStruct any) {
-	getResponse, err := EtcdClient.Get(context.Background(), consts.EtcdConfig+configKey)
+	getResponse, err := kk_etcd_client.EtcdClient.Get(context.Background(), consts.EtcdConfig+configKey)
 	if err != nil {
 		log.Panicln("failed to get kv:", configKey, err)
 	}

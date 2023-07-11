@@ -2,10 +2,10 @@ package api_etcd
 
 import (
 	"gitee.com/cruvie/kk_go_kit/kk_swagger"
+	"github.com/cruvie/kk_etcd_go/config"
+	"github.com/cruvie/kk_etcd_go/handler"
+	"github.com/cruvie/kk_etcd_go/utils/middleware"
 	"github.com/gin-gonic/gin"
-	"kk_etcd_go/config"
-	"kk_etcd_go/handler"
-	"kk_etcd_go/utils/middleware"
 	"log"
 	"strings"
 )

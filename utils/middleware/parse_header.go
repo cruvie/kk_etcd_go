@@ -2,9 +2,9 @@ package middleware
 
 import (
 	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_http"
+	"github.com/cruvie/kk_etcd_go/utils/api_resp"
+	"github.com/cruvie/kk_etcd_go/utils/global_model"
 	"github.com/gin-gonic/gin"
-	"kk_etcd_go/utils/api_resp"
-	"kk_etcd_go/utils/global_model"
 
 	"log"
 )

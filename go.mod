@@ -3,7 +3,7 @@ module github.com/cruvie/kk_etcd_go
 go 1.20
 
 require (
-	gitee.com/cruvie/kk_go_kit v0.0.0-20230709102106-5e095d8036f7
+	gitee.com/cruvie/kk_go_kit v0.0.0-20230710091615-87dc5682b397
 	github.com/gin-contrib/cors v1.4.0
 	github.com/gin-gonic/gin v1.9.1
 	github.com/swaggo/swag v1.16.1
@@ -57,8 +57,8 @@ require (
 	golang.org/x/sys v0.10.0 // indirect
 	golang.org/x/text v0.11.0 // indirect
 	golang.org/x/tools v0.11.0 // indirect
-	google.golang.org/genproto v0.0.0-20230706204954-ccb25ca9f130 // indirect
-	google.golang.org/genproto/googleapis/api v0.0.0-20230706204954-ccb25ca9f130 // indirect
-	google.golang.org/genproto/googleapis/rpc v0.0.0-20230706204954-ccb25ca9f130 // indirect
+	google.golang.org/genproto v0.0.0-20230710151506-e685fd7b542b // indirect
+	google.golang.org/genproto/googleapis/api v0.0.0-20230710151506-e685fd7b542b // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20230710151506-e685fd7b542b // indirect
 	google.golang.org/grpc v1.56.2 // indirect
 )

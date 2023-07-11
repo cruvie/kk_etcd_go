@@ -1,8 +1,8 @@
 package global_model
 
 import (
+	"github.com/cruvie/kk_etcd_go/models"
 	"github.com/gin-gonic/gin"
-	"kk_etcd_go/models"
 )
 
 const globalUser = "globalUser"

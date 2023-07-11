@@ -2,10 +2,11 @@ package main
 
 import (
 	"gitee.com/cruvie/kk_go_kit/kk_config/kkcfg_log"
-	"kk_etcd_go/api_etcd"
-	"kk_etcd_go/config"
-	"kk_etcd_go/kk_etcd"
-	_ "kk_etcd_go/main/docs"
+	"github.com/cruvie/kk_etcd_go/api_etcd"
+	"github.com/cruvie/kk_etcd_go/config"
+	"github.com/cruvie/kk_etcd_go/kk_etcd"
+
+	_ "github.com/cruvie/kk_etcd_go/main/docs"
 )
 
 //	@title			kk_etcd_go API

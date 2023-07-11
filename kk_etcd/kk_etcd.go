@@ -2,16 +2,15 @@ package kk_etcd
 
 import (
 	"context"
+	"github.com/cruvie/kk_etcd_go/config"
+	"github.com/cruvie/kk_etcd_go/consts"
+	"github.com/cruvie/kk_etcd_go/handler/service"
+	"github.com/cruvie/kk_etcd_go/kk_etcd_client"
+	"github.com/cruvie/kk_etcd_go/models"
 	"go.etcd.io/etcd/client/v3"
-	"kk_etcd_go/config"
-	"kk_etcd_go/consts"
-	"kk_etcd_go/handler/service"
-	"kk_etcd_go/models"
 	"log"
 	"time"
 )
-
-var EtcdClient *clientv3.Client
 
 func InitEtcd(endpoints []string) {
 	cfg := clientv3.Config{
@@ -21,28 +20,28 @@ func InitEtcd(endpoints []string) {
 		Password:    "root",
 	}
 	err := error(nil)
-	EtcdClient, err = clientv3.New(cfg)
+	kk_etcd_client.EtcdClient, err = clientv3.New(cfg)
 	if err != nil {
 		log.Fatalln(err)
 	}
 	//check root user exist
-	if _, err = EtcdClient.UserAdd(context.Background(), "root", "root"); err != nil {
+	if _, err = kk_etcd_client.EtcdClient.UserAdd(context.Background(), "root", "root"); err != nil {
 		if err.Error() != "etcdserver: user name already exists" {
 			log.Fatalln(err)
 		}
 	}
 	//check root role exist
-	if _, err = EtcdClient.RoleAdd(context.Background(), "root"); err != nil {
+	if _, err = kk_etcd_client.EtcdClient.RoleAdd(context.Background(), "root"); err != nil {
 		if err.Error() != "etcdserver: role name already exists" {
 			log.Fatalln(err)
 		}
 	}
 	//grant root role to root user
-	if _, err = EtcdClient.UserGrantRole(context.Background(), "root", "root"); err != nil {
+	if _, err = kk_etcd_client.EtcdClient.UserGrantRole(context.Background(), "root", "root"); err != nil {
 		log.Fatalln(err)
 	}
 	//enable etcd auth
-	if _, err = EtcdClient.AuthEnable(context.Background()); err != nil {
+	if _, err = kk_etcd_client.EtcdClient.AuthEnable(context.Background()); err != nil {
 		log.Fatalln(err)
 	}
 	//add root(user defined) user as an administrator of the system

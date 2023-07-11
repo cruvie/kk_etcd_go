@@ -2,13 +2,14 @@ package handler
 
 import (
 	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_http"
+	"github.com/cruvie/kk_etcd_go/consts"
+	"github.com/cruvie/kk_etcd_go/handler/service"
+	"github.com/cruvie/kk_etcd_go/models"
+	"github.com/cruvie/kk_etcd_go/models/base_proto_type"
+	"github.com/cruvie/kk_etcd_go/utils/api_resp"
+	"github.com/cruvie/kk_etcd_go/utils/global_model"
 	"github.com/gin-gonic/gin"
-	"kk_etcd_go/consts"
-	"kk_etcd_go/handler/service"
-	"kk_etcd_go/models"
-	"kk_etcd_go/models/base_proto_type"
-	"kk_etcd_go/utils/api_resp"
-	"kk_etcd_go/utils/global_model"
+
 	"log"
 )
 
