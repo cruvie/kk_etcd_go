@@ -2,7 +2,6 @@ package kk_etcd
 
 import (
 	"context"
-	"github.com/cruvie/kk_etcd_go/config"
 	"github.com/cruvie/kk_etcd_go/consts"
 	"github.com/cruvie/kk_etcd_go/handler/service"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_client"
@@ -12,7 +11,7 @@ import (
 	"time"
 )
 
-func InitEtcd(endpoints []string) {
+func InitEtcd(endpoints []string, userName string, password string) {
 	cfg := clientv3.Config{
 		Endpoints:   endpoints,
 		DialTimeout: 5 * time.Second,
@@ -46,8 +45,8 @@ func InitEtcd(endpoints []string) {
 	}
 	//add root(user defined) user as an administrator of the system
 	user := &models.PBUser{
-		UserName: config.GlobalConfig.Admin.UserName,
-		Password: config.GlobalConfig.Admin.Password,
+		UserName: userName,
+		Password: password,
 		Roles:    []string{consts.RoleRoot},
 	}
 	service.DeleteUser(nil, user.UserName, true)

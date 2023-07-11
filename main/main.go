@@ -28,7 +28,7 @@ func main() {
 	kkcfg_log.InitLog()
 	config.InitConfig()
 
-	kk_etcd.InitEtcd([]string{config.GlobalConfig.Etcd.Endpoint})
+	kk_etcd.InitEtcd([]string{config.GlobalConfig.Etcd.Endpoint}, config.GlobalConfig.Admin.UserName, config.GlobalConfig.Admin.Password)
 	api_etcd.ApiEtcd()
 }
 func mainClose() {
