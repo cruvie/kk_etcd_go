@@ -1,5 +1,7 @@
 gitee.com/cruvie/kk_go_kit v0.0.0-20230802112326-fa3878eb3a46 h1:PkjogLYW6Ygc3Ynn5e+Dr3Iw+GpC4DxyI0gpuIP/fYg=
 gitee.com/cruvie/kk_go_kit v0.0.0-20230802112326-fa3878eb3a46/go.mod h1:HR65ZVgnjtcBKs7jfh/1RJaTktDXmFfRo/pXmhw9Zfg=
+gitee.com/cruvie/kk_go_kit v0.0.0-20230810091119-c6d0ec018f67 h1:hRP+R71VOB4t5YhUHuuwJ1exWlxP81sXIbpu99zE4qg=
+gitee.com/cruvie/kk_go_kit v0.0.0-20230810091119-c6d0ec018f67/go.mod h1:bMXaGAoEvLYiHSSqAfLFfiJiMJg5+erN1kcheFMRBDk=
 github.com/KyleBanks/depth v1.2.1 h1:5h8fQADFrWtarTdtDudMmGsC7GPbOAu6RVB3ffsVFHc=
 github.com/KyleBanks/depth v1.2.1/go.mod h1:jzSb9d0L43HxTQfT+oSA1EEp2q+ne2uh6XgeJcm8brE=
 github.com/benbjohnson/clock v1.3.0 h1:ip6w0uFQkncKQ979AypyG0ER7mqUSBdKLOgAle/AT8A=

@@ -27,8 +27,8 @@ func ApiEtcd() {
 	userAPI := r.Group("/User")
 	{
 		userAPI.POST("/Logout", handler.Logout)
-		userAPI.POST("/AddUser", handler.AddUser)
-		userAPI.POST("/DeleteUser", handler.DeleteUser)
+		userAPI.POST("/UserAdd", handler.UserAdd)
+		userAPI.POST("/UserDelete", handler.UserDelete)
 		userAPI.POST("/GetUser", handler.GetUser)
 		userAPI.POST("/MyInfo", handler.MyInfo)
 		userAPI.POST("/UserList", handler.UserList)
@@ -36,8 +36,8 @@ func ApiEtcd() {
 	}
 	roleAPI := r.Group("/Role")
 	{
-		roleAPI.POST("/AddRole", handler.AddRole)
-		roleAPI.POST("/DeleteRole", handler.DeleteRole)
+		roleAPI.POST("/RoleAdd", handler.RoleAdd)
+		roleAPI.POST("/RoleDelete", handler.RoleDelete)
 		roleAPI.POST("/RoleList", handler.RoleList)
 		roleAPI.POST("/RoleGet", handler.RoleGet)
 		roleAPI.POST("/RoleGrantPermission", handler.RoleGrantPermission)

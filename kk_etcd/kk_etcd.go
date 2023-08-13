@@ -49,12 +49,12 @@ func InitEtcd(endpoints []string, userName string, password string) {
 		Password: password,
 		Roles:    []string{consts.RoleRoot},
 	}
-	service.DeleteUser(nil, user.UserName, true)
-	res := service.AddUser(user)
+	service.UserDelete(nil, user.UserName, true)
+	res := service.UserAdd(user)
 	if res != 1 {
 		log.Fatalln("add root user as an administrator of the system failed")
 	}
-	res = service.UserGrantRole(user.UserName, user.Roles[0])
+	res = service.UserGrantRole(user)
 	if res != 1 {
 		log.Fatalln("grant " + user.Roles[0] + " role to " + user.UserName + " failed")
 	}

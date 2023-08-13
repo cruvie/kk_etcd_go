@@ -3,7 +3,7 @@ module github.com/cruvie/kk_etcd_go
 go 1.21.0
 
 require (
-	gitee.com/cruvie/kk_go_kit v0.0.0-20230802112326-fa3878eb3a46
+	gitee.com/cruvie/kk_go_kit v0.0.0-20230810091119-c6d0ec018f67
 	github.com/gin-contrib/cors v1.4.0
 	github.com/gin-gonic/gin v1.9.1
 	github.com/swaggo/swag v1.16.1
@@ -32,6 +32,7 @@ require (
 	github.com/goccy/go-json v0.10.2 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/golang-jwt/jwt/v5 v5.0.0 // indirect
+	github.com/golang/protobuf v1.5.3 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/klauspost/cpuid/v2 v2.2.5 // indirect
