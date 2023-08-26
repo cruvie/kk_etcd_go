@@ -28,8 +28,8 @@ func InitConfig() {
 	//log.Println("workDir:", workDir)
 
 	//docker
-	//data, err := os.ReadFile(workDir + "/kk_etcd_go/config/config.yml")
-	data, err := os.ReadFile(workDir + "/config/config.yml")
+	data, err := os.ReadFile(workDir + "/kk_etcd_go/config/config.yml")
+	//data, err := os.ReadFile(workDir + "/config/config.yml")
 	if err != nil {
 		log.Println("unable to read config.yaml: ", err)
 		return
