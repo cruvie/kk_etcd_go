@@ -6,6 +6,7 @@ import (
 	"github.com/cruvie/kk_etcd_go/handler/service"
 	"github.com/cruvie/kk_etcd_go/models"
 	"github.com/cruvie/kk_etcd_go/utils/api_resp"
+	"github.com/cruvie/kk_etcd_go/utils/check_user"
 	"github.com/gin-gonic/gin"
 
 	"log"
@@ -19,6 +20,10 @@ import (
 //	@Param			pbKV	body	models.PBKV	true	"Put config info"
 //	@Router			/KVPutConfig [post]
 func KVPutConfig(c *gin.Context) {
+	if !check_user.CheckWritePermission(c) {
+		kku_http.ResponseProtoBuf(c, api_resp.FailMsg("you don't have write permission!"))
+		return
+	}
 	var pbKV models.PBKV
 	if err := kku_http.ReadProtoBuf(c, &pbKV); err != nil {
 		log.Println(err)
@@ -85,6 +90,10 @@ func KVGetConfigList(c *gin.Context) {
 //	@Param			pbKV	body	models.PBKV	true	"Del config info"
 //	@Router			/KVDelConfig [post]
 func KVDelConfig(c *gin.Context) {
+	if !check_user.CheckWritePermission(c) {
+		kku_http.ResponseProtoBuf(c, api_resp.FailMsg("you don't have write permission!"))
+		return
+	}
 	var pbKV models.PBKV
 	if err := kku_http.ReadProtoBuf(c, &pbKV); err != nil {
 		log.Println(err)

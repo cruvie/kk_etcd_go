@@ -24,98 +24,6 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/AddRole": {
-            "post": {
-                "description": "Add role",
-                "consumes": [
-                    "application/octet-stream"
-                ],
-                "produces": [
-                    "application/octet-stream"
-                ],
-                "parameters": [
-                    {
-                        "description": "Add role info",
-                        "name": "pbRole",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/models.PBRole"
-                        }
-                    }
-                ],
-                "responses": {}
-            }
-        },
-        "/AddUser": {
-            "post": {
-                "description": "Add user",
-                "consumes": [
-                    "application/octet-stream"
-                ],
-                "produces": [
-                    "application/octet-stream"
-                ],
-                "parameters": [
-                    {
-                        "description": "Add user info",
-                        "name": "pbUser",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/models.PBUser"
-                        }
-                    }
-                ],
-                "responses": {}
-            }
-        },
-        "/DeleteRole": {
-            "post": {
-                "description": "Delete role",
-                "consumes": [
-                    "application/octet-stream"
-                ],
-                "produces": [
-                    "application/octet-stream"
-                ],
-                "parameters": [
-                    {
-                        "description": "Delete role info",
-                        "name": "pbRole",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/models.PBRole"
-                        }
-                    }
-                ],
-                "responses": {}
-            }
-        },
-        "/DeleteUser": {
-            "post": {
-                "description": "Delete user",
-                "consumes": [
-                    "application/octet-stream"
-                ],
-                "produces": [
-                    "application/octet-stream"
-                ],
-                "parameters": [
-                    {
-                        "description": "Delete user info",
-                        "name": "pbUser",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/models.PBUser"
-                        }
-                    }
-                ],
-                "responses": {}
-            }
-        },
         "/GetUser": {
             "post": {
                 "description": "Get user",
@@ -278,6 +186,52 @@ const docTemplate = `{
                 "responses": {}
             }
         },
+        "/RoleAdd": {
+            "post": {
+                "description": "Add role",
+                "consumes": [
+                    "application/octet-stream"
+                ],
+                "produces": [
+                    "application/octet-stream"
+                ],
+                "parameters": [
+                    {
+                        "description": "Add role info",
+                        "name": "pbRole",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.PBRole"
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/RoleDelete": {
+            "post": {
+                "description": "Delete role",
+                "consumes": [
+                    "application/octet-stream"
+                ],
+                "produces": [
+                    "application/octet-stream"
+                ],
+                "parameters": [
+                    {
+                        "description": "Delete role info",
+                        "name": "pbRole",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.PBRole"
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
         "/RoleGet": {
             "post": {
                 "description": "Get role",
@@ -332,6 +286,52 @@ const docTemplate = `{
                 ],
                 "produces": [
                     "application/octet-stream"
+                ],
+                "responses": {}
+            }
+        },
+        "/UserAdd": {
+            "post": {
+                "description": "Add user",
+                "consumes": [
+                    "application/octet-stream"
+                ],
+                "produces": [
+                    "application/octet-stream"
+                ],
+                "parameters": [
+                    {
+                        "description": "Add user info",
+                        "name": "pbUser",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.PBUser"
+                        }
+                    }
+                ],
+                "responses": {}
+            }
+        },
+        "/UserDelete": {
+            "post": {
+                "description": "Delete user",
+                "consumes": [
+                    "application/octet-stream"
+                ],
+                "produces": [
+                    "application/octet-stream"
+                ],
+                "parameters": [
+                    {
+                        "description": "Delete user info",
+                        "name": "pbUser",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.PBUser"
+                        }
+                    }
                 ],
                 "responses": {}
             }

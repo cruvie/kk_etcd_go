@@ -50,66 +50,6 @@ info:
   title: kk_etcd_go API
   version: "1.0"
 paths:
-  /AddRole:
-    post:
-      consumes:
-      - application/octet-stream
-      description: Add role
-      parameters:
-      - description: Add role info
-        in: body
-        name: pbRole
-        required: true
-        schema:
-          $ref: '#/definitions/models.PBRole'
-      produces:
-      - application/octet-stream
-      responses: {}
-  /AddUser:
-    post:
-      consumes:
-      - application/octet-stream
-      description: Add user
-      parameters:
-      - description: Add user info
-        in: body
-        name: pbUser
-        required: true
-        schema:
-          $ref: '#/definitions/models.PBUser'
-      produces:
-      - application/octet-stream
-      responses: {}
-  /DeleteRole:
-    post:
-      consumes:
-      - application/octet-stream
-      description: Delete role
-      parameters:
-      - description: Delete role info
-        in: body
-        name: pbRole
-        required: true
-        schema:
-          $ref: '#/definitions/models.PBRole'
-      produces:
-      - application/octet-stream
-      responses: {}
-  /DeleteUser:
-    post:
-      consumes:
-      - application/octet-stream
-      description: Delete user
-      parameters:
-      - description: Delete user info
-        in: body
-        name: pbUser
-        required: true
-        schema:
-          $ref: '#/definitions/models.PBUser'
-      produces:
-      - application/octet-stream
-      responses: {}
   /GetUser:
     post:
       consumes:
@@ -216,6 +156,36 @@ paths:
       produces:
       - application/octet-stream
       responses: {}
+  /RoleAdd:
+    post:
+      consumes:
+      - application/octet-stream
+      description: Add role
+      parameters:
+      - description: Add role info
+        in: body
+        name: pbRole
+        required: true
+        schema:
+          $ref: '#/definitions/models.PBRole'
+      produces:
+      - application/octet-stream
+      responses: {}
+  /RoleDelete:
+    post:
+      consumes:
+      - application/octet-stream
+      description: Delete role
+      parameters:
+      - description: Delete role info
+        in: body
+        name: pbRole
+        required: true
+        schema:
+          $ref: '#/definitions/models.PBRole'
+      produces:
+      - application/octet-stream
+      responses: {}
   /RoleGet:
     post:
       consumes:
@@ -251,6 +221,36 @@ paths:
       consumes:
       - application/octet-stream
       description: Get role list
+      produces:
+      - application/octet-stream
+      responses: {}
+  /UserAdd:
+    post:
+      consumes:
+      - application/octet-stream
+      description: Add user
+      parameters:
+      - description: Add user info
+        in: body
+        name: pbUser
+        required: true
+        schema:
+          $ref: '#/definitions/models.PBUser'
+      produces:
+      - application/octet-stream
+      responses: {}
+  /UserDelete:
+    post:
+      consumes:
+      - application/octet-stream
+      description: Delete user
+      parameters:
+      - description: Delete user info
+        in: body
+        name: pbUser
+        required: true
+        schema:
+          $ref: '#/definitions/models.PBUser'
       produces:
       - application/octet-stream
       responses: {}

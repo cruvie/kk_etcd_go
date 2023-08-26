@@ -5,6 +5,7 @@ import (
 	"github.com/cruvie/kk_etcd_go/handler/service"
 	"github.com/cruvie/kk_etcd_go/models"
 	"github.com/cruvie/kk_etcd_go/utils/api_resp"
+	"github.com/cruvie/kk_etcd_go/utils/check_user"
 	"github.com/gin-gonic/gin"
 
 	"log"
@@ -18,6 +19,10 @@ import (
 //	@Param			pbRole	body	models.PBRole	true	"Add role info"
 //	@Router			/RoleAdd [post]
 func RoleAdd(c *gin.Context) {
+	if !check_user.CheckRootRole(c) {
+		kku_http.ResponseProtoBuf(c, api_resp.FailMsg("you don't have root role!"))
+		return
+	}
 	var pbRole models.PBRole
 	if err := kku_http.ReadProtoBuf(c, &pbRole); err != nil {
 		log.Println(err)
@@ -42,6 +47,10 @@ func RoleAdd(c *gin.Context) {
 //	@Param			pbRole	body	models.PBRole	true	"Delete role info"
 //	@Router			/RoleDelete [post]
 func RoleDelete(c *gin.Context) {
+	if !check_user.CheckRootRole(c) {
+		kku_http.ResponseProtoBuf(c, api_resp.FailMsg("you don't have root role!"))
+		return
+	}
 	var pbRole models.PBRole
 	if err := kku_http.ReadProtoBuf(c, &pbRole); err != nil {
 		log.Println(err)
@@ -110,19 +119,24 @@ func RoleGet(c *gin.Context) {
 //	@Param			pbRole	body	models.PBRole	true	"Grant permission to role info"
 //	@Router			/RoleGrantPermission [post]
 func RoleGrantPermission(c *gin.Context) {
+	if !check_user.CheckRootRole(c) {
+		kku_http.ResponseProtoBuf(c, api_resp.FailMsg("you don't have root role!"))
+		return
+	}
 	var pbRole models.PBRole
 	if err := kku_http.ReadProtoBuf(c, &pbRole); err != nil {
 		log.Println(err)
 		kku_http.ResponseProtoBuf(c, api_resp.Fail())
 		return
 	}
+	if pbRole.Name == "root" {
+		kku_http.ResponseProtoBuf(c, api_resp.FailMsg("illegal change root role permission!"))
+		return
+	}
 	res := service.RoleGrantPermission(&pbRole)
 	switch res {
 	case 1:
 		kku_http.ResponseProtoBuf(c, api_resp.Success())
-		return
-	case -1:
-		kku_http.ResponseProtoBuf(c, api_resp.FailMsg("illegal change root role permission!"))
 		return
 	}
 	kku_http.ResponseProtoBuf(c, api_resp.Fail())

@@ -26,10 +26,6 @@ func RoleGrantPermission(role *models.PBRole) (res int) {
 	//authpb.READ 0
 	//authpb.WRITE 1
 	//authpb.READWRITE 2
-	if role.Name == "root" {
-		log.Println("illegal change root role permission!")
-		return -1
-	}
 	//todo 一经设定无法修改？？
 	_, err := kk_etcd_client.EtcdClient.RoleGrantPermission(context.Background(), role.Name, role.Key, role.RangeEnd, clientv3.PermissionType(role.PermissionType))
 	if err != nil {

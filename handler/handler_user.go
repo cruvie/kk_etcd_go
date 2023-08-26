@@ -7,7 +7,7 @@ import (
 	"github.com/cruvie/kk_etcd_go/models"
 	"github.com/cruvie/kk_etcd_go/models/base_proto_type"
 	"github.com/cruvie/kk_etcd_go/utils/api_resp"
-	"github.com/cruvie/kk_etcd_go/utils/check_root_role"
+	"github.com/cruvie/kk_etcd_go/utils/check_user"
 	"github.com/cruvie/kk_etcd_go/utils/global_model"
 	"github.com/gin-gonic/gin"
 
@@ -78,7 +78,7 @@ func Logout(c *gin.Context) {
 //	@Param			pbUser	body	models.PBUser	true	"Add user info"
 //	@Router			/UserAdd [post]
 func UserAdd(c *gin.Context) {
-	if !check_root_role.CheckRootRole(c) {
+	if !check_user.CheckRootRole(c) {
 		kku_http.ResponseProtoBuf(c, api_resp.FailMsg("you don't have root role!"))
 		return
 	}
@@ -107,7 +107,7 @@ func UserAdd(c *gin.Context) {
 //	@Param			pbUser	body	models.PBUser	true	"Delete user info"
 //	@Router			/UserDelete [post]
 func UserDelete(c *gin.Context) {
-	if !check_root_role.CheckRootRole(c) {
+	if !check_user.CheckRootRole(c) {
 		kku_http.ResponseProtoBuf(c, api_resp.FailMsg("you don't have root role!"))
 		return
 	}
@@ -197,7 +197,7 @@ func UserList(c *gin.Context) {
 //	@Param			pBListString	body	base_proto_type.PBListString	true	"Grant role to user info"
 //	@Router			/UserGrantRole [post]
 func UserGrantRole(c *gin.Context) {
-	if !check_root_role.CheckRootRole(c) {
+	if !check_user.CheckRootRole(c) {
 		kku_http.ResponseProtoBuf(c, api_resp.FailMsg("you don't have root role!"))
 		return
 	}
