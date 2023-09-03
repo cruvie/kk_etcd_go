@@ -1,10 +1,10 @@
 package test
 
-import "github.com/cruvie/kk_etcd_go/kk_etcd"
+import "github.com/cruvie/kk_etcd_go/kk_etcd_client"
 
-var GlobalConfig Config
+var Config config
 
-type Config struct {
+type config struct {
 	ServerAddr string `yaml:"ServerAddr"`
 	Postgres   struct {
 		Dsn string `yaml:"Dsn"`
@@ -27,6 +27,6 @@ var (
 )
 
 func InitEtcd() {
-	kk_etcd.InitEtcd(endpoints, userName, password)
-	kk_etcd.GetConfig(configKey, &GlobalConfig)
+	kk_etcd_client.InitEtcd(endpoints, userName, password)
+	kk_etcd_client.GetConfig(configKey, &Config)
 }

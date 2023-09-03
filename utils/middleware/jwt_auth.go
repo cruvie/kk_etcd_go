@@ -7,8 +7,8 @@ import (
 	"github.com/cruvie/kk_etcd_go/utils/api_resp"
 	"github.com/cruvie/kk_etcd_go/utils/global_model"
 	"github.com/gin-gonic/gin"
+	"log/slog"
 
-	"log"
 	"net/http"
 )
 
@@ -17,7 +17,7 @@ func JWTAuth(c *gin.Context) {
 
 	token := global_model.GetAuthorizationToken(c)
 	if token == "" {
-		log.Println("token is empty")
+		slog.Info("token is empty")
 		kku_http.ResponseProtoBuf(c, api_resp.FailCodeMsg(http.StatusUnauthorized, "LogIn again"))
 		c.Abort()
 		return
@@ -26,7 +26,7 @@ func JWTAuth(c *gin.Context) {
 	//get user from etcd
 	user, res := service.GetUser(myClaims.UserId)
 	if res != 1 {
-		log.Println("fail to get user from etcd")
+		slog.Info("fail to get user from etcd")
 		kku_http.ResponseProtoBuf(c, api_resp.FailCodeMsg(http.StatusUnauthorized, "LogIn again"))
 		c.Abort()
 		return

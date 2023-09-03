@@ -1,11 +1,10 @@
 package main
 
 import (
-	"gitee.com/cruvie/kk_go_kit/kk_config/kkcfg_log"
+	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_log"
 	"github.com/cruvie/kk_etcd_go/api_etcd"
 	"github.com/cruvie/kk_etcd_go/config"
 	"github.com/cruvie/kk_etcd_go/kk_etcd"
-
 	_ "github.com/cruvie/kk_etcd_go/main/docs"
 )
 
@@ -25,10 +24,10 @@ import (
 // @BasePath	/User
 func main() {
 	defer mainClose()
-	kkcfg_log.InitLog()
 	config.InitConfig()
 
-	kk_etcd.InitEtcd([]string{config.GlobalConfig.Etcd.Endpoint}, config.GlobalConfig.Admin.UserName, config.GlobalConfig.Admin.Password)
+	kku_log.InitSlog(config.Config.DebugMode)
+	kk_etcd.InitEtcd([]string{config.Config.Etcd.Endpoint}, config.Config.Admin.UserName, config.Config.Admin.Password)
 	api_etcd.ApiEtcd()
 }
 func mainClose() {

@@ -86,7 +86,7 @@ init and get config from etcd
 `my_config` in etcd (yaml format)
 ```yaml
 ServerAddr: 127.0.0.1:8759
-
+DebugMode: true
 Postgres:
   Dsn: host=127.0.0.1 user=xxxx password=xxxx dbname=xxxx port=5432 sslmode=disable TimeZone=UTC
 
@@ -102,10 +102,11 @@ get config in your project from etcd
 
 import "github.com/cruvie/kk_etcd_go/kk_etcd"
 
-var GlobalConfig Config
+var Config config
 
-type Config struct {
+type config struct {
 	ServerAddr string `yaml:"ServerAddr"`
+	DebugMode  bool   `yaml:"DebugMode"`
 	Postgres struct {
 		Dsn string `yaml:"Dsn"`
 	} `yaml:"Postgres"`
@@ -128,7 +129,7 @@ var (
 
 func InitEtcd() {
 	kk_etcd.InitEtcd(endpoints, userName, password)
-	kk_etcd.GetConfig(configKey, &GlobalConfig)
+kk_etcd.GetConfig(configKey, &Config)
 }
 ```
 

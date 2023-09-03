@@ -2,14 +2,15 @@ package config
 
 import (
 	"gopkg.in/yaml.v3"
-	"log"
+	"log/slog"
 	"os"
 )
 
-var GlobalConfig Config
+var Config config
 
-type Config struct {
+type config struct {
 	ServerAddr string `yaml:"ServerAddr"`
+	DebugMode  bool   `yaml:"DebugMode"`
 	Admin      struct {
 		UserName string `yaml:"UserName"`
 		Password string `yaml:"Password"`
@@ -25,19 +26,19 @@ type Config struct {
 func InitConfig() {
 
 	workDir, _ := os.Getwd()
-	//log.Println("workDir:", workDir)
+	//slog.Info("workDir:", workDir)
 
 	//docker
-	data, err := os.ReadFile(workDir + "/kk_etcd_go/config/config.yml")
-	//data, err := os.ReadFile(workDir + "/config/config.yml")
+	//data, err := os.ReadFile(workDir + "/kk_etcd_go/config/config.yml")
+	data, err := os.ReadFile(workDir + "/config/config.yml")
 	if err != nil {
-		log.Println("unable to read config.yaml: ", err)
+		slog.Info("unable to read config.yaml: ", err)
 		return
 	}
 
-	err = yaml.Unmarshal(data, &GlobalConfig)
+	err = yaml.Unmarshal(data, &Config)
 	if err != nil {
-		log.Println("unable to unmarshal config.yaml: ", err)
+		slog.Info("unable to unmarshal config.yaml: ", err)
 		return
 	}
 }

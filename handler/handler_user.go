@@ -10,8 +10,7 @@ import (
 	"github.com/cruvie/kk_etcd_go/utils/check_user"
 	"github.com/cruvie/kk_etcd_go/utils/global_model"
 	"github.com/gin-gonic/gin"
-
-	"log"
+	"log/slog"
 )
 
 // Login
@@ -24,7 +23,7 @@ import (
 func Login(c *gin.Context) {
 	var pbUser models.PBUser
 	if err := kku_http.ReadProtoBuf(c, &pbUser); err != nil {
-		log.Println(err)
+		slog.Info("failed to read proto buf:", err)
 		kku_http.ResponseProtoBuf(c, api_resp.Fail())
 		return
 	}
@@ -55,7 +54,7 @@ func Login(c *gin.Context) {
 func Logout(c *gin.Context) {
 	var pbUser models.PBUser
 	if err := kku_http.ReadProtoBuf(c, &pbUser); err != nil {
-		log.Println(err)
+		slog.Info("failed to read proto buf:", err)
 		kku_http.ResponseProtoBuf(c, api_resp.Fail())
 		return
 	}
@@ -85,7 +84,7 @@ func UserAdd(c *gin.Context) {
 
 	var pbUser models.PBUser
 	if err := kku_http.ReadProtoBuf(c, &pbUser); err != nil {
-		log.Println(err)
+		slog.Info("failed to read proto buf:", err)
 		kku_http.ResponseProtoBuf(c, api_resp.Fail())
 		return
 	}
@@ -113,7 +112,7 @@ func UserDelete(c *gin.Context) {
 	}
 	var pbUser models.PBUser
 	if err := kku_http.ReadProtoBuf(c, &pbUser); err != nil {
-		log.Println(err)
+		slog.Info("failed to read proto buf:", err)
 		kku_http.ResponseProtoBuf(c, api_resp.Fail())
 		return
 	}
@@ -140,7 +139,7 @@ func UserDelete(c *gin.Context) {
 func GetUser(c *gin.Context) {
 	var pbUser models.PBUser
 	if err := kku_http.ReadProtoBuf(c, &pbUser); err != nil {
-		log.Println(err)
+		slog.Info("failed to read proto buf:", err)
 		kku_http.ResponseProtoBuf(c, api_resp.Fail())
 		return
 	}
@@ -204,12 +203,12 @@ func UserGrantRole(c *gin.Context) {
 
 	var user models.PBUser
 	if err := kku_http.ReadProtoBuf(c, &user); err != nil {
-		log.Println(err)
+		slog.Info("failed to read proto buf:", err)
 		kku_http.ResponseProtoBuf(c, api_resp.Fail())
 		return
 	}
 
-	if user.UserName == config.GlobalConfig.Admin.UserName {
+	if user.UserName == config.Config.Admin.UserName {
 		kku_http.ResponseProtoBuf(c, api_resp.FailMsg("can't change Admin user's role!"))
 		return
 	}

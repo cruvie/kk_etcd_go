@@ -8,8 +8,7 @@ import (
 	"github.com/cruvie/kk_etcd_go/utils/api_resp"
 	"github.com/cruvie/kk_etcd_go/utils/check_user"
 	"github.com/gin-gonic/gin"
-
-	"log"
+	"log/slog"
 )
 
 // KVPutConfig
@@ -26,7 +25,7 @@ func KVPutConfig(c *gin.Context) {
 	}
 	var pbKV models.PBKV
 	if err := kku_http.ReadProtoBuf(c, &pbKV); err != nil {
-		log.Println(err)
+		slog.Info("failed to read proto buf:", err)
 		kku_http.ResponseProtoBuf(c, api_resp.Fail())
 		return
 	}
@@ -50,7 +49,7 @@ func KVPutConfig(c *gin.Context) {
 func KVGetConfig(c *gin.Context) {
 	var pbKV models.PBKV
 	if err := kku_http.ReadProtoBuf(c, &pbKV); err != nil {
-		log.Println(err)
+		slog.Info("failed to read proto buf:", err)
 		kku_http.ResponseProtoBuf(c, api_resp.Fail())
 		return
 	}
@@ -96,7 +95,7 @@ func KVDelConfig(c *gin.Context) {
 	}
 	var pbKV models.PBKV
 	if err := kku_http.ReadProtoBuf(c, &pbKV); err != nil {
-		log.Println(err)
+		slog.Info("failed to read proto buf:", err)
 		kku_http.ResponseProtoBuf(c, api_resp.Fail())
 		return
 	}

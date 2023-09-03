@@ -1,4 +1,5 @@
 ServerAddr: 0.0.0.0:2333
+DebugMode: true
 Admin:
   UserName: kk_etcd # username cannot be root
   Password: kk_etcd

@@ -9,7 +9,7 @@ import (
 	"github.com/cruvie/kk_etcd_go/models"
 	"github.com/cruvie/kk_etcd_go/utils/global_model"
 	"github.com/gin-gonic/gin"
-	"log"
+	"log/slog"
 	"time"
 
 	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_encrypt"
@@ -18,7 +18,7 @@ import (
 
 func Login(user *models.PBUser) (tokenString string, res int) {
 	if user.UserName == "root" {
-		log.Println("illegal login root user!")
+		slog.Info("illegal login root user!")
 		return "", -1
 	}
 	/*
@@ -29,29 +29,29 @@ func Login(user *models.PBUser) (tokenString string, res int) {
 	rawPassword := user.Password
 	res, value := KVGet(consts.EtcdUserPrefix + user.UserName)
 	if res != 1 {
-		log.Println("failed to get user kv:", user.UserName)
+		slog.Info("failed to get user kv:", user.UserName)
 		res = 2
 		return
 	}
 	var userTemp models.PBUser
 	if err := json.Unmarshal(value, &userTemp); err != nil {
-		log.Println("failed to unmarshal user kv:", user.UserName, err)
+		slog.Info("failed to unmarshal user kv:", user.UserName, err)
 		return
 	}
 
 	//validate password
 	equal := kku_encrypt.CheckPasswordHash(userTemp.Password, rawPassword)
 	if equal == false {
-		log.Println("wrong password:", user.UserName)
+		slog.Info("wrong password:", user.UserName)
 		res = 4
 		return
 	}
 	//generate token
-	tokenString = kku_jwt.GenerateToken[string](userTemp.UserName, 0, time.Duration(config.GlobalConfig.JWT.ExpireTime)*time.Hour)
+	tokenString = kku_jwt.GenerateToken[string](userTemp.UserName, 0, time.Duration(config.Config.JWT.ExpireTime)*time.Hour)
 	//put into etcd
 	res = KVPut(consts.EtcdJwtPrefix+userTemp.UserName, tokenString)
 	if res != 1 {
-		log.Println("failed to put jwt kv:", userTemp.UserName)
+		slog.Info("failed to put jwt kv:", userTemp.UserName)
 		res = -1
 		return
 	} else {
@@ -62,7 +62,7 @@ func Login(user *models.PBUser) (tokenString string, res int) {
 func Logout(user *models.PBUser) (res int) {
 	res = KVDel(consts.EtcdJwtPrefix + user.UserName)
 	if res != 1 {
-		log.Println("failed to del jwt kv:", user.UserName)
+		slog.Info("failed to del jwt kv:", user.UserName)
 		res = -1
 		return
 	} else {
@@ -73,45 +73,45 @@ func Logout(user *models.PBUser) (res int) {
 
 func UserAdd(user *models.PBUser) (res int) {
 	if user.UserName == "root" {
-		log.Println("illegal add root user!")
+		slog.Info("illegal add root user!")
 		return -1
 	}
 	user.Password, _ = kku_encrypt.GeneratePassword(user.Password)
 	jsonData, err := json.Marshal(&user)
 	if err != nil {
-		log.Println("error in marshal user:", err)
+		slog.Info("error in marshal user:", err)
 		return -1
 	}
 	jsonStr := string(jsonData)
 	//add user kv to etcd used for user login
 	res = KVPut(consts.EtcdUserPrefix+user.UserName, jsonStr)
 	if res != 1 {
-		log.Println("failed to add user kv:", user.UserName, err)
+		slog.Info("failed to add user kv:", user.UserName, err)
 		return -1
 	}
 	_, err = kk_etcd_client.EtcdClient.UserAdd(context.Background(), user.UserName, user.Password)
 	if err != nil && err.Error() != "etcdserver: user name already exists" {
-		log.Println("failed to add user to etcd user:", user.UserName, err)
+		slog.Info("failed to add user to etcd user:", user.UserName, err)
 		return -1
 	}
 	return 1
 }
 
 func UserDelete(c *gin.Context, userName string, admin bool) (res int) {
-	if (!admin) && (userName == "root" || userName == config.GlobalConfig.Admin.UserName || userName == global_model.GetLoginUser(c).UserName) {
-		log.Println("illegal delete root admin or current logged in user!")
+	if (!admin) && (userName == "root" || userName == config.Config.Admin.UserName || userName == global_model.GetLoginUser(c).UserName) {
+		slog.Info("illegal delete root admin or current logged in user!")
 		return 2
 	}
 
 	_, err := kk_etcd_client.EtcdClient.Delete(context.Background(), consts.EtcdUserPrefix+userName)
 	if err != nil {
-		log.Println("failed to delete user kv:", userName, err)
+		slog.Info("failed to delete user kv:", userName, err)
 		return -1
 	}
 
 	_, err = kk_etcd_client.EtcdClient.UserDelete(context.Background(), userName)
 	if err != nil {
-		log.Println("failed to delete user:", userName, err)
+		slog.Info("failed to delete user:", userName, err)
 		return -1
 	}
 	return 1
@@ -120,7 +120,7 @@ func UserDelete(c *gin.Context, userName string, admin bool) (res int) {
 func GetUser(userName string) (user *models.PBUser, res int) {
 	rolesResp, err := kk_etcd_client.EtcdClient.UserGet(context.Background(), userName)
 	if err != nil {
-		log.Println(err)
+		slog.Info("failed to get user:", userName, err)
 		return nil, -1
 	}
 	user = &models.PBUser{}
@@ -132,14 +132,14 @@ func GetUser(userName string) (user *models.PBUser, res int) {
 func UserList() (res int, users *models.PBListUser) {
 	list, err := kk_etcd_client.EtcdClient.UserList(context.Background())
 	if err != nil {
-		log.Println("failed to get user list:", err)
+		slog.Info("failed to get user list:", err)
 		return -1, nil
 	}
 	users = &models.PBListUser{}
 	for _, userName := range list.Users {
 		user, res := GetUser(userName)
 		if res != 1 {
-			log.Println(err)
+			slog.Info("failed to get user:", userName, err)
 			return -1, nil
 		}
 		users.ListUser = append(users.ListUser, user)
@@ -148,14 +148,14 @@ func UserList() (res int, users *models.PBListUser) {
 }
 func UserGrantRole(user *models.PBUser) (res int) {
 	if user.UserName == "root" {
-		log.Println("Illegal modification of root user's role!")
+		slog.Info("Illegal modification of root user's role!")
 		return -1
 	}
 	deleteAllRoles(user.UserName)
 	for _, role := range user.Roles {
 		_, err := kk_etcd_client.EtcdClient.UserGrantRole(context.Background(), user.UserName, role)
 		if err != nil {
-			log.Println("failed to grant role:", user.UserName, err)
+			slog.Info("failed to grant role:", user.UserName, err)
 			return -3
 		}
 	}
@@ -167,7 +167,7 @@ func deleteAllRoles(userName string) {
 	for _, role := range user.Roles {
 		_, err := kk_etcd_client.EtcdClient.UserRevokeRole(context.Background(), userName, role)
 		if err != nil {
-			log.Println("failed to revoke role:", userName, err)
+			slog.Info("failed to revoke role:", userName, err)
 			return
 		}
 	}

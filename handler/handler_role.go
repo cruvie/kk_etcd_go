@@ -7,8 +7,7 @@ import (
 	"github.com/cruvie/kk_etcd_go/utils/api_resp"
 	"github.com/cruvie/kk_etcd_go/utils/check_user"
 	"github.com/gin-gonic/gin"
-
-	"log"
+	"log/slog"
 )
 
 // RoleAdd
@@ -25,7 +24,7 @@ func RoleAdd(c *gin.Context) {
 	}
 	var pbRole models.PBRole
 	if err := kku_http.ReadProtoBuf(c, &pbRole); err != nil {
-		log.Println(err)
+		slog.Info("failed to read protobuf:", err)
 		kku_http.ResponseProtoBuf(c, api_resp.Fail())
 		return
 	}
@@ -53,7 +52,7 @@ func RoleDelete(c *gin.Context) {
 	}
 	var pbRole models.PBRole
 	if err := kku_http.ReadProtoBuf(c, &pbRole); err != nil {
-		log.Println(err)
+		slog.Info("failed to read protobuf:", err)
 		kku_http.ResponseProtoBuf(c, api_resp.Fail())
 		return
 	}
@@ -97,7 +96,7 @@ func RoleList(c *gin.Context) {
 func RoleGet(c *gin.Context) {
 	var pbRole models.PBRole
 	if err := kku_http.ReadProtoBuf(c, &pbRole); err != nil {
-		log.Println(err)
+		slog.Info("failed to read protobuf:", err)
 		kku_http.ResponseProtoBuf(c, api_resp.Fail())
 		return
 	}
@@ -125,7 +124,7 @@ func RoleGrantPermission(c *gin.Context) {
 	}
 	var pbRole models.PBRole
 	if err := kku_http.ReadProtoBuf(c, &pbRole); err != nil {
-		log.Println(err)
+		slog.Info("failed to read protobuf:", err)
 		kku_http.ResponseProtoBuf(c, api_resp.Fail())
 		return
 	}

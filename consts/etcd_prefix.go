@@ -1,7 +1,9 @@
 package consts
 
-const EtcdUserPrefix = "user:"
-
-const EtcdJwtPrefix = "jwt:"
-
-const EtcdConfig = "config:"
+const (
+	EtcdUserPrefix  = "user:"
+	EtcdJwtPrefix   = "jwt:"
+	EtcdConfig      = "config:"
+	EtcdServiceHttp = "service_http:"
+	EtcdServiceGrpc = "service_grpc:"
+)
