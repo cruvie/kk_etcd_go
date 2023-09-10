@@ -19,6 +19,10 @@ func GetConfig(configKey string, configStruct any) {
 	if err != nil {
 		slog.Error("failed to get kv:", configKey, err)
 	}
+	if getResponse.Kvs == nil {
+		slog.Error("failed to get kv:", configKey, "getResponse.Kvs is nil")
+		return
+	}
 	err = yaml.Unmarshal(getResponse.Kvs[0].Value, configStruct)
 	if err != nil {
 		slog.Error("映射配置信息到结构体失败=", err, "读取到的信息=", string(getResponse.Kvs[0].Value))

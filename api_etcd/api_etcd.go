@@ -8,7 +8,6 @@ import (
 	"github.com/cruvie/kk_etcd_go/handler"
 	"github.com/cruvie/kk_etcd_go/utils/middleware"
 	"github.com/gin-gonic/gin"
-	"strings"
 )
 
 func ApiEtcd() {
@@ -19,8 +18,7 @@ func ApiEtcd() {
 	r.Use(middleware.Cors())
 
 	//swagger
-	port := strings.Split(config.Config.ServerAddr, ":")[1]
-	kk_swagger.InitSwagger(r, port)
+	kk_swagger.InitSwagger(r, config.Config.ServerAddr)
 
 	r.Use(middleware.ParseHeader)
 

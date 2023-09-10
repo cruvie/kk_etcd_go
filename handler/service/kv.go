@@ -21,7 +21,7 @@ func KVPut(key string, value string) (res int) {
 
 func KVGet(key string) (res int, value []byte) {
 	getResponse, err := kk_etcd_client.EtcdClient.Get(context.Background(), key)
-	if err != nil {
+	if err != nil || getResponse.Kvs == nil {
 		log.Println("failed to get kv:", key, err)
 		return -1, nil
 	}

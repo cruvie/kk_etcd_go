@@ -71,10 +71,10 @@ func KVGetConfig(c *gin.Context) {
 //	@Produce		octet-stream
 //	@Router			/KVGetConfigList [post]
 func KVGetConfigList(c *gin.Context) {
-	res, value := service.KVGetConfigList()
+	res, list := service.KVGetConfigList()
 	switch res {
 	case 1:
-		kku_http.ResponseProtoBuf(c, api_resp.SuccessData(value))
+		kku_http.ResponseProtoBuf(c, api_resp.SuccessData(list))
 		return
 	}
 	kku_http.ResponseProtoBuf(c, api_resp.Fail())
