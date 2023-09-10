@@ -2,6 +2,7 @@ package service
 
 import (
 	"context"
+	"github.com/cruvie/kk_etcd_go/consts/key_prefix"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_client"
 	"github.com/cruvie/kk_etcd_go/models"
 	"go.etcd.io/etcd/client/v3"
@@ -44,16 +45,23 @@ func KVList(prefix string) (res int, list *models.PBListKV) {
 		return -1, nil
 	}
 	for _, kv := range getResponse.Kvs {
-		cfg := &models.PBKV{}
-		key := string(kv.Key)
-		split := strings.Split(key, prefix)
-		if len(split) >= 2 {
-			cfg.Key = split[1]
+		cfg := &models.PBKV{
+			Key:   string(kv.Key),
+			Value: string(kv.Value),
 		}
-		cfg.Value = string(kv.Value)
-		if err != nil {
-			log.Println("failed to unmarshal kv:", err)
-			return -1, nil
+		//skip all prefix match if prefix is empty
+		//  User        = "kk_user/"
+		//	Jwt         = "kk_jwt/"
+		//	Config      = "kk_config/"
+		//	ServiceHttp = "kk_service_http/"
+		//	ServiceGrpc = "kk_service_grpc/"
+		if prefix == "" &&
+			(strings.HasPrefix(cfg.Key, key_prefix.User) ||
+				strings.HasPrefix(cfg.Key, key_prefix.Jwt) ||
+				strings.HasPrefix(cfg.Key, key_prefix.Config) ||
+				strings.HasPrefix(cfg.Key, key_prefix.ServiceHttp) ||
+				strings.HasPrefix(cfg.Key, key_prefix.ServiceGrpc)) {
+			continue
 		}
 		list.ListKV = append(list.ListKV, cfg)
 	}
