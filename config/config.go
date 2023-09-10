@@ -26,7 +26,7 @@ type config struct {
 func InitConfig() {
 
 	workDir, _ := os.Getwd()
-	//slog.Info("workDir:", workDir)
+	slog.Info("workDir:", workDir)
 
 	//docker
 	//data, err := os.ReadFile(workDir + "/kk_etcd_go/config/config.yml")

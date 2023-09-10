@@ -4,7 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"github.com/cruvie/kk_etcd_go/config"
-	"github.com/cruvie/kk_etcd_go/consts"
+	"github.com/cruvie/kk_etcd_go/consts/key_prefix"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_client"
 	"github.com/cruvie/kk_etcd_go/models"
 	"github.com/cruvie/kk_etcd_go/utils/global_model"
@@ -27,7 +27,7 @@ func Login(user *models.PBUser) (tokenString string, res int) {
 	*/
 	//get md5 password
 	rawPassword := user.Password
-	res, value := KVGet(consts.EtcdUserPrefix + user.UserName)
+	res, value := KVGet(key_prefix.User + user.UserName)
 	if res != 1 {
 		slog.Info("failed to get user kv:", user.UserName)
 		res = 2
@@ -49,7 +49,7 @@ func Login(user *models.PBUser) (tokenString string, res int) {
 	//generate token
 	tokenString = kku_jwt.GenerateToken[string](userTemp.UserName, 0, time.Duration(config.Config.JWT.ExpireTime)*time.Hour)
 	//put into etcd
-	res = KVPut(consts.EtcdJwtPrefix+userTemp.UserName, tokenString)
+	res = KVPut(key_prefix.Jwt+userTemp.UserName, tokenString)
 	if res != 1 {
 		slog.Info("failed to put jwt kv:", userTemp.UserName)
 		res = -1
@@ -60,7 +60,7 @@ func Login(user *models.PBUser) (tokenString string, res int) {
 	}
 }
 func Logout(user *models.PBUser) (res int) {
-	res = KVDel(consts.EtcdJwtPrefix + user.UserName)
+	res = KVDel(key_prefix.Jwt + user.UserName)
 	if res != 1 {
 		slog.Info("failed to del jwt kv:", user.UserName)
 		res = -1
@@ -84,7 +84,7 @@ func UserAdd(user *models.PBUser) (res int) {
 	}
 	jsonStr := string(jsonData)
 	//add user kv to etcd used for user login
-	res = KVPut(consts.EtcdUserPrefix+user.UserName, jsonStr)
+	res = KVPut(key_prefix.User+user.UserName, jsonStr)
 	if res != 1 {
 		slog.Info("failed to add user kv:", user.UserName, err)
 		return -1
@@ -103,7 +103,7 @@ func UserDelete(c *gin.Context, userName string, admin bool) (res int) {
 		return 2
 	}
 
-	_, err := kk_etcd_client.EtcdClient.Delete(context.Background(), consts.EtcdUserPrefix+userName)
+	_, err := kk_etcd_client.EtcdClient.Delete(context.Background(), key_prefix.User+userName)
 	if err != nil {
 		slog.Info("failed to delete user kv:", userName, err)
 		return -1

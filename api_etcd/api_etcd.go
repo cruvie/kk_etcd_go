@@ -3,7 +3,7 @@ package api_etcd
 import (
 	"gitee.com/cruvie/kk_go_kit/kk_swagger"
 	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_func"
-	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_log"
+	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_http"
 	"github.com/cruvie/kk_etcd_go/config"
 	"github.com/cruvie/kk_etcd_go/handler"
 	"github.com/cruvie/kk_etcd_go/utils/middleware"
@@ -12,6 +12,9 @@ import (
 )
 
 func ApiEtcd() {
+	if !config.Config.DebugMode {
+		gin.SetMode(gin.ReleaseMode)
+	}
 	r := gin.Default()
 	r.Use(middleware.Cors())
 
@@ -50,10 +53,6 @@ func ApiEtcd() {
 		kvAPI.POST(kku_func.GetFunctionName(handler.KVDelConfig), handler.KVDelConfig)
 	}
 
-	err := r.Run(config.Config.ServerAddr)
-	if err != nil {
-		kku_log.SlogPanic("err to run server", err)
-		return
-	}
+	kku_http.ServerWithGracefulShutdown(r, config.Config.ServerAddr)
 
 }

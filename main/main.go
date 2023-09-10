@@ -26,7 +26,7 @@ func main() {
 	defer mainClose()
 	config.InitConfig()
 
-	kku_log.InitSlog(config.Config.DebugMode)
+	kku_log.InitSlog(config.Config.DebugMode, nil, nil)
 	kk_etcd.InitEtcd([]string{config.Config.Etcd.Endpoint}, config.Config.Admin.UserName, config.Config.Admin.Password)
 	api_etcd.ApiEtcd()
 }

@@ -2,7 +2,7 @@ package service
 
 import (
 	"context"
-	"github.com/cruvie/kk_etcd_go/consts"
+	"github.com/cruvie/kk_etcd_go/consts/key_prefix"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_client"
 	"github.com/cruvie/kk_etcd_go/models"
 	"go.etcd.io/etcd/client/v3"
@@ -39,14 +39,18 @@ func KVDel(key string) (res int) {
 
 func KVGetConfigList() (res int, list *models.PBListKV) {
 	list = &models.PBListKV{}
-	getResponse, err := kk_etcd_client.EtcdClient.Get(context.Background(), consts.EtcdConfig, clientv3.WithPrefix())
+	getResponse, err := kk_etcd_client.EtcdClient.Get(context.Background(), key_prefix.Config, clientv3.WithPrefix())
 	if err != nil {
 		log.Println("failed to get config list:", err)
 		return -1, nil
 	}
 	for _, kv := range getResponse.Kvs {
 		cfg := &models.PBKV{}
-		cfg.Key = strings.Split(string(kv.Key), consts.EtcdConfig)[1]
+		key := string(kv.Key)
+		split := strings.Split(key, key_prefix.Config)
+		if len(split) >= 2 {
+			cfg.Key = strings.Split(key, key_prefix.Config)[1]
+		}
 		cfg.Value = string(kv.Value)
 		if err != nil {
 			log.Println("failed to unmarshal config:", err)

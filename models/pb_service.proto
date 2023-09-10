@@ -1,0 +1,18 @@
+syntax = "proto3";
+package models;
+//import "google/protobuf/any.proto";
+option go_package = "./;models";
+
+// protoc -I=. --go_out=./ *.proto
+
+
+// protoc -I=. --dart_out=./dart *.proto
+
+message PBService {
+  string ServiceName = 1;
+  string ServiceAddr = 2;
+}
+
+message PBListService  {
+  repeated PBService ListService = 1;
+}

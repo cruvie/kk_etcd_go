@@ -1,6 +1,8 @@
 package test
 
-import "github.com/cruvie/kk_etcd_go/kk_etcd_client"
+import (
+	"github.com/cruvie/kk_etcd_go/kk_etcd"
+)
 
 var Config config
 
@@ -27,6 +29,6 @@ var (
 )
 
 func InitEtcd() {
-	kk_etcd_client.InitEtcd(endpoints, userName, password)
-	kk_etcd_client.GetConfig(configKey, &Config)
+	kk_etcd.InitEtcd(endpoints, userName, password)
+	kk_etcd.GetConfig(configKey, &Config)
 }

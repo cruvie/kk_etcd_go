@@ -2,7 +2,7 @@ package handler
 
 import (
 	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_http"
-	"github.com/cruvie/kk_etcd_go/consts"
+	"github.com/cruvie/kk_etcd_go/consts/key_prefix"
 	"github.com/cruvie/kk_etcd_go/handler/service"
 	"github.com/cruvie/kk_etcd_go/models"
 	"github.com/cruvie/kk_etcd_go/utils/api_resp"
@@ -29,7 +29,7 @@ func KVPutConfig(c *gin.Context) {
 		kku_http.ResponseProtoBuf(c, api_resp.Fail())
 		return
 	}
-	res := service.KVPut(consts.EtcdConfig+pbKV.Key, pbKV.Value)
+	res := service.KVPut(key_prefix.Config+pbKV.Key, pbKV.Value)
 	switch res {
 	case 1:
 		kku_http.ResponseProtoBuf(c, api_resp.Success())
@@ -53,7 +53,7 @@ func KVGetConfig(c *gin.Context) {
 		kku_http.ResponseProtoBuf(c, api_resp.Fail())
 		return
 	}
-	res, value := service.KVGet(consts.EtcdConfig + pbKV.Key)
+	res, value := service.KVGet(key_prefix.Config + pbKV.Key)
 	switch res {
 	case 1:
 		pbKV.Value = string(value)
@@ -99,7 +99,7 @@ func KVDelConfig(c *gin.Context) {
 		kku_http.ResponseProtoBuf(c, api_resp.Fail())
 		return
 	}
-	res := service.KVDel(consts.EtcdConfig + pbKV.Key)
+	res := service.KVDel(key_prefix.Config + pbKV.Key)
 	switch res {
 	case 1:
 		kku_http.ResponseProtoBuf(c, api_resp.Success())
