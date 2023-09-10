@@ -5,6 +5,8 @@ A configuration center based on `Etcd`
 
 ![ui](https://github.com/cruvie/kk_etcd_ui/blob/master/lib/assets/images/ui.png?raw=true) 
 
+![ui](https://github.com/cruvie/kk_etcd_ui/blob/master/lib/assets/images/ui2.png?raw=true)
+
 ## How to use
 
 You need to run the [server](https://github.com/cruvie/kk_etcd_go) first, then you can use the [client](https://github.com/cruvie/kk_etcd_ui) to connect to the server.
@@ -79,14 +81,14 @@ services:
 # SDK
 we only provide `go` sdk now
 ```shell
-  go get github.com/cruvie/kk_etcd_go@vxxxx
+  go get github.com/cruvie/kk_etcd_go
 ```
 init and get config from etcd
 
 `my_config` in etcd (yaml format)
 ```yaml
 ServerAddr: 127.0.0.1:8759
-DebugMode: true
+
 Postgres:
   Dsn: host=127.0.0.1 user=xxxx password=xxxx dbname=xxxx port=5432 sslmode=disable TimeZone=UTC
 
@@ -102,11 +104,10 @@ get config in your project from etcd
 
 import "github.com/cruvie/kk_etcd_go/kk_etcd"
 
-var Config config
+var GlobalConfig Config
 
-type config struct {
+type Config struct {
 	ServerAddr string `yaml:"ServerAddr"`
-	DebugMode  bool   `yaml:"DebugMode"`
 	Postgres struct {
 		Dsn string `yaml:"Dsn"`
 	} `yaml:"Postgres"`
@@ -129,7 +130,7 @@ var (
 
 func InitEtcd() {
 	kk_etcd.InitEtcd(endpoints, userName, password)
-kk_etcd.GetConfig(configKey, &Config)
+kk_etcd.GetConfig(configKey, &GlobalConfig)
 }
 ```
 
