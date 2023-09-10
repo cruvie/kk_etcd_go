@@ -45,10 +45,10 @@ func ApiEtcd() {
 	}
 	kvAPI := r.Group("KV")
 	{
-		kvAPI.POST(kku_func.GetFunctionName(handler.KVPutConfig), handler.KVPutConfig)
-		kvAPI.POST(kku_func.GetFunctionName(handler.KVGetConfig), handler.KVGetConfig)
-		kvAPI.POST(kku_func.GetFunctionName(handler.KVGetConfigList), handler.KVGetConfigList)
-		kvAPI.POST(kku_func.GetFunctionName(handler.KVDelConfig), handler.KVDelConfig)
+		kvAPI.POST(kku_func.GetFunctionName(handler.KVPut), handler.KVPut)
+		kvAPI.POST(kku_func.GetFunctionName(handler.KVGet), handler.KVGet)
+		kvAPI.POST(kku_func.GetFunctionName(handler.KVList), handler.KVList)
+		kvAPI.POST(kku_func.GetFunctionName(handler.KVDel), handler.KVDel)
 	}
 
 	kku_http.ServerWithGracefulShutdown(r, config.Config.ServerAddr)

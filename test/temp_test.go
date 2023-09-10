@@ -13,7 +13,7 @@ func InitEtcd() {
 	config.InitConfig()
 	kku_log.InitSlog(config.Config.DebugMode, nil, nil)
 	kk_etcd.InitEtcd([]string{config.Config.Etcd.Endpoint}, config.Config.Admin.UserName, config.Config.Admin.Password)
-	_, list := service.KVGetConfigList()
+	_, list := service.KVList("")
 	for _, pbKV := range list.ListKV {
 		service.KVPut(key_prefix.Config+pbKV.Key, pbKV.Value)
 	}

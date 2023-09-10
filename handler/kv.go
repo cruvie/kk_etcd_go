@@ -2,23 +2,23 @@ package handler
 
 import (
 	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_http"
-	"github.com/cruvie/kk_etcd_go/consts/key_prefix"
 	"github.com/cruvie/kk_etcd_go/handler/service"
 	"github.com/cruvie/kk_etcd_go/models"
+	"github.com/cruvie/kk_etcd_go/models/base_proto_type"
 	"github.com/cruvie/kk_etcd_go/utils/api_resp"
 	"github.com/cruvie/kk_etcd_go/utils/check_user"
 	"github.com/gin-gonic/gin"
 	"log/slog"
 )
 
-// KVPutConfig
+// KVPut
 //
 //	@Description	Put config
 //	@Accept			octet-stream
 //	@Produce		octet-stream
 //	@Param			pbKV	body	models.PBKV	true	"Put config info"
-//	@Router			/KVPutConfig [post]
-func KVPutConfig(c *gin.Context) {
+//	@Router			/KVPut [post]
+func KVPut(c *gin.Context) {
 	if !check_user.CheckWritePermission(c) {
 		kku_http.ResponseProtoBuf(c, api_resp.FailMsg("you don't have write permission!"))
 		return
@@ -29,7 +29,7 @@ func KVPutConfig(c *gin.Context) {
 		kku_http.ResponseProtoBuf(c, api_resp.Fail())
 		return
 	}
-	res := service.KVPut(key_prefix.Config+pbKV.Key, pbKV.Value)
+	res := service.KVPut(pbKV.Key, pbKV.Value)
 	switch res {
 	case 1:
 		kku_http.ResponseProtoBuf(c, api_resp.Success())
@@ -39,21 +39,21 @@ func KVPutConfig(c *gin.Context) {
 	return
 }
 
-// KVGetConfig
+// KVGet
 //
 //	@Description	Get config
 //	@Accept			octet-stream
 //	@Produce		octet-stream
 //	@Param			pbKV	body	models.PBKV	true	"Get config info"
-//	@Router			/KVGetConfig [post]
-func KVGetConfig(c *gin.Context) {
+//	@Router			/KVGet [post]
+func KVGet(c *gin.Context) {
 	var pbKV models.PBKV
 	if err := kku_http.ReadProtoBuf(c, &pbKV); err != nil {
 		slog.Info("failed to read proto buf:", err)
 		kku_http.ResponseProtoBuf(c, api_resp.Fail())
 		return
 	}
-	res, value := service.KVGet(key_prefix.Config + pbKV.Key)
+	res, value := service.KVGet(pbKV.Key)
 	switch res {
 	case 1:
 		pbKV.Value = string(value)
@@ -64,14 +64,20 @@ func KVGetConfig(c *gin.Context) {
 	return
 }
 
-// KVGetConfigList
+// KVList
 //
-//	@Description	Get config list
+//	@Description	Get kv list
 //	@Accept			octet-stream
 //	@Produce		octet-stream
-//	@Router			/KVGetConfigList [post]
-func KVGetConfigList(c *gin.Context) {
-	res, list := service.KVGetConfigList()
+//	@Router			/KVList [post]
+func KVList(c *gin.Context) {
+	var prefix base_proto_type.PBString
+	if err := kku_http.ReadProtoBuf(c, &prefix); err != nil {
+		slog.Info("failed to read proto buf:", err)
+		kku_http.ResponseProtoBuf(c, api_resp.Fail())
+		return
+	}
+	res, list := service.KVList(prefix.Value)
 	switch res {
 	case 1:
 		kku_http.ResponseProtoBuf(c, api_resp.SuccessData(list))
@@ -81,14 +87,14 @@ func KVGetConfigList(c *gin.Context) {
 	return
 }
 
-// KVDelConfig
+// KVDel
 //
 //	@Description	Del config
 //	@Accept			octet-stream
 //	@Produce		octet-stream
 //	@Param			pbKV	body	models.PBKV	true	"Del config info"
-//	@Router			/KVDelConfig [post]
-func KVDelConfig(c *gin.Context) {
+//	@Router			/KVDel [post]
+func KVDel(c *gin.Context) {
 	if !check_user.CheckWritePermission(c) {
 		kku_http.ResponseProtoBuf(c, api_resp.FailMsg("you don't have write permission!"))
 		return
@@ -99,7 +105,7 @@ func KVDelConfig(c *gin.Context) {
 		kku_http.ResponseProtoBuf(c, api_resp.Fail())
 		return
 	}
-	res := service.KVDel(key_prefix.Config + pbKV.Key)
+	res := service.KVDel(pbKV.Key)
 	switch res {
 	case 1:
 		kku_http.ResponseProtoBuf(c, api_resp.Success())
