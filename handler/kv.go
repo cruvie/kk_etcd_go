@@ -25,7 +25,7 @@ func KVPut(c *gin.Context) {
 	}
 	var pbKV models.PBKV
 	if err := kku_http.ReadProtoBuf(c, &pbKV); err != nil {
-		slog.Info("failed to read proto buf:", err)
+		slog.Info("failed to read proto buf", "err", err)
 		kku_http.ResponseProtoBuf(c, api_resp.Fail())
 		return
 	}
@@ -49,7 +49,7 @@ func KVPut(c *gin.Context) {
 func KVGet(c *gin.Context) {
 	var pbKV models.PBKV
 	if err := kku_http.ReadProtoBuf(c, &pbKV); err != nil {
-		slog.Info("failed to read proto buf:", err)
+		slog.Info("failed to read proto buf", "err", err)
 		kku_http.ResponseProtoBuf(c, api_resp.Fail())
 		return
 	}
@@ -73,7 +73,7 @@ func KVGet(c *gin.Context) {
 func KVList(c *gin.Context) {
 	var prefix base_proto_type.PBString
 	if err := kku_http.ReadProtoBuf(c, &prefix); err != nil {
-		slog.Info("failed to read proto buf:", err)
+		slog.Info("failed to read proto buf", "err", err)
 		kku_http.ResponseProtoBuf(c, api_resp.Fail())
 		return
 	}
@@ -101,7 +101,7 @@ func KVDel(c *gin.Context) {
 	}
 	var pbKV models.PBKV
 	if err := kku_http.ReadProtoBuf(c, &pbKV); err != nil {
-		slog.Info("failed to read proto buf:", err)
+		slog.Info("failed to read proto buf", "err", err)
 		kku_http.ResponseProtoBuf(c, api_resp.Fail())
 		return
 	}

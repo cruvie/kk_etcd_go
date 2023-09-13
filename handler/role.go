@@ -24,7 +24,7 @@ func RoleAdd(c *gin.Context) {
 	}
 	var pbRole models.PBRole
 	if err := kku_http.ReadProtoBuf(c, &pbRole); err != nil {
-		slog.Info("failed to read protobuf:", err)
+		slog.Info("failed to read protobuf", "err", err)
 		kku_http.ResponseProtoBuf(c, api_resp.Fail())
 		return
 	}
@@ -52,7 +52,7 @@ func RoleDelete(c *gin.Context) {
 	}
 	var pbRole models.PBRole
 	if err := kku_http.ReadProtoBuf(c, &pbRole); err != nil {
-		slog.Info("failed to read protobuf:", err)
+		slog.Info("failed to read protobuf", "err", err)
 		kku_http.ResponseProtoBuf(c, api_resp.Fail())
 		return
 	}
@@ -96,7 +96,7 @@ func RoleList(c *gin.Context) {
 func RoleGet(c *gin.Context) {
 	var pbRole models.PBRole
 	if err := kku_http.ReadProtoBuf(c, &pbRole); err != nil {
-		slog.Info("failed to read protobuf:", err)
+		slog.Info("failed to read protobuf", "err", err)
 		kku_http.ResponseProtoBuf(c, api_resp.Fail())
 		return
 	}
@@ -124,7 +124,7 @@ func RoleGrantPermission(c *gin.Context) {
 	}
 	var pbRole models.PBRole
 	if err := kku_http.ReadProtoBuf(c, &pbRole); err != nil {
-		slog.Info("failed to read protobuf:", err)
+		slog.Info("failed to read protobuf", "err", err)
 		kku_http.ResponseProtoBuf(c, api_resp.Fail())
 		return
 	}

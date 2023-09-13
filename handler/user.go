@@ -23,7 +23,7 @@ import (
 func Login(c *gin.Context) {
 	var pbUser models.PBUser
 	if err := kku_http.ReadProtoBuf(c, &pbUser); err != nil {
-		slog.Info("failed to read proto buf:", err)
+		slog.Info("failed to read proto buf", "err", err)
 		kku_http.ResponseProtoBuf(c, api_resp.Fail())
 		return
 	}
@@ -54,7 +54,7 @@ func Login(c *gin.Context) {
 func Logout(c *gin.Context) {
 	var pbUser models.PBUser
 	if err := kku_http.ReadProtoBuf(c, &pbUser); err != nil {
-		slog.Info("failed to read proto buf:", err)
+		slog.Info("failed to read proto buf", "err", err)
 		kku_http.ResponseProtoBuf(c, api_resp.Fail())
 		return
 	}
@@ -84,7 +84,7 @@ func UserAdd(c *gin.Context) {
 
 	var pbUser models.PBUser
 	if err := kku_http.ReadProtoBuf(c, &pbUser); err != nil {
-		slog.Info("failed to read proto buf:", err)
+		slog.Info("failed to read proto buf", "err", err)
 		kku_http.ResponseProtoBuf(c, api_resp.Fail())
 		return
 	}
@@ -112,7 +112,7 @@ func UserDelete(c *gin.Context) {
 	}
 	var pbUser models.PBUser
 	if err := kku_http.ReadProtoBuf(c, &pbUser); err != nil {
-		slog.Info("failed to read proto buf:", err)
+		slog.Info("failed to read proto buf", "err", err)
 		kku_http.ResponseProtoBuf(c, api_resp.Fail())
 		return
 	}
@@ -139,7 +139,7 @@ func UserDelete(c *gin.Context) {
 func GetUser(c *gin.Context) {
 	var pbUser models.PBUser
 	if err := kku_http.ReadProtoBuf(c, &pbUser); err != nil {
-		slog.Info("failed to read proto buf:", err)
+		slog.Info("failed to read proto buf", "err", err)
 		kku_http.ResponseProtoBuf(c, api_resp.Fail())
 		return
 	}
@@ -203,7 +203,7 @@ func UserGrantRole(c *gin.Context) {
 
 	var user models.PBUser
 	if err := kku_http.ReadProtoBuf(c, &user); err != nil {
-		slog.Info("failed to read proto buf:", err)
+		slog.Info("failed to read proto buf", "err", err)
 		kku_http.ResponseProtoBuf(c, api_resp.Fail())
 		return
 	}

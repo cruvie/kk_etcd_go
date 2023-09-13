@@ -15,7 +15,7 @@ func RoleAdd(role *models.PBRole) (res int) {
 	}
 	_, err := kk_etcd_client.EtcdClient.RoleAdd(context.Background(), role.Name)
 	if err != nil {
-		slog.Info("failed to add role:", role.Name, err)
+		slog.Info("failed to add role", "name", role.Name, "err", err)
 		return -1
 	}
 	return 1
@@ -29,7 +29,7 @@ func RoleGrantPermission(role *models.PBRole) (res int) {
 	//todo 一经设定无法修改？？
 	_, err := kk_etcd_client.EtcdClient.RoleGrantPermission(context.Background(), role.Name, role.Key, role.RangeEnd, clientv3.PermissionType(role.PermissionType))
 	if err != nil {
-		slog.Info("failed to grant permission:", role.Name, err)
+		slog.Info("failed to grant permission", "name", role.Name, "err", err)
 		return -2
 	}
 	return 1
@@ -42,7 +42,7 @@ func RoleDelete(roleName string) (res int) {
 	}
 	_, err := kk_etcd_client.EtcdClient.RoleDelete(context.Background(), roleName)
 	if err != nil {
-		slog.Info("failed to delete role:", roleName, err)
+		slog.Info("failed to delete role", "name", roleName, "err", err)
 		return -2
 	}
 	return 1
@@ -50,14 +50,14 @@ func RoleDelete(roleName string) (res int) {
 func RoleList() (res int, roles *models.PBListRole) {
 	list, err := kk_etcd_client.EtcdClient.RoleList(context.Background())
 	if err != nil {
-		slog.Info("failed to get role list:", err)
+		slog.Info("failed to get role list", "err", err)
 		return -1, nil
 	}
 	roles = &models.PBListRole{}
 	for _, roleName := range list.Roles {
 		role, res := RoleGet(roleName)
 		if res != 1 {
-			slog.Info("failed to get role:", roleName, err)
+			slog.Info("failed to get role", "name", roleName, "err", err)
 			return -1, nil
 		}
 		roles.List = append(roles.List, role)
@@ -67,7 +67,7 @@ func RoleList() (res int, roles *models.PBListRole) {
 func RoleGet(roleName string) (role *models.PBRole, res int) {
 	r, err := kk_etcd_client.EtcdClient.RoleGet(context.Background(), roleName)
 	if err != nil {
-		slog.Info("failed to get role:", roleName, err)
+		slog.Info("failed to get role", "name", roleName, "err", err)
 		return nil, -1
 	}
 	role = &models.PBRole{}

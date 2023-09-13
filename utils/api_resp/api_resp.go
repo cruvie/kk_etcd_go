@@ -39,7 +39,7 @@ func FailCodeMsg(code int32, msg string) *ApiResp {
 func FailMsgData(msg string, data proto.Message) *ApiResp {
 	anyData, err := anypb.New(data)
 	if err != nil {
-		slog.Info("error serializing response data", err)
+		slog.Info("error serializing response data", "err", err)
 		return nil
 	}
 	apiRes := ApiResp{
@@ -73,7 +73,7 @@ func SuccessMsg(msg string) *ApiResp {
 func SuccessData(data proto.Message) *ApiResp {
 	anyData, err := anypb.New(data)
 	if err != nil {
-		slog.Info("error serializing response data", err)
+		slog.Info("error serializing response data", "err", err)
 		return nil
 	}
 	apiRes := ApiResp{
@@ -95,7 +95,7 @@ func SuccessCodeMsg(code int32, msg string) *ApiResp {
 func SuccessMsgData(msg string, data proto.Message) *ApiResp {
 	anyData, err := anypb.New(data)
 	if err != nil {
-		slog.Info("error serializing response data", err)
+		slog.Info("error serializing response data", "err", err)
 		//return nil
 	}
 	apiRes := ApiResp{
@@ -109,7 +109,7 @@ func SuccessMsgData(msg string, data proto.Message) *ApiResp {
 func FullCodeMsgData(code int32, msg string, data proto.Message) *ApiResp {
 	anyData, err := anypb.New(data)
 	if err != nil {
-		slog.Info("error serializing response data", err)
+		slog.Info("error serializing response data", "err", err)
 		return nil
 	}
 	apiRes := ApiResp{

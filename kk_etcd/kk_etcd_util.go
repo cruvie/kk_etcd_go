@@ -17,15 +17,15 @@ import (
 func GetConfig(configKey string, configStruct any) {
 	getResponse, err := kk_etcd_client.EtcdClient.Get(context.Background(), key_prefix.Config+configKey)
 	if err != nil {
-		slog.Error("failed to get kv:", configKey, err)
+		slog.Error("failed to get kv", "configKey", configKey, "err", err)
 	}
 	if getResponse.Kvs == nil {
-		slog.Error("failed to get kv:", configKey, "getResponse.Kvs is nil")
+		slog.Error("failed to get kv, getResponse.Kvs is nil", "configKey", configKey)
 		return
 	}
 	err = yaml.Unmarshal(getResponse.Kvs[0].Value, configStruct)
 	if err != nil {
-		slog.Error("映射配置信息到结构体失败=", err, "读取到的信息=", string(getResponse.Kvs[0].Value))
+		slog.Error("映射配置信息到结构体失败", "err", err, "读取到的信息", string(getResponse.Kvs[0].Value))
 	}
 }
 
@@ -60,23 +60,23 @@ func registerService(ctx context.Context, serviceType, addr, serverName string, 
 	}
 	etcdManager, err := endpoints.NewManager(kk_etcd_client.EtcdClient, key)
 	if err != nil {
-		slog.Error("failed to create etcd manager", "err:", err)
+		slog.Error("failed to create etcd manager", "err", err)
 	}
 
 	lease, err := kk_etcd_client.EtcdClient.Grant(ctx, ttl[0])
 	if err != nil {
-		slog.Error("failed to create lease", "err:", err)
+		slog.Error("failed to create lease", "err", err)
 	}
 
-	// 添加注册节点到 etcd 中，并且携带上租约 id
+	// 添加注册节点到 etcd 中,并且携带上租约 id
 	err = etcdManager.AddEndpoint(ctx, key+"/"+addr, endpoints.Endpoint{Addr: addr}, clientv3.WithLease(lease.ID))
 	if err != nil {
-		slog.Error("failed to add endpoint to etcd", "err:", err)
+		slog.Error("failed to add endpoint to etcd", "err", err)
 	}
 	//每ttl/3秒续约一次
 	respChan, err := kk_etcd_client.EtcdClient.KeepAlive(ctx, lease.ID)
 	if err != nil {
-		slog.Error("failed to set keep alive", "err:", err)
+		slog.Error("failed to set keep alive", "err", err)
 	}
 	//启动协程监听续约结果直到context关闭
 	go func() {
@@ -87,7 +87,7 @@ func registerService(ctx context.Context, serviceType, addr, serverName string, 
 					//slog.Error("keep alive channel closed")
 					return
 				} else {
-					//slog.Info("keep alive", "resp:", resp)
+					//slog.Info("keep alive", "resp",resp)
 				}
 			case <-ctx.Done():
 				return
@@ -102,11 +102,11 @@ func registerService(ctx context.Context, serviceType, addr, serverName string, 
 func GetServiceList(serviceName string) (serviceList *models.PBListService) {
 	etcdManager, err := endpoints.NewManager(kk_etcd_client.EtcdClient, serviceName)
 	if err != nil {
-		slog.Error("failed to create etcd manager", "err:", err)
+		slog.Error("failed to create etcd manager", "err", err)
 	}
 	endpointMap, err := etcdManager.List(context.Background())
 	if err != nil {
-		slog.Error("failed to list endpoints", err)
+		slog.Error("failed to list endpoints", "err", err)
 		return
 	}
 	//ListService:{Key2EndpointMap:{key:"kk_service_http/haha/128.2.2.3:8484"  value:{Addr:"128.2.2.3:8484"}}}

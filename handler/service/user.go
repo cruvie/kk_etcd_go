@@ -29,20 +29,20 @@ func Login(user *models.PBUser) (tokenString string, res int) {
 	rawPassword := user.Password
 	res, value := KVGet(key_prefix.User + user.UserName)
 	if res != 1 {
-		slog.Info("failed to get user kv:", user.UserName)
+		slog.Info("failed to get user kv", "name", user.UserName)
 		res = 2
 		return
 	}
 	var userTemp models.PBUser
 	if err := json.Unmarshal(value, &userTemp); err != nil {
-		slog.Info("failed to unmarshal user kv:", user.UserName, err)
+		slog.Info("failed to unmarshal user kv", "name", user.UserName, "err", err)
 		return
 	}
 
 	//validate password
 	equal := kku_encrypt.CheckPasswordHash(userTemp.Password, rawPassword)
 	if equal == false {
-		slog.Info("wrong password:", user.UserName)
+		slog.Info("wrong password", "name", user.UserName)
 		res = 4
 		return
 	}
@@ -51,7 +51,7 @@ func Login(user *models.PBUser) (tokenString string, res int) {
 	//put into etcd
 	res = KVPut(key_prefix.Jwt+userTemp.UserName, tokenString)
 	if res != 1 {
-		slog.Info("failed to put jwt kv:", userTemp.UserName)
+		slog.Info("failed to put jwt kv", "name", userTemp.UserName)
 		res = -1
 		return
 	} else {
@@ -62,7 +62,7 @@ func Login(user *models.PBUser) (tokenString string, res int) {
 func Logout(user *models.PBUser) (res int) {
 	res = KVDel(key_prefix.Jwt + user.UserName)
 	if res != 1 {
-		slog.Info("failed to del jwt kv:", user.UserName)
+		slog.Info("failed to del jwt kv", "name", user.UserName)
 		res = -1
 		return
 	} else {
@@ -79,19 +79,19 @@ func UserAdd(user *models.PBUser) (res int) {
 	user.Password, _ = kku_encrypt.GeneratePassword(user.Password)
 	jsonData, err := json.Marshal(&user)
 	if err != nil {
-		slog.Info("error in marshal user:", err)
+		slog.Info("error in marshal user", "err", err)
 		return -1
 	}
 	jsonStr := string(jsonData)
 	//add user kv to etcd used for user login
 	res = KVPut(key_prefix.User+user.UserName, jsonStr)
 	if res != 1 {
-		slog.Info("failed to add user kv:", user.UserName, err)
+		slog.Info("failed to add user kv", "name", user.UserName, "err", err)
 		return -1
 	}
 	_, err = kk_etcd_client.EtcdClient.UserAdd(context.Background(), user.UserName, user.Password)
 	if err != nil && err.Error() != "etcdserver: user name already exists" {
-		slog.Info("failed to add user to etcd user:", user.UserName, err)
+		slog.Info("failed to add user to etcd user", "name", user.UserName, "err", err)
 		return -1
 	}
 	return 1
@@ -105,13 +105,13 @@ func UserDelete(c *gin.Context, userName string, admin bool) (res int) {
 
 	_, err := kk_etcd_client.EtcdClient.Delete(context.Background(), key_prefix.User+userName)
 	if err != nil {
-		slog.Info("failed to delete user kv:", userName, err)
+		slog.Info("failed to delete user kv", "name", userName, "err", err)
 		return -1
 	}
 
 	_, err = kk_etcd_client.EtcdClient.UserDelete(context.Background(), userName)
 	if err != nil {
-		slog.Info("failed to delete user:", userName, err)
+		slog.Info("failed to delete user", "name", userName, "err", err)
 		return -1
 	}
 	return 1
@@ -120,7 +120,7 @@ func UserDelete(c *gin.Context, userName string, admin bool) (res int) {
 func GetUser(userName string) (user *models.PBUser, res int) {
 	rolesResp, err := kk_etcd_client.EtcdClient.UserGet(context.Background(), userName)
 	if err != nil {
-		slog.Info("failed to get user:", userName, err)
+		slog.Info("failed to get user", "name", userName, "err", err)
 		return nil, -1
 	}
 	user = &models.PBUser{}
@@ -132,14 +132,14 @@ func GetUser(userName string) (user *models.PBUser, res int) {
 func UserList() (res int, users *models.PBListUser) {
 	list, err := kk_etcd_client.EtcdClient.UserList(context.Background())
 	if err != nil {
-		slog.Info("failed to get user list:", err)
+		slog.Info("failed to get user list", "err", err)
 		return -1, nil
 	}
 	users = &models.PBListUser{}
 	for _, userName := range list.Users {
 		user, res := GetUser(userName)
 		if res != 1 {
-			slog.Info("failed to get user:", userName, err)
+			slog.Info("failed to get user", "name", userName, "err", err)
 			return -1, nil
 		}
 		users.ListUser = append(users.ListUser, user)
@@ -155,7 +155,7 @@ func UserGrantRole(user *models.PBUser) (res int) {
 	for _, role := range user.Roles {
 		_, err := kk_etcd_client.EtcdClient.UserGrantRole(context.Background(), user.UserName, role)
 		if err != nil {
-			slog.Info("failed to grant role:", user.UserName, err)
+			slog.Info("failed to grant role", "name", user.UserName, "err", err)
 			return -3
 		}
 	}
@@ -167,7 +167,7 @@ func deleteAllRoles(userName string) {
 	for _, role := range user.Roles {
 		_, err := kk_etcd_client.EtcdClient.UserRevokeRole(context.Background(), userName, role)
 		if err != nil {
-			slog.Info("failed to revoke role:", userName, err)
+			slog.Info("failed to revoke role", "name", userName, "err", err)
 			return
 		}
 	}

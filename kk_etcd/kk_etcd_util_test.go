@@ -4,7 +4,7 @@ import (
 	"context"
 	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_log"
 	"github.com/cruvie/kk_etcd_go/consts/key_prefix"
-	"log"
+	"log/slog"
 	"sync"
 	"testing"
 	"time"
@@ -57,6 +57,6 @@ func TestGetServiceList(t *testing.T) {
 	for i := 0; i < 100; i++ {
 		time.Sleep(time.Second * 5)
 		list := GetServiceList(key_prefix.ServiceHttp)
-		log.Println("list=", list)
+		slog.Info("list", "list", list)
 	}
 }

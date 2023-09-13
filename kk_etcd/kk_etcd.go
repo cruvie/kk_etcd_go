@@ -21,7 +21,7 @@ func InitEtcd(endpoints []string, userName string, password string) {
 	err := error(nil)
 	kk_etcd_client.EtcdClient, err = clientv3.New(cfg)
 	if err != nil {
-		slog.Error("etcd client init failed", "err:", err)
+		slog.Error("etcd client init failed", "err", err)
 	}
 	//check root user exist
 	if _, err = kk_etcd_client.EtcdClient.UserAdd(context.Background(), "root", "root"); err != nil {

@@ -6,14 +6,14 @@ import (
 	"github.com/cruvie/kk_etcd_go/kk_etcd_client"
 	"github.com/cruvie/kk_etcd_go/models"
 	"go.etcd.io/etcd/client/v3"
-	"log"
+	"log/slog"
 	"strings"
 )
 
 func KVPut(key string, value string) (res int) {
 	_, err := kk_etcd_client.EtcdClient.Put(context.Background(), key, value)
 	if err != nil {
-		log.Println("failed to put kv:", key, err)
+		slog.Info("failed to put kv", key, err)
 		return -1
 	}
 	return 1
@@ -22,7 +22,7 @@ func KVPut(key string, value string) (res int) {
 func KVGet(key string) (res int, value []byte) {
 	getResponse, err := kk_etcd_client.EtcdClient.Get(context.Background(), key)
 	if err != nil || getResponse.Kvs == nil {
-		log.Println("failed to get kv:", key, err)
+		slog.Info("failed to get kv", key, err)
 		return -1, nil
 	}
 	return 1, getResponse.Kvs[0].Value
@@ -31,7 +31,7 @@ func KVGet(key string) (res int, value []byte) {
 func KVDel(key string) (res int) {
 	_, err := kk_etcd_client.EtcdClient.Delete(context.Background(), key)
 	if err != nil {
-		log.Println("failed to delete kv:", key, err)
+		slog.Info("failed to delete kv", key, err)
 		return -1
 	}
 	return 1
@@ -41,7 +41,7 @@ func KVList(prefix string) (res int, list *models.PBListKV) {
 	list = &models.PBListKV{}
 	getResponse, err := kk_etcd_client.EtcdClient.Get(context.Background(), prefix, clientv3.WithPrefix())
 	if err != nil {
-		log.Println("failed to get config list:", err)
+		slog.Info("failed to get config list", "err", err)
 		return -1, nil
 	}
 	for _, kv := range getResponse.Kvs {
