@@ -1,6 +1,6 @@
 ///
 //  Generated code. Do not modify.
-//  source: pb_service.proto
+//  source: pb_serer.proto
 //
 // @dart = 2.12
 // ignore_for_file: annotate_overrides,camel_case_types,constant_identifier_names,directives_ordering,library_prefixes,non_constant_identifier_names,prefer_final_fields,return_of_invalid_type,unnecessary_const,unnecessary_import,unnecessary_this,unused_import,unused_shown_name
@@ -9,11 +9,11 @@ import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
-class PBService extends $pb.GeneratedMessage {
+class PBServer extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       const $core.bool.fromEnvironment('protobuf.omit_message_names')
           ? ''
-          : 'PBService', package: const $pb.PackageName(
+          : 'PBServer', package: const $pb.PackageName(
       const $core.bool.fromEnvironment('protobuf.omit_message_names')
           ? ''
           : 'models'), createEmptyInstance: create)
@@ -26,9 +26,9 @@ class PBService extends $pb.GeneratedMessage {
     ..hasRequiredFields = false
   ;
 
-  PBService._() : super();
+  PBServer._() : super();
 
-  factory PBService({
+  factory PBServer({
     $core.String? serviceName,
     $core.String? serviceAddr,
   }) {
@@ -42,12 +42,12 @@ class PBService extends $pb.GeneratedMessage {
     return _result;
   }
 
-  factory PBService.fromBuffer($core.List<$core.int> i,
+  factory PBServer.fromBuffer($core.List<$core.int> i,
       [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()
         ..mergeFromBuffer(i, r);
 
-  factory PBService.fromJson($core.String i,
+  factory PBServer.fromJson($core.String i,
       [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()
         ..mergeFromJson(i, r);
@@ -56,31 +56,31 @@ class PBService extends $pb.GeneratedMessage {
       'Using this can add significant overhead to your binary. '
           'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
           'Will be removed in next major version')
-  PBService clone() =>
-      PBService()
+  PBServer clone() =>
+      PBServer()
         ..mergeFromMessage(this);
 
   @$core.Deprecated(
       'Using this can add significant overhead to your binary. '
           'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
           'Will be removed in next major version')
-  PBService copyWith(void Function(PBService) updates) =>
+  PBServer copyWith(void Function(PBServer) updates) =>
       super.copyWith((message) =>
           updates(
-              message as PBService)) as PBService; // ignore: deprecated_member_use
+              message as PBServer)) as PBServer; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  static PBService create() => PBService._();
+  static PBServer create() => PBServer._();
 
-  PBService createEmptyInstance() => create();
+  PBServer createEmptyInstance() => create();
 
-  static $pb.PbList<PBService> createRepeated() => $pb.PbList<PBService>();
+  static $pb.PbList<PBServer> createRepeated() => $pb.PbList<PBServer>();
 
   @$core.pragma('dart2js:noInline')
-  static PBService getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<PBService>(create);
-  static PBService? _defaultInstance;
+  static PBServer getDefault() =>
+      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<PBServer>(create);
+  static PBServer? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.String get serviceName => $_getSZ(0);
@@ -111,40 +111,40 @@ class PBService extends $pb.GeneratedMessage {
   void clearServiceAddr() => clearField(2);
 }
 
-class PBListService extends $pb.GeneratedMessage {
+class PBListServer extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       const $core.bool.fromEnvironment('protobuf.omit_message_names')
           ? ''
-          : 'PBListService', package: const $pb.PackageName(
+          : 'PBListServer', package: const $pb.PackageName(
       const $core.bool.fromEnvironment('protobuf.omit_message_names')
           ? ''
           : 'models'), createEmptyInstance: create)
-    ..pc<PBService>(1,
+    ..pc<PBServer>(1,
         const $core.bool.fromEnvironment('protobuf.omit_field_names')
             ? ''
-            : 'ListService', $pb.PbFieldType.PM, protoName: 'ListService',
-        subBuilder: PBService.create)
+            : 'ListServer', $pb.PbFieldType.PM, protoName: 'ListServer',
+        subBuilder: PBServer.create)
     ..hasRequiredFields = false
   ;
 
-  PBListService._() : super();
+  PBListServer._() : super();
 
-  factory PBListService({
-    $core.Iterable<PBService>? listService,
+  factory PBListServer({
+    $core.Iterable<PBServer>? listServer,
   }) {
     final _result = create();
-    if (listService != null) {
-      _result.listService.addAll(listService);
+    if (listServer != null) {
+      _result.listServer.addAll(listServer);
     }
     return _result;
   }
 
-  factory PBListService.fromBuffer($core.List<$core.int> i,
+  factory PBListServer.fromBuffer($core.List<$core.int> i,
       [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()
         ..mergeFromBuffer(i, r);
 
-  factory PBListService.fromJson($core.String i,
+  factory PBListServer.fromJson($core.String i,
       [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()
         ..mergeFromJson(i, r);
@@ -153,35 +153,35 @@ class PBListService extends $pb.GeneratedMessage {
       'Using this can add significant overhead to your binary. '
           'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
           'Will be removed in next major version')
-  PBListService clone() =>
-      PBListService()
+  PBListServer clone() =>
+      PBListServer()
         ..mergeFromMessage(this);
 
   @$core.Deprecated(
       'Using this can add significant overhead to your binary. '
           'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
           'Will be removed in next major version')
-  PBListService copyWith(void Function(PBListService) updates) =>
+  PBListServer copyWith(void Function(PBListServer) updates) =>
       super.copyWith((message) =>
           updates(
-              message as PBListService)) as PBListService; // ignore: deprecated_member_use
+              message as PBListServer)) as PBListServer; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  static PBListService create() => PBListService._();
+  static PBListServer create() => PBListServer._();
 
-  PBListService createEmptyInstance() => create();
+  PBListServer createEmptyInstance() => create();
 
-  static $pb.PbList<PBListService> createRepeated() =>
-      $pb.PbList<PBListService>();
+  static $pb.PbList<PBListServer> createRepeated() =>
+      $pb.PbList<PBListServer>();
 
   @$core.pragma('dart2js:noInline')
-  static PBListService getDefault() =>
+  static PBListServer getDefault() =>
       _defaultInstance ??=
-          $pb.GeneratedMessage.$_defaultFor<PBListService>(create);
-  static PBListService? _defaultInstance;
+          $pb.GeneratedMessage.$_defaultFor<PBListServer>(create);
+  static PBListServer? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.List<PBService> get listService => $_getList(0);
+  $core.List<PBServer> get listServer => $_getList(0);
 }
 

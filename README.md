@@ -104,9 +104,9 @@ get config in your project from etcd
 
 import "github.com/cruvie/kk_etcd_go/kk_etcd"
 
-var GlobalConfig Config
+var GlobalConfig config
 
-type Config struct {
+type config struct {
 	ServerAddr string `yaml:"ServerAddr"`
 	Postgres struct {
 		Dsn string `yaml:"Dsn"`

@@ -50,6 +50,10 @@ func ApiEtcd() {
 		kvAPI.POST(kku_func.GetFunctionName(handler.KVList), handler.KVList)
 		kvAPI.POST(kku_func.GetFunctionName(handler.KVDel), handler.KVDel)
 	}
+	serverAPI := r.Group("Server")
+	{
+		serverAPI.POST(kku_func.GetFunctionName(handler.ServerList), handler.ServerList)
+	}
 
 	kku_http.ServerWithGracefulShutdown(r, config.Config.ServerAddr)
 

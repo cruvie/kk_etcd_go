@@ -8,11 +8,11 @@ option go_package = "./;models";
 
 // protoc -I=. --dart_out=./dart *.proto
 
-message PBService {
+message PBServer {
   string ServiceName = 1;
   string ServiceAddr = 2;
 }
 
-message PBListService  {
-  repeated PBService ListService = 1;
+message PBListServer  {
+  repeated PBServer ListServer = 1;
 }
