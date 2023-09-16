@@ -4,8 +4,8 @@ import (
 	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_http"
 	"github.com/cruvie/kk_etcd_go/config"
 	"github.com/cruvie/kk_etcd_go/handler/service"
-	"github.com/cruvie/kk_etcd_go/models"
-	"github.com/cruvie/kk_etcd_go/models/base_proto_type"
+	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
+	"github.com/cruvie/kk_etcd_go/kk_etcd_models/base_proto_type"
 	"github.com/cruvie/kk_etcd_go/utils/api_resp"
 	"github.com/cruvie/kk_etcd_go/utils/check_user"
 	"github.com/cruvie/kk_etcd_go/utils/global_model"
@@ -18,10 +18,10 @@ import (
 //	@Description	Log in
 //	@Accept			octet-stream
 //	@Produce		octet-stream
-//	@Param			pbUser	body	models.PBUser	true	"Login info"
+//	@Param			pbUser	body	kk_etcd_models.PBUser	true	"Login info"
 //	@Router			/Login [post]
 func Login(c *gin.Context) {
-	var pbUser models.PBUser
+	var pbUser kk_etcd_models.PBUser
 	if err := kku_http.ReadProtoBuf(c, &pbUser); err != nil {
 		slog.Info("failed to read proto buf", "err", err)
 		kku_http.ResponseProtoBuf(c, api_resp.Fail())
@@ -49,10 +49,10 @@ func Login(c *gin.Context) {
 //	@Description	Log out
 //	@Accept			octet-stream
 //	@Produce		octet-stream
-//	@Param			pbUser	body	models.PBUser	true	"Logout info"
+//	@Param			pbUser	body	kk_etcd_models.PBUser	true	"Logout info"
 //	@Router			/Logout [post]
 func Logout(c *gin.Context) {
-	var pbUser models.PBUser
+	var pbUser kk_etcd_models.PBUser
 	if err := kku_http.ReadProtoBuf(c, &pbUser); err != nil {
 		slog.Info("failed to read proto buf", "err", err)
 		kku_http.ResponseProtoBuf(c, api_resp.Fail())
@@ -74,7 +74,7 @@ func Logout(c *gin.Context) {
 //	@Description	Add user
 //	@Accept			octet-stream
 //	@Produce		octet-stream
-//	@Param			pbUser	body	models.PBUser	true	"Add user info"
+//	@Param			pbUser	body	kk_etcd_models.PBUser	true	"Add user info"
 //	@Router			/UserAdd [post]
 func UserAdd(c *gin.Context) {
 	if !check_user.CheckRootRole(c) {
@@ -82,7 +82,7 @@ func UserAdd(c *gin.Context) {
 		return
 	}
 
-	var pbUser models.PBUser
+	var pbUser kk_etcd_models.PBUser
 	if err := kku_http.ReadProtoBuf(c, &pbUser); err != nil {
 		slog.Info("failed to read proto buf", "err", err)
 		kku_http.ResponseProtoBuf(c, api_resp.Fail())
@@ -103,14 +103,14 @@ func UserAdd(c *gin.Context) {
 //	@Description	Delete user
 //	@Accept			octet-stream
 //	@Produce		octet-stream
-//	@Param			pbUser	body	models.PBUser	true	"Delete user info"
+//	@Param			pbUser	body	kk_etcd_models.PBUser	true	"Delete user info"
 //	@Router			/UserDelete [post]
 func UserDelete(c *gin.Context) {
 	if !check_user.CheckRootRole(c) {
 		kku_http.ResponseProtoBuf(c, api_resp.FailMsg("you don't have root role!"))
 		return
 	}
-	var pbUser models.PBUser
+	var pbUser kk_etcd_models.PBUser
 	if err := kku_http.ReadProtoBuf(c, &pbUser); err != nil {
 		slog.Info("failed to read proto buf", "err", err)
 		kku_http.ResponseProtoBuf(c, api_resp.Fail())
@@ -134,10 +134,10 @@ func UserDelete(c *gin.Context) {
 //	@Description	Get user
 //	@Accept			octet-stream
 //	@Produce		octet-stream
-//	@Param			pbUser	body	models.PBUser	true	"Get user info"
+//	@Param			pbUser	body	kk_etcd_models.PBUser	true	"Get user info"
 //	@Router			/GetUser [post]
 func GetUser(c *gin.Context) {
-	var pbUser models.PBUser
+	var pbUser kk_etcd_models.PBUser
 	if err := kku_http.ReadProtoBuf(c, &pbUser); err != nil {
 		slog.Info("failed to read proto buf", "err", err)
 		kku_http.ResponseProtoBuf(c, api_resp.Fail())
@@ -201,7 +201,7 @@ func UserGrantRole(c *gin.Context) {
 		return
 	}
 
-	var user models.PBUser
+	var user kk_etcd_models.PBUser
 	if err := kku_http.ReadProtoBuf(c, &user); err != nil {
 		slog.Info("failed to read proto buf", "err", err)
 		kku_http.ResponseProtoBuf(c, api_resp.Fail())

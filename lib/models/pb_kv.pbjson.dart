@@ -23,9 +23,17 @@ final $typed_data.Uint8List pBKVDescriptor = $convert.base64Decode('CgRQQktWEhAK
 const PBListKV$json = const {
   '1': 'PBListKV',
   '2': const [
-    const {'1': 'ListKV', '3': 1, '4': 3, '5': 11, '6': '.models.PBKV', '10': 'ListKV'},
+    const {
+      '1': 'ListKV',
+      '3': 1,
+      '4': 3,
+      '5': 11,
+      '6': '.kk_etcd_models.PBKV',
+      '10': 'ListKV'
+    },
   ],
 };
 
 /// Descriptor for `PBListKV`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List pBListKVDescriptor = $convert.base64Decode('CghQQkxpc3RLVhIkCgZMaXN0S1YYASADKAsyDC5tb2RlbHMuUEJLVlIGTGlzdEtW');
+final $typed_data.Uint8List pBListKVDescriptor = $convert.base64Decode(
+    'CghQQkxpc3RLVhIsCgZMaXN0S1YYASADKAsyFC5ra19ldGNkX21vZGVscy5QQktWUgZMaXN0S1Y=');

@@ -3,12 +3,12 @@ package service
 import (
 	"context"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_client"
-	"github.com/cruvie/kk_etcd_go/models"
+	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	"go.etcd.io/etcd/client/v3"
 	"log/slog"
 )
 
-func RoleAdd(role *models.PBRole) (res int) {
+func RoleAdd(role *kk_etcd_models.PBRole) (res int) {
 	if role.Name == "root" {
 		slog.Info("illegal add root role!")
 		return -1
@@ -21,7 +21,7 @@ func RoleAdd(role *models.PBRole) (res int) {
 	return 1
 }
 
-func RoleGrantPermission(role *models.PBRole) (res int) {
+func RoleGrantPermission(role *kk_etcd_models.PBRole) (res int) {
 	//PermissionType at pkg authpb
 	//authpb.READ 0
 	//authpb.WRITE 1
@@ -47,13 +47,13 @@ func RoleDelete(roleName string) (res int) {
 	}
 	return 1
 }
-func RoleList() (res int, roles *models.PBListRole) {
+func RoleList() (res int, roles *kk_etcd_models.PBListRole) {
 	list, err := kk_etcd_client.EtcdClient.RoleList(context.Background())
 	if err != nil {
 		slog.Info("failed to get role list", "err", err)
 		return -1, nil
 	}
-	roles = &models.PBListRole{}
+	roles = &kk_etcd_models.PBListRole{}
 	for _, roleName := range list.Roles {
 		role, res := RoleGet(roleName)
 		if res != 1 {
@@ -64,13 +64,13 @@ func RoleList() (res int, roles *models.PBListRole) {
 	}
 	return 1, roles
 }
-func RoleGet(roleName string) (role *models.PBRole, res int) {
+func RoleGet(roleName string) (role *kk_etcd_models.PBRole, res int) {
 	r, err := kk_etcd_client.EtcdClient.RoleGet(context.Background(), roleName)
 	if err != nil {
 		slog.Info("failed to get role", "name", roleName, "err", err)
 		return nil, -1
 	}
-	role = &models.PBRole{}
+	role = &kk_etcd_models.PBRole{}
 	role.Name = roleName
 	//[permType:READWRITE key:"dfdd" range_end:"ewrew" ]
 	if len(r.Perm) != 0 {

@@ -4,7 +4,7 @@ import (
 	"context"
 	"github.com/cruvie/kk_etcd_go/consts/key_prefix"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_client"
-	"github.com/cruvie/kk_etcd_go/models"
+	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	"go.etcd.io/etcd/client/v3"
 	"log/slog"
 	"strings"
@@ -37,15 +37,15 @@ func KVDel(key string) (res int) {
 	return 1
 }
 
-func KVList(prefix string) (res int, list *models.PBListKV) {
-	list = &models.PBListKV{}
+func KVList(prefix string) (res int, list *kk_etcd_models.PBListKV) {
+	list = &kk_etcd_models.PBListKV{}
 	getResponse, err := kk_etcd_client.EtcdClient.Get(context.Background(), prefix, clientv3.WithPrefix())
 	if err != nil {
 		slog.Info("failed to get config list", "err", err)
 		return -1, nil
 	}
 	for _, kv := range getResponse.Kvs {
-		cfg := &models.PBKV{
+		cfg := &kk_etcd_models.PBKV{
 			Key:   string(kv.Key),
 			Value: string(kv.Value),
 		}

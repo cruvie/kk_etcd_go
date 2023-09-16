@@ -40,7 +40,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.PBUser"
+                            "$ref": "#/definitions/kk_etcd_models.PBUser"
                         }
                     }
                 ],
@@ -63,7 +63,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.PBKV"
+                            "$ref": "#/definitions/kk_etcd_models.PBKV"
                         }
                     }
                 ],
@@ -86,7 +86,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.PBKV"
+                            "$ref": "#/definitions/kk_etcd_models.PBKV"
                         }
                     }
                 ],
@@ -121,7 +121,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.PBKV"
+                            "$ref": "#/definitions/kk_etcd_models.PBKV"
                         }
                     }
                 ],
@@ -144,7 +144,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.PBUser"
+                            "$ref": "#/definitions/kk_etcd_models.PBUser"
                         }
                     }
                 ],
@@ -167,7 +167,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.PBUser"
+                            "$ref": "#/definitions/kk_etcd_models.PBUser"
                         }
                     }
                 ],
@@ -202,7 +202,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.PBRole"
+                            "$ref": "#/definitions/kk_etcd_models.PBRole"
                         }
                     }
                 ],
@@ -225,7 +225,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.PBRole"
+                            "$ref": "#/definitions/kk_etcd_models.PBRole"
                         }
                     }
                 ],
@@ -248,7 +248,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.PBRole"
+                            "$ref": "#/definitions/kk_etcd_models.PBRole"
                         }
                     }
                 ],
@@ -271,7 +271,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.PBRole"
+                            "$ref": "#/definitions/kk_etcd_models.PBRole"
                         }
                     }
                 ],
@@ -306,7 +306,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.PBUser"
+                            "$ref": "#/definitions/kk_etcd_models.PBUser"
                         }
                     }
                 ],
@@ -329,7 +329,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.PBUser"
+                            "$ref": "#/definitions/kk_etcd_models.PBUser"
                         }
                     }
                 ],
@@ -384,7 +384,7 @@ const docTemplate = `{
                 }
             }
         },
-        "models.PBKV": {
+        "kk_etcd_models.PBKV": {
             "type": "object",
             "properties": {
                 "Key": {
@@ -395,7 +395,7 @@ const docTemplate = `{
                 }
             }
         },
-        "models.PBRole": {
+        "kk_etcd_models.PBRole": {
             "type": "object",
             "properties": {
                 "Key": {
@@ -412,7 +412,7 @@ const docTemplate = `{
                 }
             }
         },
-        "models.PBUser": {
+        "kk_etcd_models.PBUser": {
             "type": "object",
             "properties": {
                 "Password": {

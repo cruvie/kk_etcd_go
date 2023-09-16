@@ -10,7 +10,13 @@ import 'dart:core' as $core;
 import 'package:protobuf/protobuf.dart' as $pb;
 
 class PBRole extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'PBRole', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'models'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'PBRole', package: const $pb.PackageName(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'kk_etcd_models'), createEmptyInstance: create)
     ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'Name', protoName: 'Name')
     ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'Key', protoName: 'Key')
     ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'RangeEnd', protoName: 'RangeEnd')
@@ -99,7 +105,13 @@ class PBRole extends $pb.GeneratedMessage {
 }
 
 class PBListRole extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'PBListRole', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'models'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'PBListRole', package: const $pb.PackageName(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'kk_etcd_models'), createEmptyInstance: create)
     ..pc<PBRole>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'List', $pb.PbFieldType.PM, protoName: 'List', subBuilder: PBRole.create)
     ..hasRequiredFields = false
   ;

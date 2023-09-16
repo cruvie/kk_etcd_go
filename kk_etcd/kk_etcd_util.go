@@ -5,7 +5,7 @@ import (
 	"github.com/cruvie/kk_etcd_go/consts/key_prefix"
 	"github.com/cruvie/kk_etcd_go/handler/service"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_client"
-	"github.com/cruvie/kk_etcd_go/models"
+	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	"gopkg.in/yaml.v3"
 	"log/slog"
 )
@@ -27,26 +27,15 @@ func GetConfig(configKey string, configStruct any) {
 	}
 }
 
-// RegisterHttpService
-// addr: 192.123.32.11:8080
-// serverName:
-// ttl:lease time, default 15 seconds, service will be deleted from etcd after ttl seconds
-func RegisterHttpService(ctx context.Context, addr, serverName string, ttl ...int64) {
-	service.RegisterHttpService(ctx, addr, serverName, ttl...)
-}
-
-// RegisterGrpcService
-// addr: 192.123.32.11:8080
-// serverName:
-// ttl:lease time, default 15 seconds, service will be deleted from etcd after ttl seconds
-func RegisterGrpcService(ctx context.Context, addr, serverName string, ttl ...int64) {
-	service.RegisterGrpcService(ctx, addr, serverName, ttl...)
+func RegisterService(registration *kk_etcd_models.ServiceRegistration) error {
+	err := service.RegisterService(registration)
+	return err
 }
 
 // ServerList
 // serviceName, should with prefix key_prefix.ServiceGrpc or key_prefix.ServiceHttp
 // only give prefix to get all service list
-func ServerList(serviceName string) (serverList *models.PBListServer, err error) {
+func ServerList(serviceName string) (serverList *kk_etcd_models.PBListServer, err error) {
 	_, server, err := service.ServerList(serviceName)
 	return server, err
 }

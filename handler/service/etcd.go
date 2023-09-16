@@ -4,7 +4,7 @@ import (
 	"context"
 	"github.com/cruvie/kk_etcd_go/consts"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_client"
-	"github.com/cruvie/kk_etcd_go/models"
+	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	clientv3 "go.etcd.io/etcd/client/v3"
 	"log/slog"
 	"time"
@@ -43,7 +43,7 @@ func InitEtcd(endpoints []string, userName string, password string) {
 		slog.Error(err.Error())
 	}
 	//add root(user defined) user as an administrator of the system
-	user := &models.PBUser{
+	user := &kk_etcd_models.PBUser{
 		UserName: userName,
 		Password: password,
 		Roles:    []string{consts.RoleRoot},

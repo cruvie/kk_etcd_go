@@ -25,9 +25,17 @@ final $typed_data.Uint8List pBRoleDescriptor = $convert.base64Decode('CgZQQlJvbG
 const PBListRole$json = const {
   '1': 'PBListRole',
   '2': const [
-    const {'1': 'List', '3': 1, '4': 3, '5': 11, '6': '.models.PBRole', '10': 'List'},
+    const {
+      '1': 'List',
+      '3': 1,
+      '4': 3,
+      '5': 11,
+      '6': '.kk_etcd_models.PBRole',
+      '10': 'List'
+    },
   ],
 };
 
 /// Descriptor for `PBListRole`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List pBListRoleDescriptor = $convert.base64Decode('CgpQQkxpc3RSb2xlEiIKBExpc3QYASADKAsyDi5tb2RlbHMuUEJSb2xlUgRMaXN0');
+final $typed_data.Uint8List pBListRoleDescriptor = $convert.base64Decode(
+    'CgpQQkxpc3RSb2xlEioKBExpc3QYASADKAsyFi5ra19ldGNkX21vZGVscy5QQlJvbGVSBExpc3Q=');

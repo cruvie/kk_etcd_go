@@ -10,7 +10,13 @@ import 'dart:core' as $core;
 import 'package:protobuf/protobuf.dart' as $pb;
 
 class PBKV extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'PBKV', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'models'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'PBKV', package: const $pb.PackageName(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'kk_etcd_models'), createEmptyInstance: create)
     ..aOS(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'Key', protoName: 'Key')
     ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'Value', protoName: 'Value')
     ..hasRequiredFields = false
@@ -71,7 +77,13 @@ class PBKV extends $pb.GeneratedMessage {
 }
 
 class PBListKV extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'PBListKV', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'models'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'PBListKV', package: const $pb.PackageName(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'kk_etcd_models'), createEmptyInstance: create)
     ..pc<PBKV>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'ListKV', $pb.PbFieldType.PM, protoName: 'ListKV', subBuilder: PBKV.create)
     ..hasRequiredFields = false
   ;

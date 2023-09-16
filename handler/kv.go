@@ -3,8 +3,8 @@ package handler
 import (
 	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_http"
 	"github.com/cruvie/kk_etcd_go/handler/service"
-	"github.com/cruvie/kk_etcd_go/models"
-	"github.com/cruvie/kk_etcd_go/models/base_proto_type"
+	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
+	"github.com/cruvie/kk_etcd_go/kk_etcd_models/base_proto_type"
 	"github.com/cruvie/kk_etcd_go/utils/api_resp"
 	"github.com/cruvie/kk_etcd_go/utils/check_user"
 	"github.com/gin-gonic/gin"
@@ -16,14 +16,14 @@ import (
 //	@Description	Put config
 //	@Accept			octet-stream
 //	@Produce		octet-stream
-//	@Param			pbKV	body	models.PBKV	true	"Put config info"
+//	@Param			pbKV	body	kk_etcd_models.PBKV	true	"Put config info"
 //	@Router			/KVPut [post]
 func KVPut(c *gin.Context) {
 	if !check_user.CheckWritePermission(c) {
 		kku_http.ResponseProtoBuf(c, api_resp.FailMsg("you don't have write permission!"))
 		return
 	}
-	var pbKV models.PBKV
+	var pbKV kk_etcd_models.PBKV
 	if err := kku_http.ReadProtoBuf(c, &pbKV); err != nil {
 		slog.Info("failed to read proto buf", "err", err)
 		kku_http.ResponseProtoBuf(c, api_resp.Fail())
@@ -44,10 +44,10 @@ func KVPut(c *gin.Context) {
 //	@Description	Get config
 //	@Accept			octet-stream
 //	@Produce		octet-stream
-//	@Param			pbKV	body	models.PBKV	true	"Get config info"
+//	@Param			pbKV	body	kk_etcd_models.PBKV	true	"Get config info"
 //	@Router			/KVGet [post]
 func KVGet(c *gin.Context) {
-	var pbKV models.PBKV
+	var pbKV kk_etcd_models.PBKV
 	if err := kku_http.ReadProtoBuf(c, &pbKV); err != nil {
 		slog.Info("failed to read proto buf", "err", err)
 		kku_http.ResponseProtoBuf(c, api_resp.Fail())
@@ -92,14 +92,14 @@ func KVList(c *gin.Context) {
 //	@Description	Del config
 //	@Accept			octet-stream
 //	@Produce		octet-stream
-//	@Param			pbKV	body	models.PBKV	true	"Del config info"
+//	@Param			pbKV	body	kk_etcd_models.PBKV	true	"Del config info"
 //	@Router			/KVDel [post]
 func KVDel(c *gin.Context) {
 	if !check_user.CheckWritePermission(c) {
 		kku_http.ResponseProtoBuf(c, api_resp.FailMsg("you don't have write permission!"))
 		return
 	}
-	var pbKV models.PBKV
+	var pbKV kk_etcd_models.PBKV
 	if err := kku_http.ReadProtoBuf(c, &pbKV); err != nil {
 		slog.Info("failed to read proto buf", "err", err)
 		kku_http.ResponseProtoBuf(c, api_resp.Fail())

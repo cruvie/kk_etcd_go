@@ -10,7 +10,13 @@ import 'dart:core' as $core;
 import 'package:protobuf/protobuf.dart' as $pb;
 
 class PBUser extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'PBUser', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'models'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'PBUser', package: const $pb.PackageName(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'kk_etcd_models'), createEmptyInstance: create)
     ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'UserName', protoName: 'UserName')
     ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'Password', protoName: 'Password')
     ..pPS(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'Roles', protoName: 'Roles')
@@ -79,7 +85,13 @@ class PBUser extends $pb.GeneratedMessage {
 }
 
 class PBListUser extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'PBListUser', package: const $pb.PackageName(const $core.bool.fromEnvironment('protobuf.omit_message_names') ? '' : 'models'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'PBListUser', package: const $pb.PackageName(
+      const $core.bool.fromEnvironment('protobuf.omit_message_names')
+          ? ''
+          : 'kk_etcd_models'), createEmptyInstance: create)
     ..pc<PBUser>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'ListUser', $pb.PbFieldType.PM, protoName: 'ListUser', subBuilder: PBUser.create)
     ..hasRequiredFields = false
   ;

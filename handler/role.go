@@ -3,7 +3,7 @@ package handler
 import (
 	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_http"
 	"github.com/cruvie/kk_etcd_go/handler/service"
-	"github.com/cruvie/kk_etcd_go/models"
+	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	"github.com/cruvie/kk_etcd_go/utils/api_resp"
 	"github.com/cruvie/kk_etcd_go/utils/check_user"
 	"github.com/gin-gonic/gin"
@@ -15,14 +15,14 @@ import (
 //	@Description	Add role
 //	@Accept			octet-stream
 //	@Produce		octet-stream
-//	@Param			pbRole	body	models.PBRole	true	"Add role info"
+//	@Param			pbRole	body	kk_etcd_models.PBRole	true	"Add role info"
 //	@Router			/RoleAdd [post]
 func RoleAdd(c *gin.Context) {
 	if !check_user.CheckRootRole(c) {
 		kku_http.ResponseProtoBuf(c, api_resp.FailMsg("you don't have root role!"))
 		return
 	}
-	var pbRole models.PBRole
+	var pbRole kk_etcd_models.PBRole
 	if err := kku_http.ReadProtoBuf(c, &pbRole); err != nil {
 		slog.Info("failed to read protobuf", "err", err)
 		kku_http.ResponseProtoBuf(c, api_resp.Fail())
@@ -43,14 +43,14 @@ func RoleAdd(c *gin.Context) {
 //	@Description	Delete role
 //	@Accept			octet-stream
 //	@Produce		octet-stream
-//	@Param			pbRole	body	models.PBRole	true	"Delete role info"
+//	@Param			pbRole	body	kk_etcd_models.PBRole	true	"Delete role info"
 //	@Router			/RoleDelete [post]
 func RoleDelete(c *gin.Context) {
 	if !check_user.CheckRootRole(c) {
 		kku_http.ResponseProtoBuf(c, api_resp.FailMsg("you don't have root role!"))
 		return
 	}
-	var pbRole models.PBRole
+	var pbRole kk_etcd_models.PBRole
 	if err := kku_http.ReadProtoBuf(c, &pbRole); err != nil {
 		slog.Info("failed to read protobuf", "err", err)
 		kku_http.ResponseProtoBuf(c, api_resp.Fail())
@@ -91,10 +91,10 @@ func RoleList(c *gin.Context) {
 //	@Description	Get role
 //	@Accept			octet-stream
 //	@Produce		octet-stream
-//	@Param			pbRole	body	models.PBRole	true	"Get role info"
+//	@Param			pbRole	body	kk_etcd_models.PBRole	true	"Get role info"
 //	@Router			/RoleGet [post]
 func RoleGet(c *gin.Context) {
-	var pbRole models.PBRole
+	var pbRole kk_etcd_models.PBRole
 	if err := kku_http.ReadProtoBuf(c, &pbRole); err != nil {
 		slog.Info("failed to read protobuf", "err", err)
 		kku_http.ResponseProtoBuf(c, api_resp.Fail())
@@ -115,14 +115,14 @@ func RoleGet(c *gin.Context) {
 //	@Description	Grant permission to role
 //	@Accept			octet-stream
 //	@Produce		octet-stream
-//	@Param			pbRole	body	models.PBRole	true	"Grant permission to role info"
+//	@Param			pbRole	body	kk_etcd_models.PBRole	true	"Grant permission to role info"
 //	@Router			/RoleGrantPermission [post]
 func RoleGrantPermission(c *gin.Context) {
 	if !check_user.CheckRootRole(c) {
 		kku_http.ResponseProtoBuf(c, api_resp.FailMsg("you don't have root role!"))
 		return
 	}
-	var pbRole models.PBRole
+	var pbRole kk_etcd_models.PBRole
 	if err := kku_http.ReadProtoBuf(c, &pbRole); err != nil {
 		slog.Info("failed to read protobuf", "err", err)
 		kku_http.ResponseProtoBuf(c, api_resp.Fail())

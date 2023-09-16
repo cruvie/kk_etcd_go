@@ -8,7 +8,6 @@
 import 'dart:core' as $core;
 import 'dart:convert' as $convert;
 import 'dart:typed_data' as $typed_data;
-
 @$core.Deprecated('Use pBServerDescriptor instead')
 const PBServer$json = const {
   '1': 'PBServer',
@@ -30,7 +29,7 @@ const PBListServer$json = const {
       '3': 1,
       '4': 3,
       '5': 11,
-      '6': '.models.PBServer',
+      '6': '.kk_etcd_models.PBServer',
       '10': 'ListServer'
     },
   ],
@@ -38,4 +37,4 @@ const PBListServer$json = const {
 
 /// Descriptor for `PBListServer`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List pBListServerDescriptor = $convert.base64Decode(
-    'CgxQQkxpc3RTZXJ2ZXISMAoKTGlzdFNlcnZlchgBIAMoCzIQLm1vZGVscy5QQlNlcnZlclIKTGlzdFNlcnZlcg==');
+    'CgxQQkxpc3RTZXJ2ZXISOAoKTGlzdFNlcnZlchgBIAMoCzIYLmtrX2V0Y2RfbW9kZWxzLlBCU2VydmVyUgpMaXN0U2VydmVy');

@@ -1,4 +1,4 @@
-package models
+package kk_etcd_models
 
 //
 //type Role struct {

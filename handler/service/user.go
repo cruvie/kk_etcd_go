@@ -6,7 +6,7 @@ import (
 	"github.com/cruvie/kk_etcd_go/config"
 	"github.com/cruvie/kk_etcd_go/consts/key_prefix"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_client"
-	"github.com/cruvie/kk_etcd_go/models"
+	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	"github.com/cruvie/kk_etcd_go/utils/global_model"
 	"github.com/gin-gonic/gin"
 	"log/slog"
@@ -16,7 +16,7 @@ import (
 	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_jwt"
 )
 
-func Login(user *models.PBUser) (tokenString string, res int) {
+func Login(user *kk_etcd_models.PBUser) (tokenString string, res int) {
 	if user.UserName == "root" {
 		slog.Info("illegal login root user!")
 		return "", -1
@@ -33,7 +33,7 @@ func Login(user *models.PBUser) (tokenString string, res int) {
 		res = 2
 		return
 	}
-	var userTemp models.PBUser
+	var userTemp kk_etcd_models.PBUser
 	if err := json.Unmarshal(value, &userTemp); err != nil {
 		slog.Info("failed to unmarshal user kv", "name", user.UserName, "err", err)
 		return
@@ -59,7 +59,7 @@ func Login(user *models.PBUser) (tokenString string, res int) {
 		return
 	}
 }
-func Logout(user *models.PBUser) (res int) {
+func Logout(user *kk_etcd_models.PBUser) (res int) {
 	res = KVDel(key_prefix.Jwt + user.UserName)
 	if res != 1 {
 		slog.Info("failed to del jwt kv", "name", user.UserName)
@@ -71,7 +71,7 @@ func Logout(user *models.PBUser) (res int) {
 	}
 }
 
-func UserAdd(user *models.PBUser) (res int) {
+func UserAdd(user *kk_etcd_models.PBUser) (res int) {
 	if user.UserName == "root" {
 		slog.Info("illegal add root user!")
 		return -1
@@ -117,25 +117,25 @@ func UserDelete(c *gin.Context, userName string, admin bool) (res int) {
 	return 1
 }
 
-func GetUser(userName string) (user *models.PBUser, res int) {
+func GetUser(userName string) (user *kk_etcd_models.PBUser, res int) {
 	rolesResp, err := kk_etcd_client.EtcdClient.UserGet(context.Background(), userName)
 	if err != nil {
 		slog.Info("failed to get user", "name", userName, "err", err)
 		return nil, -1
 	}
-	user = &models.PBUser{}
+	user = &kk_etcd_models.PBUser{}
 	user.UserName = userName
 	user.Roles = rolesResp.Roles
 	return user, 1
 }
 
-func UserList() (res int, users *models.PBListUser) {
+func UserList() (res int, users *kk_etcd_models.PBListUser) {
 	list, err := kk_etcd_client.EtcdClient.UserList(context.Background())
 	if err != nil {
 		slog.Info("failed to get user list", "err", err)
 		return -1, nil
 	}
-	users = &models.PBListUser{}
+	users = &kk_etcd_models.PBListUser{}
 	for _, userName := range list.Users {
 		user, res := GetUser(userName)
 		if res != 1 {
@@ -146,7 +146,7 @@ func UserList() (res int, users *models.PBListUser) {
 	}
 	return 1, users
 }
-func UserGrantRole(user *models.PBUser) (res int) {
+func UserGrantRole(user *kk_etcd_models.PBUser) (res int) {
 	if user.UserName == "root" {
 		slog.Info("Illegal modification of root user's role!")
 		return -1
