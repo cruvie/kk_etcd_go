@@ -14,7 +14,7 @@ services:
 #    command: ./kk_etcd_go/kk_etcd_go
 
   kk-etcd-go:
-    image: cruvie/kk_etcd_go:1.2.0
+    image: cruvie/kk_etcd_go:1.3.0
     container_name: kk-etcd-go
     ports:
       - "2333:2333"
