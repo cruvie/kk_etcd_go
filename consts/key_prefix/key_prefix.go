@@ -4,6 +4,7 @@ const (
 	User        = "kk_user/"
 	Jwt         = "kk_jwt/"
 	Config      = "kk_config/"
-	ServiceHttp = "kk_service_http/"
-	ServiceGrpc = "kk_service_grpc/"
+	Service     = "kk_service/"
+	ServiceHttp = Service + "http/"
+	ServiceGrpc = Service + "grpc/"
 )

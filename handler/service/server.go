@@ -8,7 +8,6 @@ import (
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	"go.etcd.io/etcd/client/v3/naming/endpoints"
 	"log/slog"
-	"strings"
 )
 
 func RegisterService(registration *kk_etcd_models.ServiceRegistration) error {
@@ -42,7 +41,7 @@ func RegisterService(registration *kk_etcd_models.ServiceRegistration) error {
 		return errors.New("server Check Type is invalid")
 	}
 	if registration.Check.TTL == 0 {
-		registration.Check.TTL = 15
+		registration.Check.TTL = 30
 	}
 	if registration.Check.Timeout == 0 {
 		registration.Check.Timeout = registration.Check.TTL / 3
@@ -67,18 +66,11 @@ func ServerList(serviceName string) (res int, serverList *kk_etcd_models.PBListS
 		slog.Error("failed to list endpoints", "err", err)
 		return -1, nil, err
 	}
-	//ListServer:{Key2EndpointMap:{key:"kk_service_http/haha/128.2.2.3:8484"  value:{Addr:"128.2.2.3:8484"}}}
+	//ListServer:{Key2EndpointMap:{key:"kk_service_http/ss/go_user/128.2.2.3:8484"  value:{Addr:"128.2.2.3:8484"}}}
 	var pBListServer kk_etcd_models.PBListServer
 	for key, endpoint := range endpointMap {
-		split := strings.Split(key, "/")
-		var name string
-		if len(split) >= 2 {
-			name = split[1]
-		} else {
-			name = key
-		}
 		pBListServer.ListServer = append(pBListServer.ListServer, &kk_etcd_models.PBServer{
-			ServiceName: name,
+			ServiceName: key,
 			ServiceAddr: endpoint.Addr,
 		})
 	}
