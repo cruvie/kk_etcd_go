@@ -47,15 +47,15 @@ func TestGetConfig(t *testing.T) {
 }
 
 type server struct {
+	grpc_health_v1.UnimplementedHealthServer
 }
 
-func (s *server) Check(ctx context.Context, request *grpc_health_v1.HealthCheckRequest) (*grpc_health_v1.HealthCheckResponse, error) {
+func (s *server) Check(context.Context, *grpc_health_v1.HealthCheckRequest) (*grpc_health_v1.HealthCheckResponse, error) {
 	status := grpc_health_v1.HealthCheckResponse_SERVING
-	// 检查gRPC服务的状态，并根据情况设置status
 	return &grpc_health_v1.HealthCheckResponse{Status: status}, nil
 }
 
-func (s *server) Watch(request *grpc_health_v1.HealthCheckRequest, watchServer grpc_health_v1.Health_WatchServer) error {
+func (s *server) Watch(*grpc_health_v1.HealthCheckRequest, grpc_health_v1.Health_WatchServer) error {
 	slog.Info("Watch")
 	return nil
 }
@@ -97,6 +97,7 @@ func TestRegisterGrpcService(t *testing.T) {
 		ServerName: "haha",
 		Address:    "127.0.0.1:34844",
 		Check: &kk_etcd_models.ServiceCheck{
+			Type:    kk_etcd_models.CheckTypeGrpc,
 			TTL:     15,
 			Timeout: 10,
 			GRPC:    "127.0.0.1:34844",
@@ -129,6 +130,7 @@ func TestRegisterHttpService(t *testing.T) {
 		ServerName: "haha",
 		Address:    "127.0.0.1:8848",
 		Check: &kk_etcd_models.ServiceCheck{
+			Type: kk_etcd_models.CheckTypeHttp,
 			TTL:  15,
 			HTTP: "http://127.0.0.1:8848/Check",
 		},

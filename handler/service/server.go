@@ -28,6 +28,19 @@ func RegisterService(registration *kk_etcd_models.ServiceRegistration) error {
 		slog.Error("server Check cannot be empty")
 		return errors.New("server Check cannot be empty")
 	}
+	switch registration.Check.Type {
+	case kk_etcd_models.CheckTypeHttp:
+		if registration.Check.HTTP == "" {
+			registration.Check.HTTP = "http://" + registration.Address + "/KKHealthCheck"
+		}
+	case kk_etcd_models.CheckTypeGrpc:
+		if registration.Check.GRPC == "" {
+			registration.Check.GRPC = registration.Address
+		}
+	default:
+		slog.Error("server Check Type is invalid")
+		return errors.New("server Check Type is invalid")
+	}
 	if registration.Check.TTL == 0 {
 		registration.Check.TTL = 15
 	}

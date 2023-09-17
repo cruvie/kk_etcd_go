@@ -82,7 +82,7 @@ services:
 # SDK
 we only provide `go` sdk now
 ```shell
-  go get github.com/cruvie/kk_etcd_go
+  go get github.com/cruvie/kk_etcd_go@latest
 ```
 init and get config from etcd
 
