@@ -36,6 +36,6 @@ func RegisterService(registration *kk_etcd_models.ServiceRegistration) error {
 // serviceName, should with prefix key_prefix.ServiceGrpc or key_prefix.ServiceHttp
 // only give prefix to get all service list
 func ServerList(serviceName string) (serverList *kk_etcd_models.PBListServer, err error) {
-	_, server, err := service.ServerList(serviceName)
-	return server, err
+	_, servers, err := service.ServerList(serviceName)
+	return servers, err
 }

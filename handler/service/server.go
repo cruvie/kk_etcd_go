@@ -8,6 +8,7 @@ import (
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	"go.etcd.io/etcd/client/v3/naming/endpoints"
 	"log/slog"
+	"sort"
 )
 
 func RegisterService(registration *kk_etcd_models.ServiceRegistration) error {
@@ -74,5 +75,8 @@ func ServerList(serviceName string) (res int, serverList *kk_etcd_models.PBListS
 			ServiceAddr: endpoint.Addr,
 		})
 	}
+	sort.Slice(pBListServer.ListServer, func(i, j int) bool {
+		return pBListServer.ListServer[i].ServiceName < pBListServer.ListServer[j].ServiceName
+	})
 	return 1, &pBListServer, nil
 }
