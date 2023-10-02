@@ -2,6 +2,7 @@ package service
 
 import (
 	"context"
+	"github.com/cruvie/kk_etcd_go/consts"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_client"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	"go.etcd.io/etcd/client/v3"
@@ -9,7 +10,7 @@ import (
 )
 
 func RoleAdd(role *kk_etcd_models.PBRole) (res int) {
-	if role.Name == "root" {
+	if role.Name == consts.RoleRoot {
 		slog.Info("illegal add root role!")
 		return -1
 	}
@@ -36,7 +37,7 @@ func RoleGrantPermission(role *kk_etcd_models.PBRole) (res int) {
 }
 
 func RoleDelete(roleName string) (res int) {
-	if roleName == "root" {
+	if roleName == consts.RoleRoot {
 		slog.Info("illegal delete root role!")
 		return -1
 	}

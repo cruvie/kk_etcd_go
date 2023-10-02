@@ -14,7 +14,11 @@ import (
 	"time"
 )
 
-func registerServer(registration *kk_etcd_models.ServiceRegistration) error {
+type serverFunc struct{}
+
+var toolServer serverFunc
+
+func (t *serverFunc) registerServer(registration *kk_etcd_models.ServiceRegistration) error {
 	key := registration.ServerType + registration.ServerName
 
 	endpointManager, err := endpoints.NewManager(kk_etcd_client.EtcdClient, key)
@@ -40,7 +44,7 @@ func registerServer(registration *kk_etcd_models.ServiceRegistration) error {
 	//start a goroutine to keep alive
 	go func(registration *kk_etcd_models.ServiceRegistration, endpointManager endpoints.Manager, endpointKey string, lease *clientv3.LeaseGrantResponse) {
 		defer slog.Info("keep alive goroutine exit", "endpointKey", endpointKey)
-		if err := keepAliveOnce(registration.Context, lease.ID); err != nil {
+		if err := t.keepAliveOnce(registration.Context, lease.ID); err != nil {
 			return
 		}
 		ticker := time.NewTicker(time.Duration(registration.Check.Interval) * time.Second)
@@ -48,22 +52,22 @@ func registerServer(registration *kk_etcd_models.ServiceRegistration) error {
 		for {
 			select {
 			case <-ticker.C:
-				if err := keepAliveOnce(registration.Context, lease.ID); err != nil {
+				if err := t.keepAliveOnce(registration.Context, lease.ID); err != nil {
 					return
 				}
-				if ok := checkHealth(registration); ok {
+				if ok := t.checkHealth(registration); ok {
 					failCount = 0
 				} else {
 					failCount++
 				}
 				if failCount == 3 {
 					slog.Info("service not healthy, delete endpoint", "endpointKey", endpointKey)
-					deleteEndpointAndRevokeLease(registration.Context, endpointManager, endpointKey, lease.ID)
+					t.deleteEndpointAndRevokeLease(registration.Context, endpointManager, endpointKey, lease.ID)
 					return
 				}
 			case <-registration.Context.Done():
 				slog.Info("context done", "endpointKey", endpointKey)
-				deleteEndpointAndRevokeLease(registration.Context, endpointManager, endpointKey, lease.ID)
+				t.deleteEndpointAndRevokeLease(registration.Context, endpointManager, endpointKey, lease.ID)
 				return
 			}
 		}
@@ -71,7 +75,7 @@ func registerServer(registration *kk_etcd_models.ServiceRegistration) error {
 	return nil
 }
 
-func keepAliveOnce(context context.Context, leaseID clientv3.LeaseID) error {
+func (t *serverFunc) keepAliveOnce(context context.Context, leaseID clientv3.LeaseID) error {
 	_, err := kk_etcd_client.EtcdClient.KeepAliveOnce(context, leaseID)
 	if err != nil {
 		slog.Error("failed to set keep alive", "err", err)
@@ -80,7 +84,7 @@ func keepAliveOnce(context context.Context, leaseID clientv3.LeaseID) error {
 	return nil
 }
 
-func checkHealth(registration *kk_etcd_models.ServiceRegistration) (ok bool) {
+func (t *serverFunc) checkHealth(registration *kk_etcd_models.ServiceRegistration) (ok bool) {
 	if registration.Check.HTTP != "" {
 		var httpClient = &http.Client{
 			Timeout: time.Duration(registration.Check.Timeout) * time.Second,
@@ -126,7 +130,7 @@ func checkHealth(registration *kk_etcd_models.ServiceRegistration) (ok bool) {
 	return false
 }
 
-func deleteEndpointAndRevokeLease(ctx context.Context, endpointManager endpoints.Manager, endpointKey string, leaseID clientv3.LeaseID) {
+func (t *serverFunc) deleteEndpointAndRevokeLease(ctx context.Context, endpointManager endpoints.Manager, endpointKey string, leaseID clientv3.LeaseID) {
 	_, err := kk_etcd_client.EtcdClient.Revoke(ctx, leaseID)
 	if err != nil {
 		slog.Error("failed to revoke lease", "err", err)

@@ -1,6 +1,7 @@
 package check_user
 
 import (
+	"github.com/cruvie/kk_etcd_go/consts"
 	"github.com/cruvie/kk_etcd_go/handler/service"
 	"github.com/cruvie/kk_etcd_go/utils/global_model"
 	"github.com/gin-gonic/gin"
@@ -10,7 +11,7 @@ import (
 func CheckRootRole(c *gin.Context) bool {
 	var hasRootRole bool
 	for _, role := range global_model.GetLoginUser(c).Roles {
-		if role == "root" {
+		if role == consts.RoleRoot {
 			hasRootRole = true
 			break
 		}

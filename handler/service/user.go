@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"github.com/cruvie/kk_etcd_go/config"
+	"github.com/cruvie/kk_etcd_go/consts"
 	"github.com/cruvie/kk_etcd_go/consts/key_prefix"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_client"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
@@ -17,7 +18,7 @@ import (
 )
 
 func Login(user *kk_etcd_models.PBUser) (tokenString string, res int) {
-	if user.UserName == "root" {
+	if user.UserName == consts.UserRoot {
 		slog.Info("illegal login root user!")
 		return "", -1
 	}
@@ -72,7 +73,7 @@ func Logout(user *kk_etcd_models.PBUser) (res int) {
 }
 
 func UserAdd(user *kk_etcd_models.PBUser) (res int) {
-	if user.UserName == "root" {
+	if user.UserName == consts.UserRoot {
 		slog.Info("illegal add root user!")
 		return -1
 	}
@@ -98,7 +99,7 @@ func UserAdd(user *kk_etcd_models.PBUser) (res int) {
 }
 
 func UserDelete(c *gin.Context, userName string, admin bool) (res int) {
-	if (!admin) && (userName == "root" || userName == config.Config.Admin.UserName || userName == global_model.GetLoginUser(c).UserName) {
+	if (!admin) && (userName == consts.UserRoot || userName == config.Config.Admin.UserName || userName == global_model.GetLoginUser(c).UserName) {
 		slog.Info("illegal delete root admin or current logged in user!")
 		return 2
 	}
@@ -147,11 +148,11 @@ func UserList() (res int, users *kk_etcd_models.PBListUser) {
 	return 1, users
 }
 func UserGrantRole(user *kk_etcd_models.PBUser) (res int) {
-	if user.UserName == "root" {
+	if user.UserName == consts.UserRoot {
 		slog.Info("Illegal modification of root user's role!")
 		return -1
 	}
-	deleteAllRoles(user.UserName)
+	toolUser.deleteAllRoles(user.UserName)
 	for _, role := range user.Roles {
 		_, err := kk_etcd_client.EtcdClient.UserGrantRole(context.Background(), user.UserName, role)
 		if err != nil {
@@ -160,15 +161,4 @@ func UserGrantRole(user *kk_etcd_models.PBUser) (res int) {
 		}
 	}
 	return 1
-}
-
-func deleteAllRoles(userName string) {
-	user, _ := GetUser(userName)
-	for _, role := range user.Roles {
-		_, err := kk_etcd_client.EtcdClient.UserRevokeRole(context.Background(), userName, role)
-		if err != nil {
-			slog.Info("failed to revoke role", "name", userName, "err", err)
-			return
-		}
-	}
 }

@@ -31,7 +31,7 @@ func RegisterService(registration *kk_etcd_models.ServiceRegistration) error {
 	switch registration.Check.Type {
 	case kk_etcd_models.CheckTypeHttp:
 		if registration.Check.HTTP == "" {
-			registration.Check.HTTP = "http://" + registration.Address + "/KKHealthCheck"
+			registration.Check.HTTP = "http://" + registration.Address + kk_etcd_models.HealthCheckPath
 		}
 	case kk_etcd_models.CheckTypeGrpc:
 		if registration.Check.GRPC == "" {
@@ -50,7 +50,7 @@ func RegisterService(registration *kk_etcd_models.ServiceRegistration) error {
 	if registration.Check.Interval == 0 {
 		registration.Check.Interval = registration.Check.TTL / 3
 	}
-	return registerServer(registration)
+	return toolServer.registerServer(registration)
 }
 
 // ServerList

@@ -2,6 +2,7 @@ package handler
 
 import (
 	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_http"
+	"github.com/cruvie/kk_etcd_go/consts"
 	"github.com/cruvie/kk_etcd_go/handler/service"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	"github.com/cruvie/kk_etcd_go/utils/api_resp"
@@ -128,7 +129,7 @@ func RoleGrantPermission(c *gin.Context) {
 		kku_http.ResponseProtoBuf(c, api_resp.Fail())
 		return
 	}
-	if pbRole.Name == "root" {
+	if pbRole.Name == consts.RoleRoot {
 		kku_http.ResponseProtoBuf(c, api_resp.FailMsg("illegal change root role permission!"))
 		return
 	}

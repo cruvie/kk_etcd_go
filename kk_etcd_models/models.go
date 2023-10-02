@@ -2,6 +2,12 @@ package kk_etcd_models
 
 import "context"
 
+const (
+	CheckTypeGrpc   = "GRPC"
+	CheckTypeHttp   = "HTTP"
+	HealthCheckPath = "KKHealthCheck"
+)
+
 type ServiceRegistration struct {
 	Context    context.Context
 	ServerType string
@@ -9,11 +15,6 @@ type ServiceRegistration struct {
 	ServerName string
 	Check      *ServiceCheck
 }
-
-const (
-	CheckTypeGrpc = "GRPC"
-	CheckTypeHttp = "HTTP"
-)
 
 type ServiceCheck struct {
 	Type       string // CheckTypeGrpc or CheckTypeHttp
