@@ -5,7 +5,7 @@ import "context"
 const (
 	CheckTypeGrpc   = "GRPC"
 	CheckTypeHttp   = "HTTP"
-	HealthCheckPath = "KKHealthCheck"
+	HealthCheckPath = "/KKHealthCheck"
 )
 
 type ServiceRegistration struct {
