@@ -20,7 +20,7 @@ services:
       - "2333:2333"
     restart: unless-stopped
     volumes:
-      - ./config/config.yml:/kk_etcd_go/config/config.yml
+      - ./config/config.yml:/kk_etcd_go/internal/config/config.yml
     networks:
       - ss-net
 
