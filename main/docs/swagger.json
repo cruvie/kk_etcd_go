@@ -34,14 +34,14 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.PBUser"
+                          "$ref": "#/definitions/kk_etcd_models.PBUser"
                         }
                     }
                 ],
                 "responses": {}
             }
         },
-        "/KVDelConfig": {
+      "/KVDel": {
             "post": {
                 "description": "Del config",
                 "consumes": [
@@ -57,14 +57,14 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.PBKV"
+                          "$ref": "#/definitions/kk_etcd_models.PBKV"
                         }
                     }
                 ],
                 "responses": {}
             }
         },
-        "/KVGetConfig": {
+      "/KVGet": {
             "post": {
                 "description": "Get config",
                 "consumes": [
@@ -80,16 +80,16 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.PBKV"
+                          "$ref": "#/definitions/kk_etcd_models.PBKV"
                         }
                     }
                 ],
                 "responses": {}
             }
         },
-        "/KVGetConfigList": {
+      "/KVList": {
             "post": {
-                "description": "Get config list",
+              "description": "Get kv list",
                 "consumes": [
                     "application/octet-stream"
                 ],
@@ -99,7 +99,7 @@
                 "responses": {}
             }
         },
-        "/KVPutConfig": {
+      "/KVPut": {
             "post": {
                 "description": "Put config",
                 "consumes": [
@@ -115,7 +115,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.PBKV"
+                          "$ref": "#/definitions/kk_etcd_models.PBKV"
                         }
                     }
                 ],
@@ -138,7 +138,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.PBUser"
+                          "$ref": "#/definitions/kk_etcd_models.PBUser"
                         }
                     }
                 ],
@@ -161,7 +161,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.PBUser"
+                          "$ref": "#/definitions/kk_etcd_models.PBUser"
                         }
                     }
                 ],
@@ -196,7 +196,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.PBRole"
+                          "$ref": "#/definitions/kk_etcd_models.PBRole"
                         }
                     }
                 ],
@@ -219,7 +219,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.PBRole"
+                          "$ref": "#/definitions/kk_etcd_models.PBRole"
                         }
                     }
                 ],
@@ -242,7 +242,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.PBRole"
+                          "$ref": "#/definitions/kk_etcd_models.PBRole"
                         }
                     }
                 ],
@@ -265,7 +265,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.PBRole"
+                          "$ref": "#/definitions/kk_etcd_models.PBRole"
                         }
                     }
                 ],
@@ -277,6 +277,18 @@
                 "description": "Get role list",
                 "consumes": [
                     "application/octet-stream"
+                ],
+              "produces": [
+                "application/octet-stream"
+              ],
+              "responses": {}
+            }
+        },
+      "/ServerList": {
+        "post": {
+          "description": "Get service list",
+          "consumes": [
+            "application/octet-stream"
                 ],
                 "produces": [
                     "application/octet-stream"
@@ -300,7 +312,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.PBUser"
+                          "$ref": "#/definitions/kk_etcd_models.PBUser"
                         }
                     }
                 ],
@@ -323,7 +335,7 @@
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/models.PBUser"
+                          "$ref": "#/definitions/kk_etcd_models.PBUser"
                         }
                     }
                 ],
@@ -378,7 +390,7 @@
                 }
             }
         },
-        "models.PBKV": {
+      "kk_etcd_models.PBKV": {
             "type": "object",
             "properties": {
                 "Key": {
@@ -389,7 +401,7 @@
                 }
             }
         },
-        "models.PBRole": {
+      "kk_etcd_models.PBRole": {
             "type": "object",
             "properties": {
                 "Key": {
@@ -406,7 +418,7 @@
                 }
             }
         },
-        "models.PBUser": {
+      "kk_etcd_models.PBUser": {
             "type": "object",
             "properties": {
                 "Password": {

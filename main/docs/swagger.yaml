@@ -7,14 +7,14 @@ definitions:
           type: string
         type: array
     type: object
-  models.PBKV:
+  kk_etcd_models.PBKV:
     properties:
       Key:
         type: string
       Value:
         type: string
     type: object
-  models.PBRole:
+  kk_etcd_models.PBRole:
     properties:
       Key:
         type: string
@@ -25,7 +25,7 @@ definitions:
       RangeEnd:
         type: string
     type: object
-  models.PBUser:
+  kk_etcd_models.PBUser:
     properties:
       Password:
         type: string
@@ -61,11 +61,11 @@ paths:
         name: pbUser
         required: true
         schema:
-          $ref: '#/definitions/models.PBUser'
+          $ref: '#/definitions/kk_etcd_models.PBUser'
       produces:
       - application/octet-stream
       responses: {}
-  /KVDelConfig:
+  /KVDel:
     post:
       consumes:
       - application/octet-stream
@@ -76,11 +76,11 @@ paths:
         name: pbKV
         required: true
         schema:
-          $ref: '#/definitions/models.PBKV'
+          $ref: '#/definitions/kk_etcd_models.PBKV'
       produces:
       - application/octet-stream
       responses: {}
-  /KVGetConfig:
+  /KVGet:
     post:
       consumes:
       - application/octet-stream
@@ -91,19 +91,19 @@ paths:
         name: pbKV
         required: true
         schema:
-          $ref: '#/definitions/models.PBKV'
+          $ref: '#/definitions/kk_etcd_models.PBKV'
       produces:
       - application/octet-stream
       responses: {}
-  /KVGetConfigList:
+  /KVList:
     post:
       consumes:
       - application/octet-stream
-      description: Get config list
+      description: Get kv list
       produces:
       - application/octet-stream
       responses: {}
-  /KVPutConfig:
+  /KVPut:
     post:
       consumes:
       - application/octet-stream
@@ -114,7 +114,7 @@ paths:
         name: pbKV
         required: true
         schema:
-          $ref: '#/definitions/models.PBKV'
+          $ref: '#/definitions/kk_etcd_models.PBKV'
       produces:
       - application/octet-stream
       responses: {}
@@ -129,7 +129,7 @@ paths:
         name: pbUser
         required: true
         schema:
-          $ref: '#/definitions/models.PBUser'
+          $ref: '#/definitions/kk_etcd_models.PBUser'
       produces:
       - application/octet-stream
       responses: {}
@@ -144,7 +144,7 @@ paths:
         name: pbUser
         required: true
         schema:
-          $ref: '#/definitions/models.PBUser'
+          $ref: '#/definitions/kk_etcd_models.PBUser'
       produces:
       - application/octet-stream
       responses: {}
@@ -167,7 +167,7 @@ paths:
         name: pbRole
         required: true
         schema:
-          $ref: '#/definitions/models.PBRole'
+          $ref: '#/definitions/kk_etcd_models.PBRole'
       produces:
       - application/octet-stream
       responses: {}
@@ -182,7 +182,7 @@ paths:
         name: pbRole
         required: true
         schema:
-          $ref: '#/definitions/models.PBRole'
+          $ref: '#/definitions/kk_etcd_models.PBRole'
       produces:
       - application/octet-stream
       responses: {}
@@ -197,7 +197,7 @@ paths:
         name: pbRole
         required: true
         schema:
-          $ref: '#/definitions/models.PBRole'
+          $ref: '#/definitions/kk_etcd_models.PBRole'
       produces:
       - application/octet-stream
       responses: {}
@@ -212,7 +212,7 @@ paths:
         name: pbRole
         required: true
         schema:
-          $ref: '#/definitions/models.PBRole'
+          $ref: '#/definitions/kk_etcd_models.PBRole'
       produces:
       - application/octet-stream
       responses: {}
@@ -221,6 +221,14 @@ paths:
       consumes:
       - application/octet-stream
       description: Get role list
+      produces:
+        - application/octet-stream
+      responses: { }
+  /ServerList:
+    post:
+      consumes:
+        - application/octet-stream
+      description: Get service list
       produces:
       - application/octet-stream
       responses: {}
@@ -235,7 +243,7 @@ paths:
         name: pbUser
         required: true
         schema:
-          $ref: '#/definitions/models.PBUser'
+          $ref: '#/definitions/kk_etcd_models.PBUser'
       produces:
       - application/octet-stream
       responses: {}
@@ -250,7 +258,7 @@ paths:
         name: pbUser
         required: true
         schema:
-          $ref: '#/definitions/models.PBUser'
+          $ref: '#/definitions/kk_etcd_models.PBUser'
       produces:
       - application/octet-stream
       responses: {}

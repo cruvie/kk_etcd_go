@@ -2,8 +2,8 @@ package main
 
 import (
 	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_log"
-	"github.com/cruvie/kk_etcd_go/api_etcd"
-	"github.com/cruvie/kk_etcd_go/config"
+	"github.com/cruvie/kk_etcd_go/internal/api_etcd"
+	"github.com/cruvie/kk_etcd_go/internal/config"
 	"github.com/cruvie/kk_etcd_go/kk_etcd"
 	_ "github.com/cruvie/kk_etcd_go/main/docs"
 )

@@ -47,7 +47,7 @@ const docTemplate = `{
                 "responses": {}
             }
         },
-        "/KVDelConfig": {
+        "/KVDel": {
             "post": {
                 "description": "Del config",
                 "consumes": [
@@ -70,7 +70,7 @@ const docTemplate = `{
                 "responses": {}
             }
         },
-        "/KVGetConfig": {
+        "/KVGet": {
             "post": {
                 "description": "Get config",
                 "consumes": [
@@ -93,9 +93,9 @@ const docTemplate = `{
                 "responses": {}
             }
         },
-        "/KVGetConfigList": {
+        "/KVList": {
             "post": {
-                "description": "Get config list",
+                "description": "Get kv list",
                 "consumes": [
                     "application/octet-stream"
                 ],
@@ -105,7 +105,7 @@ const docTemplate = `{
                 "responses": {}
             }
         },
-        "/KVPutConfig": {
+        "/KVPut": {
             "post": {
                 "description": "Put config",
                 "consumes": [
@@ -281,6 +281,18 @@ const docTemplate = `{
         "/RoleList": {
             "post": {
                 "description": "Get role list",
+                "consumes": [
+                    "application/octet-stream"
+                ],
+                "produces": [
+                    "application/octet-stream"
+                ],
+                "responses": {}
+            }
+        },
+        "/ServerList": {
+            "post": {
+                "description": "Get service list",
                 "consumes": [
                     "application/octet-stream"
                 ],
