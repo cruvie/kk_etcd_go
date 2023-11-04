@@ -57,6 +57,10 @@ func RegisterService(registration *kk_etcd_models.ServiceRegistration) error {
 // serviceName, should with prefix key_prefix.ServiceGrpc or key_prefix.ServiceHttp
 // only give prefix to get all service list
 func ServerList(serviceName string) (res int, serverList *kk_etcd_models.PBListServer, err error) {
+	//remove suffix "/" since etcd client 3.5.10 will add "/" automatically
+	if serviceName != "" && serviceName[len(serviceName)-1] == '/' {
+		serviceName = serviceName[:len(serviceName)-1]
+	}
 	etcdManager, err := endpoints.NewManager(kk_etcd_client.EtcdClient, serviceName)
 	if err != nil {
 		slog.Error("failed to create etcd manager", "err", err)
