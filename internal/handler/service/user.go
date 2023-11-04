@@ -3,6 +3,7 @@ package service
 import (
 	"context"
 	"encoding/json"
+	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_stage"
 	"github.com/cruvie/kk_etcd_go/internal/config"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_client"
@@ -16,7 +17,7 @@ import (
 	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_jwt"
 )
 
-func Login(user *kk_etcd_models.PBUser) (tokenString string, res int) {
+func Login(stage *kku_stage.Stage, user *kk_etcd_models.PBUser) (tokenString string, res int) {
 	if user.UserName == kk_etcd_const.UserRoot {
 		slog.Info("illegal login root user!")
 		return "", -1
@@ -40,14 +41,14 @@ func Login(user *kk_etcd_models.PBUser) (tokenString string, res int) {
 	}
 
 	//validate password
-	equal := kku_encrypt.CheckPasswordHash(userTemp.Password, rawPassword)
-	if equal == false {
+	equal := kku_encrypt.CheckPasswordHash(stage, userTemp.Password, rawPassword)
+	if !equal {
 		slog.Info("wrong password", "name", user.UserName)
 		res = 4
 		return
 	}
 	//generate token
-	tokenString = kku_jwt.GenerateToken[string](userTemp.UserName, 0, time.Duration(config.Config.JWT.ExpireTime)*time.Hour)
+	tokenString = kku_jwt.GenerateToken[string](stage, userTemp.UserName, 0, time.Duration(config.Config.JWT.ExpireTime)*time.Hour)
 	//put into etcd
 	res = KVPut(kk_etcd_const.Jwt+userTemp.UserName, tokenString)
 	if res != 1 {
@@ -71,12 +72,12 @@ func Logout(user *kk_etcd_models.PBUser) (res int) {
 	}
 }
 
-func UserAdd(user *kk_etcd_models.PBUser) (res int) {
+func UserAdd(stage *kku_stage.Stage, user *kk_etcd_models.PBUser) (res int) {
 	if user.UserName == kk_etcd_const.UserRoot {
 		slog.Info("illegal add root user!")
 		return -1
 	}
-	user.Password, _ = kku_encrypt.GeneratePassword(user.Password)
+	user.Password, _ = kku_encrypt.GeneratePassword(stage, user.Password)
 	jsonData, err := json.Marshal(&user)
 	if err != nil {
 		slog.Info("error in marshal user", "err", err)

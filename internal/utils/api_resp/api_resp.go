@@ -1,122 +1,73 @@
 package api_resp
 
 import (
+	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_stage"
 	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/types/known/anypb"
 	"log/slog"
 	"net/http"
 )
 
-//====================Fail
-
-func Fail() *ApiResp {
-	apiRes := ApiResp{
-		Code: http.StatusBadRequest,
-		Msg:  "System Error",
+func Fail(stage *kku_stage.Stage, res *ApiResp, data proto.Message) *ApiResp {
+	if res == nil && data == nil {
+		res = &ApiResp{
+			Code: http.StatusInternalServerError,
+			Msg:  "System Error",
+		}
+		return res
 	}
-
-	return &apiRes
+	if res == nil {
+		res = &ApiResp{
+			Code: http.StatusBadRequest,
+			Msg:  "Error",
+		}
+	} else {
+		if res.Code == 0 {
+			res.Code = http.StatusBadRequest
+		}
+		if res.Msg == "" {
+			res.Msg = "Error"
+		}
+	}
+	res.Data = getAnyData(stage, data)
+	return res
 }
 
-func FailMsg(msg string) *ApiResp {
-	apiRes := ApiResp{
-		Code: http.StatusBadRequest,
-		Msg:  msg,
+func Success(stage *kku_stage.Stage, res *ApiResp, data proto.Message) *ApiResp {
+	if res == nil && data == nil {
+		res := &ApiResp{
+			Code: http.StatusOK,
+			Msg:  "OK",
+		}
+		return res
 	}
+	if res == nil {
+		res = &ApiResp{
+			Code: http.StatusOK,
+			Msg:  "OK",
+		}
+	} else {
+		if res.Code == 0 {
+			res.Code = http.StatusOK
+		}
+		if res.Msg == "" {
+			res.Msg = "OK"
+		}
+	}
+	res.Data = getAnyData(stage, data)
 
-	return &apiRes
+	return res
 }
 
-func FailCodeMsg(code int32, msg string) *ApiResp {
-	apiRes := ApiResp{
-		Code: code,
-		Msg:  msg,
-	}
-
-	return &apiRes
-}
-
-func FailMsgData(msg string, data proto.Message) *ApiResp {
-	anyData, err := anypb.New(data)
-	if err != nil {
-		slog.Info("error serializing response data", "err", err)
+func getAnyData(stage *kku_stage.Stage, data proto.Message) *anypb.Any {
+	if data == nil {
 		return nil
 	}
-	apiRes := ApiResp{
-		Code: http.StatusBadRequest,
-		Msg:  msg,
-		Data: anyData,
-	}
-
-	return &apiRes
-}
-
-//====================Success
-
-func Success() *ApiResp {
-	apiRes := ApiResp{
-		Code: http.StatusOK,
-		Msg:  "OK",
-	}
-
-	return &apiRes
-}
-
-func SuccessMsg(msg string) *ApiResp {
-	apiRes := ApiResp{
-		Code: http.StatusOK,
-		Msg:  msg,
-	}
-	return &apiRes
-}
-
-func SuccessData(data proto.Message) *ApiResp {
 	anyData, err := anypb.New(data)
 	if err != nil {
-		slog.Info("error serializing response data", "err", err)
+		logBody := kku_stage.NewLogBody().SetError(err).SetTraceId(stage.TraceId)
+		slog.Error("create any data error", logBody.GetLogArgs()...)
 		return nil
 	}
-	apiRes := ApiResp{
-		Code: http.StatusOK,
-		Msg:  "OK",
-		Data: anyData,
-	}
-	return &apiRes
-}
-
-func SuccessCodeMsg(code int32, msg string) *ApiResp {
-	apiRes := ApiResp{
-		Code: code,
-		Msg:  msg,
-	}
-	return &apiRes
-}
-
-func SuccessMsgData(msg string, data proto.Message) *ApiResp {
-	anyData, err := anypb.New(data)
-	if err != nil {
-		slog.Info("error serializing response data", "err", err)
-		//return nil
-	}
-	apiRes := ApiResp{
-		Code: http.StatusOK,
-		Msg:  msg,
-		Data: anyData,
-	}
-	return &apiRes
-}
-
-func FullCodeMsgData(code int32, msg string, data proto.Message) *ApiResp {
-	anyData, err := anypb.New(data)
-	if err != nil {
-		slog.Info("error serializing response data", "err", err)
-		return nil
-	}
-	apiRes := ApiResp{
-		Code: code,
-		Msg:  msg,
-		Data: anyData,
-	}
-
-	return &apiRes
+	return anyData
 }

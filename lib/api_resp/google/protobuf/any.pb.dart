@@ -33,7 +33,6 @@ class Any extends $pb.GeneratedMessage with $mixin.AnyMixin {
   ;
 
   Any._() : super();
-
   factory Any({
     $core.String? typeUrl,
     $core.List<$core.int>? value,
@@ -57,7 +56,6 @@ class Any extends $pb.GeneratedMessage with $mixin.AnyMixin {
       [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()
         ..mergeFromJson(i, r);
-
   @$core.Deprecated(
       'Using this can add significant overhead to your binary. '
           'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
@@ -65,7 +63,6 @@ class Any extends $pb.GeneratedMessage with $mixin.AnyMixin {
   Any clone() =>
       Any()
         ..mergeFromMessage(this);
-
   @$core.Deprecated(
       'Using this can add significant overhead to your binary. '
           'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
@@ -73,14 +70,10 @@ class Any extends $pb.GeneratedMessage with $mixin.AnyMixin {
   Any copyWith(void Function(Any) updates) => super.copyWith((message) =>
       updates(message as Any)) as Any; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
-
   @$core.pragma('dart2js:noInline')
   static Any create() => Any._();
-
   Any createEmptyInstance() => create();
-
   static $pb.PbList<Any> createRepeated() => $pb.PbList<Any>();
-
   @$core.pragma('dart2js:noInline')
   static Any getDefault() =>
       _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Any>(create);
@@ -88,32 +81,25 @@ class Any extends $pb.GeneratedMessage with $mixin.AnyMixin {
 
   @$pb.TagNumber(1)
   $core.String get typeUrl => $_getSZ(0);
-
   @$pb.TagNumber(1)
   set typeUrl($core.String v) {
     $_setString(0, v);
   }
-
   @$pb.TagNumber(1)
   $core.bool hasTypeUrl() => $_has(0);
-
   @$pb.TagNumber(1)
   void clearTypeUrl() => clearField(1);
 
   @$pb.TagNumber(2)
   $core.List<$core.int> get value => $_getN(1);
-
   @$pb.TagNumber(2)
   set value($core.List<$core.int> v) {
     $_setBytes(1, v);
   }
-
   @$pb.TagNumber(2)
   $core.bool hasValue() => $_has(1);
-
   @$pb.TagNumber(2)
   void clearValue() => clearField(2);
-
   /// Creates a new [Any] encoding [message].
   ///
   /// The [typeUrl] will be [typeUrlPrefix]/`fullName` where `fullName` is

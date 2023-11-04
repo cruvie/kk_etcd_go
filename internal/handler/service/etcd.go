@@ -2,6 +2,7 @@ package service
 
 import (
 	"context"
+	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_stage"
 	"github.com/cruvie/kk_etcd_go/internal/config"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_client"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_const"
@@ -11,7 +12,7 @@ import (
 	"time"
 )
 
-func InitEtcd(endpoints []string, userName string, password string) {
+func InitEtcd(stage *kku_stage.Stage, endpoints []string, userName string, password string) {
 	if config.Config.RootPassword != "" {
 		cfg := clientv3.Config{
 			Endpoints:   endpoints,
@@ -68,7 +69,7 @@ func InitEtcd(endpoints []string, userName string, password string) {
 			Roles:    []string{kk_etcd_const.RoleRoot},
 		}
 		UserDelete(nil, user.UserName, true)
-		res := UserAdd(user)
+		res := UserAdd(stage, user)
 		if res != 1 {
 			panic("add root user as an administrator of the system failed")
 		}

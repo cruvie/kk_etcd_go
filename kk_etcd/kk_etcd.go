@@ -2,6 +2,8 @@ package kk_etcd
 
 import (
 	"context"
+	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_func"
+	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_stage"
 	"github.com/cruvie/kk_etcd_go/internal/handler/service"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_client"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_const"
@@ -11,7 +13,8 @@ import (
 )
 
 func InitEtcd(endpoints []string, userName string, password string) {
-	service.InitEtcd(endpoints, userName, password)
+	stage := kku_stage.NewStage(nil, kku_func.GetCurrentFunctionName())
+	service.InitEtcd(stage, endpoints, userName, password)
 }
 
 // GetConfig get config from etcd and unmarshal to configStruct

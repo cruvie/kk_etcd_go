@@ -1,11 +1,13 @@
 package main
 
 import (
-	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_log"
+	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_func"
+	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_stage"
 	"github.com/cruvie/kk_etcd_go/internal/api_etcd"
 	"github.com/cruvie/kk_etcd_go/internal/config"
 	"github.com/cruvie/kk_etcd_go/kk_etcd"
 	_ "github.com/cruvie/kk_etcd_go/main/docs"
+	"log/slog"
 )
 
 //	@title			kk_etcd_go API
@@ -23,12 +25,19 @@ import (
 // @host		localhost:2333
 // @BasePath	/User
 func main() {
-	defer mainClose()
+	defer func() {
+		if r := recover(); r != nil {
+			slog.Error("main panic", "error", r)
+		}
+	}()
+	stage := kku_stage.NewStage(nil, kku_func.GetCurrentFunctionName())
+	defer mainClose(stage)
+
 	config.InitConfig()
 
-	kku_log.InitSlog(config.Config.DebugMode, nil, nil)
+	kku_stage.InitSlog(config.Config.DebugMode, nil, nil)
 	kk_etcd.InitEtcd([]string{config.Config.Etcd.Endpoint}, config.Config.Admin.UserName, config.Config.Admin.Password)
-	api_etcd.ApiEtcd()
+	api_etcd.ApiEtcd(stage)
 }
-func mainClose() {
+func mainClose(stage *kku_stage.Stage) {
 }

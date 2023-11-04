@@ -4,13 +4,14 @@ import (
 	"gitee.com/cruvie/kk_go_kit/kk_swagger"
 	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_func"
 	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_http"
+	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_stage"
 	"github.com/cruvie/kk_etcd_go/internal/config"
 	"github.com/cruvie/kk_etcd_go/internal/handler"
 	middleware2 "github.com/cruvie/kk_etcd_go/internal/utils/middleware"
 	"github.com/gin-gonic/gin"
 )
 
-func ApiEtcd() {
+func ApiEtcd(stage *kku_stage.Stage) {
 	if !config.Config.DebugMode {
 		gin.SetMode(gin.ReleaseMode)
 	}
@@ -18,7 +19,7 @@ func ApiEtcd() {
 	r.Use(middleware2.Cors())
 
 	//swagger
-	kk_swagger.InitSwagger(r, config.Config.ServerAddr)
+	kk_swagger.InitSwagger(stage, r, config.Config.ServerAddr)
 
 	r.Use(middleware2.ParseHeader)
 
@@ -55,6 +56,6 @@ func ApiEtcd() {
 		serverAPI.POST(kku_func.GetFunctionName(handler.ServerList), handler.ServerList)
 	}
 
-	kku_http.ServerWithGracefulShutdown(r, config.Config.ServerAddr)
+	kku_http.ServerWithGracefulShutdown(stage, r, config.Config.ServerAddr)
 
 }

@@ -2,7 +2,7 @@ package kk_etcd
 
 import (
 	"context"
-	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_log"
+	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_stage"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_const"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	"google.golang.org/grpc"
@@ -83,7 +83,7 @@ func TestRegisterGrpcService(t *testing.T) {
 	// run TestStartGrpcServer first
 	var w sync.WaitGroup
 	w.Add(1)
-	kku_log.InitSlog(true, nil, nil)
+	kku_stage.InitSlog(true, nil, nil)
 	InitEtcd([]string{"http://127.0.0.1:2379"}, "kk_etcd", "kk_etcd")
 
 	//register grpc service
@@ -120,7 +120,7 @@ func TestRegisterHttpService(t *testing.T) {
 	// run TestStartHttpServer first
 	var w sync.WaitGroup
 	w.Add(1)
-	kku_log.InitSlog(true, nil, nil)
+	kku_stage.InitSlog(true, nil, nil)
 	InitEtcd([]string{"http://127.0.0.1:2379"}, "kk_etcd", "kk_etcd")
 
 	ctx, cancelFunc := context.WithCancel(context.Background())
@@ -140,7 +140,7 @@ func TestRegisterHttpService(t *testing.T) {
 }
 
 func TestGetHttpServiceList(t *testing.T) {
-	kku_log.InitSlog(true, nil, nil)
+	kku_stage.InitSlog(true, nil, nil)
 	InitEtcd([]string{"http://127.0.0.1:2379"}, "kk_etcd", "kk_etcd")
 	for i := 0; i < 100; i++ {
 		list, _ := ServerList(kk_etcd_const.ServiceHttp)
@@ -149,7 +149,7 @@ func TestGetHttpServiceList(t *testing.T) {
 	}
 }
 func TestGetGrpcServiceList(t *testing.T) {
-	kku_log.InitSlog(true, nil, nil)
+	kku_stage.InitSlog(true, nil, nil)
 	InitEtcd([]string{"http://127.0.0.1:2379"}, "kk_etcd", "kk_etcd")
 	for i := 0; i < 100; i++ {
 		list, _ := ServerList(kk_etcd_const.ServiceGrpc)
