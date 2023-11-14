@@ -7,7 +7,7 @@ import (
 	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_stage"
 	"github.com/cruvie/kk_etcd_go/internal/config"
 	"github.com/cruvie/kk_etcd_go/internal/handler"
-	middleware2 "github.com/cruvie/kk_etcd_go/internal/utils/middleware"
+	"github.com/cruvie/kk_etcd_go/internal/utils/middleware"
 	"github.com/gin-gonic/gin"
 )
 
@@ -16,17 +16,17 @@ func ApiEtcd(stage *kku_stage.Stage) {
 		gin.SetMode(gin.ReleaseMode)
 	}
 	r := gin.Default()
-	r.Use(middleware2.Cors())
+	r.Use(middleware.Cors())
 
 	//swagger
 	kk_swagger.InitSwagger(stage, r, config.Config.ServerAddr)
 
-	r.Use(middleware2.ParseHeader)
+	r.Use(middleware.ParseHeader)
 
 	userAPI := r.Group("User")
 	{
 		userAPI.POST(kku_func.GetFunctionName(handler.Login), handler.Login)
-		userAPI.Use(middleware2.JWTAuth)
+		userAPI.Use(middleware.JWTAuth)
 		userAPI.POST(kku_func.GetFunctionName(handler.Logout), handler.Logout)
 		userAPI.POST(kku_func.GetFunctionName(handler.UserAdd), handler.UserAdd)
 		userAPI.POST(kku_func.GetFunctionName(handler.UserDelete), handler.UserDelete)
@@ -35,7 +35,7 @@ func ApiEtcd(stage *kku_stage.Stage) {
 		userAPI.POST(kku_func.GetFunctionName(handler.UserList), handler.UserList)
 		userAPI.POST(kku_func.GetFunctionName(handler.UserGrantRole), handler.UserGrantRole)
 	}
-	r.Use(middleware2.JWTAuth)
+	r.Use(middleware.JWTAuth)
 	roleAPI := r.Group("Role")
 	{
 		roleAPI.POST(kku_func.GetFunctionName(handler.RoleAdd), handler.RoleAdd)

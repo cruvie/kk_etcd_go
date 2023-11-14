@@ -15,8 +15,8 @@ func SetRequestHeader(c *gin.Context, header RequestHeader) {
 	c.Set(globalHeader, header)
 }
 
-// GetRequestHeader get current request header from gin context
-func GetRequestHeader(c *gin.Context) RequestHeader {
+// getRequestHeader get current request header from gin context
+func getRequestHeader(c *gin.Context) RequestHeader {
 	header, ok := c.Get(globalHeader)
 	if !ok {
 		return RequestHeader{}
@@ -26,5 +26,5 @@ func GetRequestHeader(c *gin.Context) RequestHeader {
 
 // GetAuthorizationToken get AuthorizationToken from globalHeader
 func GetAuthorizationToken(c *gin.Context) string {
-	return GetRequestHeader(c).AuthorizationToken
+	return getRequestHeader(c).AuthorizationToken
 }

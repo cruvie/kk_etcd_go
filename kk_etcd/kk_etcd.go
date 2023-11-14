@@ -12,30 +12,40 @@ import (
 	"log/slog"
 )
 
-func InitEtcd(endpoints []string, userName string, password string) {
+func InitEtcd(endpoints []string, userName string, password string) error {
 	stage := kku_stage.NewStage(nil, kku_func.GetCurrentFunctionName())
-	service.InitEtcd(stage, endpoints, userName, password)
+	return service.InitEtcd(stage, endpoints, userName, password)
 }
 
 // GetConfig get config from etcd and unmarshal to configStruct
 // eg: GetConfig("go_rec_dev", &config.Config)
-func GetConfig(configKey string, configStruct any) {
+func GetConfig(configKey string, configStruct any) error {
+	stage := kku_stage.NewStage(nil, kku_func.GetCurrentFunctionName())
 	getResponse, err := kk_etcd_client.EtcdClient.Get(context.Background(), kk_etcd_const.Config+configKey)
 	if err != nil {
-		slog.Error("failed to get kv", "configKey", configKey, "err", err)
+		logBody := kku_stage.NewLogBody().SetTraceId(stage.TraceId).SetError(err).
+			SetAny("configKey", configKey)
+		slog.Error("failed to get config", logBody.GetLogArgs()...)
+		return err
 	}
 	if getResponse.Kvs == nil {
-		slog.Error("failed to get kv, getResponse.Kvs is nil", "configKey", configKey)
-		return
+		logBody := kku_stage.NewLogBody().SetTraceId(stage.TraceId)
+		slog.Warn("failed to get kv, getResponse.Kvs is nil", logBody.GetLogArgs()...)
+		return nil
 	}
 	err = yaml.Unmarshal(getResponse.Kvs[0].Value, configStruct)
 	if err != nil {
-		slog.Error("failed Unmarshal config", "err", err, "config", string(getResponse.Kvs[0].Value))
+		logBody := kku_stage.NewLogBody().SetTraceId(stage.TraceId).SetError(err).
+			SetAny("config", string(getResponse.Kvs[0].Value))
+		slog.Error("failed Unmarshal config", logBody.GetLogArgs()...)
+		return err
 	}
+	return nil
 }
 
 func RegisterService(registration *kk_etcd_models.ServiceRegistration) error {
-	err := service.RegisterService(registration)
+	stage := kku_stage.NewStage(nil, kku_func.GetCurrentFunctionName())
+	err := service.RegisterService(stage, registration)
 	return err
 }
 
@@ -43,6 +53,7 @@ func RegisterService(registration *kk_etcd_models.ServiceRegistration) error {
 // serviceName, should with prefix key_prefix.ServiceGrpc or key_prefix.ServiceHttp
 // only give prefix to get all service list
 func ServerList(serviceName string) (serverList *kk_etcd_models.PBListServer, err error) {
-	_, servers, err := service.ServerList(serviceName)
+	stage := kku_stage.NewStage(nil, kku_func.GetCurrentFunctionName())
+	_, servers, err := service.ServerList(stage, serviceName)
 	return servers, err
 }

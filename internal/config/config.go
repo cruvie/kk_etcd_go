@@ -33,13 +33,13 @@ func InitConfig() {
 	//data, err := os.ReadFile(workDir + "/kk_etcd_go/internal/config/config.yml")
 	data, err := os.ReadFile(workDir + "/internal/config/config.yml")
 	if err != nil {
-		slog.Info("unable to read config.yaml", "err", err)
+		slog.Error("unable to read config.yaml", "err", err)
 		return
 	}
 
 	err = yaml.Unmarshal(data, &Config)
 	if err != nil {
-		slog.Info("unable to unmarshal config.yaml", "err", err)
+		slog.Error("unable to unmarshal config.yaml", "err", err)
 		return
 	}
 }

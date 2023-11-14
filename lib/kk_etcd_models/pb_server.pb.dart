@@ -27,7 +27,6 @@ class PBServer extends $pb.GeneratedMessage {
   ;
 
   PBServer._() : super();
-
   factory PBServer({
     $core.String? serviceName,
     $core.String? serviceAddr,
@@ -51,7 +50,6 @@ class PBServer extends $pb.GeneratedMessage {
       [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()
         ..mergeFromJson(i, r);
-
   @$core.Deprecated(
       'Using this can add significant overhead to your binary. '
           'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
@@ -59,7 +57,6 @@ class PBServer extends $pb.GeneratedMessage {
   PBServer clone() =>
       PBServer()
         ..mergeFromMessage(this);
-
   @$core.Deprecated(
       'Using this can add significant overhead to your binary. '
           'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
@@ -68,14 +65,10 @@ class PBServer extends $pb.GeneratedMessage {
       super.copyWith((message) => updates(
           message as PBServer)) as PBServer; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
-
   @$core.pragma('dart2js:noInline')
   static PBServer create() => PBServer._();
-
   PBServer createEmptyInstance() => create();
-
   static $pb.PbList<PBServer> createRepeated() => $pb.PbList<PBServer>();
-
   @$core.pragma('dart2js:noInline')
   static PBServer getDefault() =>
       _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<PBServer>(create);
@@ -83,29 +76,23 @@ class PBServer extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(1)
   $core.String get serviceName => $_getSZ(0);
-
   @$pb.TagNumber(1)
   set serviceName($core.String v) {
     $_setString(0, v);
   }
-
   @$pb.TagNumber(1)
   $core.bool hasServiceName() => $_has(0);
-
   @$pb.TagNumber(1)
   void clearServiceName() => clearField(1);
 
   @$pb.TagNumber(2)
   $core.String get serviceAddr => $_getSZ(1);
-
   @$pb.TagNumber(2)
   set serviceAddr($core.String v) {
     $_setString(1, v);
   }
-
   @$pb.TagNumber(2)
   $core.bool hasServiceAddr() => $_has(1);
-
   @$pb.TagNumber(2)
   void clearServiceAddr() => clearField(2);
 }
@@ -127,7 +114,6 @@ class PBListServer extends $pb.GeneratedMessage {
   ;
 
   PBListServer._() : super();
-
   factory PBListServer({
     $core.Iterable<PBServer>? listServer,
   }) {
@@ -147,7 +133,6 @@ class PBListServer extends $pb.GeneratedMessage {
       [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) =>
       create()
         ..mergeFromJson(i, r);
-
   @$core.Deprecated(
       'Using this can add significant overhead to your binary. '
           'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
@@ -155,7 +140,6 @@ class PBListServer extends $pb.GeneratedMessage {
   PBListServer clone() =>
       PBListServer()
         ..mergeFromMessage(this);
-
   @$core.Deprecated(
       'Using this can add significant overhead to your binary. '
           'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
@@ -164,15 +148,12 @@ class PBListServer extends $pb.GeneratedMessage {
       super.copyWith((message) => updates(
           message as PBListServer)) as PBListServer; // ignore: deprecated_member_use
   $pb.BuilderInfo get info_ => _i;
-
   @$core.pragma('dart2js:noInline')
   static PBListServer create() => PBListServer._();
-
   PBListServer createEmptyInstance() => create();
 
   static $pb.PbList<PBListServer> createRepeated() =>
       $pb.PbList<PBListServer>();
-
   @$core.pragma('dart2js:noInline')
   static PBListServer getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<PBListServer>(create);

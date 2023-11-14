@@ -27,7 +27,6 @@ func Login(c *gin.Context) {
 
 	var pbUser kk_etcd_models.PBUser
 	if err := kku_http.ReadProtoBuf(stage, &pbUser); err != nil {
-		slog.Info("failed to read proto buf", "err", err)
 		kku_http.ResponseProtoBuf(c, api_resp.Fail(stage, nil, nil))
 		return
 	}
@@ -65,7 +64,7 @@ func Logout(c *gin.Context) {
 		kku_http.ResponseProtoBuf(c, api_resp.Fail(stage, nil, nil))
 		return
 	}
-	res := service.Logout(&pbUser)
+	res := service.Logout(stage, &pbUser)
 	switch res {
 	case 1:
 		kku_http.ResponseProtoBuf(c, api_resp.Success(stage, nil, nil))
@@ -84,7 +83,7 @@ func Logout(c *gin.Context) {
 //	@Router			/UserAdd [post]
 func UserAdd(c *gin.Context) {
 	stage := kku_stage.NewStage(c, kku_func.GetCurrentFunctionName())
-	if !check_user.CheckRootRole(c) {
+	if !check_user.CheckRootRole(stage) {
 		kku_http.ResponseProtoBuf(c, api_resp.Fail(stage, &api_resp.ApiResp{
 			Msg: "you don't have root role!"}, nil))
 		return
@@ -114,7 +113,7 @@ func UserAdd(c *gin.Context) {
 //	@Router			/UserDelete [post]
 func UserDelete(c *gin.Context) {
 	stage := kku_stage.NewStage(c, kku_func.GetCurrentFunctionName())
-	if !check_user.CheckRootRole(c) {
+	if !check_user.CheckRootRole(stage) {
 		kku_http.ResponseProtoBuf(c, api_resp.Fail(stage, &api_resp.ApiResp{
 			Msg: "you don't have root role!"}, nil))
 		return
@@ -125,7 +124,7 @@ func UserDelete(c *gin.Context) {
 		kku_http.ResponseProtoBuf(c, api_resp.Fail(stage, nil, nil))
 		return
 	}
-	res := service.UserDelete(c, pbUser.UserName, false)
+	res := service.UserDelete(stage, pbUser.UserName, false)
 	switch res {
 	case 1:
 		kku_http.ResponseProtoBuf(c, api_resp.Success(stage, nil, nil))
@@ -153,7 +152,7 @@ func GetUser(c *gin.Context) {
 		kku_http.ResponseProtoBuf(c, api_resp.Fail(stage, nil, nil))
 		return
 	}
-	user, res := service.GetUser(pbUser.UserName)
+	user, res := service.GetUser(stage, pbUser.UserName)
 	switch res {
 	case 1:
 		kku_http.ResponseProtoBuf(c, api_resp.Success(stage, nil, user))
@@ -171,7 +170,7 @@ func GetUser(c *gin.Context) {
 func MyInfo(c *gin.Context) {
 	stage := kku_stage.NewStage(c, kku_func.GetCurrentFunctionName())
 	loginUser := global_model.GetLoginUser(c)
-	user, res := service.GetUser(loginUser.UserName)
+	user, res := service.GetUser(stage, loginUser.UserName)
 	switch res {
 	case 1:
 		kku_http.ResponseProtoBuf(c, api_resp.Success(stage, nil, user))
@@ -188,7 +187,7 @@ func MyInfo(c *gin.Context) {
 //	@Router			/UserList [post]
 func UserList(c *gin.Context) {
 	stage := kku_stage.NewStage(c, kku_func.GetCurrentFunctionName())
-	res, users := service.UserList()
+	res, users := service.UserList(stage)
 	switch res {
 	case 1:
 		kku_http.ResponseProtoBuf(c, api_resp.Success(stage, nil, users))
@@ -206,7 +205,7 @@ func UserList(c *gin.Context) {
 //	@Router			/UserGrantRole [post]
 func UserGrantRole(c *gin.Context) {
 	stage := kku_stage.NewStage(c, kku_func.GetCurrentFunctionName())
-	if !check_user.CheckRootRole(c) {
+	if !check_user.CheckRootRole(stage) {
 		kku_http.ResponseProtoBuf(c, api_resp.Fail(stage, &api_resp.ApiResp{
 			Msg: "you don't have root role!"}, nil))
 		return
@@ -225,7 +224,7 @@ func UserGrantRole(c *gin.Context) {
 		return
 	}
 
-	res := service.UserGrantRole(&user)
+	res := service.UserGrantRole(stage, &user)
 	switch res {
 	case 1:
 		kku_http.ResponseProtoBuf(c, api_resp.Success(stage, nil, nil))

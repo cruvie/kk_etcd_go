@@ -8,7 +8,6 @@ import (
 	"github.com/cruvie/kk_etcd_go/internal/utils/api_resp"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models/base_proto_type"
 	"github.com/gin-gonic/gin"
-	"log/slog"
 )
 
 // ServerList
@@ -21,11 +20,10 @@ func ServerList(c *gin.Context) {
 	stage := kku_stage.NewStage(c, kku_func.GetCurrentFunctionName())
 	var prefix base_proto_type.PBString
 	if err := kku_http.ReadProtoBuf(stage, &prefix); err != nil {
-		slog.Info("failed to read proto buf", "err", err)
 		kku_http.ResponseProtoBuf(c, api_resp.Fail(stage, nil, nil))
 		return
 	}
-	res, list, _ := service.ServerList(prefix.Value)
+	res, list, _ := service.ServerList(stage, prefix.Value)
 	switch res {
 	case 1:
 		kku_http.ResponseProtoBuf(c, api_resp.Success(stage, nil, list))

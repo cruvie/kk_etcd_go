@@ -7,7 +7,6 @@ import (
 	"github.com/cruvie/kk_etcd_go/internal/config"
 	"github.com/cruvie/kk_etcd_go/kk_etcd"
 	_ "github.com/cruvie/kk_etcd_go/main/docs"
-	"log/slog"
 )
 
 //	@title			kk_etcd_go API
@@ -25,19 +24,16 @@ import (
 // @host		localhost:2333
 // @BasePath	/User
 func main() {
-	defer func() {
-		if r := recover(); r != nil {
-			slog.Error("main panic", "error", r)
-		}
-	}()
 	stage := kku_stage.NewStage(nil, kku_func.GetCurrentFunctionName())
-	defer mainClose(stage)
 
 	config.InitConfig()
 
 	kku_stage.InitSlog(config.Config.DebugMode, nil, nil)
-	kk_etcd.InitEtcd([]string{config.Config.Etcd.Endpoint}, config.Config.Admin.UserName, config.Config.Admin.Password)
+
+	err := kk_etcd.InitEtcd([]string{config.Config.Etcd.Endpoint}, config.Config.Admin.UserName, config.Config.Admin.Password)
+	if err != nil {
+		panic(err)
+	}
+
 	api_etcd.ApiEtcd(stage)
-}
-func mainClose(stage *kku_stage.Stage) {
 }

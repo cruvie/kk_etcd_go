@@ -22,18 +22,17 @@ import (
 //	@Router			/RoleAdd [post]
 func RoleAdd(c *gin.Context) {
 	stage := kku_stage.NewStage(c, kku_func.GetCurrentFunctionName())
-	if !check_user.CheckRootRole(c) {
+	if !check_user.CheckRootRole(stage) {
 		kku_http.ResponseProtoBuf(c, api_resp.Fail(stage, &api_resp.ApiResp{
 			Msg: "you don't have root role!"}, nil))
 		return
 	}
 	var pbRole kk_etcd_models.PBRole
 	if err := kku_http.ReadProtoBuf(stage, &pbRole); err != nil {
-		slog.Info("failed to read protobuf", "err", err)
 		kku_http.ResponseProtoBuf(c, api_resp.Fail(stage, nil, nil))
 		return
 	}
-	res := service.RoleAdd(&pbRole)
+	res := service.RoleAdd(stage, &pbRole)
 	switch res {
 	case 1:
 		kku_http.ResponseProtoBuf(c, api_resp.Success(stage, nil, nil))
@@ -51,7 +50,7 @@ func RoleAdd(c *gin.Context) {
 //	@Router			/RoleDelete [post]
 func RoleDelete(c *gin.Context) {
 	stage := kku_stage.NewStage(c, kku_func.GetCurrentFunctionName())
-	if !check_user.CheckRootRole(c) {
+	if !check_user.CheckRootRole(stage) {
 		kku_http.ResponseProtoBuf(c, api_resp.Fail(stage, &api_resp.ApiResp{
 			Msg: "you don't have root role!"}, nil))
 		return
@@ -62,7 +61,7 @@ func RoleDelete(c *gin.Context) {
 		kku_http.ResponseProtoBuf(c, api_resp.Fail(stage, nil, nil))
 		return
 	}
-	res := service.RoleDelete(pbRole.Name)
+	res := service.RoleDelete(stage, pbRole.Name)
 	switch res {
 	case 1:
 		kku_http.ResponseProtoBuf(c, api_resp.Success(stage, nil, nil))
@@ -83,7 +82,7 @@ func RoleDelete(c *gin.Context) {
 //	@Router			/RoleList [post]
 func RoleList(c *gin.Context) {
 	stage := kku_stage.NewStage(c, kku_func.GetCurrentFunctionName())
-	res, roles := service.RoleList()
+	res, roles := service.RoleList(stage)
 	switch res {
 	case 1:
 		kku_http.ResponseProtoBuf(c, api_resp.Success(stage, nil, roles))
@@ -107,7 +106,7 @@ func RoleGet(c *gin.Context) {
 		kku_http.ResponseProtoBuf(c, api_resp.Fail(stage, nil, nil))
 		return
 	}
-	role, res := service.RoleGet(pbRole.Name)
+	role, res := service.RoleGet(stage, pbRole.Name)
 	switch res {
 	case 1:
 		kku_http.ResponseProtoBuf(c, api_resp.Success(stage, nil, role))
@@ -125,7 +124,7 @@ func RoleGet(c *gin.Context) {
 //	@Router			/RoleGrantPermission [post]
 func RoleGrantPermission(c *gin.Context) {
 	stage := kku_stage.NewStage(c, kku_func.GetCurrentFunctionName())
-	if !check_user.CheckRootRole(c) {
+	if !check_user.CheckRootRole(stage) {
 		kku_http.ResponseProtoBuf(c, api_resp.Fail(stage, &api_resp.ApiResp{
 			Msg: "you don't have root role!"}, nil))
 		return
@@ -141,7 +140,7 @@ func RoleGrantPermission(c *gin.Context) {
 			Msg: "illegal change root role permission!"}, nil))
 		return
 	}
-	res := service.RoleGrantPermission(&pbRole)
+	res := service.RoleGrantPermission(stage, &pbRole)
 	switch res {
 	case 1:
 		kku_http.ResponseProtoBuf(c, api_resp.Success(stage, nil, nil))

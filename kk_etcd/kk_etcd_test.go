@@ -41,8 +41,14 @@ func TestGetConfig(t *testing.T) {
 		password = "admin"
 	)
 
-	InitEtcd(endpoints, userName, password)
-	GetConfig(configKey, &GlobalConfig)
+	err := InitEtcd(endpoints, userName, password)
+	if err != nil {
+		slog.Error("InitEtcd failed", "err", err)
+	}
+	err = GetConfig(configKey, &GlobalConfig)
+	if err != nil {
+		slog.Error("GetConfig failed", "err", err)
+	}
 
 }
 
@@ -84,7 +90,10 @@ func TestRegisterGrpcService(t *testing.T) {
 	var w sync.WaitGroup
 	w.Add(1)
 	kku_stage.InitSlog(true, nil, nil)
-	InitEtcd([]string{"http://127.0.0.1:2379"}, "kk_etcd", "kk_etcd")
+	err := InitEtcd([]string{"http://127.0.0.1:2379"}, "kk_etcd", "kk_etcd")
+	if err != nil {
+		return
+	}
 
 	//register grpc service
 	ctx, cancelFunc := context.WithCancel(context.Background())
@@ -121,7 +130,10 @@ func TestRegisterHttpService(t *testing.T) {
 	var w sync.WaitGroup
 	w.Add(1)
 	kku_stage.InitSlog(true, nil, nil)
-	InitEtcd([]string{"http://127.0.0.1:2379"}, "kk_etcd", "kk_etcd")
+	err := InitEtcd([]string{"http://127.0.0.1:2379"}, "kk_etcd", "kk_etcd")
+	if err != nil {
+		return
+	}
 
 	ctx, cancelFunc := context.WithCancel(context.Background())
 	_ = RegisterService(&kk_etcd_models.ServiceRegistration{
@@ -141,7 +153,10 @@ func TestRegisterHttpService(t *testing.T) {
 
 func TestGetHttpServiceList(t *testing.T) {
 	kku_stage.InitSlog(true, nil, nil)
-	InitEtcd([]string{"http://127.0.0.1:2379"}, "kk_etcd", "kk_etcd")
+	err := InitEtcd([]string{"http://127.0.0.1:2379"}, "kk_etcd", "kk_etcd")
+	if err != nil {
+		return
+	}
 	for i := 0; i < 100; i++ {
 		list, _ := ServerList(kk_etcd_const.ServiceHttp)
 		slog.Info("list", "list", list)
@@ -150,7 +165,10 @@ func TestGetHttpServiceList(t *testing.T) {
 }
 func TestGetGrpcServiceList(t *testing.T) {
 	kku_stage.InitSlog(true, nil, nil)
-	InitEtcd([]string{"http://127.0.0.1:2379"}, "kk_etcd", "kk_etcd")
+	err := InitEtcd([]string{"http://127.0.0.1:2379"}, "kk_etcd", "kk_etcd")
+	if err != nil {
+		return
+	}
 	for i := 0; i < 100; i++ {
 		list, _ := ServerList(kk_etcd_const.ServiceGrpc)
 		slog.Info("list", "list", list)

@@ -1,6 +1,7 @@
 package test
 
 import (
+	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_func"
 	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_stage"
 	"github.com/cruvie/kk_etcd_go/internal/config"
 	"github.com/cruvie/kk_etcd_go/internal/handler/service"
@@ -10,12 +11,16 @@ import (
 )
 
 func InitEtcd() {
+	stage := kku_stage.NewStage(nil, kku_func.GetCurrentFunctionName())
 	config.InitConfig()
 	kku_stage.InitSlog(config.Config.DebugMode, nil, nil)
-	kk_etcd.InitEtcd([]string{config.Config.Etcd.Endpoint}, config.Config.Admin.UserName, config.Config.Admin.Password)
-	_, list := service.KVList("")
+	err := kk_etcd.InitEtcd([]string{config.Config.Etcd.Endpoint}, config.Config.Admin.UserName, config.Config.Admin.Password)
+	if err != nil {
+		return
+	}
+	_, list := service.KVList(stage, "")
 	for _, pbKV := range list.ListKV {
-		service.KVPut(kk_etcd_const.Config+pbKV.Key, pbKV.Value)
+		service.KVPut(stage, kk_etcd_const.Config+pbKV.Key, pbKV.Value)
 	}
 }
 
