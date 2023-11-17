@@ -20,11 +20,12 @@ type config struct {
 		Endpoint string `yaml:"Endpoint"`
 	} `yaml:"Etcd"`
 	JWT struct {
-		ExpireTime int `yaml:"ExpireTime"`
+		Key        string `yaml:"Key"`
+		ExpireTime int    `yaml:"ExpireTime"`
 	} `yaml:"JWT"`
 }
 
-func InitConfig() {
+func InitConfig() error {
 
 	workDir, _ := os.Getwd()
 	//slog.Info("workDir", "dir", workDir)
@@ -34,12 +35,13 @@ func InitConfig() {
 	data, err := os.ReadFile(workDir + "/internal/config/config.yml")
 	if err != nil {
 		slog.Error("unable to read config.yaml", "err", err)
-		return
+		return err
 	}
 
 	err = yaml.Unmarshal(data, &Config)
 	if err != nil {
 		slog.Error("unable to unmarshal config.yaml", "err", err)
-		return
+		return err
 	}
+	return nil
 }

@@ -3,6 +3,8 @@ package service
 import (
 	"context"
 	"encoding/json"
+	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_encrypt"
+	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_jwt"
 	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_stage"
 	"github.com/cruvie/kk_etcd_go/internal/config"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
@@ -10,10 +12,6 @@ import (
 	"github.com/cruvie/kk_etcd_go/kk_etcd_const"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	"log/slog"
-	"time"
-
-	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_encrypt"
-	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_jwt"
 )
 
 func Login(stage *kku_stage.Stage, user *kk_etcd_models.PBUser) (tokenString string, res int) {
@@ -52,7 +50,7 @@ func Login(stage *kku_stage.Stage, user *kk_etcd_models.PBUser) (tokenString str
 		return
 	}
 	//generate token
-	tokenString = kku_jwt.GenerateToken[string](stage, userTemp.UserName, 0, time.Duration(config.Config.JWT.ExpireTime)*time.Hour)
+	tokenString = kku_jwt.GenerateToken[string](stage, userTemp.UserName, 0)
 	//put into etcd
 	res = KVPut(stage, kk_etcd_const.Jwt+userTemp.UserName, tokenString)
 	if res != 1 {

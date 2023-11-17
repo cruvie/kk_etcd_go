@@ -9,4 +9,5 @@ Admin:
 Etcd:
   Endpoint: http://127.0.0.1:2379
 JWT:
-  ExpireTime: 24  # hours
+  Key: You are re on your way to prison
+  ExpireTime: 24

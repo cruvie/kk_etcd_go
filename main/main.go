@@ -2,11 +2,13 @@ package main
 
 import (
 	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_func"
+	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_jwt"
 	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_stage"
 	"github.com/cruvie/kk_etcd_go/internal/api_etcd"
 	"github.com/cruvie/kk_etcd_go/internal/config"
 	"github.com/cruvie/kk_etcd_go/kk_etcd"
 	_ "github.com/cruvie/kk_etcd_go/main/docs"
+	"time"
 )
 
 //	@title			kk_etcd_go API
@@ -26,9 +28,13 @@ import (
 func main() {
 	stage := kku_stage.NewStage(nil, kku_func.GetCurrentFunctionName())
 
-	config.InitConfig()
+	if err := config.InitConfig(); err != nil {
+		return
+	}
 
 	kku_stage.InitSlog(config.Config.DebugMode, nil, nil)
+
+	kku_jwt.InitJwt(config.Config.JWT.Key, time.Duration(config.Config.JWT.ExpireTime)*time.Hour)
 
 	err := kk_etcd.InitEtcd([]string{config.Config.Etcd.Endpoint}, config.Config.Admin.UserName, config.Config.Admin.Password)
 	if err != nil {
