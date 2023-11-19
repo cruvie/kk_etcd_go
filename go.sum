@@ -22,6 +22,8 @@ gitee.com/cruvie/kk_go_kit v0.0.0-20231117170732-83a8d9aa7d11 h1:v26iXrGcwd36i10
 gitee.com/cruvie/kk_go_kit v0.0.0-20231117170732-83a8d9aa7d11/go.mod h1:9WRoUheSrTzSZnAVwFRjeLjVqNcm/MAzXIXJ/yIKW20=
 gitee.com/cruvie/kk_go_kit v0.0.0-20231117174329-7b2ad96d68c1 h1:eSKnZYtLDFgc+qiEHLrjiQ6gD2Ii0MDxF0OEqzUn/VU=
 gitee.com/cruvie/kk_go_kit v0.0.0-20231117174329-7b2ad96d68c1/go.mod h1:9WRoUheSrTzSZnAVwFRjeLjVqNcm/MAzXIXJ/yIKW20=
+gitee.com/cruvie/kk_go_kit v0.0.0-20231118135153-0261d85b99e5 h1:bG6gcWpDAymSxaglD1N2uKdRtrpodHq017mDe8BiB8I=
+gitee.com/cruvie/kk_go_kit v0.0.0-20231118135153-0261d85b99e5/go.mod h1:9WRoUheSrTzSZnAVwFRjeLjVqNcm/MAzXIXJ/yIKW20=
 github.com/KyleBanks/depth v1.2.1 h1:5h8fQADFrWtarTdtDudMmGsC7GPbOAu6RVB3ffsVFHc=
 github.com/KyleBanks/depth v1.2.1/go.mod h1:jzSb9d0L43HxTQfT+oSA1EEp2q+ne2uh6XgeJcm8brE=
 github.com/benbjohnson/clock v1.3.0 h1:ip6w0uFQkncKQ979AypyG0ER7mqUSBdKLOgAle/AT8A=

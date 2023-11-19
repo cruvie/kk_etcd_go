@@ -18,7 +18,7 @@ func ParseHeader(c *gin.Context) {
 	// bind header
 	err := c.ShouldBindHeader(&header)
 	if err != nil {
-		slog.Info("fail to bind header", "err", err)
+		slog.Error("fail to bind header", "err", err)
 		kku_http.ResponseProtoBuf(c, api_resp.Fail(stage, nil, nil))
 		c.Abort()
 		return

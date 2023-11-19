@@ -68,10 +68,6 @@ func RegisterService(stage *kku_stage.Stage, registration *kk_etcd_models.Servic
 // serviceName, should with prefix key_prefix.ServiceGrpc or key_prefix.ServiceHttp
 // only give prefix to get all service list
 func ServerList(stage *kku_stage.Stage, serviceName string) (res int, serverList *kk_etcd_models.PBListServer, err error) {
-	//remove suffix "/" since etcd client 3.5.10 will add "/" automatically
-	if serviceName != "" && serviceName[len(serviceName)-1] == '/' {
-		serviceName = serviceName[:len(serviceName)-1]
-	}
 	etcdManager, err := endpoints.NewManager(kk_etcd_client.EtcdClient, serviceName)
 	if err != nil {
 		logBody := kku_stage.NewLogBody().SetTraceId(stage.TraceId)

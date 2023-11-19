@@ -8,6 +8,7 @@ import (
 	"github.com/cruvie/kk_etcd_go/kk_etcd_client"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_const"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
+	"go.etcd.io/etcd/client/v3/naming/endpoints"
 	"gopkg.in/yaml.v3"
 	"log/slog"
 )
@@ -57,3 +58,42 @@ func ServerList(serviceName string) (serverList *kk_etcd_models.PBListServer, er
 	_, servers, err := service.ServerList(stage, serviceName)
 	return servers, err
 }
+
+// todo cmk watch server list change update to cache
+// 使用errgroup启动这个协程方便监听错误
+func WatchServerList(ctx context.Context, serviceName string, serverListChan chan *kk_etcd_models.PBListServer) (err error) {
+	stage := kku_stage.NewStage(nil, kku_func.GetCurrentFunctionName())
+	etcdManager, err := endpoints.NewManager(kk_etcd_client.EtcdClient, serviceName)
+	if err != nil {
+		logBody := kku_stage.NewLogBody().SetTraceId(stage.TraceId).SetError(err).
+			SetAny("serviceName", serviceName)
+		slog.Error("failed to new endpoints.Manager", logBody.GetLogArgs()...)
+		return err
+	}
+	channel, err := etcdManager.NewWatchChannel(ctx)
+	if err != nil {
+		logBody := kku_stage.NewLogBody().SetTraceId(stage.TraceId).SetError(err).
+			SetAny("serviceName", serviceName)
+		slog.Error("failed to new watch channel", logBody.GetLogArgs()...)
+		return err
+	}
+	var pBListServer kk_etcd_models.PBListServer
+	for {
+		select {
+		case <-ctx.Done():
+			return nil
+		case updates := <-channel:
+			for _, update := range updates {
+				pBListServer.ListServer = append(pBListServer.ListServer, &kk_etcd_models.PBServer{
+					ServiceName: update.Key,
+					ServiceAddr: update.Endpoint.Addr,
+				})
+			}
+			if len(pBListServer.ListServer) > 0 {
+				serverListChan <- &pBListServer
+			}
+		}
+	}
+}
+
+//监听指定服务的服务列表变化，更新grpc客户端 ss_grpc存储一个client列表，ss_go使用算法每次请求随机选择一个client

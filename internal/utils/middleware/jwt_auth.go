@@ -20,7 +20,7 @@ func JWTAuth(c *gin.Context) {
 
 	token := global_model.GetAuthorizationToken(c)
 	if token == "" {
-		slog.Info("token is empty")
+		slog.Error("token is empty")
 		kku_http.ResponseProtoBuf(c, api_resp.Fail(stage, &api_resp.ApiResp{
 			Code: http.StatusUnauthorized,
 			Msg:  "LogIn again"}, nil))
@@ -31,7 +31,7 @@ func JWTAuth(c *gin.Context) {
 	//get user from etcd
 	user, res := service.GetUser(stage, myClaims.UserId)
 	if res != 1 {
-		slog.Info("fail to get user from etcd")
+		slog.Error("fail to get user from etcd")
 		kku_http.ResponseProtoBuf(c, api_resp.Fail(stage, &api_resp.ApiResp{
 			Code: http.StatusUnauthorized,
 			Msg:  "LogIn again"}, nil))

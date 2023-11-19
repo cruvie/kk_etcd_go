@@ -20,7 +20,7 @@ type serverFunc struct{}
 var toolServer serverFunc
 
 func (t *serverFunc) registerServer(stage *kku_stage.Stage, registration *kk_etcd_models.ServiceRegistration) error {
-	key := registration.ServerType + registration.ServerName
+	key := registration.ServerType + "/" + registration.ServerName
 
 	endpointManager, err := endpoints.NewManager(kk_etcd_client.EtcdClient, key)
 	if err != nil {

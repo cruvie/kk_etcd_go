@@ -175,3 +175,32 @@ func TestGetGrpcServiceList(t *testing.T) {
 		time.Sleep(time.Second * 5)
 	}
 }
+
+func TestWatchServerList(t *testing.T) {
+	kku_stage.InitSlog(true, nil, nil)
+	err := InitEtcd([]string{"http://127.0.0.1:2379"}, "kk_etcd", "kk_etcd")
+	if err != nil {
+		return
+	}
+	serverListChan := make(chan *kk_etcd_models.PBListServer)
+	defer close(serverListChan)
+	ctx, cancel := context.WithCancel(context.Background())
+	defer cancel()
+	go func() {
+		err := WatchServerList(ctx, kk_etcd_const.ServiceHttp, serverListChan)
+		if err != nil {
+			slog.Error("WatchServerList failed", "err", err)
+			return
+		}
+	}()
+	for {
+		slog.Info("watching for server list change")
+		select {
+		case <-ctx.Done():
+			slog.Info("ctx done")
+			return
+		case serverList := <-serverListChan:
+			slog.Info("serverListChan", "serverList", serverList)
+		}
+	}
+}

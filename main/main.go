@@ -28,9 +28,7 @@ import (
 func main() {
 	stage := kku_stage.NewStage(nil, kku_func.GetCurrentFunctionName())
 
-	if err := config.InitConfig(); err != nil {
-		return
-	}
+	config.InitConfig()
 
 	kku_stage.InitSlog(config.Config.DebugMode, nil, nil)
 
