@@ -1,6 +1,6 @@
 basePath: /User
 definitions:
-  base_proto_type.PBListString:
+  kk_base_proto_type.PBListString:
     properties:
       ListString:
         items:
@@ -273,7 +273,7 @@ paths:
         name: pBListString
         required: true
         schema:
-          $ref: '#/definitions/base_proto_type.PBListString'
+          $ref: '#/definitions/kk_base_proto_type.PBListString'
       produces:
       - application/octet-stream
       responses: {}

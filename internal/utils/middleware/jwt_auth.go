@@ -1,13 +1,14 @@
 package middleware
 
 import (
+	"gitee.com/cruvie/kk_go_kit/kk_models/kk_response"
 	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_func"
 	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_http"
 	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_jwt"
 	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_stage"
 	"github.com/cruvie/kk_etcd_go/internal/handler/service"
-	"github.com/cruvie/kk_etcd_go/internal/utils/api_resp"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
+
 	"github.com/gin-gonic/gin"
 	"log/slog"
 
@@ -21,7 +22,7 @@ func JWTAuth(c *gin.Context) {
 	token := global_model.GetAuthorizationToken(c)
 	if token == "" {
 		slog.Error("token is empty")
-		kku_http.ResponseProtoBuf(c, api_resp.Fail(stage, &api_resp.ApiResp{
+		kku_http.ResponseProtoBuf(c, kk_response.Fail(stage, &kk_response.KKResponse{
 			Code: http.StatusUnauthorized,
 			Msg:  "LogIn again"}, nil))
 		c.Abort()
@@ -32,7 +33,7 @@ func JWTAuth(c *gin.Context) {
 	user, res := service.GetUser(stage, myClaims.UserId)
 	if res != 1 {
 		slog.Error("fail to get user from etcd")
-		kku_http.ResponseProtoBuf(c, api_resp.Fail(stage, &api_resp.ApiResp{
+		kku_http.ResponseProtoBuf(c, kk_response.Fail(stage, &kk_response.KKResponse{
 			Code: http.StatusUnauthorized,
 			Msg:  "LogIn again"}, nil))
 		c.Abort()

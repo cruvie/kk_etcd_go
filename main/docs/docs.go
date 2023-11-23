@@ -364,7 +364,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/base_proto_type.PBListString"
+                            "$ref": "#/definitions/kk_base_proto_type.PBListString"
                         }
                     }
                 ],
@@ -385,7 +385,7 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "base_proto_type.PBListString": {
+        "kk_base_proto_type.PBListString": {
             "type": "object",
             "properties": {
                 "ListString": {

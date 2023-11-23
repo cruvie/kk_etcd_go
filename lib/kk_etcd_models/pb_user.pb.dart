@@ -1,48 +1,47 @@
-///
+//
 //  Generated code. Do not modify.
 //  source: pb_user.proto
 //
 // @dart = 2.12
-// ignore_for_file: annotate_overrides,camel_case_types,constant_identifier_names,directives_ordering,library_prefixes,non_constant_identifier_names,prefer_final_fields,return_of_invalid_type,unnecessary_const,unnecessary_import,unnecessary_this,unused_import,unused_shown_name
+
+// ignore_for_file: annotate_overrides, camel_case_types, comment_references
+// ignore_for_file: constant_identifier_names, library_prefixes
+// ignore_for_file: non_constant_identifier_names, prefer_final_fields
+// ignore_for_file: unnecessary_import, unnecessary_this, unused_import
 
 import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
 class PBUser extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      const $core.bool.fromEnvironment('protobuf.omit_message_names')
-          ? ''
-          : 'PBUser', package: const $pb.PackageName(
-      const $core.bool.fromEnvironment('protobuf.omit_message_names')
-          ? ''
-          : 'kk_etcd_models'), createEmptyInstance: create)
-    ..aOS(2, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'UserName', protoName: 'UserName')
-    ..aOS(3, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'Password', protoName: 'Password')
-    ..pPS(4, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'Roles', protoName: 'Roles')
-    ..hasRequiredFields = false
-  ;
-
-  PBUser._() : super();
   factory PBUser({
     $core.String? userName,
     $core.String? password,
     $core.Iterable<$core.String>? roles,
   }) {
-    final _result = create();
+    final $result = create();
     if (userName != null) {
-      _result.userName = userName;
+      $result.userName = userName;
     }
     if (password != null) {
-      _result.password = password;
+      $result.password = password;
     }
     if (roles != null) {
-      _result.roles.addAll(roles);
+      $result.roles.addAll(roles);
     }
-    return _result;
+    return $result;
   }
+  PBUser._() : super();
   factory PBUser.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory PBUser.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'PBUser', package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd_models'), createEmptyInstance: create)
+    ..aOS(2, _omitFieldNames ? '' : 'UserName', protoName: 'UserName')
+    ..aOS(3, _omitFieldNames ? '' : 'Password', protoName: 'Password')
+    ..pPS(4, _omitFieldNames ? '' : 'Roles', protoName: 'Roles')
+    ..hasRequiredFields = false
+  ;
+
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
@@ -52,8 +51,10 @@ class PBUser extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  PBUser copyWith(void Function(PBUser) updates) => super.copyWith((message) => updates(message as PBUser)) as PBUser; // ignore: deprecated_member_use
+  PBUser copyWith(void Function(PBUser) updates) => super.copyWith((message) => updates(message as PBUser)) as PBUser;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static PBUser create() => PBUser._();
   PBUser createEmptyInstance() => create();
@@ -85,29 +86,24 @@ class PBUser extends $pb.GeneratedMessage {
 }
 
 class PBListUser extends $pb.GeneratedMessage {
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      const $core.bool.fromEnvironment('protobuf.omit_message_names')
-          ? ''
-          : 'PBListUser', package: const $pb.PackageName(
-      const $core.bool.fromEnvironment('protobuf.omit_message_names')
-          ? ''
-          : 'kk_etcd_models'), createEmptyInstance: create)
-    ..pc<PBUser>(1, const $core.bool.fromEnvironment('protobuf.omit_field_names') ? '' : 'ListUser', $pb.PbFieldType.PM, protoName: 'ListUser', subBuilder: PBUser.create)
-    ..hasRequiredFields = false
-  ;
-
-  PBListUser._() : super();
   factory PBListUser({
     $core.Iterable<PBUser>? listUser,
   }) {
-    final _result = create();
+    final $result = create();
     if (listUser != null) {
-      _result.listUser.addAll(listUser);
+      $result.listUser.addAll(listUser);
     }
-    return _result;
+    return $result;
   }
+  PBListUser._() : super();
   factory PBListUser.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory PBListUser.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'PBListUser', package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd_models'), createEmptyInstance: create)
+    ..pc<PBUser>(1, _omitFieldNames ? '' : 'ListUser', $pb.PbFieldType.PM, protoName: 'ListUser', subBuilder: PBUser.create)
+    ..hasRequiredFields = false
+  ;
+
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
@@ -117,8 +113,10 @@ class PBListUser extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  PBListUser copyWith(void Function(PBListUser) updates) => super.copyWith((message) => updates(message as PBListUser)) as PBListUser; // ignore: deprecated_member_use
+  PBListUser copyWith(void Function(PBListUser) updates) => super.copyWith((message) => updates(message as PBListUser)) as PBListUser;
+
   $pb.BuilderInfo get info_ => _i;
+
   @$core.pragma('dart2js:noInline')
   static PBListUser create() => PBListUser._();
   PBListUser createEmptyInstance() => create();
@@ -131,3 +129,6 @@ class PBListUser extends $pb.GeneratedMessage {
   $core.List<PBUser> get listUser => $_getList(0);
 }
 
+
+const _omitFieldNames = $core.bool.fromEnvironment('protobuf.omit_field_names');
+const _omitMessageNames = $core.bool.fromEnvironment('protobuf.omit_message_names');

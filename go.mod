@@ -3,7 +3,7 @@ module github.com/cruvie/kk_etcd_go
 go 1.21.0
 
 require (
-	gitee.com/cruvie/kk_go_kit v0.0.0-20231118135153-0261d85b99e5
+	gitee.com/cruvie/kk_go_kit v0.0.0-20231123125300-3154118af44d
 	github.com/gin-contrib/cors v1.4.0
 	github.com/gin-gonic/gin v1.9.1
 	github.com/swaggo/swag v1.16.2
@@ -70,8 +70,8 @@ require (
 	golang.org/x/sys v0.14.0 // indirect
 	golang.org/x/text v0.14.0 // indirect
 	golang.org/x/tools v0.15.0 // indirect
-	google.golang.org/genproto v0.0.0-20231106174013-bbf56f31fb17 // indirect
-	google.golang.org/genproto/googleapis/api v0.0.0-20231106174013-bbf56f31fb17 // indirect
-	google.golang.org/genproto/googleapis/rpc v0.0.0-20231106174013-bbf56f31fb17 // indirect
+	google.golang.org/genproto v0.0.0-20231120223509-83a465c0220f // indirect
+	google.golang.org/genproto/googleapis/api v0.0.0-20231120223509-83a465c0220f // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20231120223509-83a465c0220f // indirect
 	gopkg.in/natefinch/lumberjack.v2 v2.2.1 // indirect
 )
