@@ -30,6 +30,8 @@ gitee.com/cruvie/kk_go_kit v0.0.0-20231123125300-3154118af44d h1:Eh7e90tXzBCJJbL
 gitee.com/cruvie/kk_go_kit v0.0.0-20231123125300-3154118af44d/go.mod h1:RnN6tOoYM/tBi//rqwKqEM4Hdv4VdHb8X20bHixLlmM=
 gitee.com/cruvie/kk_go_kit v0.0.0-20231123130844-676f6b7abda2 h1:+UP5HtLFCjB4UVMX90G3/DpYVej6udu3gS6PQ8cnAbU=
 gitee.com/cruvie/kk_go_kit v0.0.0-20231123130844-676f6b7abda2/go.mod h1:32K5TsQVylAhGyRO7LimaViXYeLTWb8WQyB2Yd7BMkg=
+gitee.com/cruvie/kk_go_kit v0.0.0-20231124145819-2329fdab5c41 h1:xKSUDBU2+gCD2X8Wzms2MV4IAixwI7ciYt8bhKWm39A=
+gitee.com/cruvie/kk_go_kit v0.0.0-20231124145819-2329fdab5c41/go.mod h1:TwcGL3cHtXvkoJsKNIAJzgquYHqZtZaWSp7lHg+XwIU=
 github.com/KyleBanks/depth v1.2.1 h1:5h8fQADFrWtarTdtDudMmGsC7GPbOAu6RVB3ffsVFHc=
 github.com/KyleBanks/depth v1.2.1/go.mod h1:jzSb9d0L43HxTQfT+oSA1EEp2q+ne2uh6XgeJcm8brE=
 github.com/benbjohnson/clock v1.3.0 h1:ip6w0uFQkncKQ979AypyG0ER7mqUSBdKLOgAle/AT8A=
@@ -236,6 +238,8 @@ go.etcd.io/etcd/client/v3 v3.5.9 h1:r5xghnU7CwbUxD/fbUtRyJGaYNfDun8sp/gTr1hew6E=
 go.etcd.io/etcd/client/v3 v3.5.9/go.mod h1:i/Eo5LrZ5IKqpbtpPDuaUnDOUv471oDg8cjQaUr2MbA=
 go.etcd.io/etcd/client/v3 v3.5.10 h1:W9TXNZ+oB3MCd/8UjxHTWK5J9Nquw9fQBLJd5ne5/Ao=
 go.etcd.io/etcd/client/v3 v3.5.10/go.mod h1:RVeBnDz2PUEZqTpgqwAtUd8nAPf5kjyFyND7P1VkOKc=
+go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc v0.46.1 h1:SpGay3w+nEwMpfVnbqOLH5gY52/foP8RE8UzTZ1pdSE=
+go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc v0.46.1/go.mod h1:4UoMYEZOC0yN/sPGH76KPkkU7zgiEWYWL9vwmbnTJPE=
 go.opentelemetry.io/otel v1.19.0 h1:MuS/TNf4/j4IXsZuJegVzI1cwut7Qc00344rgH7p8bs=
 go.opentelemetry.io/otel v1.19.0/go.mod h1:i0QyjOq3UPoTzff0PJB2N66fb4S0+rSbSB15/oyH9fY=
 go.opentelemetry.io/otel v1.20.0 h1:vsb/ggIY+hUjD/zCAQHpzTmndPqv/ml2ArbsbfBYTAc=

@@ -1,10 +1,10 @@
 package middleware
 
 import (
+	"gitee.com/cruvie/kk_go_kit/kk_func"
+	"gitee.com/cruvie/kk_go_kit/kk_http"
 	"gitee.com/cruvie/kk_go_kit/kk_models/kk_response"
-	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_func"
-	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_http"
-	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_stage"
+	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
 
 	"github.com/gin-gonic/gin"
@@ -13,14 +13,14 @@ import (
 
 // ParseHeader parse header middleware
 func ParseHeader(c *gin.Context) {
-	stage := kku_stage.NewStage(c, kku_func.GetCurrentFunctionName())
+	stage := kk_stage.NewStage(c, kk_func.GetCurrentFunctionName())
 
 	var header global_model.RequestHeader
 	// bind header
 	err := c.ShouldBindHeader(&header)
 	if err != nil {
 		slog.Error("fail to bind header", "err", err)
-		kku_http.ResponseProtoBuf(c, kk_response.Fail(stage, nil, nil))
+		kk_http.ResponseProtoBuf(c, kk_response.Fail(stage, nil, nil))
 		c.Abort()
 		return
 	} else {

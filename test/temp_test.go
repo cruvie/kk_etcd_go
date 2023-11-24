@@ -1,8 +1,8 @@
 package test
 
 import (
-	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_func"
-	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_stage"
+	"gitee.com/cruvie/kk_go_kit/kk_func"
+	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/internal/config"
 	"github.com/cruvie/kk_etcd_go/internal/handler/service"
 	"github.com/cruvie/kk_etcd_go/kk_etcd"
@@ -11,9 +11,9 @@ import (
 )
 
 func InitEtcd() {
-	stage := kku_stage.NewStage(nil, kku_func.GetCurrentFunctionName())
+	stage := kk_stage.NewStage(nil, kk_func.GetCurrentFunctionName())
 	config.InitConfig()
-	kku_stage.InitSlog(config.Config.DebugMode, nil, nil)
+	kk_stage.InitSlog(config.Config.DebugMode, nil, nil)
 	err := kk_etcd.InitEtcd([]string{config.Config.Etcd.Endpoint}, config.Config.Admin.UserName, config.Config.Admin.Password)
 	if err != nil {
 		return

@@ -2,7 +2,7 @@ package kk_etcd
 
 import (
 	"context"
-	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_stage"
+	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_const"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	"google.golang.org/grpc"
@@ -89,7 +89,7 @@ func TestRegisterGrpcService(t *testing.T) {
 	// run TestStartGrpcServer first
 	var w sync.WaitGroup
 	w.Add(1)
-	kku_stage.InitSlog(true, nil, nil)
+	kk_stage.InitSlog(true, nil, nil)
 	err := InitEtcd([]string{"http://127.0.0.1:2379"}, "kk_etcd", "kk_etcd")
 	if err != nil {
 		return
@@ -129,7 +129,7 @@ func TestRegisterHttpService(t *testing.T) {
 	// run TestStartHttpServer first
 	var w sync.WaitGroup
 	w.Add(1)
-	kku_stage.InitSlog(true, nil, nil)
+	kk_stage.InitSlog(true, nil, nil)
 	err := InitEtcd([]string{"http://127.0.0.1:2379"}, "kk_etcd", "kk_etcd")
 	if err != nil {
 		return
@@ -152,7 +152,7 @@ func TestRegisterHttpService(t *testing.T) {
 }
 
 func TestGetHttpServiceList(t *testing.T) {
-	kku_stage.InitSlog(true, nil, nil)
+	kk_stage.InitSlog(true, nil, nil)
 	err := InitEtcd([]string{"http://127.0.0.1:2379"}, "kk_etcd", "kk_etcd")
 	if err != nil {
 		return
@@ -164,7 +164,7 @@ func TestGetHttpServiceList(t *testing.T) {
 	}
 }
 func TestGetGrpcServiceList(t *testing.T) {
-	kku_stage.InitSlog(true, nil, nil)
+	kk_stage.InitSlog(true, nil, nil)
 	err := InitEtcd([]string{"http://127.0.0.1:2379"}, "kk_etcd", "kk_etcd")
 	if err != nil {
 		return
@@ -177,7 +177,7 @@ func TestGetGrpcServiceList(t *testing.T) {
 }
 
 func TestWatchServerList(t *testing.T) {
-	kku_stage.InitSlog(true, nil, nil)
+	kk_stage.InitSlog(true, nil, nil)
 	err := InitEtcd([]string{"http://127.0.0.1:2379"}, "kk_etcd", "kk_etcd")
 	if err != nil {
 		return

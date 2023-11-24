@@ -3,7 +3,7 @@ package service
 import (
 	"context"
 	"errors"
-	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_stage"
+	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_client"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_const"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
@@ -12,27 +12,27 @@ import (
 	"sort"
 )
 
-func RegisterService(stage *kku_stage.Stage, registration *kk_etcd_models.ServiceRegistration) error {
+func RegisterService(stage *kk_stage.Stage, registration *kk_etcd_models.ServiceRegistration) error {
 	if registration.ServerType != kk_etcd_const.ServiceHttp && registration.ServerType != kk_etcd_const.ServiceGrpc {
-		logBody := kku_stage.NewLogBody().SetTraceId(stage.TraceId)
+		logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId)
 		msg := "server type is invalid"
 		slog.Error(msg, logBody.GetLogArgs()...)
 		return errors.New(msg)
 	}
 	if registration.ServerName == "" {
-		logBody := kku_stage.NewLogBody().SetTraceId(stage.TraceId)
+		logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId)
 		msg := "server name cannot be empty"
 		slog.Error(msg, logBody.GetLogArgs()...)
 		return errors.New(msg)
 	}
 	if registration.Address == "" {
-		logBody := kku_stage.NewLogBody().SetTraceId(stage.TraceId)
+		logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId)
 		msg := "server address cannot be empty"
 		slog.Error(msg, logBody.GetLogArgs()...)
 		return errors.New(msg)
 	}
 	if registration.Check == nil {
-		logBody := kku_stage.NewLogBody().SetTraceId(stage.TraceId)
+		logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId)
 		msg := "server Check cannot be empty"
 		slog.Error(msg, logBody.GetLogArgs()...)
 		return errors.New(msg)
@@ -47,7 +47,7 @@ func RegisterService(stage *kku_stage.Stage, registration *kk_etcd_models.Servic
 			registration.Check.GRPC = registration.Address
 		}
 	default:
-		logBody := kku_stage.NewLogBody().SetTraceId(stage.TraceId)
+		logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId)
 		msg := "server Check Type is invalid"
 		slog.Error(msg, logBody.GetLogArgs()...)
 		return errors.New(msg)
@@ -67,17 +67,17 @@ func RegisterService(stage *kku_stage.Stage, registration *kk_etcd_models.Servic
 // ServerList
 // serviceName, should with prefix key_prefix.ServiceGrpc or key_prefix.ServiceHttp
 // only give prefix to get all service list
-func ServerList(stage *kku_stage.Stage, serviceName string) (res int, serverList *kk_etcd_models.PBListServer, err error) {
+func ServerList(stage *kk_stage.Stage, serviceName string) (res int, serverList *kk_etcd_models.PBListServer, err error) {
 	etcdManager, err := endpoints.NewManager(kk_etcd_client.EtcdClient, serviceName)
 	if err != nil {
-		logBody := kku_stage.NewLogBody().SetTraceId(stage.TraceId)
+		logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId)
 		msg := "failed to create etcd manager"
 		slog.Error(msg, logBody.GetLogArgs()...)
 		return -1, nil, err
 	}
 	endpointMap, err := etcdManager.List(context.Background())
 	if err != nil {
-		logBody := kku_stage.NewLogBody().SetTraceId(stage.TraceId)
+		logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId)
 		msg := "failed to list endpoints"
 		slog.Error(msg, logBody.GetLogArgs()...)
 		return -1, nil, err

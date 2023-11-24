@@ -2,7 +2,7 @@ package service
 
 import (
 	"context"
-	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_stage"
+	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/internal/config"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_client"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_const"
@@ -12,7 +12,7 @@ import (
 	"time"
 )
 
-func InitEtcd(stage *kku_stage.Stage, endpoints []string, userName string, password string) error {
+func InitEtcd(stage *kk_stage.Stage, endpoints []string, userName string, password string) error {
 	if config.Config.RootPassword != "" {
 		cfg := clientv3.Config{
 			Endpoints:   endpoints,
@@ -23,7 +23,7 @@ func InitEtcd(stage *kku_stage.Stage, endpoints []string, userName string, passw
 		err := error(nil)
 		kk_etcd_client.EtcdClient, err = clientv3.New(cfg)
 		if err != nil {
-			logBody := kku_stage.NewLogBody().SetTraceId(stage.TraceId).SetError(err)
+			logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId).SetError(err)
 			slog.Error("etcd client init failed", logBody.GetLogArgs()...)
 			return err
 		}
@@ -38,7 +38,7 @@ func InitEtcd(stage *kku_stage.Stage, endpoints []string, userName string, passw
 		err := error(nil)
 		kk_etcd_client.EtcdClient, err = clientv3.New(cfg)
 		if err != nil {
-			logBody := kku_stage.NewLogBody().SetTraceId(stage.TraceId).SetError(err)
+			logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId).SetError(err)
 			slog.Error("etcd client create failed", logBody.GetLogArgs()...)
 			return err
 		}
@@ -46,13 +46,13 @@ func InitEtcd(stage *kku_stage.Stage, endpoints []string, userName string, passw
 			if err.Error() == "etcdserver: user name not found" {
 				if _, err := kk_etcd_client.EtcdClient.UserAdd(context.Background(), kk_etcd_const.UserRoot, kk_etcd_const.UserRoot); err != nil {
 					if err.Error() != "etcdserver: user name already exists" {
-						logBody := kku_stage.NewLogBody().SetTraceId(stage.TraceId).SetError(err)
+						logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId).SetError(err)
 						slog.Error("add etcd user failed", logBody.GetLogArgs()...)
 						return err
 					}
 				}
 			} else {
-				logBody := kku_stage.NewLogBody().SetTraceId(stage.TraceId).SetError(err)
+				logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId).SetError(err)
 				slog.Error("get etcd user failed", logBody.GetLogArgs()...)
 				return err
 			}
@@ -61,20 +61,20 @@ func InitEtcd(stage *kku_stage.Stage, endpoints []string, userName string, passw
 		//check root role exist
 		if _, err := kk_etcd_client.EtcdClient.RoleAdd(context.Background(), kk_etcd_const.RoleRoot); err != nil {
 			if err.Error() != "etcdserver: role name already exists" {
-				logBody := kku_stage.NewLogBody().SetTraceId(stage.TraceId).SetError(err)
+				logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId).SetError(err)
 				slog.Error("add etcd role failed", logBody.GetLogArgs()...)
 				return err
 			}
 		}
 		//grant root role to root user
 		if _, err := kk_etcd_client.EtcdClient.UserGrantRole(context.Background(), kk_etcd_const.UserRoot, kk_etcd_const.RoleRoot); err != nil {
-			logBody := kku_stage.NewLogBody().SetTraceId(stage.TraceId).SetError(err)
+			logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId).SetError(err)
 			slog.Error("grant role to user failed", logBody.GetLogArgs()...)
 			return err
 		}
 		//enable etcd auth
 		if _, err := kk_etcd_client.EtcdClient.AuthEnable(context.Background()); err != nil {
-			logBody := kku_stage.NewLogBody().SetTraceId(stage.TraceId).SetError(err)
+			logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId).SetError(err)
 			slog.Error("Enable Auth failed", logBody.GetLogArgs()...)
 			return err
 		}
@@ -87,14 +87,14 @@ func InitEtcd(stage *kku_stage.Stage, endpoints []string, userName string, passw
 		UserDelete(nil, user.UserName, true)
 		res := UserAdd(stage, user)
 		if res != 1 {
-			logBody := kku_stage.NewLogBody().SetTraceId(stage.TraceId)
+			logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId)
 			slog.Error("add root user as an administrator of the system failed", logBody.GetLogArgs()...)
 			return err
 		}
 		res = UserGrantRole(stage, user)
 		if res != 1 {
 			errStr := "grant " + user.Roles[0] + " role to " + user.UserName + " failed"
-			logBody := kku_stage.NewLogBody().SetTraceId(stage.TraceId)
+			logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId)
 			slog.Error(errStr, logBody.GetLogArgs()...)
 			return err
 		}

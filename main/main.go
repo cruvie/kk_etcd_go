@@ -1,9 +1,9 @@
 package main
 
 import (
-	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_func"
-	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_jwt"
-	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_stage"
+	"gitee.com/cruvie/kk_go_kit/kk_func"
+	"gitee.com/cruvie/kk_go_kit/kk_jwt"
+	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/internal/api_etcd"
 	"github.com/cruvie/kk_etcd_go/internal/config"
 	"github.com/cruvie/kk_etcd_go/kk_etcd"
@@ -26,13 +26,13 @@ import (
 // @host		localhost:2333
 // @BasePath	/User
 func main() {
-	stage := kku_stage.NewStage(nil, kku_func.GetCurrentFunctionName())
+	stage := kk_stage.NewStage(nil, kk_func.GetCurrentFunctionName())
 
 	config.InitConfig()
 
-	kku_stage.InitSlog(config.Config.DebugMode, nil, nil)
+	kk_stage.InitSlog(config.Config.DebugMode, nil, nil)
 
-	kku_jwt.InitJwt(config.Config.JWT.Key, time.Duration(config.Config.JWT.ExpireTime)*time.Hour)
+	kk_jwt.InitJwt(config.Config.JWT.Key, time.Duration(config.Config.JWT.ExpireTime)*time.Hour)
 
 	err := kk_etcd.InitEtcd([]string{config.Config.Etcd.Endpoint}, config.Config.Admin.UserName, config.Config.Admin.Password)
 	if err != nil {

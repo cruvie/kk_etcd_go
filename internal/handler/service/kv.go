@@ -2,7 +2,7 @@ package service
 
 import (
 	"context"
-	"gitee.com/cruvie/kk_go_kit/kk_utils/kku_stage"
+	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_client"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_const"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
@@ -11,41 +11,41 @@ import (
 	"strings"
 )
 
-func KVPut(stage *kku_stage.Stage, key string, value string) (res int) {
+func KVPut(stage *kk_stage.Stage, key string, value string) (res int) {
 	_, err := kk_etcd_client.EtcdClient.Put(context.Background(), key, value)
 	if err != nil {
-		logBody := kku_stage.NewLogBody().SetTraceId(stage.TraceId).SetError(err).SetAny("key", key)
+		logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId).SetError(err).SetAny("key", key)
 		slog.Error("failed to put kv", logBody.GetLogArgs()...)
 		return -1
 	}
 	return 1
 }
 
-func KVGet(stage *kku_stage.Stage, key string) (res int, value []byte) {
+func KVGet(stage *kk_stage.Stage, key string) (res int, value []byte) {
 	getResponse, err := kk_etcd_client.EtcdClient.Get(context.Background(), key)
 	if err != nil || getResponse.Kvs == nil {
-		logBody := kku_stage.NewLogBody().SetTraceId(stage.TraceId).SetError(err).SetAny("key", key)
+		logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId).SetError(err).SetAny("key", key)
 		slog.Error("failed to get kv", logBody.GetLogArgs()...)
 		return -1, nil
 	}
 	return 1, getResponse.Kvs[0].Value
 }
 
-func KVDel(stage *kku_stage.Stage, key string) (res int) {
+func KVDel(stage *kk_stage.Stage, key string) (res int) {
 	_, err := kk_etcd_client.EtcdClient.Delete(context.Background(), key)
 	if err != nil {
-		logBody := kku_stage.NewLogBody().SetTraceId(stage.TraceId).SetError(err).SetAny("key", key)
+		logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId).SetError(err).SetAny("key", key)
 		slog.Error("failed to delete kv", logBody.GetLogArgs()...)
 		return -1
 	}
 	return 1
 }
 
-func KVList(stage *kku_stage.Stage, prefix string) (res int, list *kk_etcd_models.PBListKV) {
+func KVList(stage *kk_stage.Stage, prefix string) (res int, list *kk_etcd_models.PBListKV) {
 	list = &kk_etcd_models.PBListKV{}
 	getResponse, err := kk_etcd_client.EtcdClient.Get(context.Background(), prefix, clientv3.WithPrefix())
 	if err != nil {
-		logBody := kku_stage.NewLogBody().SetTraceId(stage.TraceId).SetError(err).SetAny("prefix", prefix)
+		logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId).SetError(err).SetAny("prefix", prefix)
 		slog.Error("failed to get config list", logBody.GetLogArgs()...)
 		return -1, nil
 	}
