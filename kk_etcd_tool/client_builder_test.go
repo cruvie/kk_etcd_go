@@ -1,4 +1,4 @@
-package kk_grpc
+package kk_etcd_tool
 
 import (
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
