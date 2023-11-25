@@ -32,10 +32,12 @@ func NewClientHub[T any](
 	}
 }
 
-func (c *ClientHub[T]) GetGrpcClient() *T {
+func (c *ClientHub[T]) GetGrpcClient(stage *kk_stage.Stage) *T {
 	c.rwLock.RLock()
 	defer c.rwLock.RUnlock()
 	if len(c.clients) == 0 {
+		logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId).SetAny("serviceType", c.serviceType).SetAny("serviceName", c.serviceName)
+		slog.Error("no grpc client available", logBody.GetLogArgs()...)
 		return nil
 	}
 	// get a random client
