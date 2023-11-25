@@ -14,12 +14,22 @@ import (
 )
 
 type ClientHub[T any] struct {
-	rwLock  sync.RWMutex
-	clients []*T
+	rwLock          sync.RWMutex
+	clients         []*T
+	serviceType     string
+	serviceName     string
+	grpcConnBuilder func(grpcConn grpc.ClientConnInterface) (client T)
 }
 
-func NewClientHub[T any]() *ClientHub[T] {
-	return &ClientHub[T]{}
+func NewClientHub[T any](
+	serviceType string,
+	serviceName string,
+	grpcConnBuilder func(grpcConn grpc.ClientConnInterface) (client T)) *ClientHub[T] {
+	return &ClientHub[T]{
+		serviceType:     serviceType,
+		serviceName:     serviceName,
+		grpcConnBuilder: grpcConnBuilder,
+	}
 }
 
 func (c *ClientHub[T]) GetGrpcClient() *T {
@@ -34,15 +44,15 @@ func (c *ClientHub[T]) GetGrpcClient() *T {
 	return client
 }
 
-func (c *ClientHub[T]) ListenServerChange(stage *kk_stage.Stage, serviceType string, serviceName string, clientHub *ClientHub[T], buildFunc func(grpcConn grpc.ClientConnInterface) (client T)) {
-	logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId).SetAny("serviceType", serviceType).SetAny("serviceName", serviceName)
+func (c *ClientHub[T]) ListenServerChange(stage *kk_stage.Stage) {
+	logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId).SetAny("serviceType", c.serviceType).SetAny("serviceName", c.serviceName)
 	slog.Info("start watch server list", logBody.GetLogArgs()...)
 	serverListChan := make(chan *kk_etcd_models.PBListServer)
 	defer close(serverListChan)
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 	go func() {
-		err := kk_etcd.WatchServerList(ctx, serviceType+"/"+serviceName, serverListChan)
+		err := kk_etcd.WatchServerList(ctx, c.serviceType+"/"+c.serviceName, serverListChan)
 		if err != nil {
 			logBody.SetError(err)
 			slog.Error("WatchServerList failed", logBody.GetLogArgs()...)
@@ -56,32 +66,32 @@ func (c *ClientHub[T]) ListenServerChange(stage *kk_stage.Stage, serviceType str
 			slog.Info("ctx done")
 			return
 		case serverList := <-serverListChan:
-			clientHub.rwLock.Lock()
+			c.rwLock.Lock()
 			//slog.Info("serverListChan", "serverList", serverList)
-			clear(clientHub.clients)
+			clear(c.clients)
 			for _, server := range serverList.ListServer {
-				client := c.buildGrpcClient(stage, server.ServiceAddr, buildFunc)
+				client := c.buildGrpcClient(stage, server.ServiceAddr)
 				if client != nil {
-					clientHub.clients = append(clientHub.clients, client)
+					c.clients = append(c.clients, client)
 				}
 			}
-			clientHub.rwLock.Unlock()
+			c.rwLock.Unlock()
 		}
 	}
 }
 
 // buildGrpcClient target=ip+port
-func (c *ClientHub[T]) buildGrpcClient(stage *kk_stage.Stage, target string, buildFunc func(grpcConn grpc.ClientConnInterface) (client T)) *T {
+func (c *ClientHub[T]) buildGrpcClient(stage *kk_stage.Stage, target string) *T {
 	// Set up a connection to the server_grpc_im_msg.
 	grpcConn, err := grpc.Dial(target,
 		grpc.WithTransportCredentials(insecure.NewCredentials()),
 		grpc.WithStatsHandler(otelgrpc.NewClientHandler()),
 	)
 	if err != nil {
-		logBody := kk_stage.NewLogBody().SetError(err).SetTraceId(stage.TraceId)
+		logBody := kk_stage.NewLogBody().SetError(err).SetTraceId(stage.TraceId).SetAny("target", target)
 		slog.Error("grpc client connect failed", logBody.GetLogArgs()...)
 		return nil
 	}
-	client := buildFunc(grpcConn)
+	client := c.grpcConnBuilder(grpcConn)
 	return &client
 }
