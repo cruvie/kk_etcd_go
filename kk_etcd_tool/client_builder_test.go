@@ -14,20 +14,18 @@ var NewRPCClient func(grpcConn grpc.ClientConnInterface) (client RPCClient)
 var clientHub *ClientHub[RPCClient]
 
 func InitGrpcClient(stage *kk_stage.Stage) {
-	clientHub = NewClientHub[RPCClient]()
-	clientHub.ListenServerChange(
-		stage, kk_etcd_const.ServiceGrpc,
+	clientHub = NewClientHub[RPCClient](kk_etcd_const.ServiceGrpc,
 		"MyServerName",
-		clientHub,
 		NewRPCClient)
+	clientHub.ListenServerChange(stage)
 }
-func GetGrpcClient() RPCClient {
-	return *clientHub.GetGrpcClient()
+func GetGrpcClient(stage *kk_stage.Stage) RPCClient {
+	return *clientHub.GetGrpcClient(stage)
 }
 
 func TestName(t *testing.T) {
 	stage := kk_stage.NewStage(nil, "")
 	InitGrpcClient(stage)
-	client := GetGrpcClient()
+	client := GetGrpcClient(stage)
 	_ = client
 }
