@@ -186,13 +186,13 @@ func TestWatchServerList(t *testing.T) {
 	defer close(serverListChan)
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
-	go func() {
-		err := WatchServerList(ctx, kk_etcd_const.ServiceHttp, serverListChan)
-		if err != nil {
-			slog.Error("WatchServerList failed", "err", err)
-			return
-		}
-	}()
+
+	err = WatchServerList(ctx, kk_etcd_const.ServiceHttp, serverListChan)
+	if err != nil {
+		slog.Error("WatchServerList failed", "err", err)
+		return
+	}
+
 	for {
 		slog.Info("watching for server list change")
 		select {
