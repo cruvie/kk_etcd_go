@@ -15,7 +15,7 @@ var clientHub *ClientHub[RPCClient]
 
 func InitGrpcClient(stage *kk_stage.Stage) {
 	clientHub = NewClientHub[RPCClient]()
-	ListenServerChange[RPCClient](
+	clientHub.ListenServerChange(
 		stage, kk_etcd_const.ServiceGrpc,
 		"MyServerName",
 		clientHub,
