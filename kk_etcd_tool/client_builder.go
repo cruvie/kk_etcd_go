@@ -51,8 +51,6 @@ func (c *ClientHub[T]) ListenServerChange(ctx context.Context, stage *kk_stage.S
 	logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId).SetAny("serviceType", c.serviceType).SetAny("serviceName", c.serviceName)
 	slog.Info("start watch server list", logBody.GetLogArgs()...)
 	serverListChan := make(chan *kk_etcd_models.PBListServer)
-	defer close(serverListChan)
-
 	err := kk_etcd.WatchServerList(ctx, c.serviceType+"/"+c.serviceName, serverListChan)
 	if err != nil {
 		logBody.SetError(err)
@@ -65,7 +63,8 @@ func (c *ClientHub[T]) ListenServerChange(ctx context.Context, stage *kk_stage.S
 			//slog.Info("server list changed", logBody.GetLogArgs()...)
 			select {
 			case <-ctx.Done():
-				slog.Info("ctx done stop ListenServerChange")
+				slog.Info("ctx done stop ListenServerChange, close serverListChan", logBody.GetLogArgs()...)
+				close(serverListChan)
 				return
 			case serverList := <-serverListChan:
 				c.rwLock.Lock()
