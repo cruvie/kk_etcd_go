@@ -46,40 +46,42 @@ func (c *ClientHub[T]) GetGrpcClient(stage *kk_stage.Stage) *T {
 	return client
 }
 
-func (c *ClientHub[T]) ListenServerChange(stage *kk_stage.Stage) {
+// ListenServerChange use ctx cancelFunc to stop Listening
+func (c *ClientHub[T]) ListenServerChange(ctx context.Context, stage *kk_stage.Stage) error {
 	logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId).SetAny("serviceType", c.serviceType).SetAny("serviceName", c.serviceName)
 	slog.Info("start watch server list", logBody.GetLogArgs()...)
 	serverListChan := make(chan *kk_etcd_models.PBListServer)
 	defer close(serverListChan)
-	ctx, cancel := context.WithCancel(context.Background())
-	defer cancel()
+
+	err := kk_etcd.WatchServerList(ctx, c.serviceType+"/"+c.serviceName, serverListChan)
+	if err != nil {
+		logBody.SetError(err)
+		slog.Error("WatchServerList failed", logBody.GetLogArgs()...)
+		return err
+	}
+
 	go func() {
-		err := kk_etcd.WatchServerList(ctx, c.serviceType+"/"+c.serviceName, serverListChan)
-		if err != nil {
-			logBody.SetError(err)
-			slog.Error("WatchServerList failed", logBody.GetLogArgs()...)
-			panic(nil)
+		for {
+			//slog.Info("server list changed", logBody.GetLogArgs()...)
+			select {
+			case <-ctx.Done():
+				slog.Info("ctx done stop ListenServerChange")
+				return
+			case serverList := <-serverListChan:
+				c.rwLock.Lock()
+				//slog.Info("serverListChan", "serverList", serverList)
+				clear(c.clients)
+				for _, server := range serverList.ListServer {
+					client := c.buildGrpcClient(stage, server.ServiceAddr)
+					if client != nil {
+						c.clients = append(c.clients, client)
+					}
+				}
+				c.rwLock.Unlock()
+			}
 		}
 	}()
-	for {
-		//slog.Info("server list changed", logBody.GetLogArgs()...)
-		select {
-		case <-ctx.Done():
-			slog.Info("ctx done")
-			return
-		case serverList := <-serverListChan:
-			c.rwLock.Lock()
-			//slog.Info("serverListChan", "serverList", serverList)
-			clear(c.clients)
-			for _, server := range serverList.ListServer {
-				client := c.buildGrpcClient(stage, server.ServiceAddr)
-				if client != nil {
-					c.clients = append(c.clients, client)
-				}
-			}
-			c.rwLock.Unlock()
-		}
-	}
+	return nil
 }
 
 // buildGrpcClient target=ip+port

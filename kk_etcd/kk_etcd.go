@@ -76,21 +76,24 @@ func WatchServerList(ctx context.Context, serviceName string, serverListChan cha
 		slog.Error("failed to new watch channel", logBody.GetLogArgs()...)
 		return err
 	}
-	var pBListServer kk_etcd_models.PBListServer
-	for {
-		select {
-		case <-ctx.Done():
-			return nil
-		case updates := <-channel:
-			for _, update := range updates {
-				pBListServer.ListServer = append(pBListServer.ListServer, &kk_etcd_models.PBServer{
-					ServiceName: update.Key,
-					ServiceAddr: update.Endpoint.Addr,
-				})
-			}
-			if len(pBListServer.ListServer) > 0 {
-				serverListChan <- &pBListServer
+	go func() {
+		for {
+			select {
+			case <-ctx.Done():
+				return
+			case updates := <-channel:
+				var pBListServer kk_etcd_models.PBListServer
+				for _, update := range updates {
+					pBListServer.ListServer = append(pBListServer.ListServer, &kk_etcd_models.PBServer{
+						ServiceName: update.Key,
+						ServiceAddr: update.Endpoint.Addr,
+					})
+				}
+				if len(pBListServer.ListServer) > 0 {
+					serverListChan <- &pBListServer
+				}
 			}
 		}
-	}
+	}()
+	return nil
 }

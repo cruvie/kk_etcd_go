@@ -1,9 +1,12 @@
 package kk_etcd_tool
 
 import (
+	"context"
+	"errors"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_const"
 	"google.golang.org/grpc"
+	"log/slog"
 	"testing"
 )
 
@@ -14,18 +17,31 @@ var NewRPCClient func(grpcConn grpc.ClientConnInterface) (client RPCClient)
 var clientHub *ClientHub[RPCClient]
 
 func InitGrpcClient(stage *kk_stage.Stage) {
+	ctx, cancelFunc := context.WithCancel(context.Background())
+	defer cancelFunc()
 	clientHub = NewClientHub[RPCClient](kk_etcd_const.ServiceGrpc,
 		"MyServerName",
 		NewRPCClient)
-	clientHub.ListenServerChange(stage)
+	err := clientHub.ListenServerChange(ctx, stage)
+	if err != nil {
+		slog.Error(err.Error())
+	}
 }
-func GetGrpcClient(stage *kk_stage.Stage) RPCClient {
-	return *clientHub.GetGrpcClient(stage)
+func GetGrpcClient(stage *kk_stage.Stage) (RPCClient, error) {
+	client := clientHub.GetGrpcClient(stage)
+	if client == nil {
+		return client, errors.New("nil grpc client")
+	} else {
+		return *client, nil
+	}
 }
 
 func TestName(t *testing.T) {
 	stage := kk_stage.NewStage(nil, "")
 	InitGrpcClient(stage)
-	client := GetGrpcClient(stage)
+	client, err := GetGrpcClient(stage)
+	if err != nil {
+		slog.Error(err.Error())
+	}
 	_ = client
 }
