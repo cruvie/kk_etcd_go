@@ -34,7 +34,7 @@ func (c *ClientHub[T]) GetGrpcClient() *T {
 	return client
 }
 
-func ListenServerChange[T any](stage *kk_stage.Stage, serviceType string, serviceName string, clientHub *ClientHub[T], buildFunc func(grpcConn grpc.ClientConnInterface) (client T)) {
+func (c *ClientHub[T]) ListenServerChange(stage *kk_stage.Stage, serviceType string, serviceName string, clientHub *ClientHub[T], buildFunc func(grpcConn grpc.ClientConnInterface) (client T)) {
 	logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId).SetAny("serviceType", serviceType).SetAny("serviceName", serviceName)
 	slog.Info("start watch server list", logBody.GetLogArgs()...)
 	serverListChan := make(chan *kk_etcd_models.PBListServer)
@@ -60,7 +60,7 @@ func ListenServerChange[T any](stage *kk_stage.Stage, serviceType string, servic
 			//slog.Info("serverListChan", "serverList", serverList)
 			clear(clientHub.clients)
 			for _, server := range serverList.ListServer {
-				client := buildGrpcClient[T](stage, server.ServiceAddr, buildFunc)
+				client := c.buildGrpcClient(stage, server.ServiceAddr, buildFunc)
 				if client != nil {
 					clientHub.clients = append(clientHub.clients, client)
 				}
@@ -71,7 +71,7 @@ func ListenServerChange[T any](stage *kk_stage.Stage, serviceType string, servic
 }
 
 // buildGrpcClient target=ip+port
-func buildGrpcClient[T any](stage *kk_stage.Stage, target string, buildFunc func(grpcConn grpc.ClientConnInterface) (client T)) *T {
+func (c *ClientHub[T]) buildGrpcClient(stage *kk_stage.Stage, target string, buildFunc func(grpcConn grpc.ClientConnInterface) (client T)) *T {
 	// Set up a connection to the server_grpc_im_msg.
 	grpcConn, err := grpc.Dial(target,
 		grpc.WithTransportCredentials(insecure.NewCredentials()),
