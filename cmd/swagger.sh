@@ -4,5 +4,5 @@ cd ..
 (
   echo 'kk_etcd_go'
   swag fmt
-  swag init -g ./main/main.go -o ./main/docs
+  swag init -g ./main/main.go -o ./swagger
 )

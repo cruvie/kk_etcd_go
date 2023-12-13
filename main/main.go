@@ -7,7 +7,7 @@ import (
 	"github.com/cruvie/kk_etcd_go/internal/api_etcd"
 	"github.com/cruvie/kk_etcd_go/internal/config"
 	"github.com/cruvie/kk_etcd_go/kk_etcd"
-	_ "github.com/cruvie/kk_etcd_go/main/docs"
+	_ "github.com/cruvie/kk_etcd_go/swagger"
 	"time"
 )
 

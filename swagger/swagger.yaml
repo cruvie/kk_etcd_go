@@ -1,12 +1,5 @@
 basePath: /User
 definitions:
-  kk_base_proto_type.PBListString:
-    properties:
-      ListString:
-        items:
-          type: string
-        type: array
-    type: object
   kk_etcd_models.PBKV:
     properties:
       Key:
@@ -270,10 +263,10 @@ paths:
       parameters:
       - description: Grant role to user info
         in: body
-        name: pBListString
+        name: PBUser
         required: true
         schema:
-          $ref: '#/definitions/kk_base_proto_type.PBListString'
+          $ref: '#/definitions/kk_etcd_models.PBUser'
       produces:
       - application/octet-stream
       responses: {}

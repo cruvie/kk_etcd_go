@@ -203,7 +203,7 @@ func UserList(c *gin.Context) {
 //	@Description	Grant role to user
 //	@Accept			octet-stream
 //	@Produce		octet-stream
-//	@Param			pBListString	body	kk_base_proto_type.PBListString	true	"Grant role to user info"
+//	@Param			PBUser	body	kk_etcd_models.PBUser	true	"Grant role to user info"
 //	@Router			/UserGrantRole [post]
 func UserGrantRole(c *gin.Context) {
 	stage := kk_stage.NewStage(c, kk_func.GetCurrentFunctionName())
