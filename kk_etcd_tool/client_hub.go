@@ -14,27 +14,27 @@ import (
 )
 
 type ClientHub[T any] struct {
-	rwLock          sync.RWMutex
-	clients         []*T
-	serviceType     string
-	serviceName     string
-	grpcConnBuilder func(grpcConn grpc.ClientConnInterface) (client T)
+	rwLock        sync.RWMutex
+	clients       []*T
+	serviceType   string
+	serviceName   string
+	clientBuilder func(grpcConn grpc.ClientConnInterface) (client T)
 }
 
 // NewClientHub create a new ClientHub
 func NewClientHub[T any](
 	serviceType string,
 	serviceName string,
-	grpcConnBuilder func(grpcConn grpc.ClientConnInterface) (client T)) *ClientHub[T] {
+	clientBuilder func(grpcConn grpc.ClientConnInterface) (client T)) *ClientHub[T] {
 	return &ClientHub[T]{
-		serviceType:     serviceType,
-		serviceName:     serviceName,
-		grpcConnBuilder: grpcConnBuilder,
+		serviceType:   serviceType,
+		serviceName:   serviceName,
+		clientBuilder: clientBuilder,
 	}
 }
 
-// GetGrpcClient get a random grpc client
-func (c *ClientHub[T]) GetGrpcClient(stage *kk_stage.Stage) *T {
+// GetClient get a random grpc client
+func (c *ClientHub[T]) GetClient(stage *kk_stage.Stage) *T {
 	c.rwLock.RLock()
 	defer c.rwLock.RUnlock()
 	if len(c.clients) == 0 {
@@ -46,7 +46,7 @@ func (c *ClientHub[T]) GetGrpcClient(stage *kk_stage.Stage) *T {
 			slog.Error("ServerList failed", logBody.GetLogArgs()...)
 			return nil
 		} else {
-			c.refreshGrpcClients(stage, serverList)
+			c.refreshClients(stage, serverList)
 			if len(c.clients) == 0 {
 				logBody.SetError(err)
 				slog.Error("still no grpc client available", logBody.GetLogArgs()...)
@@ -81,15 +81,15 @@ func (c *ClientHub[T]) ListenServerChange(ctx context.Context, stage *kk_stage.S
 				close(serverListChan)
 				return
 			case serverList := <-serverListChan:
-				go c.refreshGrpcClients(stage, serverList)
+				go c.refreshClients(stage, serverList)
 			}
 		}
 	}()
 	return nil
 }
 
-// refreshGrpcClients refresh grpc clients
-func (c *ClientHub[T]) refreshGrpcClients(stage *kk_stage.Stage, serverList *kk_etcd_models.PBListServer) {
+// refreshClients refresh grpc clients
+func (c *ClientHub[T]) refreshClients(stage *kk_stage.Stage, serverList *kk_etcd_models.PBListServer) {
 	c.rwLock.Lock()
 	defer c.rwLock.Unlock()
 	//slog.Info("serverListChan", "serverList", serverList)
@@ -105,9 +105,7 @@ func (c *ClientHub[T]) refreshGrpcClients(stage *kk_stage.Stage, serverList *kk_
 			slog.Error("grpc client connect failed", logBody.GetLogArgs()...)
 			return
 		}
-		client := c.grpcConnBuilder(grpcConn)
-		if client != nil {
-			c.clients = append(c.clients, &client)
-		}
+		client := c.clientBuilder(grpcConn)
+		c.clients = append(c.clients, &client)
 	}
 }

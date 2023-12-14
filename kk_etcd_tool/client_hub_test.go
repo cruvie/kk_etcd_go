@@ -28,7 +28,7 @@ func InitGrpcClient(stage *kk_stage.Stage) {
 	}
 }
 func GetGrpcClient(stage *kk_stage.Stage) (RPCClient, error) {
-	client := clientHub.GetGrpcClient(stage)
+	client := clientHub.GetClient(stage)
 	if client == nil {
 		return client, errors.New("nil grpc client")
 	} else {

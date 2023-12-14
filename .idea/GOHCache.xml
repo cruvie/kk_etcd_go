@@ -7,13 +7,22 @@
           <value>
             <set>
               <option value="file://$PROJECT_DIR$/kk_etcd_tool/client_builder.go" />
+              <option value="file://$PROJECT_DIR$/kk_etcd_tool/client_hub.go" />
+              <option value="file://$USER_HOME$/go/pkg/mod/github.com/cruvie/kk_etcd_go@v1.3.3-0.20231213122425-02872c966262/kk_etcd_tool/client_builder.go" />
             </set>
           </value>
         </entry>
-        <entry key="MysqlInstanceTakeoverPreCheckResult">
+        <entry key="DbConfigV3Controller">
           <value>
             <set>
-              <option value="file://$USER_HOME$/Documents/ACTIONS/work_space/code/test/temp_test.go" />
+              <option value="file://$USER_HOME$/Documents/ACTIONS/DMP/umc/umc/controllers/dbConfig_v3.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="MysqlChangeHistoryInfo">
+          <value>
+            <set>
+              <option value="file://$USER_HOME$/Documents/ACTIONS/DMP/umc/umc/controllers/dbConfig_v3.go" />
             </set>
           </value>
         </entry>
@@ -94,29 +103,25 @@
             </set>
           </value>
         </entry>
-        <entry key="batchTakeoverPreCheckResult">
-          <value>
-            <set>
-              <option value="file://$USER_HOME$/Documents/ACTIONS/DMP/umc/umc/controllers/mysql_takeover_v3.go" />
-              <option value="file://$USER_HOME$/Documents/ACTIONS/DMP/umc/umc/controllers/mysql_takeover_v5.go" />
-              <option value="file://$USER_HOME$/Documents/ACTIONS/work_space/code/test/temp_test.go" />
-            </set>
-          </value>
-        </entry>
-        <entry key="checkResult">
-          <value>
-            <set>
-              <option value="file://$USER_HOME$/Documents/ACTIONS/DMP/umc/umc/controllers/mysql_takeover_v3.go" />
-              <option value="file://$USER_HOME$/Documents/ACTIONS/DMP/umc/umc/controllers/mysql_takeover_v5.go" />
-              <option value="file://$USER_HOME$/Documents/ACTIONS/work_space/code/test/temp_test.go" />
-            </set>
-          </value>
-        </entry>
         <entry key="config">
           <value>
             <set>
               <option value="file://$PROJECT_DIR$/internal/config/config.go" />
               <option value="file://$PROJECT_DIR$/kk_etcd/kk_etcd_test.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="optionItem">
+          <value>
+            <set>
+              <option value="file://$USER_HOME$/Documents/ACTIONS/DMP/umc/umc/controllers/dbConfig_v3.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="optionUpdateInfo">
+          <value>
+            <set>
+              <option value="file://$USER_HOME$/Documents/ACTIONS/DMP/umc/umc/controllers/dbConfig_v3.go" />
             </set>
           </value>
         </entry>
@@ -134,10 +139,24 @@
             </set>
           </value>
         </entry>
-        <entry key="takeOverExtraParams">
+        <entry key="tModifyConfigProcessor">
           <value>
             <set>
-              <option value="file://$USER_HOME$/Documents/ACTIONS/DMP/umc/umc/controllers/mysql_takeover_v3.go" />
+              <option value="file://$USER_HOME$/Documents/ACTIONS/DMP/umc/umc/controllers/dbConfig_v3.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="tModifyConfigRequest">
+          <value>
+            <set>
+              <option value="file://$USER_HOME$/Documents/ACTIONS/DMP/umc/umc/controllers/dbConfig_v3.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="tModifyConfigRequestVal">
+          <value>
+            <set>
+              <option value="file://$USER_HOME$/Documents/ACTIONS/DMP/umc/umc/controllers/dbConfig_v3.go" />
             </set>
           </value>
         </entry>
@@ -162,66 +181,35 @@
     </option>
     <option name="scannedPathMapping">
       <map>
-        <entry key="file://$USER_HOME$/Documents/ACTIONS/DMP/umc/umc/controllers/mysql_takeover_v3.go">
+        <entry key="file://$USER_HOME$/Documents/ACTIONS/DMP/umc/umc/controllers/dbConfig_v3.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1702449598067" />
+              <option name="lastModified" value="1702544764461" />
               <option name="schema">
                 <list>
-                  <option value="takeOverExtraParams" />
-                  <option value="checkResult" />
-                  <option value="batchTakeoverPreCheckResult" />
+                  <option value="DbConfigV3Controller" />
+                  <option value="tModifyConfigRequestVal" />
+                  <option value="tModifyConfigRequest" />
+                  <option value="tModifyConfigProcessor" />
+                  <option value="MysqlChangeHistoryInfo" />
+                  <option value="optionUpdateInfo" />
+                  <option value="optionItem" />
                 </list>
               </option>
             </ScannedPath>
           </value>
         </entry>
-        <entry key="file://$USER_HOME$/Documents/ACTIONS/DMP/umc/umc/controllers/mysql_takeover_v5.go">
+        <entry key="file://$USER_HOME$/Documents/ACTIONS/work_space/code/alert_test.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1702455774265" />
-            </ScannedPath>
-          </value>
-        </entry>
-        <entry key="file://$USER_HOME$/Documents/ACTIONS/DMP/umc/vendor/actiontech.cloud/universe/udeploy/v5/udeploy/consts/myCnfConst.go">
-          <value>
-            <ScannedPath>
-              <option name="lastModified" value="1702449445538" />
-            </ScannedPath>
-          </value>
-        </entry>
-        <entry key="file://$USER_HOME$/Documents/ACTIONS/DMP/umc/vendor/actiontech.cloud/universe/udeploy/v5/udeploy/consts/step_status.go">
-          <value>
-            <ScannedPath>
-              <option name="lastModified" value="1702449445540" />
-            </ScannedPath>
-          </value>
-        </entry>
-        <entry key="file://$USER_HOME$/Documents/ACTIONS/work_space/code/test/temp_test.go">
-          <value>
-            <ScannedPath>
-              <option name="lastModified" value="1702450545641" />
-              <option name="schema">
-                <list>
-                  <option value="MysqlInstanceTakeoverPreCheckResult" />
-                  <option value="checkResult" />
-                  <option value="batchTakeoverPreCheckResult" />
-                </list>
-              </option>
-            </ScannedPath>
-          </value>
-        </entry>
-        <entry key="file://$USER_HOME$/Documents/ACTIONS/work_space/issue/DMP-17794/接管实例/v5.go">
-          <value>
-            <ScannedPath>
-              <option name="lastModified" value="1702448240481" />
+              <option name="lastModified" value="1702544238250" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/internal/api_etcd/api_etcd.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1700837998931" />
+              <option name="lastModified" value="1702470138811" />
             </ScannedPath>
           </value>
         </entry>
@@ -240,56 +228,56 @@
         <entry key="file://$PROJECT_DIR$/internal/handler/kv.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1700837998927" />
+              <option name="lastModified" value="1702470138812" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/internal/handler/role.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1700837998925" />
+              <option name="lastModified" value="1702470138812" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/internal/handler/server.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1700837998923" />
+              <option name="lastModified" value="1702470138812" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/internal/handler/service/etcd.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1700837998192" />
+              <option name="lastModified" value="1702470138813" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/internal/handler/service/kv.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1700837998201" />
+              <option name="lastModified" value="1702470138813" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/internal/handler/service/role.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1700837998194" />
+              <option name="lastModified" value="1702470138813" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/internal/handler/service/server.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1700837998187" />
+              <option name="lastModified" value="1702470138814" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/internal/handler/service/server_func.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1700837998196" />
+              <option name="lastModified" value="1702470138814" />
               <option name="schema">
                 <list>
                   <option value="serverFunc" />
@@ -301,14 +289,14 @@
         <entry key="file://$PROJECT_DIR$/internal/handler/service/user.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1700837998184" />
+              <option name="lastModified" value="1702470138814" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/internal/handler/service/user_func.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1700837998201" />
+              <option name="lastModified" value="1702470138815" />
               <option name="schema">
                 <list>
                   <option value="userFunc" />
@@ -320,21 +308,21 @@
         <entry key="file://$PROJECT_DIR$/internal/handler/user.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1702470137172" />
+              <option name="lastModified" value="1702470138815" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/internal/utils/check_user/check_user.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1700837998195" />
+              <option name="lastModified" value="1702470138815" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/internal/utils/global_model/global_header.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1700328608231" />
+              <option name="lastModified" value="1702470138816" />
               <option name="schema">
                 <list>
                   <option value="RequestHeader" />
@@ -346,35 +334,35 @@
         <entry key="file://$PROJECT_DIR$/internal/utils/global_model/global_user.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1696575319608" />
+              <option name="lastModified" value="1702470138816" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/internal/utils/middleware/cors.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1696575319609" />
+              <option name="lastModified" value="1702470138816" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/internal/utils/middleware/jwt_auth.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1700837998930" />
+              <option name="lastModified" value="1702470138817" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/internal/utils/middleware/parse_header.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1700837998924" />
+              <option name="lastModified" value="1702470138817" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/kk_etcd/kk_etcd.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1700896123028" />
+              <option name="lastModified" value="1702470138817" />
             </ScannedPath>
           </value>
         </entry>
@@ -394,28 +382,28 @@
         <entry key="file://$PROJECT_DIR$/kk_etcd_client/kk_etcd_client.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1696575319610" />
+              <option name="lastModified" value="1702470138818" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/kk_etcd_const/const_etcd.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1696575319610" />
+              <option name="lastModified" value="1702470138818" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/kk_etcd_const/key_prefix.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1700376071359" />
+              <option name="lastModified" value="1702470138818" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/kk_etcd_models/models.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1696575319611" />
+              <option name="lastModified" value="1702470138818" />
               <option name="schema">
                 <list>
                   <option value="ServiceRegistration" />
@@ -428,7 +416,7 @@
         <entry key="file://$PROJECT_DIR$/kk_etcd_models/pb_kv.pb.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1700744187242" />
+              <option name="lastModified" value="1702470138819" />
               <option name="schema">
                 <list>
                   <option value="PBKV" />
@@ -442,7 +430,7 @@
         <entry key="file://$PROJECT_DIR$/kk_etcd_models/pb_role.pb.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1700744187242" />
+              <option name="lastModified" value="1702470138819" />
               <option name="schema">
                 <list>
                   <option value="PBRole" />
@@ -456,7 +444,7 @@
         <entry key="file://$PROJECT_DIR$/kk_etcd_models/pb_server.pb.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1700744187243" />
+              <option name="lastModified" value="1702470138820" />
               <option name="schema">
                 <list>
                   <option value="PBServer" />
@@ -470,7 +458,7 @@
         <entry key="file://$PROJECT_DIR$/kk_etcd_models/pb_user.pb.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1700744187243" />
+              <option name="lastModified" value="1702470138820" />
               <option name="schema">
                 <list>
                   <option value="PBUser" />
@@ -484,21 +472,21 @@
         <entry key="file://$PROJECT_DIR$/kk_etcd_models/role.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1696575319615" />
+              <option name="lastModified" value="1702470138820" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/kk_etcd_models/user.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1696575319615" />
+              <option name="lastModified" value="1702470138821" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/kk_etcd_tool/client_builder.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1702445438981" />
+              <option name="lastModified" value="1702543435470" />
               <option name="schema">
                 <list>
                   <option value="ClientHub" />
@@ -514,10 +502,22 @@
             </ScannedPath>
           </value>
         </entry>
-        <entry key="file://$PROJECT_DIR$/main/docs/docs.go">
+        <entry key="file://$PROJECT_DIR$/kk_etcd_tool/client_hub.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1700744422404" />
+              <option name="lastModified" value="1702545090625" />
+              <option name="schema">
+                <list>
+                  <option value="ClientHub" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/kk_etcd_tool/client_hub_test.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702544368541" />
             </ScannedPath>
           </value>
         </entry>
@@ -528,15 +528,42 @@
             </ScannedPath>
           </value>
         </entry>
+        <entry key="file://$PROJECT_DIR$/swagger/docs.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702470138858" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_grpc/go_nearby/grpc_client_nearby/grpc_client_base.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702545209219" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$USER_HOME$/go/pkg/mod/github.com/cruvie/kk_etcd_go@v1.3.3-0.20231213122425-02872c966262/kk_etcd_tool/client_builder.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702470337300" />
+              <option name="schema">
+                <list>
+                  <option value="ClientHub" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
       </map>
     </option>
     <option name="tableStructMapping">
       <map>
-        <entry key="batch_takeover_pre_check_result" value="batchTakeoverPreCheckResult" />
-        <entry key="check_result" value="checkResult" />
         <entry key="client_hub" value="ClientHub" />
         <entry key="config" value="config" />
-        <entry key="mysql_instance_takeover_pre_check_result" value="MysqlInstanceTakeoverPreCheckResult" />
+        <entry key="db_config_v3_controller" value="DbConfigV3Controller" />
+        <entry key="mysql_change_history_info" value="MysqlChangeHistoryInfo" />
+        <entry key="option_item" value="optionItem" />
+        <entry key="option_update_info" value="optionUpdateInfo" />
         <entry key="pb_list_kv" value="PBListKV" />
         <entry key="pb_list_role" value="PBListRole" />
         <entry key="pb_list_server" value="PBListServer" />
@@ -550,11 +577,13 @@
         <entry key="server_func" value="serverFunc" />
         <entry key="service_check" value="ServiceCheck" />
         <entry key="service_registration" value="ServiceRegistration" />
-        <entry key="take_over_extra_params" value="takeOverExtraParams" />
+        <entry key="t_modify_config_processor" value="tModifyConfigProcessor" />
+        <entry key="t_modify_config_request" value="tModifyConfigRequest" />
+        <entry key="t_modify_config_request_val" value="tModifyConfigRequestVal" />
         <entry key="user_func" value="userFunc" />
         <entry key="x" value="x" />
       </map>
     </option>
-    <option name="lastTimeChecked" value="1702444280094" />
+    <option name="lastTimeChecked" value="1702543291837" />
   </component>
 </project>
