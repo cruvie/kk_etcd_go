@@ -84,7 +84,7 @@ func InitEtcd(stage *kk_stage.Stage, endpoints []string, userName string, passwo
 			Password: password,
 			Roles:    []string{kk_etcd_const.RoleRoot},
 		}
-		UserDelete(nil, user.UserName, true)
+		UserDelete(stage, user.UserName, true)
 		res := UserAdd(stage, user)
 		if res != 1 {
 			logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId)

@@ -3,12 +3,29 @@
   <component name="GoORMHelperCache">
     <option name="schemaMapping">
       <map>
+        <entry key="Area">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_dazi/models_dazi/orm_area.go" />
+            </set>
+          </value>
+        </entry>
         <entry key="ClientHub">
           <value>
             <set>
               <option value="file://$PROJECT_DIR$/kk_etcd_tool/client_builder.go" />
               <option value="file://$PROJECT_DIR$/kk_etcd_tool/client_hub.go" />
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_tcp_msg/tcp_msg_client/client_hub.go" />
               <option value="file://$USER_HOME$/go/pkg/mod/github.com/cruvie/kk_etcd_go@v1.3.3-0.20231213122425-02872c966262/kk_etcd_tool/client_builder.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="DaZi">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_dazi/models_dazi/orm_dazi.go" />
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_dazi/models_nearby/orm_dazi.go" />
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_dazi/models_nearby/orm_travel.go" />
             </set>
           </value>
         </entry>
@@ -19,6 +36,23 @@
             </set>
           </value>
         </entry>
+        <entry key="Group">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_base/go_im/models_group/orm_group.go" />
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_base/go_im/models_im/orm_group.go" />
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_im/models_group/orm_group.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="GroupMessage">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_base/go_im/models_group/orm_group_message.go" />
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_base/go_im/models_im/orm_group_message.go" />
+            </set>
+          </value>
+        </entry>
         <entry key="MysqlChangeHistoryInfo">
           <value>
             <set>
@@ -26,10 +60,31 @@
             </set>
           </value>
         </entry>
+        <entry key="NearbyUser">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_dazi/models_dazi/orm_nearby_user.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="PBArea">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_dazi/models_dazi/pb_area.pb.go" />
+            </set>
+          </value>
+        </entry>
         <entry key="PBKV">
           <value>
             <set>
               <option value="file://$PROJECT_DIR$/kk_etcd_models/pb_kv.pb.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="PBListArea">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_dazi/models_dazi/pb_area.pb.go" />
             </set>
           </value>
         </entry>
@@ -61,6 +116,20 @@
             </set>
           </value>
         </entry>
+        <entry key="PBListVoDaZi">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_dazi/models_nearby/pb_vo_travel.pb.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="PBListVoNearbyUser">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_dazi/models_dazi/pb_vo_nearby_user.pb.go" />
+            </set>
+          </value>
+        </entry>
         <entry key="PBRole">
           <value>
             <set>
@@ -75,10 +144,76 @@
             </set>
           </value>
         </entry>
+        <entry key="PBTcpMsg">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_msg/models_msg/pb_tcp_msg.pb.go" />
+            </set>
+          </value>
+        </entry>
         <entry key="PBUser">
           <value>
             <set>
               <option value="file://$PROJECT_DIR$/kk_etcd_models/pb_user.pb.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="PBVoDaZi">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_dazi/models_nearby/pb_vo_travel.pb.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="PBVoNearbyUser">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_dazi/models_dazi/pb_vo_nearby_user.pb.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="RelationMomentComment">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_moment/models_moment/orm_relation_moment_comment.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="RelationUserDaZi">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_dazi/models_dazi/orm_relation_user_dazi.go" />
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_dazi/models_nearby/orm_relation_user_dazi.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="RelationUserFollow">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_user/models_user/orm_relation_user_follow.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="RelationUserFriend">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_im/models_im/orm_relation_user_friend.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="RelationUserGroup">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_base/go_im/models_group/orm_relation_user_group.go" />
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_base/go_im/models_im/orm_relation_user_group.go" />
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_im/models_group/orm_relation_user_group.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="RelationUserLikeMoment">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_moment/models_moment/orm_relation_user_like_moment.go" />
             </set>
           </value>
         </entry>
@@ -103,11 +238,64 @@
             </set>
           </value>
         </entry>
+        <entry key="UserDaZi">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_dazi/models_nearby/orm_user_travel.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="VoDaZi">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_dazi/models_dazi/vo_dazi.go" />
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_dazi/models_nearby/vo_dazi.go" />
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_dazi/models_nearby/vo_travel.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="VoMomentComment">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_moment/models_moment/vo_moment_comment.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="VoNearbyUser">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_dazi/models_dazi/vo_nearby_user.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="args">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/kk_etcd/kk_etcd_test.go" />
+            </set>
+          </value>
+        </entry>
+        <entry key="checkHub">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_nearby/handler_travel/handler_travel_check.go" />
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_user/handler_user/handler_check.go" />
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_go/ss_dazi/handler_dazi/handler_dazi_check.go" />
+            </set>
+          </value>
+        </entry>
         <entry key="config">
           <value>
             <set>
               <option value="file://$PROJECT_DIR$/internal/config/config.go" />
               <option value="file://$PROJECT_DIR$/kk_etcd/kk_etcd_test.go" />
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_im/config/config.go" />
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_nearby/config/config.go" />
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_tcp_msg/config/config.go" />
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_tool/config/config.go" />
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_go/ss_moment/config/config.go" />
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_go/ss_rec/config/config.go" />
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_go/ss_user/config/config.go" />
             </set>
           </value>
         </entry>
@@ -129,6 +317,9 @@
           <value>
             <set>
               <option value="file://$PROJECT_DIR$/kk_etcd/kk_etcd_test.go" />
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_nearby/api_nearby/api_grpc_nearby/grpc_base.go" />
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_go/ss_nearby/api_nearby/api_grpc_nearby/grpc_base.go" />
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_go/ss_rec/api_rec/api_grpc_rec/grpc_base.go" />
             </set>
           </value>
         </entry>
@@ -160,6 +351,18 @@
             </set>
           </value>
         </entry>
+        <entry key="toolFunc">
+          <value>
+            <set>
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_im/handler_new_friend/service_new_friend/service_tool_func.go" />
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_moment/handler_moment/service_moment/service_tool_func.go" />
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_nearby/handler_travel/service_travel/service_tool_func.go" />
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_user/handler_user/service_user/service_tool_func.go" />
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_go/ss_dazi/handler_dazi/service_dazi/service_tool_func.go" />
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_go/ss_im/handler_new_friend/service_new_friend/service_tool_func.go" />
+            </set>
+          </value>
+        </entry>
         <entry key="userFunc">
           <value>
             <set>
@@ -174,6 +377,10 @@
               <option value="file://$PROJECT_DIR$/kk_etcd_models/pb_role.pb.go" />
               <option value="file://$PROJECT_DIR$/kk_etcd_models/pb_server.pb.go" />
               <option value="file://$PROJECT_DIR$/kk_etcd_models/pb_user.pb.go" />
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_dazi/models_dazi/pb_area.pb.go" />
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_dazi/models_dazi/pb_vo_nearby_user.pb.go" />
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_dazi/models_nearby/pb_vo_travel.pb.go" />
+              <option value="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_msg/models_msg/pb_tcp_msg.pb.go" />
             </set>
           </value>
         </entry>
@@ -249,7 +456,7 @@
         <entry key="file://$PROJECT_DIR$/internal/handler/service/etcd.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1702470138813" />
+              <option name="lastModified" value="1702608461195" />
             </ScannedPath>
           </value>
         </entry>
@@ -362,17 +569,18 @@
         <entry key="file://$PROJECT_DIR$/kk_etcd/kk_etcd.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1702470138817" />
+              <option name="lastModified" value="1702608146298" />
             </ScannedPath>
           </value>
         </entry>
         <entry key="file://$PROJECT_DIR$/kk_etcd/kk_etcd_test.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1700896713718" />
+              <option name="lastModified" value="1702608523171" />
               <option name="schema">
                 <list>
                   <option value="config" />
+                  <option value="args" />
                   <option value="server" />
                 </list>
               </option>
@@ -517,7 +725,7 @@
         <entry key="file://$PROJECT_DIR$/kk_etcd_tool/client_hub_test.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1702544368541" />
+              <option name="lastModified" value="1702557382945" />
             </ScannedPath>
           </value>
         </entry>
@@ -535,10 +743,1501 @@
             </ScannedPath>
           </value>
         </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/const_tool/const_tool.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702568544843" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/global_const/global_const.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702574435281" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/global_model/global_user/global_user.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702567828444" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/go_im/models_group/orm_group.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702566328649" />
+              <option name="schema">
+                <list>
+                  <option value="Group" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/go_im/models_group/orm_group_message.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702565458570" />
+              <option name="schema">
+                <list>
+                  <option value="GroupMessage" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/go_im/models_group/orm_relation_user_group.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702565458580" />
+              <option name="schema">
+                <list>
+                  <option value="RelationUserGroup" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/go_im/models_group/proto_file_gen_test.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702566231132" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/go_im/models_im/orm_group.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702564770136" />
+              <option name="schema">
+                <list>
+                  <option value="Group" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/go_im/models_im/orm_group_message.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702565277199" />
+              <option name="schema">
+                <list>
+                  <option value="GroupMessage" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/go_im/models_im/orm_relation_user_group.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702564254764" />
+              <option name="schema">
+                <list>
+                  <option value="RelationUserGroup" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/go_tcp_msg/consts_tcp_msg/static_msg/static_msg.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702567236497" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/init_project/create_tables.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702572849052" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/init_project/create_tables/create_tables.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702567877656" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_dazi/const_dazi/server.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573764534" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_dazi/const_nearby/const_dazi_minio/const_dazi_minio.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702570689511" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_dazi/const_nearby/const_nearby_minio/const_nearby_minio.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702570357810" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_dazi/const_nearby/const_travel_status/const_travel_status.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702570357806" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_dazi/const_nearby/server.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702570083639" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_dazi/models_dazi/orm_area.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702570816674" />
+              <option name="schema">
+                <list>
+                  <option value="Area" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_dazi/models_dazi/orm_dazi.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702571100209" />
+              <option name="schema">
+                <list>
+                  <option value="DaZi" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_dazi/models_dazi/orm_nearby_user.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702571100251" />
+              <option name="schema">
+                <list>
+                  <option value="NearbyUser" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_dazi/models_dazi/orm_relation_user_dazi.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702571100206" />
+              <option name="schema">
+                <list>
+                  <option value="RelationUserDaZi" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_dazi/models_dazi/pb_area.pb.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702570816660" />
+              <option name="schema">
+                <list>
+                  <option value="PBArea" />
+                  <option value="PBListArea" />
+                  <option value="x" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_dazi/models_dazi/pb_vo_nearby_user.pb.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702570816694" />
+              <option name="schema">
+                <list>
+                  <option value="PBVoNearbyUser" />
+                  <option value="PBListVoNearbyUser" />
+                  <option value="x" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_dazi/models_dazi/proto_file_gen_test.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702571100203" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_dazi/models_dazi/vo_dazi.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702570900677" />
+              <option name="schema">
+                <list>
+                  <option value="VoDaZi" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_dazi/models_dazi/vo_nearby_user.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702570816686" />
+              <option name="schema">
+                <list>
+                  <option value="VoNearbyUser" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_dazi/models_nearby/orm_dazi.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702570700489" />
+              <option name="schema">
+                <list>
+                  <option value="DaZi" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_dazi/models_nearby/orm_relation_user_dazi.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702570689519" />
+              <option name="schema">
+                <list>
+                  <option value="RelationUserDaZi" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_dazi/models_nearby/orm_travel.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702570357862" />
+              <option name="schema">
+                <list>
+                  <option value="DaZi" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_dazi/models_nearby/orm_user_travel.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702570358081" />
+              <option name="schema">
+                <list>
+                  <option value="UserDaZi" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_dazi/models_nearby/pb_vo_travel.pb.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702570357812" />
+              <option name="schema">
+                <list>
+                  <option value="PBVoDaZi" />
+                  <option value="PBListVoDaZi" />
+                  <option value="x" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_dazi/models_nearby/proto_file_gen_test.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702570786126" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_dazi/models_nearby/vo_dazi.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702570719014" />
+              <option name="schema">
+                <list>
+                  <option value="VoDaZi" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_dazi/models_nearby/vo_travel.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702570327156" />
+              <option name="schema">
+                <list>
+                  <option value="VoDaZi" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_im/const_im/const_im_friend/const_im_friend.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702570083629" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_im/const_im/const_im_msg/const_im_msg.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702570083642" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_im/const_im/const_im_relationship/const_im_relationship.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702570083617" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_im/const_im/server.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702570083635" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_im/consts_im/server.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702567828441" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_im/models_group/orm_group.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702570689582" />
+              <option name="schema">
+                <list>
+                  <option value="Group" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_im/models_group/orm_relation_user_group.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702570525956" />
+              <option name="schema">
+                <list>
+                  <option value="RelationUserGroup" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_im/models_group/proto_file_gen_test.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702571694956" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_im/models_im/orm_relation_user_friend.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702571694951" />
+              <option name="schema">
+                <list>
+                  <option value="RelationUserFriend" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_im/models_im/proto_file_gen_test.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702571383942" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_middleware/cors.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702570083620" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_middleware/jwt_auth.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702570083604" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_middleware/parse_header.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702570083632" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_middleware/request_interceptor.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702570083623" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_moment/const_moment/const_moment_minio/const_moment_minio.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702570083597" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_moment/const_moment/const_moment_status/const_moment_status.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702570083637" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_moment/const_moment/server.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702570083615" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_moment/consts_moment/minIO_moment/minIO_moment.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702568933291" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_moment/consts_moment/server.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702567828407" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_moment/models_moment/orm_relation_moment_comment.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702572573199" />
+              <option name="schema">
+                <list>
+                  <option value="RelationMomentComment" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_moment/models_moment/orm_relation_user_like_moment.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702572811449" />
+              <option name="schema">
+                <list>
+                  <option value="RelationUserLikeMoment" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_moment/models_moment/vo_moment_comment.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702572811456" />
+              <option name="schema">
+                <list>
+                  <option value="VoMomentComment" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_msg/const_msg/const_msg.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702568368898" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_msg/const_msg/const_msg_tcp/const_msg_tcp.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702570084121" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_msg/const_msg/const_msg_type/const_msg_type.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702570084019" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_msg/const_msg/msg_type.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702569076739" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_msg/const_msg/server.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702568086486" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_msg/consts_msg/server.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702567828422" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_msg/models_msg/pb_tcp_msg.pb.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702568086489" />
+              <option name="schema">
+                <list>
+                  <option value="PBTcpMsg" />
+                  <option value="x" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_nearby/consts_nearby/minIO_nearby/minIO_nearby.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702568870425" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_nearby/consts_nearby/server.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702567828432" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_rec/const_rec/server.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573608897" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_rec/consts_rec/server.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702567828429" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_tool/const_tool/server.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573559233" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_tool/consts_tool/server.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702567828425" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_user/const_user/const_user_minio/const_user_minio.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702571930090" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_user/const_user/const_user_status/const_user_status.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702571930085" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_user/const_user/server.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702571930088" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_user/consts_user/minIO_user/minIO_user.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702568870421" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_user/consts_user/server.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702567828438" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/ss_user/models_user/orm_relation_user_follow.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702572849049" />
+              <option name="schema">
+                <list>
+                  <option value="RelationUserFollow" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/test/db/gorm_test/gorm_test.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702578244750" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/test/db/gorm_test/gorm_test22.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702577997137" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_base/utils/util_redis/util_redis.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702574562433" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_im/api_im/api_http.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573675584" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_im/config/config.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573636785" />
+              <option name="schema">
+                <list>
+                  <option value="config" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_im/handler_friend/handler_friend.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573636910" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_im/handler_friend/service_friend/service_friend.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573637598" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_im/handler_msg/handler_msg.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573636962" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_im/handler_msg/service_msg/service_msg.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573636797" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_im/handler_new_friend/handler_new_friend.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573636850" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_im/handler_new_friend/service_new_friend/service_new_friend.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573637592" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_im/handler_new_friend/service_new_friend/service_tool_func.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573636814" />
+              <option name="schema">
+                <list>
+                  <option value="toolFunc" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_im/main/main.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573637586" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_im/swagger/docs.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573636793" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_moment/api_moment/api_http.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573675288" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_moment/handler_moment/handler_moment.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573425749" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_moment/handler_moment/service_moment/service_moment.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573426201" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_moment/handler_moment/service_moment/service_tool_func.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573445888" />
+              <option name="schema">
+                <list>
+                  <option value="toolFunc" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_moment/main/main.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573277508" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_moment/swagger/docs.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573425703" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_nearby/api_nearby/api_grpc_nearby/grpc_base.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573821228" />
+              <option name="schema">
+                <list>
+                  <option value="server" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_nearby/api_nearby/api_grpc_nearby/grpc_nearby_server.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573821317" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_nearby/api_nearby/api_http_nearby/api_http.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573821988" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_nearby/config/config.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573821343" />
+              <option name="schema">
+                <list>
+                  <option value="config" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_nearby/handler_travel/handler_travel.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573821323" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_nearby/handler_travel/handler_travel_check.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573821305" />
+              <option name="schema">
+                <list>
+                  <option value="checkHub" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_nearby/handler_travel/service_travel/service_tool_func.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573821375" />
+              <option name="schema">
+                <list>
+                  <option value="toolFunc" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_nearby/handler_travel/service_travel/service_travel.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573821408" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_nearby/handler_user_nearby/handler_user_nearby.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573821363" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_nearby/handler_user_nearby/service_user_nearby/service_user_nearby.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573821349" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_nearby/main/main.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573821234" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_nearby/swagger/docs.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573246094" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_rec/main/main.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573277279" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_tcp_msg/config/config.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573793402" />
+              <option name="schema">
+                <list>
+                  <option value="config" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_tcp_msg/main/main.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573821311" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_tcp_msg/tcp_msg_client/client_hub.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573636837" />
+              <option name="schema">
+                <list>
+                  <option value="ClientHub" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_tcp_msg/tcp_msg_client/client_read.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573806492" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_tcp_msg/tcp_msg_client/client_read_handler.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573821388" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_tcp_msg/tcp_msg_client/client_read_service.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573636890" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_tcp_msg/tcp_msg_client/client_write.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573806455" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_tcp_msg/tcp_msg_service/tcp_msg_service.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573794290" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_tool/api_tool/api_http_tool/api_http.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573675305" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_tool/config/config.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573528179" />
+              <option name="schema">
+                <list>
+                  <option value="config" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_tool/handler_tool/handler_tool.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573528165" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_tool/handler_tool/service_tool/service_tool.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573806472" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_tool/main/main.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573528572" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_tool/swagger/docs.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573528151" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_user/api_user/api_http_user/api_http.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573675297" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_user/handler_user/handler_check.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573246130" />
+              <option name="schema">
+                <list>
+                  <option value="checkHub" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_user/handler_user/handler_user.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573362370" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_user/handler_user/service_user/service_tool_func.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573309477" />
+              <option name="schema">
+                <list>
+                  <option value="toolFunc" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_user/handler_user/service_user/service_user.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573821982" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_user/main/main.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573821369" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/go_user/swagger/docs.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573362307" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/ss_dazi/api_dazi/api_http_dazi/api_http.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702575980271" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/ss_dazi/api_dazi/api_http_nearby/api_http.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702575777516" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/ss_dazi/handler_dazi/handler_dazi.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702575777521" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/ss_dazi/handler_dazi/handler_dazi_check.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702575777496" />
+              <option name="schema">
+                <list>
+                  <option value="checkHub" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/ss_dazi/handler_dazi/service_dazi/service_dazi.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702575850220" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/ss_dazi/handler_dazi/service_dazi/service_tool_func.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702575876279" />
+              <option name="schema">
+                <list>
+                  <option value="toolFunc" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/ss_dazi/handler_user_nearby/handler_user_nearby.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702575678784" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/ss_dazi/handler_user_nearby/service_user_nearby/service_user_nearby.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702575678858" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/ss_dazi/main/main.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702575980282" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/ss_dazi/swagger/docs.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702575777539" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/ss_im/config/config_test.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702608660534" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/ss_im/handler_friend/handler_friend.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702575410886" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/ss_im/handler_friend/service_friend/service_friend.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702574723701" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/ss_im/handler_new_friend/handler_new_friend.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702575421353" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/ss_im/handler_new_friend/service_new_friend/service_new_friend.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702574742729" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/ss_im/handler_new_friend/service_new_friend/service_tool_func.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702574723703" />
+              <option name="schema">
+                <list>
+                  <option value="toolFunc" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/ss_moment/config/config.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702576252269" />
+              <option name="schema">
+                <list>
+                  <option value="config" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/ss_moment/handler_moment/service_moment/service_moment.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702574978533" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/ss_moment/main/main.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702574977880" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/ss_msg/main/main.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702574293461" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/ss_msg/tcp_msg_client/client_read.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702574977916" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/ss_msg/tcp_msg_client/client_read_handler.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702575532749" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/ss_msg/tcp_msg_client/client_read_service.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702574766016" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/ss_msg/tcp_msg_client/client_write.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702575552628" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/ss_nearby/api_nearby/api_grpc_nearby/grpc_base.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702574293509" />
+              <option name="schema">
+                <list>
+                  <option value="server" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/ss_nearby/api_nearby/api_grpc_nearby/grpc_health.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702574293472" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/ss_nearby/api_nearby/api_grpc_nearby/grpc_nearby_server.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702574293466" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/ss_nearby/main/main.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702574293501" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/ss_rec/api_rec/api_grpc_rec/grpc_base.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702574978525" />
+              <option name="schema">
+                <list>
+                  <option value="server" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/ss_rec/api_rec/api_grpc_rec/grpc_rec_server.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702574977907" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/ss_rec/config/config.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702574977974" />
+              <option name="schema">
+                <list>
+                  <option value="config" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/ss_rec/engine_gorse/gorse_handler/gorse_service/service_rec.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702574978537" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/ss_rec/engine_gorse/gorse_handler/handler_rec.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702574978515" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/ss_rec/engine_gorse/gorse_init/gorse_init.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702574977935" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/ss_rec/main/main.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702574978528" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/ss_tool/handler_tool/service_tool/service_tool.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702575850235" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/ss_user/config/config.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702576252275" />
+              <option name="schema">
+                <list>
+                  <option value="config" />
+                </list>
+              </option>
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/ss_user/handler_user/service_user/service_user.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702574653738" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_go/ss_user/main/main.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702574293494" />
+            </ScannedPath>
+          </value>
+        </entry>
         <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_grpc/go_nearby/grpc_client_nearby/grpc_client_base.go">
           <value>
             <ScannedPath>
-              <option name="lastModified" value="1702545209219" />
+              <option name="lastModified" value="1702557537531" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_grpc/go_nearby/grpc_client_nearby/grpc_client_base_test.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702557537535" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_grpc/go_nearby/grpc_nearby/grpc_nearby.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702557905126" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_grpc/go_nearby/grpc_nearby/grpc_nearby_test.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702557905130" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_grpc/go_rec/grpc_client_rec/grpc_client_base.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702557537528" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_grpc/go_rec/grpc_rec/grpc_rec.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702557905123" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_grpc/ss_dazi/grpc_dazi/grpc_nearby.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702575287636" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_grpc/ss_dazi/grpc_dazi/grpc_nearby_test.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702573922553" />
+            </ScannedPath>
+          </value>
+        </entry>
+        <entry key="file://$PROJECT_DIR$/../../ss/back-end/ss_grpc/ss_rec/grpc_rec/grpc_rec.go">
+          <value>
+            <ScannedPath>
+              <option name="lastModified" value="1702575285442" />
             </ScannedPath>
           </value>
         </entry>
@@ -558,20 +2257,40 @@
     </option>
     <option name="tableStructMapping">
       <map>
+        <entry key="area" value="Area" />
+        <entry key="args" value="args" />
+        <entry key="check_hub" value="checkHub" />
         <entry key="client_hub" value="ClientHub" />
         <entry key="config" value="config" />
+        <entry key="da_zi" value="DaZi" />
         <entry key="db_config_v3_controller" value="DbConfigV3Controller" />
+        <entry key="group" value="Group" />
+        <entry key="group_message" value="GroupMessage" />
         <entry key="mysql_change_history_info" value="MysqlChangeHistoryInfo" />
+        <entry key="nearby_user" value="NearbyUser" />
         <entry key="option_item" value="optionItem" />
         <entry key="option_update_info" value="optionUpdateInfo" />
+        <entry key="pb_area" value="PBArea" />
+        <entry key="pb_list_area" value="PBListArea" />
         <entry key="pb_list_kv" value="PBListKV" />
         <entry key="pb_list_role" value="PBListRole" />
         <entry key="pb_list_server" value="PBListServer" />
         <entry key="pb_list_user" value="PBListUser" />
+        <entry key="pb_list_vo_da_zi" value="PBListVoDaZi" />
+        <entry key="pb_list_vo_nearby_user" value="PBListVoNearbyUser" />
         <entry key="pb_role" value="PBRole" />
         <entry key="pb_server" value="PBServer" />
+        <entry key="pb_tcp_msg" value="PBTcpMsg" />
         <entry key="pb_user" value="PBUser" />
+        <entry key="pb_vo_da_zi" value="PBVoDaZi" />
+        <entry key="pb_vo_nearby_user" value="PBVoNearbyUser" />
         <entry key="pbkv" value="PBKV" />
+        <entry key="relation_moment_comment" value="RelationMomentComment" />
+        <entry key="relation_user_da_zi" value="RelationUserDaZi" />
+        <entry key="relation_user_follow" value="RelationUserFollow" />
+        <entry key="relation_user_friend" value="RelationUserFriend" />
+        <entry key="relation_user_group" value="RelationUserGroup" />
+        <entry key="relation_user_like_moment" value="RelationUserLikeMoment" />
         <entry key="request_header" value="RequestHeader" />
         <entry key="server" value="server" />
         <entry key="server_func" value="serverFunc" />
@@ -580,7 +2299,12 @@
         <entry key="t_modify_config_processor" value="tModifyConfigProcessor" />
         <entry key="t_modify_config_request" value="tModifyConfigRequest" />
         <entry key="t_modify_config_request_val" value="tModifyConfigRequestVal" />
+        <entry key="tool_func" value="toolFunc" />
+        <entry key="user_da_zi" value="UserDaZi" />
         <entry key="user_func" value="userFunc" />
+        <entry key="vo_da_zi" value="VoDaZi" />
+        <entry key="vo_moment_comment" value="VoMomentComment" />
+        <entry key="vo_nearby_user" value="VoNearbyUser" />
         <entry key="x" value="x" />
       </map>
     </option>

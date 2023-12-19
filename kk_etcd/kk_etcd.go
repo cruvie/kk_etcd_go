@@ -44,6 +44,20 @@ func GetConfig(configKey string, configStruct any) error {
 	return nil
 }
 
+// SetConfig set config to etcd
+func SetConfig(configKey string, config string) error {
+	stage := kk_stage.NewStage(nil, kk_func.GetCurrentFunctionName())
+
+	_, err := kk_etcd_client.EtcdClient.Put(context.Background(), kk_etcd_const.Config+configKey, config)
+	if err != nil {
+		logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId).SetError(err).
+			SetAny("config", config)
+		slog.Error("failed to put config", logBody.GetLogArgs()...)
+		return err
+	}
+	return nil
+}
+
 // RegisterService register service to etcd
 func RegisterService(registration *kk_etcd_models.ServiceRegistration) error {
 	stage := kk_stage.NewStage(nil, kk_func.GetCurrentFunctionName())
