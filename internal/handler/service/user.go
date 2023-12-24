@@ -16,9 +16,9 @@ import (
 
 func Login(stage *kk_stage.Stage, user *kk_etcd_models.PBUser) (tokenString string, res int) {
 	if user.UserName == kk_etcd_const.UserRoot {
-		logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId)
+
 		msg := "illegal login root user!"
-		slog.Error(msg, logBody.GetLogArgs()...)
+		slog.Error(msg, kk_stage.NewLogArgs(stage).Args...)
 		return "", -1
 	}
 	/*
@@ -29,23 +29,23 @@ func Login(stage *kk_stage.Stage, user *kk_etcd_models.PBUser) (tokenString stri
 	rawPassword := user.Password
 	res, value := KVGet(stage, kk_etcd_const.User+user.UserName)
 	if res != 1 {
-		logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId).SetAny("UserName", user.UserName)
-		slog.Error("failed to get user kv", logBody.GetLogArgs()...)
+
+		slog.Error("failed to get user kv", kk_stage.NewLogArgs(stage).Any("UserName", user.UserName).Args...)
 		res = 2
 		return
 	}
 	var userTemp kk_etcd_models.PBUser
 	if err := json.Unmarshal(value, &userTemp); err != nil {
-		logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId).SetError(err).SetAny("UserName", user.UserName)
-		slog.Error("failed to unmarshal user kv", logBody.GetLogArgs()...)
+
+		slog.Error("failed to unmarshal user kv", kk_stage.NewLogArgs(stage).Error(err).Any("UserName", user.UserName).Args...)
 		return
 	}
 
 	//validate password
 	equal := kk_encrypt.CheckPasswordHash(stage, userTemp.Password, rawPassword)
 	if !equal {
-		logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId).SetAny("UserName", user.UserName)
-		slog.Error("wrong password", logBody.GetLogArgs()...)
+
+		slog.Error("wrong password", kk_stage.NewLogArgs(stage).Any("UserName", user.UserName).Args...)
 		res = 4
 		return
 	}
@@ -74,15 +74,15 @@ func Logout(stage *kk_stage.Stage, user *kk_etcd_models.PBUser) (res int) {
 
 func UserAdd(stage *kk_stage.Stage, user *kk_etcd_models.PBUser) (res int) {
 	if user.UserName == kk_etcd_const.UserRoot {
-		logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId)
-		slog.Error("illegal add root user!", logBody.GetLogArgs()...)
+
+		slog.Error("illegal add root user!", kk_stage.NewLogArgs(stage).Args...)
 		return -1
 	}
 	user.Password, _ = kk_encrypt.GeneratePassword(stage, user.Password)
 	jsonData, err := json.Marshal(&user)
 	if err != nil {
-		logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId).SetError(err)
-		slog.Error("error in marshal user", logBody.GetLogArgs()...)
+
+		slog.Error("error in marshal user", kk_stage.NewLogArgs(stage).Error(err).Args...)
 		return -1
 	}
 	jsonStr := string(jsonData)
@@ -93,8 +93,8 @@ func UserAdd(stage *kk_stage.Stage, user *kk_etcd_models.PBUser) (res int) {
 	}
 	_, err = kk_etcd_client.EtcdClient.UserAdd(context.Background(), user.UserName, user.Password)
 	if err != nil && err.Error() != "etcdserver: user name already exists" {
-		logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId).SetError(err).SetAny("UserName", user.UserName)
-		slog.Error("failed to add user to etcd user", logBody.GetLogArgs()...)
+
+		slog.Error("failed to add user to etcd user", kk_stage.NewLogArgs(stage).Error(err).Any("UserName", user.UserName).Args...)
 		return -1
 	}
 	return 1
@@ -108,15 +108,15 @@ func UserDelete(stage *kk_stage.Stage, userName string, admin bool) (res int) {
 
 	_, err := kk_etcd_client.EtcdClient.Delete(context.Background(), kk_etcd_const.User+userName)
 	if err != nil {
-		logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId).SetError(err).SetAny("UserName", userName)
-		slog.Error("failed to delete user kv", logBody.GetLogArgs()...)
+
+		slog.Error("failed to delete user kv", kk_stage.NewLogArgs(stage).Error(err).Any("UserName", userName).Args...)
 		return -1
 	}
 
 	_, err = kk_etcd_client.EtcdClient.UserDelete(context.Background(), userName)
 	if err != nil {
-		logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId).SetError(err).SetAny("UserName", userName)
-		slog.Error("failed to delete user", logBody.GetLogArgs()...)
+
+		slog.Error("failed to delete user", kk_stage.NewLogArgs(stage).Error(err).Any("UserName", userName).Args...)
 		return -1
 	}
 	return 1
@@ -125,8 +125,8 @@ func UserDelete(stage *kk_stage.Stage, userName string, admin bool) (res int) {
 func GetUser(stage *kk_stage.Stage, userName string) (user *kk_etcd_models.PBUser, res int) {
 	rolesResp, err := kk_etcd_client.EtcdClient.UserGet(context.Background(), userName)
 	if err != nil {
-		logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId).SetError(err).SetAny("UserName", userName)
-		slog.Error("failed to get user", logBody.GetLogArgs()...)
+
+		slog.Error("failed to get user", kk_stage.NewLogArgs(stage).Error(err).Any("UserName", userName).Args...)
 		return nil, -1
 	}
 	user = &kk_etcd_models.PBUser{}
@@ -138,16 +138,16 @@ func GetUser(stage *kk_stage.Stage, userName string) (user *kk_etcd_models.PBUse
 func UserList(stage *kk_stage.Stage) (res int, users *kk_etcd_models.PBListUser) {
 	list, err := kk_etcd_client.EtcdClient.UserList(context.Background())
 	if err != nil {
-		logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId).SetError(err)
-		slog.Error("failed to get user list", logBody.GetLogArgs()...)
+
+		slog.Error("failed to get user list", kk_stage.NewLogArgs(stage).Error(err).Args...)
 		return -1, nil
 	}
 	users = &kk_etcd_models.PBListUser{}
 	for _, userName := range list.Users {
 		user, res := GetUser(stage, userName)
 		if res != 1 {
-			logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId).SetError(err).SetAny("UserName", userName)
-			slog.Error("failed to get user", logBody.GetLogArgs()...)
+
+			slog.Error("failed to get user", kk_stage.NewLogArgs(stage).Error(err).Any("UserName", userName).Args...)
 			return -1, nil
 		}
 		users.ListUser = append(users.ListUser, user)
@@ -163,8 +163,8 @@ func UserGrantRole(stage *kk_stage.Stage, user *kk_etcd_models.PBUser) (res int)
 	for _, role := range user.Roles {
 		_, err := kk_etcd_client.EtcdClient.UserGrantRole(context.Background(), user.UserName, role)
 		if err != nil {
-			logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId).SetError(err).SetAny("UserName", user.UserName)
-			slog.Error("failed to grant role", logBody.GetLogArgs()...)
+
+			slog.Error("failed to grant role", kk_stage.NewLogArgs(stage).Error(err).Any("UserName", user.UserName).Args...)
 			return -3
 		}
 	}
