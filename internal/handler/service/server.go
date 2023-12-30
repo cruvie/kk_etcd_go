@@ -14,27 +14,27 @@ import (
 
 func RegisterService(stage *kk_stage.Stage, registration *kk_etcd_models.ServiceRegistration) error {
 	if registration.ServerType != kk_etcd_const.ServiceHttp && registration.ServerType != kk_etcd_const.ServiceGrpc {
-		logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId)
+
 		msg := "server type is invalid"
-		slog.Error(msg, logBody.GetLogArgs()...)
+		slog.Error(msg, kk_stage.NewLogArgs(stage).Args...)
 		return errors.New(msg)
 	}
 	if registration.ServerName == "" {
-		logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId)
+
 		msg := "server name cannot be empty"
-		slog.Error(msg, logBody.GetLogArgs()...)
+		slog.Error(msg, kk_stage.NewLogArgs(stage).Args...)
 		return errors.New(msg)
 	}
 	if registration.Address == "" {
-		logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId)
+
 		msg := "server address cannot be empty"
-		slog.Error(msg, logBody.GetLogArgs()...)
+		slog.Error(msg, kk_stage.NewLogArgs(stage).Args...)
 		return errors.New(msg)
 	}
 	if registration.Check == nil {
-		logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId)
+
 		msg := "server Check cannot be empty"
-		slog.Error(msg, logBody.GetLogArgs()...)
+		slog.Error(msg, kk_stage.NewLogArgs(stage).Args...)
 		return errors.New(msg)
 	}
 	switch registration.Check.Type {
@@ -47,9 +47,9 @@ func RegisterService(stage *kk_stage.Stage, registration *kk_etcd_models.Service
 			registration.Check.GRPC = registration.Address
 		}
 	default:
-		logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId)
+
 		msg := "server Check Type is invalid"
-		slog.Error(msg, logBody.GetLogArgs()...)
+		slog.Error(msg, kk_stage.NewLogArgs(stage).Args...)
 		return errors.New(msg)
 	}
 	if registration.Check.TTL == 0 {
@@ -70,16 +70,16 @@ func RegisterService(stage *kk_stage.Stage, registration *kk_etcd_models.Service
 func ServerList(stage *kk_stage.Stage, serviceName string) (res int, serverList *kk_etcd_models.PBListServer, err error) {
 	etcdManager, err := endpoints.NewManager(kk_etcd_client.EtcdClient, serviceName)
 	if err != nil {
-		logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId)
+
 		msg := "failed to create etcd manager"
-		slog.Error(msg, logBody.GetLogArgs()...)
+		slog.Error(msg, kk_stage.NewLogArgs(stage).Args...)
 		return -1, nil, err
 	}
 	endpointMap, err := etcdManager.List(context.Background())
 	if err != nil {
-		logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId)
+
 		msg := "failed to list endpoints"
-		slog.Error(msg, logBody.GetLogArgs()...)
+		slog.Error(msg, kk_stage.NewLogArgs(stage).Args...)
 		return -1, nil, err
 	}
 	//ListServer:{Key2EndpointMap:{key:"kk_service_http/ss/go_user/128.2.2.3:8484"  value:{Addr:"128.2.2.3:8484"}}}

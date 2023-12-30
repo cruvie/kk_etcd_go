@@ -24,21 +24,20 @@ func GetConfig(configKey string, configStruct any) error {
 	stage := kk_stage.NewStage(nil, kk_func.GetCurrentFunctionName())
 	getResponse, err := kk_etcd_client.EtcdClient.Get(context.Background(), kk_etcd_const.Config+configKey)
 	if err != nil {
-		logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId).SetError(err).
-			SetAny("configKey", configKey)
-		slog.Error("failed to get config", logBody.GetLogArgs()...)
+
+		slog.Error("failed to get config", kk_stage.NewLogArgs(stage).Error(err).
+			Any("configKey", configKey).Args...)
 		return err
 	}
 	if getResponse.Kvs == nil {
-		logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId)
-		slog.Warn("failed to get kv, getResponse.Kvs is nil", logBody.GetLogArgs()...)
+
+		slog.Warn("failed to get kv, getResponse.Kvs is nil", kk_stage.NewLogArgs(stage).Args...)
 		return nil
 	}
 	err = yaml.Unmarshal(getResponse.Kvs[0].Value, configStruct)
 	if err != nil {
-		logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId).SetError(err).
-			SetAny("config", string(getResponse.Kvs[0].Value))
-		slog.Error("failed Unmarshal config", logBody.GetLogArgs()...)
+
+		slog.Error("failed Unmarshal config", kk_stage.NewLogArgs(stage).Error(err).Any("config", string(getResponse.Kvs[0].Value)).Args...)
 		return err
 	}
 	return nil
@@ -50,9 +49,9 @@ func SetConfig(configKey string, config string) error {
 
 	_, err := kk_etcd_client.EtcdClient.Put(context.Background(), kk_etcd_const.Config+configKey, config)
 	if err != nil {
-		logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId).SetError(err).
-			SetAny("config", config)
-		slog.Error("failed to put config", logBody.GetLogArgs()...)
+
+		slog.Error("failed to put config", kk_stage.NewLogArgs(stage).Error(err).
+			Any("config", config).Args...)
 		return err
 	}
 	return nil
@@ -78,16 +77,16 @@ func ServerList(serviceName string) (serverList *kk_etcd_models.PBListServer, er
 func WatchServerList(ctx context.Context, serviceName string, serverListChan chan *kk_etcd_models.PBListServer) (err error) {
 	stage := kk_stage.NewStage(nil, kk_func.GetCurrentFunctionName())
 	etcdManager, err := endpoints.NewManager(kk_etcd_client.EtcdClient, serviceName)
-	logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId).SetAny("serviceName", serviceName)
+
 	if err != nil {
-		logBody.SetError(err)
-		slog.Error("failed to new endpoints.Manager", logBody.GetLogArgs()...)
+
+		slog.Error("failed to new endpoints.Manager", kk_stage.NewLogArgs(stage).Any("serviceName", serviceName).Error(err).Args...)
 		return err
 	}
 	channel, err := etcdManager.NewWatchChannel(ctx)
 	if err != nil {
-		logBody.SetError(err)
-		slog.Error("failed to new watch channel", logBody.GetLogArgs()...)
+
+		slog.Error("failed to new watch channel", kk_stage.NewLogArgs(stage).Any("serviceName", serviceName).Error(err).Args...)
 		return err
 	}
 	go func() {

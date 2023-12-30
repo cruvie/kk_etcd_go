@@ -14,8 +14,8 @@ import (
 func KVPut(stage *kk_stage.Stage, key string, value string) (res int) {
 	_, err := kk_etcd_client.EtcdClient.Put(context.Background(), key, value)
 	if err != nil {
-		logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId).SetError(err).SetAny("key", key)
-		slog.Error("failed to put kv", logBody.GetLogArgs()...)
+
+		slog.Error("failed to put kv", kk_stage.NewLogArgs(stage).Error(err).Any("key", key).Args...)
 		return -1
 	}
 	return 1
@@ -24,8 +24,8 @@ func KVPut(stage *kk_stage.Stage, key string, value string) (res int) {
 func KVGet(stage *kk_stage.Stage, key string) (res int, value []byte) {
 	getResponse, err := kk_etcd_client.EtcdClient.Get(context.Background(), key)
 	if err != nil || getResponse.Kvs == nil {
-		logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId).SetError(err).SetAny("key", key)
-		slog.Error("failed to get kv", logBody.GetLogArgs()...)
+
+		slog.Error("failed to get kv", kk_stage.NewLogArgs(stage).Error(err).Any("key", key).Args...)
 		return -1, nil
 	}
 	return 1, getResponse.Kvs[0].Value
@@ -34,8 +34,8 @@ func KVGet(stage *kk_stage.Stage, key string) (res int, value []byte) {
 func KVDel(stage *kk_stage.Stage, key string) (res int) {
 	_, err := kk_etcd_client.EtcdClient.Delete(context.Background(), key)
 	if err != nil {
-		logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId).SetError(err).SetAny("key", key)
-		slog.Error("failed to delete kv", logBody.GetLogArgs()...)
+
+		slog.Error("failed to delete kv", kk_stage.NewLogArgs(stage).Error(err).Any("key", key).Args...)
 		return -1
 	}
 	return 1
@@ -45,8 +45,8 @@ func KVList(stage *kk_stage.Stage, prefix string) (res int, list *kk_etcd_models
 	list = &kk_etcd_models.PBListKV{}
 	getResponse, err := kk_etcd_client.EtcdClient.Get(context.Background(), prefix, clientv3.WithPrefix())
 	if err != nil {
-		logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId).SetError(err).SetAny("prefix", prefix)
-		slog.Error("failed to get config list", logBody.GetLogArgs()...)
+
+		slog.Error("failed to get config list", kk_stage.NewLogArgs(stage).Error(err).Any("prefix", prefix).Args...)
 		return -1, nil
 	}
 	for _, kv := range getResponse.Kvs {

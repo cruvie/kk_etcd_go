@@ -16,10 +16,10 @@ func (t *userFunc) deleteAllRoles(stage *kk_stage.Stage, userName string) {
 	for _, role := range user.Roles {
 		_, err := kk_etcd_client.EtcdClient.UserRevokeRole(context.Background(), userName, role)
 		if err != nil {
-			logBody := kk_stage.NewLogBody().SetTraceId(stage.TraceId).SetError(err).
-				SetAny("userName", userName).SetAny("role", role)
+
 			msg := "failed to revoke role"
-			slog.Error(msg, logBody.GetLogArgs()...)
+			slog.Error(msg, kk_stage.NewLogArgs(stage).Error(err).
+				Any("userName", userName).Any("role", role).Args...)
 			return
 		}
 	}
