@@ -27,6 +27,7 @@ func NewClientHub[T any](
 	serviceName string,
 	clientBuilder func(grpcConn grpc.ClientConnInterface) (client T)) *ClientHub[T] {
 	return &ClientHub[T]{
+		clients:       make([]*T, 0),
 		serviceType:   serviceType,
 		serviceName:   serviceName,
 		clientBuilder: clientBuilder,
@@ -93,7 +94,7 @@ func (c *ClientHub[T]) refreshClients(stage *kk_stage.Stage, serverList *kk_etcd
 	c.rwLock.Lock()
 	defer c.rwLock.Unlock()
 	//slog.Info("serverListChan", "serverList", serverList)
-	clear(c.clients)
+	c.clients = make([]*T, 0)
 	for _, server := range serverList.ListServer {
 		// Set up a connection to the server_grpc_im_msg.
 		grpcConn, err := grpc.Dial(server.ServiceAddr,

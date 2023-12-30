@@ -1,6 +1,7 @@
 package test
 
 import (
+	"fmt"
 	"gitee.com/cruvie/kk_go_kit/kk_func"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/internal/config"
@@ -26,4 +27,21 @@ func InitEtcd() {
 
 func TestName111(t *testing.T) {
 	InitEtcd()
+}
+
+func TestName(t *testing.T) {
+	a := make([]*string, 0)
+	aa := make([]*string, 0)
+	b := "11"
+	a = append(a, &b)
+	c := "222"
+	a = append(a, &c)
+	fmt.Println(a)
+	fmt.Println(len(a))
+	clear(a)
+	fmt.Println(a)
+	fmt.Println(len(a))
+	a = make([]*string, 0)
+	fmt.Println(aa)
+	fmt.Println(len(aa))
 }
