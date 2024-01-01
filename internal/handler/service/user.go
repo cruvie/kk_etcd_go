@@ -3,7 +3,7 @@ package service
 import (
 	"context"
 	"encoding/json"
-	"gitee.com/cruvie/kk_go_kit/kk_encrypt"
+	"gitee.com/cruvie/kk_go_kit/kk_crypto"
 	"gitee.com/cruvie/kk_go_kit/kk_jwt"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/internal/config"
@@ -42,7 +42,7 @@ func Login(stage *kk_stage.Stage, user *kk_etcd_models.PBUser) (tokenString stri
 	}
 
 	//validate password
-	equal := kk_encrypt.CheckPasswordHash(stage, userTemp.Password, rawPassword)
+	equal := kk_crypto.CheckPasswordHash(stage, userTemp.Password, rawPassword)
 	if !equal {
 
 		slog.Error("wrong password", kk_stage.NewLogArgs(stage).Any("UserName", user.UserName).Args...)
@@ -78,7 +78,7 @@ func UserAdd(stage *kk_stage.Stage, user *kk_etcd_models.PBUser) (res int) {
 		slog.Error("illegal add root user!", kk_stage.NewLogArgs(stage).Args...)
 		return -1
 	}
-	user.Password, _ = kk_encrypt.GeneratePassword(stage, user.Password)
+	user.Password, _ = kk_crypto.GeneratePassword(stage, user.Password)
 	jsonData, err := json.Marshal(&user)
 	if err != nil {
 
