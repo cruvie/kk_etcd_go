@@ -3,7 +3,7 @@ module github.com/cruvie/kk_etcd_go
 go 1.21.0
 
 require (
-	gitee.com/cruvie/kk_go_kit v0.0.0-20231225150454-e51959949b2f
+	gitee.com/cruvie/kk_go_kit v0.0.0-20240101144257-210baed6bda6
 	github.com/gin-contrib/cors v1.5.0
 	github.com/gin-gonic/gin v1.9.1
 	github.com/swaggo/swag v1.16.2
@@ -31,7 +31,7 @@ require (
 	github.com/go-openapi/jsonpointer v0.20.2 // indirect
 	github.com/go-openapi/jsonreference v0.20.4 // indirect
 	github.com/go-openapi/spec v0.20.13 // indirect
-	github.com/go-openapi/swag v0.22.6 // indirect
+	github.com/go-openapi/swag v0.22.7 // indirect
 	github.com/go-playground/locales v0.14.1 // indirect
 	github.com/go-playground/universal-translator v0.18.1 // indirect
 	github.com/go-playground/validator/v10 v10.16.0 // indirect
