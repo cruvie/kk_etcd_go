@@ -37,19 +37,17 @@ func NewClientHub[T any](
 // GetClient get a random grpc client
 func (c *ClientHub[T]) GetClient(stage *kk_stage.Stage) *T {
 	c.rwLock.RLock()
-	defer c.rwLock.RUnlock()
 	if len(c.clients) == 0 {
-
 		slog.Error("no grpc client available, attempt to proactively obtain service", kk_stage.NewLogArgs(stage).Any("serviceType", c.serviceType).Any("serviceName", c.serviceName).Args...)
 		serverList, err := kk_etcd.ServerList(c.serviceType + "/" + c.serviceName)
 		if err != nil {
-
 			slog.Error("ServerList failed", kk_stage.NewLogArgs(stage).Any("serviceType", c.serviceType).Any("serviceName", c.serviceName).Error(err).Args...)
 			return nil
 		} else {
+			c.rwLock.RUnlock()
 			c.refreshClients(stage, serverList)
+			c.rwLock.RLock()
 			if len(c.clients) == 0 {
-
 				slog.Error("still no grpc client available", kk_stage.NewLogArgs(stage).Any("serviceType", c.serviceType).Any("serviceName", c.serviceName).Error(err).Args...)
 				return nil
 			}
@@ -58,6 +56,7 @@ func (c *ClientHub[T]) GetClient(stage *kk_stage.Stage) *T {
 	// get a random client
 	randomIndex := rand.Intn(len(c.clients))
 	client := c.clients[randomIndex]
+	c.rwLock.RUnlock()
 	return client
 }
 
@@ -68,7 +67,6 @@ func (c *ClientHub[T]) ListenServerChange(ctx context.Context, stage *kk_stage.S
 	serverListChan := make(chan *kk_etcd_models.PBListServer)
 	err := kk_etcd.WatchServerList(ctx, c.serviceType+"/"+c.serviceName, serverListChan)
 	if err != nil {
-
 		slog.Error("WatchServerList failed", kk_stage.NewLogArgs(stage).Any("serviceType", c.serviceType).Any("serviceName", c.serviceName).Error(err).Args...)
 		return err
 	}
@@ -102,7 +100,6 @@ func (c *ClientHub[T]) refreshClients(stage *kk_stage.Stage, serverList *kk_etcd
 			grpc.WithStatsHandler(otelgrpc.NewClientHandler()),
 		)
 		if err != nil {
-
 			slog.Error("grpc client connect failed", kk_stage.NewLogArgs(stage).Error(err).Any("target", server.ServiceAddr).Args...)
 			return
 		}
