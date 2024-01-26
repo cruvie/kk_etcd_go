@@ -25,19 +25,19 @@ func GetConfig(configKey string, configStruct any) error {
 	getResponse, err := kk_etcd_client.EtcdClient.Get(context.Background(), kk_etcd_const.Config+configKey)
 	if err != nil {
 
-		slog.Error("failed to get config", kk_stage.NewLogArgs(stage).Error(err).
-			Any("configKey", configKey).Args...)
+		slog.Error("failed to get config", kk_stage.NewLog(stage).Error(err).
+			Any("configKey", configKey).Args()...)
 		return err
 	}
 	if getResponse.Kvs == nil {
 
-		slog.Warn("failed to get kv, getResponse.Kvs is nil", kk_stage.NewLogArgs(stage).Args...)
+		slog.Warn("failed to get kv, getResponse.Kvs is nil", kk_stage.NewLog(stage).Args()...)
 		return nil
 	}
 	err = yaml.Unmarshal(getResponse.Kvs[0].Value, configStruct)
 	if err != nil {
 
-		slog.Error("failed Unmarshal config", kk_stage.NewLogArgs(stage).Error(err).Any("config", string(getResponse.Kvs[0].Value)).Args...)
+		slog.Error("failed Unmarshal config", kk_stage.NewLog(stage).Error(err).Any("config", string(getResponse.Kvs[0].Value)).Args()...)
 		return err
 	}
 	return nil
@@ -50,8 +50,8 @@ func SetConfig(configKey string, config string) error {
 	_, err := kk_etcd_client.EtcdClient.Put(context.Background(), kk_etcd_const.Config+configKey, config)
 	if err != nil {
 
-		slog.Error("failed to put config", kk_stage.NewLogArgs(stage).Error(err).
-			Any("config", config).Args...)
+		slog.Error("failed to put config", kk_stage.NewLog(stage).Error(err).
+			Any("config", config).Args()...)
 		return err
 	}
 	return nil
@@ -80,13 +80,13 @@ func WatchServerList(ctx context.Context, serviceName string, serverListChan cha
 
 	if err != nil {
 
-		slog.Error("failed to new endpoints.Manager", kk_stage.NewLogArgs(stage).Any("serviceName", serviceName).Error(err).Args...)
+		slog.Error("failed to new endpoints.Manager", kk_stage.NewLog(stage).Any("serviceName", serviceName).Error(err).Args()...)
 		return err
 	}
 	channel, err := etcdManager.NewWatchChannel(ctx)
 	if err != nil {
 
-		slog.Error("failed to new watch channel", kk_stage.NewLogArgs(stage).Any("serviceName", serviceName).Error(err).Args...)
+		slog.Error("failed to new watch channel", kk_stage.NewLog(stage).Any("serviceName", serviceName).Error(err).Args()...)
 		return err
 	}
 	go func() {

@@ -3,7 +3,7 @@ package service
 import (
 	"context"
 	"encoding/json"
-	"gitee.com/cruvie/kk_go_kit/kk_encrypt"
+	"gitee.com/cruvie/kk_go_kit/kk_crypto"
 	"gitee.com/cruvie/kk_go_kit/kk_jwt"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/internal/config"
@@ -18,7 +18,7 @@ func Login(stage *kk_stage.Stage, user *kk_etcd_models.PBUser) (tokenString stri
 	if user.UserName == kk_etcd_const.UserRoot {
 
 		msg := "illegal login root user!"
-		slog.Error(msg, kk_stage.NewLogArgs(stage).Args...)
+		slog.Error(msg, kk_stage.NewLog(stage).Args()...)
 		return "", -1
 	}
 	/*
@@ -30,22 +30,22 @@ func Login(stage *kk_stage.Stage, user *kk_etcd_models.PBUser) (tokenString stri
 	res, value := KVGet(stage, kk_etcd_const.User+user.UserName)
 	if res != 1 {
 
-		slog.Error("failed to get user kv", kk_stage.NewLogArgs(stage).Any("UserName", user.UserName).Args...)
+		slog.Error("failed to get user kv", kk_stage.NewLog(stage).Any("UserName", user.UserName).Args()...)
 		res = 2
 		return
 	}
 	var userTemp kk_etcd_models.PBUser
 	if err := json.Unmarshal(value, &userTemp); err != nil {
 
-		slog.Error("failed to unmarshal user kv", kk_stage.NewLogArgs(stage).Error(err).Any("UserName", user.UserName).Args...)
+		slog.Error("failed to unmarshal user kv", kk_stage.NewLog(stage).Error(err).Any("UserName", user.UserName).Args()...)
 		return
 	}
 
 	//validate password
-	equal := kk_encrypt.CheckPasswordHash(stage, userTemp.Password, rawPassword)
+	equal := kk_crypto.CheckPasswordHash(stage, userTemp.Password, rawPassword)
 	if !equal {
 
-		slog.Error("wrong password", kk_stage.NewLogArgs(stage).Any("UserName", user.UserName).Args...)
+		slog.Error("wrong password", kk_stage.NewLog(stage).Any("UserName", user.UserName).Args()...)
 		res = 4
 		return
 	}
@@ -75,14 +75,14 @@ func Logout(stage *kk_stage.Stage, user *kk_etcd_models.PBUser) (res int) {
 func UserAdd(stage *kk_stage.Stage, user *kk_etcd_models.PBUser) (res int) {
 	if user.UserName == kk_etcd_const.UserRoot {
 
-		slog.Error("illegal add root user!", kk_stage.NewLogArgs(stage).Args...)
+		slog.Error("illegal add root user!", kk_stage.NewLog(stage).Args()...)
 		return -1
 	}
-	user.Password, _ = kk_encrypt.GeneratePassword(stage, user.Password)
+	user.Password, _ = kk_crypto.GeneratePassword(stage, user.Password)
 	jsonData, err := json.Marshal(&user)
 	if err != nil {
 
-		slog.Error("error in marshal user", kk_stage.NewLogArgs(stage).Error(err).Args...)
+		slog.Error("error in marshal user", kk_stage.NewLog(stage).Error(err).Args()...)
 		return -1
 	}
 	jsonStr := string(jsonData)
@@ -94,7 +94,7 @@ func UserAdd(stage *kk_stage.Stage, user *kk_etcd_models.PBUser) (res int) {
 	_, err = kk_etcd_client.EtcdClient.UserAdd(context.Background(), user.UserName, user.Password)
 	if err != nil && err.Error() != "etcdserver: user name already exists" {
 
-		slog.Error("failed to add user to etcd user", kk_stage.NewLogArgs(stage).Error(err).Any("UserName", user.UserName).Args...)
+		slog.Error("failed to add user to etcd user", kk_stage.NewLog(stage).Error(err).Any("UserName", user.UserName).Args()...)
 		return -1
 	}
 	return 1
@@ -109,14 +109,14 @@ func UserDelete(stage *kk_stage.Stage, userName string, admin bool) (res int) {
 	_, err := kk_etcd_client.EtcdClient.Delete(context.Background(), kk_etcd_const.User+userName)
 	if err != nil {
 
-		slog.Error("failed to delete user kv", kk_stage.NewLogArgs(stage).Error(err).Any("UserName", userName).Args...)
+		slog.Error("failed to delete user kv", kk_stage.NewLog(stage).Error(err).Any("UserName", userName).Args()...)
 		return -1
 	}
 
 	_, err = kk_etcd_client.EtcdClient.UserDelete(context.Background(), userName)
 	if err != nil {
 
-		slog.Error("failed to delete user", kk_stage.NewLogArgs(stage).Error(err).Any("UserName", userName).Args...)
+		slog.Error("failed to delete user", kk_stage.NewLog(stage).Error(err).Any("UserName", userName).Args()...)
 		return -1
 	}
 	return 1
@@ -126,7 +126,7 @@ func GetUser(stage *kk_stage.Stage, userName string) (user *kk_etcd_models.PBUse
 	rolesResp, err := kk_etcd_client.EtcdClient.UserGet(context.Background(), userName)
 	if err != nil {
 
-		slog.Error("failed to get user", kk_stage.NewLogArgs(stage).Error(err).Any("UserName", userName).Args...)
+		slog.Error("failed to get user", kk_stage.NewLog(stage).Error(err).Any("UserName", userName).Args()...)
 		return nil, -1
 	}
 	user = &kk_etcd_models.PBUser{}
@@ -139,7 +139,7 @@ func UserList(stage *kk_stage.Stage) (res int, users *kk_etcd_models.PBListUser)
 	list, err := kk_etcd_client.EtcdClient.UserList(context.Background())
 	if err != nil {
 
-		slog.Error("failed to get user list", kk_stage.NewLogArgs(stage).Error(err).Args...)
+		slog.Error("failed to get user list", kk_stage.NewLog(stage).Error(err).Args()...)
 		return -1, nil
 	}
 	users = &kk_etcd_models.PBListUser{}
@@ -147,7 +147,7 @@ func UserList(stage *kk_stage.Stage) (res int, users *kk_etcd_models.PBListUser)
 		user, res := GetUser(stage, userName)
 		if res != 1 {
 
-			slog.Error("failed to get user", kk_stage.NewLogArgs(stage).Error(err).Any("UserName", userName).Args...)
+			slog.Error("failed to get user", kk_stage.NewLog(stage).Error(err).Any("UserName", userName).Args()...)
 			return -1, nil
 		}
 		users.ListUser = append(users.ListUser, user)
@@ -164,7 +164,7 @@ func UserGrantRole(stage *kk_stage.Stage, user *kk_etcd_models.PBUser) (res int)
 		_, err := kk_etcd_client.EtcdClient.UserGrantRole(context.Background(), user.UserName, role)
 		if err != nil {
 
-			slog.Error("failed to grant role", kk_stage.NewLogArgs(stage).Error(err).Any("UserName", user.UserName).Args...)
+			slog.Error("failed to grant role", kk_stage.NewLog(stage).Error(err).Any("UserName", user.UserName).Args()...)
 			return -3
 		}
 	}

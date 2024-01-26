@@ -16,25 +16,25 @@ func RegisterService(stage *kk_stage.Stage, registration *kk_etcd_models.Service
 	if registration.ServerType != kk_etcd_const.ServiceHttp && registration.ServerType != kk_etcd_const.ServiceGrpc {
 
 		msg := "server type is invalid"
-		slog.Error(msg, kk_stage.NewLogArgs(stage).Args...)
+		slog.Error(msg, kk_stage.NewLog(stage).Args()...)
 		return errors.New(msg)
 	}
 	if registration.ServerName == "" {
 
 		msg := "server name cannot be empty"
-		slog.Error(msg, kk_stage.NewLogArgs(stage).Args...)
+		slog.Error(msg, kk_stage.NewLog(stage).Args()...)
 		return errors.New(msg)
 	}
 	if registration.Address == "" {
 
 		msg := "server address cannot be empty"
-		slog.Error(msg, kk_stage.NewLogArgs(stage).Args...)
+		slog.Error(msg, kk_stage.NewLog(stage).Args()...)
 		return errors.New(msg)
 	}
 	if registration.Check == nil {
 
 		msg := "server Check cannot be empty"
-		slog.Error(msg, kk_stage.NewLogArgs(stage).Args...)
+		slog.Error(msg, kk_stage.NewLog(stage).Args()...)
 		return errors.New(msg)
 	}
 	switch registration.Check.Type {
@@ -49,7 +49,7 @@ func RegisterService(stage *kk_stage.Stage, registration *kk_etcd_models.Service
 	default:
 
 		msg := "server Check Type is invalid"
-		slog.Error(msg, kk_stage.NewLogArgs(stage).Args...)
+		slog.Error(msg, kk_stage.NewLog(stage).Args()...)
 		return errors.New(msg)
 	}
 	if registration.Check.TTL == 0 {
@@ -72,14 +72,14 @@ func ServerList(stage *kk_stage.Stage, serviceName string) (res int, serverList 
 	if err != nil {
 
 		msg := "failed to create etcd manager"
-		slog.Error(msg, kk_stage.NewLogArgs(stage).Args...)
+		slog.Error(msg, kk_stage.NewLog(stage).Args()...)
 		return -1, nil, err
 	}
 	endpointMap, err := etcdManager.List(context.Background())
 	if err != nil {
 
 		msg := "failed to list endpoints"
-		slog.Error(msg, kk_stage.NewLogArgs(stage).Args...)
+		slog.Error(msg, kk_stage.NewLog(stage).Args()...)
 		return -1, nil, err
 	}
 	//ListServer:{Key2EndpointMap:{key:"kk_service_http/ss/go_user/128.2.2.3:8484"  value:{Addr:"128.2.2.3:8484"}}}

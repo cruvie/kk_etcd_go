@@ -26,7 +26,7 @@ func (t *serverFunc) registerServer(stage *kk_stage.Stage, registration *kk_etcd
 	if err != nil {
 
 		msg := "failed to create etcd manager"
-		slog.Error(msg, kk_stage.NewLogArgs(stage).Error(err).Args...)
+		slog.Error(msg, kk_stage.NewLog(stage).Error(err).Args()...)
 		return err
 	}
 
@@ -34,7 +34,7 @@ func (t *serverFunc) registerServer(stage *kk_stage.Stage, registration *kk_etcd
 	if err != nil {
 
 		msg := "failed to create lease"
-		slog.Error(msg, kk_stage.NewLogArgs(stage).Error(err).Args...)
+		slog.Error(msg, kk_stage.NewLog(stage).Error(err).Args()...)
 		return err
 	}
 
@@ -44,7 +44,7 @@ func (t *serverFunc) registerServer(stage *kk_stage.Stage, registration *kk_etcd
 	if err != nil {
 
 		msg := "failed to add endpoint to etcd"
-		slog.Error(msg, kk_stage.NewLogArgs(stage).Error(err).Args...)
+		slog.Error(msg, kk_stage.NewLog(stage).Error(err).Args()...)
 		return err
 	}
 
@@ -53,7 +53,7 @@ func (t *serverFunc) registerServer(stage *kk_stage.Stage, registration *kk_etcd
 		defer func() {
 
 			msg := "keep alive goroutine exit"
-			slog.Info(msg, kk_stage.NewLogArgs(stage).Any("endpointKey", endpointKey).Args...)
+			slog.Info(msg, kk_stage.NewLog(stage).Any("endpointKey", endpointKey).Args()...)
 		}()
 		if err := t.keepAliveOnce(stage, registration.Context, lease.ID); err != nil {
 			return
@@ -90,7 +90,7 @@ func (t *serverFunc) keepAliveOnce(stage *kk_stage.Stage, context context.Contex
 	_, err := kk_etcd_client.EtcdClient.KeepAliveOnce(context, leaseID)
 	if err != nil {
 
-		slog.Error("failed to set keep alive", kk_stage.NewLogArgs(stage).Error(err).Args...)
+		slog.Error("failed to set keep alive", kk_stage.NewLog(stage).Error(err).Args()...)
 		return err
 	}
 	return nil
@@ -107,14 +107,14 @@ func (t *serverFunc) checkHealth(stage *kk_stage.Stage, registration *kk_etcd_mo
 		if err != nil {
 
 			msg := "failed to create http request"
-			slog.Error(msg, kk_stage.NewLogArgs(stage).Error(err).Args...)
+			slog.Error(msg, kk_stage.NewLog(stage).Error(err).Args()...)
 			return false
 		}
 		resp, err := httpClient.Do(req)
 		if err != nil {
 
 			msg := "failed to check http health"
-			slog.Error(msg, kk_stage.NewLogArgs(stage).Error(err).Args...)
+			slog.Error(msg, kk_stage.NewLog(stage).Error(err).Args()...)
 			return false
 		} else if resp.StatusCode == http.StatusOK {
 			return true
@@ -126,7 +126,7 @@ func (t *serverFunc) checkHealth(stage *kk_stage.Stage, registration *kk_etcd_mo
 		if err != nil {
 
 			msg := "failed to dial grpc"
-			slog.Error(msg, kk_stage.NewLogArgs(stage).Error(err).Args...)
+			slog.Error(msg, kk_stage.NewLog(stage).Error(err).Args()...)
 			return false
 		}
 		defer func(conn *grpc.ClientConn) {
@@ -134,7 +134,7 @@ func (t *serverFunc) checkHealth(stage *kk_stage.Stage, registration *kk_etcd_mo
 			if err != nil {
 
 				msg := "failed to close grpc connection"
-				slog.Error(msg, kk_stage.NewLogArgs(stage).Error(err).Args...)
+				slog.Error(msg, kk_stage.NewLog(stage).Error(err).Args()...)
 			}
 		}(conn)
 		healthClient := grpc_health_v1.NewHealthClient(conn)
@@ -144,7 +144,7 @@ func (t *serverFunc) checkHealth(stage *kk_stage.Stage, registration *kk_etcd_mo
 		if err != nil {
 
 			msg := "failed to check grpc health"
-			slog.Error(msg, kk_stage.NewLogArgs(stage).Error(err).Args...)
+			slog.Error(msg, kk_stage.NewLog(stage).Error(err).Args()...)
 			return false
 		}
 		status := resp.GetStatus()
@@ -160,12 +160,12 @@ func (t *serverFunc) deleteEndpointAndRevokeLease(stage *kk_stage.Stage, ctx con
 	if err != nil {
 
 		msg := "failed to revoke lease"
-		slog.Error(msg, kk_stage.NewLogArgs(stage).Error(err).Args...)
+		slog.Error(msg, kk_stage.NewLog(stage).Error(err).Args()...)
 	}
 	err = endpointManager.DeleteEndpoint(ctx, endpointKey)
 	if err != nil {
 
 		msg := "failed to delete endpoint"
-		slog.Error(msg, kk_stage.NewLogArgs(stage).Error(err).Args...)
+		slog.Error(msg, kk_stage.NewLog(stage).Error(err).Args()...)
 	}
 }

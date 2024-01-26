@@ -41,7 +41,6 @@ func TestName(t *testing.T) {
 	clear(a)
 	fmt.Println(a)
 	fmt.Println(len(a))
-	a = make([]*string, 0)
 	fmt.Println(aa)
 	fmt.Println(len(aa))
 }

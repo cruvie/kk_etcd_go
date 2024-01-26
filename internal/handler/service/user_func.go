@@ -18,8 +18,8 @@ func (t *userFunc) deleteAllRoles(stage *kk_stage.Stage, userName string) {
 		if err != nil {
 
 			msg := "failed to revoke role"
-			slog.Error(msg, kk_stage.NewLogArgs(stage).Error(err).
-				Any("userName", userName).Any("role", role).Args...)
+			slog.Error(msg, kk_stage.NewLog(stage).Error(err).
+				Any("userName", userName).Any("role", role).Args()...)
 			return
 		}
 	}
