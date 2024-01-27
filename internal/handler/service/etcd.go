@@ -77,7 +77,7 @@ func InitEtcd(stage *kk_stage.Stage, endpoints []string, userName string, passwo
 			slog.Error("Enable Auth failed", kk_stage.NewLog(stage).Error(err).Args()...)
 			return err
 		}
-		//add root(user defined) user as an administrator of the system
+		//add root(user defined) user with root role as an administrator of the system
 		user := &kk_etcd_models.PBUser{
 			UserName: userName,
 			Password: password,
@@ -86,7 +86,6 @@ func InitEtcd(stage *kk_stage.Stage, endpoints []string, userName string, passwo
 		UserDelete(stage, user.UserName, true)
 		res := UserAdd(stage, user)
 		if res != 1 {
-
 			slog.Error("add root user as an administrator of the system failed", kk_stage.NewLog(stage).Args()...)
 			return err
 		}

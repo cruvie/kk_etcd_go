@@ -40,7 +40,11 @@ func (t *serverFunc) registerServer(stage *kk_stage.Stage, registration *kk_etcd
 
 	endpointKey := key + "/" + registration.Address
 	//add endpoint to etcd with lease id
-	err = endpointManager.AddEndpoint(registration.Context, endpointKey, endpoints.Endpoint{Addr: registration.Address}, clientv3.WithLease(lease.ID))
+	err = endpointManager.AddEndpoint(
+		registration.Context,
+		endpointKey,
+		endpoints.Endpoint{Addr: registration.Address},
+		clientv3.WithLease(lease.ID))
 	if err != nil {
 
 		msg := "failed to add endpoint to etcd"

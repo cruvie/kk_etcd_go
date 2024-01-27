@@ -163,7 +163,6 @@ func UserGrantRole(stage *kk_stage.Stage, user *kk_etcd_models.PBUser) (res int)
 	for _, role := range user.Roles {
 		_, err := kk_etcd_client.EtcdClient.UserGrantRole(context.Background(), user.UserName, role)
 		if err != nil {
-
 			slog.Error("failed to grant role", kk_stage.NewLog(stage).Error(err).Any("UserName", user.UserName).Args()...)
 			return -3
 		}
