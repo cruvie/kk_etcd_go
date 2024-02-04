@@ -12,9 +12,9 @@ import (
 )
 
 func InitEtcd() {
-	stage := kk_stage.NewStage(nil, kk_func.GetCurrentFunctionName())
+	stage := kk_stage.NewStage(nil, kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
 	config.InitConfig()
-	kk_stage.InitSlog(config.Config.DebugMode, nil, nil)
+	kk_stage.InitSlog(stage.DebugMode, nil, nil)
 	err := kk_etcd.InitEtcd([]string{config.Config.Etcd.Endpoint}, config.Config.Admin.UserName, config.Config.Admin.Password)
 	if err != nil {
 		return

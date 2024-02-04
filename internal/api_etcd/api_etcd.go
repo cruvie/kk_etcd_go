@@ -8,14 +8,10 @@ import (
 	"github.com/cruvie/kk_etcd_go/internal/config"
 	"github.com/cruvie/kk_etcd_go/internal/handler"
 	"github.com/cruvie/kk_etcd_go/internal/utils/middleware"
-	"github.com/gin-gonic/gin"
 )
 
 func ApiEtcd(stage *kk_stage.Stage) {
-	if !config.Config.DebugMode {
-		gin.SetMode(gin.ReleaseMode)
-	}
-	r := gin.Default()
+	r := kk_http.KKGin(stage)
 	r.Use(middleware.Cors())
 
 	//swagger

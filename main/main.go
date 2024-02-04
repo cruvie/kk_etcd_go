@@ -26,11 +26,11 @@ import (
 // @host		localhost:2333
 // @BasePath	/User
 func main() {
-	stage := kk_stage.NewStage(nil, kk_func.GetCurrentFunctionName())
+	stage := kk_stage.NewStage(nil, kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
 
 	config.InitConfig()
 
-	kk_stage.InitSlog(config.Config.DebugMode, nil, nil)
+	kk_stage.InitSlog(stage.DebugMode, nil, nil)
 
 	kk_jwt.InitJwt(config.Config.JWT.Key, time.Duration(config.Config.JWT.ExpireTime)*time.Hour)
 
