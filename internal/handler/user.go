@@ -25,7 +25,7 @@ import (
 //	@Param			pbUser	body	kk_etcd_models.PBUser	true	"Login info"
 //	@Router			/Login [post]
 func Login(c *gin.Context) {
-	stage := kk_stage.NewStage(c, kk_func.GetCurrentFunctionName())
+	stage := kk_stage.NewStage(c, kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
 
 	var pbUser kk_etcd_models.PBUser
 	if err := kk_http.ReadProtoBuf(stage, &pbUser); err != nil {
@@ -59,7 +59,7 @@ func Login(c *gin.Context) {
 //	@Param			pbUser	body	kk_etcd_models.PBUser	true	"Logout info"
 //	@Router			/Logout [post]
 func Logout(c *gin.Context) {
-	stage := kk_stage.NewStage(c, kk_func.GetCurrentFunctionName())
+	stage := kk_stage.NewStage(c, kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
 	var pbUser kk_etcd_models.PBUser
 	if err := kk_http.ReadProtoBuf(stage, &pbUser); err != nil {
 		slog.Info("failed to read proto buf", "err", err)
@@ -84,7 +84,7 @@ func Logout(c *gin.Context) {
 //	@Param			pbUser	body	kk_etcd_models.PBUser	true	"Add user info"
 //	@Router			/UserAdd [post]
 func UserAdd(c *gin.Context) {
-	stage := kk_stage.NewStage(c, kk_func.GetCurrentFunctionName())
+	stage := kk_stage.NewStage(c, kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
 	if !check_user.CheckRootRole(stage) {
 		kk_http.ResponseProtoBuf(c, kk_response.Fail(stage, &kk_response.KKResponse{
 			Msg: "you don't have root role!"}, nil))
@@ -114,7 +114,7 @@ func UserAdd(c *gin.Context) {
 //	@Param			pbUser	body	kk_etcd_models.PBUser	true	"Delete user info"
 //	@Router			/UserDelete [post]
 func UserDelete(c *gin.Context) {
-	stage := kk_stage.NewStage(c, kk_func.GetCurrentFunctionName())
+	stage := kk_stage.NewStage(c, kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
 	if !check_user.CheckRootRole(stage) {
 		kk_http.ResponseProtoBuf(c, kk_response.Fail(stage, &kk_response.KKResponse{
 			Msg: "you don't have root role!"}, nil))
@@ -147,7 +147,7 @@ func UserDelete(c *gin.Context) {
 //	@Param			pbUser	body	kk_etcd_models.PBUser	true	"Get user info"
 //	@Router			/GetUser [post]
 func GetUser(c *gin.Context) {
-	stage := kk_stage.NewStage(c, kk_func.GetCurrentFunctionName())
+	stage := kk_stage.NewStage(c, kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
 	var pbUser kk_etcd_models.PBUser
 	if err := kk_http.ReadProtoBuf(stage, &pbUser); err != nil {
 		slog.Info("failed to read proto buf", "err", err)
@@ -170,7 +170,7 @@ func GetUser(c *gin.Context) {
 //	@Produce		octet-stream
 //	@Router			/MyInfo [post]
 func MyInfo(c *gin.Context) {
-	stage := kk_stage.NewStage(c, kk_func.GetCurrentFunctionName())
+	stage := kk_stage.NewStage(c, kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
 	loginUser := global_model.GetLoginUser(c)
 	user, res := service.GetUser(stage, loginUser.UserName)
 	switch res {
@@ -188,7 +188,7 @@ func MyInfo(c *gin.Context) {
 //	@Produce		octet-stream
 //	@Router			/UserList [post]
 func UserList(c *gin.Context) {
-	stage := kk_stage.NewStage(c, kk_func.GetCurrentFunctionName())
+	stage := kk_stage.NewStage(c, kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
 	res, users := service.UserList(stage)
 	switch res {
 	case 1:
@@ -206,7 +206,7 @@ func UserList(c *gin.Context) {
 //	@Param			PBUser	body	kk_etcd_models.PBUser	true	"Grant role to user info"
 //	@Router			/UserGrantRole [post]
 func UserGrantRole(c *gin.Context) {
-	stage := kk_stage.NewStage(c, kk_func.GetCurrentFunctionName())
+	stage := kk_stage.NewStage(c, kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
 	if !check_user.CheckRootRole(stage) {
 		kk_http.ResponseProtoBuf(c, kk_response.Fail(stage, &kk_response.KKResponse{
 			Msg: "you don't have root role!"}, nil))

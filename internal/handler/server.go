@@ -18,7 +18,7 @@ import (
 //	@Produce		octet-stream
 //	@Router			/ServerList [post]
 func ServerList(c *gin.Context) {
-	stage := kk_stage.NewStage(c, kk_func.GetCurrentFunctionName())
+	stage := kk_stage.NewStage(c, kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
 	var prefix kk_base_proto_type.PBString
 	if err := kk_http.ReadProtoBuf(stage, &prefix); err != nil {
 		kk_http.ResponseProtoBuf(c, kk_response.Fail(stage, nil, nil))

@@ -10,7 +10,7 @@ import (
 )
 
 func Snapshot(backupFileName string) (err error) {
-	stage := kk_stage.NewStage(nil, kk_func.GetCurrentFunctionName())
+	stage := kk_stage.NewStage(nil, kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
 	err = service.Snapshot(stage, backupFileName)
 	if err != nil {
 		return err
@@ -20,7 +20,7 @@ func Snapshot(backupFileName string) (err error) {
 }
 
 func SnapshotDownload(backupFileName string) (err error) {
-	stage := kk_stage.NewStage(nil, kk_func.GetCurrentFunctionName())
+	stage := kk_stage.NewStage(nil, kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
 	_, err = service.SnapshotDownload(stage, backupFileName)
 	if err != nil {
 		return err
@@ -30,7 +30,7 @@ func SnapshotDownload(backupFileName string) (err error) {
 }
 
 func SnapshotRestore(backupFileName string) (err error) {
-	stage := kk_stage.NewStage(nil, kk_func.GetCurrentFunctionName())
+	stage := kk_stage.NewStage(nil, kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
 	// 执行etcdctl命令来恢复etcd数据
 	cmd := exec.Command("etcdctl", "snapshot", "restore", "/path/to/snapshot.db", "--name", "my-etcd")
 	err = cmd.Run()
@@ -50,7 +50,7 @@ func SnapshotRestore(backupFileName string) (err error) {
 }
 
 func SnapshotInfo(backupFileName string) (info string, err error) {
-	stage := kk_stage.NewStage(nil, kk_func.GetCurrentFunctionName())
+	stage := kk_stage.NewStage(nil, kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
 	snapshotInfo, err := service.SnapshotInfo(stage, backupFileName)
 	if err != nil {
 		slog.Error("Failed to get snapshot info", kk_stage.NewLog(stage).Error(err).Args()...)
@@ -60,7 +60,7 @@ func SnapshotInfo(backupFileName string) (info string, err error) {
 }
 
 func AllKVsBackup(backupFileName string) (info string, err error) {
-	stage := kk_stage.NewStage(nil, kk_func.GetCurrentFunctionName())
+	stage := kk_stage.NewStage(nil, kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
 	snapshotInfo, err := service.AllKVsBackup(stage, backupFileName)
 	if err != nil {
 		slog.Error("Failed to get snapshot info", kk_stage.NewLog(stage).Error(err).Args()...)
@@ -69,7 +69,7 @@ func AllKVsBackup(backupFileName string) (info string, err error) {
 	return snapshotInfo, nil
 }
 func AllKVsRestore(backupFileName string) (info string, err error) {
-	stage := kk_stage.NewStage(nil, kk_func.GetCurrentFunctionName())
+	stage := kk_stage.NewStage(nil, kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
 	snapshotInfo, err := service.AllKVsRestore(stage, backupFileName)
 	if err != nil {
 		slog.Error("Failed to get snapshot info", kk_stage.NewLog(stage).Error(err).Args()...)

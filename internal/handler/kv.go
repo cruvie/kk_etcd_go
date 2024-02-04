@@ -23,7 +23,7 @@ import (
 //	@Param			pbKV	body	kk_etcd_models.PBKV	true	"Put config info"
 //	@Router			/KVPut [post]
 func KVPut(c *gin.Context) {
-	stage := kk_stage.NewStage(c, kk_func.GetCurrentFunctionName())
+	stage := kk_stage.NewStage(c, kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
 	if !check_user.CheckWritePermission(stage) {
 		kk_http.ResponseProtoBuf(c, kk_response.Fail(stage, &kk_response.KKResponse{
 			Msg: "you don't have write permission!"}, nil))
@@ -51,7 +51,7 @@ func KVPut(c *gin.Context) {
 //	@Param			pbKV	body	kk_etcd_models.PBKV	true	"Get config info"
 //	@Router			/KVGet [post]
 func KVGet(c *gin.Context) {
-	stage := kk_stage.NewStage(c, kk_func.GetCurrentFunctionName())
+	stage := kk_stage.NewStage(c, kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
 	var pbKV kk_etcd_models.PBKV
 	if err := kk_http.ReadProtoBuf(stage, &pbKV); err != nil {
 		slog.Info("failed to read proto buf", "err", err)
@@ -75,7 +75,7 @@ func KVGet(c *gin.Context) {
 //	@Produce		octet-stream
 //	@Router			/KVList [post]
 func KVList(c *gin.Context) {
-	stage := kk_stage.NewStage(c, kk_func.GetCurrentFunctionName())
+	stage := kk_stage.NewStage(c, kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
 	var prefix kk_base_proto_type.PBString
 	if err := kk_http.ReadProtoBuf(stage, &prefix); err != nil {
 		slog.Info("failed to read proto buf", "err", err)
@@ -99,7 +99,7 @@ func KVList(c *gin.Context) {
 //	@Param			pbKV	body	kk_etcd_models.PBKV	true	"Del config info"
 //	@Router			/KVDel [post]
 func KVDel(c *gin.Context) {
-	stage := kk_stage.NewStage(c, kk_func.GetCurrentFunctionName())
+	stage := kk_stage.NewStage(c, kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
 	if !check_user.CheckWritePermission(stage) {
 		kk_http.ResponseProtoBuf(c, kk_response.Fail(stage, &kk_response.KKResponse{
 			Msg: "you don't have write permission!"}, nil))

@@ -6,13 +6,14 @@ import (
 	"gitee.com/cruvie/kk_go_kit/kk_models/kk_base_proto_type"
 	"gitee.com/cruvie/kk_go_kit/kk_models/kk_response"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
+	"github.com/cruvie/kk_etcd_go/internal/config"
 	"github.com/cruvie/kk_etcd_go/internal/handler/service"
 	"github.com/cruvie/kk_etcd_go/internal/utils/check_user"
 	"github.com/gin-gonic/gin"
 )
 
 func Snapshot(c *gin.Context) {
-	stage := kk_stage.NewStage(c, kk_func.GetCurrentFunctionName())
+	stage := kk_stage.NewStage(c, kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
 
 	err := service.Snapshot(stage, "")
 	switch err {
@@ -25,7 +26,7 @@ func Snapshot(c *gin.Context) {
 
 // todo cmk
 func SnapshotDownload(c *gin.Context) {
-	stage := kk_stage.NewStage(c, kk_func.GetCurrentFunctionName())
+	stage := kk_stage.NewStage(c, kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
 	if !check_user.CheckWritePermission(stage) {
 		kk_http.ResponseProtoBuf(c, kk_response.Fail(stage, &kk_response.KKResponse{
 			Msg: "you don't have write permission!"}, nil))
@@ -45,7 +46,7 @@ func SnapshotDownload(c *gin.Context) {
 	kk_http.ResponseProtoBuf(c, kk_response.Fail(stage, nil, &kk_base_proto_type.PBString{Value: err.Error()}))
 }
 func SnapshotRestore(c *gin.Context) {
-	stage := kk_stage.NewStage(c, kk_func.GetCurrentFunctionName())
+	stage := kk_stage.NewStage(c, kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
 	if !check_user.CheckRootRole(stage) {
 		kk_http.ResponseProtoBuf(c, kk_response.Fail(stage, &kk_response.KKResponse{
 			Msg: "you don't have root role!"}, nil))
@@ -66,7 +67,7 @@ func SnapshotRestore(c *gin.Context) {
 }
 
 func SnapshotInfo(c *gin.Context) {
-	stage := kk_stage.NewStage(c, kk_func.GetCurrentFunctionName())
+	stage := kk_stage.NewStage(c, kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
 
 	var fileName kk_base_proto_type.PBString
 	if err := kk_http.ReadProtoBuf(stage, &fileName); err != nil {
@@ -83,7 +84,7 @@ func SnapshotInfo(c *gin.Context) {
 }
 
 func AllKVsBackup(c *gin.Context) {
-	stage := kk_stage.NewStage(c, kk_func.GetCurrentFunctionName())
+	stage := kk_stage.NewStage(c, kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
 
 	err := service.AllKVsBackup(stage, "")
 	switch err {
@@ -94,7 +95,7 @@ func AllKVsBackup(c *gin.Context) {
 	kk_http.ResponseProtoBuf(c, kk_response.Fail(stage, nil, &kk_base_proto_type.PBString{Value: err.Error()}))
 }
 func AllKVsRestore(c *gin.Context) {
-	stage := kk_stage.NewStage(c, kk_func.GetCurrentFunctionName())
+	stage := kk_stage.NewStage(c, kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
 
 	err := service.AllKVsRestore(stage, "")
 	switch err {

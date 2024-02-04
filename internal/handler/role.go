@@ -22,7 +22,7 @@ import (
 //	@Param			pbRole	body	kk_etcd_models.PBRole	true	"Add role info"
 //	@Router			/RoleAdd [post]
 func RoleAdd(c *gin.Context) {
-	stage := kk_stage.NewStage(c, kk_func.GetCurrentFunctionName())
+	stage := kk_stage.NewStage(c, kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
 	if !check_user.CheckRootRole(stage) {
 		kk_http.ResponseProtoBuf(c, kk_response.Fail(stage, &kk_response.KKResponse{
 			Msg: "you don't have root role!"}, nil))
@@ -50,7 +50,7 @@ func RoleAdd(c *gin.Context) {
 //	@Param			pbRole	body	kk_etcd_models.PBRole	true	"Delete role info"
 //	@Router			/RoleDelete [post]
 func RoleDelete(c *gin.Context) {
-	stage := kk_stage.NewStage(c, kk_func.GetCurrentFunctionName())
+	stage := kk_stage.NewStage(c, kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
 	if !check_user.CheckRootRole(stage) {
 		kk_http.ResponseProtoBuf(c, kk_response.Fail(stage, &kk_response.KKResponse{
 			Msg: "you don't have root role!"}, nil))
@@ -82,7 +82,7 @@ func RoleDelete(c *gin.Context) {
 //	@Produce		octet-stream
 //	@Router			/RoleList [post]
 func RoleList(c *gin.Context) {
-	stage := kk_stage.NewStage(c, kk_func.GetCurrentFunctionName())
+	stage := kk_stage.NewStage(c, kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
 	res, roles := service.RoleList(stage)
 	switch res {
 	case 1:
@@ -100,7 +100,7 @@ func RoleList(c *gin.Context) {
 //	@Param			pbRole	body	kk_etcd_models.PBRole	true	"Get role info"
 //	@Router			/RoleGet [post]
 func RoleGet(c *gin.Context) {
-	stage := kk_stage.NewStage(c, kk_func.GetCurrentFunctionName())
+	stage := kk_stage.NewStage(c, kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
 	var pbRole kk_etcd_models.PBRole
 	if err := kk_http.ReadProtoBuf(stage, &pbRole); err != nil {
 		slog.Info("failed to read protobuf", "err", err)
@@ -124,7 +124,7 @@ func RoleGet(c *gin.Context) {
 //	@Param			pbRole	body	kk_etcd_models.PBRole	true	"Grant permission to role info"
 //	@Router			/RoleGrantPermission [post]
 func RoleGrantPermission(c *gin.Context) {
-	stage := kk_stage.NewStage(c, kk_func.GetCurrentFunctionName())
+	stage := kk_stage.NewStage(c, kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
 	if !check_user.CheckRootRole(stage) {
 		kk_http.ResponseProtoBuf(c, kk_response.Fail(stage, &kk_response.KKResponse{
 			Msg: "you don't have root role!"}, nil))

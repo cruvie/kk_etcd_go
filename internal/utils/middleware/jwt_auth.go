@@ -17,7 +17,7 @@ import (
 
 // JWTAuth jwt auth middleware
 func JWTAuth(c *gin.Context) {
-	stage := kk_stage.NewStage(c, kk_func.GetCurrentFunctionName())
+	stage := kk_stage.NewStage(c, kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
 
 	token := global_model.GetAuthorizationToken(c)
 	if token == "" {

@@ -13,7 +13,7 @@ import (
 
 // ParseHeader parse header middleware
 func ParseHeader(c *gin.Context) {
-	stage := kk_stage.NewStage(c, kk_func.GetCurrentFunctionName())
+	stage := kk_stage.NewStage(c, kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
 
 	var header global_model.RequestHeader
 	// bind header
