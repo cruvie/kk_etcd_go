@@ -26,15 +26,15 @@ import (
 // @host		localhost:2333
 // @BasePath	/User
 func main() {
-	stage := kk_stage.NewStage(nil, kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
-
 	config.InitConfig()
+
+	stage := kk_stage.NewStage(nil, kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
 
 	kk_stage.InitSlog(stage.DebugMode, nil, nil)
 
 	kk_jwt.InitJwt(config.Config.JWT.Key, time.Duration(config.Config.JWT.ExpireTime)*time.Hour)
 
-	err := kk_etcd.InitEtcd([]string{config.Config.Etcd.Endpoint}, config.Config.Admin.UserName, config.Config.Admin.Password)
+	err := kk_etcd.InitEtcd([]string{config.Config.Etcd.Endpoint}, config.Config.Admin.UserName, config.Config.Admin.Password, stage.DebugMode)
 	if err != nil {
 		panic(err)
 	}

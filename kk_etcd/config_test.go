@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-type config struct {
+type configTest struct {
 	ServerAddr string `yaml:"ServerAddr"`
 	Postgres   struct {
 		Dsn string `yaml:"Dsn"`
@@ -19,7 +19,7 @@ type config struct {
 	} `yaml:"MinIO"`
 }
 
-var GlobalConfig config
+var GlobalConfig configTest
 
 func TestGetConfig(t *testing.T) {
 
@@ -31,7 +31,7 @@ func TestGetConfig(t *testing.T) {
 		password = "kk_etcd"
 	)
 
-	err := InitEtcd(endpoints, userName, password)
+	err := InitEtcd(endpoints, userName, password, true)
 	if err != nil {
 		slog.Error("InitEtcd failed", "err", err)
 	}
@@ -48,7 +48,7 @@ func TestSetConfig(t *testing.T) {
 		password  = "kk_etcd"
 	)
 
-	err := InitEtcd(endpoints, userName, password)
+	err := InitEtcd(endpoints, userName, password, true)
 	if err != nil {
 		slog.Error("InitEtcd failed", "err", err)
 	}

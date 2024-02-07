@@ -16,7 +16,6 @@ import (
 
 func Login(stage *kk_stage.Stage, user *kk_etcd_models.PBUser) (tokenString string, res int) {
 	if user.UserName == kk_etcd_const.UserRoot {
-
 		msg := "illegal login root user!"
 		slog.Error(msg, kk_stage.NewLog(stage).Args()...)
 		return "", -1
@@ -29,14 +28,12 @@ func Login(stage *kk_stage.Stage, user *kk_etcd_models.PBUser) (tokenString stri
 	rawPassword := user.Password
 	res, value := KVGet(stage, kk_etcd_const.User+user.UserName)
 	if res != 1 {
-
 		slog.Error("failed to get user kv", kk_stage.NewLog(stage).Any("UserName", user.UserName).Args()...)
 		res = 2
 		return
 	}
 	var userTemp kk_etcd_models.PBUser
 	if err := json.Unmarshal(value, &userTemp); err != nil {
-
 		slog.Error("failed to unmarshal user kv", kk_stage.NewLog(stage).Error(err).Any("UserName", user.UserName).Args()...)
 		return
 	}
@@ -44,7 +41,6 @@ func Login(stage *kk_stage.Stage, user *kk_etcd_models.PBUser) (tokenString stri
 	//validate password
 	equal := kk_crypto.CheckPasswordHash(stage, userTemp.Password, rawPassword)
 	if !equal {
-
 		slog.Error("wrong password", kk_stage.NewLog(stage).Any("UserName", user.UserName).Args()...)
 		res = 4
 		return
@@ -52,8 +48,8 @@ func Login(stage *kk_stage.Stage, user *kk_etcd_models.PBUser) (tokenString stri
 	//generate token
 	tokenString = kk_jwt.GenerateToken[string](stage, userTemp.UserName, 0)
 	//put into etcd
-	res = KVPut(stage, kk_etcd_const.Jwt+userTemp.UserName, tokenString)
-	if res != 1 {
+	err := KVPut(stage, kk_etcd_const.Jwt+userTemp.UserName, tokenString)
+	if err != nil {
 		res = -1
 		return
 	} else {
@@ -87,8 +83,8 @@ func UserAdd(stage *kk_stage.Stage, user *kk_etcd_models.PBUser) (res int) {
 	}
 	jsonStr := string(jsonData)
 	//add user kv to etcd used for user login
-	res = KVPut(stage, kk_etcd_const.User+user.UserName, jsonStr)
-	if res != 1 {
+	err = KVPut(stage, kk_etcd_const.User+user.UserName, jsonStr)
+	if err != nil {
 		return -1
 	}
 	_, err = kk_etcd_client.EtcdClient.UserAdd(context.Background(), user.UserName, user.Password)
@@ -125,7 +121,6 @@ func UserDelete(stage *kk_stage.Stage, userName string, admin bool) (res int) {
 func GetUser(stage *kk_stage.Stage, userName string) (user *kk_etcd_models.PBUser, res int) {
 	rolesResp, err := kk_etcd_client.EtcdClient.UserGet(context.Background(), userName)
 	if err != nil {
-
 		slog.Error("failed to get user", kk_stage.NewLog(stage).Error(err).Any("UserName", userName).Args()...)
 		return nil, -1
 	}
@@ -138,7 +133,6 @@ func GetUser(stage *kk_stage.Stage, userName string) (user *kk_etcd_models.PBUse
 func UserList(stage *kk_stage.Stage) (res int, users *kk_etcd_models.PBListUser) {
 	list, err := kk_etcd_client.EtcdClient.UserList(context.Background())
 	if err != nil {
-
 		slog.Error("failed to get user list", kk_stage.NewLog(stage).Error(err).Args()...)
 		return -1, nil
 	}
@@ -146,7 +140,6 @@ func UserList(stage *kk_stage.Stage) (res int, users *kk_etcd_models.PBListUser)
 	for _, userName := range list.Users {
 		user, res := GetUser(stage, userName)
 		if res != 1 {
-
 			slog.Error("failed to get user", kk_stage.NewLog(stage).Error(err).Any("UserName", userName).Args()...)
 			return -1, nil
 		}

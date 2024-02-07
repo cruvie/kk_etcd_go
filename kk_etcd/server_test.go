@@ -53,7 +53,7 @@ func TestRegisterGrpcService(t *testing.T) {
 	var w sync.WaitGroup
 	w.Add(1)
 	kk_stage.InitSlog(true, nil, nil)
-	err := InitEtcd([]string{"http://127.0.0.1:2379"}, "kk_etcd", "kk_etcd")
+	err := InitEtcd([]string{"http://127.0.0.1:2379"}, "kk_etcd", "kk_etcd", true)
 	if err != nil {
 		return
 	}
@@ -93,7 +93,7 @@ func TestRegisterHttpService(t *testing.T) {
 	var w sync.WaitGroup
 	w.Add(1)
 	kk_stage.InitSlog(true, nil, nil)
-	err := InitEtcd([]string{"http://127.0.0.1:2379"}, "kk_etcd", "kk_etcd")
+	err := InitEtcd([]string{"http://127.0.0.1:2379"}, "kk_etcd", "kk_etcd", true)
 	if err != nil {
 		return
 	}
@@ -116,7 +116,7 @@ func TestRegisterHttpService(t *testing.T) {
 
 func TestGetHttpServiceList(t *testing.T) {
 	kk_stage.InitSlog(true, nil, nil)
-	err := InitEtcd([]string{"http://127.0.0.1:2379"}, "kk_etcd", "kk_etcd")
+	err := InitEtcd([]string{"http://127.0.0.1:2379"}, "kk_etcd", "kk_etcd", true)
 	if err != nil {
 		return
 	}
@@ -128,7 +128,7 @@ func TestGetHttpServiceList(t *testing.T) {
 }
 func TestGetGrpcServiceList(t *testing.T) {
 	kk_stage.InitSlog(true, nil, nil)
-	err := InitEtcd([]string{"http://127.0.0.1:2379"}, "kk_etcd", "kk_etcd")
+	err := InitEtcd([]string{"http://127.0.0.1:2379"}, "kk_etcd", "kk_etcd", true)
 	if err != nil {
 		return
 	}
@@ -141,7 +141,7 @@ func TestGetGrpcServiceList(t *testing.T) {
 
 func TestWatchServerList(t *testing.T) {
 	kk_stage.InitSlog(true, nil, nil)
-	err := InitEtcd([]string{"http://127.0.0.1:2379"}, "kk_etcd", "kk_etcd")
+	err := InitEtcd([]string{"http://127.0.0.1:2379"}, "kk_etcd", "kk_etcd", true)
 	if err != nil {
 		return
 	}

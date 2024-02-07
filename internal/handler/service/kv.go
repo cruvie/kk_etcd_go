@@ -11,14 +11,13 @@ import (
 	"strings"
 )
 
-func KVPut(stage *kk_stage.Stage, key string, value string) (res int) {
-	_, err := kk_etcd_client.EtcdClient.Put(context.Background(), key, value)
+func KVPut(stage *kk_stage.Stage, key string, value string) (err error) {
+	_, err = kk_etcd_client.EtcdClient.Put(context.Background(), key, value)
 	if err != nil {
-
 		slog.Error("failed to put kv", kk_stage.NewLog(stage).Error(err).Any("key", key).Args()...)
-		return -1
+		return err
 	}
-	return 1
+	return nil
 }
 
 func KVGet(stage *kk_stage.Stage, key string) (res int, value []byte) {

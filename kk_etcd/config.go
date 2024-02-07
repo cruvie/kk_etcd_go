@@ -4,6 +4,7 @@ import (
 	"context"
 	"gitee.com/cruvie/kk_go_kit/kk_func"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
+	"github.com/cruvie/kk_etcd_go/internal/config"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_client"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_const"
 	"gopkg.in/yaml.v3"
@@ -33,13 +34,13 @@ func GetConfig(configKey string, configStruct any) error {
 }
 
 // SetConfig set config to etcd
-func SetConfig(configKey string, config string) error {
+func SetConfig(configKey string, configValue string) error {
 	stage := kk_stage.NewStage(nil, kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
 
-	_, err := kk_etcd_client.EtcdClient.Put(context.Background(), kk_etcd_const.Config+configKey, config)
+	_, err := kk_etcd_client.EtcdClient.Put(context.Background(), kk_etcd_const.Config+configKey, configValue)
 	if err != nil {
 		slog.Error("failed to put config", kk_stage.NewLog(stage).Error(err).
-			Any("config", config).Args()...)
+			Any("config", configValue).Args()...)
 		return err
 	}
 	return nil
