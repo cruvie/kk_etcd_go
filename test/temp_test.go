@@ -21,7 +21,7 @@ func InitEtcd() {
 	}
 	_, list := service.KVList(stage, "")
 	for _, pbKV := range list.ListKV {
-		service.KVPut(stage, kk_etcd_const.Config+pbKV.Key, pbKV.Value)
+		_ = service.KVPut(stage, kk_etcd_const.Config+pbKV.Key, pbKV.Value)
 	}
 }
 
