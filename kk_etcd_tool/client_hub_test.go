@@ -37,7 +37,7 @@ func GetGrpcClient(stage *kk_stage.Stage) (RPCClient, error) {
 }
 
 func TestName(t *testing.T) {
-	stage := kk_stage.NewStage(nil, "", true)
+	stage := kk_stage.NewStage(context.Background(), "", true)
 	InitGrpcClient(stage)
 	client, err := GetGrpcClient(stage)
 	if err != nil {

@@ -14,7 +14,7 @@ import (
 // GetConfig get config from etcd and unmarshal to configStruct
 // eg: GetConfig("go_rec_dev", &config.Config)
 func GetConfig(configKey string, configStruct any) error {
-	stage := kk_stage.NewStage(nil, kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
+	stage := kk_stage.NewStage(context.Background(), kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
 	getResponse, err := kk_etcd_client.EtcdClient.Get(context.Background(), kk_etcd_const.Config+configKey)
 	if err != nil {
 		slog.Error("failed to get config", kk_stage.NewLog(stage).Error(err).
@@ -35,7 +35,7 @@ func GetConfig(configKey string, configStruct any) error {
 
 // SetConfig set config to etcd
 func SetConfig(configKey string, configValue string) error {
-	stage := kk_stage.NewStage(nil, kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
+	stage := kk_stage.NewStage(context.Background(), kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
 
 	_, err := kk_etcd_client.EtcdClient.Put(context.Background(), kk_etcd_const.Config+configKey, configValue)
 	if err != nil {

@@ -1,6 +1,7 @@
 package kk_etcd
 
 import (
+	"context"
 	"gitee.com/cruvie/kk_go_kit/kk_func"
 	"gitee.com/cruvie/kk_go_kit/kk_models/kk_pb_type"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
@@ -9,7 +10,7 @@ import (
 )
 
 func Snapshot() (pBFile *kk_pb_type.PBFile, err error) {
-	stage := kk_stage.NewStage(nil, kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
+	stage := kk_stage.NewStage(context.Background(), kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
 	pBFile, err = service.Snapshot(stage)
 	if err != nil {
 		return nil, err
@@ -19,13 +20,13 @@ func Snapshot() (pBFile *kk_pb_type.PBFile, err error) {
 }
 
 func SnapshotRestore() (cmdStr string, err error) {
-	stage := kk_stage.NewStage(nil, kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
+	stage := kk_stage.NewStage(context.Background(), kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
 
 	return service.SnapshotRestore(stage)
 }
 
 func SnapshotInfo(fileByte []byte) (info string, err error) {
-	stage := kk_stage.NewStage(nil, kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
+	stage := kk_stage.NewStage(context.Background(), kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
 
 	snapshotInfo, err := service.SnapshotInfo(stage, &kk_pb_type.PBFile{
 		Name:  "",
@@ -38,13 +39,13 @@ func SnapshotInfo(fileByte []byte) (info string, err error) {
 }
 
 func AllKVsBackup() (pbFile *kk_pb_type.PBFile, err error) {
-	stage := kk_stage.NewStage(nil, kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
+	stage := kk_stage.NewStage(context.Background(), kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
 	return service.AllKVsBackup(stage)
 }
 
 // AllKVsRestore will overwrite exist kv
 func AllKVsRestore(jsonBytes []byte) (err error) {
-	stage := kk_stage.NewStage(nil, kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
+	stage := kk_stage.NewStage(context.Background(), kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
 	pbFile := kk_pb_type.PBFile{
 		Bytes: jsonBytes,
 	}

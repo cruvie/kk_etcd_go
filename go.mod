@@ -3,8 +3,8 @@ module github.com/cruvie/kk_etcd_go
 go 1.22.0
 
 require (
-	gitee.com/cruvie/kk_go_kit v0.0.0-20240323155933-e19fa8736238
-	github.com/gin-contrib/cors v1.7.0
+	gitee.com/cruvie/kk_go_kit v0.0.0-20240324153930-c44bde4db961
+	github.com/gin-contrib/cors v1.7.1
 	github.com/gin-gonic/gin v1.9.1
 	github.com/swaggo/swag v1.16.3
 	go.etcd.io/etcd/api/v3 v3.5.12

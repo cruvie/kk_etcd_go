@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"gitee.com/cruvie/kk_go_kit/kk_func"
 	"gitee.com/cruvie/kk_go_kit/kk_jwt"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
@@ -28,7 +29,7 @@ import (
 func main() {
 	config.InitConfig()
 
-	stage := kk_stage.NewStage(nil, kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
+	stage := kk_stage.NewStage(context.Background(), kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
 
 	kk_stage.InitSlog(stage.DebugMode, nil, nil)
 

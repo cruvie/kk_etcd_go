@@ -14,7 +14,7 @@ import (
 
 // RegisterService register service to etcd
 func RegisterService(registration *kk_etcd_models.ServiceRegistration) error {
-	stage := kk_stage.NewStage(nil, kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
+	stage := kk_stage.NewStage(context.Background(), kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
 	err := service.RegisterService(stage, registration)
 	return err
 }
@@ -23,14 +23,14 @@ func RegisterService(registration *kk_etcd_models.ServiceRegistration) error {
 // serviceName, should with prefix key_prefix.ServiceGrpc or key_prefix.ServiceHttp
 // only give prefix to get all service list
 func ServerList(serviceName string) (serverList *kk_etcd_models.PBListServer, err error) {
-	stage := kk_stage.NewStage(nil, kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
+	stage := kk_stage.NewStage(context.Background(), kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
 	_, servers, err := service.ServerList(stage, serviceName)
 	return servers, err
 }
 
 // WatchServerList watch server list change
 func WatchServerList(ctx context.Context, serviceName string, serverListChan chan *kk_etcd_models.PBListServer) (err error) {
-	stage := kk_stage.NewStage(nil, kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
+	stage := kk_stage.NewStage(context.Background(), kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
 	etcdManager, err := endpoints.NewManager(kk_etcd_client.EtcdClient, serviceName)
 
 	if err != nil {

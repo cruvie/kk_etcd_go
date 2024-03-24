@@ -26,7 +26,15 @@ func JWTAuth(c *gin.Context) {
 		c.Abort()
 		return
 	}
-	myClaims := kk_jwt.VerifyToken[string](stage, token)
+	myClaims, err := kk_jwt.VerifyToken[string](token)
+	if err != nil {
+		slog.Error("fail to verify user from etcd")
+		kk_http.ResponseProtoBuf(c, kk_http.Fail(stage, &kk_pb_type.PBResponse{
+			Code: http.StatusUnauthorized,
+			Msg:  "LogIn again"}, nil))
+		c.Abort()
+		return
+	}
 	//get user from etcd
 	user, res := service.GetUser(stage, myClaims.UserId)
 	if res != 1 {

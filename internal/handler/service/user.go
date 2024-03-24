@@ -46,9 +46,13 @@ func Login(stage *kk_stage.Stage, user *kk_etcd_models.PBUser) (tokenString stri
 		return
 	}
 	//generate token
-	tokenString = kk_jwt.GenerateToken[string](stage, userTemp.UserName, 0)
+	tokenString, err := kk_jwt.GenerateToken[string](userTemp.UserName, 0)
+	if err != nil {
+		res = -1
+		return
+	}
 	//put into etcd
-	err := KVPut(stage, kk_etcd_const.Jwt+userTemp.UserName, tokenString)
+	err = KVPut(stage, kk_etcd_const.Jwt+userTemp.UserName, tokenString)
 	if err != nil {
 		res = -1
 		return

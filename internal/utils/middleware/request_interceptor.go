@@ -13,7 +13,7 @@ func RequestInterceptor(stage *kk_stage.Stage) func(c *gin.Context) {
 	return func(c *gin.Context) {
 		//打印请求url
 		//slog.Info("请求url", c.Request.URL.Path)
-		stage := kk_stage.NewStage(c, name, stage.DebugMode)
+		stage := kk_stage.NewStage(c.Request.Context(), name, stage.DebugMode).SetGinCtx(c)
 		global_model.SetRequestStage(stage)
 
 		c.Next()
