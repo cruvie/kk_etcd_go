@@ -1,0 +1,39 @@
+syntax = "proto3";
+package kk_etcd_models;
+option go_package = "./;kk_etcd_models";
+import "pb_kv.proto";
+
+// protoc -I=. --go_out=./ *.proto
+
+
+// protoc -I=. --dart_out=../../lib/kk_etcd_models *.proto google/protobuf/timestamp.proto
+
+
+message KVPutParam {
+  string  Key = 1;
+  string  Value = 2;
+}
+message KVPutResponse {
+
+}
+
+message KVGetParam {
+  string  Key = 1;
+}
+message KVGetResponse {
+  PBKV KV = 1;
+}
+
+message KVListParam {
+  string  Prefix = 1;
+}
+message KVListResponse {
+  PBListKV KVList = 1;
+}
+
+message KVDelParam {
+  string  Key = 1;
+}
+message KVDelResponse {
+
+}

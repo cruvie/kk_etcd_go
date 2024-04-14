@@ -51,13 +51,14 @@ func ApiEtcd(stage *kk_stage.Stage) {
 	{
 		serverAPI.POST(kk_func.GetFunctionName(handler.ServerList), handler.ServerList)
 	}
-	managerAPI := r.Group("Backup")
+
 	{
-		managerAPI.POST(kk_func.GetFunctionName(handler.Snapshot), handler.Snapshot)
-		managerAPI.POST(kk_func.GetFunctionName(handler.SnapshotRestore), handler.SnapshotRestore)
-		managerAPI.POST(kk_func.GetFunctionName(handler.SnapshotInfo), handler.SnapshotInfo)
-		managerAPI.POST(kk_func.GetFunctionName(handler.AllKVsBackup), handler.AllKVsBackup)
-		managerAPI.POST(kk_func.GetFunctionName(handler.AllKVsRestore), handler.AllKVsRestore)
+		manageAPI := r.Group("Backup")
+		manageAPI.POST(kk_func.GetFunctionName(handler.Snapshot), handler.Snapshot)
+		manageAPI.POST(kk_func.GetFunctionName(handler.SnapshotRestore), handler.SnapshotRestore)
+		manageAPI.POST(kk_func.GetFunctionName(handler.SnapshotInfo), handler.SnapshotInfo)
+		manageAPI.POST(kk_func.GetFunctionName(handler.AllKVsBackup), handler.AllKVsBackup)
+		manageAPI.POST(kk_func.GetFunctionName(handler.AllKVsRestore), handler.AllKVsRestore)
 	}
 
 	kk_http.ServerWithGracefulShutdown(stage, r, config.Config.ServerAddr)

@@ -1,0 +1,45 @@
+syntax = "proto3";
+package kk_etcd_models;
+option go_package = "./;kk_etcd_models";
+import "pb_role.proto";
+
+// protoc -I=. --go_out=./ *.proto
+
+
+// protoc -I=. --dart_out=../../lib/kk_etcd_models *.proto google/protobuf/timestamp.proto
+
+
+message RoleAddParam {
+  string  Name = 1;
+}
+message RoleAddResponse {
+
+}
+
+message RoleDeleteParam {
+  string  Name = 1;
+}
+message RoleDeleteResponse {
+
+}
+
+message RoleListParam {
+
+}
+message RoleListResponse {
+  PBListRole ListRole = 1;
+}
+
+message RoleGetParam {
+  string  Name = 1;
+}
+message RoleGetResponse {
+  PBRole Role = 1;
+}
+
+message RoleGrantPermissionParam {
+  PBRole  Role = 1;
+}
+message RoleGrantPermissionResponse {
+
+}

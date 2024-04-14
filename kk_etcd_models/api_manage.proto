@@ -1,0 +1,45 @@
+syntax = "proto3";
+package kk_etcd_models;
+option go_package = "./;kk_etcd_models";
+
+// protoc -I=. --go_out=./ *.proto
+
+
+// protoc -I=. --dart_out=../../lib/kk_etcd_models *.proto google/protobuf/timestamp.proto
+
+
+message SnapshotParam {
+}
+message SnapshotResponse {
+  string  Name = 1;
+  bytes File = 2;
+}
+
+message SnapshotRestoreParam {
+
+}
+message SnapshotRestoreResponse {
+  string  CmdStr = 1;
+}
+
+message SnapshotInfoParam {
+  bytes File = 2;
+}
+message SnapshotInfoResponse {
+  string  Info = 1;
+}
+
+message AllKVsBackupParam {
+
+}
+message AllKVsBackupResponse {
+  string  Name = 1;
+  bytes File = 2;
+}
+
+message AllKVsRestoreParam {
+  bytes File = 2;
+}
+message AllKVsRestoreResponse {
+
+}

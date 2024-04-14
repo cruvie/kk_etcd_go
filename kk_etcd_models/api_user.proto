@@ -1,0 +1,69 @@
+syntax = "proto3";
+package kk_etcd_models;
+option go_package = "./;kk_etcd_models";
+import "pb_user.proto";
+
+// protoc -I=. --go_out=./ *.proto
+
+
+// protoc -I=. --dart_out=../../lib/kk_etcd_models *.proto google/protobuf/timestamp.proto
+
+
+message LoginParam {
+  string   UserName = 1;
+  string  Password = 2;
+}
+message LoginResponse {
+  string  Token = 1;
+}
+
+message LogoutParam {
+}
+message LogoutResponse {
+
+}
+
+message UserAddParam {
+  string  UserName = 2;
+  string  Password = 3;
+  repeated  string  Roles = 4;
+}
+message UserAddResponse {
+
+}
+
+message UserDeleteParam {
+  string UserName = 1;
+}
+message UserDeleteResponse {
+
+}
+
+message GetUserParam {
+  string UserName = 1;
+}
+message GetUserResponse {
+
+}
+
+message MyInfoParam {
+
+}
+message MyInfoResponse {
+  string  UserName = 2;
+  repeated  string  Roles = 4;
+}
+
+message UserListParam {
+}
+message UserListResponse {
+  PBListUser ListUser = 1;
+}
+
+message UserGrantRoleParam {
+  string  UserName = 2;
+  repeated  string  Roles = 4;
+}
+message UserGrantRoleResponse {
+
+}
