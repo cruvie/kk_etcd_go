@@ -1,6 +1,6 @@
 //
 //  Generated code. Do not modify.
-//  source: api_role.proto
+//  source: api_role_kk_etcd.proto
 //
 // @dart = 2.12
 
