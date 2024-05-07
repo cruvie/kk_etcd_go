@@ -72,6 +72,7 @@ func (t *serverFunc) registerServer(stage *kk_stage.Stage, registration *kk_etcd
 				}
 				if ok := t.checkHealth(stage, registration); ok {
 					failCount = 0
+					continue
 				} else {
 					failCount++
 				}
