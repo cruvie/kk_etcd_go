@@ -8,7 +8,6 @@ import (
 	"github.com/cruvie/kk_etcd_go/internal/config"
 	"github.com/cruvie/kk_etcd_go/internal/handler/service"
 	"github.com/cruvie/kk_etcd_go/kk_etcd"
-	"github.com/cruvie/kk_etcd_go/kk_etcd_const"
 	"testing"
 )
 
@@ -22,7 +21,7 @@ func InitEtcd() {
 	}
 	_, list := service.KVList(stage, "")
 	for _, pbKV := range list.ListKV {
-		_ = service.KVPut(stage, kk_etcd_const.Config+pbKV.Key, pbKV.Value)
+		_ = service.KVPut(stage, pbKV.Key, pbKV.Value)
 	}
 }
 

@@ -5,19 +5,18 @@ import (
 	"encoding/json"
 	"errors"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_client"
-	"github.com/cruvie/kk_etcd_go/kk_etcd_const"
 	"gopkg.in/yaml.v3"
 )
 
 // GetYaml get yaml from etcd and unmarshal to structPtr
 // eg: GetYaml("configKey", &Config)
 func GetYaml(key string, structPtr any) error {
-	getResponse, err := kk_etcd_client.EtcdClient.Get(context.Background(), kk_etcd_const.Config+key)
+	getResponse, err := kk_etcd_client.EtcdClient.Get(context.Background(), key)
 	if err != nil {
 		return err
 	}
 	if len(getResponse.Kvs) == 0 {
-		return errors.New("get value is empty")
+		return ErrKeyNotFound
 	}
 	err = yaml.Unmarshal(getResponse.Kvs[0].Value, structPtr)
 	if err != nil {
@@ -26,29 +25,35 @@ func GetYaml(key string, structPtr any) error {
 	return nil
 }
 
-// PutYaml put struct to etcd in yaml format
+// PutYaml put struct to etcd in yaml format, key should not exist
 // recommend: use PutJson instead which is more efficient
 func PutYaml(key string, structPtr any) error {
-	value, err := yaml.Marshal(structPtr)
-	if err != nil {
+	err := CheckKeyExist(key)
+	if !errors.Is(err, ErrKeyNotFound) {
 		return err
 	}
-	_, err = kk_etcd_client.EtcdClient.Put(context.Background(), kk_etcd_const.Config+key, string(value))
-	if err != nil {
+
+	return putYaml(key, structPtr)
+}
+
+// UpdateYaml update struct in etcd, key should exist
+func UpdateYaml(key string, structPtr any) error {
+	err := CheckKeyExist(key)
+	if !errors.Is(err, ErrKeyAlreadyExists) {
 		return err
 	}
-	return nil
+	return putYaml(key, structPtr)
 }
 
 // GetJson get json from etcd and unmarshal to structPtr
 // eg: GetJson("configKey", &Config)
 func GetJson(key string, structPtr any) error {
-	getResponse, err := kk_etcd_client.EtcdClient.Get(context.Background(), kk_etcd_const.Config+key)
+	getResponse, err := kk_etcd_client.EtcdClient.Get(context.Background(), key)
 	if err != nil {
 		return err
 	}
 	if len(getResponse.Kvs) == 0 {
-		return errors.New("get value is empty")
+		return ErrKeyNotFound
 	}
 	err = json.Unmarshal(getResponse.Kvs[0].Value, structPtr)
 	if err != nil {
@@ -57,15 +62,20 @@ func GetJson(key string, structPtr any) error {
 	return nil
 }
 
-// PutJson put struct to etcd in json format
+// PutJson put struct to etcd in json format, key should not exist
 func PutJson(key string, structPtr any) error {
-	value, err := json.Marshal(structPtr)
-	if err != nil {
+	err := CheckKeyExist(key)
+	if !errors.Is(err, ErrKeyNotFound) {
 		return err
 	}
-	_, err = kk_etcd_client.EtcdClient.Put(context.Background(), kk_etcd_const.Config+key, string(value))
-	if err != nil {
+	return putJson(key, structPtr)
+}
+
+// UpdateJson update struct in etcd, key should exist
+func UpdateJson(key string, structPtr any) error {
+	err := CheckKeyExist(key)
+	if !errors.Is(err, ErrKeyAlreadyExists) {
 		return err
 	}
-	return nil
+	return putJson(key, structPtr)
 }

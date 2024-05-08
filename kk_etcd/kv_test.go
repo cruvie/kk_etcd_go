@@ -145,7 +145,7 @@ func TestGetJson(t *testing.T) {
 	if err != nil {
 		slog.Error("InitEtcd failed", "err", err)
 	}
-	err = GetJson("my_config_json", &GlobalConfig)
+	err = GetJson("my_config_json111", &GlobalConfig)
 	if err != nil {
 		slog.Error("GetYaml failed", "err", err)
 	}
