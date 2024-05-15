@@ -22,7 +22,7 @@ func ParseHeader(c *gin.Context) {
 		return
 	} else {
 		// store header to gin context
-		global_model.SetRequestHeader(c, header)
+		global_model.SetRequestHeader(stage, header)
 	}
 
 	c.Next()

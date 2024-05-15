@@ -22,6 +22,12 @@ message RoleDeleteParam {
 message RoleDeleteResponse {
 
 }
+message RoleGetParam {
+  string  Name = 1;
+}
+message RoleGetResponse {
+  PBRole Role = 1;
+}
 
 message RoleListParam {
 
@@ -30,12 +36,6 @@ message RoleListResponse {
   PBListRole ListRole = 1;
 }
 
-message RoleGetParam {
-  string  Name = 1;
-}
-message RoleGetResponse {
-  PBRole Role = 1;
-}
 
 message RoleGrantPermissionParam {
   PBRole  Role = 1;

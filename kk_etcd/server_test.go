@@ -43,7 +43,7 @@ func TestStartGrpcServer(t *testing.T) {
 	grpcServer := grpc.NewServer()
 	defer grpcServer.Stop()
 	grpc_health_v1.RegisterHealthServer(grpcServer, &server{})
-	slog.Info("grpc_rec listening at ", listener.Addr())
+	slog.Info("grpc_rec listening at", kk_stage.NewLog(nil).Any("addr", listener.Addr()).Args()...)
 	if err := grpcServer.Serve(listener); err != nil {
 		slog.Error("failed to serve", "err", err)
 	}
@@ -52,12 +52,7 @@ func TestRegisterGrpcService(t *testing.T) {
 	// run TestStartGrpcServer first
 	var w sync.WaitGroup
 	w.Add(1)
-	kk_stage.InitSlog(true, nil, nil)
-	err := InitEtcd([]string{"http://127.0.0.1:2379"}, "kk_etcd", "kk_etcd", true)
-	if err != nil {
-		return
-	}
-
+	initTestEnv()
 	//register grpc service
 	ctx, cancelFunc := context.WithCancel(context.Background())
 	defer cancelFunc()
@@ -92,11 +87,7 @@ func TestRegisterHttpService(t *testing.T) {
 	// run TestStartHttpServer first
 	var w sync.WaitGroup
 	w.Add(1)
-	kk_stage.InitSlog(true, nil, nil)
-	err := InitEtcd([]string{"http://127.0.0.1:2379"}, "kk_etcd", "kk_etcd", true)
-	if err != nil {
-		return
-	}
+	initTestEnv()
 
 	ctx, cancelFunc := context.WithCancel(context.Background())
 	_ = RegisterService(&kk_etcd_models.ServiceRegistration{
@@ -115,11 +106,7 @@ func TestRegisterHttpService(t *testing.T) {
 }
 
 func TestGetHttpServiceList(t *testing.T) {
-	kk_stage.InitSlog(true, nil, nil)
-	err := InitEtcd([]string{"http://127.0.0.1:2379"}, "kk_etcd", "kk_etcd", true)
-	if err != nil {
-		return
-	}
+	initTestEnv()
 	for i := 0; i < 100; i++ {
 		list, _ := ServerList(kk_etcd_const.ServiceHttp)
 		slog.Info("list", "list", list)
@@ -127,11 +114,7 @@ func TestGetHttpServiceList(t *testing.T) {
 	}
 }
 func TestGetGrpcServiceList(t *testing.T) {
-	kk_stage.InitSlog(true, nil, nil)
-	err := InitEtcd([]string{"http://127.0.0.1:2379"}, "kk_etcd", "kk_etcd", true)
-	if err != nil {
-		return
-	}
+	initTestEnv()
 	for i := 0; i < 100; i++ {
 		list, _ := ServerList(kk_etcd_const.ServiceGrpc)
 		slog.Info("list", "list", list)
@@ -140,17 +123,13 @@ func TestGetGrpcServiceList(t *testing.T) {
 }
 
 func TestWatchServerList(t *testing.T) {
-	kk_stage.InitSlog(true, nil, nil)
-	err := InitEtcd([]string{"http://127.0.0.1:2379"}, "kk_etcd", "kk_etcd", true)
-	if err != nil {
-		return
-	}
+	initTestEnv()
 	serverListChan := make(chan *kk_etcd_models.PBListServer)
 	defer close(serverListChan)
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
-	err = WatchServerList(ctx, kk_etcd_const.ServiceHttp, serverListChan)
+	err := WatchServerList(ctx, kk_etcd_const.ServiceHttp, serverListChan)
 	if err != nil {
 		slog.Error("WatchServerList failed", "err", err)
 		return

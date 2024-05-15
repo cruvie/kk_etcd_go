@@ -95,7 +95,7 @@ func (c *ClientHub[T]) refreshClients(stage *kk_stage.Stage, serverList *kk_etcd
 	c.clients = make([]*T, 0)
 	for _, server := range serverList.ListServer {
 		// Set up a connection to the server_grpc_im_msg.
-		grpcConn, err := grpc.Dial(server.ServiceAddr,
+		grpcConn, err := grpc.NewClient(server.ServiceAddr,
 			grpc.WithTransportCredentials(insecure.NewCredentials()),
 			grpc.WithStatsHandler(otelgrpc.NewClientHandler()),
 		)

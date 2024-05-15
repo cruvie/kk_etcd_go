@@ -207,6 +207,91 @@ func (x *KVGetResponse) GetKV() *PBKV {
 	return nil
 }
 
+type KVDelParam struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Key string `protobuf:"bytes,1,opt,name=Key,proto3" json:"Key,omitempty"`
+}
+
+func (x *KVDelParam) Reset() {
+	*x = KVDelParam{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_api_kv_kk_etcd_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *KVDelParam) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*KVDelParam) ProtoMessage() {}
+
+func (x *KVDelParam) ProtoReflect() protoreflect.Message {
+	mi := &file_api_kv_kk_etcd_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use KVDelParam.ProtoReflect.Descriptor instead.
+func (*KVDelParam) Descriptor() ([]byte, []int) {
+	return file_api_kv_kk_etcd_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *KVDelParam) GetKey() string {
+	if x != nil {
+		return x.Key
+	}
+	return ""
+}
+
+type KVDelResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *KVDelResponse) Reset() {
+	*x = KVDelResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_api_kv_kk_etcd_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *KVDelResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*KVDelResponse) ProtoMessage() {}
+
+func (x *KVDelResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_api_kv_kk_etcd_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use KVDelResponse.ProtoReflect.Descriptor instead.
+func (*KVDelResponse) Descriptor() ([]byte, []int) {
+	return file_api_kv_kk_etcd_proto_rawDescGZIP(), []int{5}
+}
+
 type KVListParam struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -218,7 +303,7 @@ type KVListParam struct {
 func (x *KVListParam) Reset() {
 	*x = KVListParam{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_kv_kk_etcd_proto_msgTypes[4]
+		mi := &file_api_kv_kk_etcd_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -231,7 +316,7 @@ func (x *KVListParam) String() string {
 func (*KVListParam) ProtoMessage() {}
 
 func (x *KVListParam) ProtoReflect() protoreflect.Message {
-	mi := &file_api_kv_kk_etcd_proto_msgTypes[4]
+	mi := &file_api_kv_kk_etcd_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -244,7 +329,7 @@ func (x *KVListParam) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use KVListParam.ProtoReflect.Descriptor instead.
 func (*KVListParam) Descriptor() ([]byte, []int) {
-	return file_api_kv_kk_etcd_proto_rawDescGZIP(), []int{4}
+	return file_api_kv_kk_etcd_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *KVListParam) GetPrefix() string {
@@ -265,7 +350,7 @@ type KVListResponse struct {
 func (x *KVListResponse) Reset() {
 	*x = KVListResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_kv_kk_etcd_proto_msgTypes[5]
+		mi := &file_api_kv_kk_etcd_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -278,7 +363,7 @@ func (x *KVListResponse) String() string {
 func (*KVListResponse) ProtoMessage() {}
 
 func (x *KVListResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_kv_kk_etcd_proto_msgTypes[5]
+	mi := &file_api_kv_kk_etcd_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -291,7 +376,7 @@ func (x *KVListResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use KVListResponse.ProtoReflect.Descriptor instead.
 func (*KVListResponse) Descriptor() ([]byte, []int) {
-	return file_api_kv_kk_etcd_proto_rawDescGZIP(), []int{5}
+	return file_api_kv_kk_etcd_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *KVListResponse) GetKVList() *PBListKV {
@@ -299,91 +384,6 @@ func (x *KVListResponse) GetKVList() *PBListKV {
 		return x.KVList
 	}
 	return nil
-}
-
-type KVDelParam struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	Key string `protobuf:"bytes,1,opt,name=Key,proto3" json:"Key,omitempty"`
-}
-
-func (x *KVDelParam) Reset() {
-	*x = KVDelParam{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_api_kv_kk_etcd_proto_msgTypes[6]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *KVDelParam) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*KVDelParam) ProtoMessage() {}
-
-func (x *KVDelParam) ProtoReflect() protoreflect.Message {
-	mi := &file_api_kv_kk_etcd_proto_msgTypes[6]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use KVDelParam.ProtoReflect.Descriptor instead.
-func (*KVDelParam) Descriptor() ([]byte, []int) {
-	return file_api_kv_kk_etcd_proto_rawDescGZIP(), []int{6}
-}
-
-func (x *KVDelParam) GetKey() string {
-	if x != nil {
-		return x.Key
-	}
-	return ""
-}
-
-type KVDelResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-}
-
-func (x *KVDelResponse) Reset() {
-	*x = KVDelResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_api_kv_kk_etcd_proto_msgTypes[7]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *KVDelResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*KVDelResponse) ProtoMessage() {}
-
-func (x *KVDelResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_kv_kk_etcd_proto_msgTypes[7]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use KVDelResponse.ProtoReflect.Descriptor instead.
-func (*KVDelResponse) Descriptor() ([]byte, []int) {
-	return file_api_kv_kk_etcd_proto_rawDescGZIP(), []int{7}
 }
 
 var File_api_kv_kk_etcd_proto protoreflect.FileDescriptor
@@ -402,16 +402,16 @@ var file_api_kv_kk_etcd_proto_rawDesc = []byte{
 	0x47, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x24, 0x0a, 0x02, 0x4b,
 	0x56, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x14, 0x2e, 0x6b, 0x6b, 0x5f, 0x65, 0x74, 0x63,
 	0x64, 0x5f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x73, 0x2e, 0x50, 0x42, 0x4b, 0x56, 0x52, 0x02, 0x4b,
-	0x56, 0x22, 0x25, 0x0a, 0x0b, 0x4b, 0x56, 0x4c, 0x69, 0x73, 0x74, 0x50, 0x61, 0x72, 0x61, 0x6d,
-	0x12, 0x16, 0x0a, 0x06, 0x50, 0x72, 0x65, 0x66, 0x69, 0x78, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
-	0x52, 0x06, 0x50, 0x72, 0x65, 0x66, 0x69, 0x78, 0x22, 0x42, 0x0a, 0x0e, 0x4b, 0x56, 0x4c, 0x69,
-	0x73, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x30, 0x0a, 0x06, 0x4b, 0x56,
-	0x4c, 0x69, 0x73, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x18, 0x2e, 0x6b, 0x6b, 0x5f,
-	0x65, 0x74, 0x63, 0x64, 0x5f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x73, 0x2e, 0x50, 0x42, 0x4c, 0x69,
-	0x73, 0x74, 0x4b, 0x56, 0x52, 0x06, 0x4b, 0x56, 0x4c, 0x69, 0x73, 0x74, 0x22, 0x1e, 0x0a, 0x0a,
-	0x4b, 0x56, 0x44, 0x65, 0x6c, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x12, 0x10, 0x0a, 0x03, 0x4b, 0x65,
-	0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x4b, 0x65, 0x79, 0x22, 0x0f, 0x0a, 0x0d,
-	0x4b, 0x56, 0x44, 0x65, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x13, 0x5a,
+	0x56, 0x22, 0x1e, 0x0a, 0x0a, 0x4b, 0x56, 0x44, 0x65, 0x6c, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x12,
+	0x10, 0x0a, 0x03, 0x4b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x4b, 0x65,
+	0x79, 0x22, 0x0f, 0x0a, 0x0d, 0x4b, 0x56, 0x44, 0x65, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x22, 0x25, 0x0a, 0x0b, 0x4b, 0x56, 0x4c, 0x69, 0x73, 0x74, 0x50, 0x61, 0x72, 0x61,
+	0x6d, 0x12, 0x16, 0x0a, 0x06, 0x50, 0x72, 0x65, 0x66, 0x69, 0x78, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x06, 0x50, 0x72, 0x65, 0x66, 0x69, 0x78, 0x22, 0x42, 0x0a, 0x0e, 0x4b, 0x56, 0x4c,
+	0x69, 0x73, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x30, 0x0a, 0x06, 0x4b,
+	0x56, 0x4c, 0x69, 0x73, 0x74, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x18, 0x2e, 0x6b, 0x6b,
+	0x5f, 0x65, 0x74, 0x63, 0x64, 0x5f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x73, 0x2e, 0x50, 0x42, 0x4c,
+	0x69, 0x73, 0x74, 0x4b, 0x56, 0x52, 0x06, 0x4b, 0x56, 0x4c, 0x69, 0x73, 0x74, 0x42, 0x13, 0x5a,
 	0x11, 0x2e, 0x2f, 0x3b, 0x6b, 0x6b, 0x5f, 0x65, 0x74, 0x63, 0x64, 0x5f, 0x6d, 0x6f, 0x64, 0x65,
 	0x6c, 0x73, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
@@ -434,10 +434,10 @@ var file_api_kv_kk_etcd_proto_goTypes = []interface{}{
 	(*KVPutResponse)(nil),  // 1: kk_etcd_models.KVPutResponse
 	(*KVGetParam)(nil),     // 2: kk_etcd_models.KVGetParam
 	(*KVGetResponse)(nil),  // 3: kk_etcd_models.KVGetResponse
-	(*KVListParam)(nil),    // 4: kk_etcd_models.KVListParam
-	(*KVListResponse)(nil), // 5: kk_etcd_models.KVListResponse
-	(*KVDelParam)(nil),     // 6: kk_etcd_models.KVDelParam
-	(*KVDelResponse)(nil),  // 7: kk_etcd_models.KVDelResponse
+	(*KVDelParam)(nil),     // 4: kk_etcd_models.KVDelParam
+	(*KVDelResponse)(nil),  // 5: kk_etcd_models.KVDelResponse
+	(*KVListParam)(nil),    // 6: kk_etcd_models.KVListParam
+	(*KVListResponse)(nil), // 7: kk_etcd_models.KVListResponse
 	(*PBKV)(nil),           // 8: kk_etcd_models.PBKV
 	(*PBListKV)(nil),       // 9: kk_etcd_models.PBListKV
 }
@@ -507,30 +507,6 @@ func file_api_kv_kk_etcd_proto_init() {
 			}
 		}
 		file_api_kv_kk_etcd_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*KVListParam); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_api_kv_kk_etcd_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*KVListResponse); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_api_kv_kk_etcd_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*KVDelParam); i {
 			case 0:
 				return &v.state
@@ -542,8 +518,32 @@ func file_api_kv_kk_etcd_proto_init() {
 				return nil
 			}
 		}
-		file_api_kv_kk_etcd_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+		file_api_kv_kk_etcd_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*KVDelResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_api_kv_kk_etcd_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*KVListParam); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_api_kv_kk_etcd_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*KVListResponse); i {
 			case 0:
 				return &v.state
 			case 1:

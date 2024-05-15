@@ -213,6 +213,88 @@ class KVGetResponse extends $pb.GeneratedMessage {
   $0.PBKV ensureKV() => $_ensure(0);
 }
 
+class KVDelParam extends $pb.GeneratedMessage {
+  factory KVDelParam({
+    $core.String? key,
+  }) {
+    final $result = create();
+    if (key != null) {
+      $result.key = key;
+    }
+    return $result;
+  }
+  KVDelParam._() : super();
+  factory KVDelParam.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory KVDelParam.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'KVDelParam', package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd_models'), createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'Key', protoName: 'Key')
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  KVDelParam clone() => KVDelParam()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  KVDelParam copyWith(void Function(KVDelParam) updates) => super.copyWith((message) => updates(message as KVDelParam)) as KVDelParam;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static KVDelParam create() => KVDelParam._();
+  KVDelParam createEmptyInstance() => create();
+  static $pb.PbList<KVDelParam> createRepeated() => $pb.PbList<KVDelParam>();
+  @$core.pragma('dart2js:noInline')
+  static KVDelParam getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<KVDelParam>(create);
+  static KVDelParam? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get key => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set key($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasKey() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearKey() => clearField(1);
+}
+
+class KVDelResponse extends $pb.GeneratedMessage {
+  factory KVDelResponse() => create();
+  KVDelResponse._() : super();
+  factory KVDelResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory KVDelResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'KVDelResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd_models'), createEmptyInstance: create)
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  KVDelResponse clone() => KVDelResponse()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  KVDelResponse copyWith(void Function(KVDelResponse) updates) => super.copyWith((message) => updates(message as KVDelResponse)) as KVDelResponse;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static KVDelResponse create() => KVDelResponse._();
+  KVDelResponse createEmptyInstance() => create();
+  static $pb.PbList<KVDelResponse> createRepeated() => $pb.PbList<KVDelResponse>();
+  @$core.pragma('dart2js:noInline')
+  static KVDelResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<KVDelResponse>(create);
+  static KVDelResponse? _defaultInstance;
+}
+
 class KVListParam extends $pb.GeneratedMessage {
   factory KVListParam({
     $core.String? prefix,
@@ -313,88 +395,6 @@ class KVListResponse extends $pb.GeneratedMessage {
   void clearKVList() => clearField(1);
   @$pb.TagNumber(1)
   $0.PBListKV ensureKVList() => $_ensure(0);
-}
-
-class KVDelParam extends $pb.GeneratedMessage {
-  factory KVDelParam({
-    $core.String? key,
-  }) {
-    final $result = create();
-    if (key != null) {
-      $result.key = key;
-    }
-    return $result;
-  }
-  KVDelParam._() : super();
-  factory KVDelParam.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory KVDelParam.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'KVDelParam', package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd_models'), createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'Key', protoName: 'Key')
-    ..hasRequiredFields = false
-  ;
-
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
-  KVDelParam clone() => KVDelParam()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  KVDelParam copyWith(void Function(KVDelParam) updates) => super.copyWith((message) => updates(message as KVDelParam)) as KVDelParam;
-
-  $pb.BuilderInfo get info_ => _i;
-
-  @$core.pragma('dart2js:noInline')
-  static KVDelParam create() => KVDelParam._();
-  KVDelParam createEmptyInstance() => create();
-  static $pb.PbList<KVDelParam> createRepeated() => $pb.PbList<KVDelParam>();
-  @$core.pragma('dart2js:noInline')
-  static KVDelParam getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<KVDelParam>(create);
-  static KVDelParam? _defaultInstance;
-
-  @$pb.TagNumber(1)
-  $core.String get key => $_getSZ(0);
-  @$pb.TagNumber(1)
-  set key($core.String v) { $_setString(0, v); }
-  @$pb.TagNumber(1)
-  $core.bool hasKey() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearKey() => clearField(1);
-}
-
-class KVDelResponse extends $pb.GeneratedMessage {
-  factory KVDelResponse() => create();
-  KVDelResponse._() : super();
-  factory KVDelResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory KVDelResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'KVDelResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd_models'), createEmptyInstance: create)
-    ..hasRequiredFields = false
-  ;
-
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
-  KVDelResponse clone() => KVDelResponse()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  KVDelResponse copyWith(void Function(KVDelResponse) updates) => super.copyWith((message) => updates(message as KVDelResponse)) as KVDelResponse;
-
-  $pb.BuilderInfo get info_ => _i;
-
-  @$core.pragma('dart2js:noInline')
-  static KVDelResponse create() => KVDelResponse._();
-  KVDelResponse createEmptyInstance() => create();
-  static $pb.PbList<KVDelResponse> createRepeated() => $pb.PbList<KVDelResponse>();
-  @$core.pragma('dart2js:noInline')
-  static KVDelResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<KVDelResponse>(create);
-  static KVDelResponse? _defaultInstance;
 }
 
 

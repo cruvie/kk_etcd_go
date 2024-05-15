@@ -72,6 +72,7 @@ func (t *serverFunc) registerServer(stage *kk_stage.Stage, registration *kk_etcd
 				}
 				if ok := t.checkHealth(stage, registration); ok {
 					failCount = 0
+					continue
 				} else {
 					failCount++
 				}
@@ -126,7 +127,7 @@ func (t *serverFunc) checkHealth(stage *kk_stage.Stage, registration *kk_etcd_mo
 			return false
 		}
 	} else if registration.Check.GRPC != "" {
-		conn, err := grpc.Dial(registration.Check.GRPC, grpc.WithTransportCredentials(insecure.NewCredentials()))
+		conn, err := grpc.NewClient(registration.Check.GRPC, grpc.WithTransportCredentials(insecure.NewCredentials()))
 		if err != nil {
 
 			msg := "failed to dial grpc"

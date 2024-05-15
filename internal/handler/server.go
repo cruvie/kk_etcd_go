@@ -1,32 +1,21 @@
 package handler
 
 import (
-	"gitee.com/cruvie/kk_go_kit/kk_http"
-	"gitee.com/cruvie/kk_go_kit/kk_models/kk_pb_type"
+	"gitee.com/cruvie/kk_go_kit/kk_func"
+	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/internal/handler/service"
-	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
-
-	"github.com/gin-gonic/gin"
+	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 )
 
-// ServerList
-//
-//	@Description	Get service list
-//	@Accept			octet-stream
-//	@Produce		octet-stream
-//	@Router			/ServerList [post]
-func ServerList(c *gin.Context) {
-	stage := global_model.GetRequestStage(c)
-	var prefix kk_pb_type.PBString
-	if err := kk_http.ReadProtoBuf(stage, &prefix); err != nil {
-		kk_http.ResponseProtoBuf(c, kk_http.Fail(stage, nil, nil))
-		return
+type HServer struct{}
+
+var serServerV service.SerServer
+
+func (HServer) ServerList(stage *kk_stage.Stage, param *kk_etcd_models.ServerListParam) (error, *kk_etcd_models.ServerListResponse) {
+	span := stage.StartTrace(kk_func.GetCurrentFunctionName())
+	defer span.End()
+	serverList, err := serServerV.ServerList(param.GetPrefix())
+	return err, &kk_etcd_models.ServerListResponse{
+		ServerList: serverList,
 	}
-	res, list, _ := service.ServerList(stage, prefix.Value)
-	switch res {
-	case 1:
-		kk_http.ResponseProtoBuf(c, kk_http.Success(stage, nil, list))
-		return
-	}
-	kk_http.ResponseProtoBuf(c, kk_http.Fail(stage, nil, nil))
 }

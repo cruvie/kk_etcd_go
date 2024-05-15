@@ -43,7 +43,7 @@ message GetUserParam {
   string UserName = 1;
 }
 message GetUserResponse {
-
+  PBUser User = 1;
 }
 
 message MyInfoParam {
