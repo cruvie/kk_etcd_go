@@ -13,7 +13,7 @@ func initTestEnv() {
 		password  = "kk_etcd"
 	)
 	kk_stage.InitSlog(stage.DebugMode, nil, nil)
-	err := InitEtcd(stage, endpoints, userName, password)
+	err := InitEtcd(endpoints, userName, password, stage.DebugMode)
 	if err != nil {
 		panic(err)
 	}

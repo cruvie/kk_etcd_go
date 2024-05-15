@@ -7,7 +7,8 @@ import (
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/internal/api_etcd"
 	"github.com/cruvie/kk_etcd_go/internal/config"
-	"github.com/cruvie/kk_etcd_go/kk_etcd"
+	"github.com/cruvie/kk_etcd_go/internal/handler/service"
+	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
 	_ "github.com/cruvie/kk_etcd_go/swagger"
 	"time"
 )
@@ -34,10 +35,17 @@ func main() {
 
 	kk_jwt.InitJwt(config.Config.JWT.Key, time.Duration(config.Config.JWT.ExpireTime)*time.Hour)
 
-	err := kk_etcd.InitEtcd(stage, []string{config.Config.Etcd.Endpoint}, config.Config.Admin.UserName, config.Config.Admin.Password)
+	var serEtcd service.SerEtcd
+	err := serEtcd.InitEtcd(stage, []string{config.Config.Etcd.Endpoint}, config.Config.Admin.UserName, config.Config.Admin.Password)
 	if err != nil {
 		panic(err)
 	}
-
+	global_model.InitGlobalStage(stage)
+	var serUser service.SerUser
+	user, err := serUser.GetUser(config.Config.Admin.UserName)
+	if err != nil {
+		panic(err)
+	}
+	global_model.SetLoginUser(stage, user)
 	api_etcd.ApiEtcd(stage)
 }
