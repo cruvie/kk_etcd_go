@@ -59,6 +59,27 @@ const KVGetResponse$json = {
 final $typed_data.Uint8List kVGetResponseDescriptor = $convert.base64Decode(
     'Cg1LVkdldFJlc3BvbnNlEiQKAktWGAEgASgLMhQua2tfZXRjZF9tb2RlbHMuUEJLVlICS1Y=');
 
+@$core.Deprecated('Use kVDelParamDescriptor instead')
+const KVDelParam$json = {
+  '1': 'KVDelParam',
+  '2': [
+    {'1': 'Key', '3': 1, '4': 1, '5': 9, '10': 'Key'},
+  ],
+};
+
+/// Descriptor for `KVDelParam`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List kVDelParamDescriptor = $convert.base64Decode(
+    'CgpLVkRlbFBhcmFtEhAKA0tleRgBIAEoCVIDS2V5');
+
+@$core.Deprecated('Use kVDelResponseDescriptor instead')
+const KVDelResponse$json = {
+  '1': 'KVDelResponse',
+};
+
+/// Descriptor for `KVDelResponse`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List kVDelResponseDescriptor = $convert.base64Decode(
+    'Cg1LVkRlbFJlc3BvbnNl');
+
 @$core.Deprecated('Use kVListParamDescriptor instead')
 const KVListParam$json = {
   '1': 'KVListParam',
@@ -83,25 +104,4 @@ const KVListResponse$json = {
 final $typed_data.Uint8List kVListResponseDescriptor = $convert.base64Decode(
     'Cg5LVkxpc3RSZXNwb25zZRIwCgZLVkxpc3QYASABKAsyGC5ra19ldGNkX21vZGVscy5QQkxpc3'
     'RLVlIGS1ZMaXN0');
-
-@$core.Deprecated('Use kVDelParamDescriptor instead')
-const KVDelParam$json = {
-  '1': 'KVDelParam',
-  '2': [
-    {'1': 'Key', '3': 1, '4': 1, '5': 9, '10': 'Key'},
-  ],
-};
-
-/// Descriptor for `KVDelParam`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List kVDelParamDescriptor = $convert.base64Decode(
-    'CgpLVkRlbFBhcmFtEhAKA0tleRgBIAEoCVIDS2V5');
-
-@$core.Deprecated('Use kVDelResponseDescriptor instead')
-const KVDelResponse$json = {
-  '1': 'KVDelResponse',
-};
-
-/// Descriptor for `KVDelResponse`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List kVDelResponseDescriptor = $convert.base64Decode(
-    'Cg1LVkRlbFJlc3BvbnNl');
 

@@ -55,28 +55,6 @@ const RoleDeleteResponse$json = {
 final $typed_data.Uint8List roleDeleteResponseDescriptor = $convert.base64Decode(
     'ChJSb2xlRGVsZXRlUmVzcG9uc2U=');
 
-@$core.Deprecated('Use roleListParamDescriptor instead')
-const RoleListParam$json = {
-  '1': 'RoleListParam',
-};
-
-/// Descriptor for `RoleListParam`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List roleListParamDescriptor = $convert.base64Decode(
-    'Cg1Sb2xlTGlzdFBhcmFt');
-
-@$core.Deprecated('Use roleListResponseDescriptor instead')
-const RoleListResponse$json = {
-  '1': 'RoleListResponse',
-  '2': [
-    {'1': 'ListRole', '3': 1, '4': 1, '5': 11, '6': '.kk_etcd_models.PBListRole', '10': 'ListRole'},
-  ],
-};
-
-/// Descriptor for `RoleListResponse`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List roleListResponseDescriptor = $convert.base64Decode(
-    'ChBSb2xlTGlzdFJlc3BvbnNlEjYKCExpc3RSb2xlGAEgASgLMhoua2tfZXRjZF9tb2RlbHMuUE'
-    'JMaXN0Um9sZVIITGlzdFJvbGU=');
-
 @$core.Deprecated('Use roleGetParamDescriptor instead')
 const RoleGetParam$json = {
   '1': 'RoleGetParam',
@@ -101,6 +79,28 @@ const RoleGetResponse$json = {
 final $typed_data.Uint8List roleGetResponseDescriptor = $convert.base64Decode(
     'Cg9Sb2xlR2V0UmVzcG9uc2USKgoEUm9sZRgBIAEoCzIWLmtrX2V0Y2RfbW9kZWxzLlBCUm9sZV'
     'IEUm9sZQ==');
+
+@$core.Deprecated('Use roleListParamDescriptor instead')
+const RoleListParam$json = {
+  '1': 'RoleListParam',
+};
+
+/// Descriptor for `RoleListParam`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List roleListParamDescriptor = $convert.base64Decode(
+    'Cg1Sb2xlTGlzdFBhcmFt');
+
+@$core.Deprecated('Use roleListResponseDescriptor instead')
+const RoleListResponse$json = {
+  '1': 'RoleListResponse',
+  '2': [
+    {'1': 'ListRole', '3': 1, '4': 1, '5': 11, '6': '.kk_etcd_models.PBListRole', '10': 'ListRole'},
+  ],
+};
+
+/// Descriptor for `RoleListResponse`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List roleListResponseDescriptor = $convert.base64Decode(
+    'ChBSb2xlTGlzdFJlc3BvbnNlEjYKCExpc3RSb2xlGAEgASgLMhoua2tfZXRjZF9tb2RlbHMuUE'
+    'JMaXN0Um9sZVIITGlzdFJvbGU=');
 
 @$core.Deprecated('Use roleGrantPermissionParamDescriptor instead')
 const RoleGrantPermissionParam$json = {

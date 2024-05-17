@@ -12,6 +12,10 @@ import (
 	"sort"
 )
 
+type SerServer struct{}
+
+var serServer SerServer
+
 func RegisterService(stage *kk_stage.Stage, registration *kk_etcd_models.ServiceRegistration) error {
 	if registration.ServerType != kk_etcd_const.ServiceHttp && registration.ServerType != kk_etcd_const.ServiceGrpc {
 
@@ -67,20 +71,14 @@ func RegisterService(stage *kk_stage.Stage, registration *kk_etcd_models.Service
 // ServerList
 // serviceName, should with prefix key_prefix.ServiceGrpc or key_prefix.ServiceHttp
 // only give prefix to get all service list
-func ServerList(stage *kk_stage.Stage, serviceName string) (res int, serverList *kk_etcd_models.PBListServer, err error) {
+func (SerServer) ServerList(serviceName string) (serverList *kk_etcd_models.PBListServer, err error) {
 	etcdManager, err := endpoints.NewManager(kk_etcd_client.EtcdClient, serviceName)
 	if err != nil {
-
-		msg := "failed to create etcd manager"
-		slog.Error(msg, kk_stage.NewLog(stage).Args()...)
-		return -1, nil, err
+		return nil, err
 	}
 	endpointMap, err := etcdManager.List(context.Background())
 	if err != nil {
-
-		msg := "failed to list endpoints"
-		slog.Error(msg, kk_stage.NewLog(stage).Args()...)
-		return -1, nil, err
+		return nil, err
 	}
 	//ListServer:{Key2EndpointMap:{key:"kk_service_http/ss/go_user/128.2.2.3:8484"  value:{Addr:"128.2.2.3:8484"}}}
 	var pBListServer kk_etcd_models.PBListServer
@@ -93,5 +91,5 @@ func ServerList(stage *kk_stage.Stage, serviceName string) (res int, serverList 
 	sort.Slice(pBListServer.ListServer, func(i, j int) bool {
 		return pBListServer.ListServer[i].ServiceName < pBListServer.ListServer[j].ServiceName
 	})
-	return 1, &pBListServer, nil
+	return &pBListServer, nil
 }

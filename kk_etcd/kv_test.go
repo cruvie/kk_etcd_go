@@ -18,16 +18,7 @@ type configTest struct {
 }
 
 func TestPutYaml(t *testing.T) {
-	var (
-		endpoints = []string{"http://127.0.0.1:2379"} //http://etcd:2379  http://127.0.0.1:2379
-		userName  = "kk_etcd"
-		password  = "kk_etcd"
-	)
-
-	err := InitEtcd(endpoints, userName, password, true)
-	if err != nil {
-		slog.Error("InitEtcd failed", "err", err)
-	}
+	initTestEnv()
 
 	type args struct {
 		configKey string
@@ -67,17 +58,8 @@ func TestPutYaml(t *testing.T) {
 
 func TestGetYaml(t *testing.T) {
 	var GlobalConfig configTest
-	var (
-		endpoints = []string{"http://127.0.0.1:2379"} //http://etcd:2379  http://127.0.0.1:2379
-		userName  = "kk_etcd"
-		password  = "kk_etcd"
-	)
-
-	err := InitEtcd(endpoints, userName, password, true)
-	if err != nil {
-		slog.Error("InitEtcd failed", "err", err)
-	}
-	err = GetYaml("my_config", &GlobalConfig)
+	initTestEnv()
+	err := GetYaml("my_config", &GlobalConfig)
 	if err != nil {
 		slog.Error("GetYaml failed", "err", err)
 	}
@@ -86,16 +68,7 @@ func TestGetYaml(t *testing.T) {
 }
 
 func TestPutJson(t *testing.T) {
-	var (
-		endpoints = []string{"http://127.0.0.1:2379"} //http://etcd:2379  http://127.0.0.1:2379
-		userName  = "kk_etcd"
-		password  = "kk_etcd"
-	)
-
-	err := InitEtcd(endpoints, userName, password, true)
-	if err != nil {
-		slog.Error("InitEtcd failed", "err", err)
-	}
+	initTestEnv()
 
 	type args struct {
 		configKey string
@@ -135,17 +108,8 @@ func TestPutJson(t *testing.T) {
 
 func TestGetJson(t *testing.T) {
 	var GlobalConfig configTest
-	var (
-		endpoints = []string{"http://127.0.0.1:2379"} //http://etcd:2379  http://127.0.0.1:2379
-		userName  = "kk_etcd"
-		password  = "kk_etcd"
-	)
-
-	err := InitEtcd(endpoints, userName, password, true)
-	if err != nil {
-		slog.Error("InitEtcd failed", "err", err)
-	}
-	err = GetJson("my_config_json111", &GlobalConfig)
+	initTestEnv()
+	err := GetJson("my_config_json111", &GlobalConfig)
 	if err != nil {
 		slog.Error("GetYaml failed", "err", err)
 	}

@@ -21,14 +21,6 @@ func (x *RoleDeleteParam) BindCheck(stage *kk_stage.Stage) error {
 
 	return nil
 }
-func (x *RoleListParam) BindCheck(stage *kk_stage.Stage) error {
-	err := kk_http.ReadProtoBuf(stage, x)
-	if err != nil {
-		return err
-	}
-
-	return nil
-}
 func (x *RoleGetParam) BindCheck(stage *kk_stage.Stage) error {
 	err := kk_http.ReadProtoBuf(stage, x)
 	if err != nil {
@@ -37,6 +29,15 @@ func (x *RoleGetParam) BindCheck(stage *kk_stage.Stage) error {
 
 	return nil
 }
+func (x *RoleListParam) BindCheck(stage *kk_stage.Stage) error {
+	err := kk_http.ReadProtoBuf(stage, x)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
 func (x *RoleGrantPermissionParam) BindCheck(stage *kk_stage.Stage) error {
 	err := kk_http.ReadProtoBuf(stage, x)
 	if err != nil {

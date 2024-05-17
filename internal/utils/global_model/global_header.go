@@ -1,7 +1,7 @@
 package global_model
 
 import (
-	"github.com/gin-gonic/gin"
+	"gitee.com/cruvie/kk_go_kit/kk_stage"
 )
 
 const globalHeader = "globalHeader"
@@ -11,13 +11,13 @@ type RequestHeader struct {
 }
 
 // SetRequestHeader set current request header to gin context
-func SetRequestHeader(c *gin.Context, header RequestHeader) {
-	c.Set(globalHeader, header)
+func SetRequestHeader(stage *kk_stage.Stage, header RequestHeader) {
+	stage.Set(globalHeader, header)
 }
 
 // getRequestHeader get current request header from gin context
-func getRequestHeader(c *gin.Context) RequestHeader {
-	header, ok := c.Get(globalHeader)
+func getRequestHeader(stage *kk_stage.Stage) RequestHeader {
+	header, ok := stage.Get(globalHeader)
 	if !ok {
 		return RequestHeader{}
 	}
@@ -25,6 +25,6 @@ func getRequestHeader(c *gin.Context) RequestHeader {
 }
 
 // GetAuthorizationToken get AuthorizationToken from globalHeader
-func GetAuthorizationToken(c *gin.Context) string {
-	return getRequestHeader(c).AuthorizationToken
+func GetAuthorizationToken(stage *kk_stage.Stage) string {
+	return getRequestHeader(stage).AuthorizationToken
 }

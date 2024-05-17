@@ -6,4 +6,4 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
 
 environment:
-  sdk: '>=3.2.0'
+  sdk: '>=3.4.0'

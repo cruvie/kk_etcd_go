@@ -23,7 +23,12 @@ message KVGetParam {
 message KVGetResponse {
   PBKV KV = 1;
 }
+message KVDelParam {
+  string  Key = 1;
+}
+message KVDelResponse {
 
+}
 message KVListParam {
   string  Prefix = 1;
 }
@@ -31,9 +36,3 @@ message KVListResponse {
   PBListKV KVList = 1;
 }
 
-message KVDelParam {
-  string  Key = 1;
-}
-message KVDelResponse {
-
-}

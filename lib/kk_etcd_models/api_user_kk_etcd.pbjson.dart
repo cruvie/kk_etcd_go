@@ -117,11 +117,15 @@ final $typed_data.Uint8List getUserParamDescriptor = $convert.base64Decode(
 @$core.Deprecated('Use getUserResponseDescriptor instead')
 const GetUserResponse$json = {
   '1': 'GetUserResponse',
+  '2': [
+    {'1': 'User', '3': 1, '4': 1, '5': 11, '6': '.kk_etcd_models.PBUser', '10': 'User'},
+  ],
 };
 
 /// Descriptor for `GetUserResponse`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List getUserResponseDescriptor = $convert.base64Decode(
-    'Cg9HZXRVc2VyUmVzcG9uc2U=');
+    'Cg9HZXRVc2VyUmVzcG9uc2USKgoEVXNlchgBIAEoCzIWLmtrX2V0Y2RfbW9kZWxzLlBCVXNlcl'
+    'IEVXNlcg==');
 
 @$core.Deprecated('Use myInfoParamDescriptor instead')
 const MyInfoParam$json = {

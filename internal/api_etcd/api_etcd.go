@@ -6,7 +6,6 @@ import (
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"gitee.com/cruvie/kk_go_kit/kk_swagger"
 	"github.com/cruvie/kk_etcd_go/internal/config"
-	"github.com/cruvie/kk_etcd_go/internal/handler"
 	"github.com/cruvie/kk_etcd_go/internal/utils/middleware"
 )
 
@@ -19,46 +18,49 @@ func ApiEtcd(stage *kk_stage.Stage) {
 
 	r.Use(middleware.ParseHeader)
 
-	userAPI := r.Group("User")
 	{
-		userAPI.POST(kk_func.GetFunctionName(handler.Login), handler.Login)
-		userAPI.Use(middleware.JWTAuth)
-		userAPI.POST(kk_func.GetFunctionName(handler.Logout), handler.Logout)
-		userAPI.POST(kk_func.GetFunctionName(handler.UserAdd), handler.UserAdd)
-		userAPI.POST(kk_func.GetFunctionName(handler.UserDelete), handler.UserDelete)
-		userAPI.POST(kk_func.GetFunctionName(handler.GetUser), handler.GetUser)
-		userAPI.POST(kk_func.GetFunctionName(handler.MyInfo), handler.MyInfo)
-		userAPI.POST(kk_func.GetFunctionName(handler.UserList), handler.UserList)
-		userAPI.POST(kk_func.GetFunctionName(handler.UserGrantRole), handler.UserGrantRole)
+		apiGroup := r.Group("user")
+		apiGroup.POST(kk_func.GetFunctionName(login), login)
+		apiGroup.Use(middleware.JWTAuth)
+		apiGroup.POST(kk_func.GetFunctionName(logout), logout)
+		apiGroup.POST(kk_func.GetFunctionName(userAdd), userAdd)
+		apiGroup.POST(kk_func.GetFunctionName(userDelete), userDelete)
+		apiGroup.POST(kk_func.GetFunctionName(getUser), getUser)
+		apiGroup.POST(kk_func.GetFunctionName(myInfo), myInfo)
+		apiGroup.POST(kk_func.GetFunctionName(userList), userList)
+		apiGroup.POST(kk_func.GetFunctionName(userGrantRole), userGrantRole)
 	}
 	r.Use(middleware.JWTAuth)
-	roleAPI := r.Group("Role")
 	{
-		roleAPI.POST(kk_func.GetFunctionName(handler.RoleAdd), handler.RoleAdd)
-		roleAPI.POST(kk_func.GetFunctionName(handler.RoleDelete), handler.RoleDelete)
-		roleAPI.POST(kk_func.GetFunctionName(handler.RoleList), handler.RoleList)
-		roleAPI.POST(kk_func.GetFunctionName(handler.RoleGet), handler.RoleGet)
-		roleAPI.POST(kk_func.GetFunctionName(handler.RoleGrantPermission), handler.RoleGrantPermission)
-	}
-	kvAPI := r.Group("KV")
-	{
-		kvAPI.POST(kk_func.GetFunctionName(handler.KVPut), handler.KVPut)
-		kvAPI.POST(kk_func.GetFunctionName(handler.KVGet), handler.KVGet)
-		kvAPI.POST(kk_func.GetFunctionName(handler.KVList), handler.KVList)
-		kvAPI.POST(kk_func.GetFunctionName(handler.KVDel), handler.KVDel)
-	}
-	serverAPI := r.Group("Server")
-	{
-		serverAPI.POST(kk_func.GetFunctionName(handler.ServerList), handler.ServerList)
+		apiGroup := r.Group("role")
+		apiGroup.POST(kk_func.GetFunctionName(roleAdd), roleAdd)
+		apiGroup.POST(kk_func.GetFunctionName(roleDelete), roleDelete)
+		apiGroup.POST(kk_func.GetFunctionName(roleGet), roleGet)
+		apiGroup.POST(kk_func.GetFunctionName(roleList), roleList)
+		apiGroup.POST(kk_func.GetFunctionName(roleGrantPermission), roleGrantPermission)
 	}
 
 	{
-		manageAPI := r.Group("Backup")
-		manageAPI.POST(kk_func.GetFunctionName(handler.Snapshot), handler.Snapshot)
-		manageAPI.POST(kk_func.GetFunctionName(handler.SnapshotRestore), handler.SnapshotRestore)
-		manageAPI.POST(kk_func.GetFunctionName(handler.SnapshotInfo), handler.SnapshotInfo)
-		manageAPI.POST(kk_func.GetFunctionName(handler.AllKVsBackup), handler.AllKVsBackup)
-		manageAPI.POST(kk_func.GetFunctionName(handler.AllKVsRestore), handler.AllKVsRestore)
+		apiGroup := r.Group("kv")
+		apiGroup.POST(kk_func.GetFunctionName(kVPut), kVPut)
+		apiGroup.POST(kk_func.GetFunctionName(kVGet), kVGet)
+		apiGroup.POST(kk_func.GetFunctionName(kVDel), kVDel)
+		apiGroup.POST(kk_func.GetFunctionName(kVList), kVList)
+	}
+
+	{
+		apiGroup := r.Group("server")
+		apiGroup.POST(kk_func.GetFunctionName(serverList), serverList)
+	}
+
+	{
+		apiGroup := r.Group("backup")
+		apiGroup.POST(kk_func.GetFunctionName(snapshot), snapshot)
+		apiGroup.POST(kk_func.GetFunctionName(snapshotRestore), snapshotRestore)
+		apiGroup.POST(kk_func.GetFunctionName(snapshotInfo), snapshotInfo)
+		apiGroup.POST(kk_func.GetFunctionName(allKVsBackup), allKVsBackup)
+		apiGroup.POST(kk_func.GetFunctionName(allKVsRestore), allKVsRestore)
+
 	}
 
 	kk_http.ServerWithGracefulShutdown(stage, r, config.Config.ServerAddr)

@@ -7,6 +7,13 @@ import (
 	"log/slog"
 )
 
+// GlobalStage for kk_etcd client sdk
+var GlobalStage *kk_stage.Stage
+
+func InitGlobalStage(stage *kk_stage.Stage) {
+	GlobalStage = stage
+}
+
 const requestStage = "requestStage"
 
 // SetRequestStage 将当前请求头存储到gin的context中

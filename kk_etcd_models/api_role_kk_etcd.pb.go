@@ -190,91 +190,6 @@ func (*RoleDeleteResponse) Descriptor() ([]byte, []int) {
 	return file_api_role_kk_etcd_proto_rawDescGZIP(), []int{3}
 }
 
-type RoleListParam struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-}
-
-func (x *RoleListParam) Reset() {
-	*x = RoleListParam{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_api_role_kk_etcd_proto_msgTypes[4]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *RoleListParam) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*RoleListParam) ProtoMessage() {}
-
-func (x *RoleListParam) ProtoReflect() protoreflect.Message {
-	mi := &file_api_role_kk_etcd_proto_msgTypes[4]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use RoleListParam.ProtoReflect.Descriptor instead.
-func (*RoleListParam) Descriptor() ([]byte, []int) {
-	return file_api_role_kk_etcd_proto_rawDescGZIP(), []int{4}
-}
-
-type RoleListResponse struct {
-	state         protoimpl.MessageState
-	sizeCache     protoimpl.SizeCache
-	unknownFields protoimpl.UnknownFields
-
-	ListRole *PBListRole `protobuf:"bytes,1,opt,name=ListRole,proto3" json:"ListRole,omitempty"`
-}
-
-func (x *RoleListResponse) Reset() {
-	*x = RoleListResponse{}
-	if protoimpl.UnsafeEnabled {
-		mi := &file_api_role_kk_etcd_proto_msgTypes[5]
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		ms.StoreMessageInfo(mi)
-	}
-}
-
-func (x *RoleListResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*RoleListResponse) ProtoMessage() {}
-
-func (x *RoleListResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_role_kk_etcd_proto_msgTypes[5]
-	if protoimpl.UnsafeEnabled && x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use RoleListResponse.ProtoReflect.Descriptor instead.
-func (*RoleListResponse) Descriptor() ([]byte, []int) {
-	return file_api_role_kk_etcd_proto_rawDescGZIP(), []int{5}
-}
-
-func (x *RoleListResponse) GetListRole() *PBListRole {
-	if x != nil {
-		return x.ListRole
-	}
-	return nil
-}
-
 type RoleGetParam struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -286,7 +201,7 @@ type RoleGetParam struct {
 func (x *RoleGetParam) Reset() {
 	*x = RoleGetParam{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_role_kk_etcd_proto_msgTypes[6]
+		mi := &file_api_role_kk_etcd_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -299,7 +214,7 @@ func (x *RoleGetParam) String() string {
 func (*RoleGetParam) ProtoMessage() {}
 
 func (x *RoleGetParam) ProtoReflect() protoreflect.Message {
-	mi := &file_api_role_kk_etcd_proto_msgTypes[6]
+	mi := &file_api_role_kk_etcd_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -312,7 +227,7 @@ func (x *RoleGetParam) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RoleGetParam.ProtoReflect.Descriptor instead.
 func (*RoleGetParam) Descriptor() ([]byte, []int) {
-	return file_api_role_kk_etcd_proto_rawDescGZIP(), []int{6}
+	return file_api_role_kk_etcd_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *RoleGetParam) GetName() string {
@@ -333,7 +248,7 @@ type RoleGetResponse struct {
 func (x *RoleGetResponse) Reset() {
 	*x = RoleGetResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_role_kk_etcd_proto_msgTypes[7]
+		mi := &file_api_role_kk_etcd_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -346,7 +261,7 @@ func (x *RoleGetResponse) String() string {
 func (*RoleGetResponse) ProtoMessage() {}
 
 func (x *RoleGetResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_role_kk_etcd_proto_msgTypes[7]
+	mi := &file_api_role_kk_etcd_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -359,12 +274,97 @@ func (x *RoleGetResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RoleGetResponse.ProtoReflect.Descriptor instead.
 func (*RoleGetResponse) Descriptor() ([]byte, []int) {
-	return file_api_role_kk_etcd_proto_rawDescGZIP(), []int{7}
+	return file_api_role_kk_etcd_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *RoleGetResponse) GetRole() *PBRole {
 	if x != nil {
 		return x.Role
+	}
+	return nil
+}
+
+type RoleListParam struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *RoleListParam) Reset() {
+	*x = RoleListParam{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_api_role_kk_etcd_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *RoleListParam) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RoleListParam) ProtoMessage() {}
+
+func (x *RoleListParam) ProtoReflect() protoreflect.Message {
+	mi := &file_api_role_kk_etcd_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RoleListParam.ProtoReflect.Descriptor instead.
+func (*RoleListParam) Descriptor() ([]byte, []int) {
+	return file_api_role_kk_etcd_proto_rawDescGZIP(), []int{6}
+}
+
+type RoleListResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	ListRole *PBListRole `protobuf:"bytes,1,opt,name=ListRole,proto3" json:"ListRole,omitempty"`
+}
+
+func (x *RoleListResponse) Reset() {
+	*x = RoleListResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_api_role_kk_etcd_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *RoleListResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RoleListResponse) ProtoMessage() {}
+
+func (x *RoleListResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_api_role_kk_etcd_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RoleListResponse.ProtoReflect.Descriptor instead.
+func (*RoleListResponse) Descriptor() ([]byte, []int) {
+	return file_api_role_kk_etcd_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *RoleListResponse) GetListRole() *PBListRole {
+	if x != nil {
+		return x.ListRole
 	}
 	return nil
 }
@@ -467,19 +467,19 @@ var file_api_role_kk_etcd_proto_rawDesc = []byte{
 	0x0a, 0x0f, 0x52, 0x6f, 0x6c, 0x65, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61,
 	0x6d, 0x12, 0x12, 0x0a, 0x04, 0x4e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
 	0x04, 0x4e, 0x61, 0x6d, 0x65, 0x22, 0x14, 0x0a, 0x12, 0x52, 0x6f, 0x6c, 0x65, 0x44, 0x65, 0x6c,
-	0x65, 0x74, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x0f, 0x0a, 0x0d, 0x52,
-	0x6f, 0x6c, 0x65, 0x4c, 0x69, 0x73, 0x74, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x22, 0x4a, 0x0a, 0x10,
-	0x52, 0x6f, 0x6c, 0x65, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x12, 0x36, 0x0a, 0x08, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x6f, 0x6c, 0x65, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x6b, 0x6b, 0x5f, 0x65, 0x74, 0x63, 0x64, 0x5f, 0x6d, 0x6f, 0x64,
-	0x65, 0x6c, 0x73, 0x2e, 0x50, 0x42, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x6f, 0x6c, 0x65, 0x52, 0x08,
-	0x4c, 0x69, 0x73, 0x74, 0x52, 0x6f, 0x6c, 0x65, 0x22, 0x22, 0x0a, 0x0c, 0x52, 0x6f, 0x6c, 0x65,
-	0x47, 0x65, 0x74, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x12, 0x12, 0x0a, 0x04, 0x4e, 0x61, 0x6d, 0x65,
-	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x4e, 0x61, 0x6d, 0x65, 0x22, 0x3d, 0x0a, 0x0f,
-	0x52, 0x6f, 0x6c, 0x65, 0x47, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
-	0x2a, 0x0a, 0x04, 0x52, 0x6f, 0x6c, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x16, 0x2e,
-	0x6b, 0x6b, 0x5f, 0x65, 0x74, 0x63, 0x64, 0x5f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x73, 0x2e, 0x50,
-	0x42, 0x52, 0x6f, 0x6c, 0x65, 0x52, 0x04, 0x52, 0x6f, 0x6c, 0x65, 0x22, 0x46, 0x0a, 0x18, 0x52,
+	0x65, 0x74, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x22, 0x0a, 0x0c, 0x52,
+	0x6f, 0x6c, 0x65, 0x47, 0x65, 0x74, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x12, 0x12, 0x0a, 0x04, 0x4e,
+	0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x4e, 0x61, 0x6d, 0x65, 0x22,
+	0x3d, 0x0a, 0x0f, 0x52, 0x6f, 0x6c, 0x65, 0x47, 0x65, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x2a, 0x0a, 0x04, 0x52, 0x6f, 0x6c, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b,
+	0x32, 0x16, 0x2e, 0x6b, 0x6b, 0x5f, 0x65, 0x74, 0x63, 0x64, 0x5f, 0x6d, 0x6f, 0x64, 0x65, 0x6c,
+	0x73, 0x2e, 0x50, 0x42, 0x52, 0x6f, 0x6c, 0x65, 0x52, 0x04, 0x52, 0x6f, 0x6c, 0x65, 0x22, 0x0f,
+	0x0a, 0x0d, 0x52, 0x6f, 0x6c, 0x65, 0x4c, 0x69, 0x73, 0x74, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x22,
+	0x4a, 0x0a, 0x10, 0x52, 0x6f, 0x6c, 0x65, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x36, 0x0a, 0x08, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x6f, 0x6c, 0x65, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x6b, 0x6b, 0x5f, 0x65, 0x74, 0x63, 0x64, 0x5f,
+	0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x73, 0x2e, 0x50, 0x42, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x6f, 0x6c,
+	0x65, 0x52, 0x08, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x6f, 0x6c, 0x65, 0x22, 0x46, 0x0a, 0x18, 0x52,
 	0x6f, 0x6c, 0x65, 0x47, 0x72, 0x61, 0x6e, 0x74, 0x50, 0x65, 0x72, 0x6d, 0x69, 0x73, 0x73, 0x69,
 	0x6f, 0x6e, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x12, 0x2a, 0x0a, 0x04, 0x52, 0x6f, 0x6c, 0x65, 0x18,
 	0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x16, 0x2e, 0x6b, 0x6b, 0x5f, 0x65, 0x74, 0x63, 0x64, 0x5f,
@@ -508,19 +508,19 @@ var file_api_role_kk_etcd_proto_goTypes = []interface{}{
 	(*RoleAddResponse)(nil),             // 1: kk_etcd_models.RoleAddResponse
 	(*RoleDeleteParam)(nil),             // 2: kk_etcd_models.RoleDeleteParam
 	(*RoleDeleteResponse)(nil),          // 3: kk_etcd_models.RoleDeleteResponse
-	(*RoleListParam)(nil),               // 4: kk_etcd_models.RoleListParam
-	(*RoleListResponse)(nil),            // 5: kk_etcd_models.RoleListResponse
-	(*RoleGetParam)(nil),                // 6: kk_etcd_models.RoleGetParam
-	(*RoleGetResponse)(nil),             // 7: kk_etcd_models.RoleGetResponse
+	(*RoleGetParam)(nil),                // 4: kk_etcd_models.RoleGetParam
+	(*RoleGetResponse)(nil),             // 5: kk_etcd_models.RoleGetResponse
+	(*RoleListParam)(nil),               // 6: kk_etcd_models.RoleListParam
+	(*RoleListResponse)(nil),            // 7: kk_etcd_models.RoleListResponse
 	(*RoleGrantPermissionParam)(nil),    // 8: kk_etcd_models.RoleGrantPermissionParam
 	(*RoleGrantPermissionResponse)(nil), // 9: kk_etcd_models.RoleGrantPermissionResponse
-	(*PBListRole)(nil),                  // 10: kk_etcd_models.PBListRole
-	(*PBRole)(nil),                      // 11: kk_etcd_models.PBRole
+	(*PBRole)(nil),                      // 10: kk_etcd_models.PBRole
+	(*PBListRole)(nil),                  // 11: kk_etcd_models.PBListRole
 }
 var file_api_role_kk_etcd_proto_depIdxs = []int32{
-	10, // 0: kk_etcd_models.RoleListResponse.ListRole:type_name -> kk_etcd_models.PBListRole
-	11, // 1: kk_etcd_models.RoleGetResponse.Role:type_name -> kk_etcd_models.PBRole
-	11, // 2: kk_etcd_models.RoleGrantPermissionParam.Role:type_name -> kk_etcd_models.PBRole
+	10, // 0: kk_etcd_models.RoleGetResponse.Role:type_name -> kk_etcd_models.PBRole
+	11, // 1: kk_etcd_models.RoleListResponse.ListRole:type_name -> kk_etcd_models.PBListRole
+	10, // 2: kk_etcd_models.RoleGrantPermissionParam.Role:type_name -> kk_etcd_models.PBRole
 	3,  // [3:3] is the sub-list for method output_type
 	3,  // [3:3] is the sub-list for method input_type
 	3,  // [3:3] is the sub-list for extension type_name
@@ -584,30 +584,6 @@ func file_api_role_kk_etcd_proto_init() {
 			}
 		}
 		file_api_role_kk_etcd_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*RoleListParam); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_api_role_kk_etcd_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*RoleListResponse); i {
-			case 0:
-				return &v.state
-			case 1:
-				return &v.sizeCache
-			case 2:
-				return &v.unknownFields
-			default:
-				return nil
-			}
-		}
-		file_api_role_kk_etcd_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RoleGetParam); i {
 			case 0:
 				return &v.state
@@ -619,8 +595,32 @@ func file_api_role_kk_etcd_proto_init() {
 				return nil
 			}
 		}
-		file_api_role_kk_etcd_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+		file_api_role_kk_etcd_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RoleGetResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_api_role_kk_etcd_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*RoleListParam); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_api_role_kk_etcd_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*RoleListResponse); i {
 			case 0:
 				return &v.state
 			case 1:

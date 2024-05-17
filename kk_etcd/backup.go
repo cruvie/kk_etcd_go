@@ -1,17 +1,16 @@
 package kk_etcd
 
 import (
-	"context"
-	"gitee.com/cruvie/kk_go_kit/kk_func"
-	"gitee.com/cruvie/kk_go_kit/kk_models/kk_pb_type"
-	"gitee.com/cruvie/kk_go_kit/kk_stage"
-	"github.com/cruvie/kk_etcd_go/internal/config"
 	"github.com/cruvie/kk_etcd_go/internal/handler/service"
+	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
+	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 )
 
-func Snapshot() (pBFile *kk_pb_type.PBFile, err error) {
-	stage := kk_stage.NewStage(context.Background(), kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
-	pBFile, err = service.Snapshot(stage)
+var serBackup service.SerBackup
+
+func Snapshot() (error, *kk_etcd_models.SnapshotResponse) {
+
+	pBFile, err := serBackup.Snapshot(global_model.GlobalStage)
 	if err != nil {
 		return nil, err
 	} else {
@@ -20,17 +19,13 @@ func Snapshot() (pBFile *kk_pb_type.PBFile, err error) {
 }
 
 func SnapshotRestore() (cmdStr string, err error) {
-	stage := kk_stage.NewStage(context.Background(), kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
-
-	return service.SnapshotRestore(stage)
+	return serBackup.SnapshotRestore(global_model.GlobalStage)
 }
 
 func SnapshotInfo(fileByte []byte) (info string, err error) {
-	stage := kk_stage.NewStage(context.Background(), kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
 
-	snapshotInfo, err := service.SnapshotInfo(stage, &kk_pb_type.PBFile{
-		Name:  "",
-		Bytes: fileByte,
+	snapshotInfo, err := serBackup.SnapshotInfo(global_model.GlobalStage, &kk_etcd_models.SnapshotInfoParam{
+		File: fileByte,
 	})
 	if err != nil {
 		return "", err
@@ -38,18 +33,17 @@ func SnapshotInfo(fileByte []byte) (info string, err error) {
 	return snapshotInfo, nil
 }
 
-func AllKVsBackup() (pbFile *kk_pb_type.PBFile, err error) {
-	stage := kk_stage.NewStage(context.Background(), kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
-	return service.AllKVsBackup(stage)
+func AllKVsBackup() (error, *kk_etcd_models.AllKVsBackupResponse) {
+	return serBackup.AllKVsBackup()
 }
 
 // AllKVsRestore will overwrite exist kv
 func AllKVsRestore(jsonBytes []byte) (err error) {
-	stage := kk_stage.NewStage(context.Background(), kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
-	pbFile := kk_pb_type.PBFile{
-		Bytes: jsonBytes,
+
+	pbFile := kk_etcd_models.AllKVsRestoreParam{
+		File: jsonBytes,
 	}
-	err = service.AllKVsRestore(stage, &pbFile)
+	err = serBackup.AllKVsRestore(global_model.GlobalStage, &pbFile)
 	if err != nil {
 		return err
 	}

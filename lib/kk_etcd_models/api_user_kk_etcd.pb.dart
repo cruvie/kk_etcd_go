@@ -430,12 +430,21 @@ class GetUserParam extends $pb.GeneratedMessage {
 }
 
 class GetUserResponse extends $pb.GeneratedMessage {
-  factory GetUserResponse() => create();
+  factory GetUserResponse({
+    $3.PBUser? user,
+  }) {
+    final $result = create();
+    if (user != null) {
+      $result.user = user;
+    }
+    return $result;
+  }
   GetUserResponse._() : super();
   factory GetUserResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
   factory GetUserResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'GetUserResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd_models'), createEmptyInstance: create)
+    ..aOM<$3.PBUser>(1, _omitFieldNames ? '' : 'User', protoName: 'User', subBuilder: $3.PBUser.create)
     ..hasRequiredFields = false
   ;
 
@@ -459,6 +468,17 @@ class GetUserResponse extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static GetUserResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetUserResponse>(create);
   static GetUserResponse? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $3.PBUser get user => $_getN(0);
+  @$pb.TagNumber(1)
+  set user($3.PBUser v) { setField(1, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasUser() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearUser() => clearField(1);
+  @$pb.TagNumber(1)
+  $3.PBUser ensureUser() => $_ensure(0);
 }
 
 class MyInfoParam extends $pb.GeneratedMessage {

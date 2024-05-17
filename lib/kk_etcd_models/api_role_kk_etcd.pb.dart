@@ -179,90 +179,6 @@ class RoleDeleteResponse extends $pb.GeneratedMessage {
   static RoleDeleteResponse? _defaultInstance;
 }
 
-class RoleListParam extends $pb.GeneratedMessage {
-  factory RoleListParam() => create();
-  RoleListParam._() : super();
-  factory RoleListParam.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory RoleListParam.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'RoleListParam', package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd_models'), createEmptyInstance: create)
-    ..hasRequiredFields = false
-  ;
-
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
-  RoleListParam clone() => RoleListParam()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  RoleListParam copyWith(void Function(RoleListParam) updates) => super.copyWith((message) => updates(message as RoleListParam)) as RoleListParam;
-
-  $pb.BuilderInfo get info_ => _i;
-
-  @$core.pragma('dart2js:noInline')
-  static RoleListParam create() => RoleListParam._();
-  RoleListParam createEmptyInstance() => create();
-  static $pb.PbList<RoleListParam> createRepeated() => $pb.PbList<RoleListParam>();
-  @$core.pragma('dart2js:noInline')
-  static RoleListParam getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<RoleListParam>(create);
-  static RoleListParam? _defaultInstance;
-}
-
-class RoleListResponse extends $pb.GeneratedMessage {
-  factory RoleListResponse({
-    $1.PBListRole? listRole,
-  }) {
-    final $result = create();
-    if (listRole != null) {
-      $result.listRole = listRole;
-    }
-    return $result;
-  }
-  RoleListResponse._() : super();
-  factory RoleListResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory RoleListResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
-
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'RoleListResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd_models'), createEmptyInstance: create)
-    ..aOM<$1.PBListRole>(1, _omitFieldNames ? '' : 'ListRole', protoName: 'ListRole', subBuilder: $1.PBListRole.create)
-    ..hasRequiredFields = false
-  ;
-
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
-  RoleListResponse clone() => RoleListResponse()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
-  RoleListResponse copyWith(void Function(RoleListResponse) updates) => super.copyWith((message) => updates(message as RoleListResponse)) as RoleListResponse;
-
-  $pb.BuilderInfo get info_ => _i;
-
-  @$core.pragma('dart2js:noInline')
-  static RoleListResponse create() => RoleListResponse._();
-  RoleListResponse createEmptyInstance() => create();
-  static $pb.PbList<RoleListResponse> createRepeated() => $pb.PbList<RoleListResponse>();
-  @$core.pragma('dart2js:noInline')
-  static RoleListResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<RoleListResponse>(create);
-  static RoleListResponse? _defaultInstance;
-
-  @$pb.TagNumber(1)
-  $1.PBListRole get listRole => $_getN(0);
-  @$pb.TagNumber(1)
-  set listRole($1.PBListRole v) { setField(1, v); }
-  @$pb.TagNumber(1)
-  $core.bool hasListRole() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearListRole() => clearField(1);
-  @$pb.TagNumber(1)
-  $1.PBListRole ensureListRole() => $_ensure(0);
-}
-
 class RoleGetParam extends $pb.GeneratedMessage {
   factory RoleGetParam({
     $core.String? name,
@@ -363,6 +279,90 @@ class RoleGetResponse extends $pb.GeneratedMessage {
   void clearRole() => clearField(1);
   @$pb.TagNumber(1)
   $1.PBRole ensureRole() => $_ensure(0);
+}
+
+class RoleListParam extends $pb.GeneratedMessage {
+  factory RoleListParam() => create();
+  RoleListParam._() : super();
+  factory RoleListParam.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory RoleListParam.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'RoleListParam', package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd_models'), createEmptyInstance: create)
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  RoleListParam clone() => RoleListParam()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  RoleListParam copyWith(void Function(RoleListParam) updates) => super.copyWith((message) => updates(message as RoleListParam)) as RoleListParam;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static RoleListParam create() => RoleListParam._();
+  RoleListParam createEmptyInstance() => create();
+  static $pb.PbList<RoleListParam> createRepeated() => $pb.PbList<RoleListParam>();
+  @$core.pragma('dart2js:noInline')
+  static RoleListParam getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<RoleListParam>(create);
+  static RoleListParam? _defaultInstance;
+}
+
+class RoleListResponse extends $pb.GeneratedMessage {
+  factory RoleListResponse({
+    $1.PBListRole? listRole,
+  }) {
+    final $result = create();
+    if (listRole != null) {
+      $result.listRole = listRole;
+    }
+    return $result;
+  }
+  RoleListResponse._() : super();
+  factory RoleListResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory RoleListResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'RoleListResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd_models'), createEmptyInstance: create)
+    ..aOM<$1.PBListRole>(1, _omitFieldNames ? '' : 'ListRole', protoName: 'ListRole', subBuilder: $1.PBListRole.create)
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  RoleListResponse clone() => RoleListResponse()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  RoleListResponse copyWith(void Function(RoleListResponse) updates) => super.copyWith((message) => updates(message as RoleListResponse)) as RoleListResponse;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static RoleListResponse create() => RoleListResponse._();
+  RoleListResponse createEmptyInstance() => create();
+  static $pb.PbList<RoleListResponse> createRepeated() => $pb.PbList<RoleListResponse>();
+  @$core.pragma('dart2js:noInline')
+  static RoleListResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<RoleListResponse>(create);
+  static RoleListResponse? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $1.PBListRole get listRole => $_getN(0);
+  @$pb.TagNumber(1)
+  set listRole($1.PBListRole v) { setField(1, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasListRole() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearListRole() => clearField(1);
+  @$pb.TagNumber(1)
+  $1.PBListRole ensureListRole() => $_ensure(0);
 }
 
 class RoleGrantPermissionParam extends $pb.GeneratedMessage {

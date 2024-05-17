@@ -1,238 +1,120 @@
 package handler
 
 import (
-	"gitee.com/cruvie/kk_go_kit/kk_http"
-
-	"gitee.com/cruvie/kk_go_kit/kk_models/kk_pb_type"
+	"errors"
+	"gitee.com/cruvie/kk_go_kit/kk_func"
+	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/internal/config"
+	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
+	"github.com/cruvie/kk_etcd_go/kk_etcd_const"
+
 	"github.com/cruvie/kk_etcd_go/internal/handler/service"
 
-	"github.com/cruvie/kk_etcd_go/internal/utils/check_user"
-	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
-
-	"github.com/gin-gonic/gin"
-	"log/slog"
 )
 
-// Login
-//
-//	@Description	Log in
-//	@Accept			octet-stream
-//	@Produce		octet-stream
-//	@Param			pbUser	body	kk_etcd_models.PBUser	true	"Login info"
-//	@Router			/Login [post]
-func Login(c *gin.Context) {
-	stage := global_model.GetRequestStage(c)
+type HUser struct{}
 
-	var pbUser kk_etcd_models.PBUser
-	if err := kk_http.ReadProtoBuf(stage, &pbUser); err != nil {
-		kk_http.ResponseProtoBuf(c, kk_http.Fail(stage, nil, nil))
-		return
+var serUser service.SerUser
+
+func (HUser) Login(stage *kk_stage.Stage, param *kk_etcd_models.LoginParam) (error, *kk_etcd_models.LoginResponse) {
+	span := stage.StartTrace(kk_func.GetCurrentFunctionName())
+	defer span.End()
+	if param.UserName == kk_etcd_const.UserRoot {
+		return errors.New("illegal login root user"), nil
 	}
-	token, res := service.Login(stage, &pbUser)
-	switch res {
-	case 1:
-		tokenPB := kk_pb_type.PBString{Value: token}
-		kk_http.ResponseProtoBuf(c, kk_http.Success(stage, &kk_pb_type.PBResponse{
-			Msg: "Login Succeeded"}, &tokenPB))
-		return
-	case 2:
-		kk_http.ResponseProtoBuf(c, kk_http.Fail(stage, &kk_pb_type.PBResponse{
-			Msg: "User not exist"}, nil))
-		return
-	case 4:
-		kk_http.ResponseProtoBuf(c, kk_http.Fail(stage, &kk_pb_type.PBResponse{
-			Msg: "Wrong user name or password"}, nil))
-		return
+	tokenString, err := serUser.Login(stage, param)
+	return err, &kk_etcd_models.LoginResponse{
+		Token: tokenString,
 	}
-	kk_http.ResponseProtoBuf(c, kk_http.Fail(stage, nil, nil))
 }
 
-// Logout
-//
-//	@Description	Log out
-//	@Accept			octet-stream
-//	@Produce		octet-stream
-//	@Param			pbUser	body	kk_etcd_models.PBUser	true	"Logout info"
-//	@Router			/Logout [post]
-func Logout(c *gin.Context) {
-	stage := global_model.GetRequestStage(c)
-	var pbUser kk_etcd_models.PBUser
-	if err := kk_http.ReadProtoBuf(stage, &pbUser); err != nil {
-		slog.Info("failed to read proto buf", "err", err)
-		kk_http.ResponseProtoBuf(c, kk_http.Fail(stage, nil, nil))
-		return
-	}
-	res := service.Logout(stage, &pbUser)
-	switch res {
-	case 1:
-		kk_http.ResponseProtoBuf(c, kk_http.Success(stage, nil, nil))
-		return
-	}
-
-	kk_http.ResponseProtoBuf(c, kk_http.Fail(stage, nil, nil))
+func (HUser) Logout(stage *kk_stage.Stage, param *kk_etcd_models.LogoutParam) (error, *kk_etcd_models.LogoutResponse) {
+	span := stage.StartTrace(kk_func.GetCurrentFunctionName())
+	defer span.End()
+	err := serUser.Logout(stage, param)
+	return err, &kk_etcd_models.LogoutResponse{}
 }
 
-// UserAdd
-//
-//	@Description	Add user
-//	@Accept			octet-stream
-//	@Produce		octet-stream
-//	@Param			pbUser	body	kk_etcd_models.PBUser	true	"Add user info"
-//	@Router			/UserAdd [post]
-func UserAdd(c *gin.Context) {
-	stage := global_model.GetRequestStage(c)
-	if !check_user.CheckRootRole(stage) {
-		kk_http.ResponseProtoBuf(c, kk_http.Fail(stage, &kk_pb_type.PBResponse{
-			Msg: "you don't have root role!"}, nil))
-		return
+func (HUser) UserAdd(stage *kk_stage.Stage, param *kk_etcd_models.UserAddParam) (error, *kk_etcd_models.UserAddResponse) {
+	span := stage.StartTrace(kk_func.GetCurrentFunctionName())
+	defer span.End()
+	err := serUser.CheckRootRole(stage)
+	if err != nil {
+		return err, nil
 	}
-
-	var pbUser kk_etcd_models.PBUser
-	if err := kk_http.ReadProtoBuf(stage, &pbUser); err != nil {
-		slog.Info("failed to read proto buf", "err", err)
-		kk_http.ResponseProtoBuf(c, kk_http.Fail(stage, nil, nil))
-		return
+	if param.GetUserName() == kk_etcd_const.UserRoot {
+		return errors.New("illegal add root user"), nil
 	}
-	res := service.UserAdd(stage, &pbUser)
-	switch res {
-	case 1:
-		kk_http.ResponseProtoBuf(c, kk_http.Success(stage, nil, nil))
-		return
-	}
-	kk_http.ResponseProtoBuf(c, kk_http.Fail(stage, nil, nil))
+	err = serUser.UserAdd(stage, &kk_etcd_models.PBUser{
+		UserName: param.GetUserName(),
+		Password: param.GetPassword(),
+		Roles:    param.GetRoles(),
+	})
+	return err, &kk_etcd_models.UserAddResponse{}
 }
 
-// UserDelete
-//
-//	@Description	Delete user
-//	@Accept			octet-stream
-//	@Produce		octet-stream
-//	@Param			pbUser	body	kk_etcd_models.PBUser	true	"Delete user info"
-//	@Router			/UserDelete [post]
-func UserDelete(c *gin.Context) {
-	stage := global_model.GetRequestStage(c)
-	if !check_user.CheckRootRole(stage) {
-		kk_http.ResponseProtoBuf(c, kk_http.Fail(stage, &kk_pb_type.PBResponse{
-			Msg: "you don't have root role!"}, nil))
-		return
+func (HUser) UserDelete(stage *kk_stage.Stage, param *kk_etcd_models.UserDeleteParam) (error, *kk_etcd_models.UserDeleteResponse) {
+	span := stage.StartTrace(kk_func.GetCurrentFunctionName())
+	defer span.End()
+	err := serUser.CheckRootRole(stage)
+	if err != nil {
+		return err, nil
 	}
-	var pbUser kk_etcd_models.PBUser
-	if err := kk_http.ReadProtoBuf(stage, &pbUser); err != nil {
-		slog.Info("failed to read proto buf", "err", err)
-		kk_http.ResponseProtoBuf(c, kk_http.Fail(stage, nil, nil))
-		return
+	if param.GetUserName() == kk_etcd_const.UserRoot ||
+		param.GetUserName() == config.Config.Admin.UserName ||
+		param.GetUserName() == global_model.GetLoginUser(stage).UserName {
+		return errors.New("illegal delete root admin or current logged in user"), nil
 	}
-	res := service.UserDelete(stage, pbUser.UserName, false)
-	switch res {
-	case 1:
-		kk_http.ResponseProtoBuf(c, kk_http.Success(stage, nil, nil))
-		return
-	case 2:
-		kk_http.ResponseProtoBuf(c, kk_http.Fail(stage, &kk_pb_type.PBResponse{
-			Msg: "illegal delete root admin or current logged in user!"}, nil))
-		return
-	}
-	kk_http.ResponseProtoBuf(c, kk_http.Fail(stage, nil, nil))
+	err = serUser.UserDelete(stage, param.GetUserName())
+	return err, &kk_etcd_models.UserDeleteResponse{}
 }
 
-// GetUser
-//
-//	@Description	Get user
-//	@Accept			octet-stream
-//	@Produce		octet-stream
-//	@Param			pbUser	body	kk_etcd_models.PBUser	true	"Get user info"
-//	@Router			/GetUser [post]
-func GetUser(c *gin.Context) {
-	stage := global_model.GetRequestStage(c)
-	var pbUser kk_etcd_models.PBUser
-	if err := kk_http.ReadProtoBuf(stage, &pbUser); err != nil {
-		slog.Info("failed to read proto buf", "err", err)
-		kk_http.ResponseProtoBuf(c, kk_http.Fail(stage, nil, nil))
-		return
+func (HUser) GetUser(stage *kk_stage.Stage, param *kk_etcd_models.GetUserParam) (error, *kk_etcd_models.GetUserResponse) {
+	span := stage.StartTrace(kk_func.GetCurrentFunctionName())
+	defer span.End()
+	user, err := serUser.GetUser(param.GetUserName())
+	return err, &kk_etcd_models.GetUserResponse{
+		User: user,
 	}
-	user, res := service.GetUser(stage, pbUser.UserName)
-	switch res {
-	case 1:
-		kk_http.ResponseProtoBuf(c, kk_http.Success(stage, nil, user))
-		return
-	}
-	kk_http.ResponseProtoBuf(c, kk_http.Fail(stage, nil, nil))
 }
 
-// MyInfo
-//
-//	@Description	Get my info
-//	@Accept			octet-stream
-//	@Produce		octet-stream
-//	@Router			/MyInfo [post]
-func MyInfo(c *gin.Context) {
-	stage := global_model.GetRequestStage(c)
-	loginUser := global_model.GetLoginUser(c)
-	user, res := service.GetUser(stage, loginUser.UserName)
-	switch res {
-	case 1:
-		kk_http.ResponseProtoBuf(c, kk_http.Success(stage, nil, user))
-		return
+func (HUser) MyInfo(stage *kk_stage.Stage, _ *kk_etcd_models.MyInfoParam) (error, *kk_etcd_models.MyInfoResponse) {
+	span := stage.StartTrace(kk_func.GetCurrentFunctionName())
+	defer span.End()
+	loginUser := global_model.GetLoginUser(stage)
+	return nil, &kk_etcd_models.MyInfoResponse{
+		UserName: loginUser.GetUserName(),
+		Roles:    loginUser.GetRoles(),
 	}
-	kk_http.ResponseProtoBuf(c, kk_http.Fail(stage, nil, nil))
 }
 
-// UserList
-//
-//	@Description	Get user list
-//	@Accept			octet-stream
-//	@Produce		octet-stream
-//	@Router			/UserList [post]
-func UserList(c *gin.Context) {
-	stage := global_model.GetRequestStage(c)
-	res, users := service.UserList(stage)
-	switch res {
-	case 1:
-		kk_http.ResponseProtoBuf(c, kk_http.Success(stage, nil, users))
-		return
+func (HUser) UserList(stage *kk_stage.Stage, _ *kk_etcd_models.UserListParam) (error, *kk_etcd_models.UserListResponse) {
+	span := stage.StartTrace(kk_func.GetCurrentFunctionName())
+	defer span.End()
+	err, users := serUser.UserList()
+	return err, &kk_etcd_models.UserListResponse{
+		ListUser: users,
 	}
-	kk_http.ResponseProtoBuf(c, kk_http.Fail(stage, nil, nil))
 }
 
-// UserGrantRole
-//
-//	@Description	Grant role to user
-//	@Accept			octet-stream
-//	@Produce		octet-stream
-//	@Param			PBUser	body	kk_etcd_models.PBUser	true	"Grant role to user info"
-//	@Router			/UserGrantRole [post]
-func UserGrantRole(c *gin.Context) {
-	stage := global_model.GetRequestStage(c)
-	if !check_user.CheckRootRole(stage) {
-		kk_http.ResponseProtoBuf(c, kk_http.Fail(stage, &kk_pb_type.PBResponse{
-			Msg: "you don't have root role!"}, nil))
-		return
-	}
+func (HUser) UserGrantRole(stage *kk_stage.Stage, param *kk_etcd_models.UserGrantRoleParam) (error, *kk_etcd_models.UserGrantRoleResponse) {
+	span := stage.StartTrace(kk_func.GetCurrentFunctionName())
+	defer span.End()
 
-	var user kk_etcd_models.PBUser
-	if err := kk_http.ReadProtoBuf(stage, &user); err != nil {
-		slog.Info("failed to read proto buf", "err", err)
-		kk_http.ResponseProtoBuf(c, kk_http.Fail(stage, nil, nil))
-		return
+	err := serUser.CheckRootRole(stage)
+	if err != nil {
+		return err, nil
 	}
-
-	if user.UserName == config.Config.Admin.UserName {
-		kk_http.ResponseProtoBuf(c, kk_http.Fail(stage, &kk_pb_type.PBResponse{
-			Msg: "can't change Admin user's role!"}, nil))
-		return
+	if param.GetUserName() == config.Config.Admin.UserName {
+		return errors.New("can't change Admin user's role"), nil
 	}
-
-	res := service.UserGrantRole(stage, &user)
-	switch res {
-	case 1:
-		kk_http.ResponseProtoBuf(c, kk_http.Success(stage, nil, nil))
-		return
-	case -1:
-		kk_http.ResponseProtoBuf(c, kk_http.Fail(stage, &kk_pb_type.PBResponse{
-			Msg: "Illegal modification of root user's role!"}, nil))
-		return
+	if param.GetUserName() == kk_etcd_const.UserRoot {
+		return errors.New("illegal modification of root user's role"), nil
 	}
-	kk_http.ResponseProtoBuf(c, kk_http.Fail(stage, nil, nil))
+	err = serUser.UserGrantRole(&kk_etcd_models.PBUser{
+		UserName: param.GetUserName(),
+		Roles:    param.GetRoles(),
+	})
+	return err, &kk_etcd_models.UserGrantRoleResponse{}
 }
