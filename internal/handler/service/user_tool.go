@@ -7,11 +7,11 @@ import (
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 )
 
-type userFunc struct{}
+type userTool struct{}
 
-var toolUser userFunc
+var toolUser userTool
 
-func (t *userFunc) deleteAllRoles(userName string) error {
+func (t *userTool) deleteAllRoles(userName string) error {
 	user, _ := serUser.GetUser(userName)
 	for _, role := range user.Roles {
 		_, err := kk_etcd_client.EtcdClient.UserRevokeRole(context.Background(), userName, role)
@@ -21,7 +21,7 @@ func (t *userFunc) deleteAllRoles(userName string) error {
 	}
 	return nil
 }
-func (t *userFunc) checkFields(m *kk_etcd_models.PBUser) error {
+func (t *userTool) checkFields(m *kk_etcd_models.PBUser) error {
 	if m == nil {
 		return errors.New("user is nil")
 	}

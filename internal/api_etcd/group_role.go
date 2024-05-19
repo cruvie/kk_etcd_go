@@ -17,8 +17,8 @@ var hRole handler.HRole
 //	@Accept			octet-stream
 //	@Produce		octet-stream
 //	@Param			RoleAddParam	body		kk_etcd_models.RoleAddParam	true	"RoleAddParam"
-//	@Success		200					{object}	kk_etcd_models.RoleAddResponse
-//	@Router			/roleAdd [post]
+//	@Success		200				{object}	kk_etcd_models.RoleAddResponse
+//	@Router			/role/roleAdd [post]
 func roleAdd(c *gin.Context) {
 	stage := global_model.GetRequestStage(c)
 	span := stage.StartTrace(kk_func.GetCurrentFunctionName())
@@ -42,8 +42,8 @@ func roleAdd(c *gin.Context) {
 //	@Accept			octet-stream
 //	@Produce		octet-stream
 //	@Param			RoleDeleteParam	body		kk_etcd_models.RoleDeleteParam	true	"RoleDeleteParam"
-//	@Success		200					{object}	kk_etcd_models.RoleDeleteResponse
-//	@Router			/roleDelete [post]
+//	@Success		200				{object}	kk_etcd_models.RoleDeleteResponse
+//	@Router			/role/roleDelete [post]
 func roleDelete(c *gin.Context) {
 	stage := global_model.GetRequestStage(c)
 	span := stage.StartTrace(kk_func.GetCurrentFunctionName())
@@ -67,8 +67,8 @@ func roleDelete(c *gin.Context) {
 //	@Accept			octet-stream
 //	@Produce		octet-stream
 //	@Param			RoleListParam	body		kk_etcd_models.RoleListParam	true	"RoleListParam"
-//	@Success		200					{object}	kk_etcd_models.RoleListResponse
-//	@Router			/roleList [post]
+//	@Success		200				{object}	kk_etcd_models.RoleListResponse
+//	@Router			/role/roleList [post]
 func roleList(c *gin.Context) {
 	stage := global_model.GetRequestStage(c)
 	span := stage.StartTrace(kk_func.GetCurrentFunctionName())
@@ -92,8 +92,8 @@ func roleList(c *gin.Context) {
 //	@Accept			octet-stream
 //	@Produce		octet-stream
 //	@Param			RoleGetParam	body		kk_etcd_models.RoleGetParam	true	"RoleGetParam"
-//	@Success		200					{object}	kk_etcd_models.RoleGetResponse
-//	@Router			/roleGet [post]
+//	@Success		200				{object}	kk_etcd_models.RoleGetResponse
+//	@Router			/role/roleGet [post]
 func roleGet(c *gin.Context) {
 	stage := global_model.GetRequestStage(c)
 	span := stage.StartTrace(kk_func.GetCurrentFunctionName())
@@ -117,8 +117,8 @@ func roleGet(c *gin.Context) {
 //	@Accept			octet-stream
 //	@Produce		octet-stream
 //	@Param			RoleGrantPermissionParam	body		kk_etcd_models.RoleGrantPermissionParam	true	"RoleGrantPermissionParam"
-//	@Success		200					{object}	kk_etcd_models.RoleGrantPermissionResponse
-//	@Router			/roleGrantPermission [post]
+//	@Success		200							{object}	kk_etcd_models.RoleGrantPermissionResponse
+//	@Router			/role/roleGrantPermission [post]
 func roleGrantPermission(c *gin.Context) {
 	stage := global_model.GetRequestStage(c)
 	span := stage.StartTrace(kk_func.GetCurrentFunctionName())

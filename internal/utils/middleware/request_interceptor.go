@@ -11,8 +11,8 @@ import (
 func RequestInterceptor(stage *kk_stage.Stage) func(c *gin.Context) {
 	name := kk_func.GetCurrentFunctionName()
 	return func(c *gin.Context) {
-		//打印请求url
-		//slog.Info("请求url", c.Request.URL.Path)
+
+		//slog.Info("url", c.Request.URL.Path)
 		stage := kk_stage.NewStage(c.Request.Context(), name, stage.DebugMode).SetGinCtx(c)
 		global_model.SetRequestStage(stage)
 

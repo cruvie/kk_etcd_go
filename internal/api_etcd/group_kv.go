@@ -17,8 +17,8 @@ var hKV handler.HKV
 //	@Accept			octet-stream
 //	@Produce		octet-stream
 //	@Param			KVPutParam	body		kk_etcd_models.KVPutParam	true	"KVPutParam"
-//	@Success		200					{object}	kk_etcd_models.KVPutResponse
-//	@Router			/kVPut [post]
+//	@Success		200			{object}	kk_etcd_models.KVPutResponse
+//	@Router			/kv/kVPut [post]
 func kVPut(c *gin.Context) {
 	stage := global_model.GetRequestStage(c)
 	span := stage.StartTrace(kk_func.GetCurrentFunctionName())
@@ -42,8 +42,8 @@ func kVPut(c *gin.Context) {
 //	@Accept			octet-stream
 //	@Produce		octet-stream
 //	@Param			KVGetParam	body		kk_etcd_models.KVGetParam	true	"KVGetParam"
-//	@Success		200					{object}	kk_etcd_models.KVGetResponse
-//	@Router			/kVGet [post]
+//	@Success		200			{object}	kk_etcd_models.KVGetResponse
+//	@Router			/kv/kVGet [post]
 func kVGet(c *gin.Context) {
 	stage := global_model.GetRequestStage(c)
 	span := stage.StartTrace(kk_func.GetCurrentFunctionName())
@@ -67,8 +67,8 @@ func kVGet(c *gin.Context) {
 //	@Accept			octet-stream
 //	@Produce		octet-stream
 //	@Param			KVDelParam	body		kk_etcd_models.KVDelParam	true	"KVDelParam"
-//	@Success		200					{object}	kk_etcd_models.KVDelResponse
-//	@Router			/kVDel [post]
+//	@Success		200			{object}	kk_etcd_models.KVDelResponse
+//	@Router			/kv/kVDel [post]
 func kVDel(c *gin.Context) {
 	stage := global_model.GetRequestStage(c)
 	span := stage.StartTrace(kk_func.GetCurrentFunctionName())
@@ -92,8 +92,8 @@ func kVDel(c *gin.Context) {
 //	@Accept			octet-stream
 //	@Produce		octet-stream
 //	@Param			KVListParam	body		kk_etcd_models.KVListParam	true	"KVListParam"
-//	@Success		200					{object}	kk_etcd_models.KVListResponse
-//	@Router			/kVList [post]
+//	@Success		200			{object}	kk_etcd_models.KVListResponse
+//	@Router			/kv/kVList [post]
 func kVList(c *gin.Context) {
 	stage := global_model.GetRequestStage(c)
 	span := stage.StartTrace(kk_func.GetCurrentFunctionName())

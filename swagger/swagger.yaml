@@ -1,11 +1,132 @@
-basePath: /User
+basePath: /
 definitions:
+  kk_etcd_models.AllKVsBackupParam:
+    type: object
+  kk_etcd_models.AllKVsBackupResponse:
+    properties:
+      File:
+        items:
+          type: integer
+        type: array
+      Name:
+        type: string
+    type: object
+  kk_etcd_models.AllKVsRestoreParam:
+    properties:
+      File:
+        items:
+          type: integer
+        type: array
+    type: object
+  kk_etcd_models.AllKVsRestoreResponse:
+    type: object
+  kk_etcd_models.GetUserParam:
+    properties:
+      UserName:
+        type: string
+    type: object
+  kk_etcd_models.GetUserResponse:
+    properties:
+      User:
+        $ref: '#/definitions/kk_etcd_models.PBUser'
+    type: object
+  kk_etcd_models.KVDelParam:
+    properties:
+      Key:
+        type: string
+    type: object
+  kk_etcd_models.KVDelResponse:
+    type: object
+  kk_etcd_models.KVGetParam:
+    properties:
+      Key:
+        type: string
+    type: object
+  kk_etcd_models.KVGetResponse:
+    properties:
+      KV:
+        $ref: '#/definitions/kk_etcd_models.PBKV'
+    type: object
+  kk_etcd_models.KVListParam:
+    properties:
+      Prefix:
+        type: string
+    type: object
+  kk_etcd_models.KVListResponse:
+    properties:
+      KVList:
+        $ref: '#/definitions/kk_etcd_models.PBListKV'
+    type: object
+  kk_etcd_models.KVPutParam:
+    properties:
+      Key:
+        type: string
+      Value:
+        type: string
+    type: object
+  kk_etcd_models.KVPutResponse:
+    type: object
+  kk_etcd_models.LoginParam:
+    properties:
+      Password:
+        type: string
+      UserName:
+        type: string
+    type: object
+  kk_etcd_models.LoginResponse:
+    properties:
+      Token:
+        type: string
+    type: object
+  kk_etcd_models.LogoutParam:
+    type: object
+  kk_etcd_models.LogoutResponse:
+    type: object
+  kk_etcd_models.MyInfoParam:
+    type: object
+  kk_etcd_models.MyInfoResponse:
+    properties:
+      Roles:
+        items:
+          type: string
+        type: array
+      UserName:
+        type: string
+    type: object
   kk_etcd_models.PBKV:
     properties:
       Key:
         type: string
       Value:
         type: string
+    type: object
+  kk_etcd_models.PBListKV:
+    properties:
+      ListKV:
+        items:
+          $ref: '#/definitions/kk_etcd_models.PBKV'
+        type: array
+    type: object
+  kk_etcd_models.PBListRole:
+    properties:
+      List:
+        items:
+          $ref: '#/definitions/kk_etcd_models.PBRole'
+        type: array
+    type: object
+  kk_etcd_models.PBListServer:
+    properties:
+      ListServer:
+        items:
+          $ref: '#/definitions/kk_etcd_models.PBServer'
+        type: array
+    type: object
+  kk_etcd_models.PBListUser:
+    properties:
+      ListUser:
+        items:
+          $ref: '#/definitions/kk_etcd_models.PBUser'
+        type: array
     type: object
   kk_etcd_models.PBRole:
     properties:
@@ -18,6 +139,13 @@ definitions:
       RangeEnd:
         type: string
     type: object
+  kk_etcd_models.PBServer:
+    properties:
+      ServiceAddr:
+        type: string
+      ServiceName:
+        type: string
+    type: object
   kk_etcd_models.PBUser:
     properties:
       Password:
@@ -28,6 +156,122 @@ definitions:
         type: array
       UserName:
         type: string
+    type: object
+  kk_etcd_models.RoleAddParam:
+    properties:
+      Name:
+        type: string
+    type: object
+  kk_etcd_models.RoleAddResponse:
+    type: object
+  kk_etcd_models.RoleDeleteParam:
+    properties:
+      Name:
+        type: string
+    type: object
+  kk_etcd_models.RoleDeleteResponse:
+    type: object
+  kk_etcd_models.RoleGetParam:
+    properties:
+      Name:
+        type: string
+    type: object
+  kk_etcd_models.RoleGetResponse:
+    properties:
+      Role:
+        $ref: '#/definitions/kk_etcd_models.PBRole'
+    type: object
+  kk_etcd_models.RoleGrantPermissionParam:
+    properties:
+      Role:
+        $ref: '#/definitions/kk_etcd_models.PBRole'
+    type: object
+  kk_etcd_models.RoleGrantPermissionResponse:
+    type: object
+  kk_etcd_models.RoleListParam:
+    type: object
+  kk_etcd_models.RoleListResponse:
+    properties:
+      ListRole:
+        $ref: '#/definitions/kk_etcd_models.PBListRole'
+    type: object
+  kk_etcd_models.ServerListParam:
+    properties:
+      Prefix:
+        type: string
+    type: object
+  kk_etcd_models.ServerListResponse:
+    properties:
+      ServerList:
+        $ref: '#/definitions/kk_etcd_models.PBListServer'
+    type: object
+  kk_etcd_models.SnapshotInfoParam:
+    properties:
+      File:
+        items:
+          type: integer
+        type: array
+    type: object
+  kk_etcd_models.SnapshotInfoResponse:
+    properties:
+      Info:
+        type: string
+    type: object
+  kk_etcd_models.SnapshotParam:
+    type: object
+  kk_etcd_models.SnapshotResponse:
+    properties:
+      File:
+        items:
+          type: integer
+        type: array
+      Name:
+        type: string
+    type: object
+  kk_etcd_models.SnapshotRestoreParam:
+    type: object
+  kk_etcd_models.SnapshotRestoreResponse:
+    properties:
+      CmdStr:
+        type: string
+    type: object
+  kk_etcd_models.UserAddParam:
+    properties:
+      Password:
+        type: string
+      Roles:
+        items:
+          type: string
+        type: array
+      UserName:
+        type: string
+    type: object
+  kk_etcd_models.UserAddResponse:
+    type: object
+  kk_etcd_models.UserDeleteParam:
+    properties:
+      UserName:
+        type: string
+    type: object
+  kk_etcd_models.UserDeleteResponse:
+    type: object
+  kk_etcd_models.UserGrantRoleParam:
+    properties:
+      Roles:
+        items:
+          type: string
+        type: array
+      UserName:
+        type: string
+    type: object
+  kk_etcd_models.UserGrantRoleResponse:
+    type: object
+  kk_etcd_models.UserListParam:
+    type: object
+  kk_etcd_models.UserListResponse:
+    properties:
+      ListUser:
+        $ref: '#/definitions/kk_etcd_models.PBListUser'
     type: object
 host: localhost:2333
 info:
@@ -43,239 +287,441 @@ info:
   title: kk_etcd_go API
   version: "1.0"
 paths:
-  /GetUser:
+  /backup/allKVsBackup:
     post:
       consumes:
       - application/octet-stream
-      description: Get user
+      description: allKVsBackup
       parameters:
-      - description: Get user info
+      - description: AllKVsBackupParam
         in: body
-        name: pbUser
+        name: AllKVsBackupParam
         required: true
         schema:
-          $ref: '#/definitions/kk_etcd_models.PBUser'
+          $ref: '#/definitions/kk_etcd_models.AllKVsBackupParam'
       produces:
       - application/octet-stream
-      responses: {}
-  /KVDel:
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/kk_etcd_models.AllKVsBackupResponse'
+  /backup/allKVsRestore:
     post:
       consumes:
       - application/octet-stream
-      description: Del config
+      description: allKVsRestore
       parameters:
-      - description: Del config info
+      - description: AllKVsRestoreParam
         in: body
-        name: pbKV
+        name: AllKVsRestoreParam
         required: true
         schema:
-          $ref: '#/definitions/kk_etcd_models.PBKV'
+          $ref: '#/definitions/kk_etcd_models.AllKVsRestoreParam'
       produces:
       - application/octet-stream
-      responses: {}
-  /KVGet:
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/kk_etcd_models.AllKVsRestoreResponse'
+  /backup/snapshot:
     post:
       consumes:
       - application/octet-stream
-      description: Get config
+      description: snapshot
       parameters:
-      - description: Get config info
+      - description: SnapshotParam
         in: body
-        name: pbKV
+        name: SnapshotParam
         required: true
         schema:
-          $ref: '#/definitions/kk_etcd_models.PBKV'
+          $ref: '#/definitions/kk_etcd_models.SnapshotParam'
       produces:
       - application/octet-stream
-      responses: {}
-  /KVList:
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/kk_etcd_models.SnapshotResponse'
+  /backup/snapshotInfo:
     post:
       consumes:
       - application/octet-stream
-      description: Get kv list
-      produces:
-      - application/octet-stream
-      responses: {}
-  /KVPut:
-    post:
-      consumes:
-      - application/octet-stream
-      description: Put config
+      description: snapshotInfo
       parameters:
-      - description: Put config info
+      - description: SnapshotInfoParam
         in: body
-        name: pbKV
+        name: SnapshotInfoParam
         required: true
         schema:
-          $ref: '#/definitions/kk_etcd_models.PBKV'
+          $ref: '#/definitions/kk_etcd_models.SnapshotInfoParam'
       produces:
       - application/octet-stream
-      responses: {}
-  /Login:
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/kk_etcd_models.SnapshotInfoResponse'
+  /backup/snapshotRestore:
     post:
       consumes:
       - application/octet-stream
-      description: Log in
+      description: snapshotRestore
       parameters:
-      - description: Login info
+      - description: SnapshotRestoreParam
         in: body
-        name: pbUser
+        name: SnapshotRestoreParam
         required: true
         schema:
-          $ref: '#/definitions/kk_etcd_models.PBUser'
+          $ref: '#/definitions/kk_etcd_models.SnapshotRestoreParam'
       produces:
       - application/octet-stream
-      responses: {}
-  /Logout:
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/kk_etcd_models.SnapshotRestoreResponse'
+  /kv/kVDel:
     post:
       consumes:
       - application/octet-stream
-      description: Log out
+      description: kVDel
       parameters:
-      - description: Logout info
+      - description: KVDelParam
         in: body
-        name: pbUser
+        name: KVDelParam
         required: true
         schema:
-          $ref: '#/definitions/kk_etcd_models.PBUser'
+          $ref: '#/definitions/kk_etcd_models.KVDelParam'
       produces:
       - application/octet-stream
-      responses: {}
-  /MyInfo:
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/kk_etcd_models.KVDelResponse'
+  /kv/kVGet:
     post:
       consumes:
       - application/octet-stream
-      description: Get my info
-      produces:
-      - application/octet-stream
-      responses: {}
-  /RoleAdd:
-    post:
-      consumes:
-      - application/octet-stream
-      description: Add role
+      description: kVGet
       parameters:
-      - description: Add role info
+      - description: KVGetParam
         in: body
-        name: pbRole
+        name: KVGetParam
         required: true
         schema:
-          $ref: '#/definitions/kk_etcd_models.PBRole'
+          $ref: '#/definitions/kk_etcd_models.KVGetParam'
       produces:
       - application/octet-stream
-      responses: {}
-  /RoleDelete:
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/kk_etcd_models.KVGetResponse'
+  /kv/kVList:
     post:
       consumes:
       - application/octet-stream
-      description: Delete role
+      description: kVList
       parameters:
-      - description: Delete role info
+      - description: KVListParam
         in: body
-        name: pbRole
+        name: KVListParam
         required: true
         schema:
-          $ref: '#/definitions/kk_etcd_models.PBRole'
+          $ref: '#/definitions/kk_etcd_models.KVListParam'
       produces:
       - application/octet-stream
-      responses: {}
-  /RoleGet:
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/kk_etcd_models.KVListResponse'
+  /kv/kVPut:
     post:
       consumes:
       - application/octet-stream
-      description: Get role
+      description: kVPut
       parameters:
-      - description: Get role info
+      - description: KVPutParam
         in: body
-        name: pbRole
+        name: KVPutParam
         required: true
         schema:
-          $ref: '#/definitions/kk_etcd_models.PBRole'
+          $ref: '#/definitions/kk_etcd_models.KVPutParam'
       produces:
       - application/octet-stream
-      responses: {}
-  /RoleGrantPermission:
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/kk_etcd_models.KVPutResponse'
+  /role/roleAdd:
     post:
       consumes:
       - application/octet-stream
-      description: Grant permission to role
+      description: roleAdd
       parameters:
-      - description: Grant permission to role info
+      - description: RoleAddParam
         in: body
-        name: pbRole
+        name: RoleAddParam
         required: true
         schema:
-          $ref: '#/definitions/kk_etcd_models.PBRole'
+          $ref: '#/definitions/kk_etcd_models.RoleAddParam'
       produces:
       - application/octet-stream
-      responses: {}
-  /RoleList:
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/kk_etcd_models.RoleAddResponse'
+  /role/roleDelete:
     post:
       consumes:
       - application/octet-stream
-      description: Get role list
-      produces:
-        - application/octet-stream
-      responses: { }
-  /ServerList:
-    post:
-      consumes:
-        - application/octet-stream
-      description: Get service list
-      produces:
-      - application/octet-stream
-      responses: {}
-  /UserAdd:
-    post:
-      consumes:
-      - application/octet-stream
-      description: Add user
+      description: roleDelete
       parameters:
-      - description: Add user info
+      - description: RoleDeleteParam
         in: body
-        name: pbUser
+        name: RoleDeleteParam
         required: true
         schema:
-          $ref: '#/definitions/kk_etcd_models.PBUser'
+          $ref: '#/definitions/kk_etcd_models.RoleDeleteParam'
       produces:
       - application/octet-stream
-      responses: {}
-  /UserDelete:
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/kk_etcd_models.RoleDeleteResponse'
+  /role/roleGet:
     post:
       consumes:
       - application/octet-stream
-      description: Delete user
+      description: roleGet
       parameters:
-      - description: Delete user info
+      - description: RoleGetParam
         in: body
-        name: pbUser
+        name: RoleGetParam
         required: true
         schema:
-          $ref: '#/definitions/kk_etcd_models.PBUser'
+          $ref: '#/definitions/kk_etcd_models.RoleGetParam'
       produces:
       - application/octet-stream
-      responses: {}
-  /UserGrantRole:
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/kk_etcd_models.RoleGetResponse'
+  /role/roleGrantPermission:
     post:
       consumes:
       - application/octet-stream
-      description: Grant role to user
+      description: roleGrantPermission
       parameters:
-      - description: Grant role to user info
+      - description: RoleGrantPermissionParam
         in: body
-        name: PBUser
+        name: RoleGrantPermissionParam
         required: true
         schema:
-          $ref: '#/definitions/kk_etcd_models.PBUser'
+          $ref: '#/definitions/kk_etcd_models.RoleGrantPermissionParam'
       produces:
       - application/octet-stream
-      responses: {}
-  /UserList:
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/kk_etcd_models.RoleGrantPermissionResponse'
+  /role/roleList:
     post:
       consumes:
       - application/octet-stream
-      description: Get user list
+      description: roleList
+      parameters:
+      - description: RoleListParam
+        in: body
+        name: RoleListParam
+        required: true
+        schema:
+          $ref: '#/definitions/kk_etcd_models.RoleListParam'
       produces:
       - application/octet-stream
-      responses: {}
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/kk_etcd_models.RoleListResponse'
+  /server/serverList:
+    post:
+      consumes:
+      - application/octet-stream
+      description: serverList
+      parameters:
+      - description: ServerListParam
+        in: body
+        name: ServerListParam
+        required: true
+        schema:
+          $ref: '#/definitions/kk_etcd_models.ServerListParam'
+      produces:
+      - application/octet-stream
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/kk_etcd_models.ServerListResponse'
+  /user/getUser:
+    post:
+      consumes:
+      - application/octet-stream
+      description: getUser
+      parameters:
+      - description: GetUserParam
+        in: body
+        name: GetUserParam
+        required: true
+        schema:
+          $ref: '#/definitions/kk_etcd_models.GetUserParam'
+      produces:
+      - application/octet-stream
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/kk_etcd_models.GetUserResponse'
+  /user/login:
+    post:
+      consumes:
+      - application/octet-stream
+      description: login
+      parameters:
+      - description: LoginParam
+        in: body
+        name: LoginParam
+        required: true
+        schema:
+          $ref: '#/definitions/kk_etcd_models.LoginParam'
+      produces:
+      - application/octet-stream
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/kk_etcd_models.LoginResponse'
+  /user/logout:
+    post:
+      consumes:
+      - application/octet-stream
+      description: logout
+      parameters:
+      - description: LogoutParam
+        in: body
+        name: LogoutParam
+        required: true
+        schema:
+          $ref: '#/definitions/kk_etcd_models.LogoutParam'
+      produces:
+      - application/octet-stream
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/kk_etcd_models.LogoutResponse'
+  /user/myInfo:
+    post:
+      consumes:
+      - application/octet-stream
+      description: myInfo
+      parameters:
+      - description: MyInfoParam
+        in: body
+        name: MyInfoParam
+        required: true
+        schema:
+          $ref: '#/definitions/kk_etcd_models.MyInfoParam'
+      produces:
+      - application/octet-stream
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/kk_etcd_models.MyInfoResponse'
+  /user/userAdd:
+    post:
+      consumes:
+      - application/octet-stream
+      description: userAdd
+      parameters:
+      - description: UserAddParam
+        in: body
+        name: UserAddParam
+        required: true
+        schema:
+          $ref: '#/definitions/kk_etcd_models.UserAddParam'
+      produces:
+      - application/octet-stream
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/kk_etcd_models.UserAddResponse'
+  /user/userDelete:
+    post:
+      consumes:
+      - application/octet-stream
+      description: userDelete
+      parameters:
+      - description: UserDeleteParam
+        in: body
+        name: UserDeleteParam
+        required: true
+        schema:
+          $ref: '#/definitions/kk_etcd_models.UserDeleteParam'
+      produces:
+      - application/octet-stream
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/kk_etcd_models.UserDeleteResponse'
+  /user/userGrantRole:
+    post:
+      consumes:
+      - application/octet-stream
+      description: userGrantRole
+      parameters:
+      - description: UserGrantRoleParam
+        in: body
+        name: UserGrantRoleParam
+        required: true
+        schema:
+          $ref: '#/definitions/kk_etcd_models.UserGrantRoleParam'
+      produces:
+      - application/octet-stream
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/kk_etcd_models.UserGrantRoleResponse'
+  /user/userList:
+    post:
+      consumes:
+      - application/octet-stream
+      description: userList
+      parameters:
+      - description: UserListParam
+        in: body
+        name: UserListParam
+        required: true
+        schema:
+          $ref: '#/definitions/kk_etcd_models.UserListParam'
+      produces:
+      - application/octet-stream
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/kk_etcd_models.UserListResponse'
 swagger: "2.0"

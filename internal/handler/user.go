@@ -66,7 +66,7 @@ func (HUser) UserDelete(stage *kk_stage.Stage, param *kk_etcd_models.UserDeleteP
 		param.GetUserName() == global_model.GetLoginUser(stage).UserName {
 		return errors.New("illegal delete root admin or current logged in user"), nil
 	}
-	err = serUser.UserDelete(stage, param.GetUserName())
+	err = serUser.UserDelete(param.GetUserName())
 	return err, &kk_etcd_models.UserDeleteResponse{}
 }
 

@@ -21,7 +21,11 @@ func (HBackup) Snapshot(stage *kk_stage.Stage, _ *kk_etcd_models.SnapshotParam) 
 func (HBackup) SnapshotRestore(stage *kk_stage.Stage, _ *kk_etcd_models.SnapshotRestoreParam) (error, *kk_etcd_models.SnapshotRestoreResponse) {
 	span := stage.StartTrace(kk_func.GetCurrentFunctionName())
 	defer span.End()
-	cmdStr, err := serBackup.SnapshotRestore(stage)
+	err := serUser.CheckRootRole(stage)
+	if err != nil {
+		return err, nil
+	}
+	cmdStr, err := serBackup.SnapshotRestore()
 	return err, &kk_etcd_models.SnapshotRestoreResponse{CmdStr: cmdStr}
 }
 func (HBackup) SnapshotInfo(stage *kk_stage.Stage, param *kk_etcd_models.SnapshotInfoParam) (error, *kk_etcd_models.SnapshotInfoResponse) {

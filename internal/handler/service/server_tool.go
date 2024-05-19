@@ -15,11 +15,11 @@ import (
 	"time"
 )
 
-type serverFunc struct{}
+type serverTool struct{}
 
-var toolServer serverFunc
+var toolServer serverTool
 
-func (t *serverFunc) registerServer(stage *kk_stage.Stage, registration *kk_etcd_models.ServiceRegistration) error {
+func (t *serverTool) registerServer(stage *kk_stage.Stage, registration *kk_etcd_models.ServiceRegistration) error {
 	key := registration.ServerType + "/" + registration.ServerName
 
 	endpointManager, err := endpoints.NewManager(kk_etcd_client.EtcdClient, key)
@@ -91,7 +91,7 @@ func (t *serverFunc) registerServer(stage *kk_stage.Stage, registration *kk_etcd
 	return nil
 }
 
-func (t *serverFunc) keepAliveOnce(stage *kk_stage.Stage, context context.Context, leaseID clientv3.LeaseID) error {
+func (t *serverTool) keepAliveOnce(stage *kk_stage.Stage, context context.Context, leaseID clientv3.LeaseID) error {
 	_, err := kk_etcd_client.EtcdClient.KeepAliveOnce(context, leaseID)
 	if err != nil {
 
@@ -101,7 +101,7 @@ func (t *serverFunc) keepAliveOnce(stage *kk_stage.Stage, context context.Contex
 	return nil
 }
 
-func (t *serverFunc) checkHealth(stage *kk_stage.Stage, registration *kk_etcd_models.ServiceRegistration) (ok bool) {
+func (t *serverTool) checkHealth(stage *kk_stage.Stage, registration *kk_etcd_models.ServiceRegistration) (ok bool) {
 	if registration.Check.HTTP != "" {
 		var httpClient = &http.Client{
 			Timeout: time.Duration(registration.Check.Timeout) * time.Second,
@@ -160,7 +160,7 @@ func (t *serverFunc) checkHealth(stage *kk_stage.Stage, registration *kk_etcd_mo
 	return false
 }
 
-func (t *serverFunc) deleteEndpointAndRevokeLease(stage *kk_stage.Stage, ctx context.Context, endpointManager endpoints.Manager, endpointKey string, leaseID clientv3.LeaseID) {
+func (t *serverTool) deleteEndpointAndRevokeLease(stage *kk_stage.Stage, ctx context.Context, endpointManager endpoints.Manager, endpointKey string, leaseID clientv3.LeaseID) {
 	_, err := kk_etcd_client.EtcdClient.Revoke(ctx, leaseID)
 	if err != nil {
 

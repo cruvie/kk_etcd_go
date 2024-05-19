@@ -17,8 +17,8 @@ var hBackup handler.HBackup
 //	@Accept			octet-stream
 //	@Produce		octet-stream
 //	@Param			SnapshotParam	body		kk_etcd_models.SnapshotParam	true	"SnapshotParam"
-//	@Success		200					{object}	kk_etcd_models.SnapshotResponse
-//	@Router			/snapshot [post]
+//	@Success		200				{object}	kk_etcd_models.SnapshotResponse
+//	@Router			/backup/snapshot [post]
 func snapshot(c *gin.Context) {
 	stage := global_model.GetRequestStage(c)
 	span := stage.StartTrace(kk_func.GetCurrentFunctionName())
@@ -42,8 +42,8 @@ func snapshot(c *gin.Context) {
 //	@Accept			octet-stream
 //	@Produce		octet-stream
 //	@Param			SnapshotRestoreParam	body		kk_etcd_models.SnapshotRestoreParam	true	"SnapshotRestoreParam"
-//	@Success		200					{object}	kk_etcd_models.SnapshotRestoreResponse
-//	@Router			/snapshotRestore [post]
+//	@Success		200						{object}	kk_etcd_models.SnapshotRestoreResponse
+//	@Router			/backup/snapshotRestore [post]
 func snapshotRestore(c *gin.Context) {
 	stage := global_model.GetRequestStage(c)
 	span := stage.StartTrace(kk_func.GetCurrentFunctionName())
@@ -68,7 +68,7 @@ func snapshotRestore(c *gin.Context) {
 //	@Produce		octet-stream
 //	@Param			SnapshotInfoParam	body		kk_etcd_models.SnapshotInfoParam	true	"SnapshotInfoParam"
 //	@Success		200					{object}	kk_etcd_models.SnapshotInfoResponse
-//	@Router			/snapshotInfo [post]
+//	@Router			/backup/snapshotInfo [post]
 func snapshotInfo(c *gin.Context) {
 	stage := global_model.GetRequestStage(c)
 	span := stage.StartTrace(kk_func.GetCurrentFunctionName())
@@ -93,7 +93,7 @@ func snapshotInfo(c *gin.Context) {
 //	@Produce		octet-stream
 //	@Param			AllKVsBackupParam	body		kk_etcd_models.AllKVsBackupParam	true	"AllKVsBackupParam"
 //	@Success		200					{object}	kk_etcd_models.AllKVsBackupResponse
-//	@Router			/allKVsBackup [post]
+//	@Router			/backup/allKVsBackup [post]
 func allKVsBackup(c *gin.Context) {
 	stage := global_model.GetRequestStage(c)
 	span := stage.StartTrace(kk_func.GetCurrentFunctionName())
@@ -118,7 +118,7 @@ func allKVsBackup(c *gin.Context) {
 //	@Produce		octet-stream
 //	@Param			AllKVsRestoreParam	body		kk_etcd_models.AllKVsRestoreParam	true	"AllKVsRestoreParam"
 //	@Success		200					{object}	kk_etcd_models.AllKVsRestoreResponse
-//	@Router			/allKVsRestore [post]
+//	@Router			/backup/allKVsRestore [post]
 func allKVsRestore(c *gin.Context) {
 	stage := global_model.GetRequestStage(c)
 	span := stage.StartTrace(kk_func.GetCurrentFunctionName())

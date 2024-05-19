@@ -3,6 +3,7 @@ package kk_etcd
 import (
 	"context"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
+	"github.com/cruvie/kk_etcd_go/internal/handler"
 	"github.com/cruvie/kk_etcd_go/internal/handler/service"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_client"
@@ -10,6 +11,8 @@ import (
 	"go.etcd.io/etcd/client/v3/naming/endpoints"
 	"log/slog"
 )
+
+var hServer handler.HServer
 
 // RegisterService register service to etcd
 func RegisterService(registration *kk_etcd_models.ServiceRegistration) error {
@@ -21,11 +24,8 @@ func RegisterService(registration *kk_etcd_models.ServiceRegistration) error {
 // ServerList
 // serviceName, should with prefix key_prefix.ServiceGrpc or key_prefix.ServiceHttp
 // only give prefix to get all service list
-func ServerList(serviceName string) (serverList *kk_etcd_models.PBListServer, err error) {
-
-	var serServer service.SerServer
-	list, err := serServer.ServerList(serviceName)
-	return list, err
+func ServerList(param *kk_etcd_models.ServerListParam) (error, *kk_etcd_models.ServerListResponse) {
+	return hServer.ServerList(global_model.GlobalStage, param)
 }
 
 // WatchServerList watch server list change

@@ -51,11 +51,8 @@ func (SerBackup) Snapshot(stage *kk_stage.Stage) (error, *kk_etcd_models.Snapsho
 }
 
 // SnapshotRestore todo migrate to etcd cluster manager
-func (SerBackup) SnapshotRestore(stage *kk_stage.Stage) (cmdStr string, err error) {
-	err = serUser.CheckRootRole(stage)
-	if err != nil {
-		return "", err
-	}
+func (SerBackup) SnapshotRestore() (cmdStr string, err error) {
+
 	//https://etcd.io/docs/v3.5/op-guide/recovery/
 	// 执行etcdctl命令来恢复etcd数据
 	//cmd := exec.Command("etcdctl", "snapshot", "restore", "/path/to/snapshot.db", "--name", "my-etcd")

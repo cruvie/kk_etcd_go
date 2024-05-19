@@ -17,7 +17,7 @@ var hUser handler.HUser
 //	@Accept			octet-stream
 //	@Produce		octet-stream
 //	@Param			LoginParam	body		kk_etcd_models.LoginParam	true	"LoginParam"
-//	@Success		200					{object}	kk_etcd_models.LoginResponse
+//	@Success		200			{object}	kk_etcd_models.LoginResponse
 //	@Router			/user/login [post]
 func login(c *gin.Context) {
 	stage := global_model.GetRequestStage(c)
@@ -42,7 +42,7 @@ func login(c *gin.Context) {
 //	@Accept			octet-stream
 //	@Produce		octet-stream
 //	@Param			LogoutParam	body		kk_etcd_models.LogoutParam	true	"LogoutParam"
-//	@Success		200					{object}	kk_etcd_models.LogoutResponse
+//	@Success		200			{object}	kk_etcd_models.LogoutResponse
 //	@Router			/user/logout [post]
 func logout(c *gin.Context) {
 	stage := global_model.GetRequestStage(c)
@@ -67,7 +67,7 @@ func logout(c *gin.Context) {
 //	@Accept			octet-stream
 //	@Produce		octet-stream
 //	@Param			UserAddParam	body		kk_etcd_models.UserAddParam	true	"UserAddParam"
-//	@Success		200					{object}	kk_etcd_models.UserAddResponse
+//	@Success		200				{object}	kk_etcd_models.UserAddResponse
 //	@Router			/user/userAdd [post]
 func userAdd(c *gin.Context) {
 	stage := global_model.GetRequestStage(c)
@@ -92,7 +92,7 @@ func userAdd(c *gin.Context) {
 //	@Accept			octet-stream
 //	@Produce		octet-stream
 //	@Param			UserDeleteParam	body		kk_etcd_models.UserDeleteParam	true	"UserDeleteParam"
-//	@Success		200					{object}	kk_etcd_models.UserDeleteResponse
+//	@Success		200				{object}	kk_etcd_models.UserDeleteResponse
 //	@Router			/user/userDelete [post]
 func userDelete(c *gin.Context) {
 	stage := global_model.GetRequestStage(c)
@@ -117,7 +117,7 @@ func userDelete(c *gin.Context) {
 //	@Accept			octet-stream
 //	@Produce		octet-stream
 //	@Param			GetUserParam	body		kk_etcd_models.GetUserParam	true	"GetUserParam"
-//	@Success		200					{object}	kk_etcd_models.GetUserResponse
+//	@Success		200				{object}	kk_etcd_models.GetUserResponse
 //	@Router			/user/getUser [post]
 func getUser(c *gin.Context) {
 	stage := global_model.GetRequestStage(c)
@@ -142,7 +142,7 @@ func getUser(c *gin.Context) {
 //	@Accept			octet-stream
 //	@Produce		octet-stream
 //	@Param			MyInfoParam	body		kk_etcd_models.MyInfoParam	true	"MyInfoParam"
-//	@Success		200					{object}	kk_etcd_models.MyInfoResponse
+//	@Success		200			{object}	kk_etcd_models.MyInfoResponse
 //	@Router			/user/myInfo [post]
 func myInfo(c *gin.Context) {
 	stage := global_model.GetRequestStage(c)
@@ -167,7 +167,7 @@ func myInfo(c *gin.Context) {
 //	@Accept			octet-stream
 //	@Produce		octet-stream
 //	@Param			UserListParam	body		kk_etcd_models.UserListParam	true	"UserListParam"
-//	@Success		200					{object}	kk_etcd_models.UserListResponse
+//	@Success		200				{object}	kk_etcd_models.UserListResponse
 //	@Router			/user/userList [post]
 func userList(c *gin.Context) {
 	stage := global_model.GetRequestStage(c)

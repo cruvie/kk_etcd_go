@@ -11,6 +11,9 @@ type HServer struct{}
 
 var serServerV service.SerServer
 
+// ServerList
+// serviceName, should with prefix key_prefix.ServiceGrpc or key_prefix.ServiceHttp
+// only give prefix to get all service list
 func (HServer) ServerList(stage *kk_stage.Stage, param *kk_etcd_models.ServerListParam) (error, *kk_etcd_models.ServerListResponse) {
 	span := stage.StartTrace(kk_func.GetCurrentFunctionName())
 	defer span.End()

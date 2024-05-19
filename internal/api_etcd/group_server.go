@@ -17,8 +17,8 @@ var hServer handler.HServer
 //	@Accept			octet-stream
 //	@Produce		octet-stream
 //	@Param			ServerListParam	body		kk_etcd_models.ServerListParam	true	"ServerListParam"
-//	@Success		200					{object}	kk_etcd_models.ServerListResponse
-//	@Router			/serverList [post]
+//	@Success		200				{object}	kk_etcd_models.ServerListResponse
+//	@Router			/server/serverList [post]
 func serverList(c *gin.Context) {
 	stage := global_model.GetRequestStage(c)
 	span := stage.StartTrace(kk_func.GetCurrentFunctionName())

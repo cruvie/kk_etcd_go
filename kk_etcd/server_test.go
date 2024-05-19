@@ -108,7 +108,7 @@ func TestRegisterHttpService(t *testing.T) {
 func TestGetHttpServiceList(t *testing.T) {
 	initTestEnv()
 	for i := 0; i < 100; i++ {
-		list, _ := ServerList(kk_etcd_const.ServiceHttp)
+		list, _ := ServerList(&kk_etcd_models.ServerListParam{Prefix: kk_etcd_const.ServiceHttp})
 		slog.Info("list", "list", list)
 		time.Sleep(time.Second * 5)
 	}
@@ -116,7 +116,7 @@ func TestGetHttpServiceList(t *testing.T) {
 func TestGetGrpcServiceList(t *testing.T) {
 	initTestEnv()
 	for i := 0; i < 100; i++ {
-		list, _ := ServerList(kk_etcd_const.ServiceGrpc)
+		list, _ := ServerList(&kk_etcd_models.ServerListParam{Prefix: kk_etcd_const.ServiceGrpc})
 		slog.Info("list", "list", list)
 		time.Sleep(time.Second * 5)
 	}

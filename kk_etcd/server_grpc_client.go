@@ -1,9 +1,8 @@
-package kk_etcd_tool
+package kk_etcd
 
 import (
 	"context"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
-	"github.com/cruvie/kk_etcd_go/kk_etcd"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	"go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc"
 	"google.golang.org/grpc"
@@ -39,13 +38,13 @@ func (c *ClientHub[T]) GetClient(stage *kk_stage.Stage) *T {
 	c.rwLock.RLock()
 	if len(c.clients) == 0 {
 		slog.Error("no grpc client available, attempt to proactively obtain service", kk_stage.NewLog(stage).Any("serviceType", c.serviceType).Any("serviceName", c.serviceName).Args()...)
-		serverList, err := kk_etcd.ServerList(c.serviceType + "/" + c.serviceName)
+		err, serverList := hServer.ServerList(stage, &kk_etcd_models.ServerListParam{Prefix: c.serviceType + "/" + c.serviceName})
 		if err != nil {
 			slog.Error("ServerList failed", kk_stage.NewLog(stage).Any("serviceType", c.serviceType).Any("serviceName", c.serviceName).Error(err).Args()...)
 			return nil
 		} else {
 			c.rwLock.RUnlock()
-			c.refreshClients(stage, serverList)
+			c.refreshClients(stage, serverList.GetServerList())
 			c.rwLock.RLock()
 			if len(c.clients) == 0 {
 				slog.Error("still no grpc client available", kk_stage.NewLog(stage).Any("serviceType", c.serviceType).Any("serviceName", c.serviceName).Error(err).Args()...)
@@ -65,7 +64,7 @@ func (c *ClientHub[T]) ListenServerChange(ctx context.Context, stage *kk_stage.S
 
 	slog.Info("start watch server list", kk_stage.NewLog(stage).Any("serviceType", c.serviceType).Any("serviceName", c.serviceName).Args()...)
 	serverListChan := make(chan *kk_etcd_models.PBListServer)
-	err := kk_etcd.WatchServerList(ctx, c.serviceType+"/"+c.serviceName, serverListChan)
+	err := WatchServerList(ctx, c.serviceType+"/"+c.serviceName, serverListChan)
 	if err != nil {
 		slog.Error("WatchServerList failed", kk_stage.NewLog(stage).Any("serviceType", c.serviceType).Any("serviceName", c.serviceName).Error(err).Args()...)
 		return err

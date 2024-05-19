@@ -10,7 +10,6 @@ import (
 	"github.com/cruvie/kk_etcd_go/internal/handler/service"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
 	_ "github.com/cruvie/kk_etcd_go/swagger"
-	"time"
 )
 
 //	@title			kk_etcd_go API
@@ -26,14 +25,17 @@ import (
 //	@license.url	http://kk_etcd_go/licenses/LICENSE-2.0.html
 
 // @host		localhost:2333
-// @BasePath	/User
+// @BasePath	/
 func main() {
 	config.InitConfig()
 	stage := kk_stage.NewStage(context.Background(), kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
 
 	kk_stage.InitSlog(stage.DebugMode, nil, nil)
-
-	kk_jwt.InitJwt(config.Config.JWT.Key, time.Duration(config.Config.JWT.ExpireTime)*time.Hour)
+	jwtCfg := kk_jwt.ConfigJWT{
+		Key:        config.Config.JWT.Key,
+		ExpireTime: config.Config.JWT.ExpireTime,
+	}
+	jwtCfg.Init(stage)
 
 	var serEtcd service.SerEtcd
 	err := serEtcd.InitEtcd(stage, []string{config.Config.Etcd.Endpoint}, config.Config.Admin.UserName, config.Config.Admin.Password)

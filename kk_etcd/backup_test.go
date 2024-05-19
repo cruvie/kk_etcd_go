@@ -2,6 +2,7 @@ package kk_etcd
 
 import (
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
+	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	"log"
 	"log/slog"
 	"os"
@@ -39,12 +40,12 @@ func TestSnapshotInfo(t *testing.T) {
 	if err != nil {
 		slog.Error("Failed to read file", kk_stage.NewLog(nil).Error(err).Args()...)
 	}
-	info, err := SnapshotInfo(bytes)
+	err, response := SnapshotInfo(&kk_etcd_models.SnapshotInfoParam{File: bytes})
 	if err != nil {
 		log.Println(err)
 		return
 	}
-	log.Println(info)
+	log.Println(response.GetInfo())
 }
 
 func TestAllKVsBackup(t *testing.T) {
@@ -62,7 +63,7 @@ func TestAllKVsRestore(t *testing.T) {
 	initTestEnv()
 	jsonStr := `{"ListKV":[{"Key":"testkvbackup1","Value":"{\"UserName\":\"ww\",\"Password\":\"$2a$04$qM0YyMWVX0yz/rcVco8H/OVFBeYh/Wbc0drklFfS29BsDTekuK\"}"},{"Key":"testkvbackup2","Value":"dsafsd\ndasfsdf"}]}`
 
-	err := AllKVsRestore([]byte(jsonStr))
+	err, _ := AllKVsRestore(&kk_etcd_models.AllKVsRestoreParam{File: []byte(jsonStr)})
 	if err != nil {
 		log.Println(err)
 		return

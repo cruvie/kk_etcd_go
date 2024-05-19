@@ -2,7 +2,6 @@ package service
 
 import (
 	"context"
-	"encoding/json"
 	"errors"
 	"gitee.com/cruvie/kk_go_kit/kk_crypto"
 	"gitee.com/cruvie/kk_go_kit/kk_jwt"
@@ -13,7 +12,6 @@ import (
 	"github.com/cruvie/kk_etcd_go/kk_etcd_error"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	"go.etcd.io/etcd/api/v3/authpb"
-	"go.etcd.io/etcd/api/v3/v3rpc/rpctypes"
 )
 
 type SerUser struct{}
@@ -23,13 +21,10 @@ var serUser SerUser
 func (SerUser) Login(stage *kk_stage.Stage, param *kk_etcd_models.LoginParam) (tokenString string, err error) {
 	//get md5 password
 	rawPassword := param.Password
-	//todo get by model
-	err, value := serKV.KVGet(kk_etcd_const.User + param.UserName)
+
+	userTemp := kk_etcd_models.NewPBUser(param.GetUserName())
+	err = NewExtPBUser(userTemp).Load()
 	if err != nil {
-		return "", err
-	}
-	var userTemp kk_etcd_models.PBUser
-	if err := json.Unmarshal(value, &userTemp); err != nil {
 		return "", err
 	}
 
@@ -65,12 +60,12 @@ func (s SerUser) UserAdd(stage *kk_stage.Stage, user *kk_etcd_models.PBUser) err
 	if err != nil {
 		return err
 	}
-	pbUser := kk_etcd_models.PBUser{
+	pbUser := &kk_etcd_models.PBUser{
 		UserName: user.GetUserName(),
 		Password: newPassword,
 		Roles:    user.GetRoles(),
 	}
-	err = s.Store(&pbUser)
+	err = NewExtPBUser(pbUser).Store()
 	if err != nil {
 		return err
 	}
@@ -81,26 +76,26 @@ func (s SerUser) UserUpdate(stage *kk_stage.Stage, user *kk_etcd_models.PBUser) 
 	if err != nil {
 		return err
 	}
-	pbUser := kk_etcd_models.PBUser{
+	pbUser := &kk_etcd_models.PBUser{
 		UserName: user.GetUserName(),
 		Password: newPassword,
 		Roles:    user.GetRoles(),
 	}
-	err = s.Update(&pbUser)
+	err = NewExtPBUser(pbUser).Update()
 	if err != nil {
 		return err
 	}
 	return nil
 }
-func (s SerUser) UserDelete(stage *kk_stage.Stage, userName string) error {
-	user := kk_etcd_models.NewPBUser(userName)
-	err := s.Delete(stage, user)
+func (s SerUser) UserDelete(userName string) error {
+	pbUser := kk_etcd_models.NewPBUser(userName)
+	err := NewExtPBUser(pbUser).Delete()
 	return err
 }
-func (s SerUser) GetUser(userName string) (user *kk_etcd_models.PBUser, err error) {
-	user = kk_etcd_models.NewPBUser(userName)
-	err = s.Load(user)
-	return user, err
+func (s SerUser) GetUser(userName string) (pbUser *kk_etcd_models.PBUser, err error) {
+	pbUser = kk_etcd_models.NewPBUser(userName)
+	err = NewExtPBUser(pbUser).Load()
+	return pbUser, err
 }
 
 func (SerUser) UserList() (err error, users *kk_etcd_models.PBListUser) {
@@ -132,65 +127,6 @@ func (SerUser) UserGrantRole(user *kk_etcd_models.PBUser) error {
 		}
 	}
 	return nil
-}
-
-func (SerUser) Store(m *kk_etcd_models.PBUser) error {
-	if err := toolUser.checkFields(m); err != nil {
-		return err
-	}
-	err := serKV.PutJson(kk_etcd_const.User+m.GetUserName(), m)
-	if err != nil {
-		return err
-	}
-	_, err = kk_etcd_client.EtcdClient.UserAdd(context.Background(), m.GetUserName(), m.GetPassword())
-	if err != nil && !errors.Is(err, rpctypes.ErrGRPCUserAlreadyExist) {
-		return err
-	}
-	return nil
-}
-
-func (SerUser) Update(m *kk_etcd_models.PBUser) error {
-	if err := toolUser.checkFields(m); err != nil {
-		return err
-	}
-	err := serKV.UpdateJson(kk_etcd_const.User+m.GetUserName(), m)
-	return err
-}
-
-func (SerUser) Load(m *kk_etcd_models.PBUser) error {
-	if err := toolUser.checkFields(m); err != nil {
-		return err
-	}
-	err := serKV.GetJson(kk_etcd_const.User+m.GetUserName(), m)
-	return err
-}
-func (SerUser) Delete(stage *kk_stage.Stage, m *kk_etcd_models.PBUser) error {
-	if err := toolUser.checkFields(m); err != nil {
-		return err
-	}
-	err := serKV.KVDel(kk_etcd_const.User + m.GetUserName())
-	if err != nil {
-		return err
-	}
-	_, err = kk_etcd_client.EtcdClient.UserDelete(context.Background(), kk_etcd_const.User+m.GetUserName())
-	if err != nil {
-		return err
-	}
-	return nil
-}
-func (SerUser) GetJwt(m *kk_etcd_models.PBUser) (string, error) {
-	if err := toolUser.checkFields(m); err != nil {
-		return "", err
-	}
-	err, value := serKV.KVGet(kk_etcd_const.Jwt + m.GetUserName())
-	return string(value), err
-}
-func (SerUser) SetJwt(stage *kk_stage.Stage, m *kk_etcd_models.PBUser, token string) error {
-	if err := toolUser.checkFields(m); err != nil {
-		return err
-	}
-	err := serKV.KVPut(kk_etcd_const.Jwt+m.GetUserName(), token)
-	return err
 }
 
 func (SerUser) CheckRootRole(stage *kk_stage.Stage) error {
