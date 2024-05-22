@@ -17,7 +17,7 @@ func initTestEnv() {
 		Lumberjack:  kk_stage.DefaultLogConfig(kk_etcd_const.ServerName),
 		SlogOptions: nil,
 	}
-	configLog.Init(stage.DebugMode)
+	configLog.Init(stage)
 	defer configLog.Close()
 	err := InitEtcd(endpoints, userName, password, stage.DebugMode)
 	if err != nil {

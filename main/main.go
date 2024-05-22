@@ -34,7 +34,7 @@ func main() {
 		Lumberjack:  kk_stage.DefaultLogConfig(kk_etcd_const.ServerName),
 		SlogOptions: nil,
 	}
-	configLog.Init(stage.DebugMode)
+	configLog.Init(stage)
 	defer configLog.Close()
 	jwtCfg := kk_jwt.ConfigJWT{
 		Key:        config.Config.JWT.Key,
