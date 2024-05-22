@@ -3,6 +3,7 @@ package kk_etcd
 import (
 	"context"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
+	"github.com/cruvie/kk_etcd_go/kk_etcd_const"
 )
 
 func initTestEnv() {
@@ -12,7 +13,12 @@ func initTestEnv() {
 		userName  = "kk_etcd"
 		password  = "kk_etcd"
 	)
-	kk_stage.InitSlog(stage.DebugMode, nil, nil)
+	configLog := kk_stage.ConfigLog{
+		Lumberjack:  kk_stage.DefaultLogConfig(kk_etcd_const.ServerName),
+		SlogOptions: nil,
+	}
+	configLog.Init(stage.DebugMode)
+	defer configLog.Close()
 	err := InitEtcd(endpoints, userName, password, stage.DebugMode)
 	if err != nil {
 		panic(err)

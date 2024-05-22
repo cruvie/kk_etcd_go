@@ -9,6 +9,7 @@ import (
 	"github.com/cruvie/kk_etcd_go/internal/config"
 	"github.com/cruvie/kk_etcd_go/internal/handler/service"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
+	"github.com/cruvie/kk_etcd_go/kk_etcd_const"
 	_ "github.com/cruvie/kk_etcd_go/swagger"
 )
 
@@ -29,8 +30,12 @@ import (
 func main() {
 	config.InitConfig()
 	stage := kk_stage.NewStage(context.Background(), kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
-
-	kk_stage.InitSlog(stage.DebugMode, nil, nil)
+	configLog := kk_stage.ConfigLog{
+		Lumberjack:  kk_stage.DefaultLogConfig(kk_etcd_const.ServerName),
+		SlogOptions: nil,
+	}
+	configLog.Init(stage.DebugMode)
+	defer configLog.Close()
 	jwtCfg := kk_jwt.ConfigJWT{
 		Key:        config.Config.JWT.Key,
 		ExpireTime: config.Config.JWT.ExpireTime,
