@@ -63,17 +63,25 @@ func (e *ExtPBUser) Delete() error {
 	}
 	return nil
 }
-func (e *ExtPBUser) GetJwt() (string, error) {
+func (e *ExtPBUser) JwtGet() (string, error) {
 	if err := toolUser.checkFields(e.User); err != nil {
 		return "", err
 	}
 	err, value := serKV.KVGet(kk_etcd_const.Jwt + e.User.GetUserName())
 	return string(value), err
 }
-func (e *ExtPBUser) SetJwt(token string) error {
+func (e *ExtPBUser) JwtSet(token string) error {
 	if err := toolUser.checkFields(e.User); err != nil {
 		return err
 	}
 	err := serKV.KVPut(kk_etcd_const.Jwt+e.User.GetUserName(), token)
+	return err
+}
+
+func (e *ExtPBUser) JwtDel() error {
+	if err := toolUser.checkFields(e.User); err != nil {
+		return err
+	}
+	err := serKV.KVDel(kk_etcd_const.Jwt + e.User.GetUserName())
 	return err
 }

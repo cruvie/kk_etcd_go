@@ -20,28 +20,29 @@ var serUser SerUser
 
 func (SerUser) Login(stage *kk_stage.Stage, param *kk_etcd_models.LoginParam) (tokenString string, err error) {
 	//get md5 password
-	rawPassword := param.Password
+	rawPassword := param.GetPassword()
 
 	userTemp := kk_etcd_models.NewPBUser(param.GetUserName())
-	err = NewExtPBUser(userTemp).Load()
+	extPBUser := NewExtPBUser(userTemp)
+	err = extPBUser.Load()
 	if err != nil {
 		return "", err
 	}
 
 	//validate password
-	equal := kk_crypto.CheckPasswordHash(stage, userTemp.Password, rawPassword)
+	equal := kk_crypto.CheckPasswordHash(stage, userTemp.GetPassword(), rawPassword)
 	if !equal {
 		return "", errors.New("wrong password")
 	}
 	//generate token
 	tokenString, err = kk_jwt.GenerateToken[string](kk_jwt.JwtPayload[string]{
-		UserId: userTemp.UserName,
+		UserId: userTemp.GetUserName(),
 	})
 	if err != nil {
 		return "", err
 	}
 	//put into etcd
-	err = serKV.KVPut(kk_etcd_const.Jwt+userTemp.UserName, tokenString)
+	err = extPBUser.JwtSet(tokenString)
 	if err != nil {
 		return "", err
 	}
@@ -49,7 +50,9 @@ func (SerUser) Login(stage *kk_stage.Stage, param *kk_etcd_models.LoginParam) (t
 }
 
 func (SerUser) Logout(stage *kk_stage.Stage, _ *kk_etcd_models.LogoutParam) error {
-	err := serKV.KVDel(kk_etcd_const.Jwt + global_model.GetLoginUser(stage).GetUserName())
+	userTemp := kk_etcd_models.NewPBUser(global_model.GetLoginUser(stage).GetUserName())
+	extPBUser := NewExtPBUser(userTemp)
+	err := extPBUser.JwtDel()
 	if err != nil {
 		return err
 	}
