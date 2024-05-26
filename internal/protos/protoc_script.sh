@@ -1,7 +1,0 @@
-#!/bin/bash
-# 生成go文件命令
-protoc -I=. --go_out=../../kk_etcd_models *.proto
-
-# 生成dart文件命令
-protoc -I=. --dart_out=../../lib/kk_etcd_models *.proto google/protobuf/timestamp.proto
-#google/protobuf/any.proto
