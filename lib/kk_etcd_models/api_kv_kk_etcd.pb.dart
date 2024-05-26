@@ -13,7 +13,7 @@ import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import 'pb_kv.pb.dart' as $0;
+import 'pb_kv_kk_etcd.pb.dart' as $0;
 
 class KVPutParam extends $pb.GeneratedMessage {
   factory KVPutParam({

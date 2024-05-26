@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.33.0
 // 	protoc        v5.26.1
-// source: pb_kv.proto
+// source: pb_kv_kk_etcd.proto
 
 package kk_etcd_models
 
@@ -32,7 +32,7 @@ type PBKV struct {
 func (x *PBKV) Reset() {
 	*x = PBKV{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pb_kv_proto_msgTypes[0]
+		mi := &file_pb_kv_kk_etcd_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -45,7 +45,7 @@ func (x *PBKV) String() string {
 func (*PBKV) ProtoMessage() {}
 
 func (x *PBKV) ProtoReflect() protoreflect.Message {
-	mi := &file_pb_kv_proto_msgTypes[0]
+	mi := &file_pb_kv_kk_etcd_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -58,7 +58,7 @@ func (x *PBKV) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PBKV.ProtoReflect.Descriptor instead.
 func (*PBKV) Descriptor() ([]byte, []int) {
-	return file_pb_kv_proto_rawDescGZIP(), []int{0}
+	return file_pb_kv_kk_etcd_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *PBKV) GetKey() string {
@@ -86,7 +86,7 @@ type PBListKV struct {
 func (x *PBListKV) Reset() {
 	*x = PBListKV{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pb_kv_proto_msgTypes[1]
+		mi := &file_pb_kv_kk_etcd_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -99,7 +99,7 @@ func (x *PBListKV) String() string {
 func (*PBListKV) ProtoMessage() {}
 
 func (x *PBListKV) ProtoReflect() protoreflect.Message {
-	mi := &file_pb_kv_proto_msgTypes[1]
+	mi := &file_pb_kv_kk_etcd_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -112,7 +112,7 @@ func (x *PBListKV) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PBListKV.ProtoReflect.Descriptor instead.
 func (*PBListKV) Descriptor() ([]byte, []int) {
-	return file_pb_kv_proto_rawDescGZIP(), []int{1}
+	return file_pb_kv_kk_etcd_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *PBListKV) GetListKV() []*PBKV {
@@ -122,40 +122,40 @@ func (x *PBListKV) GetListKV() []*PBKV {
 	return nil
 }
 
-var File_pb_kv_proto protoreflect.FileDescriptor
+var File_pb_kv_kk_etcd_proto protoreflect.FileDescriptor
 
-var file_pb_kv_proto_rawDesc = []byte{
-	0x0a, 0x0b, 0x70, 0x62, 0x5f, 0x6b, 0x76, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x0e, 0x6b,
-	0x6b, 0x5f, 0x65, 0x74, 0x63, 0x64, 0x5f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x73, 0x22, 0x2e, 0x0a,
-	0x04, 0x50, 0x42, 0x4b, 0x56, 0x12, 0x10, 0x0a, 0x03, 0x4b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01,
-	0x28, 0x09, 0x52, 0x03, 0x4b, 0x65, 0x79, 0x12, 0x14, 0x0a, 0x05, 0x56, 0x61, 0x6c, 0x75, 0x65,
-	0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x22, 0x38, 0x0a,
-	0x08, 0x50, 0x42, 0x4c, 0x69, 0x73, 0x74, 0x4b, 0x56, 0x12, 0x2c, 0x0a, 0x06, 0x4c, 0x69, 0x73,
-	0x74, 0x4b, 0x56, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x14, 0x2e, 0x6b, 0x6b, 0x5f, 0x65,
-	0x74, 0x63, 0x64, 0x5f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x73, 0x2e, 0x50, 0x42, 0x4b, 0x56, 0x52,
-	0x06, 0x4c, 0x69, 0x73, 0x74, 0x4b, 0x56, 0x42, 0x13, 0x5a, 0x11, 0x2e, 0x2f, 0x3b, 0x6b, 0x6b,
-	0x5f, 0x65, 0x74, 0x63, 0x64, 0x5f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x73, 0x62, 0x06, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x33,
+var file_pb_kv_kk_etcd_proto_rawDesc = []byte{
+	0x0a, 0x13, 0x70, 0x62, 0x5f, 0x6b, 0x76, 0x5f, 0x6b, 0x6b, 0x5f, 0x65, 0x74, 0x63, 0x64, 0x2e,
+	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x0e, 0x6b, 0x6b, 0x5f, 0x65, 0x74, 0x63, 0x64, 0x5f, 0x6d,
+	0x6f, 0x64, 0x65, 0x6c, 0x73, 0x22, 0x2e, 0x0a, 0x04, 0x50, 0x42, 0x4b, 0x56, 0x12, 0x10, 0x0a,
+	0x03, 0x4b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x4b, 0x65, 0x79, 0x12,
+	0x14, 0x0a, 0x05, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05,
+	0x56, 0x61, 0x6c, 0x75, 0x65, 0x22, 0x38, 0x0a, 0x08, 0x50, 0x42, 0x4c, 0x69, 0x73, 0x74, 0x4b,
+	0x56, 0x12, 0x2c, 0x0a, 0x06, 0x4c, 0x69, 0x73, 0x74, 0x4b, 0x56, 0x18, 0x01, 0x20, 0x03, 0x28,
+	0x0b, 0x32, 0x14, 0x2e, 0x6b, 0x6b, 0x5f, 0x65, 0x74, 0x63, 0x64, 0x5f, 0x6d, 0x6f, 0x64, 0x65,
+	0x6c, 0x73, 0x2e, 0x50, 0x42, 0x4b, 0x56, 0x52, 0x06, 0x4c, 0x69, 0x73, 0x74, 0x4b, 0x56, 0x42,
+	0x13, 0x5a, 0x11, 0x2e, 0x2f, 0x3b, 0x6b, 0x6b, 0x5f, 0x65, 0x74, 0x63, 0x64, 0x5f, 0x6d, 0x6f,
+	0x64, 0x65, 0x6c, 0x73, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
-	file_pb_kv_proto_rawDescOnce sync.Once
-	file_pb_kv_proto_rawDescData = file_pb_kv_proto_rawDesc
+	file_pb_kv_kk_etcd_proto_rawDescOnce sync.Once
+	file_pb_kv_kk_etcd_proto_rawDescData = file_pb_kv_kk_etcd_proto_rawDesc
 )
 
-func file_pb_kv_proto_rawDescGZIP() []byte {
-	file_pb_kv_proto_rawDescOnce.Do(func() {
-		file_pb_kv_proto_rawDescData = protoimpl.X.CompressGZIP(file_pb_kv_proto_rawDescData)
+func file_pb_kv_kk_etcd_proto_rawDescGZIP() []byte {
+	file_pb_kv_kk_etcd_proto_rawDescOnce.Do(func() {
+		file_pb_kv_kk_etcd_proto_rawDescData = protoimpl.X.CompressGZIP(file_pb_kv_kk_etcd_proto_rawDescData)
 	})
-	return file_pb_kv_proto_rawDescData
+	return file_pb_kv_kk_etcd_proto_rawDescData
 }
 
-var file_pb_kv_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
-var file_pb_kv_proto_goTypes = []interface{}{
+var file_pb_kv_kk_etcd_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_pb_kv_kk_etcd_proto_goTypes = []interface{}{
 	(*PBKV)(nil),     // 0: kk_etcd_models.PBKV
 	(*PBListKV)(nil), // 1: kk_etcd_models.PBListKV
 }
-var file_pb_kv_proto_depIdxs = []int32{
+var file_pb_kv_kk_etcd_proto_depIdxs = []int32{
 	0, // 0: kk_etcd_models.PBListKV.ListKV:type_name -> kk_etcd_models.PBKV
 	1, // [1:1] is the sub-list for method output_type
 	1, // [1:1] is the sub-list for method input_type
@@ -164,13 +164,13 @@ var file_pb_kv_proto_depIdxs = []int32{
 	0, // [0:1] is the sub-list for field type_name
 }
 
-func init() { file_pb_kv_proto_init() }
-func file_pb_kv_proto_init() {
-	if File_pb_kv_proto != nil {
+func init() { file_pb_kv_kk_etcd_proto_init() }
+func file_pb_kv_kk_etcd_proto_init() {
+	if File_pb_kv_kk_etcd_proto != nil {
 		return
 	}
 	if !protoimpl.UnsafeEnabled {
-		file_pb_kv_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+		file_pb_kv_kk_etcd_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*PBKV); i {
 			case 0:
 				return &v.state
@@ -182,7 +182,7 @@ func file_pb_kv_proto_init() {
 				return nil
 			}
 		}
-		file_pb_kv_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+		file_pb_kv_kk_etcd_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*PBListKV); i {
 			case 0:
 				return &v.state
@@ -199,18 +199,18 @@ func file_pb_kv_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_pb_kv_proto_rawDesc,
+			RawDescriptor: file_pb_kv_kk_etcd_proto_rawDesc,
 			NumEnums:      0,
 			NumMessages:   2,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_pb_kv_proto_goTypes,
-		DependencyIndexes: file_pb_kv_proto_depIdxs,
-		MessageInfos:      file_pb_kv_proto_msgTypes,
+		GoTypes:           file_pb_kv_kk_etcd_proto_goTypes,
+		DependencyIndexes: file_pb_kv_kk_etcd_proto_depIdxs,
+		MessageInfos:      file_pb_kv_kk_etcd_proto_msgTypes,
 	}.Build()
-	File_pb_kv_proto = out.File
-	file_pb_kv_proto_rawDesc = nil
-	file_pb_kv_proto_goTypes = nil
-	file_pb_kv_proto_depIdxs = nil
+	File_pb_kv_kk_etcd_proto = out.File
+	file_pb_kv_kk_etcd_proto_rawDesc = nil
+	file_pb_kv_kk_etcd_proto_goTypes = nil
+	file_pb_kv_kk_etcd_proto_depIdxs = nil
 }

@@ -1,6 +1,6 @@
 //
 //  Generated code. Do not modify.
-//  source: pb_role.proto
+//  source: pb_role_kk_etcd.proto
 //
 // @dart = 2.12
 

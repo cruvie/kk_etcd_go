@@ -13,7 +13,7 @@ import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import 'pb_server.pb.dart' as $2;
+import 'pb_server_kk_etcd.pb.dart' as $2;
 
 class ServerListParam extends $pb.GeneratedMessage {
   factory ServerListParam({

@@ -13,7 +13,7 @@ import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import 'pb_role.pb.dart' as $1;
+import 'pb_role_kk_etcd.pb.dart' as $1;
 
 class RoleAddParam extends $pb.GeneratedMessage {
   factory RoleAddParam({

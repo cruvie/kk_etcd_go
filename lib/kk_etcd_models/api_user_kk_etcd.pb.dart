@@ -13,7 +13,7 @@ import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import 'pb_user.pb.dart' as $3;
+import 'pb_user_kk_etcd.pb.dart' as $3;
 
 class LoginParam extends $pb.GeneratedMessage {
   factory LoginParam({
