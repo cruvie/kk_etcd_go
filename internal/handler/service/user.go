@@ -30,8 +30,8 @@ func (SerUser) Login(stage *kk_stage.Stage, param *kk_etcd_models.LoginParam) (t
 	}
 
 	//validate password
-	equal := kk_crypto.CheckPasswordHash(stage, userTemp.GetPassword(), rawPassword)
-	if !equal {
+	err = kk_crypto.CheckPasswordHash(userTemp.GetPassword(), rawPassword)
+	if err != nil {
 		return "", errors.New("wrong password")
 	}
 	//generate token
@@ -59,7 +59,7 @@ func (SerUser) Logout(stage *kk_stage.Stage, _ *kk_etcd_models.LogoutParam) erro
 	return nil
 }
 func (s SerUser) UserAdd(stage *kk_stage.Stage, user *kk_etcd_models.PBUser) error {
-	newPassword, err := kk_crypto.GeneratePassword(stage, user.GetPassword())
+	newPassword, err := kk_crypto.GeneratePassword(user.GetPassword())
 	if err != nil {
 		return err
 	}
@@ -75,7 +75,7 @@ func (s SerUser) UserAdd(stage *kk_stage.Stage, user *kk_etcd_models.PBUser) err
 	return nil
 }
 func (s SerUser) UserUpdate(stage *kk_stage.Stage, user *kk_etcd_models.PBUser) error {
-	newPassword, err := kk_crypto.GeneratePassword(stage, user.GetPassword())
+	newPassword, err := kk_crypto.GeneratePassword(user.GetPassword())
 	if err != nil {
 		return err
 	}
