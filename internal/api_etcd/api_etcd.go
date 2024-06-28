@@ -4,7 +4,6 @@ import (
 	"gitee.com/cruvie/kk_go_kit/kk_func"
 	"gitee.com/cruvie/kk_go_kit/kk_http"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
-	"gitee.com/cruvie/kk_go_kit/kk_swagger"
 	"github.com/cruvie/kk_etcd_go/internal/config"
 	"github.com/cruvie/kk_etcd_go/internal/utils/middleware"
 )
@@ -14,7 +13,7 @@ func ApiEtcd(stage *kk_stage.Stage) {
 	r.Use(middleware.Cors())
 	r.Use(middleware.RequestInterceptor(stage))
 	//swagger
-	kk_swagger.InitSwagger(stage, r, config.Config.ServerAddr)
+	kk_http.InitSwagger(stage, r)
 
 	r.Use(middleware.ParseHeader)
 

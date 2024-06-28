@@ -5,227 +5,239 @@ import (
 	"testing"
 )
 
-func TestGenerateApi(t *testing.T) {
-
+func TestUser(t *testing.T) {
+	apiGroupModel := kk_http.ApiGroupModel{
+		ApiPkgName:  "kk_etcd_models",
+		HandlerName: "hUser",
+		Tag:         "user",
+		GroupUrl:    "/user/",
+	}
 	apis := []struct {
 		apiModel kk_http.ApiModel
 	}{
 		{
 			apiModel: kk_http.ApiModel{
-				ApiPkgName:      "kk_etcd_models",
-				GroupFuncName:   "login",
-				HandlerName:     "hUser",
+
 				HandlerFuncName: "Login",
-				PreUrl:          "/user/",
 			},
 		},
 		{
 			apiModel: kk_http.ApiModel{
-				ApiPkgName:      "kk_etcd_models",
-				GroupFuncName:   "logout",
-				HandlerName:     "hUser",
+
 				HandlerFuncName: "Logout",
-				PreUrl:          "/user/",
 			},
 		},
 		{
 			apiModel: kk_http.ApiModel{
-				ApiPkgName:      "kk_etcd_models",
-				GroupFuncName:   "userAdd",
-				HandlerName:     "hUser",
+
 				HandlerFuncName: "UserAdd",
-				PreUrl:          "/user/",
 			},
 		},
 		{
 			apiModel: kk_http.ApiModel{
-				ApiPkgName:      "kk_etcd_models",
-				GroupFuncName:   "userDelete",
-				HandlerName:     "hUser",
+
 				HandlerFuncName: "UserDelete",
-				PreUrl:          "/user/",
 			},
 		},
 		{
 			apiModel: kk_http.ApiModel{
-				ApiPkgName:      "kk_etcd_models",
-				GroupFuncName:   "getUser",
-				HandlerName:     "hUser",
+
 				HandlerFuncName: "GetUser",
-				PreUrl:          "/user/",
 			},
 		},
 		{
 			apiModel: kk_http.ApiModel{
-				ApiPkgName:      "kk_etcd_models",
-				GroupFuncName:   "myInfo",
-				HandlerName:     "hUser",
+
 				HandlerFuncName: "MyInfo",
-				PreUrl:          "/user/",
 			},
 		},
 		{
 			apiModel: kk_http.ApiModel{
-				ApiPkgName:      "kk_etcd_models",
-				GroupFuncName:   "userList",
-				HandlerName:     "hUser",
+
 				HandlerFuncName: "UserList",
-				PreUrl:          "/user/",
 			},
 		},
 		{
 			apiModel: kk_http.ApiModel{
-				ApiPkgName:      "kk_etcd_models",
-				GroupFuncName:   "userGrantRole",
-				HandlerName:     "hUser",
+
 				HandlerFuncName: "UserGrantRole",
-				PreUrl:          "/user/",
-			},
-		},
-		//role
-		{
-			apiModel: kk_http.ApiModel{
-				ApiPkgName:      "kk_etcd_models",
-				GroupFuncName:   "roleAdd",
-				HandlerName:     "hRole",
-				HandlerFuncName: "RoleAdd",
-				PreUrl:          "/role/",
-			},
-		},
-		{
-			apiModel: kk_http.ApiModel{
-				ApiPkgName:      "kk_etcd_models",
-				GroupFuncName:   "roleDelete",
-				HandlerName:     "hRole",
-				HandlerFuncName: "RoleDelete",
-				PreUrl:          "/role/",
-			},
-		},
-		{
-			apiModel: kk_http.ApiModel{
-				ApiPkgName:      "kk_etcd_models",
-				GroupFuncName:   "roleList",
-				HandlerName:     "hRole",
-				HandlerFuncName: "RoleList",
-				PreUrl:          "/role/",
-			},
-		},
-		{
-			apiModel: kk_http.ApiModel{
-				ApiPkgName:      "kk_etcd_models",
-				GroupFuncName:   "roleGet",
-				HandlerName:     "hRole",
-				HandlerFuncName: "RoleGet",
-				PreUrl:          "/role/",
-			},
-		},
-		{
-			apiModel: kk_http.ApiModel{
-				ApiPkgName:      "kk_etcd_models",
-				GroupFuncName:   "roleGrantPermission",
-				HandlerName:     "hRole",
-				HandlerFuncName: "RoleGrantPermission",
-				PreUrl:          "/role/",
-			},
-		},
-		//kv
-		{
-			apiModel: kk_http.ApiModel{
-				ApiPkgName:      "kk_etcd_models",
-				GroupFuncName:   "kVPut",
-				HandlerName:     "hKV",
-				HandlerFuncName: "KVPut",
-				PreUrl:          "/kv/",
-			},
-		},
-		{
-			apiModel: kk_http.ApiModel{
-				ApiPkgName:      "kk_etcd_models",
-				GroupFuncName:   "kVGet",
-				HandlerName:     "hKV",
-				HandlerFuncName: "KVGet",
-				PreUrl:          "/kv/",
-			},
-		},
-		{
-			apiModel: kk_http.ApiModel{
-				ApiPkgName:      "kk_etcd_models",
-				GroupFuncName:   "kVDel",
-				HandlerName:     "hKV",
-				HandlerFuncName: "KVDel",
-				PreUrl:          "/kv/",
-			},
-		},
-		{
-			apiModel: kk_http.ApiModel{
-				ApiPkgName:      "kk_etcd_models",
-				GroupFuncName:   "kVList",
-				HandlerName:     "hKV",
-				HandlerFuncName: "KVList",
-				PreUrl:          "/kv/",
-			},
-		},
-		//server
-		{
-			apiModel: kk_http.ApiModel{
-				ApiPkgName:      "kk_etcd_models",
-				GroupFuncName:   "serverList",
-				HandlerName:     "hServer",
-				HandlerFuncName: "ServerList",
-				PreUrl:          "/server/",
-			},
-		},
-		//backup
-		{
-			apiModel: kk_http.ApiModel{
-				ApiPkgName:      "kk_etcd_models",
-				GroupFuncName:   "snapshot",
-				HandlerName:     "hBackup",
-				HandlerFuncName: "Snapshot",
-				PreUrl:          "/backup/",
-			},
-		},
-		{
-			apiModel: kk_http.ApiModel{
-				ApiPkgName:      "kk_etcd_models",
-				GroupFuncName:   "snapshotRestore",
-				HandlerName:     "hBackup",
-				HandlerFuncName: "SnapshotRestore",
-				PreUrl:          "/backup/",
-			},
-		},
-		{
-			apiModel: kk_http.ApiModel{
-				ApiPkgName:      "kk_etcd_models",
-				GroupFuncName:   "snapshotInfo",
-				HandlerName:     "hBackup",
-				HandlerFuncName: "SnapshotInfo",
-				PreUrl:          "/backup/",
-			},
-		},
-		{
-			apiModel: kk_http.ApiModel{
-				ApiPkgName:      "kk_etcd_models",
-				GroupFuncName:   "allKVsBackup",
-				HandlerName:     "hBackup",
-				HandlerFuncName: "AllKVsBackup",
-				PreUrl:          "/backup/",
-			},
-		},
-		{
-			apiModel: kk_http.ApiModel{
-				ApiPkgName:      "kk_etcd_models",
-				GroupFuncName:   "allKVsRestore",
-				HandlerName:     "hBackup",
-				HandlerFuncName: "AllKVsRestore",
-				PreUrl:          "/backup/",
 			},
 		},
 	}
 
 	for _, api := range apis {
 		t.Run(api.apiModel.HandlerFuncName, func(t *testing.T) {
-			kk_http.GenerateApi(api.apiModel)
+			kk_http.GenerateApi(apiGroupModel, api.apiModel)
+			//kk_http.GenerateDartApi(api.apiModel)
+		})
+	}
+}
+func TestRole(t *testing.T) {
+	apiGroupModel := kk_http.ApiGroupModel{
+		ApiPkgName:  "kk_etcd_models",
+		HandlerName: "hRole",
+		Tag:         "role",
+		GroupUrl:    "/role/",
+	}
+	apis := []struct {
+		apiModel kk_http.ApiModel
+	}{
+		//role
+		{
+			apiModel: kk_http.ApiModel{
+
+				HandlerFuncName: "RoleAdd",
+			},
+		},
+		{
+			apiModel: kk_http.ApiModel{
+
+				HandlerFuncName: "RoleDelete",
+			},
+		},
+		{
+			apiModel: kk_http.ApiModel{
+
+				HandlerFuncName: "RoleList",
+			},
+		},
+		{
+			apiModel: kk_http.ApiModel{
+
+				HandlerFuncName: "RoleGet",
+			},
+		},
+		{
+			apiModel: kk_http.ApiModel{
+
+				HandlerFuncName: "RoleGrantPermission",
+			},
+		},
+	}
+
+	for _, api := range apis {
+		t.Run(api.apiModel.HandlerFuncName, func(t *testing.T) {
+			kk_http.GenerateApi(apiGroupModel, api.apiModel)
+			//kk_http.GenerateDartApi(api.apiModel)
+		})
+	}
+}
+func TestKV(t *testing.T) {
+	apiGroupModel := kk_http.ApiGroupModel{
+		ApiPkgName:  "kk_etcd_models",
+		HandlerName: "hKV",
+		Tag:         "kv",
+		GroupUrl:    "/kv/",
+	}
+	apis := []struct {
+		apiModel kk_http.ApiModel
+	}{
+		//kv
+		{
+			apiModel: kk_http.ApiModel{
+
+				HandlerFuncName: "KVPut",
+			},
+		},
+		{
+			apiModel: kk_http.ApiModel{
+
+				HandlerFuncName: "KVGet",
+			},
+		},
+		{
+			apiModel: kk_http.ApiModel{
+
+				HandlerFuncName: "KVDel",
+			},
+		},
+		{
+			apiModel: kk_http.ApiModel{
+
+				HandlerFuncName: "KVList",
+			},
+		},
+	}
+
+	for _, api := range apis {
+		t.Run(api.apiModel.HandlerFuncName, func(t *testing.T) {
+			kk_http.GenerateApi(apiGroupModel, api.apiModel)
+			//kk_http.GenerateDartApi(api.apiModel)
+		})
+	}
+}
+func TestServer(t *testing.T) {
+	apiGroupModel := kk_http.ApiGroupModel{
+		ApiPkgName:  "kk_etcd_models",
+		HandlerName: "hServer",
+		Tag:         "server",
+		GroupUrl:    "/server/",
+	}
+	apis := []struct {
+		apiModel kk_http.ApiModel
+	}{
+		//server
+		{
+			apiModel: kk_http.ApiModel{
+
+				HandlerFuncName: "ServerList",
+			},
+		},
+	}
+
+	for _, api := range apis {
+		t.Run(api.apiModel.HandlerFuncName, func(t *testing.T) {
+			kk_http.GenerateApi(apiGroupModel, api.apiModel)
+			//kk_http.GenerateDartApi(api.apiModel)
+		})
+	}
+}
+func TestBackup(t *testing.T) {
+	apiGroupModel := kk_http.ApiGroupModel{
+		ApiPkgName:  "kk_etcd_models",
+		HandlerName: "hBackup",
+		Tag:         "backup",
+		GroupUrl:    "/backup/",
+	}
+	apis := []struct {
+		apiModel kk_http.ApiModel
+	}{
+		//backup
+		{
+			apiModel: kk_http.ApiModel{
+
+				HandlerFuncName: "Snapshot",
+			},
+		},
+		{
+			apiModel: kk_http.ApiModel{
+
+				HandlerFuncName: "SnapshotRestore",
+			},
+		},
+		{
+			apiModel: kk_http.ApiModel{
+
+				HandlerFuncName: "SnapshotInfo",
+			},
+		},
+		{
+			apiModel: kk_http.ApiModel{
+
+				HandlerFuncName: "AllKVsBackup",
+			},
+		},
+		{
+			apiModel: kk_http.ApiModel{
+
+				HandlerFuncName: "AllKVsRestore",
+			},
+		},
+	}
+
+	for _, api := range apis {
+		t.Run(api.apiModel.HandlerFuncName, func(t *testing.T) {
+			kk_http.GenerateApi(apiGroupModel, api.apiModel)
 			//kk_http.GenerateDartApi(api.apiModel)
 		})
 	}
