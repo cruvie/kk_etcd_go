@@ -2,6 +2,7 @@ package global_model
 
 import (
 	"errors"
+	"gitee.com/cruvie/kk_go_kit/kk_log"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/gin-gonic/gin"
 	"log/slog"
@@ -26,7 +27,7 @@ func GetRequestStage(c *gin.Context) *kk_stage.Stage {
 	stageAny, ok := c.Get(requestStage)
 	stage := stageAny.(*kk_stage.Stage)
 	if !ok {
-		slog.Error("get request stage error", kk_stage.NewLog(stage).Error(errors.New("request stage not found")).Args()...)
+		slog.Error("get request stage error", kk_log.NewLog(stage.TraceId).Error(errors.New("request stage not found")).Args()...)
 		return nil
 	}
 	return stage

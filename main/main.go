@@ -4,6 +4,7 @@ import (
 	"context"
 	"gitee.com/cruvie/kk_go_kit/kk_func"
 	"gitee.com/cruvie/kk_go_kit/kk_jwt"
+	"gitee.com/cruvie/kk_go_kit/kk_log"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/internal/api_etcd"
 	"github.com/cruvie/kk_etcd_go/internal/config"
@@ -30,11 +31,10 @@ import (
 func main() {
 	config.InitConfig()
 	stage := kk_stage.NewStage(context.Background(), kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
-	configLog := kk_stage.ConfigLog{
-		Lumberjack:  kk_stage.DefaultLogConfig(kk_etcd_const.ServerName),
-		SlogOptions: nil,
+	configLog := kk_log.ConfigLog{
+		Lumberjack: kk_log.DefaultLogConfig(kk_etcd_const.ServerName),
 	}
-	configLog.Init(stage)
+	configLog.Init(stage.DebugMode)
 	defer configLog.Close()
 	jwtCfg := kk_jwt.ConfigJWT{
 		Key:        config.Config.JWT.Key,

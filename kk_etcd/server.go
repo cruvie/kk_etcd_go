@@ -2,7 +2,7 @@ package kk_etcd
 
 import (
 	"context"
-	"gitee.com/cruvie/kk_go_kit/kk_stage"
+	"gitee.com/cruvie/kk_go_kit/kk_log"
 	"github.com/cruvie/kk_etcd_go/internal/handler"
 	"github.com/cruvie/kk_etcd_go/internal/handler/service"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
@@ -34,12 +34,12 @@ func WatchServerList(ctx context.Context, serviceName string, serverListChan cha
 	etcdManager, err := endpoints.NewManager(kk_etcd_client.EtcdClient, serviceName)
 
 	if err != nil {
-		slog.Error("failed to new endpoints.Manager", kk_stage.NewLog(global_model.GlobalStage).Any("serviceName", serviceName).Error(err).Args()...)
+		slog.Error("failed to new endpoints.Manager", kk_log.NewLog(global_model.GlobalStage.TraceId).Any("serviceName", serviceName).Error(err).Args()...)
 		return err
 	}
 	channel, err := etcdManager.NewWatchChannel(ctx)
 	if err != nil {
-		slog.Error("failed to new watch channel", kk_stage.NewLog(global_model.GlobalStage).Any("serviceName", serviceName).Error(err).Args()...)
+		slog.Error("failed to new watch channel", kk_log.NewLog(global_model.GlobalStage.TraceId).Any("serviceName", serviceName).Error(err).Args()...)
 		return err
 	}
 	go func() {

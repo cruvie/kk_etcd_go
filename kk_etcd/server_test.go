@@ -2,7 +2,7 @@ package kk_etcd
 
 import (
 	"context"
-	"gitee.com/cruvie/kk_go_kit/kk_stage"
+	"gitee.com/cruvie/kk_go_kit/kk_log"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_const"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	"google.golang.org/grpc"
@@ -43,7 +43,7 @@ func TestStartGrpcServer(t *testing.T) {
 	grpcServer := grpc.NewServer()
 	defer grpcServer.Stop()
 	grpc_health_v1.RegisterHealthServer(grpcServer, &server{})
-	slog.Info("grpc_rec listening at", kk_stage.NewLog(nil).Any("addr", listener.Addr()).Args()...)
+	slog.Info("grpc_rec listening at", kk_log.NewLog().Any("addr", listener.Addr()).Args()...)
 	if err := grpcServer.Serve(listener); err != nil {
 		slog.Error("failed to serve", "err", err)
 	}

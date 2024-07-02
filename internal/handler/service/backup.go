@@ -3,6 +3,7 @@ package service
 import (
 	"context"
 	"encoding/json"
+	"gitee.com/cruvie/kk_go_kit/kk_log"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"gitee.com/cruvie/kk_go_kit/kk_time"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_client"
@@ -29,7 +30,7 @@ func (SerBackup) Snapshot(stage *kk_stage.Stage) (error, *kk_etcd_models.Snapsho
 		if backupData != nil {
 			err := backupData.Close()
 			if err != nil {
-				slog.Error("Failed to close backup data", kk_stage.NewLog(stage).Error(err).Args()...)
+				slog.Error("Failed to close backup data", kk_log.NewLog(stage.TraceId).Error(err).Args()...)
 			}
 		}
 	}(backupData)
@@ -78,7 +79,7 @@ func (SerBackup) SnapshotInfo(stage *kk_stage.Stage, param *kk_etcd_models.Snaps
 	defer func() {
 		err = os.Remove(tempFile.Name())
 		if err != nil {
-			slog.Error("delete temp file failed", kk_stage.NewLog(stage).Error(err).Args()...)
+			slog.Error("delete temp file failed", kk_log.NewLog(stage.TraceId).Error(err).Args()...)
 		}
 	}()
 	if _, err := tempFile.Write(param.GetFile()); err != nil {
@@ -133,7 +134,7 @@ func (SerBackup) AllKVsRestore(stage *kk_stage.Stage, param *kk_etcd_models.AllK
 	list := &kk_etcd_models.PBListKV{}
 	err := json.Unmarshal(param.GetFile(), list)
 	if err != nil {
-		slog.Error("failed to Unmarshal kv", kk_stage.NewLog(stage).Error(err).Args()...)
+		slog.Error("failed to Unmarshal kv", kk_log.NewLog(stage.TraceId).Error(err).Args()...)
 		return err
 	}
 	for _, pbkv := range list.ListKV {

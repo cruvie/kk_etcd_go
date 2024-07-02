@@ -3,6 +3,7 @@ package service
 import (
 	"context"
 	"errors"
+	"gitee.com/cruvie/kk_go_kit/kk_log"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_client"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_const"
@@ -20,25 +21,25 @@ func RegisterService(stage *kk_stage.Stage, registration *kk_etcd_models.Service
 	if registration.ServerType != kk_etcd_const.ServiceHttp && registration.ServerType != kk_etcd_const.ServiceGrpc {
 
 		msg := "server type is invalid"
-		slog.Error(msg, kk_stage.NewLog(stage).Args()...)
+		slog.Error(msg, kk_log.NewLog(stage.TraceId).Args()...)
 		return errors.New(msg)
 	}
 	if registration.ServerName == "" {
 
 		msg := "server name cannot be empty"
-		slog.Error(msg, kk_stage.NewLog(stage).Args()...)
+		slog.Error(msg, kk_log.NewLog(stage.TraceId).Args()...)
 		return errors.New(msg)
 	}
 	if registration.Address == "" {
 
 		msg := "server address cannot be empty"
-		slog.Error(msg, kk_stage.NewLog(stage).Args()...)
+		slog.Error(msg, kk_log.NewLog(stage.TraceId).Args()...)
 		return errors.New(msg)
 	}
 	if registration.Check == nil {
 
 		msg := "server Check cannot be empty"
-		slog.Error(msg, kk_stage.NewLog(stage).Args()...)
+		slog.Error(msg, kk_log.NewLog(stage.TraceId).Args()...)
 		return errors.New(msg)
 	}
 	switch registration.Check.Type {
@@ -53,7 +54,7 @@ func RegisterService(stage *kk_stage.Stage, registration *kk_etcd_models.Service
 	default:
 
 		msg := "server Check Type is invalid"
-		slog.Error(msg, kk_stage.NewLog(stage).Args()...)
+		slog.Error(msg, kk_log.NewLog(stage.TraceId).Args()...)
 		return errors.New(msg)
 	}
 	if registration.Check.TTL == 0 {
