@@ -40,7 +40,7 @@ func main() {
 		Key:        config.Config.JWT.Key,
 		ExpireTime: config.Config.JWT.ExpireTime,
 	}
-	jwtCfg.Init(stage)
+	jwtCfg.Init()
 
 	var serEtcd service.SerEtcd
 	err := serEtcd.InitEtcd(stage, []string{config.Config.Etcd.Endpoint}, config.Config.Admin.UserName, config.Config.Admin.Password)

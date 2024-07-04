@@ -16,7 +16,6 @@ var hServer handler.HServer
 
 // RegisterService register service to etcd
 func RegisterService(registration *kk_etcd_models.ServiceRegistration) error {
-
 	err := service.RegisterService(global_model.GlobalStage, registration)
 	return err
 }
@@ -30,16 +29,16 @@ func ServerList(param *kk_etcd_models.ServerListParam) (error, *kk_etcd_models.S
 
 // WatchServerList watch server list change
 func WatchServerList(ctx context.Context, serviceName string, serverListChan chan *kk_etcd_models.PBListServer) (err error) {
-
+	newLog := kk_log.NewLog(&kk_log.LogOption{TraceId: global_model.GlobalStage.TraceId})
 	etcdManager, err := endpoints.NewManager(kk_etcd_client.EtcdClient, serviceName)
 
 	if err != nil {
-		slog.Error("failed to new endpoints.Manager", kk_log.NewLog(global_model.GlobalStage.TraceId).Any("serviceName", serviceName).Error(err).Args()...)
+		slog.Error("failed to new endpoints.Manager", newLog.Any("serviceName", serviceName).Error(err).Args()...)
 		return err
 	}
 	channel, err := etcdManager.NewWatchChannel(ctx)
 	if err != nil {
-		slog.Error("failed to new watch channel", kk_log.NewLog(global_model.GlobalStage.TraceId).Any("serviceName", serviceName).Error(err).Args()...)
+		slog.Error("failed to new watch channel", newLog.Any("serviceName", serviceName).Error(err).Args()...)
 		return err
 	}
 	go func() {

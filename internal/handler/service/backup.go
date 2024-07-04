@@ -24,13 +24,14 @@ var serBackup SerBackup
 
 // Snapshot get snapshot, similar to `etcdctl snapshot save snapshot.db`
 func (SerBackup) Snapshot(stage *kk_stage.Stage) (error, *kk_etcd_models.SnapshotResponse) {
+	newLog := kk_log.NewLog(&kk_log.LogOption{TraceId: stage.TraceId})
 	//etcdctl --endpoints=127.0.0.1:2379 --user kk_etcd:kk_etcd snapshot save /Users/cruvie/KangXH/Coding/Uncomplete-Projects/kk_etcd/kk_etcd_go/backup/snapshot.db
 	backupData, err := kk_etcd_client.EtcdClient.Snapshot(context.Background())
 	defer func(backupData io.ReadCloser) {
 		if backupData != nil {
 			err := backupData.Close()
 			if err != nil {
-				slog.Error("Failed to close backup data", kk_log.NewLog(stage.TraceId).Error(err).Args()...)
+				slog.Error("Failed to close backup data", newLog.Error(err).Args()...)
 			}
 		}
 	}(backupData)
@@ -72,6 +73,7 @@ func (SerBackup) SnapshotRestore() (cmdStr string, err error) {
 	return cmdStr, nil
 }
 func (SerBackup) SnapshotInfo(stage *kk_stage.Stage, param *kk_etcd_models.SnapshotInfoParam) (info string, err error) {
+	newLog := kk_log.NewLog(&kk_log.LogOption{TraceId: stage.TraceId})
 	tempFile, err := os.CreateTemp("", "temp")
 	if err != nil {
 		return "", err
@@ -79,7 +81,7 @@ func (SerBackup) SnapshotInfo(stage *kk_stage.Stage, param *kk_etcd_models.Snaps
 	defer func() {
 		err = os.Remove(tempFile.Name())
 		if err != nil {
-			slog.Error("delete temp file failed", kk_log.NewLog(stage.TraceId).Error(err).Args()...)
+			slog.Error("delete temp file failed", newLog.Error(err).Args()...)
 		}
 	}()
 	if _, err := tempFile.Write(param.GetFile()); err != nil {
@@ -131,10 +133,11 @@ func (SerBackup) AllKVsBackup() (error, *kk_etcd_models.AllKVsBackupResponse) {
 	}
 }
 func (SerBackup) AllKVsRestore(stage *kk_stage.Stage, param *kk_etcd_models.AllKVsRestoreParam) error {
+	newLog := kk_log.NewLog(&kk_log.LogOption{TraceId: stage.TraceId})
 	list := &kk_etcd_models.PBListKV{}
 	err := json.Unmarshal(param.GetFile(), list)
 	if err != nil {
-		slog.Error("failed to Unmarshal kv", kk_log.NewLog(stage.TraceId).Error(err).Args()...)
+		slog.Error("failed to Unmarshal kv", newLog.Error(err).Args()...)
 		return err
 	}
 	for _, pbkv := range list.ListKV {
