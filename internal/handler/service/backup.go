@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"gitee.com/cruvie/kk_go_kit/kk_log"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
-	"gitee.com/cruvie/kk_go_kit/kk_time"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_client"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_const"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
@@ -43,7 +42,7 @@ func (SerBackup) Snapshot(stage *kk_stage.Stage) (error, *kk_etcd_models.Snapsho
 	if err != nil {
 		return err, nil
 	}
-	timeStr := time.Now().Format(kk_time.DateTime)
+	timeStr := time.Now().Format(time.DateTime)
 	fileName := "etcd_" + timeStr + ".snapshot"
 
 	return nil, &kk_etcd_models.SnapshotResponse{
@@ -125,7 +124,7 @@ func (SerBackup) AllKVsBackup() (error, *kk_etcd_models.AllKVsBackupResponse) {
 	if err != nil {
 		return err, nil
 	}
-	timeStr := time.Now().Format(kk_time.DateTime)
+	timeStr := time.Now().Format(time.DateTime)
 	fileName := "etcd_all_kv_" + timeStr + ".json"
 	return nil, &kk_etcd_models.AllKVsBackupResponse{
 		Name: fileName,
