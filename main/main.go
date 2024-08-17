@@ -2,7 +2,7 @@ package main
 
 import (
 	"context"
-	"gitee.com/cruvie/kk_go_kit/kk_func"
+	"gitee.com/cruvie/kk_go_kit/kk_config_interface"
 	"gitee.com/cruvie/kk_go_kit/kk_jwt"
 	"gitee.com/cruvie/kk_go_kit/kk_log"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
@@ -10,6 +10,7 @@ import (
 	"github.com/cruvie/kk_etcd_go/internal/config"
 	"github.com/cruvie/kk_etcd_go/internal/handler/service"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
+	"github.com/cruvie/kk_etcd_go/internal/utils/global_model/global_stage"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_const"
 	_ "github.com/cruvie/kk_etcd_go/swagger"
 )
@@ -30,24 +31,28 @@ import (
 // @BasePath	/
 func main() {
 	config.InitConfig()
-	stage := kk_stage.NewStage(context.Background(), kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
+	stage := kk_stage.NewStage(context.Background(), kk_etcd_const.ServerName, config.Config.DebugMode)
 	configLog := kk_log.ConfigLog{
 		Lumberjack: kk_log.DefaultLogConfig(kk_etcd_const.ServerName),
 	}
-	configLog.Init(stage.DebugMode)
+	init := &kk_config_interface.InitArgs{
+		DebugMode:   stage.DebugMode,
+		ServiceName: stage.ServiceName,
+	}
+	configLog.Init(init)
 	defer configLog.Close()
 	jwtCfg := kk_jwt.ConfigJWT{
 		Key:        config.Config.JWT.Key,
 		ExpireTime: config.Config.JWT.ExpireTime,
 	}
-	jwtCfg.Init()
+	jwtCfg.Init(init)
 
 	var serEtcd service.SerEtcd
 	err := serEtcd.InitEtcd(stage, []string{config.Config.Etcd.Endpoint}, config.Config.Admin.UserName, config.Config.Admin.Password)
 	if err != nil {
 		panic(err)
 	}
-	global_model.InitGlobalStage(stage)
+	global_stage.InitGlobalStage(stage)
 	var serUser service.SerUser
 	user, err := serUser.GetUser(config.Config.Admin.UserName)
 	if err != nil {

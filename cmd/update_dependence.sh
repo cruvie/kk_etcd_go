@@ -4,6 +4,6 @@ cd ..
 
 (
   echo 'update_dependence'
-  go get -d -u ./...
+  go get -u ./...
   go mod tidy
 )

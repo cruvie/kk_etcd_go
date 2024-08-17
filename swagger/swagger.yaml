@@ -291,7 +291,7 @@ paths:
     post:
       consumes:
       - application/octet-stream
-      description: allKVsBackup
+      description: all kvs backup
       parameters:
       - description: AllKVsBackupParam
         in: body
@@ -306,11 +306,13 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/kk_etcd_models.AllKVsBackupResponse'
+      tags:
+      - backup
   /backup/allKVsRestore:
     post:
       consumes:
       - application/octet-stream
-      description: allKVsRestore
+      description: all kvs restore
       parameters:
       - description: AllKVsRestoreParam
         in: body
@@ -325,6 +327,8 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/kk_etcd_models.AllKVsRestoreResponse'
+      tags:
+      - backup
   /backup/snapshot:
     post:
       consumes:
@@ -344,11 +348,13 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/kk_etcd_models.SnapshotResponse'
+      tags:
+      - backup
   /backup/snapshotInfo:
     post:
       consumes:
       - application/octet-stream
-      description: snapshotInfo
+      description: snapshot info
       parameters:
       - description: SnapshotInfoParam
         in: body
@@ -363,11 +369,13 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/kk_etcd_models.SnapshotInfoResponse'
+      tags:
+      - backup
   /backup/snapshotRestore:
     post:
       consumes:
       - application/octet-stream
-      description: snapshotRestore
+      description: snapshot restore
       parameters:
       - description: SnapshotRestoreParam
         in: body
@@ -382,11 +390,13 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/kk_etcd_models.SnapshotRestoreResponse'
+      tags:
+      - backup
   /kv/kVDel:
     post:
       consumes:
       - application/octet-stream
-      description: kVDel
+      description: del kv
       parameters:
       - description: KVDelParam
         in: body
@@ -401,11 +411,13 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/kk_etcd_models.KVDelResponse'
+      tags:
+      - kv
   /kv/kVGet:
     post:
       consumes:
       - application/octet-stream
-      description: kVGet
+      description: get kv
       parameters:
       - description: KVGetParam
         in: body
@@ -420,11 +432,13 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/kk_etcd_models.KVGetResponse'
+      tags:
+      - kv
   /kv/kVList:
     post:
       consumes:
       - application/octet-stream
-      description: kVList
+      description: list kv
       parameters:
       - description: KVListParam
         in: body
@@ -439,11 +453,13 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/kk_etcd_models.KVListResponse'
+      tags:
+      - kv
   /kv/kVPut:
     post:
       consumes:
       - application/octet-stream
-      description: kVPut
+      description: put kv
       parameters:
       - description: KVPutParam
         in: body
@@ -458,11 +474,13 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/kk_etcd_models.KVPutResponse'
+      tags:
+      - kv
   /role/roleAdd:
     post:
       consumes:
       - application/octet-stream
-      description: roleAdd
+      description: add role
       parameters:
       - description: RoleAddParam
         in: body
@@ -477,11 +495,13 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/kk_etcd_models.RoleAddResponse'
+      tags:
+      - role
   /role/roleDelete:
     post:
       consumes:
       - application/octet-stream
-      description: roleDelete
+      description: delete role
       parameters:
       - description: RoleDeleteParam
         in: body
@@ -496,11 +516,13 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/kk_etcd_models.RoleDeleteResponse'
+      tags:
+      - role
   /role/roleGet:
     post:
       consumes:
       - application/octet-stream
-      description: roleGet
+      description: get role
       parameters:
       - description: RoleGetParam
         in: body
@@ -515,11 +537,13 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/kk_etcd_models.RoleGetResponse'
+      tags:
+      - role
   /role/roleGrantPermission:
     post:
       consumes:
       - application/octet-stream
-      description: roleGrantPermission
+      description: grant permission
       parameters:
       - description: RoleGrantPermissionParam
         in: body
@@ -534,11 +558,13 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/kk_etcd_models.RoleGrantPermissionResponse'
+      tags:
+      - role
   /role/roleList:
     post:
       consumes:
       - application/octet-stream
-      description: roleList
+      description: list role
       parameters:
       - description: RoleListParam
         in: body
@@ -553,11 +579,13 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/kk_etcd_models.RoleListResponse'
+      tags:
+      - role
   /server/serverList:
     post:
       consumes:
       - application/octet-stream
-      description: serverList
+      description: list server
       parameters:
       - description: ServerListParam
         in: body
@@ -572,11 +600,13 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/kk_etcd_models.ServerListResponse'
+      tags:
+      - server
   /user/getUser:
     post:
       consumes:
       - application/octet-stream
-      description: getUser
+      description: get user
       parameters:
       - description: GetUserParam
         in: body
@@ -591,6 +621,8 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/kk_etcd_models.GetUserResponse'
+      tags:
+      - user
   /user/login:
     post:
       consumes:
@@ -610,6 +642,8 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/kk_etcd_models.LoginResponse'
+      tags:
+      - user
   /user/logout:
     post:
       consumes:
@@ -629,11 +663,13 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/kk_etcd_models.LogoutResponse'
+      tags:
+      - user
   /user/myInfo:
     post:
       consumes:
       - application/octet-stream
-      description: myInfo
+      description: get my info
       parameters:
       - description: MyInfoParam
         in: body
@@ -648,11 +684,13 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/kk_etcd_models.MyInfoResponse'
+      tags:
+      - user
   /user/userAdd:
     post:
       consumes:
       - application/octet-stream
-      description: userAdd
+      description: add user
       parameters:
       - description: UserAddParam
         in: body
@@ -667,11 +705,13 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/kk_etcd_models.UserAddResponse'
+      tags:
+      - user
   /user/userDelete:
     post:
       consumes:
       - application/octet-stream
-      description: userDelete
+      description: delete user
       parameters:
       - description: UserDeleteParam
         in: body
@@ -686,11 +726,13 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/kk_etcd_models.UserDeleteResponse'
+      tags:
+      - user
   /user/userGrantRole:
     post:
       consumes:
       - application/octet-stream
-      description: userGrantRole
+      description: grant role
       parameters:
       - description: UserGrantRoleParam
         in: body
@@ -705,11 +747,13 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/kk_etcd_models.UserGrantRoleResponse'
+      tags:
+      - user
   /user/userList:
     post:
       consumes:
       - application/octet-stream
-      description: userList
+      description: list user
       parameters:
       - description: UserListParam
         in: body
@@ -724,4 +768,6 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/kk_etcd_models.UserListResponse'
+      tags:
+      - user
 swagger: "2.0"

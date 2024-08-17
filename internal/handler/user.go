@@ -2,7 +2,7 @@ package handler
 
 import (
 	"errors"
-	"gitee.com/cruvie/kk_go_kit/kk_func"
+	"gitee.com/cruvie/kk_go_kit/kk_reflect"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/internal/config"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
@@ -18,7 +18,7 @@ type HUser struct{}
 var serUser service.SerUser
 
 func (HUser) Login(stage *kk_stage.Stage, param *kk_etcd_models.LoginParam) (error, *kk_etcd_models.LoginResponse) {
-	span := stage.StartTrace(kk_func.GetCurrentFunctionName())
+	span := stage.StartTrace(kk_reflect.GetCurrentFunctionName())
 	defer span.End()
 	if param.UserName == kk_etcd_const.UserRoot {
 		return errors.New("illegal login root user"), nil
@@ -30,14 +30,14 @@ func (HUser) Login(stage *kk_stage.Stage, param *kk_etcd_models.LoginParam) (err
 }
 
 func (HUser) Logout(stage *kk_stage.Stage, param *kk_etcd_models.LogoutParam) (error, *kk_etcd_models.LogoutResponse) {
-	span := stage.StartTrace(kk_func.GetCurrentFunctionName())
+	span := stage.StartTrace(kk_reflect.GetCurrentFunctionName())
 	defer span.End()
 	err := serUser.Logout(stage, param)
 	return err, &kk_etcd_models.LogoutResponse{}
 }
 
 func (HUser) UserAdd(stage *kk_stage.Stage, param *kk_etcd_models.UserAddParam) (error, *kk_etcd_models.UserAddResponse) {
-	span := stage.StartTrace(kk_func.GetCurrentFunctionName())
+	span := stage.StartTrace(kk_reflect.GetCurrentFunctionName())
 	defer span.End()
 	err := serUser.CheckRootRole(stage)
 	if err != nil {
@@ -55,7 +55,7 @@ func (HUser) UserAdd(stage *kk_stage.Stage, param *kk_etcd_models.UserAddParam) 
 }
 
 func (HUser) UserDelete(stage *kk_stage.Stage, param *kk_etcd_models.UserDeleteParam) (error, *kk_etcd_models.UserDeleteResponse) {
-	span := stage.StartTrace(kk_func.GetCurrentFunctionName())
+	span := stage.StartTrace(kk_reflect.GetCurrentFunctionName())
 	defer span.End()
 	err := serUser.CheckRootRole(stage)
 	if err != nil {
@@ -71,7 +71,7 @@ func (HUser) UserDelete(stage *kk_stage.Stage, param *kk_etcd_models.UserDeleteP
 }
 
 func (HUser) GetUser(stage *kk_stage.Stage, param *kk_etcd_models.GetUserParam) (error, *kk_etcd_models.GetUserResponse) {
-	span := stage.StartTrace(kk_func.GetCurrentFunctionName())
+	span := stage.StartTrace(kk_reflect.GetCurrentFunctionName())
 	defer span.End()
 	user, err := serUser.GetUser(param.GetUserName())
 	return err, &kk_etcd_models.GetUserResponse{
@@ -80,7 +80,7 @@ func (HUser) GetUser(stage *kk_stage.Stage, param *kk_etcd_models.GetUserParam) 
 }
 
 func (HUser) MyInfo(stage *kk_stage.Stage, _ *kk_etcd_models.MyInfoParam) (error, *kk_etcd_models.MyInfoResponse) {
-	span := stage.StartTrace(kk_func.GetCurrentFunctionName())
+	span := stage.StartTrace(kk_reflect.GetCurrentFunctionName())
 	defer span.End()
 	loginUser := global_model.GetLoginUser(stage)
 	return nil, &kk_etcd_models.MyInfoResponse{
@@ -90,7 +90,7 @@ func (HUser) MyInfo(stage *kk_stage.Stage, _ *kk_etcd_models.MyInfoParam) (error
 }
 
 func (HUser) UserList(stage *kk_stage.Stage, _ *kk_etcd_models.UserListParam) (error, *kk_etcd_models.UserListResponse) {
-	span := stage.StartTrace(kk_func.GetCurrentFunctionName())
+	span := stage.StartTrace(kk_reflect.GetCurrentFunctionName())
 	defer span.End()
 	err, users := serUser.UserList()
 	return err, &kk_etcd_models.UserListResponse{
@@ -99,7 +99,7 @@ func (HUser) UserList(stage *kk_stage.Stage, _ *kk_etcd_models.UserListParam) (e
 }
 
 func (HUser) UserGrantRole(stage *kk_stage.Stage, param *kk_etcd_models.UserGrantRoleParam) (error, *kk_etcd_models.UserGrantRoleResponse) {
-	span := stage.StartTrace(kk_func.GetCurrentFunctionName())
+	span := stage.StartTrace(kk_reflect.GetCurrentFunctionName())
 	defer span.End()
 
 	err := serUser.CheckRootRole(stage)

@@ -20,12 +20,15 @@
     "paths": {
         "/backup/allKVsBackup": {
             "post": {
-                "description": "allKVsBackup",
+                "description": "all kvs backup",
                 "consumes": [
                     "application/octet-stream"
                 ],
                 "produces": [
                     "application/octet-stream"
+                ],
+                "tags": [
+                    "backup"
                 ],
                 "parameters": [
                     {
@@ -50,12 +53,15 @@
         },
         "/backup/allKVsRestore": {
             "post": {
-                "description": "allKVsRestore",
+                "description": "all kvs restore",
                 "consumes": [
                     "application/octet-stream"
                 ],
                 "produces": [
                     "application/octet-stream"
+                ],
+                "tags": [
+                    "backup"
                 ],
                 "parameters": [
                     {
@@ -87,6 +93,9 @@
                 "produces": [
                     "application/octet-stream"
                 ],
+                "tags": [
+                    "backup"
+                ],
                 "parameters": [
                     {
                         "description": "SnapshotParam",
@@ -110,12 +119,15 @@
         },
         "/backup/snapshotInfo": {
             "post": {
-                "description": "snapshotInfo",
+                "description": "snapshot info",
                 "consumes": [
                     "application/octet-stream"
                 ],
                 "produces": [
                     "application/octet-stream"
+                ],
+                "tags": [
+                    "backup"
                 ],
                 "parameters": [
                     {
@@ -140,12 +152,15 @@
         },
         "/backup/snapshotRestore": {
             "post": {
-                "description": "snapshotRestore",
+                "description": "snapshot restore",
                 "consumes": [
                     "application/octet-stream"
                 ],
                 "produces": [
                     "application/octet-stream"
+                ],
+                "tags": [
+                    "backup"
                 ],
                 "parameters": [
                     {
@@ -170,12 +185,15 @@
         },
         "/kv/kVDel": {
             "post": {
-                "description": "kVDel",
+                "description": "del kv",
                 "consumes": [
                     "application/octet-stream"
                 ],
                 "produces": [
                     "application/octet-stream"
+                ],
+                "tags": [
+                    "kv"
                 ],
                 "parameters": [
                     {
@@ -200,12 +218,15 @@
         },
         "/kv/kVGet": {
             "post": {
-                "description": "kVGet",
+                "description": "get kv",
                 "consumes": [
                     "application/octet-stream"
                 ],
                 "produces": [
                     "application/octet-stream"
+                ],
+                "tags": [
+                    "kv"
                 ],
                 "parameters": [
                     {
@@ -230,12 +251,15 @@
         },
         "/kv/kVList": {
             "post": {
-                "description": "kVList",
+                "description": "list kv",
                 "consumes": [
                     "application/octet-stream"
                 ],
                 "produces": [
                     "application/octet-stream"
+                ],
+                "tags": [
+                    "kv"
                 ],
                 "parameters": [
                     {
@@ -260,12 +284,15 @@
         },
         "/kv/kVPut": {
             "post": {
-                "description": "kVPut",
+                "description": "put kv",
                 "consumes": [
                     "application/octet-stream"
                 ],
                 "produces": [
                     "application/octet-stream"
+                ],
+                "tags": [
+                    "kv"
                 ],
                 "parameters": [
                     {
@@ -290,12 +317,15 @@
         },
         "/role/roleAdd": {
             "post": {
-                "description": "roleAdd",
+                "description": "add role",
                 "consumes": [
                     "application/octet-stream"
                 ],
                 "produces": [
                     "application/octet-stream"
+                ],
+                "tags": [
+                    "role"
                 ],
                 "parameters": [
                     {
@@ -320,12 +350,15 @@
         },
         "/role/roleDelete": {
             "post": {
-                "description": "roleDelete",
+                "description": "delete role",
                 "consumes": [
                     "application/octet-stream"
                 ],
                 "produces": [
                     "application/octet-stream"
+                ],
+                "tags": [
+                    "role"
                 ],
                 "parameters": [
                     {
@@ -350,12 +383,15 @@
         },
         "/role/roleGet": {
             "post": {
-                "description": "roleGet",
+                "description": "get role",
                 "consumes": [
                     "application/octet-stream"
                 ],
                 "produces": [
                     "application/octet-stream"
+                ],
+                "tags": [
+                    "role"
                 ],
                 "parameters": [
                     {
@@ -380,12 +416,15 @@
         },
         "/role/roleGrantPermission": {
             "post": {
-                "description": "roleGrantPermission",
+                "description": "grant permission",
                 "consumes": [
                     "application/octet-stream"
                 ],
                 "produces": [
                     "application/octet-stream"
+                ],
+                "tags": [
+                    "role"
                 ],
                 "parameters": [
                     {
@@ -410,12 +449,15 @@
         },
         "/role/roleList": {
             "post": {
-                "description": "roleList",
+                "description": "list role",
                 "consumes": [
                     "application/octet-stream"
                 ],
                 "produces": [
                     "application/octet-stream"
+                ],
+                "tags": [
+                    "role"
                 ],
                 "parameters": [
                     {
@@ -440,12 +482,15 @@
         },
         "/server/serverList": {
             "post": {
-                "description": "serverList",
+                "description": "list server",
                 "consumes": [
                     "application/octet-stream"
                 ],
                 "produces": [
                     "application/octet-stream"
+                ],
+                "tags": [
+                    "server"
                 ],
                 "parameters": [
                     {
@@ -470,12 +515,15 @@
         },
         "/user/getUser": {
             "post": {
-                "description": "getUser",
+                "description": "get user",
                 "consumes": [
                     "application/octet-stream"
                 ],
                 "produces": [
                     "application/octet-stream"
+                ],
+                "tags": [
+                    "user"
                 ],
                 "parameters": [
                     {
@@ -507,6 +555,9 @@
                 "produces": [
                     "application/octet-stream"
                 ],
+                "tags": [
+                    "user"
+                ],
                 "parameters": [
                     {
                         "description": "LoginParam",
@@ -537,6 +588,9 @@
                 "produces": [
                     "application/octet-stream"
                 ],
+                "tags": [
+                    "user"
+                ],
                 "parameters": [
                     {
                         "description": "LogoutParam",
@@ -560,12 +614,15 @@
         },
         "/user/myInfo": {
             "post": {
-                "description": "myInfo",
+                "description": "get my info",
                 "consumes": [
                     "application/octet-stream"
                 ],
                 "produces": [
                     "application/octet-stream"
+                ],
+                "tags": [
+                    "user"
                 ],
                 "parameters": [
                     {
@@ -590,12 +647,15 @@
         },
         "/user/userAdd": {
             "post": {
-                "description": "userAdd",
+                "description": "add user",
                 "consumes": [
                     "application/octet-stream"
                 ],
                 "produces": [
                     "application/octet-stream"
+                ],
+                "tags": [
+                    "user"
                 ],
                 "parameters": [
                     {
@@ -620,12 +680,15 @@
         },
         "/user/userDelete": {
             "post": {
-                "description": "userDelete",
+                "description": "delete user",
                 "consumes": [
                     "application/octet-stream"
                 ],
                 "produces": [
                     "application/octet-stream"
+                ],
+                "tags": [
+                    "user"
                 ],
                 "parameters": [
                     {
@@ -650,12 +713,15 @@
         },
         "/user/userGrantRole": {
             "post": {
-                "description": "userGrantRole",
+                "description": "grant role",
                 "consumes": [
                     "application/octet-stream"
                 ],
                 "produces": [
                     "application/octet-stream"
+                ],
+                "tags": [
+                    "user"
                 ],
                 "parameters": [
                     {
@@ -680,12 +746,15 @@
         },
         "/user/userList": {
             "post": {
-                "description": "userList",
+                "description": "list user",
                 "consumes": [
                     "application/octet-stream"
                 ],
                 "produces": [
                     "application/octet-stream"
+                ],
+                "tags": [
+                    "user"
                 ],
                 "parameters": [
                     {

@@ -6,13 +6,14 @@ import (
 	"gitee.com/cruvie/kk_go_kit/kk_models"
 	"github.com/cruvie/kk_etcd_go/internal/handler/service"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
+	"github.com/cruvie/kk_etcd_go/internal/utils/global_model/global_stage"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
 
 // JWTAuth jwt auth middleware
 func JWTAuth(c *gin.Context) {
-	stage := global_model.GetRequestStage(c)
+	stage := global_stage.GetRequestStage(c)
 
 	token := global_model.GetAuthorizationToken(stage)
 	if token == "" {

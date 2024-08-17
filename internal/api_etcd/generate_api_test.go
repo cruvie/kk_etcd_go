@@ -17,49 +17,49 @@ func TestUser(t *testing.T) {
 	}{
 		{
 			apiModel: kk_http.ApiModel{
-
+				Description:     "login",
 				HandlerFuncName: "Login",
 			},
 		},
 		{
 			apiModel: kk_http.ApiModel{
-
+				Description:     "logout",
 				HandlerFuncName: "Logout",
 			},
 		},
 		{
 			apiModel: kk_http.ApiModel{
-
+				Description:     "add user",
 				HandlerFuncName: "UserAdd",
 			},
 		},
 		{
 			apiModel: kk_http.ApiModel{
-
+				Description:     "delete user",
 				HandlerFuncName: "UserDelete",
 			},
 		},
 		{
 			apiModel: kk_http.ApiModel{
-
+				Description:     "get user",
 				HandlerFuncName: "GetUser",
 			},
 		},
 		{
 			apiModel: kk_http.ApiModel{
-
+				Description:     "get my info",
 				HandlerFuncName: "MyInfo",
 			},
 		},
 		{
 			apiModel: kk_http.ApiModel{
-
+				Description:     "list user",
 				HandlerFuncName: "UserList",
 			},
 		},
 		{
 			apiModel: kk_http.ApiModel{
-
+				Description:     "grant role",
 				HandlerFuncName: "UserGrantRole",
 			},
 		},
@@ -68,7 +68,7 @@ func TestUser(t *testing.T) {
 	for _, api := range apis {
 		t.Run(api.apiModel.HandlerFuncName, func(t *testing.T) {
 			kk_http.GenerateApi(apiGroupModel, api.apiModel)
-			//kk_http.GenerateDartApi(api.apiModel)
+			kk_http.GenerateDartApi(apiGroupModel, api.apiModel)
 		})
 	}
 }
@@ -85,31 +85,31 @@ func TestRole(t *testing.T) {
 		//role
 		{
 			apiModel: kk_http.ApiModel{
-
+				Description:     "add role",
 				HandlerFuncName: "RoleAdd",
 			},
 		},
 		{
 			apiModel: kk_http.ApiModel{
-
+				Description:     "delete role",
 				HandlerFuncName: "RoleDelete",
 			},
 		},
 		{
 			apiModel: kk_http.ApiModel{
-
+				Description:     "list role",
 				HandlerFuncName: "RoleList",
 			},
 		},
 		{
 			apiModel: kk_http.ApiModel{
-
+				Description:     "get role",
 				HandlerFuncName: "RoleGet",
 			},
 		},
 		{
 			apiModel: kk_http.ApiModel{
-
+				Description:     "grant permission",
 				HandlerFuncName: "RoleGrantPermission",
 			},
 		},
@@ -118,7 +118,7 @@ func TestRole(t *testing.T) {
 	for _, api := range apis {
 		t.Run(api.apiModel.HandlerFuncName, func(t *testing.T) {
 			kk_http.GenerateApi(apiGroupModel, api.apiModel)
-			//kk_http.GenerateDartApi(api.apiModel)
+			kk_http.GenerateDartApi(apiGroupModel, api.apiModel)
 		})
 	}
 }
@@ -135,25 +135,25 @@ func TestKV(t *testing.T) {
 		//kv
 		{
 			apiModel: kk_http.ApiModel{
-
+				Description:     "put kv",
 				HandlerFuncName: "KVPut",
 			},
 		},
 		{
 			apiModel: kk_http.ApiModel{
-
+				Description:     "get kv",
 				HandlerFuncName: "KVGet",
 			},
 		},
 		{
 			apiModel: kk_http.ApiModel{
-
+				Description:     "del kv",
 				HandlerFuncName: "KVDel",
 			},
 		},
 		{
 			apiModel: kk_http.ApiModel{
-
+				Description:     "list kv",
 				HandlerFuncName: "KVList",
 			},
 		},
@@ -162,7 +162,7 @@ func TestKV(t *testing.T) {
 	for _, api := range apis {
 		t.Run(api.apiModel.HandlerFuncName, func(t *testing.T) {
 			kk_http.GenerateApi(apiGroupModel, api.apiModel)
-			//kk_http.GenerateDartApi(api.apiModel)
+			kk_http.GenerateDartApi(apiGroupModel, api.apiModel)
 		})
 	}
 }
@@ -179,7 +179,7 @@ func TestServer(t *testing.T) {
 		//server
 		{
 			apiModel: kk_http.ApiModel{
-
+				Description:     "list server",
 				HandlerFuncName: "ServerList",
 			},
 		},
@@ -188,7 +188,7 @@ func TestServer(t *testing.T) {
 	for _, api := range apis {
 		t.Run(api.apiModel.HandlerFuncName, func(t *testing.T) {
 			kk_http.GenerateApi(apiGroupModel, api.apiModel)
-			//kk_http.GenerateDartApi(api.apiModel)
+			kk_http.GenerateDartApi(apiGroupModel, api.apiModel)
 		})
 	}
 }
@@ -205,31 +205,31 @@ func TestBackup(t *testing.T) {
 		//backup
 		{
 			apiModel: kk_http.ApiModel{
-
+				Description:     "snapshot",
 				HandlerFuncName: "Snapshot",
 			},
 		},
 		{
 			apiModel: kk_http.ApiModel{
-
+				Description:     "snapshot restore",
 				HandlerFuncName: "SnapshotRestore",
 			},
 		},
 		{
 			apiModel: kk_http.ApiModel{
-
+				Description:     "snapshot info",
 				HandlerFuncName: "SnapshotInfo",
 			},
 		},
 		{
 			apiModel: kk_http.ApiModel{
-
+				Description:     "all kvs backup",
 				HandlerFuncName: "AllKVsBackup",
 			},
 		},
 		{
 			apiModel: kk_http.ApiModel{
-
+				Description:     "all kvs restore",
 				HandlerFuncName: "AllKVsRestore",
 			},
 		},
@@ -238,7 +238,7 @@ func TestBackup(t *testing.T) {
 	for _, api := range apis {
 		t.Run(api.apiModel.HandlerFuncName, func(t *testing.T) {
 			kk_http.GenerateApi(apiGroupModel, api.apiModel)
-			//kk_http.GenerateDartApi(api.apiModel)
+			kk_http.GenerateDartApi(apiGroupModel, api.apiModel)
 		})
 	}
 }
