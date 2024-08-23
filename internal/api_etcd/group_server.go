@@ -1,10 +1,10 @@
 package api_etcd
 
 import (
-	"gitee.com/cruvie/kk_go_kit/kk_func"
 	"gitee.com/cruvie/kk_go_kit/kk_http"
+	"gitee.com/cruvie/kk_go_kit/kk_reflect"
 	"github.com/cruvie/kk_etcd_go/internal/handler"
-	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
+	"github.com/cruvie/kk_etcd_go/internal/utils/global_model/global_stage"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	"github.com/gin-gonic/gin"
 )
@@ -13,15 +13,16 @@ var hServer handler.HServer
 
 // serverList
 //
-//	@Description	serverList
+//	@Tags			server
+//	@Description	list server
 //	@Accept			octet-stream
 //	@Produce		octet-stream
 //	@Param			ServerListParam	body		kk_etcd_models.ServerListParam	true	"ServerListParam"
-//	@Success		200					{object}	kk_etcd_models.ServerListResponse
-//	@Router			/serverList [post]
+//	@Success		200				{object}	kk_etcd_models.ServerListResponse
+//	@Router			/server/serverList [post]
 func serverList(c *gin.Context) {
-	stage := global_model.GetRequestStage(c)
-	span := stage.StartTrace(kk_func.GetCurrentFunctionName())
+	stage := global_stage.GetRequestStage(c)
+	span := stage.StartTrace(kk_reflect.GetCurrentFunctionName())
 	defer span.End()
 	var param kk_etcd_models.ServerListParam
 	if err := param.BindCheck(stage); err != nil {

@@ -1,51 +1,30 @@
 package kk_etcd
 
 import (
-	"github.com/cruvie/kk_etcd_go/internal/handler/service"
-	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
+	"github.com/cruvie/kk_etcd_go/internal/handler"
+	"github.com/cruvie/kk_etcd_go/internal/utils/global_model/global_stage"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 )
 
-var serBackup service.SerBackup
+var hBackup handler.HBackup
 
 func Snapshot() (error, *kk_etcd_models.SnapshotResponse) {
-
-	pBFile, err := serBackup.Snapshot(global_model.GlobalStage)
-	if err != nil {
-		return nil, err
-	} else {
-		return pBFile, nil
-	}
+	return hBackup.Snapshot(global_stage.GlobalStage, nil)
 }
 
-func SnapshotRestore() (cmdStr string, err error) {
-	return serBackup.SnapshotRestore(global_model.GlobalStage)
+func SnapshotRestore() (error, *kk_etcd_models.SnapshotRestoreResponse) {
+	return hBackup.SnapshotRestore(global_stage.GlobalStage, nil)
 }
 
-func SnapshotInfo(fileByte []byte) (info string, err error) {
-
-	snapshotInfo, err := serBackup.SnapshotInfo(global_model.GlobalStage, &kk_etcd_models.SnapshotInfoParam{
-		File: fileByte,
-	})
-	if err != nil {
-		return "", err
-	}
-	return snapshotInfo, nil
+func SnapshotInfo(param *kk_etcd_models.SnapshotInfoParam) (error, *kk_etcd_models.SnapshotInfoResponse) {
+	return hBackup.SnapshotInfo(global_stage.GlobalStage, param)
 }
 
 func AllKVsBackup() (error, *kk_etcd_models.AllKVsBackupResponse) {
-	return serBackup.AllKVsBackup()
+	return hBackup.AllKVsBackup(global_stage.GlobalStage, nil)
 }
 
 // AllKVsRestore will overwrite exist kv
-func AllKVsRestore(jsonBytes []byte) (err error) {
-
-	pbFile := kk_etcd_models.AllKVsRestoreParam{
-		File: jsonBytes,
-	}
-	err = serBackup.AllKVsRestore(global_model.GlobalStage, &pbFile)
-	if err != nil {
-		return err
-	}
-	return nil
+func AllKVsRestore(param *kk_etcd_models.AllKVsRestoreParam) (error, *kk_etcd_models.AllKVsRestoreResponse) {
+	return hBackup.AllKVsRestore(global_stage.GlobalStage, param)
 }

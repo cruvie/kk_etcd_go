@@ -1,9 +1,9 @@
-package kk_etcd_tool
+package kk_etcd
 
 import (
 	"context"
+	"gitee.com/cruvie/kk_go_kit/kk_log"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
-	"github.com/cruvie/kk_etcd_go/kk_etcd"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	"go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc"
 	"google.golang.org/grpc"
@@ -36,19 +36,20 @@ func NewClientHub[T any](
 
 // GetClient get a random grpc client
 func (c *ClientHub[T]) GetClient(stage *kk_stage.Stage) *T {
+	newLog := kk_log.NewLog(&kk_log.LogOption{TraceId: stage.TraceId})
 	c.rwLock.RLock()
 	if len(c.clients) == 0 {
-		slog.Error("no grpc client available, attempt to proactively obtain service", kk_stage.NewLog(stage).Any("serviceType", c.serviceType).Any("serviceName", c.serviceName).Args()...)
-		serverList, err := kk_etcd.ServerList(c.serviceType + "/" + c.serviceName)
+		slog.Error("no grpc client available, attempt to proactively obtain service", newLog.Any("serviceType", c.serviceType).Any("serviceName", c.serviceName).Args()...)
+		err, serverList := hServer.ServerList(stage, &kk_etcd_models.ServerListParam{Prefix: c.serviceType + "/" + c.serviceName})
 		if err != nil {
-			slog.Error("ServerList failed", kk_stage.NewLog(stage).Any("serviceType", c.serviceType).Any("serviceName", c.serviceName).Error(err).Args()...)
+			slog.Error("ServerList failed", newLog.Any("serviceType", c.serviceType).Any("serviceName", c.serviceName).Error(err).Args()...)
 			return nil
 		} else {
 			c.rwLock.RUnlock()
-			c.refreshClients(stage, serverList)
+			c.refreshClients(stage, serverList.GetServerList())
 			c.rwLock.RLock()
 			if len(c.clients) == 0 {
-				slog.Error("still no grpc client available", kk_stage.NewLog(stage).Any("serviceType", c.serviceType).Any("serviceName", c.serviceName).Error(err).Args()...)
+				slog.Error("still no grpc client available", newLog.Any("serviceType", c.serviceType).Any("serviceName", c.serviceName).Error(err).Args()...)
 				return nil
 			}
 		}
@@ -62,12 +63,12 @@ func (c *ClientHub[T]) GetClient(stage *kk_stage.Stage) *T {
 
 // ListenServerChange use ctx cancelFunc to stop Listening
 func (c *ClientHub[T]) ListenServerChange(ctx context.Context, stage *kk_stage.Stage) error {
-
-	slog.Info("start watch server list", kk_stage.NewLog(stage).Any("serviceType", c.serviceType).Any("serviceName", c.serviceName).Args()...)
+	newLog := kk_log.NewLog(&kk_log.LogOption{TraceId: stage.TraceId})
+	slog.Info("start watch server list", newLog.Any("serviceType", c.serviceType).Any("serviceName", c.serviceName).Args()...)
 	serverListChan := make(chan *kk_etcd_models.PBListServer)
-	err := kk_etcd.WatchServerList(ctx, c.serviceType+"/"+c.serviceName, serverListChan)
+	err := WatchServerList(ctx, c.serviceType+"/"+c.serviceName, serverListChan)
 	if err != nil {
-		slog.Error("WatchServerList failed", kk_stage.NewLog(stage).Any("serviceType", c.serviceType).Any("serviceName", c.serviceName).Error(err).Args()...)
+		slog.Error("WatchServerList failed", newLog.Any("serviceType", c.serviceType).Any("serviceName", c.serviceName).Error(err).Args()...)
 		return err
 	}
 
@@ -76,7 +77,7 @@ func (c *ClientHub[T]) ListenServerChange(ctx context.Context, stage *kk_stage.S
 			//slog.Info("server list changed", logBody.Args()...)
 			select {
 			case <-ctx.Done():
-				slog.Info("ctx done stop ListenServerChange, close serverListChan", kk_stage.NewLog(stage).Any("serviceType", c.serviceType).Any("serviceName", c.serviceName).Args()...)
+				slog.Info("ctx done stop ListenServerChange, close serverListChan", newLog.Any("serviceType", c.serviceType).Any("serviceName", c.serviceName).Args()...)
 				close(serverListChan)
 				return
 			case serverList := <-serverListChan:
@@ -89,6 +90,7 @@ func (c *ClientHub[T]) ListenServerChange(ctx context.Context, stage *kk_stage.S
 
 // refreshClients refresh grpc clients
 func (c *ClientHub[T]) refreshClients(stage *kk_stage.Stage, serverList *kk_etcd_models.PBListServer) {
+	newLog := kk_log.NewLog(&kk_log.LogOption{TraceId: stage.TraceId})
 	c.rwLock.Lock()
 	defer c.rwLock.Unlock()
 	//slog.Info("serverListChan", "serverList", serverList)
@@ -100,7 +102,7 @@ func (c *ClientHub[T]) refreshClients(stage *kk_stage.Stage, serverList *kk_etcd
 			grpc.WithStatsHandler(otelgrpc.NewClientHandler()),
 		)
 		if err != nil {
-			slog.Error("grpc client connect failed", kk_stage.NewLog(stage).Error(err).Any("target", server.ServiceAddr).Args()...)
+			slog.Error("grpc client connect failed", newLog.Error(err).Any("target", server.ServiceAddr).Args()...)
 			return
 		}
 		client := c.clientBuilder(grpcConn)

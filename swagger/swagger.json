@@ -16,370 +16,860 @@
         "version": "1.0"
     },
     "host": "localhost:2333",
-    "basePath": "/User",
+    "basePath": "/",
     "paths": {
-        "/GetUser": {
+        "/backup/allKVsBackup": {
             "post": {
-                "description": "Get user",
+                "description": "all kvs backup",
                 "consumes": [
                     "application/octet-stream"
                 ],
                 "produces": [
                     "application/octet-stream"
+                ],
+                "tags": [
+                    "backup"
                 ],
                 "parameters": [
                     {
-                        "description": "Get user info",
-                        "name": "pbUser",
+                        "description": "AllKVsBackupParam",
+                        "name": "AllKVsBackupParam",
                         "in": "body",
                         "required": true,
                         "schema": {
-                          "$ref": "#/definitions/kk_etcd_models.PBUser"
+                            "$ref": "#/definitions/kk_etcd_models.AllKVsBackupParam"
                         }
                     }
                 ],
-                "responses": {}
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/kk_etcd_models.AllKVsBackupResponse"
+                        }
+                    }
+                }
             }
         },
-      "/KVDel": {
+        "/backup/allKVsRestore": {
             "post": {
-                "description": "Del config",
+                "description": "all kvs restore",
                 "consumes": [
                     "application/octet-stream"
                 ],
                 "produces": [
                     "application/octet-stream"
+                ],
+                "tags": [
+                    "backup"
                 ],
                 "parameters": [
                     {
-                        "description": "Del config info",
-                        "name": "pbKV",
+                        "description": "AllKVsRestoreParam",
+                        "name": "AllKVsRestoreParam",
                         "in": "body",
                         "required": true,
                         "schema": {
-                          "$ref": "#/definitions/kk_etcd_models.PBKV"
+                            "$ref": "#/definitions/kk_etcd_models.AllKVsRestoreParam"
                         }
                     }
                 ],
-                "responses": {}
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/kk_etcd_models.AllKVsRestoreResponse"
+                        }
+                    }
+                }
             }
         },
-      "/KVGet": {
+        "/backup/snapshot": {
             "post": {
-                "description": "Get config",
+                "description": "snapshot",
                 "consumes": [
                     "application/octet-stream"
                 ],
                 "produces": [
                     "application/octet-stream"
+                ],
+                "tags": [
+                    "backup"
                 ],
                 "parameters": [
                     {
-                        "description": "Get config info",
-                        "name": "pbKV",
+                        "description": "SnapshotParam",
+                        "name": "SnapshotParam",
                         "in": "body",
                         "required": true,
                         "schema": {
-                          "$ref": "#/definitions/kk_etcd_models.PBKV"
+                            "$ref": "#/definitions/kk_etcd_models.SnapshotParam"
                         }
                     }
                 ],
-                "responses": {}
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/kk_etcd_models.SnapshotResponse"
+                        }
+                    }
+                }
             }
         },
-      "/KVList": {
+        "/backup/snapshotInfo": {
             "post": {
-              "description": "Get kv list",
+                "description": "snapshot info",
                 "consumes": [
                     "application/octet-stream"
                 ],
                 "produces": [
                     "application/octet-stream"
                 ],
-                "responses": {}
-            }
-        },
-      "/KVPut": {
-            "post": {
-                "description": "Put config",
-                "consumes": [
-                    "application/octet-stream"
-                ],
-                "produces": [
-                    "application/octet-stream"
+                "tags": [
+                    "backup"
                 ],
                 "parameters": [
                     {
-                        "description": "Put config info",
-                        "name": "pbKV",
+                        "description": "SnapshotInfoParam",
+                        "name": "SnapshotInfoParam",
                         "in": "body",
                         "required": true,
                         "schema": {
-                          "$ref": "#/definitions/kk_etcd_models.PBKV"
+                            "$ref": "#/definitions/kk_etcd_models.SnapshotInfoParam"
                         }
                     }
                 ],
-                "responses": {}
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/kk_etcd_models.SnapshotInfoResponse"
+                        }
+                    }
+                }
             }
         },
-        "/Login": {
+        "/backup/snapshotRestore": {
             "post": {
-                "description": "Log in",
+                "description": "snapshot restore",
                 "consumes": [
                     "application/octet-stream"
                 ],
                 "produces": [
                     "application/octet-stream"
+                ],
+                "tags": [
+                    "backup"
                 ],
                 "parameters": [
                     {
-                        "description": "Login info",
-                        "name": "pbUser",
+                        "description": "SnapshotRestoreParam",
+                        "name": "SnapshotRestoreParam",
                         "in": "body",
                         "required": true,
                         "schema": {
-                          "$ref": "#/definitions/kk_etcd_models.PBUser"
+                            "$ref": "#/definitions/kk_etcd_models.SnapshotRestoreParam"
                         }
                     }
                 ],
-                "responses": {}
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/kk_etcd_models.SnapshotRestoreResponse"
+                        }
+                    }
+                }
             }
         },
-        "/Logout": {
+        "/kv/kVDel": {
             "post": {
-                "description": "Log out",
+                "description": "del kv",
                 "consumes": [
                     "application/octet-stream"
                 ],
                 "produces": [
                     "application/octet-stream"
+                ],
+                "tags": [
+                    "kv"
                 ],
                 "parameters": [
                     {
-                        "description": "Logout info",
-                        "name": "pbUser",
+                        "description": "KVDelParam",
+                        "name": "KVDelParam",
                         "in": "body",
                         "required": true,
                         "schema": {
-                          "$ref": "#/definitions/kk_etcd_models.PBUser"
+                            "$ref": "#/definitions/kk_etcd_models.KVDelParam"
                         }
                     }
                 ],
-                "responses": {}
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/kk_etcd_models.KVDelResponse"
+                        }
+                    }
+                }
             }
         },
-        "/MyInfo": {
+        "/kv/kVGet": {
             "post": {
-                "description": "Get my info",
+                "description": "get kv",
                 "consumes": [
                     "application/octet-stream"
                 ],
                 "produces": [
                     "application/octet-stream"
                 ],
-                "responses": {}
-            }
-        },
-        "/RoleAdd": {
-            "post": {
-                "description": "Add role",
-                "consumes": [
-                    "application/octet-stream"
-                ],
-                "produces": [
-                    "application/octet-stream"
+                "tags": [
+                    "kv"
                 ],
                 "parameters": [
                     {
-                        "description": "Add role info",
-                        "name": "pbRole",
+                        "description": "KVGetParam",
+                        "name": "KVGetParam",
                         "in": "body",
                         "required": true,
                         "schema": {
-                          "$ref": "#/definitions/kk_etcd_models.PBRole"
+                            "$ref": "#/definitions/kk_etcd_models.KVGetParam"
                         }
                     }
                 ],
-                "responses": {}
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/kk_etcd_models.KVGetResponse"
+                        }
+                    }
+                }
             }
         },
-        "/RoleDelete": {
+        "/kv/kVList": {
             "post": {
-                "description": "Delete role",
+                "description": "list kv",
                 "consumes": [
                     "application/octet-stream"
                 ],
                 "produces": [
                     "application/octet-stream"
+                ],
+                "tags": [
+                    "kv"
                 ],
                 "parameters": [
                     {
-                        "description": "Delete role info",
-                        "name": "pbRole",
+                        "description": "KVListParam",
+                        "name": "KVListParam",
                         "in": "body",
                         "required": true,
                         "schema": {
-                          "$ref": "#/definitions/kk_etcd_models.PBRole"
+                            "$ref": "#/definitions/kk_etcd_models.KVListParam"
                         }
                     }
                 ],
-                "responses": {}
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/kk_etcd_models.KVListResponse"
+                        }
+                    }
+                }
             }
         },
-        "/RoleGet": {
+        "/kv/kVPut": {
             "post": {
-                "description": "Get role",
+                "description": "put kv",
                 "consumes": [
                     "application/octet-stream"
                 ],
                 "produces": [
                     "application/octet-stream"
+                ],
+                "tags": [
+                    "kv"
                 ],
                 "parameters": [
                     {
-                        "description": "Get role info",
-                        "name": "pbRole",
+                        "description": "KVPutParam",
+                        "name": "KVPutParam",
                         "in": "body",
                         "required": true,
                         "schema": {
-                          "$ref": "#/definitions/kk_etcd_models.PBRole"
+                            "$ref": "#/definitions/kk_etcd_models.KVPutParam"
                         }
                     }
                 ],
-                "responses": {}
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/kk_etcd_models.KVPutResponse"
+                        }
+                    }
+                }
             }
         },
-        "/RoleGrantPermission": {
+        "/role/roleAdd": {
             "post": {
-                "description": "Grant permission to role",
+                "description": "add role",
                 "consumes": [
                     "application/octet-stream"
                 ],
                 "produces": [
                     "application/octet-stream"
+                ],
+                "tags": [
+                    "role"
                 ],
                 "parameters": [
                     {
-                        "description": "Grant permission to role info",
-                        "name": "pbRole",
+                        "description": "RoleAddParam",
+                        "name": "RoleAddParam",
                         "in": "body",
                         "required": true,
                         "schema": {
-                          "$ref": "#/definitions/kk_etcd_models.PBRole"
+                            "$ref": "#/definitions/kk_etcd_models.RoleAddParam"
                         }
                     }
                 ],
-                "responses": {}
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/kk_etcd_models.RoleAddResponse"
+                        }
+                    }
+                }
             }
         },
-        "/RoleList": {
+        "/role/roleDelete": {
             "post": {
-                "description": "Get role list",
-                "consumes": [
-                    "application/octet-stream"
-                ],
-              "produces": [
-                "application/octet-stream"
-              ],
-              "responses": {}
-            }
-        },
-      "/ServerList": {
-        "post": {
-          "description": "Get service list",
-          "consumes": [
-            "application/octet-stream"
-                ],
-                "produces": [
-                    "application/octet-stream"
-                ],
-                "responses": {}
-            }
-        },
-        "/UserAdd": {
-            "post": {
-                "description": "Add user",
+                "description": "delete role",
                 "consumes": [
                     "application/octet-stream"
                 ],
                 "produces": [
                     "application/octet-stream"
+                ],
+                "tags": [
+                    "role"
                 ],
                 "parameters": [
                     {
-                        "description": "Add user info",
-                        "name": "pbUser",
+                        "description": "RoleDeleteParam",
+                        "name": "RoleDeleteParam",
                         "in": "body",
                         "required": true,
                         "schema": {
-                          "$ref": "#/definitions/kk_etcd_models.PBUser"
+                            "$ref": "#/definitions/kk_etcd_models.RoleDeleteParam"
                         }
                     }
                 ],
-                "responses": {}
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/kk_etcd_models.RoleDeleteResponse"
+                        }
+                    }
+                }
             }
         },
-        "/UserDelete": {
+        "/role/roleGet": {
             "post": {
-                "description": "Delete user",
+                "description": "get role",
                 "consumes": [
                     "application/octet-stream"
                 ],
                 "produces": [
                     "application/octet-stream"
+                ],
+                "tags": [
+                    "role"
                 ],
                 "parameters": [
                     {
-                        "description": "Delete user info",
-                        "name": "pbUser",
+                        "description": "RoleGetParam",
+                        "name": "RoleGetParam",
                         "in": "body",
                         "required": true,
                         "schema": {
-                          "$ref": "#/definitions/kk_etcd_models.PBUser"
+                            "$ref": "#/definitions/kk_etcd_models.RoleGetParam"
                         }
                     }
                 ],
-                "responses": {}
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/kk_etcd_models.RoleGetResponse"
+                        }
+                    }
+                }
             }
         },
-        "/UserGrantRole": {
+        "/role/roleGrantPermission": {
             "post": {
-                "description": "Grant role to user",
+                "description": "grant permission",
                 "consumes": [
                     "application/octet-stream"
                 ],
                 "produces": [
                     "application/octet-stream"
+                ],
+                "tags": [
+                    "role"
                 ],
                 "parameters": [
                     {
-                        "description": "Grant role to user info",
-                      "name": "PBUser",
+                        "description": "RoleGrantPermissionParam",
+                        "name": "RoleGrantPermissionParam",
                         "in": "body",
                         "required": true,
                         "schema": {
-                          "$ref": "#/definitions/kk_etcd_models.PBUser"
+                            "$ref": "#/definitions/kk_etcd_models.RoleGrantPermissionParam"
                         }
                     }
                 ],
-                "responses": {}
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/kk_etcd_models.RoleGrantPermissionResponse"
+                        }
+                    }
+                }
             }
         },
-        "/UserList": {
+        "/role/roleList": {
             "post": {
-                "description": "Get user list",
+                "description": "list role",
                 "consumes": [
                     "application/octet-stream"
                 ],
                 "produces": [
                     "application/octet-stream"
                 ],
-                "responses": {}
+                "tags": [
+                    "role"
+                ],
+                "parameters": [
+                    {
+                        "description": "RoleListParam",
+                        "name": "RoleListParam",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/kk_etcd_models.RoleListParam"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/kk_etcd_models.RoleListResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/server/serverList": {
+            "post": {
+                "description": "list server",
+                "consumes": [
+                    "application/octet-stream"
+                ],
+                "produces": [
+                    "application/octet-stream"
+                ],
+                "tags": [
+                    "server"
+                ],
+                "parameters": [
+                    {
+                        "description": "ServerListParam",
+                        "name": "ServerListParam",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/kk_etcd_models.ServerListParam"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/kk_etcd_models.ServerListResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/user/getUser": {
+            "post": {
+                "description": "get user",
+                "consumes": [
+                    "application/octet-stream"
+                ],
+                "produces": [
+                    "application/octet-stream"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "parameters": [
+                    {
+                        "description": "GetUserParam",
+                        "name": "GetUserParam",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/kk_etcd_models.GetUserParam"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/kk_etcd_models.GetUserResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/user/login": {
+            "post": {
+                "description": "login",
+                "consumes": [
+                    "application/octet-stream"
+                ],
+                "produces": [
+                    "application/octet-stream"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "parameters": [
+                    {
+                        "description": "LoginParam",
+                        "name": "LoginParam",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/kk_etcd_models.LoginParam"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/kk_etcd_models.LoginResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/user/logout": {
+            "post": {
+                "description": "logout",
+                "consumes": [
+                    "application/octet-stream"
+                ],
+                "produces": [
+                    "application/octet-stream"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "parameters": [
+                    {
+                        "description": "LogoutParam",
+                        "name": "LogoutParam",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/kk_etcd_models.LogoutParam"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/kk_etcd_models.LogoutResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/user/myInfo": {
+            "post": {
+                "description": "get my info",
+                "consumes": [
+                    "application/octet-stream"
+                ],
+                "produces": [
+                    "application/octet-stream"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "parameters": [
+                    {
+                        "description": "MyInfoParam",
+                        "name": "MyInfoParam",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/kk_etcd_models.MyInfoParam"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/kk_etcd_models.MyInfoResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/user/userAdd": {
+            "post": {
+                "description": "add user",
+                "consumes": [
+                    "application/octet-stream"
+                ],
+                "produces": [
+                    "application/octet-stream"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "parameters": [
+                    {
+                        "description": "UserAddParam",
+                        "name": "UserAddParam",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/kk_etcd_models.UserAddParam"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/kk_etcd_models.UserAddResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/user/userDelete": {
+            "post": {
+                "description": "delete user",
+                "consumes": [
+                    "application/octet-stream"
+                ],
+                "produces": [
+                    "application/octet-stream"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "parameters": [
+                    {
+                        "description": "UserDeleteParam",
+                        "name": "UserDeleteParam",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/kk_etcd_models.UserDeleteParam"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/kk_etcd_models.UserDeleteResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/user/userGrantRole": {
+            "post": {
+                "description": "grant role",
+                "consumes": [
+                    "application/octet-stream"
+                ],
+                "produces": [
+                    "application/octet-stream"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "parameters": [
+                    {
+                        "description": "UserGrantRoleParam",
+                        "name": "UserGrantRoleParam",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/kk_etcd_models.UserGrantRoleParam"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/kk_etcd_models.UserGrantRoleResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/user/userList": {
+            "post": {
+                "description": "list user",
+                "consumes": [
+                    "application/octet-stream"
+                ],
+                "produces": [
+                    "application/octet-stream"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "parameters": [
+                    {
+                        "description": "UserListParam",
+                        "name": "UserListParam",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/kk_etcd_models.UserListParam"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/kk_etcd_models.UserListResponse"
+                        }
+                    }
+                }
             }
         }
     },
     "definitions": {
-      "kk_etcd_models.PBKV": {
+        "kk_etcd_models.AllKVsBackupParam": {
+            "type": "object"
+        },
+        "kk_etcd_models.AllKVsBackupResponse": {
+            "type": "object",
+            "properties": {
+                "File": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "Name": {
+                    "type": "string"
+                }
+            }
+        },
+        "kk_etcd_models.AllKVsRestoreParam": {
+            "type": "object",
+            "properties": {
+                "File": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                }
+            }
+        },
+        "kk_etcd_models.AllKVsRestoreResponse": {
+            "type": "object"
+        },
+        "kk_etcd_models.GetUserParam": {
+            "type": "object",
+            "properties": {
+                "UserName": {
+                    "type": "string"
+                }
+            }
+        },
+        "kk_etcd_models.GetUserResponse": {
+            "type": "object",
+            "properties": {
+                "User": {
+                    "$ref": "#/definitions/kk_etcd_models.PBUser"
+                }
+            }
+        },
+        "kk_etcd_models.KVDelParam": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "type": "string"
+                }
+            }
+        },
+        "kk_etcd_models.KVDelResponse": {
+            "type": "object"
+        },
+        "kk_etcd_models.KVGetParam": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "type": "string"
+                }
+            }
+        },
+        "kk_etcd_models.KVGetResponse": {
+            "type": "object",
+            "properties": {
+                "KV": {
+                    "$ref": "#/definitions/kk_etcd_models.PBKV"
+                }
+            }
+        },
+        "kk_etcd_models.KVListParam": {
+            "type": "object",
+            "properties": {
+                "Prefix": {
+                    "type": "string"
+                }
+            }
+        },
+        "kk_etcd_models.KVListResponse": {
+            "type": "object",
+            "properties": {
+                "KVList": {
+                    "$ref": "#/definitions/kk_etcd_models.PBListKV"
+                }
+            }
+        },
+        "kk_etcd_models.KVPutParam": {
             "type": "object",
             "properties": {
                 "Key": {
@@ -390,7 +880,107 @@
                 }
             }
         },
-      "kk_etcd_models.PBRole": {
+        "kk_etcd_models.KVPutResponse": {
+            "type": "object"
+        },
+        "kk_etcd_models.LoginParam": {
+            "type": "object",
+            "properties": {
+                "Password": {
+                    "type": "string"
+                },
+                "UserName": {
+                    "type": "string"
+                }
+            }
+        },
+        "kk_etcd_models.LoginResponse": {
+            "type": "object",
+            "properties": {
+                "Token": {
+                    "type": "string"
+                }
+            }
+        },
+        "kk_etcd_models.LogoutParam": {
+            "type": "object"
+        },
+        "kk_etcd_models.LogoutResponse": {
+            "type": "object"
+        },
+        "kk_etcd_models.MyInfoParam": {
+            "type": "object"
+        },
+        "kk_etcd_models.MyInfoResponse": {
+            "type": "object",
+            "properties": {
+                "Roles": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "UserName": {
+                    "type": "string"
+                }
+            }
+        },
+        "kk_etcd_models.PBKV": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "type": "string"
+                },
+                "Value": {
+                    "type": "string"
+                }
+            }
+        },
+        "kk_etcd_models.PBListKV": {
+            "type": "object",
+            "properties": {
+                "ListKV": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/kk_etcd_models.PBKV"
+                    }
+                }
+            }
+        },
+        "kk_etcd_models.PBListRole": {
+            "type": "object",
+            "properties": {
+                "List": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/kk_etcd_models.PBRole"
+                    }
+                }
+            }
+        },
+        "kk_etcd_models.PBListServer": {
+            "type": "object",
+            "properties": {
+                "ListServer": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/kk_etcd_models.PBServer"
+                    }
+                }
+            }
+        },
+        "kk_etcd_models.PBListUser": {
+            "type": "object",
+            "properties": {
+                "ListUser": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/kk_etcd_models.PBUser"
+                    }
+                }
+            }
+        },
+        "kk_etcd_models.PBRole": {
             "type": "object",
             "properties": {
                 "Key": {
@@ -407,7 +997,18 @@
                 }
             }
         },
-      "kk_etcd_models.PBUser": {
+        "kk_etcd_models.PBServer": {
+            "type": "object",
+            "properties": {
+                "ServiceAddr": {
+                    "type": "string"
+                },
+                "ServiceName": {
+                    "type": "string"
+                }
+            }
+        },
+        "kk_etcd_models.PBUser": {
             "type": "object",
             "properties": {
                 "Password": {
@@ -421,6 +1022,188 @@
                 },
                 "UserName": {
                     "type": "string"
+                }
+            }
+        },
+        "kk_etcd_models.RoleAddParam": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "type": "string"
+                }
+            }
+        },
+        "kk_etcd_models.RoleAddResponse": {
+            "type": "object"
+        },
+        "kk_etcd_models.RoleDeleteParam": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "type": "string"
+                }
+            }
+        },
+        "kk_etcd_models.RoleDeleteResponse": {
+            "type": "object"
+        },
+        "kk_etcd_models.RoleGetParam": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "type": "string"
+                }
+            }
+        },
+        "kk_etcd_models.RoleGetResponse": {
+            "type": "object",
+            "properties": {
+                "Role": {
+                    "$ref": "#/definitions/kk_etcd_models.PBRole"
+                }
+            }
+        },
+        "kk_etcd_models.RoleGrantPermissionParam": {
+            "type": "object",
+            "properties": {
+                "Role": {
+                    "$ref": "#/definitions/kk_etcd_models.PBRole"
+                }
+            }
+        },
+        "kk_etcd_models.RoleGrantPermissionResponse": {
+            "type": "object"
+        },
+        "kk_etcd_models.RoleListParam": {
+            "type": "object"
+        },
+        "kk_etcd_models.RoleListResponse": {
+            "type": "object",
+            "properties": {
+                "ListRole": {
+                    "$ref": "#/definitions/kk_etcd_models.PBListRole"
+                }
+            }
+        },
+        "kk_etcd_models.ServerListParam": {
+            "type": "object",
+            "properties": {
+                "Prefix": {
+                    "type": "string"
+                }
+            }
+        },
+        "kk_etcd_models.ServerListResponse": {
+            "type": "object",
+            "properties": {
+                "ServerList": {
+                    "$ref": "#/definitions/kk_etcd_models.PBListServer"
+                }
+            }
+        },
+        "kk_etcd_models.SnapshotInfoParam": {
+            "type": "object",
+            "properties": {
+                "File": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                }
+            }
+        },
+        "kk_etcd_models.SnapshotInfoResponse": {
+            "type": "object",
+            "properties": {
+                "Info": {
+                    "type": "string"
+                }
+            }
+        },
+        "kk_etcd_models.SnapshotParam": {
+            "type": "object"
+        },
+        "kk_etcd_models.SnapshotResponse": {
+            "type": "object",
+            "properties": {
+                "File": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "Name": {
+                    "type": "string"
+                }
+            }
+        },
+        "kk_etcd_models.SnapshotRestoreParam": {
+            "type": "object"
+        },
+        "kk_etcd_models.SnapshotRestoreResponse": {
+            "type": "object",
+            "properties": {
+                "CmdStr": {
+                    "type": "string"
+                }
+            }
+        },
+        "kk_etcd_models.UserAddParam": {
+            "type": "object",
+            "properties": {
+                "Password": {
+                    "type": "string"
+                },
+                "Roles": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "UserName": {
+                    "type": "string"
+                }
+            }
+        },
+        "kk_etcd_models.UserAddResponse": {
+            "type": "object"
+        },
+        "kk_etcd_models.UserDeleteParam": {
+            "type": "object",
+            "properties": {
+                "UserName": {
+                    "type": "string"
+                }
+            }
+        },
+        "kk_etcd_models.UserDeleteResponse": {
+            "type": "object"
+        },
+        "kk_etcd_models.UserGrantRoleParam": {
+            "type": "object",
+            "properties": {
+                "Roles": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "UserName": {
+                    "type": "string"
+                }
+            }
+        },
+        "kk_etcd_models.UserGrantRoleResponse": {
+            "type": "object"
+        },
+        "kk_etcd_models.UserListParam": {
+            "type": "object"
+        },
+        "kk_etcd_models.UserListResponse": {
+            "type": "object",
+            "properties": {
+                "ListUser": {
+                    "$ref": "#/definitions/kk_etcd_models.PBListUser"
                 }
             }
         }

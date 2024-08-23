@@ -1,10 +1,10 @@
 package api_etcd
 
 import (
-	"gitee.com/cruvie/kk_go_kit/kk_func"
 	"gitee.com/cruvie/kk_go_kit/kk_http"
+	"gitee.com/cruvie/kk_go_kit/kk_reflect"
 	"github.com/cruvie/kk_etcd_go/internal/handler"
-	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
+	"github.com/cruvie/kk_etcd_go/internal/utils/global_model/global_stage"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	"github.com/gin-gonic/gin"
 )
@@ -13,15 +13,16 @@ var hUser handler.HUser
 
 // login
 //
+//	@Tags			user
 //	@Description	login
 //	@Accept			octet-stream
 //	@Produce		octet-stream
 //	@Param			LoginParam	body		kk_etcd_models.LoginParam	true	"LoginParam"
-//	@Success		200					{object}	kk_etcd_models.LoginResponse
+//	@Success		200			{object}	kk_etcd_models.LoginResponse
 //	@Router			/user/login [post]
 func login(c *gin.Context) {
-	stage := global_model.GetRequestStage(c)
-	span := stage.StartTrace(kk_func.GetCurrentFunctionName())
+	stage := global_stage.GetRequestStage(c)
+	span := stage.StartTrace(kk_reflect.GetCurrentFunctionName())
 	defer span.End()
 	var param kk_etcd_models.LoginParam
 	if err := param.BindCheck(stage); err != nil {
@@ -38,15 +39,16 @@ func login(c *gin.Context) {
 
 // logout
 //
+//	@Tags			user
 //	@Description	logout
 //	@Accept			octet-stream
 //	@Produce		octet-stream
 //	@Param			LogoutParam	body		kk_etcd_models.LogoutParam	true	"LogoutParam"
-//	@Success		200					{object}	kk_etcd_models.LogoutResponse
+//	@Success		200			{object}	kk_etcd_models.LogoutResponse
 //	@Router			/user/logout [post]
 func logout(c *gin.Context) {
-	stage := global_model.GetRequestStage(c)
-	span := stage.StartTrace(kk_func.GetCurrentFunctionName())
+	stage := global_stage.GetRequestStage(c)
+	span := stage.StartTrace(kk_reflect.GetCurrentFunctionName())
 	defer span.End()
 	var param kk_etcd_models.LogoutParam
 	if err := param.BindCheck(stage); err != nil {
@@ -63,15 +65,16 @@ func logout(c *gin.Context) {
 
 // userAdd
 //
-//	@Description	userAdd
+//	@Tags			user
+//	@Description	add user
 //	@Accept			octet-stream
 //	@Produce		octet-stream
 //	@Param			UserAddParam	body		kk_etcd_models.UserAddParam	true	"UserAddParam"
-//	@Success		200					{object}	kk_etcd_models.UserAddResponse
+//	@Success		200				{object}	kk_etcd_models.UserAddResponse
 //	@Router			/user/userAdd [post]
 func userAdd(c *gin.Context) {
-	stage := global_model.GetRequestStage(c)
-	span := stage.StartTrace(kk_func.GetCurrentFunctionName())
+	stage := global_stage.GetRequestStage(c)
+	span := stage.StartTrace(kk_reflect.GetCurrentFunctionName())
 	defer span.End()
 	var param kk_etcd_models.UserAddParam
 	if err := param.BindCheck(stage); err != nil {
@@ -88,15 +91,16 @@ func userAdd(c *gin.Context) {
 
 // userDelete
 //
-//	@Description	userDelete
+//	@Tags			user
+//	@Description	delete user
 //	@Accept			octet-stream
 //	@Produce		octet-stream
 //	@Param			UserDeleteParam	body		kk_etcd_models.UserDeleteParam	true	"UserDeleteParam"
-//	@Success		200					{object}	kk_etcd_models.UserDeleteResponse
+//	@Success		200				{object}	kk_etcd_models.UserDeleteResponse
 //	@Router			/user/userDelete [post]
 func userDelete(c *gin.Context) {
-	stage := global_model.GetRequestStage(c)
-	span := stage.StartTrace(kk_func.GetCurrentFunctionName())
+	stage := global_stage.GetRequestStage(c)
+	span := stage.StartTrace(kk_reflect.GetCurrentFunctionName())
 	defer span.End()
 	var param kk_etcd_models.UserDeleteParam
 	if err := param.BindCheck(stage); err != nil {
@@ -113,15 +117,16 @@ func userDelete(c *gin.Context) {
 
 // getUser
 //
-//	@Description	getUser
+//	@Tags			user
+//	@Description	get user
 //	@Accept			octet-stream
 //	@Produce		octet-stream
 //	@Param			GetUserParam	body		kk_etcd_models.GetUserParam	true	"GetUserParam"
-//	@Success		200					{object}	kk_etcd_models.GetUserResponse
+//	@Success		200				{object}	kk_etcd_models.GetUserResponse
 //	@Router			/user/getUser [post]
 func getUser(c *gin.Context) {
-	stage := global_model.GetRequestStage(c)
-	span := stage.StartTrace(kk_func.GetCurrentFunctionName())
+	stage := global_stage.GetRequestStage(c)
+	span := stage.StartTrace(kk_reflect.GetCurrentFunctionName())
 	defer span.End()
 	var param kk_etcd_models.GetUserParam
 	if err := param.BindCheck(stage); err != nil {
@@ -138,15 +143,16 @@ func getUser(c *gin.Context) {
 
 // myInfo
 //
-//	@Description	myInfo
+//	@Tags			user
+//	@Description	get my info
 //	@Accept			octet-stream
 //	@Produce		octet-stream
 //	@Param			MyInfoParam	body		kk_etcd_models.MyInfoParam	true	"MyInfoParam"
-//	@Success		200					{object}	kk_etcd_models.MyInfoResponse
+//	@Success		200			{object}	kk_etcd_models.MyInfoResponse
 //	@Router			/user/myInfo [post]
 func myInfo(c *gin.Context) {
-	stage := global_model.GetRequestStage(c)
-	span := stage.StartTrace(kk_func.GetCurrentFunctionName())
+	stage := global_stage.GetRequestStage(c)
+	span := stage.StartTrace(kk_reflect.GetCurrentFunctionName())
 	defer span.End()
 	var param kk_etcd_models.MyInfoParam
 	if err := param.BindCheck(stage); err != nil {
@@ -163,15 +169,16 @@ func myInfo(c *gin.Context) {
 
 // userList
 //
-//	@Description	userList
+//	@Tags			user
+//	@Description	list user
 //	@Accept			octet-stream
 //	@Produce		octet-stream
 //	@Param			UserListParam	body		kk_etcd_models.UserListParam	true	"UserListParam"
-//	@Success		200					{object}	kk_etcd_models.UserListResponse
+//	@Success		200				{object}	kk_etcd_models.UserListResponse
 //	@Router			/user/userList [post]
 func userList(c *gin.Context) {
-	stage := global_model.GetRequestStage(c)
-	span := stage.StartTrace(kk_func.GetCurrentFunctionName())
+	stage := global_stage.GetRequestStage(c)
+	span := stage.StartTrace(kk_reflect.GetCurrentFunctionName())
 	defer span.End()
 	var param kk_etcd_models.UserListParam
 	if err := param.BindCheck(stage); err != nil {
@@ -188,15 +195,16 @@ func userList(c *gin.Context) {
 
 // userGrantRole
 //
-//	@Description	userGrantRole
+//	@Tags			user
+//	@Description	grant role
 //	@Accept			octet-stream
 //	@Produce		octet-stream
 //	@Param			UserGrantRoleParam	body		kk_etcd_models.UserGrantRoleParam	true	"UserGrantRoleParam"
 //	@Success		200					{object}	kk_etcd_models.UserGrantRoleResponse
 //	@Router			/user/userGrantRole [post]
 func userGrantRole(c *gin.Context) {
-	stage := global_model.GetRequestStage(c)
-	span := stage.StartTrace(kk_func.GetCurrentFunctionName())
+	stage := global_stage.GetRequestStage(c)
+	span := stage.StartTrace(kk_reflect.GetCurrentFunctionName())
 	defer span.End()
 	var param kk_etcd_models.UserGrantRoleParam
 	if err := param.BindCheck(stage); err != nil {

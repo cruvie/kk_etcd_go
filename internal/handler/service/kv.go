@@ -106,6 +106,10 @@ func (s SerKV) UpdateYaml(key string, structPtr any) error {
 	return toolKV.putYaml(key, structPtr)
 }
 
+func (s SerKV) PutExistUpdateYaml(key string, structPtr any) error {
+	return toolKV.putYaml(key, structPtr)
+}
+
 // GetJson get json from etcd and unmarshal to structPtr
 // eg: GetJson("configKey", &Config)
 func (SerKV) GetJson(key string, structPtr any) error {
@@ -137,6 +141,10 @@ func (s SerKV) UpdateJson(key string, structPtr any) error {
 	}
 	return toolKV.putJson(key, structPtr)
 }
+func (s SerKV) PutExistUpdateJson(key string, structPtr any) error {
+	return toolKV.putJson(key, structPtr)
+}
+
 func (s SerKV) CheckKeyExist(key string) error {
 	err, _ := s.KVGet(key)
 	if err != nil {

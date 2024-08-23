@@ -2,7 +2,7 @@ package kk_etcd
 
 import (
 	"context"
-	"gitee.com/cruvie/kk_go_kit/kk_stage"
+	"gitee.com/cruvie/kk_go_kit/kk_log"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_const"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	"google.golang.org/grpc"
@@ -43,7 +43,7 @@ func TestStartGrpcServer(t *testing.T) {
 	grpcServer := grpc.NewServer()
 	defer grpcServer.Stop()
 	grpc_health_v1.RegisterHealthServer(grpcServer, &server{})
-	slog.Info("grpc_rec listening at", kk_stage.NewLog(nil).Any("addr", listener.Addr()).Args()...)
+	slog.Info("grpc_rec listening at", kk_log.NewLog(nil).Any("addr", listener.Addr()).Args()...)
 	if err := grpcServer.Serve(listener); err != nil {
 		slog.Error("failed to serve", "err", err)
 	}
@@ -108,7 +108,7 @@ func TestRegisterHttpService(t *testing.T) {
 func TestGetHttpServiceList(t *testing.T) {
 	initTestEnv()
 	for i := 0; i < 100; i++ {
-		list, _ := ServerList(kk_etcd_const.ServiceHttp)
+		list, _ := ServerList(&kk_etcd_models.ServerListParam{Prefix: kk_etcd_const.ServiceHttp})
 		slog.Info("list", "list", list)
 		time.Sleep(time.Second * 5)
 	}
@@ -116,7 +116,7 @@ func TestGetHttpServiceList(t *testing.T) {
 func TestGetGrpcServiceList(t *testing.T) {
 	initTestEnv()
 	for i := 0; i < 100; i++ {
-		list, _ := ServerList(kk_etcd_const.ServiceGrpc)
+		list, _ := ServerList(&kk_etcd_models.ServerListParam{Prefix: kk_etcd_const.ServiceGrpc})
 		slog.Info("list", "list", list)
 		time.Sleep(time.Second * 5)
 	}

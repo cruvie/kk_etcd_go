@@ -6,4 +6,10 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
 
 environment:
-  sdk: '>=3.4.0'
+  sdk: '>=3.5.0'
+
+dependencies:
+  kk_go_kit:
+    git:
+      url: https://gitee.com/cruvie/kk_go_kit.git
+  protobuf: any # all BSD-3-Clause

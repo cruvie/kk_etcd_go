@@ -1,4 +1,4 @@
-package kk_etcd_tool
+package kk_etcd
 
 import (
 	"context"

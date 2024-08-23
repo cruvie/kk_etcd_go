@@ -1,7 +1,7 @@
 syntax = "proto3";
 package kk_etcd_models;
 option go_package = "./;kk_etcd_models";
-import "pb_user.proto";
+import "pb_user_kk_etcd.proto";
 
 // protoc -I=. --go_out=./ *.proto
 

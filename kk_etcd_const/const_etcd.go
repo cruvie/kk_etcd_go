@@ -1,6 +1,7 @@
 package kk_etcd_const
 
 const (
-	UserRoot = "root"
-	RoleRoot = "root"
+	ServerName = "kk_etcd"
+	UserRoot   = "root"
+	RoleRoot   = "root"
 )

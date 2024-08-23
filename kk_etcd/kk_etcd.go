@@ -2,20 +2,21 @@ package kk_etcd
 
 import (
 	"context"
-	"gitee.com/cruvie/kk_go_kit/kk_func"
+	"gitee.com/cruvie/kk_go_kit/kk_reflect"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/internal/handler/service"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
+	"github.com/cruvie/kk_etcd_go/internal/utils/global_model/global_stage"
 )
 
 func InitEtcd(endpoints []string, userName string, password string, debugMode bool) error {
-	stage := kk_stage.NewStage(context.Background(), kk_func.GetCurrentFunctionName(), debugMode)
+	stage := kk_stage.NewStage(context.Background(), kk_reflect.GetCurrentFunctionName(), debugMode)
 	var serEtcd service.SerEtcd
 	err := serEtcd.InitEtcd(stage, endpoints, userName, password)
 	if err != nil {
 		return err
 	}
-	global_model.InitGlobalStage(stage)
+	global_stage.InitGlobalStage(stage)
 	var serUser service.SerUser
 	user, err := serUser.GetUser(userName)
 	if err != nil {

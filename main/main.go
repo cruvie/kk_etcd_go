@@ -2,15 +2,17 @@ package main
 
 import (
 	"context"
-	"gitee.com/cruvie/kk_go_kit/kk_func"
+	"gitee.com/cruvie/kk_go_kit/kk_config_interface"
 	"gitee.com/cruvie/kk_go_kit/kk_jwt"
+	"gitee.com/cruvie/kk_go_kit/kk_log"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/internal/api_etcd"
 	"github.com/cruvie/kk_etcd_go/internal/config"
 	"github.com/cruvie/kk_etcd_go/internal/handler/service"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
+	"github.com/cruvie/kk_etcd_go/internal/utils/global_model/global_stage"
+	"github.com/cruvie/kk_etcd_go/kk_etcd_const"
 	_ "github.com/cruvie/kk_etcd_go/swagger"
-	"time"
 )
 
 //	@title			kk_etcd_go API
@@ -26,21 +28,31 @@ import (
 //	@license.url	http://kk_etcd_go/licenses/LICENSE-2.0.html
 
 // @host		localhost:2333
-// @BasePath	/User
+// @BasePath	/
 func main() {
 	config.InitConfig()
-	stage := kk_stage.NewStage(context.Background(), kk_func.GetCurrentFunctionName(), config.Config.DebugMode)
-
-	kk_stage.InitSlog(stage.DebugMode, nil, nil)
-
-	kk_jwt.InitJwt(config.Config.JWT.Key, time.Duration(config.Config.JWT.ExpireTime)*time.Hour)
+	stage := kk_stage.NewStage(context.Background(), kk_etcd_const.ServerName, config.Config.DebugMode)
+	configLog := kk_log.ConfigLog{
+		Lumberjack: kk_log.DefaultLogConfig(kk_etcd_const.ServerName),
+	}
+	init := &kk_config_interface.InitArgs{
+		DebugMode:   stage.DebugMode,
+		ServiceName: stage.ServiceName,
+	}
+	configLog.Init(init)
+	defer configLog.Close()
+	jwtCfg := kk_jwt.ConfigJWT{
+		Key:        config.Config.JWT.Key,
+		ExpireTime: config.Config.JWT.ExpireTime,
+	}
+	jwtCfg.Init(init)
 
 	var serEtcd service.SerEtcd
 	err := serEtcd.InitEtcd(stage, []string{config.Config.Etcd.Endpoint}, config.Config.Admin.UserName, config.Config.Admin.Password)
 	if err != nil {
 		panic(err)
 	}
-	global_model.InitGlobalStage(stage)
+	global_stage.InitGlobalStage(stage)
 	var serUser service.SerUser
 	user, err := serUser.GetUser(config.Config.Admin.UserName)
 	if err != nil {

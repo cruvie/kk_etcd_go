@@ -1,6 +1,6 @@
 //
 //  Generated code. Do not modify.
-//  source: pb_kv.proto
+//  source: pb_kv_kk_etcd.proto
 //
 // @dart = 2.12
 
