@@ -5,7 +5,7 @@ import 'package:kk_go_kit/kk_util/kk_log.dart';
 
 import '../kk_etcd_models/api_kv_kk_etcd.pb.dart';
 
-class ApiRole {
+class ApiKV {
   /// put kv
   static Future<void> kVPut(
       KVPutParam param,
