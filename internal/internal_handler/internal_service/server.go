@@ -1,10 +1,10 @@
-package service
+package internal_service
 
 import (
 	"context"
 	"errors"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
-	"github.com/cruvie/kk_etcd_go/kk_etcd_client"
+	"github.com/cruvie/kk_etcd_go/internal/utils/internal_client"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_const"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	"go.etcd.io/etcd/client/v3/naming/endpoints"
@@ -15,7 +15,7 @@ type SerServer struct{}
 
 var serServer SerServer
 
-func RegisterService(stage *kk_stage.Stage, registration *kk_etcd_models.ServiceRegistration) error {
+func (SerServer) RegisterService(stage *kk_stage.Stage, registration *kk_etcd_models.ServiceRegistration) error {
 	if registration.ServerType != kk_etcd_const.ServiceHttp && registration.ServerType != kk_etcd_const.ServiceGrpc {
 
 		msg := "server type is invalid"
@@ -62,7 +62,7 @@ func RegisterService(stage *kk_stage.Stage, registration *kk_etcd_models.Service
 // serviceName, should with prefix key_prefix.ServiceGrpc or key_prefix.ServiceHttp
 // only give prefix to get all service list
 func (SerServer) ServerList(serviceName string) (serverList *kk_etcd_models.PBListServer, err error) {
-	etcdManager, err := endpoints.NewManager(kk_etcd_client.EtcdClient, serviceName)
+	etcdManager, err := endpoints.NewManager(internal_client.InternalClient, serviceName)
 	if err != nil {
 		return nil, err
 	}

@@ -3,13 +3,13 @@ package api_etcd
 import (
 	"gitee.com/cruvie/kk_go_kit/kk_http"
 	"gitee.com/cruvie/kk_go_kit/kk_reflect"
-	"github.com/cruvie/kk_etcd_go/internal/handler"
+	"github.com/cruvie/kk_etcd_go/internal/internal_handler"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model/global_stage"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	"github.com/gin-gonic/gin"
 )
 
-var hServer handler.HServer
+var hServer internal_handler.HServer
 
 // serverList
 //

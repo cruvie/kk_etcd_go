@@ -2,7 +2,6 @@ package service
 
 import (
 	"context"
-	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_client"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_error"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
@@ -33,8 +32,12 @@ func (SerRole) RoleGet(roleName string) (role *kk_etcd_models.PBRole, err error)
 	if err != nil {
 		return nil, err
 	}
-	role = &kk_etcd_models.PBRole{}
-	role.Name = roleName
+	role = &kk_etcd_models.PBRole{
+		Name: roleName,
+	}
+	//if role.Name == kk_etcd_const.UserRoot {
+	//	role.PermissionType = int32(authpb.READWRITE)
+	//}
 	//[permType:READWRITE key:"dfdd" range_end:"ewrew" ]
 	if len(r.Perm) != 0 {
 		role.Key = string(r.Perm[0].Key)
@@ -60,12 +63,7 @@ func (SerRole) RoleList() (err error, roles *kk_etcd_models.PBListRole) {
 
 }
 
-func (SerRole) RoleGrantPermission(stage *kk_stage.Stage, role *kk_etcd_models.PBRole) error {
-	//PermissionType at pkg authpb
-	//authpb.READ 0
-	//authpb.WRITE 1
-	//authpb.READWRITE 2
-	//todo 一经设定无法修改？？
+func (SerRole) RoleGrantPermission(role *kk_etcd_models.PBRole) error {
 	_, err := kk_etcd_client.EtcdClient.RoleGrantPermission(
 		context.Background(),
 		role.Name,

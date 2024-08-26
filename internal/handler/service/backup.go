@@ -111,9 +111,7 @@ func (SerBackup) AllKVsBackup() (error, *kk_etcd_models.AllKVsBackupResponse) {
 			Value: string(kv.Value),
 		}
 		//todo only support backup normal kv and config
-		if strings.HasPrefix(pbKV.Key, kk_etcd_const.User) ||
-			strings.HasPrefix(pbKV.Key, kk_etcd_const.Jwt) ||
-			strings.HasPrefix(pbKV.Key, kk_etcd_const.ServiceHttp) ||
+		if strings.HasPrefix(pbKV.Key, kk_etcd_const.ServiceHttp) ||
 			strings.HasPrefix(pbKV.Key, kk_etcd_const.ServiceGrpc) {
 			continue
 		}

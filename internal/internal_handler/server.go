@@ -1,15 +1,15 @@
-package handler
+package internal_handler
 
 import (
 	"gitee.com/cruvie/kk_go_kit/kk_reflect"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
-	"github.com/cruvie/kk_etcd_go/internal/handler/service"
+	"github.com/cruvie/kk_etcd_go/internal/internal_handler/internal_service"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 )
 
 type HServer struct{}
 
-var serServerV service.SerServer
+var serServerV internal_service.SerServer
 
 // ServerList
 // serviceName, should with prefix key_prefix.ServiceGrpc or key_prefix.ServiceHttp

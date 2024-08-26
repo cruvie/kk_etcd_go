@@ -68,6 +68,6 @@ func (HRole) RoleGrantPermission(stage *kk_stage.Stage, param *kk_etcd_models.Ro
 	if param.GetRole().GetName() == kk_etcd_const.RoleRoot {
 		return errors.New("illegal change root role permission"), nil
 	}
-	err = serRole.RoleGrantPermission(stage, param.GetRole())
+	err = serRole.RoleGrantPermission(param.GetRole())
 	return err, &kk_etcd_models.RoleGrantPermissionResponse{}
 }

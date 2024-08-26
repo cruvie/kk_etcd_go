@@ -3,8 +3,8 @@ package kk_etcd
 import (
 	"context"
 	"gitee.com/cruvie/kk_go_kit/kk_log"
-	"github.com/cruvie/kk_etcd_go/internal/handler"
-	"github.com/cruvie/kk_etcd_go/internal/handler/service"
+	"github.com/cruvie/kk_etcd_go/internal/internal_handler"
+	"github.com/cruvie/kk_etcd_go/internal/internal_handler/internal_service"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model/global_stage"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_client"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
@@ -12,11 +12,12 @@ import (
 	"log/slog"
 )
 
-var hServer handler.HServer
+var hServer internal_handler.HServer
+var serServer internal_service.SerServer
 
 // RegisterService register service to etcd
 func RegisterService(registration *kk_etcd_models.ServiceRegistration) error {
-	err := service.RegisterService(global_stage.GlobalStage, registration)
+	err := serServer.RegisterService(global_stage.GlobalStage, registration)
 	return err
 }
 

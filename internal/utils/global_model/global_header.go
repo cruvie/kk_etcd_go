@@ -7,6 +7,8 @@ import (
 const globalHeader = "globalHeader"
 
 type RequestHeader struct {
+	UserName           string //delete after todo use https://github.com/etcd-io/etcd/pull/16803
+	Password           string //delete after
 	AuthorizationToken string
 }
 
@@ -15,8 +17,8 @@ func SetRequestHeader(stage *kk_stage.Stage, header RequestHeader) {
 	stage.Set(globalHeader, header)
 }
 
-// getRequestHeader get current request header from gin context
-func getRequestHeader(stage *kk_stage.Stage) RequestHeader {
+// GetRequestHeader get current request header from gin context
+func GetRequestHeader(stage *kk_stage.Stage) RequestHeader {
 	header, ok := stage.Get(globalHeader)
 	if !ok {
 		return RequestHeader{}
@@ -26,5 +28,5 @@ func getRequestHeader(stage *kk_stage.Stage) RequestHeader {
 
 // GetAuthorizationToken get AuthorizationToken from globalHeader
 func GetAuthorizationToken(stage *kk_stage.Stage) string {
-	return getRequestHeader(stage).AuthorizationToken
+	return GetRequestHeader(stage).AuthorizationToken
 }

@@ -12,11 +12,7 @@ type config struct {
 	ServerAddr   string `yaml:"ServerAddr"`
 	DebugMode    bool   `yaml:"DebugMode"`
 	RootPassword string `yaml:"RootPassword"`
-	Admin        struct {
-		UserName string `yaml:"UserName"`
-		Password string `yaml:"Password"`
-	} `yaml:"Admin"`
-	Etcd struct {
+	Etcd         struct {
 		Endpoint string `yaml:"Endpoint"`
 	} `yaml:"Etcd"`
 	JWT struct {

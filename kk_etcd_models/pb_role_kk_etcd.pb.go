@@ -25,10 +25,13 @@ type PBRole struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Name           string `protobuf:"bytes,1,opt,name=Name,proto3" json:"Name,omitempty"`
-	Key            string `protobuf:"bytes,2,opt,name=Key,proto3" json:"Key,omitempty"`
-	RangeEnd       string `protobuf:"bytes,3,opt,name=RangeEnd,proto3" json:"RangeEnd,omitempty"`
-	PermissionType int32  `protobuf:"varint,4,opt,name=PermissionType,proto3" json:"PermissionType,omitempty"`
+	Name     string `protobuf:"bytes,1,opt,name=Name,proto3" json:"Name,omitempty"`
+	Key      string `protobuf:"bytes,2,opt,name=Key,proto3" json:"Key,omitempty"`
+	RangeEnd string `protobuf:"bytes,3,opt,name=RangeEnd,proto3" json:"RangeEnd,omitempty"`
+	// authpb.READ 0
+	// authpb.WRITE 1
+	// authpb.READWRITE 2
+	PermissionType int32 `protobuf:"varint,4,opt,name=PermissionType,proto3" json:"PermissionType,omitempty"`
 }
 
 func (x *PBRole) Reset() {

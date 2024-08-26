@@ -1,10 +1,10 @@
-package service
+package internal_service
 
 import (
 	"context"
 	"gitee.com/cruvie/kk_go_kit/kk_log"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
-	"github.com/cruvie/kk_etcd_go/kk_etcd_client"
+	"github.com/cruvie/kk_etcd_go/internal/utils/internal_client"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	"go.etcd.io/etcd/client/v3"
 	"go.etcd.io/etcd/client/v3/naming/endpoints"
@@ -24,7 +24,7 @@ func (t *serverTool) registerServer(stage *kk_stage.Stage, registration *kk_etcd
 	newLog := kk_log.NewLog(&kk_log.LogOption{TraceId: stage.TraceId})
 	key := registration.ServerType + "/" + registration.ServerName
 
-	endpointManager, err := endpoints.NewManager(kk_etcd_client.EtcdClient, key)
+	endpointManager, err := endpoints.NewManager(internal_client.InternalClient, key)
 	if err != nil {
 
 		msg := "failed to create etcd manager"
@@ -32,7 +32,7 @@ func (t *serverTool) registerServer(stage *kk_stage.Stage, registration *kk_etcd
 		return err
 	}
 
-	lease, err := kk_etcd_client.EtcdClient.Grant(registration.Context, registration.Check.TTL)
+	lease, err := internal_client.InternalClient.Grant(registration.Context, registration.Check.TTL)
 	if err != nil {
 
 		msg := "failed to create lease"
@@ -94,7 +94,7 @@ func (t *serverTool) registerServer(stage *kk_stage.Stage, registration *kk_etcd
 }
 
 func (t *serverTool) keepAliveOnce(stage *kk_stage.Stage, context context.Context, leaseID clientv3.LeaseID) error {
-	_, err := kk_etcd_client.EtcdClient.KeepAliveOnce(context, leaseID)
+	_, err := internal_client.InternalClient.KeepAliveOnce(context, leaseID)
 	if err != nil {
 		return err
 	}
@@ -163,7 +163,7 @@ func (t *serverTool) checkHealth(stage *kk_stage.Stage, registration *kk_etcd_mo
 
 func (t *serverTool) deleteEndpointAndRevokeLease(stage *kk_stage.Stage, ctx context.Context, endpointManager endpoints.Manager, endpointKey string, leaseID clientv3.LeaseID) {
 	newLog := kk_log.NewLog(&kk_log.LogOption{TraceId: stage.TraceId})
-	_, err := kk_etcd_client.EtcdClient.Revoke(ctx, leaseID)
+	_, err := internal_client.InternalClient.Revoke(ctx, leaseID)
 	if err != nil {
 
 		msg := "failed to revoke lease"

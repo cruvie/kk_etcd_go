@@ -4,7 +4,6 @@ import (
 	"errors"
 	"gitee.com/cruvie/kk_go_kit/kk_reflect"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
-	"github.com/cruvie/kk_etcd_go/internal/config"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_const"
 
@@ -20,9 +19,6 @@ var serUser service.SerUser
 func (HUser) Login(stage *kk_stage.Stage, param *kk_etcd_models.LoginParam) (error, *kk_etcd_models.LoginResponse) {
 	span := stage.StartTrace(kk_reflect.GetCurrentFunctionName())
 	defer span.End()
-	if param.UserName == kk_etcd_const.UserRoot {
-		return errors.New("illegal login root user"), nil
-	}
 	tokenString, err := serUser.Login(stage, param)
 	return err, &kk_etcd_models.LoginResponse{
 		Token: tokenString,
@@ -62,9 +58,8 @@ func (HUser) UserDelete(stage *kk_stage.Stage, param *kk_etcd_models.UserDeleteP
 		return err, nil
 	}
 	if param.GetUserName() == kk_etcd_const.UserRoot ||
-		param.GetUserName() == config.Config.Admin.UserName ||
 		param.GetUserName() == global_model.GetLoginUser(stage).UserName {
-		return errors.New("illegal delete root admin or current logged in user"), nil
+		return errors.New("illegal delete root or current logged in user"), nil
 	}
 	err = serUser.UserDelete(param.GetUserName())
 	return err, &kk_etcd_models.UserDeleteResponse{}
@@ -105,9 +100,6 @@ func (HUser) UserGrantRole(stage *kk_stage.Stage, param *kk_etcd_models.UserGran
 	err := serUser.CheckRootRole(stage)
 	if err != nil {
 		return err, nil
-	}
-	if param.GetUserName() == config.Config.Admin.UserName {
-		return errors.New("can't change Admin user's role"), nil
 	}
 	if param.GetUserName() == kk_etcd_const.UserRoot {
 		return errors.New("illegal modification of root user's role"), nil

@@ -16,11 +16,11 @@ func ApiEtcd(stage *kk_stage.Stage) {
 	kk_http.InitSwagger(stage, r)
 
 	r.Use(middleware.ParseHeader)
+	r.Use(middleware.EtcdClient)
 
 	{
 		apiGroup := r.Group("user")
 		apiGroup.POST(kk_reflect.GetFunctionName(login), login)
-		apiGroup.Use(middleware.JWTAuth)
 		apiGroup.POST(kk_reflect.GetFunctionName(logout), logout)
 		apiGroup.POST(kk_reflect.GetFunctionName(userAdd), userAdd)
 		apiGroup.POST(kk_reflect.GetFunctionName(userDelete), userDelete)
@@ -29,7 +29,7 @@ func ApiEtcd(stage *kk_stage.Stage) {
 		apiGroup.POST(kk_reflect.GetFunctionName(userList), userList)
 		apiGroup.POST(kk_reflect.GetFunctionName(userGrantRole), userGrantRole)
 	}
-	r.Use(middleware.JWTAuth)
+
 	{
 		apiGroup := r.Group("role")
 		apiGroup.POST(kk_reflect.GetFunctionName(roleAdd), roleAdd)

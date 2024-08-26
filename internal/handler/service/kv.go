@@ -56,14 +56,10 @@ func (SerKV) KVList(prefix string) (err error, list *kk_etcd_models.PBListKV) {
 			Value: string(kv.Value),
 		}
 		//skip all prefix match if prefix is empty
-		//  User        = "kk_user/"
-		//	Jwt         = "kk_jwt/"
 		//	ServiceHttp = "kk_service_http/"
 		//	ServiceGrpc = "kk_service_grpc/"
 		if prefix == "" &&
-			(strings.HasPrefix(cfg.Key, kk_etcd_const.User) ||
-				strings.HasPrefix(cfg.Key, kk_etcd_const.Jwt) ||
-				strings.HasPrefix(cfg.Key, kk_etcd_const.ServiceHttp) ||
+			(strings.HasPrefix(cfg.Key, kk_etcd_const.ServiceHttp) ||
 				strings.HasPrefix(cfg.Key, kk_etcd_const.ServiceGrpc)) {
 			continue
 		}

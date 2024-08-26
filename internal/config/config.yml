@@ -3,11 +3,10 @@ DebugMode: true
 # RootPassword is the password of root user in etcd
 #  if you didn't enable etcd auth, the password will be root user's password and enable auth
 RootPassword: root
-Admin:
-  UserName: kk_etcd # username cannot be root
-  Password: kk_etcd
 Etcd:
   Endpoint: http://127.0.0.1:2379
+# not use now todo https://github.com/etcd-io/etcd/pull/16803
 JWT:
   Key: You are re on your way to prison
-  ExpireTime: 24
+  # minute
+  ExpireTime: 1440

@@ -14,11 +14,7 @@ var serKV service.SerKV
 func (HKV) KVPut(stage *kk_stage.Stage, param *kk_etcd_models.KVPutParam) (error, *kk_etcd_models.KVPutResponse) {
 	span := stage.StartTrace(kk_reflect.GetCurrentFunctionName())
 	defer span.End()
-	err := serUser.CheckWritePermission(stage)
-	if err != nil {
-		return err, nil
-	}
-	err = serKV.KVPut(param.GetKey(), param.GetValue())
+	err := serKV.KVPut(param.GetKey(), param.GetValue())
 	return err, &kk_etcd_models.KVPutResponse{}
 }
 
@@ -35,11 +31,8 @@ func (HKV) KVGet(stage *kk_stage.Stage, param *kk_etcd_models.KVGetParam) (error
 func (HKV) KVDel(stage *kk_stage.Stage, param *kk_etcd_models.KVDelParam) (error, *kk_etcd_models.KVDelResponse) {
 	span := stage.StartTrace(kk_reflect.GetCurrentFunctionName())
 	defer span.End()
-	err := serUser.CheckWritePermission(stage)
-	if err != nil {
-		return err, nil
-	}
-	err = serKV.KVDel(param.GetKey())
+
+	err := serKV.KVDel(param.GetKey())
 	return err, &kk_etcd_models.KVDelResponse{}
 }
 

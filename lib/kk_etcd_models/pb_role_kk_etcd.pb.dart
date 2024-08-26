@@ -95,6 +95,9 @@ class PBRole extends $pb.GeneratedMessage {
   @$pb.TagNumber(3)
   void clearRangeEnd() => clearField(3);
 
+  /// authpb.READ 0
+  /// authpb.WRITE 1
+  /// authpb.READWRITE 2
   @$pb.TagNumber(4)
   $core.int get permissionType => $_getIZ(3);
   @$pb.TagNumber(4)
