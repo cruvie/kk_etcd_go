@@ -2,9 +2,10 @@ package service
 
 import (
 	"context"
-	"errors"
+	"gitee.com/cruvie/kk_go_kit/kk_crypto"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_client"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_const"
+	"github.com/cruvie/kk_etcd_go/kk_etcd_error"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	"go.etcd.io/etcd/api/v3/v3rpc/rpctypes"
 )
@@ -23,14 +24,26 @@ func (e *ExtPBUser) Store() error {
 	if err := toolUser.checkFields(e.User); err != nil {
 		return err
 	}
-	err := serKV.PutJson(kk_etcd_const.User+e.User.GetUserName(), e.User)
+	//add to etcd first
+	_, err := kk_etcd_client.EtcdClient.UserAdd(
+		context.Background(),
+		e.User.GetUserName(),
+		e.User.GetPassword(),
+	)
+	if err != nil && !kk_etcd_error.ErrorIs(err, rpctypes.ErrGRPCUserAlreadyExist) {
+		return err
+	}
+	//add to kk_etcd
+	newPassword, err := kk_crypto.GeneratePassword(e.User.GetPassword())
 	if err != nil {
 		return err
 	}
-	_, err = kk_etcd_client.EtcdClient.UserAdd(context.Background(), e.User.GetUserName(), e.User.GetPassword())
-	if err != nil && !errors.Is(err, rpctypes.ErrGRPCUserAlreadyExist) {
+	e.User.Password = newPassword
+	err = serKV.PutExistUpdateJson(kk_etcd_const.User+e.User.GetUserName(), e.User)
+	if err != nil {
 		return err
 	}
+
 	return nil
 }
 

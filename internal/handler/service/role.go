@@ -4,7 +4,9 @@ import (
 	"context"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_client"
+	"github.com/cruvie/kk_etcd_go/kk_etcd_error"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
+	"go.etcd.io/etcd/api/v3/v3rpc/rpctypes"
 	"go.etcd.io/etcd/client/v3"
 )
 
@@ -14,7 +16,7 @@ var serRole SerRole
 
 func (SerRole) RoleAdd(param *kk_etcd_models.RoleAddParam) error {
 	_, err := kk_etcd_client.EtcdClient.RoleAdd(context.Background(), param.GetName())
-	if err != nil {
+	if err != nil && !kk_etcd_error.ErrorIs(err, rpctypes.ErrGRPCRoleAlreadyExist) {
 		return err
 	}
 	return nil
@@ -64,7 +66,12 @@ func (SerRole) RoleGrantPermission(stage *kk_stage.Stage, role *kk_etcd_models.P
 	//authpb.WRITE 1
 	//authpb.READWRITE 2
 	//todo 一经设定无法修改？？
-	_, err := kk_etcd_client.EtcdClient.RoleGrantPermission(context.Background(), role.Name, role.Key, role.RangeEnd, clientv3.PermissionType(role.PermissionType))
+	_, err := kk_etcd_client.EtcdClient.RoleGrantPermission(
+		context.Background(),
+		role.Name,
+		role.Key,
+		role.RangeEnd,
+		clientv3.PermissionType(role.PermissionType))
 	if err != nil {
 		return err
 	}

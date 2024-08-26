@@ -1,28 +1,53 @@
 package kk_etcd
 
 import (
-	"context"
-	"gitee.com/cruvie/kk_go_kit/kk_reflect"
-	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/internal/handler/service"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model/global_stage"
+	"github.com/cruvie/kk_etcd_go/kk_etcd_client"
+	clientv3 "go.etcd.io/etcd/client/v3"
+	"time"
 )
 
-func InitEtcd(endpoints []string, userName string, password string, debugMode bool) error {
-	stage := kk_stage.NewStage(context.Background(), kk_reflect.GetCurrentFunctionName(), debugMode)
-	var serEtcd service.SerEtcd
-	err := serEtcd.InitEtcd(stage, endpoints, userName, password)
+type InitClientConfig struct {
+	Endpoints []string
+	UserName  string
+	Password  string
+	DebugMode bool
+}
+
+func (x *InitClientConfig) Check() {
+	if len(x.Endpoints) == 0 {
+		panic("endpoints is empty")
+	}
+	if x.UserName == "" {
+		panic("userName is empty")
+	}
+	if x.Password == "" {
+		panic("password is empty")
+	}
+}
+
+func InitClient(cfg *InitClientConfig) (err error) {
+	cfg.Check()
+	global_stage.InitGlobalStage(cfg.DebugMode)
+
+	kk_etcd_client.EtcdClient, err = clientv3.New(clientv3.Config{
+		Endpoints:   cfg.Endpoints,
+		DialTimeout: 5 * time.Second,
+		Username:    cfg.UserName,
+		Password:    cfg.Password,
+	})
 	if err != nil {
 		return err
 	}
-	global_stage.InitGlobalStage(stage)
+
 	var serUser service.SerUser
-	user, err := serUser.GetUser(userName)
+	user, err := serUser.GetUser(cfg.UserName)
 	if err != nil {
 		return err
 	}
-	global_model.SetLoginUser(stage, user)
+	global_model.SetLoginUser(global_stage.GlobalStage, user)
 
 	return nil
 }

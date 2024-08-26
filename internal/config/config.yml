@@ -1,8 +1,8 @@
 ServerAddr: :2333
 DebugMode: true
 # RootPassword is the password of root user in etcd
-#  if you didn't set the password of root user in etcd, leave it blank
-RootPassword:
+#  if you didn't enable etcd auth, the password will be root user's password and enable auth
+RootPassword: root
 Admin:
   UserName: kk_etcd # username cannot be root
   Password: kk_etcd

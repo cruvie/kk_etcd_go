@@ -109,7 +109,7 @@ func TestPutJson(t *testing.T) {
 func TestGetJson(t *testing.T) {
 	var GlobalConfig configTest
 	initTestEnv()
-	err := GetJson("my_config_json111", &GlobalConfig)
+	err := GetJson("my_config_json", &GlobalConfig)
 	if err != nil {
 		slog.Error("GetYaml failed", "err", err)
 	}

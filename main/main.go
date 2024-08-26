@@ -1,11 +1,9 @@
 package main
 
 import (
-	"context"
 	"gitee.com/cruvie/kk_go_kit/kk_config_interface"
 	"gitee.com/cruvie/kk_go_kit/kk_jwt"
 	"gitee.com/cruvie/kk_go_kit/kk_log"
-	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/internal/api_etcd"
 	"github.com/cruvie/kk_etcd_go/internal/config"
 	"github.com/cruvie/kk_etcd_go/internal/handler/service"
@@ -31,13 +29,13 @@ import (
 // @BasePath	/
 func main() {
 	config.InitConfig()
-	stage := kk_stage.NewStage(context.Background(), kk_etcd_const.ServerName, config.Config.DebugMode)
+	global_stage.InitGlobalStage(config.Config.DebugMode)
 	configLog := kk_log.ConfigLog{
 		Lumberjack: kk_log.DefaultLogConfig(kk_etcd_const.ServerName),
 	}
 	init := &kk_config_interface.InitArgs{
-		DebugMode:   stage.DebugMode,
-		ServiceName: stage.ServiceName,
+		DebugMode:   global_stage.GlobalStage.DebugMode,
+		ServiceName: global_stage.GlobalStage.ServiceName,
 	}
 	configLog.Init(init)
 	defer configLog.Close()
@@ -48,16 +46,22 @@ func main() {
 	jwtCfg.Init(init)
 
 	var serEtcd service.SerEtcd
-	err := serEtcd.InitEtcd(stage, []string{config.Config.Etcd.Endpoint}, config.Config.Admin.UserName, config.Config.Admin.Password)
+	err := serEtcd.InitEtcd(&service.InitKKEtcdConfig{
+		Endpoints:    []string{config.Config.Etcd.Endpoint},
+		RootPassword: config.Config.RootPassword,
+		UserName:     config.Config.Admin.UserName,
+		Password:     config.Config.Admin.Password,
+		DebugMode:    global_stage.GlobalStage.DebugMode,
+	})
 	if err != nil {
 		panic(err)
 	}
-	global_stage.InitGlobalStage(stage)
+
 	var serUser service.SerUser
 	user, err := serUser.GetUser(config.Config.Admin.UserName)
 	if err != nil {
 		panic(err)
 	}
-	global_model.SetLoginUser(stage, user)
-	api_etcd.ApiEtcd(stage)
+	global_model.SetLoginUser(global_stage.GlobalStage, user)
+	api_etcd.ApiEtcd(global_stage.GlobalStage)
 }

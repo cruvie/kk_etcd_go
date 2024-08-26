@@ -10,10 +10,7 @@ import (
 
 func initTestEnv() {
 	var (
-		stage     = kk_stage.NewStage(context.Background(), "Test", true)
-		endpoints = []string{"http://127.0.0.1:2379"} //http://etcd:2379  http://127.0.0.1:2379
-		userName  = "kk_etcd"
-		password  = "kk_etcd"
+		stage = kk_stage.NewStage(context.Background(), "Test", true)
 	)
 	configLog := kk_log.ConfigLog{
 		Lumberjack: kk_log.DefaultLogConfig(kk_etcd_const.ServerName),
@@ -23,7 +20,11 @@ func initTestEnv() {
 		ServiceName: stage.ServiceName,
 	})
 	defer configLog.Close()
-	err := InitEtcd(endpoints, userName, password, stage.DebugMode)
+	err := InitClient(&InitClientConfig{
+		Endpoints: []string{"http://127.0.0.1:2379"},
+		UserName:  "kk_etcd",
+		Password:  "kk_etcd",
+		DebugMode: stage.DebugMode})
 	if err != nil {
 		panic(err)
 	}

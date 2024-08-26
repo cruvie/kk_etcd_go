@@ -46,7 +46,7 @@ func (HUser) UserAdd(stage *kk_stage.Stage, param *kk_etcd_models.UserAddParam) 
 	if param.GetUserName() == kk_etcd_const.UserRoot {
 		return errors.New("illegal add root user"), nil
 	}
-	err = serUser.UserAdd(stage, &kk_etcd_models.PBUser{
+	err = serUser.UserAdd(&kk_etcd_models.PBUser{
 		UserName: param.GetUserName(),
 		Password: param.GetPassword(),
 		Roles:    param.GetRoles(),
