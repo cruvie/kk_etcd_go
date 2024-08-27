@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.34.2
 // 	protoc        v5.27.3
-// source: api_manage_kk_etcd.proto
+// source: api_backup_kk_etcd.proto
 
 package kk_etcd_models
 
@@ -29,7 +29,7 @@ type SnapshotParam struct {
 func (x *SnapshotParam) Reset() {
 	*x = SnapshotParam{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_manage_kk_etcd_proto_msgTypes[0]
+		mi := &file_api_backup_kk_etcd_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -42,7 +42,7 @@ func (x *SnapshotParam) String() string {
 func (*SnapshotParam) ProtoMessage() {}
 
 func (x *SnapshotParam) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_kk_etcd_proto_msgTypes[0]
+	mi := &file_api_backup_kk_etcd_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -55,7 +55,7 @@ func (x *SnapshotParam) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SnapshotParam.ProtoReflect.Descriptor instead.
 func (*SnapshotParam) Descriptor() ([]byte, []int) {
-	return file_api_manage_kk_etcd_proto_rawDescGZIP(), []int{0}
+	return file_api_backup_kk_etcd_proto_rawDescGZIP(), []int{0}
 }
 
 type SnapshotResponse struct {
@@ -70,7 +70,7 @@ type SnapshotResponse struct {
 func (x *SnapshotResponse) Reset() {
 	*x = SnapshotResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_manage_kk_etcd_proto_msgTypes[1]
+		mi := &file_api_backup_kk_etcd_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -83,7 +83,7 @@ func (x *SnapshotResponse) String() string {
 func (*SnapshotResponse) ProtoMessage() {}
 
 func (x *SnapshotResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_kk_etcd_proto_msgTypes[1]
+	mi := &file_api_backup_kk_etcd_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -96,7 +96,7 @@ func (x *SnapshotResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SnapshotResponse.ProtoReflect.Descriptor instead.
 func (*SnapshotResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_kk_etcd_proto_rawDescGZIP(), []int{1}
+	return file_api_backup_kk_etcd_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *SnapshotResponse) GetName() string {
@@ -122,7 +122,7 @@ type SnapshotRestoreParam struct {
 func (x *SnapshotRestoreParam) Reset() {
 	*x = SnapshotRestoreParam{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_manage_kk_etcd_proto_msgTypes[2]
+		mi := &file_api_backup_kk_etcd_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -135,7 +135,7 @@ func (x *SnapshotRestoreParam) String() string {
 func (*SnapshotRestoreParam) ProtoMessage() {}
 
 func (x *SnapshotRestoreParam) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_kk_etcd_proto_msgTypes[2]
+	mi := &file_api_backup_kk_etcd_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -148,7 +148,7 @@ func (x *SnapshotRestoreParam) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SnapshotRestoreParam.ProtoReflect.Descriptor instead.
 func (*SnapshotRestoreParam) Descriptor() ([]byte, []int) {
-	return file_api_manage_kk_etcd_proto_rawDescGZIP(), []int{2}
+	return file_api_backup_kk_etcd_proto_rawDescGZIP(), []int{2}
 }
 
 type SnapshotRestoreResponse struct {
@@ -162,7 +162,7 @@ type SnapshotRestoreResponse struct {
 func (x *SnapshotRestoreResponse) Reset() {
 	*x = SnapshotRestoreResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_manage_kk_etcd_proto_msgTypes[3]
+		mi := &file_api_backup_kk_etcd_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -175,7 +175,7 @@ func (x *SnapshotRestoreResponse) String() string {
 func (*SnapshotRestoreResponse) ProtoMessage() {}
 
 func (x *SnapshotRestoreResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_kk_etcd_proto_msgTypes[3]
+	mi := &file_api_backup_kk_etcd_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -188,7 +188,7 @@ func (x *SnapshotRestoreResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SnapshotRestoreResponse.ProtoReflect.Descriptor instead.
 func (*SnapshotRestoreResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_kk_etcd_proto_rawDescGZIP(), []int{3}
+	return file_api_backup_kk_etcd_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *SnapshotRestoreResponse) GetCmdStr() string {
@@ -209,7 +209,7 @@ type SnapshotInfoParam struct {
 func (x *SnapshotInfoParam) Reset() {
 	*x = SnapshotInfoParam{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_manage_kk_etcd_proto_msgTypes[4]
+		mi := &file_api_backup_kk_etcd_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -222,7 +222,7 @@ func (x *SnapshotInfoParam) String() string {
 func (*SnapshotInfoParam) ProtoMessage() {}
 
 func (x *SnapshotInfoParam) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_kk_etcd_proto_msgTypes[4]
+	mi := &file_api_backup_kk_etcd_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -235,7 +235,7 @@ func (x *SnapshotInfoParam) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SnapshotInfoParam.ProtoReflect.Descriptor instead.
 func (*SnapshotInfoParam) Descriptor() ([]byte, []int) {
-	return file_api_manage_kk_etcd_proto_rawDescGZIP(), []int{4}
+	return file_api_backup_kk_etcd_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *SnapshotInfoParam) GetFile() []byte {
@@ -256,7 +256,7 @@ type SnapshotInfoResponse struct {
 func (x *SnapshotInfoResponse) Reset() {
 	*x = SnapshotInfoResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_manage_kk_etcd_proto_msgTypes[5]
+		mi := &file_api_backup_kk_etcd_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -269,7 +269,7 @@ func (x *SnapshotInfoResponse) String() string {
 func (*SnapshotInfoResponse) ProtoMessage() {}
 
 func (x *SnapshotInfoResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_kk_etcd_proto_msgTypes[5]
+	mi := &file_api_backup_kk_etcd_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -282,7 +282,7 @@ func (x *SnapshotInfoResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SnapshotInfoResponse.ProtoReflect.Descriptor instead.
 func (*SnapshotInfoResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_kk_etcd_proto_rawDescGZIP(), []int{5}
+	return file_api_backup_kk_etcd_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *SnapshotInfoResponse) GetInfo() string {
@@ -301,7 +301,7 @@ type AllKVsBackupParam struct {
 func (x *AllKVsBackupParam) Reset() {
 	*x = AllKVsBackupParam{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_manage_kk_etcd_proto_msgTypes[6]
+		mi := &file_api_backup_kk_etcd_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -314,7 +314,7 @@ func (x *AllKVsBackupParam) String() string {
 func (*AllKVsBackupParam) ProtoMessage() {}
 
 func (x *AllKVsBackupParam) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_kk_etcd_proto_msgTypes[6]
+	mi := &file_api_backup_kk_etcd_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -327,7 +327,7 @@ func (x *AllKVsBackupParam) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AllKVsBackupParam.ProtoReflect.Descriptor instead.
 func (*AllKVsBackupParam) Descriptor() ([]byte, []int) {
-	return file_api_manage_kk_etcd_proto_rawDescGZIP(), []int{6}
+	return file_api_backup_kk_etcd_proto_rawDescGZIP(), []int{6}
 }
 
 type AllKVsBackupResponse struct {
@@ -342,7 +342,7 @@ type AllKVsBackupResponse struct {
 func (x *AllKVsBackupResponse) Reset() {
 	*x = AllKVsBackupResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_manage_kk_etcd_proto_msgTypes[7]
+		mi := &file_api_backup_kk_etcd_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -355,7 +355,7 @@ func (x *AllKVsBackupResponse) String() string {
 func (*AllKVsBackupResponse) ProtoMessage() {}
 
 func (x *AllKVsBackupResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_kk_etcd_proto_msgTypes[7]
+	mi := &file_api_backup_kk_etcd_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -368,7 +368,7 @@ func (x *AllKVsBackupResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AllKVsBackupResponse.ProtoReflect.Descriptor instead.
 func (*AllKVsBackupResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_kk_etcd_proto_rawDescGZIP(), []int{7}
+	return file_api_backup_kk_etcd_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *AllKVsBackupResponse) GetName() string {
@@ -396,7 +396,7 @@ type AllKVsRestoreParam struct {
 func (x *AllKVsRestoreParam) Reset() {
 	*x = AllKVsRestoreParam{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_manage_kk_etcd_proto_msgTypes[8]
+		mi := &file_api_backup_kk_etcd_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -409,7 +409,7 @@ func (x *AllKVsRestoreParam) String() string {
 func (*AllKVsRestoreParam) ProtoMessage() {}
 
 func (x *AllKVsRestoreParam) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_kk_etcd_proto_msgTypes[8]
+	mi := &file_api_backup_kk_etcd_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -422,7 +422,7 @@ func (x *AllKVsRestoreParam) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AllKVsRestoreParam.ProtoReflect.Descriptor instead.
 func (*AllKVsRestoreParam) Descriptor() ([]byte, []int) {
-	return file_api_manage_kk_etcd_proto_rawDescGZIP(), []int{8}
+	return file_api_backup_kk_etcd_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *AllKVsRestoreParam) GetFile() []byte {
@@ -441,7 +441,7 @@ type AllKVsRestoreResponse struct {
 func (x *AllKVsRestoreResponse) Reset() {
 	*x = AllKVsRestoreResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_manage_kk_etcd_proto_msgTypes[9]
+		mi := &file_api_backup_kk_etcd_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -454,7 +454,7 @@ func (x *AllKVsRestoreResponse) String() string {
 func (*AllKVsRestoreResponse) ProtoMessage() {}
 
 func (x *AllKVsRestoreResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_manage_kk_etcd_proto_msgTypes[9]
+	mi := &file_api_backup_kk_etcd_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -467,13 +467,13 @@ func (x *AllKVsRestoreResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AllKVsRestoreResponse.ProtoReflect.Descriptor instead.
 func (*AllKVsRestoreResponse) Descriptor() ([]byte, []int) {
-	return file_api_manage_kk_etcd_proto_rawDescGZIP(), []int{9}
+	return file_api_backup_kk_etcd_proto_rawDescGZIP(), []int{9}
 }
 
-var File_api_manage_kk_etcd_proto protoreflect.FileDescriptor
+var File_api_backup_kk_etcd_proto protoreflect.FileDescriptor
 
-var file_api_manage_kk_etcd_proto_rawDesc = []byte{
-	0x0a, 0x18, 0x61, 0x70, 0x69, 0x5f, 0x6d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x5f, 0x6b, 0x6b, 0x5f,
+var file_api_backup_kk_etcd_proto_rawDesc = []byte{
+	0x0a, 0x18, 0x61, 0x70, 0x69, 0x5f, 0x62, 0x61, 0x63, 0x6b, 0x75, 0x70, 0x5f, 0x6b, 0x6b, 0x5f,
 	0x65, 0x74, 0x63, 0x64, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x0e, 0x6b, 0x6b, 0x5f, 0x65,
 	0x74, 0x63, 0x64, 0x5f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x73, 0x22, 0x0f, 0x0a, 0x0d, 0x53, 0x6e,
 	0x61, 0x70, 0x73, 0x68, 0x6f, 0x74, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x22, 0x3a, 0x0a, 0x10, 0x53,
@@ -505,19 +505,19 @@ var file_api_manage_kk_etcd_proto_rawDesc = []byte{
 }
 
 var (
-	file_api_manage_kk_etcd_proto_rawDescOnce sync.Once
-	file_api_manage_kk_etcd_proto_rawDescData = file_api_manage_kk_etcd_proto_rawDesc
+	file_api_backup_kk_etcd_proto_rawDescOnce sync.Once
+	file_api_backup_kk_etcd_proto_rawDescData = file_api_backup_kk_etcd_proto_rawDesc
 )
 
-func file_api_manage_kk_etcd_proto_rawDescGZIP() []byte {
-	file_api_manage_kk_etcd_proto_rawDescOnce.Do(func() {
-		file_api_manage_kk_etcd_proto_rawDescData = protoimpl.X.CompressGZIP(file_api_manage_kk_etcd_proto_rawDescData)
+func file_api_backup_kk_etcd_proto_rawDescGZIP() []byte {
+	file_api_backup_kk_etcd_proto_rawDescOnce.Do(func() {
+		file_api_backup_kk_etcd_proto_rawDescData = protoimpl.X.CompressGZIP(file_api_backup_kk_etcd_proto_rawDescData)
 	})
-	return file_api_manage_kk_etcd_proto_rawDescData
+	return file_api_backup_kk_etcd_proto_rawDescData
 }
 
-var file_api_manage_kk_etcd_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
-var file_api_manage_kk_etcd_proto_goTypes = []any{
+var file_api_backup_kk_etcd_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
+var file_api_backup_kk_etcd_proto_goTypes = []any{
 	(*SnapshotParam)(nil),           // 0: kk_etcd_models.SnapshotParam
 	(*SnapshotResponse)(nil),        // 1: kk_etcd_models.SnapshotResponse
 	(*SnapshotRestoreParam)(nil),    // 2: kk_etcd_models.SnapshotRestoreParam
@@ -529,7 +529,7 @@ var file_api_manage_kk_etcd_proto_goTypes = []any{
 	(*AllKVsRestoreParam)(nil),      // 8: kk_etcd_models.AllKVsRestoreParam
 	(*AllKVsRestoreResponse)(nil),   // 9: kk_etcd_models.AllKVsRestoreResponse
 }
-var file_api_manage_kk_etcd_proto_depIdxs = []int32{
+var file_api_backup_kk_etcd_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type
 	0, // [0:0] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -537,13 +537,13 @@ var file_api_manage_kk_etcd_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for field type_name
 }
 
-func init() { file_api_manage_kk_etcd_proto_init() }
-func file_api_manage_kk_etcd_proto_init() {
-	if File_api_manage_kk_etcd_proto != nil {
+func init() { file_api_backup_kk_etcd_proto_init() }
+func file_api_backup_kk_etcd_proto_init() {
+	if File_api_backup_kk_etcd_proto != nil {
 		return
 	}
 	if !protoimpl.UnsafeEnabled {
-		file_api_manage_kk_etcd_proto_msgTypes[0].Exporter = func(v any, i int) any {
+		file_api_backup_kk_etcd_proto_msgTypes[0].Exporter = func(v any, i int) any {
 			switch v := v.(*SnapshotParam); i {
 			case 0:
 				return &v.state
@@ -555,7 +555,7 @@ func file_api_manage_kk_etcd_proto_init() {
 				return nil
 			}
 		}
-		file_api_manage_kk_etcd_proto_msgTypes[1].Exporter = func(v any, i int) any {
+		file_api_backup_kk_etcd_proto_msgTypes[1].Exporter = func(v any, i int) any {
 			switch v := v.(*SnapshotResponse); i {
 			case 0:
 				return &v.state
@@ -567,7 +567,7 @@ func file_api_manage_kk_etcd_proto_init() {
 				return nil
 			}
 		}
-		file_api_manage_kk_etcd_proto_msgTypes[2].Exporter = func(v any, i int) any {
+		file_api_backup_kk_etcd_proto_msgTypes[2].Exporter = func(v any, i int) any {
 			switch v := v.(*SnapshotRestoreParam); i {
 			case 0:
 				return &v.state
@@ -579,7 +579,7 @@ func file_api_manage_kk_etcd_proto_init() {
 				return nil
 			}
 		}
-		file_api_manage_kk_etcd_proto_msgTypes[3].Exporter = func(v any, i int) any {
+		file_api_backup_kk_etcd_proto_msgTypes[3].Exporter = func(v any, i int) any {
 			switch v := v.(*SnapshotRestoreResponse); i {
 			case 0:
 				return &v.state
@@ -591,7 +591,7 @@ func file_api_manage_kk_etcd_proto_init() {
 				return nil
 			}
 		}
-		file_api_manage_kk_etcd_proto_msgTypes[4].Exporter = func(v any, i int) any {
+		file_api_backup_kk_etcd_proto_msgTypes[4].Exporter = func(v any, i int) any {
 			switch v := v.(*SnapshotInfoParam); i {
 			case 0:
 				return &v.state
@@ -603,7 +603,7 @@ func file_api_manage_kk_etcd_proto_init() {
 				return nil
 			}
 		}
-		file_api_manage_kk_etcd_proto_msgTypes[5].Exporter = func(v any, i int) any {
+		file_api_backup_kk_etcd_proto_msgTypes[5].Exporter = func(v any, i int) any {
 			switch v := v.(*SnapshotInfoResponse); i {
 			case 0:
 				return &v.state
@@ -615,7 +615,7 @@ func file_api_manage_kk_etcd_proto_init() {
 				return nil
 			}
 		}
-		file_api_manage_kk_etcd_proto_msgTypes[6].Exporter = func(v any, i int) any {
+		file_api_backup_kk_etcd_proto_msgTypes[6].Exporter = func(v any, i int) any {
 			switch v := v.(*AllKVsBackupParam); i {
 			case 0:
 				return &v.state
@@ -627,7 +627,7 @@ func file_api_manage_kk_etcd_proto_init() {
 				return nil
 			}
 		}
-		file_api_manage_kk_etcd_proto_msgTypes[7].Exporter = func(v any, i int) any {
+		file_api_backup_kk_etcd_proto_msgTypes[7].Exporter = func(v any, i int) any {
 			switch v := v.(*AllKVsBackupResponse); i {
 			case 0:
 				return &v.state
@@ -639,7 +639,7 @@ func file_api_manage_kk_etcd_proto_init() {
 				return nil
 			}
 		}
-		file_api_manage_kk_etcd_proto_msgTypes[8].Exporter = func(v any, i int) any {
+		file_api_backup_kk_etcd_proto_msgTypes[8].Exporter = func(v any, i int) any {
 			switch v := v.(*AllKVsRestoreParam); i {
 			case 0:
 				return &v.state
@@ -651,7 +651,7 @@ func file_api_manage_kk_etcd_proto_init() {
 				return nil
 			}
 		}
-		file_api_manage_kk_etcd_proto_msgTypes[9].Exporter = func(v any, i int) any {
+		file_api_backup_kk_etcd_proto_msgTypes[9].Exporter = func(v any, i int) any {
 			switch v := v.(*AllKVsRestoreResponse); i {
 			case 0:
 				return &v.state
@@ -668,18 +668,18 @@ func file_api_manage_kk_etcd_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_api_manage_kk_etcd_proto_rawDesc,
+			RawDescriptor: file_api_backup_kk_etcd_proto_rawDesc,
 			NumEnums:      0,
 			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_api_manage_kk_etcd_proto_goTypes,
-		DependencyIndexes: file_api_manage_kk_etcd_proto_depIdxs,
-		MessageInfos:      file_api_manage_kk_etcd_proto_msgTypes,
+		GoTypes:           file_api_backup_kk_etcd_proto_goTypes,
+		DependencyIndexes: file_api_backup_kk_etcd_proto_depIdxs,
+		MessageInfos:      file_api_backup_kk_etcd_proto_msgTypes,
 	}.Build()
-	File_api_manage_kk_etcd_proto = out.File
-	file_api_manage_kk_etcd_proto_rawDesc = nil
-	file_api_manage_kk_etcd_proto_goTypes = nil
-	file_api_manage_kk_etcd_proto_depIdxs = nil
+	File_api_backup_kk_etcd_proto = out.File
+	file_api_backup_kk_etcd_proto_rawDesc = nil
+	file_api_backup_kk_etcd_proto_goTypes = nil
+	file_api_backup_kk_etcd_proto_depIdxs = nil
 }

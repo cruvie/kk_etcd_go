@@ -40,7 +40,7 @@ func (c *ClientHub[T]) GetClient(stage *kk_stage.Stage) *T {
 	c.rwLock.RLock()
 	if len(c.clients) == 0 {
 		slog.Error("no grpc client available, attempt to proactively obtain service", newLog.Any("serviceType", c.serviceType).Any("serviceName", c.serviceName).Args()...)
-		err, serverList := hServer.ServerList(stage, &kk_etcd_models.ServerListParam{Prefix: c.serviceType + "/" + c.serviceName})
+		err, serverList := hInternalServer.ServerList(stage, &kk_etcd_models.ServerListParam{Prefix: c.serviceType + "/" + c.serviceName})
 		if err != nil {
 			slog.Error("ServerList failed", newLog.Any("serviceType", c.serviceType).Any("serviceName", c.serviceName).Error(err).Args()...)
 			return nil

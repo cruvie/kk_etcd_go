@@ -38,7 +38,8 @@ message RoleListResponse {
 
 
 message RoleGrantPermissionParam {
-  PBRole  Role = 1;
+  string Name = 1;
+  Permission  Perm = 2;
 }
 message RoleGrantPermissionResponse {
 

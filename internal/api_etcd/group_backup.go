@@ -2,7 +2,6 @@ package api_etcd
 
 import (
 	"gitee.com/cruvie/kk_go_kit/kk_http"
-	"gitee.com/cruvie/kk_go_kit/kk_reflect"
 	"github.com/cruvie/kk_etcd_go/internal/handler"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model/global_stage"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
@@ -22,7 +21,7 @@ var hBackup handler.HBackup
 //	@Router			/backup/snapshot [post]
 func snapshot(c *gin.Context) {
 	stage := global_stage.GetRequestStage(c)
-	span := stage.StartTrace(kk_reflect.GetCurrentFunctionName())
+	span := stage.StartTrace("snapshot")
 	defer span.End()
 	var param kk_etcd_models.SnapshotParam
 	if err := param.BindCheck(stage); err != nil {
@@ -48,7 +47,7 @@ func snapshot(c *gin.Context) {
 //	@Router			/backup/snapshotRestore [post]
 func snapshotRestore(c *gin.Context) {
 	stage := global_stage.GetRequestStage(c)
-	span := stage.StartTrace(kk_reflect.GetCurrentFunctionName())
+	span := stage.StartTrace("snapshotRestore")
 	defer span.End()
 	var param kk_etcd_models.SnapshotRestoreParam
 	if err := param.BindCheck(stage); err != nil {
@@ -74,7 +73,7 @@ func snapshotRestore(c *gin.Context) {
 //	@Router			/backup/snapshotInfo [post]
 func snapshotInfo(c *gin.Context) {
 	stage := global_stage.GetRequestStage(c)
-	span := stage.StartTrace(kk_reflect.GetCurrentFunctionName())
+	span := stage.StartTrace("snapshotInfo")
 	defer span.End()
 	var param kk_etcd_models.SnapshotInfoParam
 	if err := param.BindCheck(stage); err != nil {
@@ -100,7 +99,7 @@ func snapshotInfo(c *gin.Context) {
 //	@Router			/backup/allKVsBackup [post]
 func allKVsBackup(c *gin.Context) {
 	stage := global_stage.GetRequestStage(c)
-	span := stage.StartTrace(kk_reflect.GetCurrentFunctionName())
+	span := stage.StartTrace("allKVsBackup")
 	defer span.End()
 	var param kk_etcd_models.AllKVsBackupParam
 	if err := param.BindCheck(stage); err != nil {
@@ -126,7 +125,7 @@ func allKVsBackup(c *gin.Context) {
 //	@Router			/backup/allKVsRestore [post]
 func allKVsRestore(c *gin.Context) {
 	stage := global_stage.GetRequestStage(c)
-	span := stage.StartTrace(kk_reflect.GetCurrentFunctionName())
+	span := stage.StartTrace("allKVsRestore")
 	defer span.End()
 	var param kk_etcd_models.AllKVsRestoreParam
 	if err := param.BindCheck(stage); err != nil {

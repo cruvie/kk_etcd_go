@@ -10,6 +10,10 @@ option go_package = "./;kk_etcd_models";
 
 message PBRole {
   string  Name = 1;
+  repeated Permission Perms = 2;
+}
+
+message Permission{
   string  Key = 2;
   string  RangeEnd = 3;
   //authpb.READ 0

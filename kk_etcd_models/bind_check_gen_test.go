@@ -6,5 +6,5 @@ import (
 )
 
 func TestBindCheckGen(t *testing.T) {
-	kk_http.BindCheckGen(InitRootUserRolePermissionParam{})
+	kk_http.BindCheckGen()
 }

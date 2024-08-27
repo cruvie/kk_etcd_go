@@ -33,16 +33,15 @@ func (SerRole) RoleGet(roleName string) (role *kk_etcd_models.PBRole, err error)
 		return nil, err
 	}
 	role = &kk_etcd_models.PBRole{
-		Name: roleName,
+		Name:  roleName,
+		Perms: make([]*kk_etcd_models.Permission, len(r.Perm)),
 	}
-	//if role.Name == kk_etcd_const.UserRoot {
-	//	role.PermissionType = int32(authpb.READWRITE)
-	//}
-	//[permType:READWRITE key:"dfdd" range_end:"ewrew" ]
-	if len(r.Perm) != 0 {
-		role.Key = string(r.Perm[0].Key)
-		role.RangeEnd = string(r.Perm[0].RangeEnd)
-		role.PermissionType = int32(r.Perm[0].PermType)
+	for _, permission := range r.Perm {
+		role.Perms = append(role.Perms, &kk_etcd_models.Permission{
+			Key:            string(permission.Key),
+			RangeEnd:       string(permission.RangeEnd),
+			PermissionType: int32(permission.PermType),
+		})
 	}
 	return role, nil
 }
@@ -63,13 +62,13 @@ func (SerRole) RoleList() (err error, roles *kk_etcd_models.PBListRole) {
 
 }
 
-func (SerRole) RoleGrantPermission(role *kk_etcd_models.PBRole) error {
+func (SerRole) RoleGrantPermission(name string, permission *kk_etcd_models.Permission) error {
 	_, err := kk_etcd_client.EtcdClient.RoleGrantPermission(
 		context.Background(),
-		role.Name,
-		role.Key,
-		role.RangeEnd,
-		clientv3.PermissionType(role.PermissionType))
+		name,
+		permission.Key,
+		permission.RangeEnd,
+		clientv3.PermissionType(permission.PermissionType))
 	if err != nil {
 		return err
 	}

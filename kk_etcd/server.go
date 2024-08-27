@@ -12,12 +12,12 @@ import (
 	"log/slog"
 )
 
-var hServer internal_handler.HServer
-var serServer internal_service.SerServer
+var hInternalServer internal_handler.HServer
+var serInternalServer internal_service.SerServer
 
 // RegisterService register service to etcd
 func RegisterService(registration *kk_etcd_models.ServiceRegistration) error {
-	err := serServer.RegisterService(global_stage.GlobalStage, registration)
+	err := serInternalServer.RegisterService(global_stage.GlobalStage, registration)
 	return err
 }
 
@@ -25,7 +25,7 @@ func RegisterService(registration *kk_etcd_models.ServiceRegistration) error {
 // serviceName, should with prefix key_prefix.ServiceGrpc or key_prefix.ServiceHttp
 // only give prefix to get all service list
 func ServerList(param *kk_etcd_models.ServerListParam) (error, *kk_etcd_models.ServerListResponse) {
-	return hServer.ServerList(global_stage.GlobalStage, param)
+	return hInternalServer.ServerList(global_stage.GlobalStage, param)
 }
 
 // WatchServerList watch server list change

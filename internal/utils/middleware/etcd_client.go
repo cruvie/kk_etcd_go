@@ -15,7 +15,7 @@ import (
 	"time"
 )
 
-// EtcdClient etcd client for current request
+// EtcdClient set etcd client for current request
 func EtcdClient(c *gin.Context) {
 	stage := global_stage.GetRequestStage(c)
 	//todo use https://github.com/etcd-io/etcd/pull/16803

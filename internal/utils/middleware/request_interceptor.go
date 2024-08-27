@@ -1,7 +1,6 @@
 package middleware
 
 import (
-	"gitee.com/cruvie/kk_go_kit/kk_reflect"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model/global_stage"
 	"github.com/gin-gonic/gin"
@@ -9,7 +8,7 @@ import (
 
 // RequestInterceptor the first middleware to intercept request
 func RequestInterceptor(stage *kk_stage.Stage) func(c *gin.Context) {
-	name := kk_reflect.GetCurrentFunctionName()
+	name := "RequestInterceptor"
 	return func(c *gin.Context) {
 
 		//slog.Info("url", c.Request.URL.Path)

@@ -16,22 +16,14 @@ import 'package:protobuf/protobuf.dart' as $pb;
 class PBRole extends $pb.GeneratedMessage {
   factory PBRole({
     $core.String? name,
-    $core.String? key,
-    $core.String? rangeEnd,
-    $core.int? permissionType,
+    $core.Iterable<Permission>? perms,
   }) {
     final $result = create();
     if (name != null) {
       $result.name = name;
     }
-    if (key != null) {
-      $result.key = key;
-    }
-    if (rangeEnd != null) {
-      $result.rangeEnd = rangeEnd;
-    }
-    if (permissionType != null) {
-      $result.permissionType = permissionType;
+    if (perms != null) {
+      $result.perms.addAll(perms);
     }
     return $result;
   }
@@ -41,9 +33,7 @@ class PBRole extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'PBRole', package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd_models'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'Name', protoName: 'Name')
-    ..aOS(2, _omitFieldNames ? '' : 'Key', protoName: 'Key')
-    ..aOS(3, _omitFieldNames ? '' : 'RangeEnd', protoName: 'RangeEnd')
-    ..a<$core.int>(4, _omitFieldNames ? '' : 'PermissionType', $pb.PbFieldType.O3, protoName: 'PermissionType')
+    ..pc<Permission>(2, _omitFieldNames ? '' : 'Perms', $pb.PbFieldType.PM, protoName: 'Perms', subBuilder: Permission.create)
     ..hasRequiredFields = false
   ;
 
@@ -78,20 +68,74 @@ class PBRole extends $pb.GeneratedMessage {
   void clearName() => clearField(1);
 
   @$pb.TagNumber(2)
-  $core.String get key => $_getSZ(1);
+  $core.List<Permission> get perms => $_getList(1);
+}
+
+class Permission extends $pb.GeneratedMessage {
+  factory Permission({
+    $core.String? key,
+    $core.String? rangeEnd,
+    $core.int? permissionType,
+  }) {
+    final $result = create();
+    if (key != null) {
+      $result.key = key;
+    }
+    if (rangeEnd != null) {
+      $result.rangeEnd = rangeEnd;
+    }
+    if (permissionType != null) {
+      $result.permissionType = permissionType;
+    }
+    return $result;
+  }
+  Permission._() : super();
+  factory Permission.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory Permission.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Permission', package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd_models'), createEmptyInstance: create)
+    ..aOS(2, _omitFieldNames ? '' : 'Key', protoName: 'Key')
+    ..aOS(3, _omitFieldNames ? '' : 'RangeEnd', protoName: 'RangeEnd')
+    ..a<$core.int>(4, _omitFieldNames ? '' : 'PermissionType', $pb.PbFieldType.O3, protoName: 'PermissionType')
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  Permission clone() => Permission()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  Permission copyWith(void Function(Permission) updates) => super.copyWith((message) => updates(message as Permission)) as Permission;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static Permission create() => Permission._();
+  Permission createEmptyInstance() => create();
+  static $pb.PbList<Permission> createRepeated() => $pb.PbList<Permission>();
+  @$core.pragma('dart2js:noInline')
+  static Permission getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Permission>(create);
+  static Permission? _defaultInstance;
+
   @$pb.TagNumber(2)
-  set key($core.String v) { $_setString(1, v); }
+  $core.String get key => $_getSZ(0);
   @$pb.TagNumber(2)
-  $core.bool hasKey() => $_has(1);
+  set key($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasKey() => $_has(0);
   @$pb.TagNumber(2)
   void clearKey() => clearField(2);
 
   @$pb.TagNumber(3)
-  $core.String get rangeEnd => $_getSZ(2);
+  $core.String get rangeEnd => $_getSZ(1);
   @$pb.TagNumber(3)
-  set rangeEnd($core.String v) { $_setString(2, v); }
+  set rangeEnd($core.String v) { $_setString(1, v); }
   @$pb.TagNumber(3)
-  $core.bool hasRangeEnd() => $_has(2);
+  $core.bool hasRangeEnd() => $_has(1);
   @$pb.TagNumber(3)
   void clearRangeEnd() => clearField(3);
 
@@ -99,11 +143,11 @@ class PBRole extends $pb.GeneratedMessage {
   /// authpb.WRITE 1
   /// authpb.READWRITE 2
   @$pb.TagNumber(4)
-  $core.int get permissionType => $_getIZ(3);
+  $core.int get permissionType => $_getIZ(2);
   @$pb.TagNumber(4)
-  set permissionType($core.int v) { $_setSignedInt32(3, v); }
+  set permissionType($core.int v) { $_setSignedInt32(2, v); }
   @$pb.TagNumber(4)
-  $core.bool hasPermissionType() => $_has(3);
+  $core.bool hasPermissionType() => $_has(2);
   @$pb.TagNumber(4)
   void clearPermissionType() => clearField(4);
 }

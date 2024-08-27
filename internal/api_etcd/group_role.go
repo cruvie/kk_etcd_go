@@ -2,7 +2,6 @@ package api_etcd
 
 import (
 	"gitee.com/cruvie/kk_go_kit/kk_http"
-	"gitee.com/cruvie/kk_go_kit/kk_reflect"
 	"github.com/cruvie/kk_etcd_go/internal/handler"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model/global_stage"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
@@ -22,7 +21,7 @@ var hRole handler.HRole
 //	@Router			/role/roleAdd [post]
 func roleAdd(c *gin.Context) {
 	stage := global_stage.GetRequestStage(c)
-	span := stage.StartTrace(kk_reflect.GetCurrentFunctionName())
+	span := stage.StartTrace("roleAdd")
 	defer span.End()
 	var param kk_etcd_models.RoleAddParam
 	if err := param.BindCheck(stage); err != nil {
@@ -48,7 +47,7 @@ func roleAdd(c *gin.Context) {
 //	@Router			/role/roleDelete [post]
 func roleDelete(c *gin.Context) {
 	stage := global_stage.GetRequestStage(c)
-	span := stage.StartTrace(kk_reflect.GetCurrentFunctionName())
+	span := stage.StartTrace("roleDelete")
 	defer span.End()
 	var param kk_etcd_models.RoleDeleteParam
 	if err := param.BindCheck(stage); err != nil {
@@ -74,7 +73,7 @@ func roleDelete(c *gin.Context) {
 //	@Router			/role/roleList [post]
 func roleList(c *gin.Context) {
 	stage := global_stage.GetRequestStage(c)
-	span := stage.StartTrace(kk_reflect.GetCurrentFunctionName())
+	span := stage.StartTrace("roleList")
 	defer span.End()
 	var param kk_etcd_models.RoleListParam
 	if err := param.BindCheck(stage); err != nil {
@@ -100,7 +99,7 @@ func roleList(c *gin.Context) {
 //	@Router			/role/roleGet [post]
 func roleGet(c *gin.Context) {
 	stage := global_stage.GetRequestStage(c)
-	span := stage.StartTrace(kk_reflect.GetCurrentFunctionName())
+	span := stage.StartTrace("roleGet")
 	defer span.End()
 	var param kk_etcd_models.RoleGetParam
 	if err := param.BindCheck(stage); err != nil {
@@ -126,7 +125,7 @@ func roleGet(c *gin.Context) {
 //	@Router			/role/roleGrantPermission [post]
 func roleGrantPermission(c *gin.Context) {
 	stage := global_stage.GetRequestStage(c)
-	span := stage.StartTrace(kk_reflect.GetCurrentFunctionName())
+	span := stage.StartTrace("roleGrantPermission")
 	defer span.End()
 	var param kk_etcd_models.RoleGrantPermissionParam
 	if err := param.BindCheck(stage); err != nil {

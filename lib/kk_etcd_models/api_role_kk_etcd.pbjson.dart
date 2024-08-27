@@ -106,14 +106,15 @@ final $typed_data.Uint8List roleListResponseDescriptor = $convert.base64Decode(
 const RoleGrantPermissionParam$json = {
   '1': 'RoleGrantPermissionParam',
   '2': [
-    {'1': 'Role', '3': 1, '4': 1, '5': 11, '6': '.kk_etcd_models.PBRole', '10': 'Role'},
+    {'1': 'Name', '3': 1, '4': 1, '5': 9, '10': 'Name'},
+    {'1': 'Perm', '3': 2, '4': 1, '5': 11, '6': '.kk_etcd_models.Permission', '10': 'Perm'},
   ],
 };
 
 /// Descriptor for `RoleGrantPermissionParam`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List roleGrantPermissionParamDescriptor = $convert.base64Decode(
-    'ChhSb2xlR3JhbnRQZXJtaXNzaW9uUGFyYW0SKgoEUm9sZRgBIAEoCzIWLmtrX2V0Y2RfbW9kZW'
-    'xzLlBCUm9sZVIEUm9sZQ==');
+    'ChhSb2xlR3JhbnRQZXJtaXNzaW9uUGFyYW0SEgoETmFtZRgBIAEoCVIETmFtZRIuCgRQZXJtGA'
+    'IgASgLMhoua2tfZXRjZF9tb2RlbHMuUGVybWlzc2lvblIEUGVybQ==');
 
 @$core.Deprecated('Use roleGrantPermissionResponseDescriptor instead')
 const RoleGrantPermissionResponse$json = {

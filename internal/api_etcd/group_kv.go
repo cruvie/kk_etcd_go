@@ -2,7 +2,6 @@ package api_etcd
 
 import (
 	"gitee.com/cruvie/kk_go_kit/kk_http"
-	"gitee.com/cruvie/kk_go_kit/kk_reflect"
 	"github.com/cruvie/kk_etcd_go/internal/handler"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model/global_stage"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
@@ -22,7 +21,7 @@ var hKV handler.HKV
 //	@Router			/kv/kVPut [post]
 func kVPut(c *gin.Context) {
 	stage := global_stage.GetRequestStage(c)
-	span := stage.StartTrace(kk_reflect.GetCurrentFunctionName())
+	span := stage.StartTrace("kVPut")
 	defer span.End()
 	var param kk_etcd_models.KVPutParam
 	if err := param.BindCheck(stage); err != nil {
@@ -48,7 +47,7 @@ func kVPut(c *gin.Context) {
 //	@Router			/kv/kVGet [post]
 func kVGet(c *gin.Context) {
 	stage := global_stage.GetRequestStage(c)
-	span := stage.StartTrace(kk_reflect.GetCurrentFunctionName())
+	span := stage.StartTrace("kVGet")
 	defer span.End()
 	var param kk_etcd_models.KVGetParam
 	if err := param.BindCheck(stage); err != nil {
@@ -74,7 +73,7 @@ func kVGet(c *gin.Context) {
 //	@Router			/kv/kVDel [post]
 func kVDel(c *gin.Context) {
 	stage := global_stage.GetRequestStage(c)
-	span := stage.StartTrace(kk_reflect.GetCurrentFunctionName())
+	span := stage.StartTrace("kVDel")
 	defer span.End()
 	var param kk_etcd_models.KVDelParam
 	if err := param.BindCheck(stage); err != nil {
@@ -100,7 +99,7 @@ func kVDel(c *gin.Context) {
 //	@Router			/kv/kVList [post]
 func kVList(c *gin.Context) {
 	stage := global_stage.GetRequestStage(c)
-	span := stage.StartTrace(kk_reflect.GetCurrentFunctionName())
+	span := stage.StartTrace("kVList")
 	defer span.End()
 	var param kk_etcd_models.KVListParam
 	if err := param.BindCheck(stage); err != nil {

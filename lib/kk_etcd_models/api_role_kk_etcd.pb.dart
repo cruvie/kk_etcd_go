@@ -367,11 +367,15 @@ class RoleListResponse extends $pb.GeneratedMessage {
 
 class RoleGrantPermissionParam extends $pb.GeneratedMessage {
   factory RoleGrantPermissionParam({
-    $1.PBRole? role,
+    $core.String? name,
+    $1.Permission? perm,
   }) {
     final $result = create();
-    if (role != null) {
-      $result.role = role;
+    if (name != null) {
+      $result.name = name;
+    }
+    if (perm != null) {
+      $result.perm = perm;
     }
     return $result;
   }
@@ -380,7 +384,8 @@ class RoleGrantPermissionParam extends $pb.GeneratedMessage {
   factory RoleGrantPermissionParam.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'RoleGrantPermissionParam', package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd_models'), createEmptyInstance: create)
-    ..aOM<$1.PBRole>(1, _omitFieldNames ? '' : 'Role', protoName: 'Role', subBuilder: $1.PBRole.create)
+    ..aOS(1, _omitFieldNames ? '' : 'Name', protoName: 'Name')
+    ..aOM<$1.Permission>(2, _omitFieldNames ? '' : 'Perm', protoName: 'Perm', subBuilder: $1.Permission.create)
     ..hasRequiredFields = false
   ;
 
@@ -406,15 +411,24 @@ class RoleGrantPermissionParam extends $pb.GeneratedMessage {
   static RoleGrantPermissionParam? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $1.PBRole get role => $_getN(0);
+  $core.String get name => $_getSZ(0);
   @$pb.TagNumber(1)
-  set role($1.PBRole v) { setField(1, v); }
+  set name($core.String v) { $_setString(0, v); }
   @$pb.TagNumber(1)
-  $core.bool hasRole() => $_has(0);
+  $core.bool hasName() => $_has(0);
   @$pb.TagNumber(1)
-  void clearRole() => clearField(1);
-  @$pb.TagNumber(1)
-  $1.PBRole ensureRole() => $_ensure(0);
+  void clearName() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $1.Permission get perm => $_getN(1);
+  @$pb.TagNumber(2)
+  set perm($1.Permission v) { setField(2, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasPerm() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearPerm() => clearField(2);
+  @$pb.TagNumber(2)
+  $1.Permission ensurePerm() => $_ensure(1);
 }
 
 class RoleGrantPermissionResponse extends $pb.GeneratedMessage {

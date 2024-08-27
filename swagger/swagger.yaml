@@ -135,6 +135,10 @@ definitions:
       Name:
         type: string
       PermissionType:
+        description: |-
+          authpb.READ 0
+          authpb.WRITE 1
+          authpb.READWRITE 2
         type: integer
       RangeEnd:
         type: string

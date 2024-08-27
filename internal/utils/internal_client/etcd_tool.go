@@ -68,12 +68,12 @@ func (x *serToolEtcd) initRootRolePermission() {
 
 	//grant all permissions to root role
 	//https://etcd.io/docs/v3.5/learning/api/
-	err = serRole.RoleGrantPermission(&kk_etcd_models.PBRole{
-		Name:           kk_etcd_const.RoleRoot,
-		Key:            `/`,
-		RangeEnd:       `\0`,
-		PermissionType: int32(clientv3.PermReadWrite),
-	})
+	err = serRole.RoleGrantPermission(kk_etcd_const.RoleRoot,
+		&kk_etcd_models.Permission{
+			Key:            `/`,
+			RangeEnd:       `\0`,
+			PermissionType: int32(clientv3.PermReadWrite),
+		})
 	if err != nil {
 		slog.Error("grant all permissions to root role failed", newLog.Error(err).Args()...)
 		panic(err)

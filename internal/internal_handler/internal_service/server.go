@@ -13,7 +13,7 @@ import (
 
 type SerServer struct{}
 
-var serServer SerServer
+var serInternalServer SerServer
 
 func (SerServer) RegisterService(stage *kk_stage.Stage, registration *kk_etcd_models.ServiceRegistration) error {
 	if registration.ServerType != kk_etcd_const.ServiceHttp && registration.ServerType != kk_etcd_const.ServiceGrpc {

@@ -3,7 +3,7 @@ import 'dart:typed_data';
 import 'package:kk_go_kit/kk_models/pb_response.pb.dart';
 import 'package:kk_go_kit/kk_util/kk_log.dart';
 
-import '../kk_etcd_models/api_manage_kk_etcd.pb.dart';
+import '../kk_etcd_models/api_backup_kk_etcd.pb.dart';
 
 class ApiBackup {
   /// snapshot

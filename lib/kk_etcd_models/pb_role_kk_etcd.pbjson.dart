@@ -18,17 +18,29 @@ const PBRole$json = {
   '1': 'PBRole',
   '2': [
     {'1': 'Name', '3': 1, '4': 1, '5': 9, '10': 'Name'},
+    {'1': 'Perms', '3': 2, '4': 3, '5': 11, '6': '.kk_etcd_models.Permission', '10': 'Perms'},
+  ],
+};
+
+/// Descriptor for `PBRole`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List pBRoleDescriptor = $convert.base64Decode(
+    'CgZQQlJvbGUSEgoETmFtZRgBIAEoCVIETmFtZRIwCgVQZXJtcxgCIAMoCzIaLmtrX2V0Y2RfbW'
+    '9kZWxzLlBlcm1pc3Npb25SBVBlcm1z');
+
+@$core.Deprecated('Use permissionDescriptor instead')
+const Permission$json = {
+  '1': 'Permission',
+  '2': [
     {'1': 'Key', '3': 2, '4': 1, '5': 9, '10': 'Key'},
     {'1': 'RangeEnd', '3': 3, '4': 1, '5': 9, '10': 'RangeEnd'},
     {'1': 'PermissionType', '3': 4, '4': 1, '5': 5, '10': 'PermissionType'},
   ],
 };
 
-/// Descriptor for `PBRole`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List pBRoleDescriptor = $convert.base64Decode(
-    'CgZQQlJvbGUSEgoETmFtZRgBIAEoCVIETmFtZRIQCgNLZXkYAiABKAlSA0tleRIaCghSYW5nZU'
-    'VuZBgDIAEoCVIIUmFuZ2VFbmQSJgoOUGVybWlzc2lvblR5cGUYBCABKAVSDlBlcm1pc3Npb25U'
-    'eXBl');
+/// Descriptor for `Permission`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List permissionDescriptor = $convert.base64Decode(
+    'CgpQZXJtaXNzaW9uEhAKA0tleRgCIAEoCVIDS2V5EhoKCFJhbmdlRW5kGAMgASgJUghSYW5nZU'
+    'VuZBImCg5QZXJtaXNzaW9uVHlwZRgEIAEoBVIOUGVybWlzc2lvblR5cGU=');
 
 @$core.Deprecated('Use pBListRoleDescriptor instead')
 const PBListRole$json = {

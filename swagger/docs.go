@@ -996,6 +996,7 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "PermissionType": {
+                    "description": "authpb.READ 0\nauthpb.WRITE 1\nauthpb.READWRITE 2",
                     "type": "integer"
                 },
                 "RangeEnd": {

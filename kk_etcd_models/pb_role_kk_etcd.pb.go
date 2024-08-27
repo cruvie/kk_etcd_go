@@ -25,13 +25,8 @@ type PBRole struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Name     string `protobuf:"bytes,1,opt,name=Name,proto3" json:"Name,omitempty"`
-	Key      string `protobuf:"bytes,2,opt,name=Key,proto3" json:"Key,omitempty"`
-	RangeEnd string `protobuf:"bytes,3,opt,name=RangeEnd,proto3" json:"RangeEnd,omitempty"`
-	// authpb.READ 0
-	// authpb.WRITE 1
-	// authpb.READWRITE 2
-	PermissionType int32 `protobuf:"varint,4,opt,name=PermissionType,proto3" json:"PermissionType,omitempty"`
+	Name  string        `protobuf:"bytes,1,opt,name=Name,proto3" json:"Name,omitempty"`
+	Perms []*Permission `protobuf:"bytes,2,rep,name=Perms,proto3" json:"Perms,omitempty"`
 }
 
 func (x *PBRole) Reset() {
@@ -73,21 +68,73 @@ func (x *PBRole) GetName() string {
 	return ""
 }
 
-func (x *PBRole) GetKey() string {
+func (x *PBRole) GetPerms() []*Permission {
+	if x != nil {
+		return x.Perms
+	}
+	return nil
+}
+
+type Permission struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Key      string `protobuf:"bytes,2,opt,name=Key,proto3" json:"Key,omitempty"`
+	RangeEnd string `protobuf:"bytes,3,opt,name=RangeEnd,proto3" json:"RangeEnd,omitempty"`
+	// authpb.READ 0
+	// authpb.WRITE 1
+	// authpb.READWRITE 2
+	PermissionType int32 `protobuf:"varint,4,opt,name=PermissionType,proto3" json:"PermissionType,omitempty"`
+}
+
+func (x *Permission) Reset() {
+	*x = Permission{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_pb_role_kk_etcd_proto_msgTypes[1]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Permission) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Permission) ProtoMessage() {}
+
+func (x *Permission) ProtoReflect() protoreflect.Message {
+	mi := &file_pb_role_kk_etcd_proto_msgTypes[1]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Permission.ProtoReflect.Descriptor instead.
+func (*Permission) Descriptor() ([]byte, []int) {
+	return file_pb_role_kk_etcd_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *Permission) GetKey() string {
 	if x != nil {
 		return x.Key
 	}
 	return ""
 }
 
-func (x *PBRole) GetRangeEnd() string {
+func (x *Permission) GetRangeEnd() string {
 	if x != nil {
 		return x.RangeEnd
 	}
 	return ""
 }
 
-func (x *PBRole) GetPermissionType() int32 {
+func (x *Permission) GetPermissionType() int32 {
 	if x != nil {
 		return x.PermissionType
 	}
@@ -105,7 +152,7 @@ type PBListRole struct {
 func (x *PBListRole) Reset() {
 	*x = PBListRole{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pb_role_kk_etcd_proto_msgTypes[1]
+		mi := &file_pb_role_kk_etcd_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -118,7 +165,7 @@ func (x *PBListRole) String() string {
 func (*PBListRole) ProtoMessage() {}
 
 func (x *PBListRole) ProtoReflect() protoreflect.Message {
-	mi := &file_pb_role_kk_etcd_proto_msgTypes[1]
+	mi := &file_pb_role_kk_etcd_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -131,7 +178,7 @@ func (x *PBListRole) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PBListRole.ProtoReflect.Descriptor instead.
 func (*PBListRole) Descriptor() ([]byte, []int) {
-	return file_pb_role_kk_etcd_proto_rawDescGZIP(), []int{1}
+	return file_pb_role_kk_etcd_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *PBListRole) GetList() []*PBRole {
@@ -146,9 +193,13 @@ var File_pb_role_kk_etcd_proto protoreflect.FileDescriptor
 var file_pb_role_kk_etcd_proto_rawDesc = []byte{
 	0x0a, 0x15, 0x70, 0x62, 0x5f, 0x72, 0x6f, 0x6c, 0x65, 0x5f, 0x6b, 0x6b, 0x5f, 0x65, 0x74, 0x63,
 	0x64, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x0e, 0x6b, 0x6b, 0x5f, 0x65, 0x74, 0x63, 0x64,
-	0x5f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x73, 0x22, 0x72, 0x0a, 0x06, 0x50, 0x42, 0x52, 0x6f, 0x6c,
+	0x5f, 0x6d, 0x6f, 0x64, 0x65, 0x6c, 0x73, 0x22, 0x4e, 0x0a, 0x06, 0x50, 0x42, 0x52, 0x6f, 0x6c,
 	0x65, 0x12, 0x12, 0x0a, 0x04, 0x4e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
-	0x04, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x10, 0x0a, 0x03, 0x4b, 0x65, 0x79, 0x18, 0x02, 0x20, 0x01,
+	0x04, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x30, 0x0a, 0x05, 0x50, 0x65, 0x72, 0x6d, 0x73, 0x18, 0x02,
+	0x20, 0x03, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x6b, 0x6b, 0x5f, 0x65, 0x74, 0x63, 0x64, 0x5f, 0x6d,
+	0x6f, 0x64, 0x65, 0x6c, 0x73, 0x2e, 0x50, 0x65, 0x72, 0x6d, 0x69, 0x73, 0x73, 0x69, 0x6f, 0x6e,
+	0x52, 0x05, 0x50, 0x65, 0x72, 0x6d, 0x73, 0x22, 0x62, 0x0a, 0x0a, 0x50, 0x65, 0x72, 0x6d, 0x69,
+	0x73, 0x73, 0x69, 0x6f, 0x6e, 0x12, 0x10, 0x0a, 0x03, 0x4b, 0x65, 0x79, 0x18, 0x02, 0x20, 0x01,
 	0x28, 0x09, 0x52, 0x03, 0x4b, 0x65, 0x79, 0x12, 0x1a, 0x0a, 0x08, 0x52, 0x61, 0x6e, 0x67, 0x65,
 	0x45, 0x6e, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x52, 0x61, 0x6e, 0x67, 0x65,
 	0x45, 0x6e, 0x64, 0x12, 0x26, 0x0a, 0x0e, 0x50, 0x65, 0x72, 0x6d, 0x69, 0x73, 0x73, 0x69, 0x6f,
@@ -174,18 +225,20 @@ func file_pb_role_kk_etcd_proto_rawDescGZIP() []byte {
 	return file_pb_role_kk_etcd_proto_rawDescData
 }
 
-var file_pb_role_kk_etcd_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_pb_role_kk_etcd_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_pb_role_kk_etcd_proto_goTypes = []any{
 	(*PBRole)(nil),     // 0: kk_etcd_models.PBRole
-	(*PBListRole)(nil), // 1: kk_etcd_models.PBListRole
+	(*Permission)(nil), // 1: kk_etcd_models.Permission
+	(*PBListRole)(nil), // 2: kk_etcd_models.PBListRole
 }
 var file_pb_role_kk_etcd_proto_depIdxs = []int32{
-	0, // 0: kk_etcd_models.PBListRole.List:type_name -> kk_etcd_models.PBRole
-	1, // [1:1] is the sub-list for method output_type
-	1, // [1:1] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	1, // 0: kk_etcd_models.PBRole.Perms:type_name -> kk_etcd_models.Permission
+	0, // 1: kk_etcd_models.PBListRole.List:type_name -> kk_etcd_models.PBRole
+	2, // [2:2] is the sub-list for method output_type
+	2, // [2:2] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_pb_role_kk_etcd_proto_init() }
@@ -207,6 +260,18 @@ func file_pb_role_kk_etcd_proto_init() {
 			}
 		}
 		file_pb_role_kk_etcd_proto_msgTypes[1].Exporter = func(v any, i int) any {
+			switch v := v.(*Permission); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_pb_role_kk_etcd_proto_msgTypes[2].Exporter = func(v any, i int) any {
 			switch v := v.(*PBListRole); i {
 			case 0:
 				return &v.state
@@ -225,7 +290,7 @@ func file_pb_role_kk_etcd_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_pb_role_kk_etcd_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

@@ -2,7 +2,6 @@ package api_etcd
 
 import (
 	"gitee.com/cruvie/kk_go_kit/kk_http"
-	"gitee.com/cruvie/kk_go_kit/kk_reflect"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/internal/config"
 	"github.com/cruvie/kk_etcd_go/internal/utils/middleware"
@@ -20,45 +19,45 @@ func ApiEtcd(stage *kk_stage.Stage) {
 
 	{
 		apiGroup := r.Group("user")
-		apiGroup.POST(kk_reflect.GetFunctionName(login), login)
-		apiGroup.POST(kk_reflect.GetFunctionName(logout), logout)
-		apiGroup.POST(kk_reflect.GetFunctionName(userAdd), userAdd)
-		apiGroup.POST(kk_reflect.GetFunctionName(userDelete), userDelete)
-		apiGroup.POST(kk_reflect.GetFunctionName(getUser), getUser)
-		apiGroup.POST(kk_reflect.GetFunctionName(myInfo), myInfo)
-		apiGroup.POST(kk_reflect.GetFunctionName(userList), userList)
-		apiGroup.POST(kk_reflect.GetFunctionName(userGrantRole), userGrantRole)
+		apiGroup.POST("login", login)
+		apiGroup.POST("logout", logout)
+		apiGroup.POST("userAdd", userAdd)
+		apiGroup.POST("userDelete", userDelete)
+		apiGroup.POST("getUser", getUser)
+		apiGroup.POST("myInfo", myInfo)
+		apiGroup.POST("userList", userList)
+		apiGroup.POST("userGrantRole", userGrantRole)
 	}
 
 	{
 		apiGroup := r.Group("role")
-		apiGroup.POST(kk_reflect.GetFunctionName(roleAdd), roleAdd)
-		apiGroup.POST(kk_reflect.GetFunctionName(roleDelete), roleDelete)
-		apiGroup.POST(kk_reflect.GetFunctionName(roleGet), roleGet)
-		apiGroup.POST(kk_reflect.GetFunctionName(roleList), roleList)
-		apiGroup.POST(kk_reflect.GetFunctionName(roleGrantPermission), roleGrantPermission)
+		apiGroup.POST("roleAdd", roleAdd)
+		apiGroup.POST("roleDelete", roleDelete)
+		apiGroup.POST("roleGet", roleGet)
+		apiGroup.POST("roleList", roleList)
+		apiGroup.POST("roleGrantPermission", roleGrantPermission)
 	}
 
 	{
 		apiGroup := r.Group("kv")
-		apiGroup.POST(kk_reflect.GetFunctionName(kVPut), kVPut)
-		apiGroup.POST(kk_reflect.GetFunctionName(kVGet), kVGet)
-		apiGroup.POST(kk_reflect.GetFunctionName(kVDel), kVDel)
-		apiGroup.POST(kk_reflect.GetFunctionName(kVList), kVList)
+		apiGroup.POST("kVPut", kVPut)
+		apiGroup.POST("kVGet", kVGet)
+		apiGroup.POST("kVDel", kVDel)
+		apiGroup.POST("kVList", kVList)
 	}
 
 	{
 		apiGroup := r.Group("server")
-		apiGroup.POST(kk_reflect.GetFunctionName(serverList), serverList)
+		apiGroup.POST("serverList", serverList)
 	}
 
 	{
 		apiGroup := r.Group("backup")
-		apiGroup.POST(kk_reflect.GetFunctionName(snapshot), snapshot)
-		apiGroup.POST(kk_reflect.GetFunctionName(snapshotRestore), snapshotRestore)
-		apiGroup.POST(kk_reflect.GetFunctionName(snapshotInfo), snapshotInfo)
-		apiGroup.POST(kk_reflect.GetFunctionName(allKVsBackup), allKVsBackup)
-		apiGroup.POST(kk_reflect.GetFunctionName(allKVsRestore), allKVsRestore)
+		apiGroup.POST("snapshot", snapshot)
+		apiGroup.POST("snapshotRestore", snapshotRestore)
+		apiGroup.POST("snapshotInfo", snapshotInfo)
+		apiGroup.POST("allKVsBackup", allKVsBackup)
+		apiGroup.POST("allKVsRestore", allKVsRestore)
 
 	}
 
