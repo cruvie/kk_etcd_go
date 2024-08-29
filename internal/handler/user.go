@@ -34,14 +34,8 @@ func (HUser) Logout(stage *kk_stage.Stage, param *kk_etcd_models.LogoutParam) (e
 func (HUser) UserAdd(stage *kk_stage.Stage, param *kk_etcd_models.UserAddParam) (error, *kk_etcd_models.UserAddResponse) {
 	span := stage.StartTrace("UserAdd")
 	defer span.End()
-	err := serUser.CheckRootRole(stage)
-	if err != nil {
-		return err, nil
-	}
-	if param.GetUserName() == kk_etcd_const.UserRoot {
-		return errors.New("illegal add root user"), nil
-	}
-	err = serUser.UserAdd(stage, &kk_etcd_models.PBUser{
+
+	err := serUser.UserAdd(stage, &kk_etcd_models.PBUser{
 		UserName: param.GetUserName(),
 		Password: param.GetPassword(),
 		Roles:    param.GetRoles(),
@@ -52,15 +46,12 @@ func (HUser) UserAdd(stage *kk_stage.Stage, param *kk_etcd_models.UserAddParam) 
 func (HUser) UserDelete(stage *kk_stage.Stage, param *kk_etcd_models.UserDeleteParam) (error, *kk_etcd_models.UserDeleteResponse) {
 	span := stage.StartTrace("UserDelete")
 	defer span.End()
-	err := serUser.CheckRootRole(stage)
-	if err != nil {
-		return err, nil
-	}
+
 	if param.GetUserName() == kk_etcd_const.UserRoot ||
 		param.GetUserName() == global_model.GetLoginUser(stage).UserName {
 		return errors.New("illegal delete root or current logged in user"), nil
 	}
-	err = serUser.UserDelete(stage, param.GetUserName())
+	err := serUser.UserDelete(stage, param.GetUserName())
 	return err, &kk_etcd_models.UserDeleteResponse{}
 }
 
@@ -96,14 +87,10 @@ func (HUser) UserGrantRole(stage *kk_stage.Stage, param *kk_etcd_models.UserGran
 	span := stage.StartTrace("UserGrantRole")
 	defer span.End()
 
-	err := serUser.CheckRootRole(stage)
-	if err != nil {
-		return err, nil
-	}
 	if param.GetUserName() == kk_etcd_const.UserRoot {
-		return errors.New("illegal modification of root user's role"), nil
+		return errors.New("illegal modify root user's role"), nil
 	}
-	err = serUser.UserGrantRole(stage, &kk_etcd_models.PBUser{
+	err := serUser.UserGrantRole(stage, &kk_etcd_models.PBUser{
 		UserName: param.GetUserName(),
 		Roles:    param.GetRoles(),
 	})

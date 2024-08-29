@@ -15,28 +15,19 @@ var serRole service.SerRole
 func (HRole) RoleAdd(stage *kk_stage.Stage, param *kk_etcd_models.RoleAddParam) (error, *kk_etcd_models.RoleAddResponse) {
 	span := stage.StartTrace("RoleAdd")
 	defer span.End()
-	err := serUser.CheckRootRole(stage)
-	if err != nil {
-		return err, nil
-	}
-	if param.GetName() == kk_etcd_const.RoleRoot {
-		return errors.New("illegal add root role"), nil
-	}
-	err = serRole.RoleAdd(stage, param)
+
+	err := serRole.RoleAdd(stage, param)
 	return err, &kk_etcd_models.RoleAddResponse{}
 }
 
 func (HRole) RoleDelete(stage *kk_stage.Stage, param *kk_etcd_models.RoleDeleteParam) (error, *kk_etcd_models.RoleDeleteResponse) {
 	span := stage.StartTrace("RoleDelete")
 	defer span.End()
-	err := serUser.CheckRootRole(stage)
-	if err != nil {
-		return err, nil
-	}
+
 	if param.GetName() == kk_etcd_const.RoleRoot {
 		return errors.New("illegal delete root role"), nil
 	}
-	err = serRole.RoleDelete(stage, param.GetName())
+	err := serRole.RoleDelete(stage, param.GetName())
 	return err, &kk_etcd_models.RoleDeleteResponse{}
 }
 func (HRole) RoleGet(stage *kk_stage.Stage, param *kk_etcd_models.RoleGetParam) (error, *kk_etcd_models.RoleGetResponse) {
@@ -60,14 +51,8 @@ func (HRole) RoleList(stage *kk_stage.Stage, _ *kk_etcd_models.RoleListParam) (e
 func (HRole) RoleGrantPermission(stage *kk_stage.Stage, param *kk_etcd_models.RoleGrantPermissionParam) (error, *kk_etcd_models.RoleGrantPermissionResponse) {
 	span := stage.StartTrace("RoleGrantPermission")
 	defer span.End()
-	err := serUser.CheckRootRole(stage)
-	if err != nil {
-		return err, nil
-	}
-	if param.GetName() == kk_etcd_const.RoleRoot {
-		return errors.New("illegal change root role permission"), nil
-	}
-	err = serRole.RoleGrantPermission(stage, param)
+
+	err := serRole.RoleGrantPermission(stage, param)
 	return err, &kk_etcd_models.RoleGrantPermissionResponse{}
 }
 
