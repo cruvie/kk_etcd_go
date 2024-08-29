@@ -16,7 +16,7 @@ import 'package:protobuf/protobuf.dart' as $pb;
 class PBRole extends $pb.GeneratedMessage {
   factory PBRole({
     $core.String? name,
-    $core.Iterable<Permission>? perms,
+    $core.Iterable<PBPermission>? perms,
   }) {
     final $result = create();
     if (name != null) {
@@ -33,7 +33,7 @@ class PBRole extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'PBRole', package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd_models'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'Name', protoName: 'Name')
-    ..pc<Permission>(2, _omitFieldNames ? '' : 'Perms', $pb.PbFieldType.PM, protoName: 'Perms', subBuilder: Permission.create)
+    ..pc<PBPermission>(2, _omitFieldNames ? '' : 'Perms', $pb.PbFieldType.PM, protoName: 'Perms', subBuilder: PBPermission.create)
     ..hasRequiredFields = false
   ;
 
@@ -68,11 +68,11 @@ class PBRole extends $pb.GeneratedMessage {
   void clearName() => clearField(1);
 
   @$pb.TagNumber(2)
-  $core.List<Permission> get perms => $_getList(1);
+  $core.List<PBPermission> get perms => $_getList(1);
 }
 
-class Permission extends $pb.GeneratedMessage {
-  factory Permission({
+class PBPermission extends $pb.GeneratedMessage {
+  factory PBPermission({
     $core.String? key,
     $core.String? rangeEnd,
     $core.int? permissionType,
@@ -89,11 +89,11 @@ class Permission extends $pb.GeneratedMessage {
     }
     return $result;
   }
-  Permission._() : super();
-  factory Permission.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory Permission.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  PBPermission._() : super();
+  factory PBPermission.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory PBPermission.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'Permission', package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd_models'), createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'PBPermission', package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd_models'), createEmptyInstance: create)
     ..aOS(2, _omitFieldNames ? '' : 'Key', protoName: 'Key')
     ..aOS(3, _omitFieldNames ? '' : 'RangeEnd', protoName: 'RangeEnd')
     ..a<$core.int>(4, _omitFieldNames ? '' : 'PermissionType', $pb.PbFieldType.O3, protoName: 'PermissionType')
@@ -104,22 +104,22 @@ class Permission extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
   'Will be removed in next major version')
-  Permission clone() => Permission()..mergeFromMessage(this);
+  PBPermission clone() => PBPermission()..mergeFromMessage(this);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  Permission copyWith(void Function(Permission) updates) => super.copyWith((message) => updates(message as Permission)) as Permission;
+  PBPermission copyWith(void Function(PBPermission) updates) => super.copyWith((message) => updates(message as PBPermission)) as PBPermission;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  static Permission create() => Permission._();
-  Permission createEmptyInstance() => create();
-  static $pb.PbList<Permission> createRepeated() => $pb.PbList<Permission>();
+  static PBPermission create() => PBPermission._();
+  PBPermission createEmptyInstance() => create();
+  static $pb.PbList<PBPermission> createRepeated() => $pb.PbList<PBPermission>();
   @$core.pragma('dart2js:noInline')
-  static Permission getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Permission>(create);
-  static Permission? _defaultInstance;
+  static PBPermission getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<PBPermission>(create);
+  static PBPermission? _defaultInstance;
 
   @$pb.TagNumber(2)
   $core.String get key => $_getSZ(0);

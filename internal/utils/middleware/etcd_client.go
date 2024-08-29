@@ -7,10 +7,8 @@ import (
 	"github.com/cruvie/kk_etcd_go/internal/handler/service"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model/global_stage"
-	"github.com/cruvie/kk_etcd_go/kk_etcd_client"
 	"github.com/gin-gonic/gin"
 	clientv3 "go.etcd.io/etcd/client/v3"
-	"log/slog"
 	"net/http"
 	"time"
 )
@@ -28,7 +26,7 @@ func EtcdClient(c *gin.Context) {
 		Password:    global_model.GetRequestHeader(stage).Password,
 	}
 	var err error
-	kk_etcd_client.EtcdClient, err = clientv3.New(cfg)
+	client, err := clientv3.New(cfg)
 	if err != nil {
 		kk_http.ResponseProtoBuf(c, kk_http.Fail(stage, &kk_models.PBResponse{
 			Code: http.StatusUnauthorized,
@@ -36,8 +34,9 @@ func EtcdClient(c *gin.Context) {
 		c.Abort()
 		return
 	}
+	global_model.SetClient(stage, client)
 	var serUser service.SerUser
-	user, err := serUser.GetUser(global_model.GetRequestHeader(stage).UserName)
+	user, err := serUser.GetUser(stage, global_model.GetRequestHeader(stage).UserName)
 	if err != nil {
 		kk_http.ResponseProtoBuf(c, kk_http.Fail(stage, &kk_models.PBResponse{
 			Code: http.StatusUnauthorized,
@@ -48,10 +47,5 @@ func EtcdClient(c *gin.Context) {
 	//store user to gin context
 	global_model.SetLoginUser(stage, user)
 	c.Next()
-	//reset etcd client after request
-	err = kk_etcd_client.EtcdClient.Close()
-	if err != nil {
-		slog.Error("etcd client close error", "err", err)
-	}
-	kk_etcd_client.EtcdClient = nil
+	global_model.CloseClient(stage)
 }

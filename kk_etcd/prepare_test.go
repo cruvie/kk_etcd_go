@@ -5,6 +5,7 @@ import (
 	"gitee.com/cruvie/kk_go_kit/kk_config_interface"
 	"gitee.com/cruvie/kk_go_kit/kk_log"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
+	"github.com/cruvie/kk_etcd_go/kk_etcd_client"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_const"
 )
 
@@ -20,7 +21,7 @@ func initTestEnv() {
 		ServiceName: stage.ServiceName,
 	})
 	defer configLog.Close()
-	err := InitClient(&InitClientConfig{
+	err := kk_etcd_client.InitClient(&kk_etcd_client.InitClientConfig{
 		Endpoints: []string{"http://127.0.0.1:2379"},
 		UserName:  "kk_etcd",
 		Password:  "kk_etcd",

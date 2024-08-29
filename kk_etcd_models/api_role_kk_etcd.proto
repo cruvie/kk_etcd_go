@@ -39,8 +39,17 @@ message RoleListResponse {
 
 message RoleGrantPermissionParam {
   string Name = 1;
-  Permission  Perm = 2;
+  PBPermission  Perm = 2;
 }
 message RoleGrantPermissionResponse {
+
+}
+
+message RoleRevokePermissionParam {
+  string Name = 1;
+  string  Key = 2;
+  string  RangeEnd = 3;
+}
+message RoleRevokePermissionResponse {
 
 }

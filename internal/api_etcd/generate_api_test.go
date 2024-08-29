@@ -113,6 +113,12 @@ func TestRole(t *testing.T) {
 				HandlerFuncName: "RoleGrantPermission",
 			},
 		},
+		{
+			apiModel: kk_http.ApiModel{
+				Description:     "revoke permission",
+				HandlerFuncName: "RoleRevokePermission",
+			},
+		},
 	}
 
 	for _, api := range apis {

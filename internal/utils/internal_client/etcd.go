@@ -3,23 +3,18 @@ package internal_client
 import (
 	"context"
 	"gitee.com/cruvie/kk_go_kit/kk_log"
+	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/internal/config"
-	"github.com/cruvie/kk_etcd_go/kk_etcd_client"
+	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_const"
 	clientv3 "go.etcd.io/etcd/client/v3"
 	"log/slog"
 	"time"
 )
 
-func InitEtcd() {
+func InitEtcd(stage *kk_stage.Stage) {
 	newLog := kk_log.NewLog(&kk_log.LogOption{})
-	defer func() {
-		err := kk_etcd_client.EtcdClient.Close()
-		if err != nil {
-			slog.Error("close etcd client failed", newLog.Error(err).Args()...)
-		}
-		kk_etcd_client.EtcdClient = nil
-	}()
+	defer global_model.CloseClient(stage)
 
 	cfg := clientv3.Config{
 		Endpoints:   []string{config.Config.Etcd.Endpoint},
@@ -30,16 +25,17 @@ func InitEtcd() {
 	if toolEtcd.checkAuthEnabled() {
 		var err error
 		//refresh client
-		kk_etcd_client.EtcdClient, err = clientv3.New(cfg)
+		client, err := clientv3.New(cfg)
 		if err != nil {
 			slog.Error("New etcd client failed", newLog.Error(err).Args()...)
 			panic(err)
 		}
-		toolEtcd.initRootRolePermission()
+		global_model.SetClient(stage, client)
+		toolEtcd.initRootRolePermission(stage)
 	} else {
-		toolEtcd.initRootRolePermission()
+		toolEtcd.initRootRolePermission(stage)
 		//enable etcd auth
-		_, err := kk_etcd_client.EtcdClient.AuthEnable(context.Background())
+		_, err := global_model.GetClient(stage).AuthEnable(context.Background())
 		if err != nil {
 			slog.Error("Enable Auth failed", newLog.Error(err).Args()...)
 			panic(err)

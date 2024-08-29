@@ -2,7 +2,8 @@ package service
 
 import (
 	"context"
-	"github.com/cruvie/kk_etcd_go/kk_etcd_client"
+	"gitee.com/cruvie/kk_go_kit/kk_stage"
+	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_error"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	"go.etcd.io/etcd/api/v3/v3rpc/rpctypes"
@@ -13,31 +14,31 @@ type SerRole struct{}
 
 var serRole SerRole
 
-func (SerRole) RoleAdd(param *kk_etcd_models.RoleAddParam) error {
-	_, err := kk_etcd_client.EtcdClient.RoleAdd(context.Background(), param.GetName())
+func (SerRole) RoleAdd(stage *kk_stage.Stage, param *kk_etcd_models.RoleAddParam) error {
+	_, err := global_model.GetClient(stage).RoleAdd(context.Background(), param.GetName())
 	if err != nil && !kk_etcd_error.ErrorIs(err, rpctypes.ErrGRPCRoleAlreadyExist) {
 		return err
 	}
 	return nil
 }
-func (SerRole) RoleDelete(roleName string) error {
-	_, err := kk_etcd_client.EtcdClient.RoleDelete(context.Background(), roleName)
+func (SerRole) RoleDelete(stage *kk_stage.Stage, roleName string) error {
+	_, err := global_model.GetClient(stage).RoleDelete(context.Background(), roleName)
 	if err != nil {
 		return err
 	}
 	return nil
 }
-func (SerRole) RoleGet(roleName string) (role *kk_etcd_models.PBRole, err error) {
-	r, err := kk_etcd_client.EtcdClient.RoleGet(context.Background(), roleName)
+func (SerRole) RoleGet(stage *kk_stage.Stage, roleName string) (role *kk_etcd_models.PBRole, err error) {
+	r, err := global_model.GetClient(stage).RoleGet(context.Background(), roleName)
 	if err != nil {
 		return nil, err
 	}
 	role = &kk_etcd_models.PBRole{
 		Name:  roleName,
-		Perms: make([]*kk_etcd_models.Permission, len(r.Perm)),
+		Perms: make([]*kk_etcd_models.PBPermission, len(r.Perm)),
 	}
 	for _, permission := range r.Perm {
-		role.Perms = append(role.Perms, &kk_etcd_models.Permission{
+		role.Perms = append(role.Perms, &kk_etcd_models.PBPermission{
 			Key:            string(permission.Key),
 			RangeEnd:       string(permission.RangeEnd),
 			PermissionType: int32(permission.PermType),
@@ -45,14 +46,14 @@ func (SerRole) RoleGet(roleName string) (role *kk_etcd_models.PBRole, err error)
 	}
 	return role, nil
 }
-func (SerRole) RoleList() (err error, roles *kk_etcd_models.PBListRole) {
-	list, err := kk_etcd_client.EtcdClient.RoleList(context.Background())
+func (SerRole) RoleList(stage *kk_stage.Stage) (err error, roles *kk_etcd_models.PBListRole) {
+	list, err := global_model.GetClient(stage).RoleList(context.Background())
 	if err != nil {
 		return err, nil
 	}
 	roles = &kk_etcd_models.PBListRole{}
 	for _, roleName := range list.Roles {
-		role, err := serRole.RoleGet(roleName)
+		role, err := serRole.RoleGet(stage, roleName)
 		if err != nil {
 			return err, nil
 		}
@@ -62,13 +63,24 @@ func (SerRole) RoleList() (err error, roles *kk_etcd_models.PBListRole) {
 
 }
 
-func (SerRole) RoleGrantPermission(name string, permission *kk_etcd_models.Permission) error {
-	_, err := kk_etcd_client.EtcdClient.RoleGrantPermission(
+func (SerRole) RoleGrantPermission(stage *kk_stage.Stage, param *kk_etcd_models.RoleGrantPermissionParam) error {
+	_, err := global_model.GetClient(stage).RoleGrantPermission(
 		context.Background(),
-		name,
-		permission.Key,
-		permission.RangeEnd,
-		clientv3.PermissionType(permission.PermissionType))
+		param.GetName(),
+		param.GetPerm().GetKey(),
+		param.GetPerm().GetRangeEnd(),
+		clientv3.PermissionType(param.GetPerm().GetPermissionType()))
+	if err != nil {
+		return err
+	}
+	return nil
+}
+func (SerRole) RoleRevokePermission(stage *kk_stage.Stage, param *kk_etcd_models.RoleRevokePermissionParam) error {
+	_, err := global_model.GetClient(stage).RoleRevokePermission(
+		context.Background(),
+		param.GetName(),
+		param.GetKey(),
+		param.GetRangeEnd())
 	if err != nil {
 		return err
 	}

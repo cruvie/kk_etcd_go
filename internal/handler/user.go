@@ -41,7 +41,7 @@ func (HUser) UserAdd(stage *kk_stage.Stage, param *kk_etcd_models.UserAddParam) 
 	if param.GetUserName() == kk_etcd_const.UserRoot {
 		return errors.New("illegal add root user"), nil
 	}
-	err = serUser.UserAdd(&kk_etcd_models.PBUser{
+	err = serUser.UserAdd(stage, &kk_etcd_models.PBUser{
 		UserName: param.GetUserName(),
 		Password: param.GetPassword(),
 		Roles:    param.GetRoles(),
@@ -60,14 +60,14 @@ func (HUser) UserDelete(stage *kk_stage.Stage, param *kk_etcd_models.UserDeleteP
 		param.GetUserName() == global_model.GetLoginUser(stage).UserName {
 		return errors.New("illegal delete root or current logged in user"), nil
 	}
-	err = serUser.UserDelete(param.GetUserName())
+	err = serUser.UserDelete(stage, param.GetUserName())
 	return err, &kk_etcd_models.UserDeleteResponse{}
 }
 
 func (HUser) GetUser(stage *kk_stage.Stage, param *kk_etcd_models.GetUserParam) (error, *kk_etcd_models.GetUserResponse) {
 	span := stage.StartTrace("GetUser")
 	defer span.End()
-	user, err := serUser.GetUser(param.GetUserName())
+	user, err := serUser.GetUser(stage, param.GetUserName())
 	return err, &kk_etcd_models.GetUserResponse{
 		User: user,
 	}
@@ -86,7 +86,7 @@ func (HUser) MyInfo(stage *kk_stage.Stage, _ *kk_etcd_models.MyInfoParam) (error
 func (HUser) UserList(stage *kk_stage.Stage, _ *kk_etcd_models.UserListParam) (error, *kk_etcd_models.UserListResponse) {
 	span := stage.StartTrace("UserList")
 	defer span.End()
-	err, users := serUser.UserList()
+	err, users := serUser.UserList(stage)
 	return err, &kk_etcd_models.UserListResponse{
 		ListUser: users,
 	}
@@ -103,7 +103,7 @@ func (HUser) UserGrantRole(stage *kk_stage.Stage, param *kk_etcd_models.UserGran
 	if param.GetUserName() == kk_etcd_const.UserRoot {
 		return errors.New("illegal modification of root user's role"), nil
 	}
-	err = serUser.UserGrantRole(&kk_etcd_models.PBUser{
+	err = serUser.UserGrantRole(stage, &kk_etcd_models.PBUser{
 		UserName: param.GetUserName(),
 		Roles:    param.GetRoles(),
 	})

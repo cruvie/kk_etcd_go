@@ -6,7 +6,6 @@ import (
 	"gitee.com/cruvie/kk_go_kit/kk_slice"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
-	"github.com/cruvie/kk_etcd_go/kk_etcd_client"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_const"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_error"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
@@ -26,9 +25,9 @@ func (SerUser) Logout(stage *kk_stage.Stage, _ *kk_etcd_models.LogoutParam) erro
 	//todo remove jwt from etcd
 	return nil
 }
-func (s SerUser) UserAdd(user *kk_etcd_models.PBUser) error {
+func (s SerUser) UserAdd(stage *kk_stage.Stage, user *kk_etcd_models.PBUser) error {
 	//only need username and password
-	_, err := kk_etcd_client.EtcdClient.UserAdd(
+	_, err := global_model.GetClient(stage).UserAdd(
 		context.Background(),
 		user.GetUserName(),
 		user.GetPassword(),
@@ -39,15 +38,15 @@ func (s SerUser) UserAdd(user *kk_etcd_models.PBUser) error {
 	return nil
 }
 
-func (s SerUser) UserDelete(userName string) error {
-	_, err := kk_etcd_client.EtcdClient.UserDelete(context.Background(), userName)
+func (s SerUser) UserDelete(stage *kk_stage.Stage, userName string) error {
+	_, err := global_model.GetClient(stage).UserDelete(context.Background(), userName)
 	if err != nil {
 		return err
 	}
 	return err
 }
-func (s SerUser) GetUser(userName string) (pbUser *kk_etcd_models.PBUser, err error) {
-	resp, err := kk_etcd_client.EtcdClient.UserGet(context.Background(), userName)
+func (s SerUser) GetUser(stage *kk_stage.Stage, userName string) (pbUser *kk_etcd_models.PBUser, err error) {
+	resp, err := global_model.GetClient(stage).UserGet(context.Background(), userName)
 	if err != nil {
 		return nil, err
 	}
@@ -59,14 +58,14 @@ func (s SerUser) GetUser(userName string) (pbUser *kk_etcd_models.PBUser, err er
 	return pbUser, err
 }
 
-func (SerUser) UserList() (err error, users *kk_etcd_models.PBListUser) {
-	list, err := kk_etcd_client.EtcdClient.UserList(context.Background())
+func (SerUser) UserList(stage *kk_stage.Stage) (err error, users *kk_etcd_models.PBListUser) {
+	list, err := global_model.GetClient(stage).UserList(context.Background())
 	if err != nil {
 		return err, nil
 	}
 	users = &kk_etcd_models.PBListUser{}
 	for _, userName := range list.Users {
-		user, err := serUser.GetUser(userName)
+		user, err := serUser.GetUser(stage, userName)
 		if err != nil {
 			return err, nil
 		}
@@ -75,22 +74,22 @@ func (SerUser) UserList() (err error, users *kk_etcd_models.PBListUser) {
 	return nil, users
 }
 
-func (SerUser) UserGrantRole(user *kk_etcd_models.PBUser) error {
-	oldUser, err := serUser.GetUser(user.GetUserName())
+func (SerUser) UserGrantRole(stage *kk_stage.Stage, user *kk_etcd_models.PBUser) error {
+	oldUser, err := serUser.GetUser(stage, user.GetUserName())
 	if err != nil {
 		return err
 	}
 
 	del, add := kk_slice.Diff(oldUser.GetRoles(), user.GetRoles())
 	for _, role := range del {
-		_, err := kk_etcd_client.EtcdClient.UserRevokeRole(context.Background(), user.GetUserName(), role)
+		_, err := global_model.GetClient(stage).UserRevokeRole(context.Background(), user.GetUserName(), role)
 		if err != nil {
 			return errors.Join(err, errors.New("failed to revoke role"))
 		}
 	}
 
 	for _, role := range add {
-		_, err := kk_etcd_client.EtcdClient.UserGrantRole(context.Background(), user.GetUserName(), role)
+		_, err := global_model.GetClient(stage).UserGrantRole(context.Background(), user.GetUserName(), role)
 		if err != nil {
 			return err
 		}

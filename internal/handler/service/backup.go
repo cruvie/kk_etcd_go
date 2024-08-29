@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"gitee.com/cruvie/kk_go_kit/kk_log"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
-	"github.com/cruvie/kk_etcd_go/kk_etcd_client"
+	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_const"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	clientv3 "go.etcd.io/etcd/client/v3"
@@ -25,7 +25,7 @@ var serBackup SerBackup
 func (SerBackup) Snapshot(stage *kk_stage.Stage) (error, *kk_etcd_models.SnapshotResponse) {
 	newLog := kk_log.NewLog(&kk_log.LogOption{TraceId: stage.TraceId})
 	//etcdctl --endpoints=127.0.0.1:2379 --user kk_etcd:kk_etcd snapshot save /Users/cruvie/KangXH/Coding/Uncomplete-Projects/kk_etcd/kk_etcd_go/backup/snapshot.db
-	backupData, err := kk_etcd_client.EtcdClient.Snapshot(context.Background())
+	backupData, err := global_model.GetClient(stage).Snapshot(context.Background())
 	defer func(backupData io.ReadCloser) {
 		if backupData != nil {
 			err := backupData.Close()
@@ -99,9 +99,9 @@ func (SerBackup) SnapshotInfo(stage *kk_stage.Stage, param *kk_etcd_models.Snaps
 
 	return string(output), nil
 }
-func (SerBackup) AllKVsBackup() (error, *kk_etcd_models.AllKVsBackupResponse) {
+func (SerBackup) AllKVsBackup(stage *kk_stage.Stage) (error, *kk_etcd_models.AllKVsBackupResponse) {
 	list := &kk_etcd_models.PBListKV{}
-	getResponse, err := kk_etcd_client.EtcdClient.Get(context.Background(), "", clientv3.WithPrefix())
+	getResponse, err := global_model.GetClient(stage).Get(context.Background(), "", clientv3.WithPrefix())
 	if err != nil {
 		return err, nil
 	}
@@ -138,7 +138,7 @@ func (SerBackup) AllKVsRestore(stage *kk_stage.Stage, param *kk_etcd_models.AllK
 		return err
 	}
 	for _, pbkv := range list.ListKV {
-		err := serKV.KVPut(pbkv.GetKey(), pbkv.GetValue())
+		err := serKV.KVPut(stage, pbkv.GetKey(), pbkv.GetValue())
 		if err != nil {
 			return err
 		}

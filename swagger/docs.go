@@ -486,6 +486,39 @@ const docTemplate = `{
                 }
             }
         },
+        "/role/roleRevokePermission": {
+            "post": {
+                "description": "revoke permission",
+                "consumes": [
+                    "application/octet-stream"
+                ],
+                "produces": [
+                    "application/octet-stream"
+                ],
+                "tags": [
+                    "role"
+                ],
+                "parameters": [
+                    {
+                        "description": "RoleRevokePermissionParam",
+                        "name": "RoleRevokePermissionParam",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/kk_etcd_models.RoleRevokePermissionParam"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/kk_etcd_models.RoleRevokePermissionResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/server/serverList": {
             "post": {
                 "description": "list server",
@@ -986,13 +1019,10 @@ const docTemplate = `{
                 }
             }
         },
-        "kk_etcd_models.PBRole": {
+        "kk_etcd_models.PBPermission": {
             "type": "object",
             "properties": {
                 "Key": {
-                    "type": "string"
-                },
-                "Name": {
                     "type": "string"
                 },
                 "PermissionType": {
@@ -1001,6 +1031,20 @@ const docTemplate = `{
                 },
                 "RangeEnd": {
                     "type": "string"
+                }
+            }
+        },
+        "kk_etcd_models.PBRole": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "type": "string"
+                },
+                "Perms": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/kk_etcd_models.PBPermission"
+                    }
                 }
             }
         },
@@ -1073,8 +1117,11 @@ const docTemplate = `{
         "kk_etcd_models.RoleGrantPermissionParam": {
             "type": "object",
             "properties": {
-                "Role": {
-                    "$ref": "#/definitions/kk_etcd_models.PBRole"
+                "Name": {
+                    "type": "string"
+                },
+                "Perm": {
+                    "$ref": "#/definitions/kk_etcd_models.PBPermission"
                 }
             }
         },
@@ -1091,6 +1138,23 @@ const docTemplate = `{
                     "$ref": "#/definitions/kk_etcd_models.PBListRole"
                 }
             }
+        },
+        "kk_etcd_models.RoleRevokePermissionParam": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "type": "string"
+                },
+                "Name": {
+                    "type": "string"
+                },
+                "RangeEnd": {
+                    "type": "string"
+                }
+            }
+        },
+        "kk_etcd_models.RoleRevokePermissionResponse": {
+            "type": "object"
         },
         "kk_etcd_models.ServerListParam": {
             "type": "object",

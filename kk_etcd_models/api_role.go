@@ -50,3 +50,14 @@ func (x *RoleGrantPermissionParam) BindCheck(stage *kk_stage.Stage) error {
 
 	return nil
 }
+func (x *RoleRevokePermissionParam) BindCheck(stage *kk_stage.Stage) error {
+	err := kk_http.ReadProtoBuf(stage, x)
+	if err != nil {
+		return err
+	}
+	if x.GetName() == "" {
+		return errors.New("name is empty")
+	}
+
+	return nil
+}

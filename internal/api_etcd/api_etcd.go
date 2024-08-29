@@ -36,6 +36,7 @@ func ApiEtcd(stage *kk_stage.Stage) {
 		apiGroup.POST("roleGet", roleGet)
 		apiGroup.POST("roleList", roleList)
 		apiGroup.POST("roleGrantPermission", roleGrantPermission)
+		apiGroup.POST("roleRevokePermission", roleRevokePermission)
 	}
 
 	{

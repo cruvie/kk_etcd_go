@@ -36,7 +36,7 @@ func (HBackup) SnapshotInfo(stage *kk_stage.Stage, param *kk_etcd_models.Snapsho
 func (HBackup) AllKVsBackup(stage *kk_stage.Stage, _ *kk_etcd_models.AllKVsBackupParam) (error, *kk_etcd_models.AllKVsBackupResponse) {
 	span := stage.StartTrace("SnapshotInfo")
 	defer span.End()
-	err, response := serBackup.AllKVsBackup()
+	err, response := serBackup.AllKVsBackup(stage)
 	return err, response
 }
 

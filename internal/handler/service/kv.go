@@ -4,7 +4,8 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
-	"github.com/cruvie/kk_etcd_go/kk_etcd_client"
+	"gitee.com/cruvie/kk_go_kit/kk_stage"
+	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_const"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_error"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
@@ -17,16 +18,16 @@ type SerKV struct{}
 
 var serKV SerKV
 
-func (SerKV) KVPut(key string, value string) error {
-	_, err := kk_etcd_client.EtcdClient.Put(context.Background(), key, value)
+func (SerKV) KVPut(stage *kk_stage.Stage, key string, value string) error {
+	_, err := global_model.GetClient(stage).Put(context.Background(), key, value)
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (SerKV) KVGet(key string) (err error, value []byte) {
-	getResponse, err := kk_etcd_client.EtcdClient.Get(context.Background(), key)
+func (SerKV) KVGet(stage *kk_stage.Stage, key string) (err error, value []byte) {
+	getResponse, err := global_model.GetClient(stage).Get(context.Background(), key)
 	if err != nil {
 		return err, nil
 	}
@@ -36,17 +37,17 @@ func (SerKV) KVGet(key string) (err error, value []byte) {
 	return nil, getResponse.Kvs[0].Value
 }
 
-func (SerKV) KVDel(key string) error {
-	_, err := kk_etcd_client.EtcdClient.Delete(context.Background(), key)
+func (SerKV) KVDel(stage *kk_stage.Stage, key string) error {
+	_, err := global_model.GetClient(stage).Delete(context.Background(), key)
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func (SerKV) KVList(prefix string) (err error, list *kk_etcd_models.PBListKV) {
+func (SerKV) KVList(stage *kk_stage.Stage, prefix string) (err error, list *kk_etcd_models.PBListKV) {
 	list = &kk_etcd_models.PBListKV{}
-	getResponse, err := kk_etcd_client.EtcdClient.Get(context.Background(), prefix, clientv3.WithPrefix())
+	getResponse, err := global_model.GetClient(stage).Get(context.Background(), prefix, clientv3.WithPrefix())
 	if err != nil {
 		return err, nil
 	}
@@ -70,8 +71,8 @@ func (SerKV) KVList(prefix string) (err error, list *kk_etcd_models.PBListKV) {
 
 // GetYaml get yaml from etcd and unmarshal to structPtr
 // eg: GetYaml("configKey", &Config)
-func (SerKV) GetYaml(key string, structPtr any) error {
-	err, value := serKV.KVGet(key)
+func (SerKV) GetYaml(stage *kk_stage.Stage, key string, structPtr any) error {
+	err, value := serKV.KVGet(stage, key)
 	if err != nil {
 		return err
 	}
@@ -84,32 +85,32 @@ func (SerKV) GetYaml(key string, structPtr any) error {
 
 // PutYaml put struct to etcd in yaml format, key should not exist
 // recommend: use PutJson instead which is more efficient
-func (s SerKV) PutYaml(key string, structPtr any) error {
-	err := s.CheckKeyExist(key)
+func (s SerKV) PutYaml(stage *kk_stage.Stage, key string, structPtr any) error {
+	err := s.CheckKeyExist(stage, key)
 	if !errors.Is(err, kk_etcd_error.KeyNotFound) {
 		return err
 	}
 
-	return toolKV.putYaml(key, structPtr)
+	return toolKV.putYaml(stage, key, structPtr)
 }
 
 // UpdateYaml update struct in etcd, key should exist
-func (s SerKV) UpdateYaml(key string, structPtr any) error {
-	err := s.CheckKeyExist(key)
+func (s SerKV) UpdateYaml(stage *kk_stage.Stage, key string, structPtr any) error {
+	err := s.CheckKeyExist(stage, key)
 	if !errors.Is(err, kk_etcd_error.KeyAlreadyExists) {
 		return err
 	}
-	return toolKV.putYaml(key, structPtr)
+	return toolKV.putYaml(stage, key, structPtr)
 }
 
-func (s SerKV) PutExistUpdateYaml(key string, structPtr any) error {
-	return toolKV.putYaml(key, structPtr)
+func (s SerKV) PutExistUpdateYaml(stage *kk_stage.Stage, key string, structPtr any) error {
+	return toolKV.putYaml(stage, key, structPtr)
 }
 
 // GetJson get json from etcd and unmarshal to structPtr
 // eg: GetJson("configKey", &Config)
-func (SerKV) GetJson(key string, structPtr any) error {
-	err, value := serKV.KVGet(key)
+func (SerKV) GetJson(stage *kk_stage.Stage, key string, structPtr any) error {
+	err, value := serKV.KVGet(stage, key)
 	if err != nil {
 		return err
 	}
@@ -121,28 +122,28 @@ func (SerKV) GetJson(key string, structPtr any) error {
 }
 
 // PutJson put struct to etcd in json format, key should not exist
-func (s SerKV) PutJson(key string, structPtr any) error {
-	err := s.CheckKeyExist(key)
+func (s SerKV) PutJson(stage *kk_stage.Stage, key string, structPtr any) error {
+	err := s.CheckKeyExist(stage, key)
 	if !errors.Is(err, kk_etcd_error.KeyNotFound) {
 		return err
 	}
-	return toolKV.putJson(key, structPtr)
+	return toolKV.putJson(stage, key, structPtr)
 }
 
 // UpdateJson update struct in etcd, key should exist
-func (s SerKV) UpdateJson(key string, structPtr any) error {
-	err := s.CheckKeyExist(key)
+func (s SerKV) UpdateJson(stage *kk_stage.Stage, key string, structPtr any) error {
+	err := s.CheckKeyExist(stage, key)
 	if !errors.Is(err, kk_etcd_error.KeyAlreadyExists) {
 		return err
 	}
-	return toolKV.putJson(key, structPtr)
+	return toolKV.putJson(stage, key, structPtr)
 }
-func (s SerKV) PutExistUpdateJson(key string, structPtr any) error {
-	return toolKV.putJson(key, structPtr)
+func (s SerKV) PutExistUpdateJson(stage *kk_stage.Stage, key string, structPtr any) error {
+	return toolKV.putJson(stage, key, structPtr)
 }
 
-func (s SerKV) CheckKeyExist(key string) error {
-	err, _ := s.KVGet(key)
+func (s SerKV) CheckKeyExist(stage *kk_stage.Stage, key string) error {
+	err, _ := s.KVGet(stage, key)
 	if err != nil {
 		return err
 	} else {

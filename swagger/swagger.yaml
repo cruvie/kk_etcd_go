@@ -128,11 +128,9 @@ definitions:
           $ref: '#/definitions/kk_etcd_models.PBUser'
         type: array
     type: object
-  kk_etcd_models.PBRole:
+  kk_etcd_models.PBPermission:
     properties:
       Key:
-        type: string
-      Name:
         type: string
       PermissionType:
         description: |-
@@ -142,6 +140,15 @@ definitions:
         type: integer
       RangeEnd:
         type: string
+    type: object
+  kk_etcd_models.PBRole:
+    properties:
+      Name:
+        type: string
+      Perms:
+        items:
+          $ref: '#/definitions/kk_etcd_models.PBPermission'
+        type: array
     type: object
   kk_etcd_models.PBServer:
     properties:
@@ -187,8 +194,10 @@ definitions:
     type: object
   kk_etcd_models.RoleGrantPermissionParam:
     properties:
-      Role:
-        $ref: '#/definitions/kk_etcd_models.PBRole'
+      Name:
+        type: string
+      Perm:
+        $ref: '#/definitions/kk_etcd_models.PBPermission'
     type: object
   kk_etcd_models.RoleGrantPermissionResponse:
     type: object
@@ -198,6 +207,17 @@ definitions:
     properties:
       ListRole:
         $ref: '#/definitions/kk_etcd_models.PBListRole'
+    type: object
+  kk_etcd_models.RoleRevokePermissionParam:
+    properties:
+      Key:
+        type: string
+      Name:
+        type: string
+      RangeEnd:
+        type: string
+    type: object
+  kk_etcd_models.RoleRevokePermissionResponse:
     type: object
   kk_etcd_models.ServerListParam:
     properties:
@@ -583,6 +603,27 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/kk_etcd_models.RoleListResponse'
+      tags:
+      - role
+  /role/roleRevokePermission:
+    post:
+      consumes:
+      - application/octet-stream
+      description: revoke permission
+      parameters:
+      - description: RoleRevokePermissionParam
+        in: body
+        name: RoleRevokePermissionParam
+        required: true
+        schema:
+          $ref: '#/definitions/kk_etcd_models.RoleRevokePermissionParam'
+      produces:
+      - application/octet-stream
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/kk_etcd_models.RoleRevokePermissionResponse'
       tags:
       - role
   /server/serverList:

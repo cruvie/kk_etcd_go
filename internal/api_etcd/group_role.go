@@ -139,3 +139,29 @@ func roleGrantPermission(c *gin.Context) {
 	}
 	kk_http.ResponseSuccessPB(stage, nil, resp)
 }
+
+// roleRevokePermission
+//
+//	@Tags			role
+//	@Description	revoke permission
+//	@Accept			octet-stream
+//	@Produce		octet-stream
+//	@Param			RoleRevokePermissionParam	body		kk_etcd_models.RoleRevokePermissionParam	true	"RoleRevokePermissionParam"
+//	@Success		200							{object}	kk_etcd_models.RoleRevokePermissionResponse
+//	@Router			/role/roleRevokePermission [post]
+func roleRevokePermission(c *gin.Context) {
+	stage := global_stage.GetRequestStage(c)
+	span := stage.StartTrace("roleRevokePermission")
+	defer span.End()
+	var param kk_etcd_models.RoleRevokePermissionParam
+	if err := param.BindCheck(stage); err != nil {
+		kk_http.ResponseErrPB(stage, err)
+		return
+	}
+	err, resp := hRole.RoleRevokePermission(stage, &param)
+	if err != nil {
+		kk_http.ResponseErrPB(stage, err)
+		return
+	}
+	kk_http.ResponseSuccessPB(stage, nil, resp)
+}

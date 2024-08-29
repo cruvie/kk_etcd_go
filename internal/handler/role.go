@@ -22,7 +22,7 @@ func (HRole) RoleAdd(stage *kk_stage.Stage, param *kk_etcd_models.RoleAddParam) 
 	if param.GetName() == kk_etcd_const.RoleRoot {
 		return errors.New("illegal add root role"), nil
 	}
-	err = serRole.RoleAdd(param)
+	err = serRole.RoleAdd(stage, param)
 	return err, &kk_etcd_models.RoleAddResponse{}
 }
 
@@ -36,13 +36,13 @@ func (HRole) RoleDelete(stage *kk_stage.Stage, param *kk_etcd_models.RoleDeleteP
 	if param.GetName() == kk_etcd_const.RoleRoot {
 		return errors.New("illegal delete root role"), nil
 	}
-	err = serRole.RoleDelete(param.GetName())
+	err = serRole.RoleDelete(stage, param.GetName())
 	return err, &kk_etcd_models.RoleDeleteResponse{}
 }
 func (HRole) RoleGet(stage *kk_stage.Stage, param *kk_etcd_models.RoleGetParam) (error, *kk_etcd_models.RoleGetResponse) {
 	span := stage.StartTrace("RoleGet")
 	defer span.End()
-	role, err := serRole.RoleGet(param.GetName())
+	role, err := serRole.RoleGet(stage, param.GetName())
 	return err, &kk_etcd_models.RoleGetResponse{
 		Role: role,
 	}
@@ -51,7 +51,7 @@ func (HRole) RoleGet(stage *kk_stage.Stage, param *kk_etcd_models.RoleGetParam) 
 func (HRole) RoleList(stage *kk_stage.Stage, _ *kk_etcd_models.RoleListParam) (error, *kk_etcd_models.RoleListResponse) {
 	span := stage.StartTrace("RoleList")
 	defer span.End()
-	err, roles := serRole.RoleList()
+	err, roles := serRole.RoleList(stage)
 	return err, &kk_etcd_models.RoleListResponse{
 		ListRole: roles,
 	}
@@ -67,6 +67,16 @@ func (HRole) RoleGrantPermission(stage *kk_stage.Stage, param *kk_etcd_models.Ro
 	if param.GetName() == kk_etcd_const.RoleRoot {
 		return errors.New("illegal change root role permission"), nil
 	}
-	err = serRole.RoleGrantPermission(param.GetName(), param.GetPerm())
+	err = serRole.RoleGrantPermission(stage, param)
 	return err, &kk_etcd_models.RoleGrantPermissionResponse{}
+}
+
+func (HRole) RoleRevokePermission(stage *kk_stage.Stage, param *kk_etcd_models.RoleRevokePermissionParam) (error, *kk_etcd_models.RoleRevokePermissionResponse) {
+	span := stage.StartTrace("RoleRevokePermission")
+	defer span.End()
+	err := serRole.RoleRevokePermission(stage, param)
+	if err != nil {
+		return err, nil
+	}
+	return nil, &kk_etcd_models.RoleRevokePermissionResponse{}
 }

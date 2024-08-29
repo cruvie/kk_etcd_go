@@ -122,4 +122,28 @@ class ApiRole {
       log.info(e);
     }
   }
+
+  /// revoke permission
+  static Future<void> roleRevokePermission(
+      RoleRevokePermissionParam param,
+      Future<PBResponse> Function(String path, Uint8List requestData)
+          requestFunc,
+      {Function(RoleRevokePermissionResponse)? okFunc,
+      Function(RoleRevokePermissionResponse)? errorFunc}) async {
+    RoleRevokePermissionResponse response = RoleRevokePermissionResponse();
+    PBResponse res =
+        await requestFunc("/role/roleRevokePermission", param.writeToBuffer());
+    try {
+      if (res.code == 200) {
+        res.data.unpackInto(response);
+        if (okFunc != null) {
+          await okFunc(response);
+        }
+      } else if (errorFunc != null) {
+        await errorFunc(response);
+      }
+    } catch (e) {
+      log.info(e);
+    }
+  }
 }

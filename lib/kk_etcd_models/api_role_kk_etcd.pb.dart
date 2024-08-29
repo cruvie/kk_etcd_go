@@ -368,7 +368,7 @@ class RoleListResponse extends $pb.GeneratedMessage {
 class RoleGrantPermissionParam extends $pb.GeneratedMessage {
   factory RoleGrantPermissionParam({
     $core.String? name,
-    $1.Permission? perm,
+    $1.PBPermission? perm,
   }) {
     final $result = create();
     if (name != null) {
@@ -385,7 +385,7 @@ class RoleGrantPermissionParam extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'RoleGrantPermissionParam', package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd_models'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'Name', protoName: 'Name')
-    ..aOM<$1.Permission>(2, _omitFieldNames ? '' : 'Perm', protoName: 'Perm', subBuilder: $1.Permission.create)
+    ..aOM<$1.PBPermission>(2, _omitFieldNames ? '' : 'Perm', protoName: 'Perm', subBuilder: $1.PBPermission.create)
     ..hasRequiredFields = false
   ;
 
@@ -420,15 +420,15 @@ class RoleGrantPermissionParam extends $pb.GeneratedMessage {
   void clearName() => clearField(1);
 
   @$pb.TagNumber(2)
-  $1.Permission get perm => $_getN(1);
+  $1.PBPermission get perm => $_getN(1);
   @$pb.TagNumber(2)
-  set perm($1.Permission v) { setField(2, v); }
+  set perm($1.PBPermission v) { setField(2, v); }
   @$pb.TagNumber(2)
   $core.bool hasPerm() => $_has(1);
   @$pb.TagNumber(2)
   void clearPerm() => clearField(2);
   @$pb.TagNumber(2)
-  $1.Permission ensurePerm() => $_ensure(1);
+  $1.PBPermission ensurePerm() => $_ensure(1);
 }
 
 class RoleGrantPermissionResponse extends $pb.GeneratedMessage {
@@ -461,6 +461,116 @@ class RoleGrantPermissionResponse extends $pb.GeneratedMessage {
   @$core.pragma('dart2js:noInline')
   static RoleGrantPermissionResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<RoleGrantPermissionResponse>(create);
   static RoleGrantPermissionResponse? _defaultInstance;
+}
+
+class RoleRevokePermissionParam extends $pb.GeneratedMessage {
+  factory RoleRevokePermissionParam({
+    $core.String? name,
+    $core.String? key,
+    $core.String? rangeEnd,
+  }) {
+    final $result = create();
+    if (name != null) {
+      $result.name = name;
+    }
+    if (key != null) {
+      $result.key = key;
+    }
+    if (rangeEnd != null) {
+      $result.rangeEnd = rangeEnd;
+    }
+    return $result;
+  }
+  RoleRevokePermissionParam._() : super();
+  factory RoleRevokePermissionParam.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory RoleRevokePermissionParam.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'RoleRevokePermissionParam', package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd_models'), createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'Name', protoName: 'Name')
+    ..aOS(2, _omitFieldNames ? '' : 'Key', protoName: 'Key')
+    ..aOS(3, _omitFieldNames ? '' : 'RangeEnd', protoName: 'RangeEnd')
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  RoleRevokePermissionParam clone() => RoleRevokePermissionParam()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  RoleRevokePermissionParam copyWith(void Function(RoleRevokePermissionParam) updates) => super.copyWith((message) => updates(message as RoleRevokePermissionParam)) as RoleRevokePermissionParam;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static RoleRevokePermissionParam create() => RoleRevokePermissionParam._();
+  RoleRevokePermissionParam createEmptyInstance() => create();
+  static $pb.PbList<RoleRevokePermissionParam> createRepeated() => $pb.PbList<RoleRevokePermissionParam>();
+  @$core.pragma('dart2js:noInline')
+  static RoleRevokePermissionParam getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<RoleRevokePermissionParam>(create);
+  static RoleRevokePermissionParam? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get name => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set name($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasName() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearName() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get key => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set key($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasKey() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearKey() => clearField(2);
+
+  @$pb.TagNumber(3)
+  $core.String get rangeEnd => $_getSZ(2);
+  @$pb.TagNumber(3)
+  set rangeEnd($core.String v) { $_setString(2, v); }
+  @$pb.TagNumber(3)
+  $core.bool hasRangeEnd() => $_has(2);
+  @$pb.TagNumber(3)
+  void clearRangeEnd() => clearField(3);
+}
+
+class RoleRevokePermissionResponse extends $pb.GeneratedMessage {
+  factory RoleRevokePermissionResponse() => create();
+  RoleRevokePermissionResponse._() : super();
+  factory RoleRevokePermissionResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory RoleRevokePermissionResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'RoleRevokePermissionResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd_models'), createEmptyInstance: create)
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  RoleRevokePermissionResponse clone() => RoleRevokePermissionResponse()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  RoleRevokePermissionResponse copyWith(void Function(RoleRevokePermissionResponse) updates) => super.copyWith((message) => updates(message as RoleRevokePermissionResponse)) as RoleRevokePermissionResponse;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static RoleRevokePermissionResponse create() => RoleRevokePermissionResponse._();
+  RoleRevokePermissionResponse createEmptyInstance() => create();
+  static $pb.PbList<RoleRevokePermissionResponse> createRepeated() => $pb.PbList<RoleRevokePermissionResponse>();
+  @$core.pragma('dart2js:noInline')
+  static RoleRevokePermissionResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<RoleRevokePermissionResponse>(create);
+  static RoleRevokePermissionResponse? _defaultInstance;
 }
 
 

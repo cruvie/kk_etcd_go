@@ -107,14 +107,14 @@ const RoleGrantPermissionParam$json = {
   '1': 'RoleGrantPermissionParam',
   '2': [
     {'1': 'Name', '3': 1, '4': 1, '5': 9, '10': 'Name'},
-    {'1': 'Perm', '3': 2, '4': 1, '5': 11, '6': '.kk_etcd_models.Permission', '10': 'Perm'},
+    {'1': 'Perm', '3': 2, '4': 1, '5': 11, '6': '.kk_etcd_models.PBPermission', '10': 'Perm'},
   ],
 };
 
 /// Descriptor for `RoleGrantPermissionParam`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List roleGrantPermissionParamDescriptor = $convert.base64Decode(
-    'ChhSb2xlR3JhbnRQZXJtaXNzaW9uUGFyYW0SEgoETmFtZRgBIAEoCVIETmFtZRIuCgRQZXJtGA'
-    'IgASgLMhoua2tfZXRjZF9tb2RlbHMuUGVybWlzc2lvblIEUGVybQ==');
+    'ChhSb2xlR3JhbnRQZXJtaXNzaW9uUGFyYW0SEgoETmFtZRgBIAEoCVIETmFtZRIwCgRQZXJtGA'
+    'IgASgLMhwua2tfZXRjZF9tb2RlbHMuUEJQZXJtaXNzaW9uUgRQZXJt');
 
 @$core.Deprecated('Use roleGrantPermissionResponseDescriptor instead')
 const RoleGrantPermissionResponse$json = {
@@ -124,4 +124,28 @@ const RoleGrantPermissionResponse$json = {
 /// Descriptor for `RoleGrantPermissionResponse`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List roleGrantPermissionResponseDescriptor = $convert.base64Decode(
     'ChtSb2xlR3JhbnRQZXJtaXNzaW9uUmVzcG9uc2U=');
+
+@$core.Deprecated('Use roleRevokePermissionParamDescriptor instead')
+const RoleRevokePermissionParam$json = {
+  '1': 'RoleRevokePermissionParam',
+  '2': [
+    {'1': 'Name', '3': 1, '4': 1, '5': 9, '10': 'Name'},
+    {'1': 'Key', '3': 2, '4': 1, '5': 9, '10': 'Key'},
+    {'1': 'RangeEnd', '3': 3, '4': 1, '5': 9, '10': 'RangeEnd'},
+  ],
+};
+
+/// Descriptor for `RoleRevokePermissionParam`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List roleRevokePermissionParamDescriptor = $convert.base64Decode(
+    'ChlSb2xlUmV2b2tlUGVybWlzc2lvblBhcmFtEhIKBE5hbWUYASABKAlSBE5hbWUSEAoDS2V5GA'
+    'IgASgJUgNLZXkSGgoIUmFuZ2VFbmQYAyABKAlSCFJhbmdlRW5k');
+
+@$core.Deprecated('Use roleRevokePermissionResponseDescriptor instead')
+const RoleRevokePermissionResponse$json = {
+  '1': 'RoleRevokePermissionResponse',
+};
+
+/// Descriptor for `RoleRevokePermissionResponse`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List roleRevokePermissionResponseDescriptor = $convert.base64Decode(
+    'ChxSb2xlUmV2b2tlUGVybWlzc2lvblJlc3BvbnNl');
 
