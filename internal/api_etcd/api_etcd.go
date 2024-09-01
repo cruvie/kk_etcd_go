@@ -50,6 +50,7 @@ func ApiEtcd(stage *kk_stage.Stage) {
 	{
 		apiGroup := r.Group("server")
 		apiGroup.POST("serverList", serverList)
+		apiGroup.POST("deregisterServer", deregisterServer)
 	}
 
 	{

@@ -35,3 +35,29 @@ func serverList(c *gin.Context) {
 	}
 	kk_http.ResponseSuccessPB(stage, nil, resp)
 }
+
+// deregisterServer
+//
+//	 @Tags           server
+//		@Description	deregister server
+//		@Accept			octet-stream
+//		@Produce		octet-stream
+//		@Param			DeregisterServerParam	body		kk_etcd_models.DeregisterServerParam	true	"DeregisterServerParam"
+//		@Success		200					{object}	kk_etcd_models.DeregisterServerResponse
+//		@Router			/server/deregisterServer [post]
+func deregisterServer(c *gin.Context) {
+	stage := global_stage.GetRequestStage(c)
+	span := stage.StartTrace("deregisterServer")
+	defer span.End()
+	var param kk_etcd_models.DeregisterServerParam
+	if err := param.BindCheck(stage); err != nil {
+		kk_http.ResponseErrPB(stage, err)
+		return
+	}
+	err, resp := hServer.DeregisterServer(stage, &param)
+	if err != nil {
+		kk_http.ResponseErrPB(stage, err)
+		return
+	}
+	kk_http.ResponseSuccessPB(stage, nil, resp)
+}

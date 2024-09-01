@@ -1,12 +1,11 @@
 package main
 
 import (
-	"context"
 	"gitee.com/cruvie/kk_go_kit/kk_config_interface"
 	"gitee.com/cruvie/kk_go_kit/kk_log"
-	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/internal/api_etcd"
 	"github.com/cruvie/kk_etcd_go/internal/config"
+	"github.com/cruvie/kk_etcd_go/internal/internal_handler/internal_service"
 	"github.com/cruvie/kk_etcd_go/internal/utils/internal_client"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_const"
 	_ "github.com/cruvie/kk_etcd_go/swagger"
@@ -28,19 +27,31 @@ import (
 // @BasePath	/
 func main() {
 	config.InitConfig()
-	stage := kk_stage.NewStage(context.Background(), kk_etcd_const.ServerName, config.Config.DebugMode)
+	internal_client.InitGlobalStage(config.Config.DebugMode)
+	defer internal_client.CloseGlobalStage()
+
 	configLog := kk_log.ConfigLog{
 		Lumberjack: kk_log.DefaultLogConfig(kk_etcd_const.ServerName),
 	}
 	init := &kk_config_interface.InitArgs{
-		DebugMode:   stage.DebugMode,
-		ServiceName: stage.ServiceName,
+		DebugMode:   internal_client.GlobalStage.DebugMode,
+		ServiceName: internal_client.GlobalStage.ServiceName,
 	}
 	configLog.Init(init)
 	defer configLog.Close()
 
-	internal_client.InitEtcd(stage)
-	internal_client.InitInternalClient()
+	internal_client.InitEtcd(internal_client.GlobalStage)
 
-	api_etcd.ApiEtcd(stage)
+	err := internal_client.InitClient(&internal_client.InitClientConfig{
+		Endpoints: []string{config.Config.Etcd.Endpoint},
+		UserName:  kk_etcd_const.UserRoot,
+		Password:  config.Config.RootPassword,
+		DebugMode: internal_client.GlobalStage.DebugMode})
+	if err != nil {
+		panic(err)
+	}
+
+	internal_service.Checker.WatchServerChange()
+
+	api_etcd.ApiEtcd(internal_client.GlobalStage)
 }

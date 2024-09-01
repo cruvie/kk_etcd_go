@@ -13,7 +13,7 @@ import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import 'pb_user_kk_etcd.pb.dart' as $3;
+import 'pb_user_kk_etcd.pb.dart' as $4;
 
 class LoginParam extends $pb.GeneratedMessage {
   factory LoginParam({
@@ -431,7 +431,7 @@ class GetUserParam extends $pb.GeneratedMessage {
 
 class GetUserResponse extends $pb.GeneratedMessage {
   factory GetUserResponse({
-    $3.PBUser? user,
+    $4.PBUser? user,
   }) {
     final $result = create();
     if (user != null) {
@@ -444,7 +444,7 @@ class GetUserResponse extends $pb.GeneratedMessage {
   factory GetUserResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'GetUserResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd_models'), createEmptyInstance: create)
-    ..aOM<$3.PBUser>(1, _omitFieldNames ? '' : 'User', protoName: 'User', subBuilder: $3.PBUser.create)
+    ..aOM<$4.PBUser>(1, _omitFieldNames ? '' : 'User', protoName: 'User', subBuilder: $4.PBUser.create)
     ..hasRequiredFields = false
   ;
 
@@ -470,15 +470,15 @@ class GetUserResponse extends $pb.GeneratedMessage {
   static GetUserResponse? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $3.PBUser get user => $_getN(0);
+  $4.PBUser get user => $_getN(0);
   @$pb.TagNumber(1)
-  set user($3.PBUser v) { setField(1, v); }
+  set user($4.PBUser v) { setField(1, v); }
   @$pb.TagNumber(1)
   $core.bool hasUser() => $_has(0);
   @$pb.TagNumber(1)
   void clearUser() => clearField(1);
   @$pb.TagNumber(1)
-  $3.PBUser ensureUser() => $_ensure(0);
+  $4.PBUser ensureUser() => $_ensure(0);
 }
 
 class MyInfoParam extends $pb.GeneratedMessage {
@@ -605,7 +605,7 @@ class UserListParam extends $pb.GeneratedMessage {
 
 class UserListResponse extends $pb.GeneratedMessage {
   factory UserListResponse({
-    $3.PBListUser? listUser,
+    $4.PBListUser? listUser,
   }) {
     final $result = create();
     if (listUser != null) {
@@ -618,7 +618,7 @@ class UserListResponse extends $pb.GeneratedMessage {
   factory UserListResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'UserListResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd_models'), createEmptyInstance: create)
-    ..aOM<$3.PBListUser>(1, _omitFieldNames ? '' : 'ListUser', protoName: 'ListUser', subBuilder: $3.PBListUser.create)
+    ..aOM<$4.PBListUser>(1, _omitFieldNames ? '' : 'ListUser', protoName: 'ListUser', subBuilder: $4.PBListUser.create)
     ..hasRequiredFields = false
   ;
 
@@ -644,15 +644,15 @@ class UserListResponse extends $pb.GeneratedMessage {
   static UserListResponse? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $3.PBListUser get listUser => $_getN(0);
+  $4.PBListUser get listUser => $_getN(0);
   @$pb.TagNumber(1)
-  set listUser($3.PBListUser v) { setField(1, v); }
+  set listUser($4.PBListUser v) { setField(1, v); }
   @$pb.TagNumber(1)
   $core.bool hasListUser() => $_has(0);
   @$pb.TagNumber(1)
   void clearListUser() => clearField(1);
   @$pb.TagNumber(1)
-  $3.PBListUser ensureListUser() => $_ensure(0);
+  $4.PBListUser ensureListUser() => $_ensure(0);
 }
 
 class UserGrantRoleParam extends $pb.GeneratedMessage {

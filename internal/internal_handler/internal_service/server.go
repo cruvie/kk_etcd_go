@@ -2,12 +2,14 @@ package internal_service
 
 import (
 	"context"
-	"errors"
+	"fmt"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
-	"github.com/cruvie/kk_etcd_go/internal/utils/internal_client"
-	"github.com/cruvie/kk_etcd_go/kk_etcd_const"
+	"gitee.com/cruvie/kk_go_kit/kk_time"
+	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
+	clientv3 "go.etcd.io/etcd/client/v3"
 	"go.etcd.io/etcd/client/v3/naming/endpoints"
+	"google.golang.org/protobuf/types/known/timestamppb"
 	"sort"
 )
 
@@ -16,44 +18,19 @@ type SerServer struct{}
 var serInternalServer SerServer
 
 func (SerServer) RegisterService(stage *kk_stage.Stage, registration *kk_etcd_models.ServiceRegistration) error {
-	if registration.ServerType != kk_etcd_const.ServiceHttp && registration.ServerType != kk_etcd_const.ServiceGrpc {
-
-		msg := "server type is invalid"
-		return errors.New(msg)
-	}
-	if registration.ServerName == "" {
-		msg := "server name cannot be empty"
-		return errors.New(msg)
-	}
-	if registration.Address == "" {
-		msg := "server address cannot be empty"
-		return errors.New(msg)
-	}
-	if registration.Check == nil {
-		msg := "server Check cannot be empty"
-		return errors.New(msg)
-	}
-	switch registration.Check.Type {
+	switch registration.CheckConfig.Type {
 	case kk_etcd_models.CheckTypeHttp:
-		if registration.Check.HTTP == "" {
-			registration.Check.HTTP = "http://" + registration.Address + kk_etcd_models.HealthCheckPath
+		if registration.CheckConfig.Addr == "" {
+			registration.CheckConfig.Addr = "http://" + registration.Addr + kk_etcd_models.HealthCheckPath
 		}
 	case kk_etcd_models.CheckTypeGrpc:
-		if registration.Check.GRPC == "" {
-			registration.Check.GRPC = registration.Address
+		if registration.CheckConfig.Addr == "" {
+			registration.CheckConfig.Addr = registration.Addr
 		}
-	default:
-		msg := "server Check Type is invalid"
-		return errors.New(msg)
 	}
-	if registration.Check.TTL == 0 {
-		registration.Check.TTL = 30
-	}
-	if registration.Check.Timeout == 0 {
-		registration.Check.Timeout = registration.Check.TTL / 3
-	}
-	if registration.Check.Interval == 0 {
-		registration.Check.Interval = registration.Check.TTL / 3
+	err := registration.Check()
+	if err != nil {
+		return err
 	}
 	return toolServer.registerServer(stage, registration)
 }
@@ -61,25 +38,50 @@ func (SerServer) RegisterService(stage *kk_stage.Stage, registration *kk_etcd_mo
 // ServerList
 // serviceName, should with prefix key_prefix.ServiceGrpc or key_prefix.ServiceHttp
 // only give prefix to get all service list
-func (SerServer) ServerList(serviceName string) (serverList *kk_etcd_models.PBListServer, err error) {
-	etcdManager, err := endpoints.NewManager(internal_client.InternalClient, serviceName)
-	if err != nil {
-		return nil, err
-	}
-	endpointMap, err := etcdManager.List(context.Background())
+func (SerServer) ServerList(client *clientv3.Client, serverType kk_etcd_models.ServiceType, serverName string) (serverList *kk_etcd_models.PBListServer, err error) {
+	endpointMap, err := toolServer.serverList(client, serverType, serverName)
 	if err != nil {
 		return nil, err
 	}
 	//ListServer:{Key2EndpointMap:{key:"kk_service_http/ss/go_user/128.2.2.3:8484"  value:{Addr:"128.2.2.3:8484"}}}
 	var pBListServer kk_etcd_models.PBListServer
 	for key, endpoint := range endpointMap {
-		pBListServer.ListServer = append(pBListServer.ListServer, &kk_etcd_models.PBServer{
-			ServiceName: key,
-			ServiceAddr: endpoint.Addr,
-		})
+		var info checkInfo
+		err := info.Convert(endpoint)
+		if err != nil {
+			pBListServer.ListServer = append(pBListServer.ListServer, &kk_etcd_models.PBServer{
+				ServiceName: key,
+				ServiceAddr: endpoint.Addr,
+				Status:      kk_etcd_models.PBServer_UnKnown,
+				LastCheck:   timestamppb.New(kk_time.DefaultTime),
+				Msg:         fmt.Sprintf("could not found server in check hub Err: %s", err.Error()),
+			})
+		} else {
+			pBListServer.ListServer = append(pBListServer.ListServer, &kk_etcd_models.PBServer{
+				ServiceName: key,
+				ServiceAddr: endpoint.Addr,
+				Status:      info.Status,
+				LastCheck:   timestamppb.New(info.LastCheck),
+				Msg:         info.Msg,
+			})
+		}
 	}
 	sort.Slice(pBListServer.ListServer, func(i, j int) bool {
 		return pBListServer.ListServer[i].ServiceName < pBListServer.ListServer[j].ServiceName
 	})
 	return &pBListServer, nil
+}
+
+func (SerServer) DeregisterServer(stage *kk_stage.Stage, param *kk_etcd_models.DeregisterServerParam) error {
+	key := param.GetServerType() + "/" + param.GetServerName()
+	endpointManager, err := endpoints.NewManager(global_model.GetClient(stage), param.GetServerType())
+	if err != nil {
+		return err
+	}
+
+	err = endpointManager.DeleteEndpoint(context.Background(), key)
+	if err != nil {
+		return err
+	}
+	return nil
 }

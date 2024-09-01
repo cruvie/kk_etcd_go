@@ -6,7 +6,6 @@ import (
 	"errors"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
-	"github.com/cruvie/kk_etcd_go/kk_etcd_const"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_error"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	"go.etcd.io/etcd/client/v3"
@@ -60,8 +59,8 @@ func (SerKV) KVList(stage *kk_stage.Stage, prefix string) (err error, list *kk_e
 		//	ServiceHttp = "kk_service_http/"
 		//	ServiceGrpc = "kk_service_grpc/"
 		if prefix == "" &&
-			(strings.HasPrefix(cfg.Key, kk_etcd_const.ServiceHttp) ||
-				strings.HasPrefix(cfg.Key, kk_etcd_const.ServiceGrpc)) {
+			(strings.HasPrefix(cfg.Key, kk_etcd_models.ServiceHttp.String()) ||
+				strings.HasPrefix(cfg.Key, kk_etcd_models.ServiceGrpc.String())) {
 			continue
 		}
 		list.ListKV = append(list.ListKV, cfg)

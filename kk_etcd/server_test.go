@@ -3,14 +3,12 @@ package kk_etcd
 import (
 	"context"
 	"gitee.com/cruvie/kk_go_kit/kk_log"
-	"github.com/cruvie/kk_etcd_go/kk_etcd_const"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/health/grpc_health_v1"
 	"log/slog"
 	"net"
 	"net/http"
-	"sync"
 	"testing"
 	"time"
 )
@@ -49,32 +47,28 @@ func TestStartGrpcServer(t *testing.T) {
 	}
 }
 func TestRegisterGrpcService(t *testing.T) {
-	// run TestStartGrpcServer first
-	var w sync.WaitGroup
-	w.Add(1)
 	initTestEnv()
+
 	//register grpc service
-	ctx, cancelFunc := context.WithCancel(context.Background())
-	defer cancelFunc()
-	//RegisterService(ctx, "127.2.1.1", "ssss")
-	//RegisterService(ctx, "127.2.2.3", "ssss")
-	_ = RegisterService(&kk_etcd_models.ServiceRegistration{
-		Context:    ctx,
-		ServerType: kk_etcd_const.ServiceGrpc,
-		ServerName: "haha",
-		Address:    "127.0.0.1:34844",
-		Check: &kk_etcd_models.ServiceCheck{
-			Type:    kk_etcd_models.CheckTypeGrpc,
-			TTL:     15,
-			Timeout: 10,
-			GRPC:    "127.0.0.1:34844",
+	err := RegisterService(&kk_etcd_models.ServiceRegistration{
+		ServerType: kk_etcd_models.ServiceGrpc,
+		ServerName: "haha_grpc",
+		Addr:       "127.0.0.1:34844",
+		Metadata:   "meta",
+		CheckConfig: kk_etcd_models.CheckConfig{
+			Type:     kk_etcd_models.CheckTypeGrpc,
+			Timeout:  10 * time.Second,
+			Interval: 5 * time.Second,
+			Addr:     "127.0.0.1:34844",
 		},
 	})
-	w.Wait()
+	if err != nil {
+		slog.Error("failed to register service", "err", err)
+	}
 }
 
 func TestStartHttpServer(t *testing.T) {
-	http.HandleFunc("/Check", func(writer http.ResponseWriter, request *http.Request) {
+	http.HandleFunc(kk_etcd_models.HealthCheckPath, func(writer http.ResponseWriter, request *http.Request) {
 		slog.Info("Check")
 		writer.WriteHeader(http.StatusOK)
 	})
@@ -84,39 +78,43 @@ func TestStartHttpServer(t *testing.T) {
 	}
 }
 func TestRegisterHttpService(t *testing.T) {
-	// run TestStartHttpServer first
-	var w sync.WaitGroup
-	w.Add(1)
 	initTestEnv()
 
-	ctx, cancelFunc := context.WithCancel(context.Background())
-	_ = RegisterService(&kk_etcd_models.ServiceRegistration{
-		Context:    ctx,
-		ServerType: kk_etcd_const.ServiceHttp,
-		ServerName: "haha",
-		Address:    "127.0.0.1:8848",
-		Check: &kk_etcd_models.ServiceCheck{
-			Type: kk_etcd_models.CheckTypeHttp,
-			TTL:  15,
-			HTTP: "http://127.0.0.1:8848/Check",
+	err := RegisterService(&kk_etcd_models.ServiceRegistration{
+		ServerType: kk_etcd_models.ServiceHttp,
+		ServerName: "haha_http",
+		Addr:       "127.0.0.1:8848",
+		CheckConfig: kk_etcd_models.CheckConfig{
+			Type:     kk_etcd_models.CheckTypeHttp,
+			Timeout:  10 * time.Second,
+			Interval: 5 * time.Second,
+			Addr:     "http://127.0.0.1:8848" + kk_etcd_models.HealthCheckPath,
 		},
 	})
-	w.Wait()
-	cancelFunc()
+	if err != nil {
+		slog.Error("failed to register service", "err", err)
+	}
 }
 
-func TestGetHttpServiceList(t *testing.T) {
+func TestGetGrpcServiceList(t *testing.T) {
 	initTestEnv()
-	for i := 0; i < 100; i++ {
-		list, _ := ServerList(&kk_etcd_models.ServerListParam{Prefix: kk_etcd_const.ServiceHttp})
+	for {
+		list, err := ServerList(&kk_etcd_models.ServerListParam{ServerType: kk_etcd_models.ServiceGrpc.String(), ServerName: "haha_grpc"})
+		if err != nil {
+			slog.Error("failed to list", "err", err)
+		}
 		slog.Info("list", "list", list)
 		time.Sleep(time.Second * 5)
 	}
 }
-func TestGetGrpcServiceList(t *testing.T) {
+
+func TestGetHttpServiceList(t *testing.T) {
 	initTestEnv()
-	for i := 0; i < 100; i++ {
-		list, _ := ServerList(&kk_etcd_models.ServerListParam{Prefix: kk_etcd_const.ServiceGrpc})
+	for {
+		list, err := ServerList(&kk_etcd_models.ServerListParam{ServerType: kk_etcd_models.ServiceHttp.String(), ServerName: "haha_http"})
+		if err != nil {
+			slog.Error("failed to list", "err", err)
+		}
 		slog.Info("list", "list", list)
 		time.Sleep(time.Second * 5)
 	}
@@ -129,7 +127,7 @@ func TestWatchServerList(t *testing.T) {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
-	err := WatchServerList(ctx, kk_etcd_const.ServiceHttp, serverListChan)
+	err := WatchServerList(ctx, kk_etcd_models.ServiceHttp, "haha_http", serverListChan)
 	if err != nil {
 		slog.Error("WatchServerList failed", "err", err)
 		return

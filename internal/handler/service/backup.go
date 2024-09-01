@@ -6,7 +6,6 @@ import (
 	"gitee.com/cruvie/kk_go_kit/kk_log"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
-	"github.com/cruvie/kk_etcd_go/kk_etcd_const"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	clientv3 "go.etcd.io/etcd/client/v3"
 	"io"
@@ -111,8 +110,8 @@ func (SerBackup) AllKVsBackup(stage *kk_stage.Stage) (error, *kk_etcd_models.All
 			Value: string(kv.Value),
 		}
 		//todo only support backup normal kv and config
-		if strings.HasPrefix(pbKV.Key, kk_etcd_const.ServiceHttp) ||
-			strings.HasPrefix(pbKV.Key, kk_etcd_const.ServiceGrpc) {
+		if strings.HasPrefix(pbKV.Key, kk_etcd_models.ServiceHttp.String()) ||
+			strings.HasPrefix(pbKV.Key, kk_etcd_models.ServiceGrpc.String()) {
 			continue
 		}
 

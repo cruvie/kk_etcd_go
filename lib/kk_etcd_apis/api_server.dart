@@ -29,4 +29,28 @@ class ApiServer {
       log.info(e);
     }
   }
+
+  /// deregister server
+  static Future<void> deregisterServer(
+      DeregisterServerParam param,
+      Future<PBResponse> Function(String path, Uint8List requestData)
+          requestFunc,
+      {Function(DeregisterServerResponse)? okFunc,
+      Function(DeregisterServerResponse)? errorFunc}) async {
+    DeregisterServerResponse response = DeregisterServerResponse();
+    PBResponse res =
+        await requestFunc("/server/deregisterServer", param.writeToBuffer());
+    try {
+      if (res.code == 200) {
+        res.data.unpackInto(response);
+        if (okFunc != null) {
+          await okFunc(response);
+        }
+      } else if (errorFunc != null) {
+        await errorFunc(response);
+      }
+    } catch (e) {
+      log.info(e);
+    }
+  }
 }

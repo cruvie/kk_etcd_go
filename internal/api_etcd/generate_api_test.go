@@ -189,6 +189,12 @@ func TestServer(t *testing.T) {
 				HandlerFuncName: "ServerList",
 			},
 		},
+		{
+			apiModel: kk_http.ApiModel{
+				Description:     "deregister server",
+				HandlerFuncName: "DeregisterServer",
+			},
+		},
 	}
 
 	for _, api := range apis {

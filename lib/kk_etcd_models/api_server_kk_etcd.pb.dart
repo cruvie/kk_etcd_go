@@ -13,15 +13,15 @@ import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
-import 'pb_server_kk_etcd.pb.dart' as $2;
+import 'pb_server_kk_etcd.pb.dart' as $3;
 
 class ServerListParam extends $pb.GeneratedMessage {
   factory ServerListParam({
-    $core.String? prefix,
+    $core.String? serverType,
   }) {
     final $result = create();
-    if (prefix != null) {
-      $result.prefix = prefix;
+    if (serverType != null) {
+      $result.serverType = serverType;
     }
     return $result;
   }
@@ -30,7 +30,7 @@ class ServerListParam extends $pb.GeneratedMessage {
   factory ServerListParam.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ServerListParam', package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd_models'), createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'Prefix', protoName: 'Prefix')
+    ..aOS(1, _omitFieldNames ? '' : 'ServerType', protoName: 'ServerType')
     ..hasRequiredFields = false
   ;
 
@@ -56,18 +56,18 @@ class ServerListParam extends $pb.GeneratedMessage {
   static ServerListParam? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.String get prefix => $_getSZ(0);
+  $core.String get serverType => $_getSZ(0);
   @$pb.TagNumber(1)
-  set prefix($core.String v) { $_setString(0, v); }
+  set serverType($core.String v) { $_setString(0, v); }
   @$pb.TagNumber(1)
-  $core.bool hasPrefix() => $_has(0);
+  $core.bool hasServerType() => $_has(0);
   @$pb.TagNumber(1)
-  void clearPrefix() => clearField(1);
+  void clearServerType() => clearField(1);
 }
 
 class ServerListResponse extends $pb.GeneratedMessage {
   factory ServerListResponse({
-    $2.PBListServer? serverList,
+    $3.PBListServer? serverList,
   }) {
     final $result = create();
     if (serverList != null) {
@@ -80,7 +80,7 @@ class ServerListResponse extends $pb.GeneratedMessage {
   factory ServerListResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ServerListResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd_models'), createEmptyInstance: create)
-    ..aOM<$2.PBListServer>(1, _omitFieldNames ? '' : 'ServerList', protoName: 'ServerList', subBuilder: $2.PBListServer.create)
+    ..aOM<$3.PBListServer>(1, _omitFieldNames ? '' : 'ServerList', protoName: 'ServerList', subBuilder: $3.PBListServer.create)
     ..hasRequiredFields = false
   ;
 
@@ -106,15 +106,111 @@ class ServerListResponse extends $pb.GeneratedMessage {
   static ServerListResponse? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $2.PBListServer get serverList => $_getN(0);
+  $3.PBListServer get serverList => $_getN(0);
   @$pb.TagNumber(1)
-  set serverList($2.PBListServer v) { setField(1, v); }
+  set serverList($3.PBListServer v) { setField(1, v); }
   @$pb.TagNumber(1)
   $core.bool hasServerList() => $_has(0);
   @$pb.TagNumber(1)
   void clearServerList() => clearField(1);
   @$pb.TagNumber(1)
-  $2.PBListServer ensureServerList() => $_ensure(0);
+  $3.PBListServer ensureServerList() => $_ensure(0);
+}
+
+class DeregisterServerParam extends $pb.GeneratedMessage {
+  factory DeregisterServerParam({
+    $core.String? serverType,
+    $core.String? serverName,
+  }) {
+    final $result = create();
+    if (serverType != null) {
+      $result.serverType = serverType;
+    }
+    if (serverName != null) {
+      $result.serverName = serverName;
+    }
+    return $result;
+  }
+  DeregisterServerParam._() : super();
+  factory DeregisterServerParam.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory DeregisterServerParam.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'DeregisterServerParam', package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd_models'), createEmptyInstance: create)
+    ..aOS(1, _omitFieldNames ? '' : 'ServerType', protoName: 'ServerType')
+    ..aOS(2, _omitFieldNames ? '' : 'ServerName', protoName: 'ServerName')
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  DeregisterServerParam clone() => DeregisterServerParam()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  DeregisterServerParam copyWith(void Function(DeregisterServerParam) updates) => super.copyWith((message) => updates(message as DeregisterServerParam)) as DeregisterServerParam;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static DeregisterServerParam create() => DeregisterServerParam._();
+  DeregisterServerParam createEmptyInstance() => create();
+  static $pb.PbList<DeregisterServerParam> createRepeated() => $pb.PbList<DeregisterServerParam>();
+  @$core.pragma('dart2js:noInline')
+  static DeregisterServerParam getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<DeregisterServerParam>(create);
+  static DeregisterServerParam? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.String get serverType => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set serverType($core.String v) { $_setString(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasServerType() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearServerType() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get serverName => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set serverName($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasServerName() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearServerName() => clearField(2);
+}
+
+class DeregisterServerResponse extends $pb.GeneratedMessage {
+  factory DeregisterServerResponse() => create();
+  DeregisterServerResponse._() : super();
+  factory DeregisterServerResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory DeregisterServerResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'DeregisterServerResponse', package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd_models'), createEmptyInstance: create)
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  DeregisterServerResponse clone() => DeregisterServerResponse()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  DeregisterServerResponse copyWith(void Function(DeregisterServerResponse) updates) => super.copyWith((message) => updates(message as DeregisterServerResponse)) as DeregisterServerResponse;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static DeregisterServerResponse create() => DeregisterServerResponse._();
+  DeregisterServerResponse createEmptyInstance() => create();
+  static $pb.PbList<DeregisterServerResponse> createRepeated() => $pb.PbList<DeregisterServerResponse>();
+  @$core.pragma('dart2js:noInline')
+  static DeregisterServerResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<DeregisterServerResponse>(create);
+  static DeregisterServerResponse? _defaultInstance;
 }
 
 

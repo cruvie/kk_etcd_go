@@ -6,5 +6,9 @@ import (
 )
 
 func TestBindCheckGen(t *testing.T) {
-	kk_http.BindCheckGen(RoleRevokePermissionParam{})
+	kk_http.BindCheckGen(
+		//RoleRevokePermissionParam{},
+		ServerListParam{},
+		//DeregisterServerParam{},
+	)
 }
