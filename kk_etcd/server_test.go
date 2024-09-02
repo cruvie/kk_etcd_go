@@ -17,8 +17,9 @@ type server struct {
 	grpc_health_v1.UnimplementedHealthServer
 }
 
-func (s *server) Check(context.Context, *grpc_health_v1.HealthCheckRequest) (*grpc_health_v1.HealthCheckResponse, error) {
+func (s *server) Check(ctx context.Context, in *grpc_health_v1.HealthCheckRequest) (*grpc_health_v1.HealthCheckResponse, error) {
 	status := grpc_health_v1.HealthCheckResponse_SERVING
+	slog.Info("receive check", "in", in)
 	return &grpc_health_v1.HealthCheckResponse{Status: status}, nil
 }
 
@@ -50,13 +51,13 @@ func TestRegisterGrpcService(t *testing.T) {
 	initTestEnv()
 
 	//register grpc service
-	err := RegisterService(&kk_etcd_models.ServiceRegistration{
-		ServerType: kk_etcd_models.ServiceGrpc,
-		ServerName: "haha_grpc",
-		Addr:       "127.0.0.1:34844",
-		Metadata:   "meta",
+	err := RegisterService(&kk_etcd_models.ServerRegistration{
+		Type:     kk_etcd_models.Grpc,
+		Name:     "haha_grpc",
+		Addr:     "127.0.0.1:34844",
+		Metadata: "meta",
 		CheckConfig: kk_etcd_models.CheckConfig{
-			Type:     kk_etcd_models.CheckTypeGrpc,
+			Type:     kk_etcd_models.Grpc,
 			Timeout:  10 * time.Second,
 			Interval: 5 * time.Second,
 			Addr:     "127.0.0.1:34844",
@@ -64,6 +65,17 @@ func TestRegisterGrpcService(t *testing.T) {
 	})
 	if err != nil {
 		slog.Error("failed to register service", "err", err)
+	}
+}
+func TestGetGrpcServiceList(t *testing.T) {
+	initTestEnv()
+	for {
+		list, err := ServerList(&kk_etcd_models.ServerListParam{ServerType: kk_etcd_models.Grpc.String(), ServerName: "haha_grpc"})
+		if err != nil {
+			slog.Error("failed to list", "err", err)
+		}
+		slog.Info("list", "list", list)
+		time.Sleep(time.Second * 5)
 	}
 }
 
@@ -80,12 +92,12 @@ func TestStartHttpServer(t *testing.T) {
 func TestRegisterHttpService(t *testing.T) {
 	initTestEnv()
 
-	err := RegisterService(&kk_etcd_models.ServiceRegistration{
-		ServerType: kk_etcd_models.ServiceHttp,
-		ServerName: "haha_http",
-		Addr:       "127.0.0.1:8848",
+	err := RegisterService(&kk_etcd_models.ServerRegistration{
+		Type: kk_etcd_models.Http,
+		Name: "haha_http",
+		Addr: "127.0.0.1:8848",
 		CheckConfig: kk_etcd_models.CheckConfig{
-			Type:     kk_etcd_models.CheckTypeHttp,
+			Type:     kk_etcd_models.Http,
 			Timeout:  10 * time.Second,
 			Interval: 5 * time.Second,
 			Addr:     "http://127.0.0.1:8848" + kk_etcd_models.HealthCheckPath,
@@ -96,22 +108,10 @@ func TestRegisterHttpService(t *testing.T) {
 	}
 }
 
-func TestGetGrpcServiceList(t *testing.T) {
-	initTestEnv()
-	for {
-		list, err := ServerList(&kk_etcd_models.ServerListParam{ServerType: kk_etcd_models.ServiceGrpc.String(), ServerName: "haha_grpc"})
-		if err != nil {
-			slog.Error("failed to list", "err", err)
-		}
-		slog.Info("list", "list", list)
-		time.Sleep(time.Second * 5)
-	}
-}
-
 func TestGetHttpServiceList(t *testing.T) {
 	initTestEnv()
 	for {
-		list, err := ServerList(&kk_etcd_models.ServerListParam{ServerType: kk_etcd_models.ServiceHttp.String(), ServerName: "haha_http"})
+		list, err := ServerList(&kk_etcd_models.ServerListParam{ServerType: kk_etcd_models.Http.String(), ServerName: "haha_http"})
 		if err != nil {
 			slog.Error("failed to list", "err", err)
 		}
@@ -127,7 +127,7 @@ func TestWatchServerList(t *testing.T) {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
-	err := WatchServerList(ctx, kk_etcd_models.ServiceHttp, "haha_http", serverListChan)
+	err := WatchServerList(ctx, kk_etcd_models.Http, "haha_http", serverListChan)
 	if err != nil {
 		slog.Error("WatchServerList failed", "err", err)
 		return

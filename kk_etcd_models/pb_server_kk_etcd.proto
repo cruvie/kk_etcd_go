@@ -9,8 +9,8 @@ option go_package = "./;kk_etcd_models";
 // protoc -I=. --dart_out=./dart *.proto
 
 message PBServer {
-  string ServiceName = 1;
-  string ServiceAddr = 2;
+  string ServerName = 1;
+  string ServerAddr = 2;
   enum ServerStatus {
     UnKnown = 0;
     Running = 1;

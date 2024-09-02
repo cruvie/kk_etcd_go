@@ -5,6 +5,6 @@ class KeyPrefix {
 
 class ServiceType {
   static const String Service = "kk_service/";
-  static const String ServiceHttp = Service + "http";
-  static const String ServiceGrpc = Service + "grpc";
+  static const String Http = Service + "http";
+  static const String Grpc = Service + "grpc";
 }

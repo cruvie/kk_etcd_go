@@ -20,18 +20,18 @@ export 'pb_server_kk_etcd.pbenum.dart';
 
 class PBServer extends $pb.GeneratedMessage {
   factory PBServer({
-    $core.String? serviceName,
-    $core.String? serviceAddr,
+    $core.String? serverName,
+    $core.String? serverAddr,
     PBServer_ServerStatus? status,
     $2.Timestamp? lastCheck,
     $core.String? msg,
   }) {
     final $result = create();
-    if (serviceName != null) {
-      $result.serviceName = serviceName;
+    if (serverName != null) {
+      $result.serverName = serverName;
     }
-    if (serviceAddr != null) {
-      $result.serviceAddr = serviceAddr;
+    if (serverAddr != null) {
+      $result.serverAddr = serverAddr;
     }
     if (status != null) {
       $result.status = status;
@@ -49,8 +49,8 @@ class PBServer extends $pb.GeneratedMessage {
   factory PBServer.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'PBServer', package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd_models'), createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'ServiceName', protoName: 'ServiceName')
-    ..aOS(2, _omitFieldNames ? '' : 'ServiceAddr', protoName: 'ServiceAddr')
+    ..aOS(1, _omitFieldNames ? '' : 'ServerName', protoName: 'ServerName')
+    ..aOS(2, _omitFieldNames ? '' : 'ServerAddr', protoName: 'ServerAddr')
     ..e<PBServer_ServerStatus>(3, _omitFieldNames ? '' : 'Status', $pb.PbFieldType.OE, protoName: 'Status', defaultOrMaker: PBServer_ServerStatus.UnKnown, valueOf: PBServer_ServerStatus.valueOf, enumValues: PBServer_ServerStatus.values)
     ..aOM<$2.Timestamp>(4, _omitFieldNames ? '' : 'LastCheck', protoName: 'LastCheck', subBuilder: $2.Timestamp.create)
     ..aOS(5, _omitFieldNames ? '' : 'Msg', protoName: 'Msg')
@@ -79,22 +79,22 @@ class PBServer extends $pb.GeneratedMessage {
   static PBServer? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.String get serviceName => $_getSZ(0);
+  $core.String get serverName => $_getSZ(0);
   @$pb.TagNumber(1)
-  set serviceName($core.String v) { $_setString(0, v); }
+  set serverName($core.String v) { $_setString(0, v); }
   @$pb.TagNumber(1)
-  $core.bool hasServiceName() => $_has(0);
+  $core.bool hasServerName() => $_has(0);
   @$pb.TagNumber(1)
-  void clearServiceName() => clearField(1);
+  void clearServerName() => clearField(1);
 
   @$pb.TagNumber(2)
-  $core.String get serviceAddr => $_getSZ(1);
+  $core.String get serverAddr => $_getSZ(1);
   @$pb.TagNumber(2)
-  set serviceAddr($core.String v) { $_setString(1, v); }
+  set serverAddr($core.String v) { $_setString(1, v); }
   @$pb.TagNumber(2)
-  $core.bool hasServiceAddr() => $_has(1);
+  $core.bool hasServerAddr() => $_has(1);
   @$pb.TagNumber(2)
-  void clearServiceAddr() => clearField(2);
+  void clearServerAddr() => clearField(2);
 
   @$pb.TagNumber(3)
   PBServer_ServerStatus get status => $_getN(2);

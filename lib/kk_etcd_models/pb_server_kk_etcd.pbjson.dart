@@ -17,8 +17,8 @@ import 'dart:typed_data' as $typed_data;
 const PBServer$json = {
   '1': 'PBServer',
   '2': [
-    {'1': 'ServiceName', '3': 1, '4': 1, '5': 9, '10': 'ServiceName'},
-    {'1': 'ServiceAddr', '3': 2, '4': 1, '5': 9, '10': 'ServiceAddr'},
+    {'1': 'ServerName', '3': 1, '4': 1, '5': 9, '10': 'ServerName'},
+    {'1': 'ServerAddr', '3': 2, '4': 1, '5': 9, '10': 'ServerAddr'},
     {'1': 'Status', '3': 3, '4': 1, '5': 14, '6': '.kk_etcd_models.PBServer.ServerStatus', '10': 'Status'},
     {'1': 'LastCheck', '3': 4, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'LastCheck'},
     {'1': 'Msg', '3': 5, '4': 1, '5': 9, '10': 'Msg'},
@@ -39,12 +39,11 @@ const PBServer_ServerStatus$json = {
 
 /// Descriptor for `PBServer`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List pBServerDescriptor = $convert.base64Decode(
-    'CghQQlNlcnZlchIgCgtTZXJ2aWNlTmFtZRgBIAEoCVILU2VydmljZU5hbWUSIAoLU2VydmljZU'
-    'FkZHIYAiABKAlSC1NlcnZpY2VBZGRyEj0KBlN0YXR1cxgDIAEoDjIlLmtrX2V0Y2RfbW9kZWxz'
-    'LlBCU2VydmVyLlNlcnZlclN0YXR1c1IGU3RhdHVzEjgKCUxhc3RDaGVjaxgEIAEoCzIaLmdvb2'
-    'dsZS5wcm90b2J1Zi5UaW1lc3RhbXBSCUxhc3RDaGVjaxIQCgNNc2cYBSABKAlSA01zZyI8CgxT'
-    'ZXJ2ZXJTdGF0dXMSCwoHVW5Lbm93bhAAEgsKB1J1bm5pbmcQARIICgRTdG9wEAISCAoESW5pdB'
-    'AD');
+    'CghQQlNlcnZlchIeCgpTZXJ2ZXJOYW1lGAEgASgJUgpTZXJ2ZXJOYW1lEh4KClNlcnZlckFkZH'
+    'IYAiABKAlSClNlcnZlckFkZHISPQoGU3RhdHVzGAMgASgOMiUua2tfZXRjZF9tb2RlbHMuUEJT'
+    'ZXJ2ZXIuU2VydmVyU3RhdHVzUgZTdGF0dXMSOAoJTGFzdENoZWNrGAQgASgLMhouZ29vZ2xlLn'
+    'Byb3RvYnVmLlRpbWVzdGFtcFIJTGFzdENoZWNrEhAKA01zZxgFIAEoCVIDTXNnIjwKDFNlcnZl'
+    'clN0YXR1cxILCgdVbktub3duEAASCwoHUnVubmluZxABEggKBFN0b3AQAhIICgRJbml0EAM=');
 
 @$core.Deprecated('Use pBListServerDescriptor instead')
 const PBListServer$json = {

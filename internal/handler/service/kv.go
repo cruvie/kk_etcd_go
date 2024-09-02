@@ -59,8 +59,8 @@ func (SerKV) KVList(stage *kk_stage.Stage, prefix string) (err error, list *kk_e
 		//	ServiceHttp = "kk_service_http/"
 		//	ServiceGrpc = "kk_service_grpc/"
 		if prefix == "" &&
-			(strings.HasPrefix(cfg.Key, kk_etcd_models.ServiceHttp.String()) ||
-				strings.HasPrefix(cfg.Key, kk_etcd_models.ServiceGrpc.String())) {
+			(strings.HasPrefix(cfg.Key, kk_etcd_models.Http.String()) ||
+				strings.HasPrefix(cfg.Key, kk_etcd_models.Grpc.String())) {
 			continue
 		}
 		list.ListKV = append(list.ListKV, cfg)

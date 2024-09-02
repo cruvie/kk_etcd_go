@@ -12,12 +12,12 @@ type HServer struct{}
 var serInternalServer internal_service.SerServer
 
 // ServerList
-// serviceName, should with prefix key_prefix.ServiceGrpc or key_prefix.ServiceHttp
+// serverName, should with prefix key_prefix.ServiceGrpc or key_prefix.ServiceHttp
 // only give prefix to get all service list
 func (HServer) ServerList(stage *kk_stage.Stage, param *kk_etcd_models.ServerListParam) (error, *kk_etcd_models.ServerListResponse) {
 	span := stage.StartTrace("ServerList")
 	defer span.End()
-	serverList, err := serInternalServer.ServerList(global_model.GetClient(stage), kk_etcd_models.ServiceType(param.GetServerType()), param.GetServerName())
+	serverList, err := serInternalServer.ServerList(global_model.GetClient(stage), kk_etcd_models.ServerType(param.GetServerType()), param.GetServerName())
 	return err, &kk_etcd_models.ServerListResponse{
 		ServerList: serverList,
 	}

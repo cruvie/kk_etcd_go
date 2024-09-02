@@ -38,13 +38,13 @@ func serverList(c *gin.Context) {
 
 // deregisterServer
 //
-//	 @Tags           server
-//		@Description	deregister server
-//		@Accept			octet-stream
-//		@Produce		octet-stream
-//		@Param			DeregisterServerParam	body		kk_etcd_models.DeregisterServerParam	true	"DeregisterServerParam"
-//		@Success		200					{object}	kk_etcd_models.DeregisterServerResponse
-//		@Router			/server/deregisterServer [post]
+//	@Tags			server
+//	@Description	deregister server
+//	@Accept			octet-stream
+//	@Produce		octet-stream
+//	@Param			DeregisterServerParam	body		kk_etcd_models.DeregisterServerParam	true	"DeregisterServerParam"
+//	@Success		200						{object}	kk_etcd_models.DeregisterServerResponse
+//	@Router			/server/deregisterServer [post]
 func deregisterServer(c *gin.Context) {
 	stage := global_stage.GetRequestStage(c)
 	span := stage.StartTrace("deregisterServer")

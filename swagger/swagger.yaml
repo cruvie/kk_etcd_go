@@ -20,6 +20,17 @@ definitions:
     type: object
   kk_etcd_models.AllKVsRestoreResponse:
     type: object
+  kk_etcd_models.DeregisterServerParam:
+    properties:
+      Key:
+        description: ServerType/ServerName/Addr
+        type: string
+      Target:
+        description: ServerType/ServerName
+        type: string
+    type: object
+  kk_etcd_models.DeregisterServerResponse:
+    type: object
   kk_etcd_models.GetUserParam:
     properties:
       UserName:
@@ -152,11 +163,29 @@ definitions:
     type: object
   kk_etcd_models.PBServer:
     properties:
-      ServiceAddr:
+      LastCheck:
+        $ref: '#/definitions/timestamppb.Timestamp'
+      Msg:
         type: string
-      ServiceName:
+      ServerAddr:
         type: string
+      ServerName:
+        type: string
+      Status:
+        $ref: '#/definitions/kk_etcd_models.PBServer_ServerStatus'
     type: object
+  kk_etcd_models.PBServer_ServerStatus:
+    enum:
+    - 0
+    - 1
+    - 2
+    - 3
+    type: integer
+    x-enum-varnames:
+    - PBServer_UnKnown
+    - PBServer_Running
+    - PBServer_Stop
+    - PBServer_Init
   kk_etcd_models.PBUser:
     properties:
       Password:
@@ -221,7 +250,9 @@ definitions:
     type: object
   kk_etcd_models.ServerListParam:
     properties:
-      Prefix:
+      ServerName:
+        type: string
+      ServerType:
         type: string
     type: object
   kk_etcd_models.ServerListResponse:
@@ -296,6 +327,22 @@ definitions:
     properties:
       ListUser:
         $ref: '#/definitions/kk_etcd_models.PBListUser'
+    type: object
+  timestamppb.Timestamp:
+    properties:
+      nanos:
+        description: |-
+          Non-negative fractions of a second at nanosecond resolution. Negative
+          second values with fractions must still have non-negative nanos values
+          that count forward in time. Must be from 0 to 999,999,999
+          inclusive.
+        type: integer
+      seconds:
+        description: |-
+          Represents seconds of UTC time since Unix epoch
+          1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to
+          9999-12-31T23:59:59Z inclusive.
+        type: integer
     type: object
 host: localhost:2333
 info:
@@ -626,6 +673,27 @@ paths:
             $ref: '#/definitions/kk_etcd_models.RoleRevokePermissionResponse'
       tags:
       - role
+  /server/deregisterServer:
+    post:
+      consumes:
+      - application/octet-stream
+      description: deregister server
+      parameters:
+      - description: DeregisterServerParam
+        in: body
+        name: DeregisterServerParam
+        required: true
+        schema:
+          $ref: '#/definitions/kk_etcd_models.DeregisterServerParam'
+      produces:
+      - application/octet-stream
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/kk_etcd_models.DeregisterServerResponse'
+      tags:
+      - server
   /server/serverList:
     post:
       consumes:

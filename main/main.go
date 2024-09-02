@@ -51,7 +51,7 @@ func main() {
 		panic(err)
 	}
 
-	internal_service.Checker.WatchServerChange()
+	internal_service.InitServiceHub()
 
 	api_etcd.ApiEtcd(internal_client.GlobalStage)
 }

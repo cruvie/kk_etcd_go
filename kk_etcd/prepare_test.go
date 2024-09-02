@@ -24,8 +24,8 @@ func initTestEnv() {
 	internal_client.InitGlobalStage(stage.DebugMode)
 	err := internal_client.InitClient(&internal_client.InitClientConfig{
 		Endpoints: []string{"http://127.0.0.1:2379"},
-		UserName:  "kk_etcd",
-		Password:  "kk_etcd",
+		UserName:  "root",
+		Password:  "root",
 		DebugMode: stage.DebugMode})
 	if err != nil {
 		panic(err)

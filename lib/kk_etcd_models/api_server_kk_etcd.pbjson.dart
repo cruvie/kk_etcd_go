@@ -18,12 +18,14 @@ const ServerListParam$json = {
   '1': 'ServerListParam',
   '2': [
     {'1': 'ServerType', '3': 1, '4': 1, '5': 9, '10': 'ServerType'},
+    {'1': 'ServerName', '3': 2, '4': 1, '5': 9, '10': 'ServerName'},
   ],
 };
 
 /// Descriptor for `ServerListParam`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List serverListParamDescriptor = $convert.base64Decode(
-    'Cg9TZXJ2ZXJMaXN0UGFyYW0SHgoKU2VydmVyVHlwZRgBIAEoCVIKU2VydmVyVHlwZQ==');
+    'Cg9TZXJ2ZXJMaXN0UGFyYW0SHgoKU2VydmVyVHlwZRgBIAEoCVIKU2VydmVyVHlwZRIeCgpTZX'
+    'J2ZXJOYW1lGAIgASgJUgpTZXJ2ZXJOYW1l');
 
 @$core.Deprecated('Use serverListResponseDescriptor instead')
 const ServerListResponse$json = {
@@ -42,15 +44,15 @@ final $typed_data.Uint8List serverListResponseDescriptor = $convert.base64Decode
 const DeregisterServerParam$json = {
   '1': 'DeregisterServerParam',
   '2': [
-    {'1': 'ServerType', '3': 1, '4': 1, '5': 9, '10': 'ServerType'},
-    {'1': 'ServerName', '3': 2, '4': 1, '5': 9, '10': 'ServerName'},
+    {'1': 'Target', '3': 1, '4': 1, '5': 9, '10': 'Target'},
+    {'1': 'Key', '3': 2, '4': 1, '5': 9, '10': 'Key'},
   ],
 };
 
 /// Descriptor for `DeregisterServerParam`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List deregisterServerParamDescriptor = $convert.base64Decode(
-    'ChVEZXJlZ2lzdGVyU2VydmVyUGFyYW0SHgoKU2VydmVyVHlwZRgBIAEoCVIKU2VydmVyVHlwZR'
-    'IeCgpTZXJ2ZXJOYW1lGAIgASgJUgpTZXJ2ZXJOYW1l');
+    'ChVEZXJlZ2lzdGVyU2VydmVyUGFyYW0SFgoGVGFyZ2V0GAEgASgJUgZUYXJnZXQSEAoDS2V5GA'
+    'IgASgJUgNLZXk=');
 
 @$core.Deprecated('Use deregisterServerResponseDescriptor instead')
 const DeregisterServerResponse$json = {

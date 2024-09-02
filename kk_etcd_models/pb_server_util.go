@@ -5,38 +5,39 @@ import (
 	"time"
 )
 
-type CheckType string
-
 const (
-	CheckTypeGrpc   CheckType = "GRPC"
-	CheckTypeHttp   CheckType = "HTTP"
-	HealthCheckPath           = "/KKHealthCheck"
+	HealthCheckPath = "/KKHealthCheck"
 )
 
-type ServiceType string
+type ServerType string
 
-func (s ServiceType) String() string {
+func (s ServerType) String() string {
 	return string(s)
+}
+func (s ServerType) EndpointManagerTarget(serverName string) string {
+	return string(s) + "/" + serverName
 }
 
 const (
-	Service                 = "kk_service/"
-	ServiceHttp ServiceType = Service + "http"
-	ServiceGrpc ServiceType = Service + "grpc"
+	Server            = "kk_server/"
+	Http   ServerType = Server + "http"
+	Grpc   ServerType = Server + "grpc"
+	// InternalServerStatus use for store server status as normal kv, cannot use key in endpoint, watch manager will watch any key with same target prefix
+	InternalServerStatus = Server + "internal_server_status/"
 )
 
 type CheckConfig struct {
-	Type     CheckType     // CheckTypeGrpc or CheckTypeHttp
+	Type     ServerType    // Http or Grpc
 	Timeout  time.Duration //check timeout
 	Interval time.Duration //check interval, kk_etcd will per Interval to send check request
-	// CheckTypeHttp default http://+Addr+/KKHealthCheck
-	// CheckTypeGrpc Addr in ServiceRegistration
+	// Http default http://+Addr+/KKHealthCheck
+	// Grpc Addr in ServerRegistration
 	Addr string
 }
 
 func (x *CheckConfig) Check() error {
-	if x.Type != CheckTypeGrpc && x.Type != CheckTypeHttp {
-		msg := "check type must be CheckTypeGrpc or CheckTypeHttp"
+	if x.Type != Http && x.Type != Grpc {
+		msg := "check type must be Grpc or Http"
 		return errors.New(msg)
 	}
 	if x.Timeout <= 0 {
@@ -54,16 +55,16 @@ func (x *CheckConfig) Check() error {
 	return nil
 }
 
-type ServiceRegistration struct {
-	ServerType  ServiceType
-	ServerName  string
+type ServerRegistration struct {
+	Type        ServerType
+	Name        string
 	Addr        string
 	Metadata    any
 	CheckConfig CheckConfig
 }
 
-func (x *ServiceRegistration) Check() error {
-	if x.ServerName == "" {
+func (x *ServerRegistration) Check() error {
+	if x.Name == "" {
 		msg := "server name cannot be empty"
 		return errors.New(msg)
 	}
@@ -74,6 +75,10 @@ func (x *ServiceRegistration) Check() error {
 	return x.CheckConfig.Check()
 }
 
-func (x *ServiceRegistration) EndpointKey() string {
-	return x.ServerType.String() + "/" + x.ServerName
+func (x *ServerRegistration) EndpointKey() string {
+	return x.EndpointManagerTarget() + "/" + x.Addr
+}
+
+func (x *ServerRegistration) EndpointManagerTarget() string {
+	return x.Type.String() + "/" + x.Name
 }

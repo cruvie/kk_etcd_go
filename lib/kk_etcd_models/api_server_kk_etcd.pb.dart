@@ -18,10 +18,14 @@ import 'pb_server_kk_etcd.pb.dart' as $3;
 class ServerListParam extends $pb.GeneratedMessage {
   factory ServerListParam({
     $core.String? serverType,
+    $core.String? serverName,
   }) {
     final $result = create();
     if (serverType != null) {
       $result.serverType = serverType;
+    }
+    if (serverName != null) {
+      $result.serverName = serverName;
     }
     return $result;
   }
@@ -31,6 +35,7 @@ class ServerListParam extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ServerListParam', package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd_models'), createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'ServerType', protoName: 'ServerType')
+    ..aOS(2, _omitFieldNames ? '' : 'ServerName', protoName: 'ServerName')
     ..hasRequiredFields = false
   ;
 
@@ -63,6 +68,15 @@ class ServerListParam extends $pb.GeneratedMessage {
   $core.bool hasServerType() => $_has(0);
   @$pb.TagNumber(1)
   void clearServerType() => clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.String get serverName => $_getSZ(1);
+  @$pb.TagNumber(2)
+  set serverName($core.String v) { $_setString(1, v); }
+  @$pb.TagNumber(2)
+  $core.bool hasServerName() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearServerName() => clearField(2);
 }
 
 class ServerListResponse extends $pb.GeneratedMessage {
@@ -119,15 +133,15 @@ class ServerListResponse extends $pb.GeneratedMessage {
 
 class DeregisterServerParam extends $pb.GeneratedMessage {
   factory DeregisterServerParam({
-    $core.String? serverType,
-    $core.String? serverName,
+    $core.String? target,
+    $core.String? key,
   }) {
     final $result = create();
-    if (serverType != null) {
-      $result.serverType = serverType;
+    if (target != null) {
+      $result.target = target;
     }
-    if (serverName != null) {
-      $result.serverName = serverName;
+    if (key != null) {
+      $result.key = key;
     }
     return $result;
   }
@@ -136,8 +150,8 @@ class DeregisterServerParam extends $pb.GeneratedMessage {
   factory DeregisterServerParam.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'DeregisterServerParam', package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd_models'), createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'ServerType', protoName: 'ServerType')
-    ..aOS(2, _omitFieldNames ? '' : 'ServerName', protoName: 'ServerName')
+    ..aOS(1, _omitFieldNames ? '' : 'Target', protoName: 'Target')
+    ..aOS(2, _omitFieldNames ? '' : 'Key', protoName: 'Key')
     ..hasRequiredFields = false
   ;
 
@@ -163,22 +177,22 @@ class DeregisterServerParam extends $pb.GeneratedMessage {
   static DeregisterServerParam? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.String get serverType => $_getSZ(0);
+  $core.String get target => $_getSZ(0);
   @$pb.TagNumber(1)
-  set serverType($core.String v) { $_setString(0, v); }
+  set target($core.String v) { $_setString(0, v); }
   @$pb.TagNumber(1)
-  $core.bool hasServerType() => $_has(0);
+  $core.bool hasTarget() => $_has(0);
   @$pb.TagNumber(1)
-  void clearServerType() => clearField(1);
+  void clearTarget() => clearField(1);
 
   @$pb.TagNumber(2)
-  $core.String get serverName => $_getSZ(1);
+  $core.String get key => $_getSZ(1);
   @$pb.TagNumber(2)
-  set serverName($core.String v) { $_setString(1, v); }
+  set key($core.String v) { $_setString(1, v); }
   @$pb.TagNumber(2)
-  $core.bool hasServerName() => $_has(1);
+  $core.bool hasKey() => $_has(1);
   @$pb.TagNumber(2)
-  void clearServerName() => clearField(2);
+  void clearKey() => clearField(2);
 }
 
 class DeregisterServerResponse extends $pb.GeneratedMessage {

@@ -10,14 +10,15 @@ import "pb_server_kk_etcd.proto";
 
 message ServerListParam {
   string  ServerType = 1;
+  string  ServerName = 2;
 }
 message ServerListResponse {
   PBListServer ServerList = 1;
 }
 
 message DeregisterServerParam {
-  string  ServerType = 1;
-  string  ServerName = 2;
+  string Target = 1;//ServerType/ServerName
+  string  Key = 2;//ServerType/ServerName/Addr
 }
 message DeregisterServerResponse {
 
