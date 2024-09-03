@@ -20,8 +20,7 @@ export 'pb_server_kk_etcd.pbenum.dart';
 
 class PBServer extends $pb.GeneratedMessage {
   factory PBServer({
-    $core.String? endpointManagerTarget,
-    $core.String? endpointKey,
+    $core.String? serverType,
     $core.String? serverName,
     $core.String? serverAddr,
     PBServer_ServerStatus? status,
@@ -29,11 +28,8 @@ class PBServer extends $pb.GeneratedMessage {
     $core.String? msg,
   }) {
     final $result = create();
-    if (endpointManagerTarget != null) {
-      $result.endpointManagerTarget = endpointManagerTarget;
-    }
-    if (endpointKey != null) {
-      $result.endpointKey = endpointKey;
+    if (serverType != null) {
+      $result.serverType = serverType;
     }
     if (serverName != null) {
       $result.serverName = serverName;
@@ -57,8 +53,7 @@ class PBServer extends $pb.GeneratedMessage {
   factory PBServer.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'PBServer', package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd_models'), createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'EndpointManagerTarget', protoName: 'EndpointManagerTarget')
-    ..aOS(2, _omitFieldNames ? '' : 'EndpointKey', protoName: 'EndpointKey')
+    ..aOS(2, _omitFieldNames ? '' : 'ServerType', protoName: 'ServerType')
     ..aOS(3, _omitFieldNames ? '' : 'ServerName', protoName: 'ServerName')
     ..aOS(4, _omitFieldNames ? '' : 'ServerAddr', protoName: 'ServerAddr')
     ..e<PBServer_ServerStatus>(5, _omitFieldNames ? '' : 'Status', $pb.PbFieldType.OE, protoName: 'Status', defaultOrMaker: PBServer_ServerStatus.UnKnown, valueOf: PBServer_ServerStatus.valueOf, enumValues: PBServer_ServerStatus.values)
@@ -88,68 +83,59 @@ class PBServer extends $pb.GeneratedMessage {
   static PBServer getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<PBServer>(create);
   static PBServer? _defaultInstance;
 
-  @$pb.TagNumber(1)
-  $core.String get endpointManagerTarget => $_getSZ(0);
-  @$pb.TagNumber(1)
-  set endpointManagerTarget($core.String v) { $_setString(0, v); }
-  @$pb.TagNumber(1)
-  $core.bool hasEndpointManagerTarget() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearEndpointManagerTarget() => clearField(1);
-
   @$pb.TagNumber(2)
-  $core.String get endpointKey => $_getSZ(1);
+  $core.String get serverType => $_getSZ(0);
   @$pb.TagNumber(2)
-  set endpointKey($core.String v) { $_setString(1, v); }
+  set serverType($core.String v) { $_setString(0, v); }
   @$pb.TagNumber(2)
-  $core.bool hasEndpointKey() => $_has(1);
+  $core.bool hasServerType() => $_has(0);
   @$pb.TagNumber(2)
-  void clearEndpointKey() => clearField(2);
+  void clearServerType() => clearField(2);
 
   @$pb.TagNumber(3)
-  $core.String get serverName => $_getSZ(2);
+  $core.String get serverName => $_getSZ(1);
   @$pb.TagNumber(3)
-  set serverName($core.String v) { $_setString(2, v); }
+  set serverName($core.String v) { $_setString(1, v); }
   @$pb.TagNumber(3)
-  $core.bool hasServerName() => $_has(2);
+  $core.bool hasServerName() => $_has(1);
   @$pb.TagNumber(3)
   void clearServerName() => clearField(3);
 
   @$pb.TagNumber(4)
-  $core.String get serverAddr => $_getSZ(3);
+  $core.String get serverAddr => $_getSZ(2);
   @$pb.TagNumber(4)
-  set serverAddr($core.String v) { $_setString(3, v); }
+  set serverAddr($core.String v) { $_setString(2, v); }
   @$pb.TagNumber(4)
-  $core.bool hasServerAddr() => $_has(3);
+  $core.bool hasServerAddr() => $_has(2);
   @$pb.TagNumber(4)
   void clearServerAddr() => clearField(4);
 
   @$pb.TagNumber(5)
-  PBServer_ServerStatus get status => $_getN(4);
+  PBServer_ServerStatus get status => $_getN(3);
   @$pb.TagNumber(5)
   set status(PBServer_ServerStatus v) { setField(5, v); }
   @$pb.TagNumber(5)
-  $core.bool hasStatus() => $_has(4);
+  $core.bool hasStatus() => $_has(3);
   @$pb.TagNumber(5)
   void clearStatus() => clearField(5);
 
   @$pb.TagNumber(6)
-  $2.Timestamp get lastCheck => $_getN(5);
+  $2.Timestamp get lastCheck => $_getN(4);
   @$pb.TagNumber(6)
   set lastCheck($2.Timestamp v) { setField(6, v); }
   @$pb.TagNumber(6)
-  $core.bool hasLastCheck() => $_has(5);
+  $core.bool hasLastCheck() => $_has(4);
   @$pb.TagNumber(6)
   void clearLastCheck() => clearField(6);
   @$pb.TagNumber(6)
-  $2.Timestamp ensureLastCheck() => $_ensure(5);
+  $2.Timestamp ensureLastCheck() => $_ensure(4);
 
   @$pb.TagNumber(7)
-  $core.String get msg => $_getSZ(6);
+  $core.String get msg => $_getSZ(5);
   @$pb.TagNumber(7)
-  set msg($core.String v) { $_setString(6, v); }
+  set msg($core.String v) { $_setString(5, v); }
   @$pb.TagNumber(7)
-  $core.bool hasMsg() => $_has(6);
+  $core.bool hasMsg() => $_has(5);
   @$pb.TagNumber(7)
   void clearMsg() => clearField(7);
 }

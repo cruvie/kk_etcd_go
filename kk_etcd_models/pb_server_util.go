@@ -2,6 +2,8 @@ package kk_etcd_models
 
 import (
 	"errors"
+	clientv3 "go.etcd.io/etcd/client/v3"
+	"go.etcd.io/etcd/client/v3/naming/endpoints"
 	"time"
 )
 
@@ -11,14 +13,12 @@ const (
 
 type ServerType string
 
-func (s ServerType) String() string {
-	return string(s)
+func (x ServerType) String() string {
+	return string(x)
 }
-func (s ServerType) EndpointManagerTarget(serverName string) string {
-	if serverName != "" {
-		return s.String() + "/" + serverName
-	}
-	return s.String()
+
+func (x ServerType) NewEndpointManager(client *clientv3.Client) (endpoints.Manager, error) {
+	return endpoints.NewManager(client, x.String())
 }
 
 const (
@@ -79,9 +79,5 @@ func (x *ServerRegistration) Check() error {
 }
 
 func (x *ServerRegistration) EndpointKey() string {
-	return x.EndpointManagerTarget() + "/" + x.ServerAddr
-}
-
-func (x *ServerRegistration) EndpointManagerTarget() string {
-	return x.ServerType.EndpointManagerTarget(x.ServerName)
+	return x.ServerType.String() + "/" + x.ServerName + "/" + x.ServerAddr
 }

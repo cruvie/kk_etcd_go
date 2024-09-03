@@ -7,7 +7,6 @@ import (
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
 	"github.com/cruvie/kk_etcd_go/internal/utils/internal_client"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
-	"go.etcd.io/etcd/client/v3/naming/endpoints"
 	"log/slog"
 )
 
@@ -23,13 +22,13 @@ func RegisterService(registration *kk_etcd_models.ServerRegistration) error {
 // serverName, should with prefix key_prefix.ServiceGrpc or key_prefix.ServiceHttp
 // only give prefix to get all service list
 func ServerList(param *kk_etcd_models.ServerListParam) (*kk_etcd_models.PBListServer, error) {
-	return serInternalServer.ServerList(global_model.GetClient(internal_client.GlobalStage), kk_etcd_models.ServerType(param.GetServerType()), param.GetServerName())
+	return serInternalServer.ServerList(global_model.GetClient(internal_client.GlobalStage), kk_etcd_models.ServerType(param.GetServerType()))
 }
 
 // WatchServerList watch server list change
 func WatchServerList(ctx context.Context, serverType kk_etcd_models.ServerType, serverName string, serverListChan chan<- *kk_etcd_models.PBListServer) (err error) {
 	newLog := kk_log.NewLog(&kk_log.LogOption{TraceId: internal_client.GlobalStage.TraceId})
-	etcdManager, err := endpoints.NewManager(global_model.GetClient(internal_client.GlobalStage), serverType.EndpointManagerTarget(serverName))
+	etcdManager, err := serverType.NewEndpointManager(global_model.GetClient(internal_client.GlobalStage))
 
 	if err != nil {
 		slog.Error("failed to new endpoints.Manager", newLog.Any("serverName", serverName).Error(err).Args()...)

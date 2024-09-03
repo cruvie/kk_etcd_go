@@ -15,8 +15,8 @@ type serverTool struct{}
 
 var toolServer serverTool
 
-func (t *serverTool) serverList(client *clientv3.Client, serverType kk_etcd_models.ServerType, serverName string) (endpoints.Key2EndpointMap, error) {
-	etcdManager, err := endpoints.NewManager(client, serverType.EndpointManagerTarget(serverName))
+func (t *serverTool) serverList(client *clientv3.Client, serverType kk_etcd_models.ServerType) (endpoints.Key2EndpointMap, error) {
+	etcdManager, err := serverType.NewEndpointManager(client)
 	if err != nil {
 		return nil, err
 	}
@@ -30,10 +30,10 @@ func (t *serverTool) serverList(client *clientv3.Client, serverType kk_etcd_mode
 func (t *serverTool) registerServer(stage *kk_stage.Stage, registration *kk_etcd_models.ServerRegistration) error {
 	newLog := kk_log.NewLog(&kk_log.LogOption{TraceId: stage.TraceId})
 
-	endpointManager, err := endpoints.NewManager(global_model.GetClient(stage), registration.EndpointManagerTarget())
+	endpointManager, err := registration.ServerType.NewEndpointManager(global_model.GetClient(stage))
 	if err != nil {
 		msg := "failed to create etcd manager"
-		slog.Error(msg, newLog.Error(err).String("target", registration.EndpointManagerTarget()).Args()...)
+		slog.Error(msg, newLog.Error(err).String("key", registration.EndpointKey()).Args()...)
 		return err
 	}
 	info := newServerStatus(registration)

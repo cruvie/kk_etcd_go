@@ -2,6 +2,7 @@ package internal_service
 
 import (
 	"context"
+	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	clientv3 "go.etcd.io/etcd/client/v3"
 	"go.etcd.io/etcd/client/v3/naming/endpoints"
 	"log"
@@ -23,7 +24,7 @@ func TestBug(t *testing.T) {
 	if err != nil {
 		panic(err)
 	}
-	endpointManager, err := endpoints.NewManager(client, "mytarget")
+	endpointManager, err := kk_etcd_models.Http.NewEndpointManager(client)
 	if err != nil {
 		panic(err)
 	}

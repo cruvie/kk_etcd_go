@@ -103,7 +103,7 @@ func (x *serverHub) services() (map[string]*serverStatus, error) {
 func (x *serverHub) watchServiceChange() {
 
 	getChannel := func(serverType kk_etcd_models.ServerType) endpoints.WatchChannel {
-		etcdManager, err := endpoints.NewManager(global_model.GetClient(internal_client.GlobalStage), serverType.String())
+		etcdManager, err := serverType.NewEndpointManager(global_model.GetClient(internal_client.GlobalStage))
 		if err != nil {
 			panic(err)
 		}

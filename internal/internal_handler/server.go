@@ -17,7 +17,7 @@ var serInternalServer internal_service.SerServer
 func (HServer) ServerList(stage *kk_stage.Stage, param *kk_etcd_models.ServerListParam) (error, *kk_etcd_models.ServerListResponse) {
 	span := stage.StartTrace("ServerList")
 	defer span.End()
-	serverList, err := serInternalServer.ServerList(global_model.GetClient(stage), kk_etcd_models.ServerType(param.GetServerType()), param.GetServerName())
+	serverList, err := serInternalServer.ServerList(global_model.GetClient(stage), kk_etcd_models.ServerType(param.GetServerType()))
 	return err, &kk_etcd_models.ServerListResponse{
 		ServerList: serverList,
 	}
