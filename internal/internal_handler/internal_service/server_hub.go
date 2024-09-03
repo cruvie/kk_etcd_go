@@ -2,7 +2,6 @@ package internal_service
 
 import (
 	"context"
-	"fmt"
 	"gitee.com/cruvie/kk_go_kit/kk_log"
 	"gitee.com/cruvie/kk_go_kit/kk_sync"
 	"github.com/cruvie/kk_etcd_go/internal/handler/service"
@@ -51,19 +50,20 @@ func (x *serverHub) register(server *serverStatus) {
 	go server.runCheck()
 }
 
-func (x *serverHub) deregister(status *serverStatus) {
-	oldStatus, ok := x.hub.Get(status.KVKey())
+func (x *serverHub) deregister(endpointKey string) {
+	key := kk_etcd_models.InternalServerStatus + endpointKey
+	oldStatus, ok := x.hub.Get(key)
 	if ok {
-		x.hub.Remove(status.KVKey())
+		x.hub.Remove(key)
 		//stop checker
 		oldStatus.stopCheck()
 	}
-	err := oldStatus.KVDel()
+	err := oldStatus.KVDelWithKey(key)
 	if err != nil {
 		slog.Error("deregister server failed server.KVDel()", kk_log.NewLog(nil).Error(err).Any("server", oldStatus).Args()...)
 	}
 }
-func (x *serverHub) updateStatus(status kk_etcd_models.PBServer_ServerStatus, server *serverStatus) error {
+func (x *serverHub) updateStatus(status kk_etcd_models.PBServer_ServerStatus, server *serverStatus) {
 	v, ok := x.hub.Get(server.KVKey())
 	if ok {
 		// update server status
@@ -73,11 +73,12 @@ func (x *serverHub) updateStatus(status kk_etcd_models.PBServer_ServerStatus, se
 		x.hub.Add(v.KVKey(), v)
 		err := v.PutExistUpdateJson()
 		if err != nil {
-			return err
+			slog.Error("update server status failed server.PutExistUpdateJson()",
+				kk_log.NewLog(nil).Error(err).Any("server", server).Args()...)
 		}
-		return nil
 	} else {
-		return fmt.Errorf("server not found %s", server.KVKey())
+		slog.Error("update server status failed server not found",
+			kk_log.NewLog(nil).Any("server", server).Args()...)
 	}
 }
 
@@ -123,7 +124,8 @@ func (x *serverHub) watchServiceChange() {
 				status.fromEndpoint(update.Endpoint)
 				switch update.Op {
 				case endpoints.Delete:
-					hub.deregister(&status)
+					//delete op only has key info
+					hub.deregister(update.Key)
 				case endpoints.Add:
 					hub.register(&status)
 				}

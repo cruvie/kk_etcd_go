@@ -47,8 +47,9 @@ func (x *serverStatus) FromJson(data string) (err error) {
 	err = json.Unmarshal([]byte(data), x)
 	return err
 }
-func (x *serverStatus) KVDel() error {
-	return service.SerKV{}.KVDel(internal_client.GlobalStage, x.KVKey())
+
+func (x *serverStatus) KVDelWithKey(key string) error {
+	return service.SerKV{}.KVDel(internal_client.GlobalStage, key)
 }
 
 // fromEndpoint endpoint to serverStatus
@@ -74,29 +75,14 @@ func (x *serverStatus) stopCheck() {
 	}
 }
 func (x *serverStatus) runCheck() {
-	defer func() {
-		x.Msg = "close checker"
-		err := hub.updateStatus(kk_etcd_models.PBServer_UnKnown, x)
-		if err != nil {
-			slog.Error("close checker", kk_log.NewLog(nil).Error(err).Args()...)
-		}
-	}()
-
-	updateHealth := func(err error) error {
+	updateHealth := func(err error) {
 		if err != nil {
 			x.Msg = err.Error()
-			err := hub.updateStatus(kk_etcd_models.PBServer_Stop, x)
-			if err != nil {
-				return err
-			}
+			hub.updateStatus(kk_etcd_models.PBServer_Stop, x)
 		} else {
 			x.Msg = "Health check success!"
-			err := hub.updateStatus(kk_etcd_models.PBServer_Running, x)
-			if err != nil {
-				return err
-			}
+			hub.updateStatus(kk_etcd_models.PBServer_Running, x)
 		}
-		return nil
 	}
 
 	ticker := time.NewTicker(x.CheckConfig.Interval)
@@ -108,11 +94,7 @@ func (x *serverStatus) runCheck() {
 				return
 			case <-ticker.C:
 				err := x.checkGrpc(&x.CheckConfig)
-				err = updateHealth(err)
-				if err != nil {
-					slog.Error("updateHealth", kk_log.NewLog(nil).Error(err).Args()...)
-					return
-				}
+				updateHealth(err)
 			}
 		}
 	case kk_etcd_models.Http:
@@ -122,11 +104,7 @@ func (x *serverStatus) runCheck() {
 				return
 			case <-ticker.C:
 				err := x.checkHttp(&x.CheckConfig)
-				err = updateHealth(err)
-				if err != nil {
-					slog.Error("updateHealth", kk_log.NewLog(nil).Error(err).Args()...)
-					return
-				}
+				updateHealth(err)
 			}
 		}
 	}
