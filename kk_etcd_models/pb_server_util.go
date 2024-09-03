@@ -15,7 +15,10 @@ func (s ServerType) String() string {
 	return string(s)
 }
 func (s ServerType) EndpointManagerTarget(serverName string) string {
-	return string(s) + "/" + serverName
+	if serverName != "" {
+		return s.String() + "/" + serverName
+	}
+	return s.String()
 }
 
 const (
@@ -80,5 +83,5 @@ func (x *ServerRegistration) EndpointKey() string {
 }
 
 func (x *ServerRegistration) EndpointManagerTarget() string {
-	return x.Type.String() + "/" + x.Name
+	return x.Type.EndpointManagerTarget(x.Name)
 }

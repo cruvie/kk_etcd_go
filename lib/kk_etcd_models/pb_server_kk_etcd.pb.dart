@@ -20,6 +20,8 @@ export 'pb_server_kk_etcd.pbenum.dart';
 
 class PBServer extends $pb.GeneratedMessage {
   factory PBServer({
+    $core.String? target,
+    $core.String? key,
     $core.String? serverName,
     $core.String? serverAddr,
     PBServer_ServerStatus? status,
@@ -27,6 +29,12 @@ class PBServer extends $pb.GeneratedMessage {
     $core.String? msg,
   }) {
     final $result = create();
+    if (target != null) {
+      $result.target = target;
+    }
+    if (key != null) {
+      $result.key = key;
+    }
     if (serverName != null) {
       $result.serverName = serverName;
     }
@@ -49,11 +57,13 @@ class PBServer extends $pb.GeneratedMessage {
   factory PBServer.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'PBServer', package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd_models'), createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'ServerName', protoName: 'ServerName')
-    ..aOS(2, _omitFieldNames ? '' : 'ServerAddr', protoName: 'ServerAddr')
-    ..e<PBServer_ServerStatus>(3, _omitFieldNames ? '' : 'Status', $pb.PbFieldType.OE, protoName: 'Status', defaultOrMaker: PBServer_ServerStatus.UnKnown, valueOf: PBServer_ServerStatus.valueOf, enumValues: PBServer_ServerStatus.values)
-    ..aOM<$2.Timestamp>(4, _omitFieldNames ? '' : 'LastCheck', protoName: 'LastCheck', subBuilder: $2.Timestamp.create)
-    ..aOS(5, _omitFieldNames ? '' : 'Msg', protoName: 'Msg')
+    ..aOS(1, _omitFieldNames ? '' : 'Target', protoName: 'Target')
+    ..aOS(2, _omitFieldNames ? '' : 'Key', protoName: 'Key')
+    ..aOS(3, _omitFieldNames ? '' : 'ServerName', protoName: 'ServerName')
+    ..aOS(4, _omitFieldNames ? '' : 'ServerAddr', protoName: 'ServerAddr')
+    ..e<PBServer_ServerStatus>(5, _omitFieldNames ? '' : 'Status', $pb.PbFieldType.OE, protoName: 'Status', defaultOrMaker: PBServer_ServerStatus.UnKnown, valueOf: PBServer_ServerStatus.valueOf, enumValues: PBServer_ServerStatus.values)
+    ..aOM<$2.Timestamp>(6, _omitFieldNames ? '' : 'LastCheck', protoName: 'LastCheck', subBuilder: $2.Timestamp.create)
+    ..aOS(7, _omitFieldNames ? '' : 'Msg', protoName: 'Msg')
     ..hasRequiredFields = false
   ;
 
@@ -79,51 +89,69 @@ class PBServer extends $pb.GeneratedMessage {
   static PBServer? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.String get serverName => $_getSZ(0);
+  $core.String get target => $_getSZ(0);
   @$pb.TagNumber(1)
-  set serverName($core.String v) { $_setString(0, v); }
+  set target($core.String v) { $_setString(0, v); }
   @$pb.TagNumber(1)
-  $core.bool hasServerName() => $_has(0);
+  $core.bool hasTarget() => $_has(0);
   @$pb.TagNumber(1)
-  void clearServerName() => clearField(1);
+  void clearTarget() => clearField(1);
 
   @$pb.TagNumber(2)
-  $core.String get serverAddr => $_getSZ(1);
+  $core.String get key => $_getSZ(1);
   @$pb.TagNumber(2)
-  set serverAddr($core.String v) { $_setString(1, v); }
+  set key($core.String v) { $_setString(1, v); }
   @$pb.TagNumber(2)
-  $core.bool hasServerAddr() => $_has(1);
+  $core.bool hasKey() => $_has(1);
   @$pb.TagNumber(2)
-  void clearServerAddr() => clearField(2);
+  void clearKey() => clearField(2);
 
   @$pb.TagNumber(3)
-  PBServer_ServerStatus get status => $_getN(2);
+  $core.String get serverName => $_getSZ(2);
   @$pb.TagNumber(3)
-  set status(PBServer_ServerStatus v) { setField(3, v); }
+  set serverName($core.String v) { $_setString(2, v); }
   @$pb.TagNumber(3)
-  $core.bool hasStatus() => $_has(2);
+  $core.bool hasServerName() => $_has(2);
   @$pb.TagNumber(3)
-  void clearStatus() => clearField(3);
+  void clearServerName() => clearField(3);
 
   @$pb.TagNumber(4)
-  $2.Timestamp get lastCheck => $_getN(3);
+  $core.String get serverAddr => $_getSZ(3);
   @$pb.TagNumber(4)
-  set lastCheck($2.Timestamp v) { setField(4, v); }
+  set serverAddr($core.String v) { $_setString(3, v); }
   @$pb.TagNumber(4)
-  $core.bool hasLastCheck() => $_has(3);
+  $core.bool hasServerAddr() => $_has(3);
   @$pb.TagNumber(4)
-  void clearLastCheck() => clearField(4);
-  @$pb.TagNumber(4)
-  $2.Timestamp ensureLastCheck() => $_ensure(3);
+  void clearServerAddr() => clearField(4);
 
   @$pb.TagNumber(5)
-  $core.String get msg => $_getSZ(4);
+  PBServer_ServerStatus get status => $_getN(4);
   @$pb.TagNumber(5)
-  set msg($core.String v) { $_setString(4, v); }
+  set status(PBServer_ServerStatus v) { setField(5, v); }
   @$pb.TagNumber(5)
-  $core.bool hasMsg() => $_has(4);
+  $core.bool hasStatus() => $_has(4);
   @$pb.TagNumber(5)
-  void clearMsg() => clearField(5);
+  void clearStatus() => clearField(5);
+
+  @$pb.TagNumber(6)
+  $2.Timestamp get lastCheck => $_getN(5);
+  @$pb.TagNumber(6)
+  set lastCheck($2.Timestamp v) { setField(6, v); }
+  @$pb.TagNumber(6)
+  $core.bool hasLastCheck() => $_has(5);
+  @$pb.TagNumber(6)
+  void clearLastCheck() => clearField(6);
+  @$pb.TagNumber(6)
+  $2.Timestamp ensureLastCheck() => $_ensure(5);
+
+  @$pb.TagNumber(7)
+  $core.String get msg => $_getSZ(6);
+  @$pb.TagNumber(7)
+  set msg($core.String v) { $_setString(6, v); }
+  @$pb.TagNumber(7)
+  $core.bool hasMsg() => $_has(6);
+  @$pb.TagNumber(7)
+  void clearMsg() => clearField(7);
 }
 
 class PBListServer extends $pb.GeneratedMessage {

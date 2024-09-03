@@ -21,24 +21,28 @@ import (
 type serverStatus struct {
 	ctx        context.Context
 	cancelFunc context.CancelFunc
-	Key        string
-	kk_etcd_models.CheckConfig
+	kk_etcd_models.ServerRegistration
 	Status    kk_etcd_models.PBServer_ServerStatus
 	LastCheck time.Time
 	Msg       string
-	Metadata  any
 }
 
+func newServerStatus(register *kk_etcd_models.ServerRegistration) *serverStatus {
+	return &serverStatus{
+		ServerRegistration: *register,
+		Status:             kk_etcd_models.PBServer_Init,
+		LastCheck:          kk_time.DefaultTime,
+		Msg:                "init checker",
+	}
+}
 func (x *serverStatus) KVKey() string {
-	return kk_etcd_models.InternalServerStatus + x.Key
+	//use another key prefix for kv store, because endpointManage will listen normal key with same prefix of endpointKey
+	return kk_etcd_models.InternalServerStatus + x.EndpointKey()
 }
 func (x *serverStatus) PutExistUpdateJson() error {
 	return service.SerKV{}.PutExistUpdateJson(internal_client.GlobalStage, x.KVKey(), x)
 }
-func (x *serverStatus) GetJson() (err error) {
-	err = service.SerKV{}.GetJson(internal_client.GlobalStage, x.KVKey(), x)
-	return err
-}
+
 func (x *serverStatus) FromJson(data string) (err error) {
 	err = json.Unmarshal([]byte(data), x)
 	return err
@@ -61,19 +65,6 @@ func (x *serverStatus) fromEndpoint(endpoint endpoints.Endpoint) {
 	err = json.Unmarshal(bytes, x)
 	if err != nil {
 		slog.Error("fromEndpoint Endpoint metadata", kk_log.NewLog(nil).Error(err).Args()...)
-	}
-}
-
-func newServerStatus(key string,
-	checkConfig kk_etcd_models.CheckConfig,
-	metadata any) *serverStatus {
-	return &serverStatus{
-		Key:         key,
-		CheckConfig: checkConfig,
-		Status:      kk_etcd_models.PBServer_Init,
-		LastCheck:   kk_time.DefaultTime,
-		Msg:         "init checker",
-		Metadata:    metadata,
 	}
 }
 
@@ -117,9 +108,6 @@ func (x *serverStatus) runCheck() {
 				return
 			case <-ticker.C:
 				err := x.checkGrpc(&x.CheckConfig)
-				if err != nil {
-					slog.Warn("checkGrpc", kk_log.NewLog(nil).Error(err).Args()...)
-				}
 				err = updateHealth(err)
 				if err != nil {
 					slog.Error("updateHealth", kk_log.NewLog(nil).Error(err).Args()...)
@@ -134,9 +122,6 @@ func (x *serverStatus) runCheck() {
 				return
 			case <-ticker.C:
 				err := x.checkHttp(&x.CheckConfig)
-				if err != nil {
-					slog.Warn("checkHttp", kk_log.NewLog(nil).Error(err).Args()...)
-				}
 				err = updateHealth(err)
 				if err != nil {
 					slog.Error("updateHealth", kk_log.NewLog(nil).Error(err).Args()...)

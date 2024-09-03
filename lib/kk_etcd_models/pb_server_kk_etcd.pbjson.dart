@@ -17,11 +17,13 @@ import 'dart:typed_data' as $typed_data;
 const PBServer$json = {
   '1': 'PBServer',
   '2': [
-    {'1': 'ServerName', '3': 1, '4': 1, '5': 9, '10': 'ServerName'},
-    {'1': 'ServerAddr', '3': 2, '4': 1, '5': 9, '10': 'ServerAddr'},
-    {'1': 'Status', '3': 3, '4': 1, '5': 14, '6': '.kk_etcd_models.PBServer.ServerStatus', '10': 'Status'},
-    {'1': 'LastCheck', '3': 4, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'LastCheck'},
-    {'1': 'Msg', '3': 5, '4': 1, '5': 9, '10': 'Msg'},
+    {'1': 'Target', '3': 1, '4': 1, '5': 9, '10': 'Target'},
+    {'1': 'Key', '3': 2, '4': 1, '5': 9, '10': 'Key'},
+    {'1': 'ServerName', '3': 3, '4': 1, '5': 9, '10': 'ServerName'},
+    {'1': 'ServerAddr', '3': 4, '4': 1, '5': 9, '10': 'ServerAddr'},
+    {'1': 'Status', '3': 5, '4': 1, '5': 14, '6': '.kk_etcd_models.PBServer.ServerStatus', '10': 'Status'},
+    {'1': 'LastCheck', '3': 6, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'LastCheck'},
+    {'1': 'Msg', '3': 7, '4': 1, '5': 9, '10': 'Msg'},
   ],
   '4': [PBServer_ServerStatus$json],
 };
@@ -39,11 +41,12 @@ const PBServer_ServerStatus$json = {
 
 /// Descriptor for `PBServer`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List pBServerDescriptor = $convert.base64Decode(
-    'CghQQlNlcnZlchIeCgpTZXJ2ZXJOYW1lGAEgASgJUgpTZXJ2ZXJOYW1lEh4KClNlcnZlckFkZH'
-    'IYAiABKAlSClNlcnZlckFkZHISPQoGU3RhdHVzGAMgASgOMiUua2tfZXRjZF9tb2RlbHMuUEJT'
-    'ZXJ2ZXIuU2VydmVyU3RhdHVzUgZTdGF0dXMSOAoJTGFzdENoZWNrGAQgASgLMhouZ29vZ2xlLn'
-    'Byb3RvYnVmLlRpbWVzdGFtcFIJTGFzdENoZWNrEhAKA01zZxgFIAEoCVIDTXNnIjwKDFNlcnZl'
-    'clN0YXR1cxILCgdVbktub3duEAASCwoHUnVubmluZxABEggKBFN0b3AQAhIICgRJbml0EAM=');
+    'CghQQlNlcnZlchIWCgZUYXJnZXQYASABKAlSBlRhcmdldBIQCgNLZXkYAiABKAlSA0tleRIeCg'
+    'pTZXJ2ZXJOYW1lGAMgASgJUgpTZXJ2ZXJOYW1lEh4KClNlcnZlckFkZHIYBCABKAlSClNlcnZl'
+    'ckFkZHISPQoGU3RhdHVzGAUgASgOMiUua2tfZXRjZF9tb2RlbHMuUEJTZXJ2ZXIuU2VydmVyU3'
+    'RhdHVzUgZTdGF0dXMSOAoJTGFzdENoZWNrGAYgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVz'
+    'dGFtcFIJTGFzdENoZWNrEhAKA01zZxgHIAEoCVIDTXNnIjwKDFNlcnZlclN0YXR1cxILCgdVbk'
+    'tub3duEAASCwoHUnVubmluZxABEggKBFN0b3AQAhIICgRJbml0EAM=');
 
 @$core.Deprecated('Use pBListServerDescriptor instead')
 const PBListServer$json = {

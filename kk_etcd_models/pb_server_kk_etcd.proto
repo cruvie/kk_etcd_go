@@ -9,17 +9,19 @@ option go_package = "./;kk_etcd_models";
 // protoc -I=. --dart_out=./dart *.proto
 
 message PBServer {
-  string ServerName = 1;
-  string ServerAddr = 2;
+  string Target = 1;
+  string Key = 2;
+  string ServerName = 3;
+  string ServerAddr = 4;
   enum ServerStatus {
     UnKnown = 0;
     Running = 1;
     Stop = 2;
     Init = 3;
   }
-  ServerStatus Status = 3;
-  google.protobuf.Timestamp LastCheck = 4;
-  string Msg = 5;
+  ServerStatus Status = 5;
+  google.protobuf.Timestamp LastCheck = 6;
+  string Msg = 7;
 }
 
 message PBListServer  {

@@ -55,12 +55,8 @@ func (SerKV) KVList(stage *kk_stage.Stage, prefix string) (err error, list *kk_e
 			Key:   string(kv.Key),
 			Value: string(kv.Value),
 		}
-		//skip all prefix match if prefix is empty
-		//	ServiceHttp = "kk_service_http/"
-		//	ServiceGrpc = "kk_service_grpc/"
 		if prefix == "" &&
-			(strings.HasPrefix(cfg.Key, kk_etcd_models.Http.String()) ||
-				strings.HasPrefix(cfg.Key, kk_etcd_models.Grpc.String())) {
+			(strings.HasPrefix(cfg.Key, kk_etcd_models.InternalServerStatus)) {
 			continue
 		}
 		list.ListKV = append(list.ListKV, cfg)

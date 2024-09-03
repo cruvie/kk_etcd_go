@@ -28,12 +28,12 @@ type serverHub struct {
 }
 
 func (x *serverHub) register(server *serverStatus) {
-	if v, ok := x.hub.Get(server.Key); ok {
+	if v, ok := x.hub.Get(server.KVKey()); ok {
 		//stop checker
 		v.stopCheck()
 	}
 	server.ctx, server.cancelFunc = context.WithCancel(context.Background())
-	x.hub.Add(server.Key, server)
+	x.hub.Add(server.KVKey(), server)
 	err := server.PutExistUpdateJson()
 	if err != nil {
 		slog.Error("register server failed server.PutExistUpdateJson()", kk_log.NewLog(nil).
@@ -64,20 +64,20 @@ func (x *serverHub) deregister(key string) {
 	}
 }
 func (x *serverHub) updateStatus(status kk_etcd_models.PBServer_ServerStatus, server *serverStatus) error {
-	v, ok := x.hub.Get(server.Key)
+	v, ok := x.hub.Get(server.KVKey())
 	if ok {
 		// update server status
 		v.Status = status
 		v.LastCheck = time.Now()
 		v.Msg = server.Msg
-		x.hub.Add(v.Key, v)
+		x.hub.Add(v.KVKey(), v)
 		err := v.PutExistUpdateJson()
 		if err != nil {
 			return err
 		}
 		return nil
 	} else {
-		return fmt.Errorf("server not found %s", server.Key)
+		return fmt.Errorf("server not found %s", server.KVKey())
 	}
 }
 
@@ -93,7 +93,7 @@ func (x *serverHub) services() (map[string]*serverStatus, error) {
 		if err != nil {
 			return nil, err
 		}
-		services[info.Key] = &info
+		services[info.KVKey()] = &info
 	}
 
 	return services, nil

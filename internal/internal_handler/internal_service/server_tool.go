@@ -16,7 +16,7 @@ type serverTool struct{}
 var toolServer serverTool
 
 func (t *serverTool) serverList(client *clientv3.Client, serverType kk_etcd_models.ServerType, serverName string) (endpoints.Key2EndpointMap, error) {
-	etcdManager, err := endpoints.NewManager(client, serverType.String()+"/"+serverName)
+	etcdManager, err := endpoints.NewManager(client, serverType.EndpointManagerTarget(serverName))
 	if err != nil {
 		return nil, err
 	}
@@ -36,9 +36,7 @@ func (t *serverTool) registerServer(stage *kk_stage.Stage, registration *kk_etcd
 		slog.Error(msg, newLog.Error(err).String("target", registration.EndpointManagerTarget()).Args()...)
 		return err
 	}
-	info := newServerStatus(registration.EndpointKey(),
-		registration.CheckConfig,
-		registration.Metadata)
+	info := newServerStatus(registration)
 	endpoint := endpoints.Endpoint{
 		Addr:     registration.Addr,
 		Metadata: info,
@@ -46,7 +44,7 @@ func (t *serverTool) registerServer(stage *kk_stage.Stage, registration *kk_etcd
 	//add endpoint to etcd
 	err = endpointManager.AddEndpoint(
 		context.Background(),
-		info.Key,
+		info.EndpointKey(),
 		endpoint)
 	if err != nil {
 		msg := "failed to add endpoint to etcd"
