@@ -133,15 +133,11 @@ class ServerListResponse extends $pb.GeneratedMessage {
 
 class DeregisterServerParam extends $pb.GeneratedMessage {
   factory DeregisterServerParam({
-    $core.String? target,
-    $core.String? key,
+    $3.PBServer? server,
   }) {
     final $result = create();
-    if (target != null) {
-      $result.target = target;
-    }
-    if (key != null) {
-      $result.key = key;
+    if (server != null) {
+      $result.server = server;
     }
     return $result;
   }
@@ -150,8 +146,7 @@ class DeregisterServerParam extends $pb.GeneratedMessage {
   factory DeregisterServerParam.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'DeregisterServerParam', package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd_models'), createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'Target', protoName: 'Target')
-    ..aOS(2, _omitFieldNames ? '' : 'Key', protoName: 'Key')
+    ..aOM<$3.PBServer>(1, _omitFieldNames ? '' : 'Server', protoName: 'Server', subBuilder: $3.PBServer.create)
     ..hasRequiredFields = false
   ;
 
@@ -177,22 +172,15 @@ class DeregisterServerParam extends $pb.GeneratedMessage {
   static DeregisterServerParam? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.String get target => $_getSZ(0);
+  $3.PBServer get server => $_getN(0);
   @$pb.TagNumber(1)
-  set target($core.String v) { $_setString(0, v); }
+  set server($3.PBServer v) { setField(1, v); }
   @$pb.TagNumber(1)
-  $core.bool hasTarget() => $_has(0);
+  $core.bool hasServer() => $_has(0);
   @$pb.TagNumber(1)
-  void clearTarget() => clearField(1);
-
-  @$pb.TagNumber(2)
-  $core.String get key => $_getSZ(1);
-  @$pb.TagNumber(2)
-  set key($core.String v) { $_setString(1, v); }
-  @$pb.TagNumber(2)
-  $core.bool hasKey() => $_has(1);
-  @$pb.TagNumber(2)
-  void clearKey() => clearField(2);
+  void clearServer() => clearField(1);
+  @$pb.TagNumber(1)
+  $3.PBServer ensureServer() => $_ensure(0);
 }
 
 class DeregisterServerResponse extends $pb.GeneratedMessage {

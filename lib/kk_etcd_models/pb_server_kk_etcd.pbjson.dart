@@ -17,8 +17,8 @@ import 'dart:typed_data' as $typed_data;
 const PBServer$json = {
   '1': 'PBServer',
   '2': [
-    {'1': 'Target', '3': 1, '4': 1, '5': 9, '10': 'Target'},
-    {'1': 'Key', '3': 2, '4': 1, '5': 9, '10': 'Key'},
+    {'1': 'EndpointManagerTarget', '3': 1, '4': 1, '5': 9, '10': 'EndpointManagerTarget'},
+    {'1': 'EndpointKey', '3': 2, '4': 1, '5': 9, '10': 'EndpointKey'},
     {'1': 'ServerName', '3': 3, '4': 1, '5': 9, '10': 'ServerName'},
     {'1': 'ServerAddr', '3': 4, '4': 1, '5': 9, '10': 'ServerAddr'},
     {'1': 'Status', '3': 5, '4': 1, '5': 14, '6': '.kk_etcd_models.PBServer.ServerStatus', '10': 'Status'},
@@ -41,12 +41,13 @@ const PBServer_ServerStatus$json = {
 
 /// Descriptor for `PBServer`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List pBServerDescriptor = $convert.base64Decode(
-    'CghQQlNlcnZlchIWCgZUYXJnZXQYASABKAlSBlRhcmdldBIQCgNLZXkYAiABKAlSA0tleRIeCg'
-    'pTZXJ2ZXJOYW1lGAMgASgJUgpTZXJ2ZXJOYW1lEh4KClNlcnZlckFkZHIYBCABKAlSClNlcnZl'
-    'ckFkZHISPQoGU3RhdHVzGAUgASgOMiUua2tfZXRjZF9tb2RlbHMuUEJTZXJ2ZXIuU2VydmVyU3'
-    'RhdHVzUgZTdGF0dXMSOAoJTGFzdENoZWNrGAYgASgLMhouZ29vZ2xlLnByb3RvYnVmLlRpbWVz'
-    'dGFtcFIJTGFzdENoZWNrEhAKA01zZxgHIAEoCVIDTXNnIjwKDFNlcnZlclN0YXR1cxILCgdVbk'
-    'tub3duEAASCwoHUnVubmluZxABEggKBFN0b3AQAhIICgRJbml0EAM=');
+    'CghQQlNlcnZlchI0ChVFbmRwb2ludE1hbmFnZXJUYXJnZXQYASABKAlSFUVuZHBvaW50TWFuYW'
+    'dlclRhcmdldBIgCgtFbmRwb2ludEtleRgCIAEoCVILRW5kcG9pbnRLZXkSHgoKU2VydmVyTmFt'
+    'ZRgDIAEoCVIKU2VydmVyTmFtZRIeCgpTZXJ2ZXJBZGRyGAQgASgJUgpTZXJ2ZXJBZGRyEj0KBl'
+    'N0YXR1cxgFIAEoDjIlLmtrX2V0Y2RfbW9kZWxzLlBCU2VydmVyLlNlcnZlclN0YXR1c1IGU3Rh'
+    'dHVzEjgKCUxhc3RDaGVjaxgGIAEoCzIaLmdvb2dsZS5wcm90b2J1Zi5UaW1lc3RhbXBSCUxhc3'
+    'RDaGVjaxIQCgNNc2cYByABKAlSA01zZyI8CgxTZXJ2ZXJTdGF0dXMSCwoHVW5Lbm93bhAAEgsK'
+    'B1J1bm5pbmcQARIICgRTdG9wEAISCAoESW5pdBAD');
 
 @$core.Deprecated('Use pBListServerDescriptor instead')
 const PBListServer$json = {

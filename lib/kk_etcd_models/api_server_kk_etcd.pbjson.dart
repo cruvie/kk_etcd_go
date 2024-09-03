@@ -44,15 +44,14 @@ final $typed_data.Uint8List serverListResponseDescriptor = $convert.base64Decode
 const DeregisterServerParam$json = {
   '1': 'DeregisterServerParam',
   '2': [
-    {'1': 'Target', '3': 1, '4': 1, '5': 9, '10': 'Target'},
-    {'1': 'Key', '3': 2, '4': 1, '5': 9, '10': 'Key'},
+    {'1': 'Server', '3': 1, '4': 1, '5': 11, '6': '.kk_etcd_models.PBServer', '10': 'Server'},
   ],
 };
 
 /// Descriptor for `DeregisterServerParam`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List deregisterServerParamDescriptor = $convert.base64Decode(
-    'ChVEZXJlZ2lzdGVyU2VydmVyUGFyYW0SFgoGVGFyZ2V0GAEgASgJUgZUYXJnZXQSEAoDS2V5GA'
-    'IgASgJUgNLZXk=');
+    'ChVEZXJlZ2lzdGVyU2VydmVyUGFyYW0SMAoGU2VydmVyGAEgASgLMhgua2tfZXRjZF9tb2RlbH'
+    'MuUEJTZXJ2ZXJSBlNlcnZlcg==');
 
 @$core.Deprecated('Use deregisterServerResponseDescriptor instead')
 const DeregisterServerResponse$json = {

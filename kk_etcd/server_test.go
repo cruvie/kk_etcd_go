@@ -52,10 +52,10 @@ func TestRegisterGrpcService(t *testing.T) {
 
 	//register grpc service
 	err := RegisterService(&kk_etcd_models.ServerRegistration{
-		Type:     kk_etcd_models.Grpc,
-		Name:     "haha_grpc",
-		Addr:     "127.0.0.1:34844",
-		Metadata: "meta",
+		ServerType: kk_etcd_models.Grpc,
+		ServerName: "haha_grpc",
+		ServerAddr: "127.0.0.1:34844",
+		Metadata:   "meta",
 		CheckConfig: kk_etcd_models.CheckConfig{
 			Type:     kk_etcd_models.Grpc,
 			Timeout:  10 * time.Second,
@@ -93,9 +93,9 @@ func TestRegisterHttpService(t *testing.T) {
 	initTestEnv()
 
 	err := RegisterService(&kk_etcd_models.ServerRegistration{
-		Type: kk_etcd_models.Http,
-		Name: "haha_http",
-		Addr: "127.0.0.1:8848",
+		ServerType: kk_etcd_models.Http,
+		ServerName: "haha_http",
+		ServerAddr: "127.0.0.1:8848",
 		CheckConfig: kk_etcd_models.CheckConfig{
 			Type:     kk_etcd_models.Http,
 			Timeout:  10 * time.Second,

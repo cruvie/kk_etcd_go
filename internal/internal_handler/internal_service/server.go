@@ -21,11 +21,11 @@ func (SerServer) RegisterService(stage *kk_stage.Stage, registration *kk_etcd_mo
 	switch registration.CheckConfig.Type {
 	case kk_etcd_models.Http:
 		if registration.CheckConfig.Addr == "" {
-			registration.CheckConfig.Addr = "http://" + registration.Addr + kk_etcd_models.HealthCheckPath
+			registration.CheckConfig.Addr = "http://" + registration.ServerAddr + kk_etcd_models.HealthCheckPath
 		}
 	case kk_etcd_models.Grpc:
 		if registration.CheckConfig.Addr == "" {
-			registration.CheckConfig.Addr = registration.Addr
+			registration.CheckConfig.Addr = registration.ServerAddr
 		}
 	}
 	err := registration.Check()
@@ -52,19 +52,23 @@ func (SerServer) ServerList(client *clientv3.Client, serverType kk_etcd_models.S
 		status, ok := serviceStatus[key]
 		if !ok {
 			pBListServer.ListServer = append(pBListServer.ListServer, &kk_etcd_models.PBServer{
-				ServerName: key,
-				ServerAddr: endpoint.Addr,
-				Status:     kk_etcd_models.PBServer_UnKnown,
-				LastCheck:  timestamppb.New(kk_time.DefaultTime),
-				Msg:        fmt.Sprintf("could not found sevice %s in service hub \n may not be registered by kk_etcd", key),
+				EndpointManagerTarget: status.EndpointManagerTarget(),
+				EndpointKey:           status.EndpointKey(),
+				ServerName:            status.ServerName,
+				ServerAddr:            endpoint.Addr,
+				Status:                kk_etcd_models.PBServer_UnKnown,
+				LastCheck:             timestamppb.New(kk_time.DefaultTime),
+				Msg:                   fmt.Sprintf("could not found sevice %s in service hub \n may not be registered by kk_etcd", key),
 			})
 		} else {
 			pBListServer.ListServer = append(pBListServer.ListServer, &kk_etcd_models.PBServer{
-				ServerName: key,
-				ServerAddr: endpoint.Addr,
-				Status:     status.Status,
-				LastCheck:  timestamppb.New(status.LastCheck),
-				Msg:        status.Msg,
+				EndpointManagerTarget: status.EndpointManagerTarget(),
+				EndpointKey:           status.EndpointKey(),
+				ServerName:            status.ServerName,
+				ServerAddr:            endpoint.Addr,
+				Status:                status.Status,
+				LastCheck:             timestamppb.New(status.LastCheck),
+				Msg:                   status.Msg,
 			})
 		}
 	}
@@ -75,12 +79,12 @@ func (SerServer) ServerList(client *clientv3.Client, serverType kk_etcd_models.S
 }
 
 func (SerServer) DeregisterServer(stage *kk_stage.Stage, param *kk_etcd_models.DeregisterServerParam) error {
-	endpointManager, err := endpoints.NewManager(global_model.GetClient(stage), param.GetTarget())
+	endpointManager, err := endpoints.NewManager(global_model.GetClient(stage), param.GetServer().GetEndpointManagerTarget())
 	if err != nil {
 		return err
 	}
 
-	err = endpointManager.DeleteEndpoint(context.Background(), param.GetKey())
+	err = endpointManager.DeleteEndpoint(context.Background(), param.GetServer().GetEndpointKey())
 	if err != nil {
 		return err
 	}

@@ -24,13 +24,17 @@ func (x *DeregisterServerParam) BindCheck(stage *kk_stage.Stage) error {
 	if err != nil {
 		return err
 	}
-
-	if x.GetTarget() == "" {
-		return errors.New("target is empty")
+	ser := x.GetServer()
+	if ser == nil {
+		return errors.New("server is empty")
 	}
 
-	if x.GetKey() == "" {
-		return errors.New("key is empty")
+	if ser.GetEndpointManagerTarget() == "" {
+		return errors.New("EndpointManagerTarget is empty")
+	}
+
+	if ser.GetEndpointKey() == "" {
+		return errors.New("EndpointKey is empty")
 	}
 
 	return nil

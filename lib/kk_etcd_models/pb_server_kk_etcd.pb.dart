@@ -20,8 +20,8 @@ export 'pb_server_kk_etcd.pbenum.dart';
 
 class PBServer extends $pb.GeneratedMessage {
   factory PBServer({
-    $core.String? target,
-    $core.String? key,
+    $core.String? endpointManagerTarget,
+    $core.String? endpointKey,
     $core.String? serverName,
     $core.String? serverAddr,
     PBServer_ServerStatus? status,
@@ -29,11 +29,11 @@ class PBServer extends $pb.GeneratedMessage {
     $core.String? msg,
   }) {
     final $result = create();
-    if (target != null) {
-      $result.target = target;
+    if (endpointManagerTarget != null) {
+      $result.endpointManagerTarget = endpointManagerTarget;
     }
-    if (key != null) {
-      $result.key = key;
+    if (endpointKey != null) {
+      $result.endpointKey = endpointKey;
     }
     if (serverName != null) {
       $result.serverName = serverName;
@@ -57,8 +57,8 @@ class PBServer extends $pb.GeneratedMessage {
   factory PBServer.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'PBServer', package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd_models'), createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'Target', protoName: 'Target')
-    ..aOS(2, _omitFieldNames ? '' : 'Key', protoName: 'Key')
+    ..aOS(1, _omitFieldNames ? '' : 'EndpointManagerTarget', protoName: 'EndpointManagerTarget')
+    ..aOS(2, _omitFieldNames ? '' : 'EndpointKey', protoName: 'EndpointKey')
     ..aOS(3, _omitFieldNames ? '' : 'ServerName', protoName: 'ServerName')
     ..aOS(4, _omitFieldNames ? '' : 'ServerAddr', protoName: 'ServerAddr')
     ..e<PBServer_ServerStatus>(5, _omitFieldNames ? '' : 'Status', $pb.PbFieldType.OE, protoName: 'Status', defaultOrMaker: PBServer_ServerStatus.UnKnown, valueOf: PBServer_ServerStatus.valueOf, enumValues: PBServer_ServerStatus.values)
@@ -89,22 +89,22 @@ class PBServer extends $pb.GeneratedMessage {
   static PBServer? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.String get target => $_getSZ(0);
+  $core.String get endpointManagerTarget => $_getSZ(0);
   @$pb.TagNumber(1)
-  set target($core.String v) { $_setString(0, v); }
+  set endpointManagerTarget($core.String v) { $_setString(0, v); }
   @$pb.TagNumber(1)
-  $core.bool hasTarget() => $_has(0);
+  $core.bool hasEndpointManagerTarget() => $_has(0);
   @$pb.TagNumber(1)
-  void clearTarget() => clearField(1);
+  void clearEndpointManagerTarget() => clearField(1);
 
   @$pb.TagNumber(2)
-  $core.String get key => $_getSZ(1);
+  $core.String get endpointKey => $_getSZ(1);
   @$pb.TagNumber(2)
-  set key($core.String v) { $_setString(1, v); }
+  set endpointKey($core.String v) { $_setString(1, v); }
   @$pb.TagNumber(2)
-  $core.bool hasKey() => $_has(1);
+  $core.bool hasEndpointKey() => $_has(1);
   @$pb.TagNumber(2)
-  void clearKey() => clearField(2);
+  void clearEndpointKey() => clearField(2);
 
   @$pb.TagNumber(3)
   $core.String get serverName => $_getSZ(2);

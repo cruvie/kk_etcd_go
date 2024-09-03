@@ -51,16 +51,16 @@ func (x *serverHub) register(server *serverStatus) {
 	go server.runCheck()
 }
 
-func (x *serverHub) deregister(key string) {
-	v, ok := x.hub.Get(key)
+func (x *serverHub) deregister(status *serverStatus) {
+	oldStatus, ok := x.hub.Get(status.KVKey())
 	if ok {
-		x.hub.Remove(key)
+		x.hub.Remove(status.KVKey())
 		//stop checker
-		v.stopCheck()
+		oldStatus.stopCheck()
 	}
-	err := v.KVDel()
+	err := oldStatus.KVDel()
 	if err != nil {
-		slog.Error("deregister server failed server.KVDel()", kk_log.NewLog(nil).Error(err).Any("server", v).Args()...)
+		slog.Error("deregister server failed server.KVDel()", kk_log.NewLog(nil).Error(err).Any("server", oldStatus).Args()...)
 	}
 }
 func (x *serverHub) updateStatus(status kk_etcd_models.PBServer_ServerStatus, server *serverStatus) error {
@@ -119,13 +119,13 @@ func (x *serverHub) watchServiceChange() {
 	updateEndpoint := func(updates []*endpoints.Update) {
 		for _, update := range updates {
 			go func() {
+				var status serverStatus
+				status.fromEndpoint(update.Endpoint)
 				switch update.Op {
 				case endpoints.Delete:
-					hub.deregister(update.Key)
+					hub.deregister(&status)
 				case endpoints.Add:
-					var info serverStatus
-					info.fromEndpoint(update.Endpoint)
-					hub.register(&info)
+					hub.register(&status)
 				}
 			}()
 		}

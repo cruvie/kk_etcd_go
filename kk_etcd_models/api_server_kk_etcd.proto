@@ -17,8 +17,7 @@ message ServerListResponse {
 }
 
 message DeregisterServerParam {
-  string Target = 1;//ServerType/ServerName
-  string  Key = 2;//ServerType/ServerName/Addr
+  PBServer Server = 1;
 }
 message DeregisterServerResponse {
 

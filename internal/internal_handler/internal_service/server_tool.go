@@ -38,7 +38,7 @@ func (t *serverTool) registerServer(stage *kk_stage.Stage, registration *kk_etcd
 	}
 	info := newServerStatus(registration)
 	endpoint := endpoints.Endpoint{
-		Addr:     registration.Addr,
+		Addr:     registration.ServerAddr,
 		Metadata: info,
 	}
 	//add endpoint to etcd

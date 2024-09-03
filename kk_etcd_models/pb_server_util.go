@@ -59,19 +59,19 @@ func (x *CheckConfig) Check() error {
 }
 
 type ServerRegistration struct {
-	Type        ServerType
-	Name        string
-	Addr        string
+	ServerType  ServerType
+	ServerName  string
+	ServerAddr  string
 	Metadata    any
 	CheckConfig CheckConfig
 }
 
 func (x *ServerRegistration) Check() error {
-	if x.Name == "" {
+	if x.ServerName == "" {
 		msg := "server name cannot be empty"
 		return errors.New(msg)
 	}
-	if x.Addr == "" {
+	if x.ServerAddr == "" {
 		msg := "server address cannot be empty"
 		return errors.New(msg)
 	}
@@ -79,9 +79,9 @@ func (x *ServerRegistration) Check() error {
 }
 
 func (x *ServerRegistration) EndpointKey() string {
-	return x.EndpointManagerTarget() + "/" + x.Addr
+	return x.EndpointManagerTarget() + "/" + x.ServerAddr
 }
 
 func (x *ServerRegistration) EndpointManagerTarget() string {
-	return x.Type.EndpointManagerTarget(x.Name)
+	return x.ServerType.EndpointManagerTarget(x.ServerName)
 }
