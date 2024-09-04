@@ -31,12 +31,12 @@ func InitConfig() {
 	data, err := os.ReadFile(workDir + "/internal/config/config.yml")
 	if err != nil {
 		slog.Error("unable to read config.yaml", "err", err)
-		panic(nil)
+		panic(err)
 	}
 
 	err = yaml.Unmarshal(data, &Config)
 	if err != nil {
 		slog.Error("unable to unmarshal config.yaml", "err", err)
-		panic(nil)
+		panic(err)
 	}
 }

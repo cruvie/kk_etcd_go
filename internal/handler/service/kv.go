@@ -55,8 +55,7 @@ func (SerKV) KVList(stage *kk_stage.Stage, prefix string) (err error, list *kk_e
 			Key:   string(kv.Key),
 			Value: string(kv.Value),
 		}
-		if prefix == "" &&
-			(strings.HasPrefix(cfg.Key, kk_etcd_models.InternalServerStatus)) {
+		if strings.HasPrefix(cfg.Key, kk_etcd_models.Server) {
 			continue
 		}
 		list.ListKV = append(list.ListKV, cfg)
