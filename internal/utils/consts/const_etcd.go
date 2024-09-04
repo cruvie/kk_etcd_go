@@ -1,4 +1,4 @@
-package kk_etcd_const
+package consts
 
 const (
 	ServerName = "kk_etcd"

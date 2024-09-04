@@ -6,9 +6,11 @@ import (
 	"github.com/cruvie/kk_etcd_go/internal/api_etcd"
 	"github.com/cruvie/kk_etcd_go/internal/config"
 	"github.com/cruvie/kk_etcd_go/internal/internal_handler/internal_service"
+	"github.com/cruvie/kk_etcd_go/internal/utils/consts"
 	"github.com/cruvie/kk_etcd_go/internal/utils/internal_client"
-	"github.com/cruvie/kk_etcd_go/kk_etcd_const"
+	"github.com/cruvie/kk_etcd_go/kk_etcd"
 	_ "github.com/cruvie/kk_etcd_go/swagger"
+	"log/slog"
 )
 
 //	@title			kk_etcd_go API
@@ -31,7 +33,7 @@ func main() {
 	defer internal_client.CloseGlobalStage()
 
 	configLog := kk_log.ConfigLog{
-		Lumberjack: kk_log.DefaultLogConfig(kk_etcd_const.ServerName),
+		Lumberjack: kk_log.DefaultLogConfig(consts.ServerName),
 	}
 	init := &kk_config_interface.InitArgs{
 		DebugMode:   internal_client.GlobalStage.DebugMode,
@@ -42,14 +44,20 @@ func main() {
 
 	internal_client.InitEtcd(internal_client.GlobalStage)
 
-	err := internal_client.InitClient(&internal_client.InitClientConfig{
+	closeFunc, err := kk_etcd.InitClient(&kk_etcd.InitClientConfig{
 		Endpoints: []string{config.Config.Etcd.Endpoint},
-		UserName:  kk_etcd_const.UserRoot,
+		UserName:  consts.UserRoot,
 		Password:  config.Config.RootPassword,
 		DebugMode: internal_client.GlobalStage.DebugMode})
 	if err != nil {
 		panic(err)
 	}
+	defer func() {
+		err := closeFunc()
+		if err != nil {
+			slog.Error("close etcd client failed", "err", err)
+		}
+	}()
 
 	internal_service.InitServiceHub()
 

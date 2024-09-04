@@ -6,7 +6,7 @@ import (
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/internal/config"
 	"github.com/cruvie/kk_etcd_go/internal/handler/service"
-	"github.com/cruvie/kk_etcd_go/kk_etcd_const"
+	"github.com/cruvie/kk_etcd_go/internal/utils/consts"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_error"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	"go.etcd.io/etcd/api/v3/v3rpc/rpctypes"
@@ -44,9 +44,9 @@ func (x *serToolEtcd) initRootRolePermission(stage *kk_stage.Stage) {
 	//https://etcd.io/docs/v3.5/op-guide/authentication/rbac/
 	newLog := kk_log.NewLog(&kk_log.LogOption{})
 	user := &kk_etcd_models.PBUser{
-		UserName: kk_etcd_const.UserRoot,
+		UserName: consts.UserRoot,
 		Password: config.Config.RootPassword,
-		Roles:    []string{kk_etcd_const.RoleRoot},
+		Roles:    []string{consts.RoleRoot},
 	}
 	//add root user
 	var serUser service.SerUser
@@ -59,7 +59,7 @@ func (x *serToolEtcd) initRootRolePermission(stage *kk_stage.Stage) {
 	//add root role
 	var serRole service.SerRole
 	err = serRole.RoleAdd(stage, &kk_etcd_models.RoleAddParam{
-		Name: kk_etcd_const.RoleRoot,
+		Name: consts.RoleRoot,
 	})
 	if err != nil {
 		slog.Error("add etcd role failed", newLog.Error(err).Args()...)

@@ -5,24 +5,22 @@ import (
 	"gitee.com/cruvie/kk_go_kit/kk_config_interface"
 	"gitee.com/cruvie/kk_go_kit/kk_log"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
-	"github.com/cruvie/kk_etcd_go/internal/utils/internal_client"
-	"github.com/cruvie/kk_etcd_go/kk_etcd_const"
+	"github.com/cruvie/kk_etcd_go/internal/utils/consts"
 )
 
-func initTestEnv() {
+func initTestEnv() CloseFunc {
 	var (
 		stage = kk_stage.NewStage(context.Background(), "Test", true)
 	)
 	configLog := kk_log.ConfigLog{
-		Lumberjack: kk_log.DefaultLogConfig(kk_etcd_const.ServerName),
+		Lumberjack: kk_log.DefaultLogConfig(consts.ServerName),
 	}
 	configLog.Init(&kk_config_interface.InitArgs{
 		DebugMode:   stage.DebugMode,
 		ServiceName: stage.ServiceName,
 	})
 	defer configLog.Close()
-	internal_client.InitGlobalStage(stage.DebugMode)
-	err := internal_client.InitClient(&internal_client.InitClientConfig{
+	closeFunc, err := InitClient(&InitClientConfig{
 		Endpoints: []string{"http://127.0.0.1:2379"},
 		UserName:  "root",
 		Password:  "root",
@@ -30,4 +28,5 @@ func initTestEnv() {
 	if err != nil {
 		panic(err)
 	}
+	return closeFunc
 }

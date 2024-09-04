@@ -1,6 +1,7 @@
 package kk_etcd
 
 import (
+	"log"
 	"log/slog"
 	"testing"
 )
@@ -18,7 +19,13 @@ type configTest struct {
 }
 
 func TestPutYaml(t *testing.T) {
-	initTestEnv()
+	closeFunc := initTestEnv()
+	defer func() {
+		err := closeFunc()
+		if err != nil {
+			log.Println(err)
+		}
+	}()
 
 	type args struct {
 		configKey string
@@ -58,7 +65,13 @@ func TestPutYaml(t *testing.T) {
 
 func TestGetYaml(t *testing.T) {
 	var GlobalConfig configTest
-	initTestEnv()
+	closeFunc := initTestEnv()
+	defer func() {
+		err := closeFunc()
+		if err != nil {
+			log.Println(err)
+		}
+	}()
 	err := GetYaml("my_config", &GlobalConfig)
 	if err != nil {
 		slog.Error("GetYaml failed", "err", err)
@@ -68,7 +81,13 @@ func TestGetYaml(t *testing.T) {
 }
 
 func TestPutJson(t *testing.T) {
-	initTestEnv()
+	closeFunc := initTestEnv()
+	defer func() {
+		err := closeFunc()
+		if err != nil {
+			log.Println(err)
+		}
+	}()
 
 	type args struct {
 		configKey string
@@ -108,7 +127,13 @@ func TestPutJson(t *testing.T) {
 
 func TestGetJson(t *testing.T) {
 	var GlobalConfig configTest
-	initTestEnv()
+	closeFunc := initTestEnv()
+	defer func() {
+		err := closeFunc()
+		if err != nil {
+			log.Println(err)
+		}
+	}()
 	err := GetJson("my_config_json", &GlobalConfig)
 	if err != nil {
 		slog.Error("GetYaml failed", "err", err)

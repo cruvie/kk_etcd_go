@@ -5,8 +5,8 @@ import (
 	"gitee.com/cruvie/kk_go_kit/kk_log"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/internal/config"
+	"github.com/cruvie/kk_etcd_go/internal/utils/consts"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
-	"github.com/cruvie/kk_etcd_go/kk_etcd_const"
 	clientv3 "go.etcd.io/etcd/client/v3"
 	"log/slog"
 	"time"
@@ -19,7 +19,7 @@ func InitEtcd(stage *kk_stage.Stage) {
 	cfg := clientv3.Config{
 		Endpoints:   []string{config.Config.Etcd.Endpoint},
 		DialTimeout: 5 * time.Second,
-		Username:    kk_etcd_const.UserRoot,
+		Username:    consts.UserRoot,
 		Password:    config.Config.RootPassword,
 	}
 	if toolEtcd.checkAuthEnabled() {

@@ -6,6 +6,7 @@ import (
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/health/grpc_health_v1"
+	"log"
 	"log/slog"
 	"net"
 	"net/http"
@@ -48,7 +49,13 @@ func TestStartGrpcServer(t *testing.T) {
 	}
 }
 func TestRegisterGrpcService(t *testing.T) {
-	initTestEnv()
+	closeFunc := initTestEnv()
+	defer func() {
+		err := closeFunc()
+		if err != nil {
+			log.Println(err)
+		}
+	}()
 
 	//register grpc service
 	err := RegisterService(&kk_etcd_models.ServerRegistration{
@@ -68,7 +75,13 @@ func TestRegisterGrpcService(t *testing.T) {
 	}
 }
 func TestGetGrpcServiceList(t *testing.T) {
-	initTestEnv()
+	closeFunc := initTestEnv()
+	defer func() {
+		err := closeFunc()
+		if err != nil {
+			log.Println(err)
+		}
+	}()
 	for {
 		list, err := ServerList(&kk_etcd_models.ServerListParam{ServerType: kk_etcd_models.Grpc.String(), ServerName: "haha_grpc"})
 		if err != nil {
@@ -90,8 +103,13 @@ func TestStartHttpServer(t *testing.T) {
 	}
 }
 func TestRegisterHttpService(t *testing.T) {
-	initTestEnv()
-
+	closeFunc := initTestEnv()
+	defer func() {
+		err := closeFunc()
+		if err != nil {
+			log.Println(err)
+		}
+	}()
 	err := RegisterService(&kk_etcd_models.ServerRegistration{
 		ServerType: kk_etcd_models.Http,
 		ServerName: "haha_http",
@@ -109,7 +127,13 @@ func TestRegisterHttpService(t *testing.T) {
 }
 
 func TestGetHttpServiceList(t *testing.T) {
-	initTestEnv()
+	closeFunc := initTestEnv()
+	defer func() {
+		err := closeFunc()
+		if err != nil {
+			log.Println(err)
+		}
+	}()
 	for {
 		list, err := ServerList(&kk_etcd_models.ServerListParam{ServerType: kk_etcd_models.Http.String(), ServerName: "haha_http"})
 		if err != nil {
@@ -121,7 +145,13 @@ func TestGetHttpServiceList(t *testing.T) {
 }
 
 func TestWatchServerList(t *testing.T) {
-	initTestEnv()
+	closeFunc := initTestEnv()
+	defer func() {
+		err := closeFunc()
+		if err != nil {
+			log.Println(err)
+		}
+	}()
 	serverListChan := make(chan *kk_etcd_models.PBListServer)
 	defer close(serverListChan)
 	ctx, cancel := context.WithCancel(context.Background())

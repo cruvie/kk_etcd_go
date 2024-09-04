@@ -10,7 +10,13 @@ import (
 )
 
 func TestSnapshot(t *testing.T) {
-	initTestEnv()
+	closeFunc := initTestEnv()
+	defer func() {
+		err := closeFunc()
+		if err != nil {
+			log.Println(err)
+		}
+	}()
 
 	err, pBFile := Snapshot()
 	if err != nil {
@@ -26,7 +32,13 @@ func TestSnapshot(t *testing.T) {
 }
 
 func TestSnapshotRestore(t *testing.T) {
-	initTestEnv()
+	closeFunc := initTestEnv()
+	defer func() {
+		err := closeFunc()
+		if err != nil {
+			log.Println(err)
+		}
+	}()
 	cmdStr, err := SnapshotRestore()
 	if err != nil {
 		log.Println(err)
@@ -35,7 +47,13 @@ func TestSnapshotRestore(t *testing.T) {
 }
 
 func TestSnapshotInfo(t *testing.T) {
-	initTestEnv()
+	closeFunc := initTestEnv()
+	defer func() {
+		err := closeFunc()
+		if err != nil {
+			log.Println(err)
+		}
+	}()
 	bytes, err := os.ReadFile("/Users/cruvie/KangXH/Coding/Uncomplete-Projects/kk_etcd/kk_etcd_go/backup/etcd_backup.db")
 	if err != nil {
 		slog.Error("Failed to read file", kk_log.NewLog(nil).Error(err).Args()...)
@@ -49,7 +67,13 @@ func TestSnapshotInfo(t *testing.T) {
 }
 
 func TestAllKVsBackup(t *testing.T) {
-	initTestEnv()
+	closeFunc := initTestEnv()
+	defer func() {
+		err := closeFunc()
+		if err != nil {
+			log.Println(err)
+		}
+	}()
 	err, pbFile := AllKVsBackup()
 	if err != nil {
 		log.Println(err)
@@ -60,7 +84,13 @@ func TestAllKVsBackup(t *testing.T) {
 }
 
 func TestAllKVsRestore(t *testing.T) {
-	initTestEnv()
+	closeFunc := initTestEnv()
+	defer func() {
+		err := closeFunc()
+		if err != nil {
+			log.Println(err)
+		}
+	}()
 	jsonStr := `{"ListKV":[{"Key":"testkvbackup1","Value":"{\"UserName\":\"ww\",\"Password\":\"$2a$04$qM0YyMWVX0yz/rcVco8H/OVFBeYh/Wbc0drklFfS29BsDTekuK\"}"},{"Key":"testkvbackup2","Value":"dsafsd\ndasfsdf"}]}`
 
 	err, _ := AllKVsRestore(&kk_etcd_models.AllKVsRestoreParam{File: []byte(jsonStr)})

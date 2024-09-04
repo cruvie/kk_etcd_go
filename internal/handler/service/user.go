@@ -5,8 +5,8 @@ import (
 	"errors"
 	"gitee.com/cruvie/kk_go_kit/kk_slice"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
+	"github.com/cruvie/kk_etcd_go/internal/utils/consts"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
-	"github.com/cruvie/kk_etcd_go/kk_etcd_const"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_error"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	"go.etcd.io/etcd/api/v3/v3rpc/rpctypes"
@@ -100,7 +100,7 @@ func (SerUser) UserGrantRole(stage *kk_stage.Stage, user *kk_etcd_models.PBUser)
 
 func (SerUser) CheckRootRole(stage *kk_stage.Stage) error {
 	for _, role := range global_model.GetLoginUser(stage).Roles {
-		if role == kk_etcd_const.RoleRoot {
+		if role == consts.RoleRoot {
 			return nil
 		}
 	}

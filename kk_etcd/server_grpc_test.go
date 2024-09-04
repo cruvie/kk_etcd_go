@@ -10,7 +10,13 @@ import (
 )
 
 func TestGetGrpcClient(t *testing.T) {
-	initTestEnv()
+	closeFunc := initTestEnv()
+	defer func() {
+		err := closeFunc()
+		if err != nil {
+			log.Println(err)
+		}
+	}()
 	conn, client, err := GetGrpcClient[grpc_health_v1.HealthClient]("haha_grpc",
 		grpc_health_v1.NewHealthClient,
 		grpc.WithTransportCredentials(insecure.NewCredentials()))

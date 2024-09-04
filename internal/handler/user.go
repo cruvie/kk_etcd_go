@@ -3,10 +3,9 @@ package handler
 import (
 	"errors"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
-	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
-	"github.com/cruvie/kk_etcd_go/kk_etcd_const"
-
 	"github.com/cruvie/kk_etcd_go/internal/handler/service"
+	"github.com/cruvie/kk_etcd_go/internal/utils/consts"
+	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
 
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 )
@@ -47,7 +46,7 @@ func (HUser) UserDelete(stage *kk_stage.Stage, param *kk_etcd_models.UserDeleteP
 	span := stage.StartTrace("UserDelete")
 	defer span.End()
 
-	if param.GetUserName() == kk_etcd_const.UserRoot ||
+	if param.GetUserName() == consts.UserRoot ||
 		param.GetUserName() == global_model.GetLoginUser(stage).UserName {
 		return errors.New("illegal delete root or current logged in user"), nil
 	}
@@ -87,7 +86,7 @@ func (HUser) UserGrantRole(stage *kk_stage.Stage, param *kk_etcd_models.UserGran
 	span := stage.StartTrace("UserGrantRole")
 	defer span.End()
 
-	if param.GetUserName() == kk_etcd_const.UserRoot {
+	if param.GetUserName() == consts.UserRoot {
 		return errors.New("illegal modify root user's role"), nil
 	}
 	err := serUser.UserGrantRole(stage, &kk_etcd_models.PBUser{

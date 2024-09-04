@@ -4,7 +4,7 @@ import (
 	"errors"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/internal/handler/service"
-	"github.com/cruvie/kk_etcd_go/kk_etcd_const"
+	"github.com/cruvie/kk_etcd_go/internal/utils/consts"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 )
 
@@ -24,7 +24,7 @@ func (HRole) RoleDelete(stage *kk_stage.Stage, param *kk_etcd_models.RoleDeleteP
 	span := stage.StartTrace("RoleDelete")
 	defer span.End()
 
-	if param.GetName() == kk_etcd_const.RoleRoot {
+	if param.GetName() == consts.RoleRoot {
 		return errors.New("illegal delete root role"), nil
 	}
 	err := serRole.RoleDelete(stage, param.GetName())
