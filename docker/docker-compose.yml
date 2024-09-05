@@ -1,15 +1,48 @@
-version: "3"
-
+version: "3.9"
 services:
+# https://etcd.io/docs/v3.5/op-guide/container/
+  etcd-test:
+    image: quay.io/coreos/etcd:v3.5.11-arm64
+    container_name: etcd-test
+    command:
+      [
+        "/usr/local/bin/etcd",
+        "--data-dir=/etcd-data",
+        "--name=node1",
+        "--initial-advertise-peer-urls=http://etcd:2380",
+        "--listen-peer-urls=http://0.0.0.0:2380",
+        "--advertise-client-urls=http://etcd:2379",
+        "--listen-client-urls=http://0.0.0.0:2379",
+        "--initial-cluster=node1=http://etcd:2380"
+      ]
+    restart: unless-stopped
+    ports:
+      - "2379:2379"
+      - "2380:2380"
+    networks:
+      - ss-net
 
-  kk-etcd-go:
-    image: cruvie/kk_etcd_go:1.3.3-arm64
-    container_name: kk-etcd-go
+  kk-etcd-go-test:
+    image: kk_etcd_go_local
+    container_name: kk-etcd-go-test
     ports:
       - "2333:2333"
     restart: unless-stopped
+    depends_on:
+      - etcd-test
     volumes:
-      - ./config/config.yml:/kk_etcd_go/internal/config/config.yml
+      - ./config.yml:/kk_etcd_go/internal/config/config.yml
+    networks:
+      - ss-net
+
+  kk-etcd-ui-test:
+    image: kk_etcd_ui_local
+    container_name: kk-etcd-ui-test
+    ports:
+      - "2334:80"
+    restart: unless-stopped
+    depends_on:
+      - kk-etcd-go-test
     networks:
       - ss-net
 
