@@ -12,10 +12,10 @@
 ##
 ## Build
 ##
-FROM golang:1.23.0 AS build
+FROM golang:1.23.1 AS build
 
-# docker pull --platform linux/amd64 golang:1.23.0
-# docker pull --platform linux/arm64 golang:1.23.0
+# docker pull --platform linux/amd64 golang:1.23.1
+# docker pull --platform linux/arm64 golang:1.23.1
 
 ENV GOPROXY=https://goproxy.cn,direct
 
@@ -33,7 +33,7 @@ FROM alpine:latest
 WORKDIR /
 
 COPY --from=build /kk_etcd/output /kk_etcd/output
-COPY ./etcd-v3.5.15-linux-amd64/etcdutl /usr/local/bin/etcdutl
+#COPY ./etcd-v3.5.15-linux-amd64/etcdutl /usr/local/bin/etcdutl
 #COPY ./etcd-v3.5.15-linux-arm64/etcdutl /usr/local/bin/etcdutl
 
 EXPOSE 2333
