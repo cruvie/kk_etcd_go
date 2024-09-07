@@ -22,15 +22,15 @@ func InitEtcd(stage *kk_stage.Stage) {
 		Username:    consts.UserRoot,
 		Password:    config.Config.RootPassword,
 	}
+	//refresh client
+	client, err := clientv3.New(cfg)
+	if err != nil {
+		slog.Error("New etcd client failed", newLog.Error(err).Args()...)
+		panic(err)
+	}
+	global_model.SetClient(stage, client)
+
 	if toolEtcd.checkAuthEnabled() {
-		var err error
-		//refresh client
-		client, err := clientv3.New(cfg)
-		if err != nil {
-			slog.Error("New etcd client failed", newLog.Error(err).Args()...)
-			panic(err)
-		}
-		global_model.SetClient(stage, client)
 		toolEtcd.initRootRolePermission(stage)
 	} else {
 		toolEtcd.initRootRolePermission(stage)
