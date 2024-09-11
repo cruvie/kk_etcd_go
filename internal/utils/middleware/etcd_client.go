@@ -20,7 +20,7 @@ func EtcdClient(c *gin.Context) {
 	// set verify jwt directly
 	//slog.Info("url", c.Request.URL.Path)
 	cfg := clientv3.Config{
-		Endpoints:   []string{config.Config.Etcd.Endpoint},
+		Endpoints:   config.Config.Etcd.Endpoints,
 		DialTimeout: 5 * time.Second,
 		Username:    global_model.GetRequestHeader(stage).UserName,
 		Password:    global_model.GetRequestHeader(stage).Password,
