@@ -60,6 +60,7 @@ func main() {
 	}()
 
 	internal_service.InitServiceHub()
+	internal_service.RunEtcdMaintain()
 
 	api_etcd.ApiEtcd(internal_client.GlobalStage)
 }
