@@ -48,8 +48,8 @@ func WatchServerList(ctx context.Context, serverType kk_etcd_models.ServerType, 
 				var pBListServer kk_etcd_models.PBListServer
 				for _, update := range updates {
 					pBListServer.ListServer = append(pBListServer.ListServer, &kk_etcd_models.PBServer{
-						ServerName: update.Key,
-						ServerAddr: update.Endpoint.Addr,
+						EndpointKey:  update.Key,
+						EndpointAddr: update.Endpoint.Addr,
 					})
 				}
 				if len(pBListServer.ListServer) > 0 {

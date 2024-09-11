@@ -51,26 +51,26 @@ func (SerServer) ServerList(client *clientv3.Client, serverType kk_etcd_models.S
 		status, ok := serviceStatus[kk_etcd_models.InternalServerStatus+key]
 		if !ok {
 			pBListServer.ListServer = append(pBListServer.ListServer, &kk_etcd_models.PBServer{
-				ServerType: "UnKnown",
-				ServerName: fmt.Sprintf("UnKnown ServerName:[%s]", key),
-				ServerAddr: endpoint.Addr,
-				Status:     kk_etcd_models.PBServer_UnKnown,
-				LastCheck:  timestamppb.New(kk_time.DefaultTime),
-				Msg:        fmt.Sprintf("could not found sevice %s in service hub \n may not be registered by kk_etcd", key),
+				ServerType:   serverType.String(),
+				EndpointKey:  key,
+				EndpointAddr: endpoint.Addr,
+				Status:       kk_etcd_models.PBServer_UnKnown,
+				LastCheck:    timestamppb.New(kk_time.DefaultTime),
+				Msg:          fmt.Sprintf("could not found sevice %s in service hub \n may not be registered by kk_etcd", key),
 			})
 		} else {
 			pBListServer.ListServer = append(pBListServer.ListServer, &kk_etcd_models.PBServer{
-				ServerType: status.ServerType.String(),
-				ServerName: status.ServerName,
-				ServerAddr: endpoint.Addr,
-				Status:     status.Status,
-				LastCheck:  timestamppb.New(status.LastCheck),
-				Msg:        status.Msg,
+				ServerType:   serverType.String(),
+				EndpointKey:  key,
+				EndpointAddr: endpoint.Addr,
+				Status:       status.Status,
+				LastCheck:    timestamppb.New(status.LastCheck),
+				Msg:          status.Msg,
 			})
 		}
 	}
 	sort.Slice(pBListServer.ListServer, func(i, j int) bool {
-		return pBListServer.ListServer[i].ServerName < pBListServer.ListServer[j].ServerName
+		return pBListServer.ListServer[i].EndpointKey < pBListServer.ListServer[j].EndpointKey
 	})
 	return &pBListServer, nil
 }
@@ -82,10 +82,10 @@ func (SerServer) DeregisterServer(stage *kk_stage.Stage, param *kk_etcd_models.D
 		return err
 	}
 
-	err = endpointManager.DeleteEndpoint(context.Background(),
-		serverType.String()+
-			"/"+param.GetServer().GetServerName()+
-			"/"+param.GetServer().GetServerAddr())
+	err = endpointManager.DeleteEndpoint(
+		context.Background(),
+		param.GetServer().GetEndpointKey(),
+	)
 	if err != nil {
 		return err
 	}
