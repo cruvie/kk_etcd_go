@@ -10,8 +10,8 @@ option go_package = "./;kk_etcd_models";
 
 message PBServer {
   string ServerType = 2;
-  string ServerName = 3;
-  string ServerAddr = 4;
+  string EndpointKey = 3;
+  string EndpointAddr = 4;
   enum ServerStatus {
     UnKnown = 0;
     Running = 1;
