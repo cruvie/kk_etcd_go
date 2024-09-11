@@ -30,6 +30,7 @@ services:
       - etcd-rel
     volumes:
       - ./config.yml:/kk_etcd_go/internal/config/config.yml
+      - ./logs:/logs
 
   kk-etcd-ui-rel:
     image: cruvie/kk_etcd_ui:1.4.0
