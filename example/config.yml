@@ -1,5 +1,5 @@
 ServerAddr: :2333
-DebugMode: true
+DebugMode: false
 # RootPassword is the password of root user in etcd
 #  if you didn't enable etcd auth, the password will be root user's password and enable auth
 RootPassword: root
