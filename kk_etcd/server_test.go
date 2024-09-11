@@ -65,8 +65,8 @@ func TestRegisterGrpcService(t *testing.T) {
 		Metadata:   "meta",
 		CheckConfig: kk_etcd_models.CheckConfig{
 			Type:     kk_etcd_models.Grpc,
-			Timeout:  10 * time.Second,
-			Interval: 5 * time.Second,
+			Timeout:  5 * time.Second,
+			Interval: 10 * time.Second,
 			Addr:     "127.0.0.1:34844",
 		},
 	})
@@ -116,8 +116,8 @@ func TestRegisterHttpService(t *testing.T) {
 		ServerAddr: "127.0.0.1:8848",
 		CheckConfig: kk_etcd_models.CheckConfig{
 			Type:     kk_etcd_models.Http,
-			Timeout:  10 * time.Second,
-			Interval: 5 * time.Second,
+			Timeout:  5 * time.Second,
+			Interval: 10 * time.Second,
 			Addr:     "http://127.0.0.1:8848" + kk_etcd_models.HealthCheckPath,
 		},
 	})
