@@ -10,7 +10,6 @@ import (
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	"go.etcd.io/etcd/client/v3"
 	"gopkg.in/yaml.v3"
-	"strings"
 )
 
 type SerKV struct{}
@@ -54,9 +53,6 @@ func (SerKV) KVList(stage *kk_stage.Stage, prefix string) (err error, list *kk_e
 		cfg := &kk_etcd_models.PBKV{
 			Key:   string(kv.Key),
 			Value: string(kv.Value),
-		}
-		if strings.HasPrefix(cfg.Key, kk_etcd_models.Server) {
-			continue
 		}
 		list.ListKV = append(list.ListKV, cfg)
 	}
