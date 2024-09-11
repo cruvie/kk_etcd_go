@@ -4,7 +4,8 @@ DebugMode: true
 #  if you didn't enable etcd auth, the password will be root user's password and enable auth
 RootPassword: root
 Etcd:
-  Endpoint: http://127.0.0.1:2379
+  Endpoints:
+    - http://127.0.0.1:2379
 # not use now todo https://github.com/etcd-io/etcd/pull/16803
 JWT:
   Key: You are re on your way to prison

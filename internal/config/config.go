@@ -13,7 +13,7 @@ type config struct {
 	DebugMode    bool   `yaml:"DebugMode"`
 	RootPassword string `yaml:"RootPassword"`
 	Etcd         struct {
-		Endpoint string `yaml:"Endpoint"`
+		Endpoints []string `yaml:"Endpoints"`
 	} `yaml:"Etcd"`
 	JWT struct {
 		Key        string `yaml:"Key"`
