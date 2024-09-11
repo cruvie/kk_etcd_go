@@ -15,11 +15,12 @@ import (
 
 // RunEtcdMaintain https://etcd.io/docs/v3.5/op-guide/maintenance/#space-quota
 func RunEtcdMaintain() {
-	tick := time.Tick(1 * time.Hour)
+	tick := time.NewTicker(1 * time.Hour)
+	defer tick.Stop()
 	go func() {
 		for {
 			hub.maintainEtcd()
-			<-tick
+			<-tick.C
 		}
 	}()
 }

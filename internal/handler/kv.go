@@ -41,11 +41,8 @@ func (HKV) KVList(stage *kk_stage.Stage, param *kk_etcd_models.KVListParam) (err
 	span := stage.StartTrace("KVList")
 	defer span.End()
 	err, list := serKV.KVList(stage, param.GetPrefix())
-	slices.DeleteFunc(list.GetListKV(), func(kv *kk_etcd_models.PBKV) bool {
-		if strings.HasPrefix(kv.Key, kk_etcd_models.Server) {
-			return true
-		}
-		return false
+	list.ListKV = slices.DeleteFunc(list.GetListKV(), func(kv *kk_etcd_models.PBKV) bool {
+		return strings.HasPrefix(kv.Key, kk_etcd_models.Server)
 	})
 	return err, &kk_etcd_models.KVListResponse{KVList: list}
 }
