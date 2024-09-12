@@ -30,9 +30,13 @@ const (
 )
 
 type CheckConfig struct {
-	Type     ServerType    // Http or Grpc
-	Timeout  time.Duration //check timeout
-	Interval time.Duration //check interval, kk_etcd will per Interval to send check request
+	Type ServerType // Http or Grpc
+	// check timeout
+	// must grater than 1 second
+	Timeout time.Duration
+	// check interval, kk_etcd will per Interval to send check request
+	// must grater than Timeout
+	Interval time.Duration
 	// Http default http://+Addr+/KKHealthCheck
 	// Grpc Addr in ServerRegistration
 	Addr string
@@ -43,12 +47,12 @@ func (x *CheckConfig) Check() error {
 		msg := "check type must be Grpc or Http"
 		return errors.New(msg)
 	}
-	if x.Timeout <= 0 {
-		msg := "check timeout cannot be zero"
+	if x.Timeout < 1*time.Second {
+		msg := "check timeout must grater than 1 second"
 		return errors.New(msg)
 	}
-	if x.Interval <= 0 {
-		msg := "check interval cannot be zero"
+	if x.Interval < x.Timeout {
+		msg := "check interval must grater than Timeout"
 		return errors.New(msg)
 	}
 	if x.Addr == "" {

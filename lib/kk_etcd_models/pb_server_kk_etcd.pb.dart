@@ -21,8 +21,8 @@ export 'pb_server_kk_etcd.pbenum.dart';
 class PBServer extends $pb.GeneratedMessage {
   factory PBServer({
     $core.String? serverType,
-    $core.String? serverName,
-    $core.String? serverAddr,
+    $core.String? endpointKey,
+    $core.String? endpointAddr,
     PBServer_ServerStatus? status,
     $2.Timestamp? lastCheck,
     $core.String? msg,
@@ -31,11 +31,11 @@ class PBServer extends $pb.GeneratedMessage {
     if (serverType != null) {
       $result.serverType = serverType;
     }
-    if (serverName != null) {
-      $result.serverName = serverName;
+    if (endpointKey != null) {
+      $result.endpointKey = endpointKey;
     }
-    if (serverAddr != null) {
-      $result.serverAddr = serverAddr;
+    if (endpointAddr != null) {
+      $result.endpointAddr = endpointAddr;
     }
     if (status != null) {
       $result.status = status;
@@ -54,8 +54,8 @@ class PBServer extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'PBServer', package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd_models'), createEmptyInstance: create)
     ..aOS(2, _omitFieldNames ? '' : 'ServerType', protoName: 'ServerType')
-    ..aOS(3, _omitFieldNames ? '' : 'ServerName', protoName: 'ServerName')
-    ..aOS(4, _omitFieldNames ? '' : 'ServerAddr', protoName: 'ServerAddr')
+    ..aOS(3, _omitFieldNames ? '' : 'EndpointKey', protoName: 'EndpointKey')
+    ..aOS(4, _omitFieldNames ? '' : 'EndpointAddr', protoName: 'EndpointAddr')
     ..e<PBServer_ServerStatus>(5, _omitFieldNames ? '' : 'Status', $pb.PbFieldType.OE, protoName: 'Status', defaultOrMaker: PBServer_ServerStatus.UnKnown, valueOf: PBServer_ServerStatus.valueOf, enumValues: PBServer_ServerStatus.values)
     ..aOM<$2.Timestamp>(6, _omitFieldNames ? '' : 'LastCheck', protoName: 'LastCheck', subBuilder: $2.Timestamp.create)
     ..aOS(7, _omitFieldNames ? '' : 'Msg', protoName: 'Msg')
@@ -93,22 +93,22 @@ class PBServer extends $pb.GeneratedMessage {
   void clearServerType() => clearField(2);
 
   @$pb.TagNumber(3)
-  $core.String get serverName => $_getSZ(1);
+  $core.String get endpointKey => $_getSZ(1);
   @$pb.TagNumber(3)
-  set serverName($core.String v) { $_setString(1, v); }
+  set endpointKey($core.String v) { $_setString(1, v); }
   @$pb.TagNumber(3)
-  $core.bool hasServerName() => $_has(1);
+  $core.bool hasEndpointKey() => $_has(1);
   @$pb.TagNumber(3)
-  void clearServerName() => clearField(3);
+  void clearEndpointKey() => clearField(3);
 
   @$pb.TagNumber(4)
-  $core.String get serverAddr => $_getSZ(2);
+  $core.String get endpointAddr => $_getSZ(2);
   @$pb.TagNumber(4)
-  set serverAddr($core.String v) { $_setString(2, v); }
+  set endpointAddr($core.String v) { $_setString(2, v); }
   @$pb.TagNumber(4)
-  $core.bool hasServerAddr() => $_has(2);
+  $core.bool hasEndpointAddr() => $_has(2);
   @$pb.TagNumber(4)
-  void clearServerAddr() => clearField(4);
+  void clearEndpointAddr() => clearField(4);
 
   @$pb.TagNumber(5)
   PBServer_ServerStatus get status => $_getN(3);

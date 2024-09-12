@@ -51,12 +51,18 @@ func TestBug(t *testing.T) {
 	}
 }
 func TestConvert(t *testing.T) {
-	info := MyMeta{Name: "myname"}
-
-	meta := endpoints.Endpoint{
-		Addr:     "127.0.0.1:6666",
-		Metadata: info,
+	client, err := clientv3.New(clientv3.Config{
+		Endpoints:   []string{"http://127.0.0.1:2389"},
+		DialTimeout: 5 * time.Second,
+		Username:    "root",
+		Password:    "root",
+	})
+	if err != nil {
+		panic(err)
 	}
-	out, ok := meta.Metadata.(MyMeta)
-	log.Println(out, ok) //{myname} true
+	resp, err := client.Maintenance.Status(context.Background(), "http://127.0.0.1:2389")
+	if err != nil {
+		t.Error(err)
+	}
+	t.Log(resp)
 }

@@ -7,7 +7,9 @@ import (
 	"github.com/cruvie/kk_etcd_go/internal/handler/service"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
 	"github.com/cruvie/kk_etcd_go/internal/utils/internal_client"
+	"github.com/cruvie/kk_etcd_go/kk_etcd_error"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
+	"go.etcd.io/etcd/api/v3/v3rpc/rpctypes"
 	"go.etcd.io/etcd/client/v3/naming/endpoints"
 	"log/slog"
 	"time"
@@ -35,9 +37,16 @@ func (x *serverHub) register(server *serverStatus) {
 	x.hub.Add(server.KVKey(), server)
 	err := server.PutExistUpdateJson()
 	if err != nil {
-		slog.Error("register server failed server.PutExistUpdateJson()", kk_log.NewLog(nil).
-			Error(err).Any("server", server).Args()...)
-		return
+		if kk_etcd_error.ErrorIs(err, rpctypes.ErrGRPCNoSpace) {
+			//https://etcd.io/docs/v3.5/op-guide/maintenance/#space-quota
+			slog.Warn("register server success but has no space warning", kk_log.NewLog(nil).
+				String("func", " PutExistUpdateJson()").
+				Error(err).Args()...)
+		} else {
+			slog.Error("register server failed PutExistUpdateJson()", kk_log.NewLog(nil).
+				Error(err).Any("server", server).Args()...)
+			return
+		}
 	}
 	err = server.Check()
 	if err != nil {
@@ -73,8 +82,16 @@ func (x *serverHub) updateStatus(status kk_etcd_models.PBServer_ServerStatus, se
 		x.hub.Add(v.KVKey(), v)
 		err := v.PutExistUpdateJson()
 		if err != nil {
-			slog.Error("update server status failed server.PutExistUpdateJson()",
-				kk_log.NewLog(nil).Error(err).Any("server", server).Args()...)
+			if kk_etcd_error.ErrorIs(err, rpctypes.ErrGRPCNoSpace) {
+				//https://etcd.io/docs/v3.5/op-guide/maintenance/#space-quota
+				slog.Warn("register server success but has no space warning", kk_log.NewLog(nil).
+					String("func", " PutExistUpdateJson()").
+					Error(err).Args()...)
+			} else {
+				slog.Error("register server failed PutExistUpdateJson()", kk_log.NewLog(nil).
+					Error(err).Any("server", server).Args()...)
+				return
+			}
 		}
 	} else {
 		slog.Error("update server status failed server not found",

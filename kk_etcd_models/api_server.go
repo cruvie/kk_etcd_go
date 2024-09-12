@@ -29,16 +29,8 @@ func (x *DeregisterServerParam) BindCheck(stage *kk_stage.Stage) error {
 		return errors.New("server is empty")
 	}
 
-	if ser.GetServerType() == "" {
-		return errors.New("ServerType is empty")
-	}
-
-	if ser.GetServerName() == "" {
+	if ser.GetEndpointKey() == "" {
 		return errors.New("ServerName is empty")
-	}
-
-	if ser.GetServerAddr() == "" {
-		return errors.New("ServerAddr is empty")
 	}
 
 	return nil

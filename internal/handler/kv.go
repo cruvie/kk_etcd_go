@@ -4,6 +4,8 @@ import (
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/internal/handler/service"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
+	"slices"
+	"strings"
 )
 
 type HKV struct{}
@@ -39,5 +41,8 @@ func (HKV) KVList(stage *kk_stage.Stage, param *kk_etcd_models.KVListParam) (err
 	span := stage.StartTrace("KVList")
 	defer span.End()
 	err, list := serKV.KVList(stage, param.GetPrefix())
+	list.ListKV = slices.DeleteFunc(list.GetListKV(), func(kv *kk_etcd_models.PBKV) bool {
+		return strings.HasPrefix(kv.Key, kk_etcd_models.Server)
+	})
 	return err, &kk_etcd_models.KVListResponse{KVList: list}
 }

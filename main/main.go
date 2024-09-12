@@ -29,23 +29,23 @@ import (
 // @BasePath	/
 func main() {
 	config.InitConfig()
-	internal_client.InitGlobalStage(config.Config.DebugMode)
-	defer internal_client.CloseGlobalStage()
 
-	configLog := kk_log.ConfigLog{
-		Lumberjack: kk_log.DefaultLogConfig(consts.ServerName),
+	{
+		//init log
+		configLog := kk_log.ConfigLog{
+			Lumberjack: kk_log.DefaultLogConfig(consts.ServerName),
+		}
+		configLog.Init(&kk_config_interface.InitArgs{
+			DebugMode:   config.Config.DebugMode,
+			ServiceName: consts.ServerName,
+		})
+		defer configLog.Close()
 	}
-	init := &kk_config_interface.InitArgs{
-		DebugMode:   internal_client.GlobalStage.DebugMode,
-		ServiceName: internal_client.GlobalStage.ServiceName,
-	}
-	configLog.Init(init)
-	defer configLog.Close()
 
-	internal_client.InitEtcd(internal_client.GlobalStage)
+	internal_client.InitEtcd()
 
 	closeFunc, err := kk_etcd.InitClient(&kk_etcd.InitClientConfig{
-		Endpoints: []string{config.Config.Etcd.Endpoint},
+		Endpoints: config.Config.Etcd.Endpoints,
 		UserName:  consts.UserRoot,
 		Password:  config.Config.RootPassword,
 		DebugMode: internal_client.GlobalStage.DebugMode})
@@ -60,6 +60,7 @@ func main() {
 	}()
 
 	internal_service.InitServiceHub()
+	internal_service.RunEtcdMaintain()
 
 	api_etcd.ApiEtcd(internal_client.GlobalStage)
 }

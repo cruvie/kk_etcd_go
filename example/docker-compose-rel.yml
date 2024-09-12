@@ -1,9 +1,9 @@
-name: kk-etcd-local
+name: kk_etcd_example
 services:
 # https://etcd.io/docs/v3.5/op-guide/container/
-  etcd-local:
+  etcd-rel:
     image: quay.io/coreos/etcd:v3.5.15-amd64
-    container_name: etcd-local
+    container_name: etcd-rel
     command:
       [
         "/usr/local/bin/etcd",
@@ -19,34 +19,25 @@ services:
     ports:
       - "2379:2379"
       - "2380:2380"
-    networks:
-      - ss-net
 
-  kk-etcd-go-local:
-    image: kk_etcd_go_local
-    container_name: kk-etcd-go-local
+  kk-etcd-go-rel:
+    image: cruvie/kk_etcd_go:1.4.0-amd64
+    container_name: kk-etcd-go-rel
     ports:
       - "2333:2333"
     restart: unless-stopped
     depends_on:
-      - etcd-local
+      - etcd-rel
     volumes:
       - ./config.yml:/kk_etcd_go/internal/config/config.yml
       - ./logs:/logs
-    networks:
-      - ss-net
 
-  kk-etcd-ui-local:
-    image: kk_etcd_ui_local
-    container_name: kk-etcd-ui-local
+  kk-etcd-ui-rel:
+    image: cruvie/kk_etcd_ui:1.4.0
+    container_name: kk-etcd-ui-rel
     ports:
       - "2334:80"
     restart: unless-stopped
     depends_on:
-      - kk-etcd-go-local
-    networks:
-      - ss-net
+      - kk-etcd-go-rel
 
-networks:
-  ss-net:
-    external: true

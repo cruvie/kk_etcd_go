@@ -21,7 +21,7 @@ var toolEtcd serToolEtcd
 
 func (x *serToolEtcd) checkAuthEnabled() (enabled bool) {
 	c := clientv3.Config{
-		Endpoints:   []string{config.Config.Etcd.Endpoint},
+		Endpoints:   config.Config.Etcd.Endpoints,
 		DialTimeout: 5 * time.Second,
 	}
 	var err error
