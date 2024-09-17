@@ -27,6 +27,7 @@ services:
     container_name: kk-etcd-go-local
     ports:
       - "2333:2333"
+      - "2444:2444" # optional for profile
     restart: unless-stopped
     depends_on:
       - etcd-local

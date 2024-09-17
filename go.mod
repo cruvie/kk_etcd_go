@@ -3,13 +3,13 @@ module github.com/cruvie/kk_etcd_go
 go 1.23.1
 
 require (
-	gitee.com/cruvie/kk_go_kit v0.0.0-20240909052323-10754fd3ae0d
+	gitee.com/cruvie/kk_go_kit v0.0.0-20240917093454-7ab2ce02a852
 	github.com/gin-contrib/cors v1.7.2
 	github.com/gin-gonic/gin v1.10.0
 	github.com/swaggo/swag v1.16.3
 	go.etcd.io/etcd/api/v3 v3.5.16
 	go.etcd.io/etcd/client/v3 v3.5.16
-	google.golang.org/grpc v1.66.1
+	google.golang.org/grpc v1.66.2
 	google.golang.org/protobuf v1.34.2
 	gopkg.in/yaml.v3 v3.0.1
 )

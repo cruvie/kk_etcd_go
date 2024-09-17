@@ -25,6 +25,7 @@ services:
     container_name: kk-etcd-go-rel
     ports:
       - "2333:2333"
+      - "2444:2444"
     restart: unless-stopped
     depends_on:
       - etcd-rel
