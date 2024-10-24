@@ -9,7 +9,7 @@ import (
 var Config config
 
 type config struct {
-	ServerAddr   string `yaml:"ServerAddr"`
+	Port         int    `yaml:"ServerAddr"`
 	DebugMode    bool   `yaml:"DebugMode"`
 	RootPassword string `yaml:"RootPassword"`
 	Etcd         struct {
