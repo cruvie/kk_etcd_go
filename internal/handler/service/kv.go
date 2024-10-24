@@ -1,6 +1,7 @@
 package service
 
 import (
+	"bytes"
 	"context"
 	"encoding/json"
 	"errors"
@@ -104,7 +105,11 @@ func (SerKV) GetJson(stage *kk_stage.Stage, key string, structPtr any) error {
 	if err != nil {
 		return err
 	}
-	err = json.Unmarshal(value, structPtr)
+
+	d := json.NewDecoder(bytes.NewReader(value))
+	// prevent json number overflow
+	d.UseNumber()
+	err = d.Decode(structPtr)
 	if err != nil {
 		return err
 	}
