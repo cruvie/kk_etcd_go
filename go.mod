@@ -1,6 +1,6 @@
 module github.com/cruvie/kk_etcd_go
 
-go 1.23.2
+go 1.23.1
 
 require (
 	gitee.com/cruvie/kk_go_kit v0.0.0-20241015105928-e91fb08c280e
