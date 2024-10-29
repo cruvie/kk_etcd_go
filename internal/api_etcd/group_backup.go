@@ -2,8 +2,8 @@ package api_etcd
 
 import (
 	"gitee.com/cruvie/kk_go_kit/kk_http"
+	"gitee.com/cruvie/kk_go_kit/kk_http/kk_global_stage"
 	"github.com/cruvie/kk_etcd_go/internal/handler"
-	"github.com/cruvie/kk_etcd_go/internal/utils/global_model/global_stage"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	"github.com/gin-gonic/gin"
 )
@@ -20,7 +20,7 @@ var hBackup handler.HBackup
 //	@Success		200				{object}	kk_etcd_models.SnapshotResponse
 //	@Router			/backup/snapshot [post]
 func snapshot(c *gin.Context) {
-	stage := global_stage.GetRequestStage(c)
+	stage := kk_global_stage.GetRequestStage(c)
 	span := stage.StartTrace("snapshot")
 	defer span.End()
 	var param kk_etcd_models.SnapshotParam
@@ -46,7 +46,7 @@ func snapshot(c *gin.Context) {
 //	@Success		200						{object}	kk_etcd_models.SnapshotRestoreResponse
 //	@Router			/backup/snapshotRestore [post]
 func snapshotRestore(c *gin.Context) {
-	stage := global_stage.GetRequestStage(c)
+	stage := kk_global_stage.GetRequestStage(c)
 	span := stage.StartTrace("snapshotRestore")
 	defer span.End()
 	var param kk_etcd_models.SnapshotRestoreParam
@@ -72,7 +72,7 @@ func snapshotRestore(c *gin.Context) {
 //	@Success		200					{object}	kk_etcd_models.SnapshotInfoResponse
 //	@Router			/backup/snapshotInfo [post]
 func snapshotInfo(c *gin.Context) {
-	stage := global_stage.GetRequestStage(c)
+	stage := kk_global_stage.GetRequestStage(c)
 	span := stage.StartTrace("snapshotInfo")
 	defer span.End()
 	var param kk_etcd_models.SnapshotInfoParam
@@ -98,7 +98,7 @@ func snapshotInfo(c *gin.Context) {
 //	@Success		200					{object}	kk_etcd_models.AllKVsBackupResponse
 //	@Router			/backup/allKVsBackup [post]
 func allKVsBackup(c *gin.Context) {
-	stage := global_stage.GetRequestStage(c)
+	stage := kk_global_stage.GetRequestStage(c)
 	span := stage.StartTrace("allKVsBackup")
 	defer span.End()
 	var param kk_etcd_models.AllKVsBackupParam
@@ -124,7 +124,7 @@ func allKVsBackup(c *gin.Context) {
 //	@Success		200					{object}	kk_etcd_models.AllKVsRestoreResponse
 //	@Router			/backup/allKVsRestore [post]
 func allKVsRestore(c *gin.Context) {
-	stage := global_stage.GetRequestStage(c)
+	stage := kk_global_stage.GetRequestStage(c)
 	span := stage.StartTrace("allKVsRestore")
 	defer span.End()
 	var param kk_etcd_models.AllKVsRestoreParam

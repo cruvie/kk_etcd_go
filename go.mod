@@ -3,9 +3,7 @@ module github.com/cruvie/kk_etcd_go
 go 1.23.1
 
 require (
-	gitee.com/cruvie/kk_go_kit v0.0.0-20241015105928-e91fb08c280e
-	github.com/gin-contrib/cors v1.7.2
-	github.com/gin-gonic/gin v1.10.0
+	gitee.com/cruvie/kk_go_kit v0.0.0-20241025161734-b261d04430c7
 	github.com/swaggo/swag v1.16.4
 	go.etcd.io/etcd/api/v3 v3.5.16
 	go.etcd.io/etcd/client/v3 v3.5.16
@@ -25,7 +23,9 @@ require (
 	github.com/coreos/go-semver v0.3.1 // indirect
 	github.com/coreos/go-systemd/v22 v22.5.0 // indirect
 	github.com/gabriel-vasile/mimetype v1.4.6 // indirect
+	github.com/gin-contrib/cors v1.7.2 // indirect
 	github.com/gin-contrib/sse v0.1.0 // indirect
+	github.com/gin-gonic/gin v1.10.0 // indirect
 	github.com/go-logr/logr v1.4.2 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/go-openapi/jsonpointer v0.21.0 // indirect

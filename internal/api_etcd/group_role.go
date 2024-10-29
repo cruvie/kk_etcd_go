@@ -2,8 +2,8 @@ package api_etcd
 
 import (
 	"gitee.com/cruvie/kk_go_kit/kk_http"
+	"gitee.com/cruvie/kk_go_kit/kk_http/kk_global_stage"
 	"github.com/cruvie/kk_etcd_go/internal/handler"
-	"github.com/cruvie/kk_etcd_go/internal/utils/global_model/global_stage"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	"github.com/gin-gonic/gin"
 )
@@ -20,7 +20,7 @@ var hRole handler.HRole
 //	@Success		200				{object}	kk_etcd_models.RoleAddResponse
 //	@Router			/role/roleAdd [post]
 func roleAdd(c *gin.Context) {
-	stage := global_stage.GetRequestStage(c)
+	stage := kk_global_stage.GetRequestStage(c)
 	span := stage.StartTrace("roleAdd")
 	defer span.End()
 	var param kk_etcd_models.RoleAddParam
@@ -46,7 +46,7 @@ func roleAdd(c *gin.Context) {
 //	@Success		200				{object}	kk_etcd_models.RoleDeleteResponse
 //	@Router			/role/roleDelete [post]
 func roleDelete(c *gin.Context) {
-	stage := global_stage.GetRequestStage(c)
+	stage := kk_global_stage.GetRequestStage(c)
 	span := stage.StartTrace("roleDelete")
 	defer span.End()
 	var param kk_etcd_models.RoleDeleteParam
@@ -72,7 +72,7 @@ func roleDelete(c *gin.Context) {
 //	@Success		200				{object}	kk_etcd_models.RoleListResponse
 //	@Router			/role/roleList [post]
 func roleList(c *gin.Context) {
-	stage := global_stage.GetRequestStage(c)
+	stage := kk_global_stage.GetRequestStage(c)
 	span := stage.StartTrace("roleList")
 	defer span.End()
 	var param kk_etcd_models.RoleListParam
@@ -98,7 +98,7 @@ func roleList(c *gin.Context) {
 //	@Success		200				{object}	kk_etcd_models.RoleGetResponse
 //	@Router			/role/roleGet [post]
 func roleGet(c *gin.Context) {
-	stage := global_stage.GetRequestStage(c)
+	stage := kk_global_stage.GetRequestStage(c)
 	span := stage.StartTrace("roleGet")
 	defer span.End()
 	var param kk_etcd_models.RoleGetParam
@@ -124,7 +124,7 @@ func roleGet(c *gin.Context) {
 //	@Success		200							{object}	kk_etcd_models.RoleGrantPermissionResponse
 //	@Router			/role/roleGrantPermission [post]
 func roleGrantPermission(c *gin.Context) {
-	stage := global_stage.GetRequestStage(c)
+	stage := kk_global_stage.GetRequestStage(c)
 	span := stage.StartTrace("roleGrantPermission")
 	defer span.End()
 	var param kk_etcd_models.RoleGrantPermissionParam
@@ -150,7 +150,7 @@ func roleGrantPermission(c *gin.Context) {
 //	@Success		200							{object}	kk_etcd_models.RoleRevokePermissionResponse
 //	@Router			/role/roleRevokePermission [post]
 func roleRevokePermission(c *gin.Context) {
-	stage := global_stage.GetRequestStage(c)
+	stage := kk_global_stage.GetRequestStage(c)
 	span := stage.StartTrace("roleRevokePermission")
 	defer span.End()
 	var param kk_etcd_models.RoleRevokePermissionParam

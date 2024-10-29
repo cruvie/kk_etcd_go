@@ -2,8 +2,8 @@ package api_etcd
 
 import (
 	"gitee.com/cruvie/kk_go_kit/kk_http"
+	"gitee.com/cruvie/kk_go_kit/kk_http/kk_global_stage"
 	"github.com/cruvie/kk_etcd_go/internal/handler"
-	"github.com/cruvie/kk_etcd_go/internal/utils/global_model/global_stage"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	"github.com/gin-gonic/gin"
 )
@@ -20,7 +20,7 @@ var hUser handler.HUser
 //	@Success		200			{object}	kk_etcd_models.LoginResponse
 //	@Router			/user/login [post]
 func login(c *gin.Context) {
-	stage := global_stage.GetRequestStage(c)
+	stage := kk_global_stage.GetRequestStage(c)
 	span := stage.StartTrace("login")
 	defer span.End()
 	var param kk_etcd_models.LoginParam
@@ -46,7 +46,7 @@ func login(c *gin.Context) {
 //	@Success		200			{object}	kk_etcd_models.LogoutResponse
 //	@Router			/user/logout [post]
 func logout(c *gin.Context) {
-	stage := global_stage.GetRequestStage(c)
+	stage := kk_global_stage.GetRequestStage(c)
 	span := stage.StartTrace("logout")
 	defer span.End()
 	var param kk_etcd_models.LogoutParam
@@ -72,7 +72,7 @@ func logout(c *gin.Context) {
 //	@Success		200				{object}	kk_etcd_models.UserAddResponse
 //	@Router			/user/userAdd [post]
 func userAdd(c *gin.Context) {
-	stage := global_stage.GetRequestStage(c)
+	stage := kk_global_stage.GetRequestStage(c)
 	span := stage.StartTrace("userAdd")
 	defer span.End()
 	var param kk_etcd_models.UserAddParam
@@ -98,7 +98,7 @@ func userAdd(c *gin.Context) {
 //	@Success		200				{object}	kk_etcd_models.UserDeleteResponse
 //	@Router			/user/userDelete [post]
 func userDelete(c *gin.Context) {
-	stage := global_stage.GetRequestStage(c)
+	stage := kk_global_stage.GetRequestStage(c)
 	span := stage.StartTrace("userDelete")
 	defer span.End()
 	var param kk_etcd_models.UserDeleteParam
@@ -124,7 +124,7 @@ func userDelete(c *gin.Context) {
 //	@Success		200				{object}	kk_etcd_models.GetUserResponse
 //	@Router			/user/getUser [post]
 func getUser(c *gin.Context) {
-	stage := global_stage.GetRequestStage(c)
+	stage := kk_global_stage.GetRequestStage(c)
 	span := stage.StartTrace("getUser")
 	defer span.End()
 	var param kk_etcd_models.GetUserParam
@@ -150,7 +150,7 @@ func getUser(c *gin.Context) {
 //	@Success		200			{object}	kk_etcd_models.MyInfoResponse
 //	@Router			/user/myInfo [post]
 func myInfo(c *gin.Context) {
-	stage := global_stage.GetRequestStage(c)
+	stage := kk_global_stage.GetRequestStage(c)
 	span := stage.StartTrace("myInfo")
 	defer span.End()
 	var param kk_etcd_models.MyInfoParam
@@ -176,7 +176,7 @@ func myInfo(c *gin.Context) {
 //	@Success		200				{object}	kk_etcd_models.UserListResponse
 //	@Router			/user/userList [post]
 func userList(c *gin.Context) {
-	stage := global_stage.GetRequestStage(c)
+	stage := kk_global_stage.GetRequestStage(c)
 	span := stage.StartTrace("userList")
 	defer span.End()
 	var param kk_etcd_models.UserListParam
@@ -202,7 +202,7 @@ func userList(c *gin.Context) {
 //	@Success		200					{object}	kk_etcd_models.UserGrantRoleResponse
 //	@Router			/user/userGrantRole [post]
 func userGrantRole(c *gin.Context) {
-	stage := global_stage.GetRequestStage(c)
+	stage := kk_global_stage.GetRequestStage(c)
 	span := stage.StartTrace("userGrantRole")
 	defer span.End()
 	var param kk_etcd_models.UserGrantRoleParam

@@ -109,7 +109,7 @@ func (SerBackup) AllKVsBackup(stage *kk_stage.Stage) (error, *kk_etcd_models.All
 			Key:   string(kv.Key),
 			Value: string(kv.Value),
 		}
-		//todo only support backup normal kv and config
+		//todo only support backup normal kv
 		if strings.HasPrefix(pbKV.Key, kk_etcd_models.Http.String()) ||
 			strings.HasPrefix(pbKV.Key, kk_etcd_models.Grpc.String()) {
 			continue

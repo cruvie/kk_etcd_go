@@ -2,8 +2,8 @@ package api_etcd
 
 import (
 	"gitee.com/cruvie/kk_go_kit/kk_http"
+	"gitee.com/cruvie/kk_go_kit/kk_http/kk_global_stage"
 	"github.com/cruvie/kk_etcd_go/internal/internal_handler"
-	"github.com/cruvie/kk_etcd_go/internal/utils/global_model/global_stage"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	"github.com/gin-gonic/gin"
 )
@@ -20,7 +20,7 @@ var hServer internal_handler.HServer
 //	@Success		200				{object}	kk_etcd_models.ServerListResponse
 //	@Router			/server/serverList [post]
 func serverList(c *gin.Context) {
-	stage := global_stage.GetRequestStage(c)
+	stage := kk_global_stage.GetRequestStage(c)
 	span := stage.StartTrace("serverList")
 	defer span.End()
 	var param kk_etcd_models.ServerListParam
@@ -46,7 +46,7 @@ func serverList(c *gin.Context) {
 //	@Success		200						{object}	kk_etcd_models.DeregisterServerResponse
 //	@Router			/server/deregisterServer [post]
 func deregisterServer(c *gin.Context) {
-	stage := global_stage.GetRequestStage(c)
+	stage := kk_global_stage.GetRequestStage(c)
 	span := stage.StartTrace("deregisterServer")
 	defer span.End()
 	var param kk_etcd_models.DeregisterServerParam

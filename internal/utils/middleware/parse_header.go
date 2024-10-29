@@ -2,16 +2,15 @@ package middleware
 
 import (
 	"gitee.com/cruvie/kk_go_kit/kk_http"
+	"gitee.com/cruvie/kk_go_kit/kk_http/kk_global_stage"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
-	"github.com/cruvie/kk_etcd_go/internal/utils/global_model/global_stage"
-
 	"github.com/gin-gonic/gin"
 	"log/slog"
 )
 
 // ParseHeader parse header middleware
 func ParseHeader(c *gin.Context) {
-	stage := global_stage.GetRequestStage(c)
+	stage := kk_global_stage.GetRequestStage(c)
 
 	var header global_model.RequestHeader
 	// bind header
