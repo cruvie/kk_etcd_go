@@ -3,6 +3,7 @@ package main
 import (
 	"gitee.com/cruvie/kk_go_kit/kk_log"
 	"gitee.com/cruvie/kk_go_kit/kk_pprof"
+	"gitee.com/cruvie/kk_go_kit/kk_server"
 	"github.com/cruvie/kk_etcd_go/internal/api_etcd"
 	"github.com/cruvie/kk_etcd_go/internal/config"
 	"github.com/cruvie/kk_etcd_go/internal/internal_handler/internal_service"
@@ -11,6 +12,7 @@ import (
 	"github.com/cruvie/kk_etcd_go/kk_etcd"
 	_ "github.com/cruvie/kk_etcd_go/swagger"
 	"log/slog"
+	"time"
 )
 
 //	@title			kk_etcd_go API
@@ -69,5 +71,7 @@ func main() {
 	internal_service.InitServiceHub()
 	internal_service.RunEtcdMaintain()
 
-	api_etcd.ApiEtcd(internal_client.GlobalStage)
+	kkServer := kk_server.NewKKServer(10 * time.Second)
+	kkServer.Add("http_etcd", api_etcd.ApiEtcd(internal_client.GlobalStage))
+	kkServer.ServeAndWait()
 }
