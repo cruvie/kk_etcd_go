@@ -9,7 +9,7 @@ import (
 var Config config
 
 type config struct {
-	ServerAddr   string `yaml:"ServerAddr"`
+	Port         int    `yaml:"Port"`
 	DebugMode    bool   `yaml:"DebugMode"`
 	RootPassword string `yaml:"RootPassword"`
 	Etcd         struct {
@@ -23,7 +23,10 @@ type config struct {
 
 func InitConfig() {
 
-	workDir, _ := os.Getwd()
+	workDir, err := os.Getwd()
+	if err != nil {
+		panic(err)
+	}
 	//slog.Info("workDir", "dir", workDir)
 
 	//docker

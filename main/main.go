@@ -1,8 +1,8 @@
 package main
 
 import (
-	"gitee.com/cruvie/kk_go_kit/kk_config_interface"
 	"gitee.com/cruvie/kk_go_kit/kk_log"
+	"gitee.com/cruvie/kk_go_kit/kk_pprof"
 	"github.com/cruvie/kk_etcd_go/internal/api_etcd"
 	"github.com/cruvie/kk_etcd_go/internal/config"
 	"github.com/cruvie/kk_etcd_go/internal/internal_handler/internal_service"
@@ -33,13 +33,20 @@ func main() {
 	{
 		//init log
 		configLog := kk_log.ConfigLog{
+			DebugMode:  config.Config.DebugMode,
 			Lumberjack: kk_log.DefaultLogConfig(consts.ServerName),
 		}
-		configLog.Init(&kk_config_interface.InitArgs{
-			DebugMode:   config.Config.DebugMode,
-			ServiceName: consts.ServerName,
-		})
+		configLog.Init()
 		defer configLog.Close()
+	}
+	{
+		//init pprof
+		pprof := kk_pprof.ConfigPprof{
+			Port:        2444,
+			EnableBlock: true,
+			EnableMutex: true,
+		}
+		pprof.Init()
 	}
 
 	internal_client.InitEtcd()

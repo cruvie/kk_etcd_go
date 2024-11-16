@@ -2,17 +2,26 @@ package api_etcd
 
 import (
 	"gitee.com/cruvie/kk_go_kit/kk_http"
+	"gitee.com/cruvie/kk_go_kit/kk_http/kk_middleware"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
+	"gitee.com/cruvie/kk_go_kit/kk_swagger"
 	"github.com/cruvie/kk_etcd_go/internal/config"
 	"github.com/cruvie/kk_etcd_go/internal/utils/middleware"
+	"strconv"
 )
 
 func ApiEtcd(stage *kk_stage.Stage) {
 	r := kk_http.KKGin(stage)
-	r.Use(middleware.Cors())
-	r.Use(middleware.RequestInterceptor(stage))
+	r.Use(kk_middleware.DefaultCors())
+	r.Use(kk_middleware.StageInit(stage))
 	//swagger
-	kk_http.InitSwagger(stage, r)
+	kk_swagger.InitSwagger(kk_swagger.Config{
+		Options:   nil,
+		R:         r,
+		Port:      config.Config.Port,
+		UrlPrefix: "",
+		DebugMode: stage.DebugMode,
+	})
 
 	r.Use(middleware.ParseHeader)
 	r.Use(middleware.EtcdClient)
@@ -63,6 +72,6 @@ func ApiEtcd(stage *kk_stage.Stage) {
 
 	}
 
-	kk_http.ServerWithGracefulShutdown(stage, r, config.Config.ServerAddr)
+	kk_http.ServerWithGracefulShutdown(stage, r, ":"+strconv.Itoa(config.Config.Port))
 
 }

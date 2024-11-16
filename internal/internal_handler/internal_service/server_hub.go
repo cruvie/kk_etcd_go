@@ -17,7 +17,7 @@ import (
 
 func InitServiceHub() {
 	hub = &serverHub{
-		hub: kk_sync.NewMap[*serverStatus](),
+		hub: kk_sync.NewMap[string, *serverStatus](),
 	}
 	hub.watchServiceChange()
 }
@@ -25,7 +25,7 @@ func InitServiceHub() {
 var hub *serverHub
 
 type serverHub struct {
-	hub *kk_sync.Map[*serverStatus]
+	hub *kk_sync.Map[string, *serverStatus]
 }
 
 func (x *serverHub) register(server *serverStatus) {

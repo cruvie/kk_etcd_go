@@ -2,8 +2,8 @@ package api_etcd
 
 import (
 	"gitee.com/cruvie/kk_go_kit/kk_http"
+	"gitee.com/cruvie/kk_go_kit/kk_http/kk_global_stage"
 	"github.com/cruvie/kk_etcd_go/internal/handler"
-	"github.com/cruvie/kk_etcd_go/internal/utils/global_model/global_stage"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	"github.com/gin-gonic/gin"
 )
@@ -20,7 +20,7 @@ var hKV handler.HKV
 //	@Success		200			{object}	kk_etcd_models.KVPutResponse
 //	@Router			/kv/kVPut [post]
 func kVPut(c *gin.Context) {
-	stage := global_stage.GetRequestStage(c)
+	stage := kk_global_stage.GetRequestStage(c)
 	span := stage.StartTrace("kVPut")
 	defer span.End()
 	var param kk_etcd_models.KVPutParam
@@ -46,7 +46,7 @@ func kVPut(c *gin.Context) {
 //	@Success		200			{object}	kk_etcd_models.KVGetResponse
 //	@Router			/kv/kVGet [post]
 func kVGet(c *gin.Context) {
-	stage := global_stage.GetRequestStage(c)
+	stage := kk_global_stage.GetRequestStage(c)
 	span := stage.StartTrace("kVGet")
 	defer span.End()
 	var param kk_etcd_models.KVGetParam
@@ -72,7 +72,7 @@ func kVGet(c *gin.Context) {
 //	@Success		200			{object}	kk_etcd_models.KVDelResponse
 //	@Router			/kv/kVDel [post]
 func kVDel(c *gin.Context) {
-	stage := global_stage.GetRequestStage(c)
+	stage := kk_global_stage.GetRequestStage(c)
 	span := stage.StartTrace("kVDel")
 	defer span.End()
 	var param kk_etcd_models.KVDelParam
@@ -98,7 +98,7 @@ func kVDel(c *gin.Context) {
 //	@Success		200			{object}	kk_etcd_models.KVListResponse
 //	@Router			/kv/kVList [post]
 func kVList(c *gin.Context) {
-	stage := global_stage.GetRequestStage(c)
+	stage := kk_global_stage.GetRequestStage(c)
 	span := stage.StartTrace("kVList")
 	defer span.End()
 	var param kk_etcd_models.KVListParam
