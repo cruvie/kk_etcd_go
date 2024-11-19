@@ -80,5 +80,5 @@ func ApiEtcd(stage *kk_stage.Stage) kk_server.KKRunServer {
 
 	}
 
-	return server.NewRunServer()
+	return server.NewKKRunServer()
 }

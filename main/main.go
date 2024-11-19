@@ -43,7 +43,7 @@ func main() {
 	}
 	{
 		//init pprof
-		pprof := kk_pprof.ConfigPprof{
+		pprof := kk_pprof.ConfigPprofWeb{
 			Port:        2444,
 			EnableBlock: true,
 			EnableMutex: true,
@@ -71,7 +71,7 @@ func main() {
 	internal_service.InitServiceHub()
 	internal_service.RunEtcdMaintain()
 
-	kkServer := kk_server.NewKKServer(10 * time.Second)
+	kkServer := kk_server.NewKKServer(10*time.Second, consts.ServerName)
 	kkServer.Add("http_etcd", api_etcd.ApiEtcd(internal_client.GlobalStage))
 	kkServer.ServeAndWait()
 }
