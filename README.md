@@ -1,5 +1,7 @@
 # Etcd UI
 
+[![Go Reference](https://pkg.go.dev/badge/github.com/cruvie/kk_etcd_go.svg)](https://pkg.go.dev/github.com/cruvie/kk_etcd_go)
+
 A modern and easy to use Client/UI for `Etcd`
 
 A Configuration center and Service registration and discovery platform based on `Etcd`
@@ -40,7 +42,6 @@ then visit http://localhost:2334
 ## Server
 
 [Homepage Server](https://github.com/cruvie/kk_etcd_go)
-
 
 # SDK
 
@@ -131,13 +132,17 @@ func TestPutYaml(t *testing.T) {
 ```
 
 ## Register Http/gRPC Server to etcd
-refers to [Register Http Server](https://github.com/cruvie/kk_etcd_go/blob/566e340dee0ca3b38bff574fe223887035fe67d6/kk_etcd/server_test.go#L105)
 
-refers to [Register Grpc Server](https://github.com/cruvie/kk_etcd_go/blob/566e340dee0ca3b38bff574fe223887035fe67d6/kk_etcd/server_test.go#L51)
+refers
+to [Register Http Server](https://github.com/cruvie/kk_etcd_go/blob/566e340dee0ca3b38bff574fe223887035fe67d6/kk_etcd/server_test.go#L105)
 
+refers
+to [Register Grpc Server](https://github.com/cruvie/kk_etcd_go/blob/566e340dee0ca3b38bff574fe223887035fe67d6/kk_etcd/server_test.go#L51)
 
 ## Get a grpc client from etcd
-refers to [GetGrpcClient](https://github.com/cruvie/kk_etcd_go/blob/566e340dee0ca3b38bff574fe223887035fe67d6/kk_etcd/server_grpc.go#L14)
+
+refers
+to [GetGrpcClient](https://github.com/cruvie/kk_etcd_go/blob/566e340dee0ca3b38bff574fe223887035fe67d6/kk_etcd/server_grpc.go#L14)
 
 # Contribute
 
@@ -151,3 +156,8 @@ Buy me a cup of coffee ☕️ if you like this project and want to keep it activ
 | Alipay                                                                                         | Wechat                                                                                         |
 |------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
 | ![alipay](https://github.com/cruvie/kk_etcd_ui/blob/master/lib/assets/pay/alipay.png?raw=true) | ![wechat](https://github.com/cruvie/kk_etcd_ui/blob/master/lib/assets/pay/wechat.png?raw=true) | 
+
+# Thanks
+
+This project is supported by [JetBrains](https://jb.gg/OpenSourceSupport).
+![JetBrains logo](https://resources.jetbrains.com/storage/products/company/brand/logos/jetbrains.png)
