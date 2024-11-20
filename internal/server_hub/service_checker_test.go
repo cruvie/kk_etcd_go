@@ -1,4 +1,4 @@
-package internal_service
+package server_hub
 
 import (
 	"context"

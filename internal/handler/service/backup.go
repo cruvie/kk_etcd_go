@@ -18,8 +18,6 @@ import (
 
 type SerBackup struct{}
 
-var serBackup SerBackup
-
 // Snapshot get snapshot, similar to `etcdctl snapshot save snapshot.db`
 func (SerBackup) Snapshot(stage *kk_stage.Stage) (error, *kk_etcd_models.SnapshotResponse) {
 	newLog := kk_log.NewLog(&kk_log.LogOption{TraceId: stage.TraceId})

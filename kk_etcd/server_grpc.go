@@ -1,8 +1,6 @@
 package kk_etcd
 
 import (
-	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
-	"github.com/cruvie/kk_etcd_go/internal/utils/internal_client"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	"go.etcd.io/etcd/client/v3/naming/resolver"
 	"google.golang.org/grpc"
@@ -16,7 +14,7 @@ func GetGrpcClient[T any](serverName string,
 	opts ...grpc.DialOption) (conn *grpc.ClientConn, client T, err error) {
 
 	//refers to https://etcd.io/docs/v3.5/dev-guide/grpc_naming/
-	etcdResolver, err := resolver.NewBuilder(global_model.GetClient(internal_client.GlobalStage))
+	etcdResolver, err := resolver.NewBuilder(GetClient())
 	if err != nil {
 		return nil, client, err
 	}

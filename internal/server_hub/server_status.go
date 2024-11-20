@@ -1,4 +1,4 @@
-package internal_service
+package server_hub
 
 import (
 	"context"
@@ -35,12 +35,13 @@ func newServerStatus(register *kk_etcd_models.ServerRegistration) *serverStatus 
 		Msg:                "init checker",
 	}
 }
-func (x *serverStatus) KVKey() string {
-	//use another key prefix for kv store, because endpointManage will listen normal key with same prefix of endpointKey
+func (x *serverStatus) kVKey() string {
+	//use another key prefix for kv store,
+	//because endpointManage will listen to a normal key with the same prefix of endpointKey
 	return kk_etcd_models.InternalServerStatus + x.EndpointKey()
 }
-func (x *serverStatus) PutExistUpdateJson() error {
-	return service.SerKV{}.PutExistUpdateJson(internal_client.GlobalStage, x.KVKey(), x)
+func (x *serverStatus) putExistUpdateJson() error {
+	return service.SerKV{}.PutExistUpdateJson(internal_client.GlobalStage, x.kVKey(), x)
 }
 
 func (x *serverStatus) FromJson(data string) (err error) {
@@ -48,11 +49,11 @@ func (x *serverStatus) FromJson(data string) (err error) {
 	return err
 }
 
-func (x *serverStatus) KVDelWithKey(key string) error {
+func (x *serverStatus) kVDelWithKey(key string) error {
 	return service.SerKV{}.KVDel(internal_client.GlobalStage, key)
 }
 
-// fromEndpoint endpoint to serverStatus
+// fromEndpoint endpoint to ServerStatus
 // todo https://github.com/etcd-io/etcd/issues/18520
 
 // serverStatus, ok := endpoint.Metadata.(serverStatus)
@@ -74,6 +75,7 @@ func (x *serverStatus) stopCheck() {
 		x.cancelFunc()
 	}
 }
+
 func (x *serverStatus) runCheck() {
 	updateHealth := func(err error) {
 		if err != nil {

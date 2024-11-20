@@ -6,7 +6,7 @@ import (
 	"gitee.com/cruvie/kk_go_kit/kk_server"
 	"github.com/cruvie/kk_etcd_go/internal/api_etcd"
 	"github.com/cruvie/kk_etcd_go/internal/config"
-	"github.com/cruvie/kk_etcd_go/internal/internal_handler/internal_service"
+	"github.com/cruvie/kk_etcd_go/internal/server_hub"
 	"github.com/cruvie/kk_etcd_go/internal/utils/consts"
 	"github.com/cruvie/kk_etcd_go/internal/utils/internal_client"
 	"github.com/cruvie/kk_etcd_go/kk_etcd"
@@ -68,10 +68,10 @@ func main() {
 		}
 	}()
 
-	internal_service.InitServiceHub()
-	internal_service.RunEtcdMaintain()
+	server_hub.InitServiceHub()
 
 	kkServer := kk_server.NewKKServer(10*time.Second, consts.ServerName)
 	kkServer.Add("http_etcd", api_etcd.ApiEtcd(internal_client.GlobalStage))
+	kkServer.Add("etcd_maintain", server_hub.NewEtcdMaintain())
 	kkServer.ServeAndWait()
 }

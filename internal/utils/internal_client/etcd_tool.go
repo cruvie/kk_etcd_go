@@ -29,6 +29,12 @@ func (x *serToolEtcd) checkAuthEnabled() (enabled bool) {
 	if err != nil {
 		panic(err)
 	}
+	defer func(client *clientv3.Client) {
+		err := client.Close()
+		if err != nil {
+			slog.Error("close etcd client failed", "err", err)
+		}
+	}(client)
 	resp, err := client.AuthStatus(context.Background())
 	if err != nil {
 		if kk_etcd_error.ErrorIs(err, rpctypes.ErrGRPCUserEmpty) {

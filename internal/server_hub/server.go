@@ -1,4 +1,4 @@
-package internal_service
+package server_hub
 
 import (
 	"context"
@@ -13,8 +13,6 @@ import (
 )
 
 type SerServer struct{}
-
-var serInternalServer SerServer
 
 func (SerServer) RegisterService(stage *kk_stage.Stage, registration *kk_etcd_models.ServerRegistration) error {
 	switch registration.CheckConfig.Type {
@@ -36,14 +34,14 @@ func (SerServer) RegisterService(stage *kk_stage.Stage, registration *kk_etcd_mo
 
 // ServerList
 // serverName, should with prefix key_prefix.ServiceGrpc or key_prefix.ServiceHttp
-// only give prefix to get all service list
+// only give prefix to get all service lists
 func (SerServer) ServerList(client *clientv3.Client, serverType kk_etcd_models.ServerType) (serverList *kk_etcd_models.PBListServer, err error) {
 	endpointMap, err := toolServer.serverList(client, serverType)
 	if err != nil {
 		return nil, err
 	}
 	var pBListServer kk_etcd_models.PBListServer
-	serviceStatus, err := hub.services()
+	serviceStatus, err := toolServer.services()
 	if err != nil {
 		return nil, err
 	}

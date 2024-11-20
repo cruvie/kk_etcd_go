@@ -52,7 +52,7 @@ func InitClient(cfg *InitClientConfig) (CloseFunc, error) {
 
 	global_model.SetLoginUser(internal_client.GlobalStage, user)
 	closeFunc := func() error {
-		err := global_model.GetClient(internal_client.GlobalStage).Close()
+		err := GetClient().Close()
 		internal_client.CloseGlobalStage()
 		return err
 	}
