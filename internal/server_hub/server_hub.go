@@ -1,10 +1,9 @@
-package internal_service
+package server_hub
 
 import (
 	"context"
 	"gitee.com/cruvie/kk_go_kit/kk_log"
 	"gitee.com/cruvie/kk_go_kit/kk_sync"
-	"github.com/cruvie/kk_etcd_go/internal/handler/service"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
 	"github.com/cruvie/kk_etcd_go/internal/utils/internal_client"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_error"
@@ -29,13 +28,9 @@ type serverHub struct {
 }
 
 func (x *serverHub) register(server *serverStatus) {
-	if v, ok := x.hub.Get(server.KVKey()); ok {
-		//stop checker
-		v.stopCheck()
-	}
 	server.ctx, server.cancelFunc = context.WithCancel(context.Background())
-	x.hub.Add(server.KVKey(), server)
-	err := server.PutExistUpdateJson()
+	x.hub.Add(server.kVKey(), server)
+	err := server.putExistUpdateJson()
 	if err != nil {
 		if kk_etcd_error.ErrorIs(err, rpctypes.ErrGRPCNoSpace) {
 			//https://etcd.io/docs/v3.5/op-guide/maintenance/#space-quota
@@ -64,23 +59,23 @@ func (x *serverHub) deregister(endpointKey string) {
 	oldStatus, ok := x.hub.Get(key)
 	if ok {
 		x.hub.Remove(key)
-		//stop checker
+		//stop check
 		oldStatus.stopCheck()
 	}
-	err := oldStatus.KVDelWithKey(key)
+	err := oldStatus.kVDelWithKey(key)
 	if err != nil {
 		slog.Error("deregister server failed server.KVDel()", kk_log.NewLog(nil).Error(err).Any("server", oldStatus).Args()...)
 	}
 }
 func (x *serverHub) updateStatus(status kk_etcd_models.PBServer_ServerStatus, server *serverStatus) {
-	v, ok := x.hub.Get(server.KVKey())
+	v, ok := x.hub.Get(server.kVKey())
 	if ok {
 		// update server status
 		v.Status = status
 		v.LastCheck = time.Now()
 		v.Msg = server.Msg
-		x.hub.Add(v.KVKey(), v)
-		err := v.PutExistUpdateJson()
+		x.hub.Add(v.kVKey(), v)
+		err := v.putExistUpdateJson()
 		if err != nil {
 			if kk_etcd_error.ErrorIs(err, rpctypes.ErrGRPCNoSpace) {
 				//https://etcd.io/docs/v3.5/op-guide/maintenance/#space-quota
@@ -97,24 +92,6 @@ func (x *serverHub) updateStatus(status kk_etcd_models.PBServer_ServerStatus, se
 		slog.Error("update server status failed server not found",
 			kk_log.NewLog(nil).Any("server", server).Args()...)
 	}
-}
-
-func (x *serverHub) services() (map[string]*serverStatus, error) {
-	services := make(map[string]*serverStatus)
-	err, v := service.SerKV{}.KVList(internal_client.GlobalStage, kk_etcd_models.InternalServerStatus)
-	if err != nil {
-		return nil, err
-	}
-	for _, kv := range v.GetListKV() {
-		var info serverStatus
-		err := info.FromJson(kv.GetValue())
-		if err != nil {
-			return nil, err
-		}
-		services[info.KVKey()] = &info
-	}
-
-	return services, nil
 }
 
 // watchServiceChange watch server change
@@ -154,9 +131,15 @@ func (x *serverHub) watchServiceChange() {
 			select {
 			case <-internal_client.GlobalStage.Ctx.Done():
 				return
-			case updates := <-grpcChannel:
+			case updates, ok := <-grpcChannel:
+				if !ok {
+					return
+				}
 				updateEndpoint(updates)
-			case updates := <-httpChannel:
+			case updates, ok := <-httpChannel:
+				if !ok {
+					return
+				}
 				updateEndpoint(updates)
 			}
 		}

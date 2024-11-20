@@ -1,8 +1,9 @@
-package internal_service
+package server_hub
 
 import (
 	"context"
 	"gitee.com/cruvie/kk_go_kit/kk_log"
+	"gitee.com/cruvie/kk_go_kit/kk_server"
 	"github.com/cruvie/kk_etcd_go/internal/config"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
 	"github.com/cruvie/kk_etcd_go/internal/utils/internal_client"
@@ -13,19 +14,30 @@ import (
 	"time"
 )
 
-// RunEtcdMaintain https://etcd.io/docs/v3.5/op-guide/maintenance/#space-quota
-func RunEtcdMaintain() {
+// NewEtcdMaintain https://etcd.io/docs/v3.5/op-guide/maintenance/#space-quota
+func NewEtcdMaintain() kk_server.KKRunServer {
 	tick := time.NewTicker(1 * time.Hour)
-	defer tick.Stop()
-	go func() {
-		for {
-			hub.maintainEtcd()
-			<-tick.C
+	run := func() {
+		maintainEtcd()
+		//maintain will close watch channels, os rerun watches
+		hub.watchServiceChange()
+		for range tick.C {
+			maintainEtcd()
+			//maintain will close watch channels, os rerun watches
+			hub.watchServiceChange()
 		}
-	}()
+	}
+	done := func(quitCh <-chan struct{}) {
+		<-quitCh
+		tick.Stop()
+	}
+	return kk_server.KKRunServer{
+		Run:   run,
+		Done:  done,
+		Async: true,
+	}
 }
-
-func (x *serverHub) maintainEtcd() {
+func maintainEtcd() {
 	for _, endpoint := range config.Config.Etcd.Endpoints {
 		// get current revision
 		currentRevision, err := getCurrentRevision(endpoint)
