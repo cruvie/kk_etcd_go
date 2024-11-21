@@ -2,7 +2,7 @@ name: kk-etcd-local
 services:
 # https://etcd.io/docs/v3.5/op-guide/container/
   etcd-local:
-    image: quay.io/coreos/etcd:v3.5.15-amd64
+    image: quay.io/coreos/etcd:v3.5.17-amd64
     container_name: etcd-local
     command:
       [
@@ -34,6 +34,7 @@ services:
     volumes:
       - ./config.yml:/kk_etcd_go/internal/config/config.yml
       - ./logs:/logs
+      - ./dump:/dump
     networks:
       - ss-net
 

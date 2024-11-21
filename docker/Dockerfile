@@ -33,8 +33,8 @@ FROM alpine:latest
 WORKDIR /
 
 COPY --from=build /kk_etcd/output /kk_etcd/output
-#COPY ./etcd-v3.5.15-linux-amd64/etcdutl /usr/local/bin/etcdutl
-#COPY ./etcd-v3.5.15-linux-arm64/etcdutl /usr/local/bin/etcdutl
+#COPY ./etcd-v3.5.17-linux-amd64/etcdutl /usr/local/bin/etcdutl
+#COPY ./etcd-v3.5.17-linux-arm64/etcdutl /usr/local/bin/etcdutl
 
 EXPOSE 2333
 
@@ -47,10 +47,10 @@ CMD ["/kk_etcd/output"]
 
 # 多平台构建-发布
 # docker login
-# docker buildx build --platform linux/amd64,linux/arm64 -t cruvie/kk_etcd_go:1.4.0 -f Dockerfile . --push
-# docker buildx build --platform linux/amd64 -t cruvie/kk_etcd_go:1.4.0-amd64 -f Dockerfile . --push
-# docker buildx build --platform linux/arm64 -t cruvie/kk_etcd_go:1.4.0-arm64 -f Dockerfile . --push
+# docker buildx build --platform linux/amd64,linux/arm64 -t cruvie/kk_etcd_go:1.4.1 -f Dockerfile . --push
+# docker buildx build --platform linux/amd64 -t cruvie/kk_etcd_go:1.4.1-amd64 -f Dockerfile . --push
+# docker buildx build --platform linux/arm64 -t cruvie/kk_etcd_go:1.4.1-arm64 -f Dockerfile . --push
 
 # 测试
-# docker pull cruvie/kk_etcd_go:1.4.0
-# docker run --name kk_etcd_go -p 2333:2333 -v ./config/config.yml:/kk_etcd_go/config/config.yml cruvie/kk_etcd_go:1.4.0
+# docker pull cruvie/kk_etcd_go:1.4.1
+# docker run --name kk_etcd_go -p 2333:2333 -v ./config/config.yml:/kk_etcd_go/config/config.yml cruvie/kk_etcd_go:1.4.1
