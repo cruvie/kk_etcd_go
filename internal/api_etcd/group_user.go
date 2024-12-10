@@ -25,15 +25,11 @@ func login(c *gin.Context) {
 	defer span.End()
 	var param kk_etcd_models.LoginParam
 	if err := param.BindCheck(stage); err != nil {
-		kk_http.ResponseErrPB(stage, err)
+		kk_http.ResponsePB(stage, err, nil)
 		return
 	}
 	err, resp := hUser.Login(stage, &param)
-	if err != nil {
-		kk_http.ResponseErrPB(stage, err)
-		return
-	}
-	kk_http.ResponseSuccessPB(stage, nil, resp)
+	kk_http.ResponsePB(stage, err, resp)
 }
 
 // logout
@@ -51,15 +47,11 @@ func logout(c *gin.Context) {
 	defer span.End()
 	var param kk_etcd_models.LogoutParam
 	if err := param.BindCheck(stage); err != nil {
-		kk_http.ResponseErrPB(stage, err)
+		kk_http.ResponsePB(stage, err, nil)
 		return
 	}
 	err, resp := hUser.Logout(stage, &param)
-	if err != nil {
-		kk_http.ResponseErrPB(stage, err)
-		return
-	}
-	kk_http.ResponseSuccessPB(stage, nil, resp)
+	kk_http.ResponsePB(stage, err, resp)
 }
 
 // userAdd
@@ -77,15 +69,11 @@ func userAdd(c *gin.Context) {
 	defer span.End()
 	var param kk_etcd_models.UserAddParam
 	if err := param.BindCheck(stage); err != nil {
-		kk_http.ResponseErrPB(stage, err)
+		kk_http.ResponsePB(stage, err, nil)
 		return
 	}
 	err, resp := hUser.UserAdd(stage, &param)
-	if err != nil {
-		kk_http.ResponseErrPB(stage, err)
-		return
-	}
-	kk_http.ResponseSuccessPB(stage, nil, resp)
+	kk_http.ResponsePB(stage, err, resp)
 }
 
 // userDelete
@@ -103,15 +91,11 @@ func userDelete(c *gin.Context) {
 	defer span.End()
 	var param kk_etcd_models.UserDeleteParam
 	if err := param.BindCheck(stage); err != nil {
-		kk_http.ResponseErrPB(stage, err)
+		kk_http.ResponsePB(stage, err, nil)
 		return
 	}
 	err, resp := hUser.UserDelete(stage, &param)
-	if err != nil {
-		kk_http.ResponseErrPB(stage, err)
-		return
-	}
-	kk_http.ResponseSuccessPB(stage, nil, resp)
+	kk_http.ResponsePB(stage, err, resp)
 }
 
 // getUser
@@ -129,15 +113,11 @@ func getUser(c *gin.Context) {
 	defer span.End()
 	var param kk_etcd_models.GetUserParam
 	if err := param.BindCheck(stage); err != nil {
-		kk_http.ResponseErrPB(stage, err)
+		kk_http.ResponsePB(stage, err, nil)
 		return
 	}
 	err, resp := hUser.GetUser(stage, &param)
-	if err != nil {
-		kk_http.ResponseErrPB(stage, err)
-		return
-	}
-	kk_http.ResponseSuccessPB(stage, nil, resp)
+	kk_http.ResponsePB(stage, err, resp)
 }
 
 // myInfo
@@ -155,15 +135,11 @@ func myInfo(c *gin.Context) {
 	defer span.End()
 	var param kk_etcd_models.MyInfoParam
 	if err := param.BindCheck(stage); err != nil {
-		kk_http.ResponseErrPB(stage, err)
+		kk_http.ResponsePB(stage, err, nil)
 		return
 	}
 	err, resp := hUser.MyInfo(stage, &param)
-	if err != nil {
-		kk_http.ResponseErrPB(stage, err)
-		return
-	}
-	kk_http.ResponseSuccessPB(stage, nil, resp)
+	kk_http.ResponsePB(stage, err, resp)
 }
 
 // userList
@@ -181,15 +157,11 @@ func userList(c *gin.Context) {
 	defer span.End()
 	var param kk_etcd_models.UserListParam
 	if err := param.BindCheck(stage); err != nil {
-		kk_http.ResponseErrPB(stage, err)
+		kk_http.ResponsePB(stage, err, nil)
 		return
 	}
 	err, resp := hUser.UserList(stage, &param)
-	if err != nil {
-		kk_http.ResponseErrPB(stage, err)
-		return
-	}
-	kk_http.ResponseSuccessPB(stage, nil, resp)
+	kk_http.ResponsePB(stage, err, resp)
 }
 
 // userGrantRole
@@ -207,13 +179,9 @@ func userGrantRole(c *gin.Context) {
 	defer span.End()
 	var param kk_etcd_models.UserGrantRoleParam
 	if err := param.BindCheck(stage); err != nil {
-		kk_http.ResponseErrPB(stage, err)
+		kk_http.ResponsePB(stage, err, nil)
 		return
 	}
 	err, resp := hUser.UserGrantRole(stage, &param)
-	if err != nil {
-		kk_http.ResponseErrPB(stage, err)
-		return
-	}
-	kk_http.ResponseSuccessPB(stage, nil, resp)
+	kk_http.ResponsePB(stage, err, resp)
 }

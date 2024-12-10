@@ -25,15 +25,11 @@ func snapshot(c *gin.Context) {
 	defer span.End()
 	var param kk_etcd_models.SnapshotParam
 	if err := param.BindCheck(stage); err != nil {
-		kk_http.ResponseErrPB(stage, err)
+		kk_http.ResponsePB(stage, err, nil)
 		return
 	}
 	err, resp := hBackup.Snapshot(stage, &param)
-	if err != nil {
-		kk_http.ResponseErrPB(stage, err)
-		return
-	}
-	kk_http.ResponseSuccessPB(stage, nil, resp)
+	kk_http.ResponsePB(stage, err, resp)
 }
 
 // snapshotRestore
@@ -51,15 +47,11 @@ func snapshotRestore(c *gin.Context) {
 	defer span.End()
 	var param kk_etcd_models.SnapshotRestoreParam
 	if err := param.BindCheck(stage); err != nil {
-		kk_http.ResponseErrPB(stage, err)
+		kk_http.ResponsePB(stage, err, nil)
 		return
 	}
 	err, resp := hBackup.SnapshotRestore(stage, &param)
-	if err != nil {
-		kk_http.ResponseErrPB(stage, err)
-		return
-	}
-	kk_http.ResponseSuccessPB(stage, nil, resp)
+	kk_http.ResponsePB(stage, err, resp)
 }
 
 // snapshotInfo
@@ -77,15 +69,11 @@ func snapshotInfo(c *gin.Context) {
 	defer span.End()
 	var param kk_etcd_models.SnapshotInfoParam
 	if err := param.BindCheck(stage); err != nil {
-		kk_http.ResponseErrPB(stage, err)
+		kk_http.ResponsePB(stage, err, nil)
 		return
 	}
 	err, resp := hBackup.SnapshotInfo(stage, &param)
-	if err != nil {
-		kk_http.ResponseErrPB(stage, err)
-		return
-	}
-	kk_http.ResponseSuccessPB(stage, nil, resp)
+	kk_http.ResponsePB(stage, err, resp)
 }
 
 // allKVsBackup
@@ -103,15 +91,11 @@ func allKVsBackup(c *gin.Context) {
 	defer span.End()
 	var param kk_etcd_models.AllKVsBackupParam
 	if err := param.BindCheck(stage); err != nil {
-		kk_http.ResponseErrPB(stage, err)
+		kk_http.ResponsePB(stage, err, nil)
 		return
 	}
 	err, resp := hBackup.AllKVsBackup(stage, &param)
-	if err != nil {
-		kk_http.ResponseErrPB(stage, err)
-		return
-	}
-	kk_http.ResponseSuccessPB(stage, nil, resp)
+	kk_http.ResponsePB(stage, err, resp)
 }
 
 // allKVsRestore
@@ -129,13 +113,9 @@ func allKVsRestore(c *gin.Context) {
 	defer span.End()
 	var param kk_etcd_models.AllKVsRestoreParam
 	if err := param.BindCheck(stage); err != nil {
-		kk_http.ResponseErrPB(stage, err)
+		kk_http.ResponsePB(stage, err, nil)
 		return
 	}
 	err, resp := hBackup.AllKVsRestore(stage, &param)
-	if err != nil {
-		kk_http.ResponseErrPB(stage, err)
-		return
-	}
-	kk_http.ResponseSuccessPB(stage, nil, resp)
+	kk_http.ResponsePB(stage, err, resp)
 }

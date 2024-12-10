@@ -25,15 +25,11 @@ func serverList(c *gin.Context) {
 	defer span.End()
 	var param kk_etcd_models.ServerListParam
 	if err := param.BindCheck(stage); err != nil {
-		kk_http.ResponseErrPB(stage, err)
+		kk_http.ResponsePB(stage, err, nil)
 		return
 	}
 	err, resp := hServer.ServerList(stage, &param)
-	if err != nil {
-		kk_http.ResponseErrPB(stage, err)
-		return
-	}
-	kk_http.ResponseSuccessPB(stage, nil, resp)
+	kk_http.ResponsePB(stage, err, resp)
 }
 
 // deregisterServer
@@ -51,13 +47,9 @@ func deregisterServer(c *gin.Context) {
 	defer span.End()
 	var param kk_etcd_models.DeregisterServerParam
 	if err := param.BindCheck(stage); err != nil {
-		kk_http.ResponseErrPB(stage, err)
+		kk_http.ResponsePB(stage, err, nil)
 		return
 	}
 	err, resp := hServer.DeregisterServer(stage, &param)
-	if err != nil {
-		kk_http.ResponseErrPB(stage, err)
-		return
-	}
-	kk_http.ResponseSuccessPB(stage, nil, resp)
+	kk_http.ResponsePB(stage, err, resp)
 }

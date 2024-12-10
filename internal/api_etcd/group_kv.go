@@ -25,15 +25,11 @@ func kVPut(c *gin.Context) {
 	defer span.End()
 	var param kk_etcd_models.KVPutParam
 	if err := param.BindCheck(stage); err != nil {
-		kk_http.ResponseErrPB(stage, err)
+		kk_http.ResponsePB(stage, err, nil)
 		return
 	}
 	err, resp := hKV.KVPut(stage, &param)
-	if err != nil {
-		kk_http.ResponseErrPB(stage, err)
-		return
-	}
-	kk_http.ResponseSuccessPB(stage, nil, resp)
+	kk_http.ResponsePB(stage, err, resp)
 }
 
 // kVGet
@@ -51,15 +47,11 @@ func kVGet(c *gin.Context) {
 	defer span.End()
 	var param kk_etcd_models.KVGetParam
 	if err := param.BindCheck(stage); err != nil {
-		kk_http.ResponseErrPB(stage, err)
+		kk_http.ResponsePB(stage, err, nil)
 		return
 	}
 	err, resp := hKV.KVGet(stage, &param)
-	if err != nil {
-		kk_http.ResponseErrPB(stage, err)
-		return
-	}
-	kk_http.ResponseSuccessPB(stage, nil, resp)
+	kk_http.ResponsePB(stage, err, resp)
 }
 
 // kVDel
@@ -77,15 +69,11 @@ func kVDel(c *gin.Context) {
 	defer span.End()
 	var param kk_etcd_models.KVDelParam
 	if err := param.BindCheck(stage); err != nil {
-		kk_http.ResponseErrPB(stage, err)
+		kk_http.ResponsePB(stage, err, nil)
 		return
 	}
 	err, resp := hKV.KVDel(stage, &param)
-	if err != nil {
-		kk_http.ResponseErrPB(stage, err)
-		return
-	}
-	kk_http.ResponseSuccessPB(stage, nil, resp)
+	kk_http.ResponsePB(stage, err, resp)
 }
 
 // kVList
@@ -103,13 +91,9 @@ func kVList(c *gin.Context) {
 	defer span.End()
 	var param kk_etcd_models.KVListParam
 	if err := param.BindCheck(stage); err != nil {
-		kk_http.ResponseErrPB(stage, err)
+		kk_http.ResponsePB(stage, err, nil)
 		return
 	}
 	err, resp := hKV.KVList(stage, &param)
-	if err != nil {
-		kk_http.ResponseErrPB(stage, err)
-		return
-	}
-	kk_http.ResponseSuccessPB(stage, nil, resp)
+	kk_http.ResponsePB(stage, err, resp)
 }

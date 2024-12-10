@@ -1,7 +1,6 @@
-import 'dart:typed_data';
-
+import 'package:kk_go_kit/kk_http/base_request.dart';
 import 'package:kk_go_kit/kk_models/pb_response.pb.dart';
-import 'package:kk_go_kit/kk_util/kk_log.dart';
+import 'package:protobuf/protobuf.dart';
 
 import '../kk_etcd_models/api_server_kk_etcd.pb.dart';
 
@@ -9,48 +8,25 @@ class ApiServer {
   /// list server
   static Future<void> serverList(
       ServerListParam param,
-      Future<PBResponse> Function(String path, Uint8List requestData)
+      ServerListResponse response,
+      Future<PBResponse> Function(String path, GeneratedMessage requestData)
           requestFunc,
-      {Function(ServerListResponse)? okFunc,
-      Function(ServerListResponse)? errorFunc}) async {
-    ServerListResponse response = ServerListResponse();
-    PBResponse res =
-        await requestFunc("/server/serverList", param.writeToBuffer());
-    try {
-      if (res.code == 200) {
-        res.data.unpackInto(response);
-        if (okFunc != null) {
-          await okFunc(response);
-        }
-      } else if (errorFunc != null) {
-        await errorFunc(response);
-      }
-    } catch (e) {
-      log.info(e);
-    }
+      {Function()? okFunc,
+      Function()? errorFunc}) async {
+    await kkBaseRequest("/server/serverList", param, response, requestFunc,
+        okFunc: okFunc, errorFunc: errorFunc);
   }
 
   /// deregister server
   static Future<void> deregisterServer(
       DeregisterServerParam param,
-      Future<PBResponse> Function(String path, Uint8List requestData)
+      DeregisterServerResponse response,
+      Future<PBResponse> Function(String path, GeneratedMessage requestData)
           requestFunc,
-      {Function(DeregisterServerResponse)? okFunc,
-      Function(DeregisterServerResponse)? errorFunc}) async {
-    DeregisterServerResponse response = DeregisterServerResponse();
-    PBResponse res =
-        await requestFunc("/server/deregisterServer", param.writeToBuffer());
-    try {
-      if (res.code == 200) {
-        res.data.unpackInto(response);
-        if (okFunc != null) {
-          await okFunc(response);
-        }
-      } else if (errorFunc != null) {
-        await errorFunc(response);
-      }
-    } catch (e) {
-      log.info(e);
-    }
+      {Function()? okFunc,
+      Function()? errorFunc}) async {
+    await kkBaseRequest(
+        "/server/deregisterServer", param, response, requestFunc,
+        okFunc: okFunc, errorFunc: errorFunc);
   }
 }

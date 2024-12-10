@@ -1,7 +1,6 @@
-import 'dart:typed_data';
-
+import 'package:kk_go_kit/kk_http/base_request.dart';
 import 'package:kk_go_kit/kk_models/pb_response.pb.dart';
-import 'package:kk_go_kit/kk_util/kk_log.dart';
+import 'package:protobuf/protobuf.dart';
 
 import '../kk_etcd_models/api_role_kk_etcd.pb.dart';
 
@@ -9,141 +8,74 @@ class ApiRole {
   /// add role
   static Future<void> roleAdd(
       RoleAddParam param,
-      Future<PBResponse> Function(String path, Uint8List requestData)
+      RoleAddResponse response,
+      Future<PBResponse> Function(String path, GeneratedMessage requestData)
           requestFunc,
-      {Function(RoleAddResponse)? okFunc,
-      Function(RoleAddResponse)? errorFunc}) async {
-    RoleAddResponse response = RoleAddResponse();
-    PBResponse res = await requestFunc("/role/roleAdd", param.writeToBuffer());
-    try {
-      if (res.code == 200) {
-        res.data.unpackInto(response);
-        if (okFunc != null) {
-          await okFunc(response);
-        }
-      } else if (errorFunc != null) {
-        await errorFunc(response);
-      }
-    } catch (e) {
-      log.info(e);
-    }
+      {Function()? okFunc,
+      Function()? errorFunc}) async {
+    await kkBaseRequest("/role/roleAdd", param, response, requestFunc,
+        okFunc: okFunc, errorFunc: errorFunc);
   }
 
   /// delete role
   static Future<void> roleDelete(
       RoleDeleteParam param,
-      Future<PBResponse> Function(String path, Uint8List requestData)
+      RoleDeleteResponse response,
+      Future<PBResponse> Function(String path, GeneratedMessage requestData)
           requestFunc,
-      {Function(RoleDeleteResponse)? okFunc,
-      Function(RoleDeleteResponse)? errorFunc}) async {
-    RoleDeleteResponse response = RoleDeleteResponse();
-    PBResponse res =
-        await requestFunc("/role/roleDelete", param.writeToBuffer());
-    try {
-      if (res.code == 200) {
-        res.data.unpackInto(response);
-        if (okFunc != null) {
-          await okFunc(response);
-        }
-      } else if (errorFunc != null) {
-        await errorFunc(response);
-      }
-    } catch (e) {
-      log.info(e);
-    }
+      {Function()? okFunc,
+      Function()? errorFunc}) async {
+    await kkBaseRequest("/role/roleDelete", param, response, requestFunc,
+        okFunc: okFunc, errorFunc: errorFunc);
   }
 
   /// list role
   static Future<void> roleList(
       RoleListParam param,
-      Future<PBResponse> Function(String path, Uint8List requestData)
+      RoleListResponse response,
+      Future<PBResponse> Function(String path, GeneratedMessage requestData)
           requestFunc,
-      {Function(RoleListResponse)? okFunc,
-      Function(RoleListResponse)? errorFunc}) async {
-    RoleListResponse response = RoleListResponse();
-    PBResponse res = await requestFunc("/role/roleList", param.writeToBuffer());
-    try {
-      if (res.code == 200) {
-        res.data.unpackInto(response);
-        if (okFunc != null) {
-          await okFunc(response);
-        }
-      } else if (errorFunc != null) {
-        await errorFunc(response);
-      }
-    } catch (e) {
-      log.info(e);
-    }
+      {Function()? okFunc,
+      Function()? errorFunc}) async {
+    await kkBaseRequest("/role/roleList", param, response, requestFunc,
+        okFunc: okFunc, errorFunc: errorFunc);
   }
 
   /// get role
   static Future<void> roleGet(
       RoleGetParam param,
-      Future<PBResponse> Function(String path, Uint8List requestData)
+      RoleGetResponse response,
+      Future<PBResponse> Function(String path, GeneratedMessage requestData)
           requestFunc,
-      {Function(RoleGetResponse)? okFunc,
-      Function(RoleGetResponse)? errorFunc}) async {
-    RoleGetResponse response = RoleGetResponse();
-    PBResponse res = await requestFunc("/role/roleGet", param.writeToBuffer());
-    try {
-      if (res.code == 200) {
-        res.data.unpackInto(response);
-        if (okFunc != null) {
-          await okFunc(response);
-        }
-      } else if (errorFunc != null) {
-        await errorFunc(response);
-      }
-    } catch (e) {
-      log.info(e);
-    }
+      {Function()? okFunc,
+      Function()? errorFunc}) async {
+    await kkBaseRequest("/role/roleGet", param, response, requestFunc,
+        okFunc: okFunc, errorFunc: errorFunc);
   }
 
   /// grant permission
   static Future<void> roleGrantPermission(
       RoleGrantPermissionParam param,
-      Future<PBResponse> Function(String path, Uint8List requestData)
+      RoleGrantPermissionResponse response,
+      Future<PBResponse> Function(String path, GeneratedMessage requestData)
           requestFunc,
-      {Function(RoleGrantPermissionResponse)? okFunc,
-      Function(RoleGrantPermissionResponse)? errorFunc}) async {
-    RoleGrantPermissionResponse response = RoleGrantPermissionResponse();
-    PBResponse res =
-        await requestFunc("/role/roleGrantPermission", param.writeToBuffer());
-    try {
-      if (res.code == 200) {
-        res.data.unpackInto(response);
-        if (okFunc != null) {
-          await okFunc(response);
-        }
-      } else if (errorFunc != null) {
-        await errorFunc(response);
-      }
-    } catch (e) {
-      log.info(e);
-    }
+      {Function()? okFunc,
+      Function()? errorFunc}) async {
+    await kkBaseRequest(
+        "/role/roleGrantPermission", param, response, requestFunc,
+        okFunc: okFunc, errorFunc: errorFunc);
   }
 
   /// revoke permission
   static Future<void> roleRevokePermission(
       RoleRevokePermissionParam param,
-      Future<PBResponse> Function(String path, Uint8List requestData)
+      RoleRevokePermissionResponse response,
+      Future<PBResponse> Function(String path, GeneratedMessage requestData)
           requestFunc,
-      {Function(RoleRevokePermissionResponse)? okFunc,
-      Function(RoleRevokePermissionResponse)? errorFunc}) async {
-    RoleRevokePermissionResponse response = RoleRevokePermissionResponse();
-    PBResponse res =
-        await requestFunc("/role/roleRevokePermission", param.writeToBuffer());
-    try {
-      if (res.code == 200) {
-        res.data.unpackInto(response);
-        if (okFunc != null) {
-          await okFunc(response);
-        }
-      } else if (errorFunc != null) {
-        await errorFunc(response);
-      }
-    } catch (e) {
-      log.info(e);
-    }
+      {Function()? okFunc,
+      Function()? errorFunc}) async {
+    await kkBaseRequest(
+        "/role/roleRevokePermission", param, response, requestFunc,
+        okFunc: okFunc, errorFunc: errorFunc);
   }
 }

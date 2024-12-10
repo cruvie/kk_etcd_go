@@ -69,7 +69,7 @@ func TestUser(t *testing.T) {
 		t.Run(api.apiModel.HandlerFuncName, func(t *testing.T) {
 			kk_api_gen.GenerateApi(apiGroupModel, api.apiModel)
 			kk_api_gen.GenerateDartApi(apiGroupModel, api.apiModel)
-			kk_api_gen.GenerateTypescriptApi(apiGroupModel, api.apiModel)
+			//kk_api_gen.GenerateTypescriptApi(apiGroupModel, api.apiModel)
 		})
 	}
 }
@@ -126,7 +126,7 @@ func TestRole(t *testing.T) {
 		t.Run(api.apiModel.HandlerFuncName, func(t *testing.T) {
 			kk_api_gen.GenerateApi(apiGroupModel, api.apiModel)
 			kk_api_gen.GenerateDartApi(apiGroupModel, api.apiModel)
-			kk_api_gen.GenerateTypescriptApi(apiGroupModel, api.apiModel)
+			//kk_api_gen.GenerateTypescriptApi(apiGroupModel, api.apiModel)
 		})
 	}
 }
@@ -171,7 +171,7 @@ func TestKV(t *testing.T) {
 		t.Run(api.apiModel.HandlerFuncName, func(t *testing.T) {
 			kk_api_gen.GenerateApi(apiGroupModel, api.apiModel)
 			kk_api_gen.GenerateDartApi(apiGroupModel, api.apiModel)
-			kk_api_gen.GenerateTypescriptApi(apiGroupModel, api.apiModel)
+			//kk_api_gen.GenerateTypescriptApi(apiGroupModel, api.apiModel)
 		})
 	}
 }
@@ -204,7 +204,7 @@ func TestServer(t *testing.T) {
 		t.Run(api.apiModel.HandlerFuncName, func(t *testing.T) {
 			kk_api_gen.GenerateApi(apiGroupModel, api.apiModel)
 			kk_api_gen.GenerateDartApi(apiGroupModel, api.apiModel)
-			kk_api_gen.GenerateTypescriptApi(apiGroupModel, api.apiModel)
+			//kk_api_gen.GenerateTypescriptApi(apiGroupModel, api.apiModel)
 		})
 	}
 }
@@ -255,7 +255,7 @@ func TestBackup(t *testing.T) {
 		t.Run(api.apiModel.HandlerFuncName, func(t *testing.T) {
 			kk_api_gen.GenerateApi(apiGroupModel, api.apiModel)
 			kk_api_gen.GenerateDartApi(apiGroupModel, api.apiModel)
-			kk_api_gen.GenerateTypescriptApi(apiGroupModel, api.apiModel)
+			//kk_api_gen.GenerateTypescriptApi(apiGroupModel, api.apiModel)
 		})
 	}
 }

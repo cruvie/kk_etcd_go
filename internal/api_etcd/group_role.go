@@ -25,15 +25,11 @@ func roleAdd(c *gin.Context) {
 	defer span.End()
 	var param kk_etcd_models.RoleAddParam
 	if err := param.BindCheck(stage); err != nil {
-		kk_http.ResponseErrPB(stage, err)
+		kk_http.ResponsePB(stage, err, nil)
 		return
 	}
 	err, resp := hRole.RoleAdd(stage, &param)
-	if err != nil {
-		kk_http.ResponseErrPB(stage, err)
-		return
-	}
-	kk_http.ResponseSuccessPB(stage, nil, resp)
+	kk_http.ResponsePB(stage, err, resp)
 }
 
 // roleDelete
@@ -51,15 +47,11 @@ func roleDelete(c *gin.Context) {
 	defer span.End()
 	var param kk_etcd_models.RoleDeleteParam
 	if err := param.BindCheck(stage); err != nil {
-		kk_http.ResponseErrPB(stage, err)
+		kk_http.ResponsePB(stage, err, nil)
 		return
 	}
 	err, resp := hRole.RoleDelete(stage, &param)
-	if err != nil {
-		kk_http.ResponseErrPB(stage, err)
-		return
-	}
-	kk_http.ResponseSuccessPB(stage, nil, resp)
+	kk_http.ResponsePB(stage, err, resp)
 }
 
 // roleList
@@ -77,15 +69,11 @@ func roleList(c *gin.Context) {
 	defer span.End()
 	var param kk_etcd_models.RoleListParam
 	if err := param.BindCheck(stage); err != nil {
-		kk_http.ResponseErrPB(stage, err)
+		kk_http.ResponsePB(stage, err, nil)
 		return
 	}
 	err, resp := hRole.RoleList(stage, &param)
-	if err != nil {
-		kk_http.ResponseErrPB(stage, err)
-		return
-	}
-	kk_http.ResponseSuccessPB(stage, nil, resp)
+	kk_http.ResponsePB(stage, err, resp)
 }
 
 // roleGet
@@ -103,15 +91,11 @@ func roleGet(c *gin.Context) {
 	defer span.End()
 	var param kk_etcd_models.RoleGetParam
 	if err := param.BindCheck(stage); err != nil {
-		kk_http.ResponseErrPB(stage, err)
+		kk_http.ResponsePB(stage, err, nil)
 		return
 	}
 	err, resp := hRole.RoleGet(stage, &param)
-	if err != nil {
-		kk_http.ResponseErrPB(stage, err)
-		return
-	}
-	kk_http.ResponseSuccessPB(stage, nil, resp)
+	kk_http.ResponsePB(stage, err, resp)
 }
 
 // roleGrantPermission
@@ -129,15 +113,11 @@ func roleGrantPermission(c *gin.Context) {
 	defer span.End()
 	var param kk_etcd_models.RoleGrantPermissionParam
 	if err := param.BindCheck(stage); err != nil {
-		kk_http.ResponseErrPB(stage, err)
+		kk_http.ResponsePB(stage, err, nil)
 		return
 	}
 	err, resp := hRole.RoleGrantPermission(stage, &param)
-	if err != nil {
-		kk_http.ResponseErrPB(stage, err)
-		return
-	}
-	kk_http.ResponseSuccessPB(stage, nil, resp)
+	kk_http.ResponsePB(stage, err, resp)
 }
 
 // roleRevokePermission
@@ -155,13 +135,9 @@ func roleRevokePermission(c *gin.Context) {
 	defer span.End()
 	var param kk_etcd_models.RoleRevokePermissionParam
 	if err := param.BindCheck(stage); err != nil {
-		kk_http.ResponseErrPB(stage, err)
+		kk_http.ResponsePB(stage, err, nil)
 		return
 	}
 	err, resp := hRole.RoleRevokePermission(stage, &param)
-	if err != nil {
-		kk_http.ResponseErrPB(stage, err)
-		return
-	}
-	kk_http.ResponseSuccessPB(stage, nil, resp)
+	kk_http.ResponsePB(stage, err, resp)
 }
