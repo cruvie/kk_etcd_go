@@ -1,0 +1,16 @@
+syntax = "proto3";
+package kk_etcd_models;
+option go_package = "./;kk_etcd_models";
+
+// protoc -I=. --go_out=./ *.proto
+
+
+// protoc -I=. --dart_out=../../lib/kk_etcd_models *.proto google/protobuf/timestamp.proto
+
+
+message QueryParam {
+  string Question = 1;
+}
+message QueryResponse {
+  string Answer = 1;
+}

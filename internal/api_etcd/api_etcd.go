@@ -80,5 +80,10 @@ func ApiEtcd(stage *kk_stage.Stage) kk_server.KKRunServer {
 
 	}
 
+	{
+		apiGroup := r.Group("ai")
+		apiGroup.POST("query", query)
+	}
+
 	return server.NewKKRunServer()
 }
