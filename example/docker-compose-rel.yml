@@ -35,7 +35,7 @@ services:
       - ./dump:/dump
 
   kk-etcd-ui-rel:
-    image: cruvie/kk_etcd_ui:1.4.0
+    image: cruvie/kk_etcd_ui:1.4.1
     container_name: kk-etcd-ui-rel
     ports:
       - "2334:80"

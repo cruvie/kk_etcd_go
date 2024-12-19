@@ -23,7 +23,6 @@ class QueryParam extends $pb.GeneratedMessage {
     }
     return $result;
   }
-
   QueryParam._() : super();
 
   factory QueryParam.fromBuffer($core.List<$core.int> i,
@@ -56,11 +55,8 @@ class QueryParam extends $pb.GeneratedMessage {
 
   @$core.pragma('dart2js:noInline')
   static QueryParam create() => QueryParam._();
-
   QueryParam createEmptyInstance() => create();
-
   static $pb.PbList<QueryParam> createRepeated() => $pb.PbList<QueryParam>();
-
   @$core.pragma('dart2js:noInline')
   static QueryParam getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<QueryParam>(create);
@@ -68,7 +64,6 @@ class QueryParam extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(1)
   $core.String get question => $_getSZ(0);
-
   @$pb.TagNumber(1)
   set question($core.String v) {
     $_setString(0, v);
@@ -76,7 +71,6 @@ class QueryParam extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(1)
   $core.bool hasQuestion() => $_has(0);
-
   @$pb.TagNumber(1)
   void clearQuestion() => clearField(1);
 }
@@ -91,7 +85,6 @@ class QueryResponse extends $pb.GeneratedMessage {
     }
     return $result;
   }
-
   QueryResponse._() : super();
 
   factory QueryResponse.fromBuffer($core.List<$core.int> i,
@@ -125,12 +118,10 @@ class QueryResponse extends $pb.GeneratedMessage {
 
   @$core.pragma('dart2js:noInline')
   static QueryResponse create() => QueryResponse._();
-
   QueryResponse createEmptyInstance() => create();
 
   static $pb.PbList<QueryResponse> createRepeated() =>
       $pb.PbList<QueryResponse>();
-
   @$core.pragma('dart2js:noInline')
   static QueryResponse getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<QueryResponse>(create);
@@ -138,7 +129,6 @@ class QueryResponse extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(1)
   $core.String get answer => $_getSZ(0);
-
   @$pb.TagNumber(1)
   set answer($core.String v) {
     $_setString(0, v);
@@ -146,7 +136,6 @@ class QueryResponse extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(1)
   $core.bool hasAnswer() => $_has(0);
-
   @$pb.TagNumber(1)
   void clearAnswer() => clearField(1);
 }

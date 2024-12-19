@@ -24,6 +24,40 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/ai/query": {
+            "post": {
+                "description": "query ai",
+                "consumes": [
+                    "application/octet-stream"
+                ],
+                "produces": [
+                    "application/octet-stream"
+                ],
+                "tags": [
+                    "ai"
+                ],
+                "operationId": "Query",
+                "parameters": [
+                    {
+                        "description": "QueryParam",
+                        "name": "QueryParam",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/kk_etcd_models.QueryParam"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/kk_etcd_models.QueryResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/backup/allKVsBackup": {
             "post": {
                 "description": "all kvs backup",
@@ -885,13 +919,8 @@ const docTemplate = `{
         "kk_etcd_models.DeregisterServerParam": {
             "type": "object",
             "properties": {
-                "Key": {
-                    "description": "ServerType/ServerName/Addr",
-                    "type": "string"
-                },
-                "Target": {
-                    "description": "ServerType/ServerName",
-                    "type": "string"
+                "Server": {
+                    "$ref": "#/definitions/kk_etcd_models.PBServer"
                 }
             }
         },
@@ -1100,16 +1129,19 @@ const docTemplate = `{
         "kk_etcd_models.PBServer": {
             "type": "object",
             "properties": {
+                "EndpointAddr": {
+                    "type": "string"
+                },
+                "EndpointKey": {
+                    "type": "string"
+                },
                 "LastCheck": {
                     "$ref": "#/definitions/timestamppb.Timestamp"
                 },
                 "Msg": {
                     "type": "string"
                 },
-                "ServerAddr": {
-                    "type": "string"
-                },
-                "ServerName": {
+                "ServerType": {
                     "type": "string"
                 },
                 "Status": {
@@ -1145,6 +1177,22 @@ const docTemplate = `{
                     }
                 },
                 "UserName": {
+                    "type": "string"
+                }
+            }
+        },
+        "kk_etcd_models.QueryParam": {
+            "type": "object",
+            "properties": {
+                "Question": {
+                    "type": "string"
+                }
+            }
+        },
+        "kk_etcd_models.QueryResponse": {
+            "type": "object",
+            "properties": {
+                "Answer": {
                     "type": "string"
                 }
             }

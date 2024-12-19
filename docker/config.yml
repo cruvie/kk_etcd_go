@@ -11,3 +11,9 @@ JWT:
   Key: You are re on your way to prison
   # minute
   ExpireTime: 1440
+
+AI:
+  Enable: false
+  LLMModel: qwen2.5:0.5b
+  # default: http://127.0.0.1:11434
+  OllamaServer: http://127.0.0.1:11434

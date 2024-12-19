@@ -1,14 +1,20 @@
 # Etcd UI
 
-[![Go Reference](https://pkg.go.dev/badge/github.com/cruvie/kk_etcd_go.svg)](https://pkg.go.dev/github.com/cruvie/kk_etcd_go)
-
 A modern and easy to use Client/UI for `Etcd`
 
 A Configuration center and Service registration and discovery platform based on `Etcd`
 
+## server
+
 ![ui](https://github.com/cruvie/kk_etcd_ui/blob/master/lib/assets/images/ui.png?raw=true)
 
+## key value
+
 ![ui](https://github.com/cruvie/kk_etcd_ui/blob/master/lib/assets/images/ui2.png?raw=true)
+
+## AI
+
+![ai](https://github.com/cruvie/kk_etcd_ui/blob/master/lib/assets/images/ai.png?raw=true)
 
 # How to use?🤔
 
@@ -19,11 +25,13 @@ cd example
 docker-compose up
 ```
 
-you can change `version` to a specific version on [docker hub](https://hub.docker.com/r/cruvie/kk_etcd_ui/tags)
+you can change `version` to a specific version
+on [docker hub](https://hub.docker.com/r/cruvie/kk_etcd_ui/tags)
 
 # Warning ❗
 
-Make sure the client and server use the same version, they will be updated together, incompatible versions
+Make sure the client and server use the same version, they will be updated together, incompatible
+versions
 may make some unexpected errors.
 
 # Client
@@ -156,8 +164,3 @@ Buy me a cup of coffee ☕️ if you like this project and want to keep it activ
 | Alipay                                                                                         | Wechat                                                                                         |
 |------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------|
 | ![alipay](https://github.com/cruvie/kk_etcd_ui/blob/master/lib/assets/pay/alipay.png?raw=true) | ![wechat](https://github.com/cruvie/kk_etcd_ui/blob/master/lib/assets/pay/wechat.png?raw=true) | 
-
-# Thanks
-
-This project is supported by [JetBrains](https://jb.gg/OpenSourceSupport).
-![JetBrains logo](https://resources.jetbrains.com/storage/products/company/brand/logos/jetbrains.png)

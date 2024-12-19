@@ -22,12 +22,8 @@ definitions:
     type: object
   kk_etcd_models.DeregisterServerParam:
     properties:
-      Key:
-        description: ServerType/ServerName/Addr
-        type: string
-      Target:
-        description: ServerType/ServerName
-        type: string
+      Server:
+        $ref: '#/definitions/kk_etcd_models.PBServer'
     type: object
   kk_etcd_models.DeregisterServerResponse:
     type: object
@@ -163,13 +159,15 @@ definitions:
     type: object
   kk_etcd_models.PBServer:
     properties:
+      EndpointAddr:
+        type: string
+      EndpointKey:
+        type: string
       LastCheck:
         $ref: '#/definitions/timestamppb.Timestamp'
       Msg:
         type: string
-      ServerAddr:
-        type: string
-      ServerName:
+      ServerType:
         type: string
       Status:
         $ref: '#/definitions/kk_etcd_models.PBServer_ServerStatus'
@@ -195,6 +193,16 @@ definitions:
           type: string
         type: array
       UserName:
+        type: string
+    type: object
+  kk_etcd_models.QueryParam:
+    properties:
+      Question:
+        type: string
+    type: object
+  kk_etcd_models.QueryResponse:
+    properties:
+      Answer:
         type: string
     type: object
   kk_etcd_models.RoleAddParam:
@@ -358,6 +366,28 @@ info:
   title: kk_etcd_go API
   version: "1.0"
 paths:
+  /ai/query:
+    post:
+      consumes:
+        - application/octet-stream
+      description: query ai
+      operationId: Query
+      parameters:
+        - description: QueryParam
+          in: body
+          name: QueryParam
+          required: true
+          schema:
+            $ref: '#/definitions/kk_etcd_models.QueryParam'
+      produces:
+        - application/octet-stream
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/kk_etcd_models.QueryResponse'
+      tags:
+        - ai
   /backup/allKVsBackup:
     post:
       consumes:
