@@ -32,9 +32,8 @@ func NewEtcdMaintain() kk_server.KKRunServer {
 		tick.Stop()
 	}
 	return kk_server.KKRunServer{
-		Run:   run,
-		Done:  done,
-		Async: true,
+		Run:  run,
+		Done: done,
 	}
 }
 func maintainEtcd() {

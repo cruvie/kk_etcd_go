@@ -72,8 +72,8 @@ func main() {
 	server_hub.InitServiceHub()
 
 	kkServer := kk_server.NewKKServer(5*time.Second, consts.ServerName)
-	kkServer.Add("http_etcd", api_etcd.ApiEtcd(internal_client.GlobalStage))
-	kkServer.Add("etcd_maintain", server_hub.NewEtcdMaintain())
-	kkServer.Add("etcd_ai", etcd_ai.EtcdAIServer())
+	kkServer.Add("http_etcd", false, api_etcd.ApiEtcd(internal_client.GlobalStage))
+	kkServer.Add("etcd_maintain", true, server_hub.NewEtcdMaintain())
+	kkServer.Add("etcd_ai", false, etcd_ai.EtcdAIServer())
 	kkServer.ServeAndWait()
 }

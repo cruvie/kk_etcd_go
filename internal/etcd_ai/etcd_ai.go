@@ -58,8 +58,7 @@ func EtcdAIServer() kk_server.KKRunServer {
 		<-quitCh
 	}
 	return kk_server.KKRunServer{
-		Run:   run,
-		Done:  done,
-		Async: false,
+		Run:  run,
+		Done: done,
 	}
 }
