@@ -17,7 +17,7 @@ import (
 )
 
 //	@title			kk_etcd_go API
-//	@version		1.0
+//	@version		1.4.1
 //	@description	kk_etcd_go terms.
 //	@termsOfService	http://kk_etcd_go/terms/
 
