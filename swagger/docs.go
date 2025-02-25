@@ -28,10 +28,12 @@ const docTemplate = `{
             "post": {
                 "description": "query ai",
                 "consumes": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "produces": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "tags": [
                     "ai"
@@ -62,10 +64,12 @@ const docTemplate = `{
             "post": {
                 "description": "all kvs backup",
                 "consumes": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "produces": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "tags": [
                     "backup"
@@ -95,10 +99,12 @@ const docTemplate = `{
             "post": {
                 "description": "all kvs restore",
                 "consumes": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "produces": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "tags": [
                     "backup"
@@ -128,10 +134,12 @@ const docTemplate = `{
             "post": {
                 "description": "snapshot",
                 "consumes": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "produces": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "tags": [
                     "backup"
@@ -161,10 +169,12 @@ const docTemplate = `{
             "post": {
                 "description": "snapshot info",
                 "consumes": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "produces": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "tags": [
                     "backup"
@@ -194,10 +204,12 @@ const docTemplate = `{
             "post": {
                 "description": "snapshot restore",
                 "consumes": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "produces": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "tags": [
                     "backup"
@@ -227,10 +239,12 @@ const docTemplate = `{
             "post": {
                 "description": "del kv",
                 "consumes": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "produces": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "tags": [
                     "kv"
@@ -260,10 +274,12 @@ const docTemplate = `{
             "post": {
                 "description": "get kv",
                 "consumes": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "produces": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "tags": [
                     "kv"
@@ -293,10 +309,12 @@ const docTemplate = `{
             "post": {
                 "description": "list kv",
                 "consumes": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "produces": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "tags": [
                     "kv"
@@ -326,10 +344,12 @@ const docTemplate = `{
             "post": {
                 "description": "put kv",
                 "consumes": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "produces": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "tags": [
                     "kv"
@@ -359,10 +379,12 @@ const docTemplate = `{
             "post": {
                 "description": "add role",
                 "consumes": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "produces": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "tags": [
                     "role"
@@ -392,10 +414,12 @@ const docTemplate = `{
             "post": {
                 "description": "delete role",
                 "consumes": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "produces": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "tags": [
                     "role"
@@ -425,10 +449,12 @@ const docTemplate = `{
             "post": {
                 "description": "get role",
                 "consumes": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "produces": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "tags": [
                     "role"
@@ -458,10 +484,12 @@ const docTemplate = `{
             "post": {
                 "description": "grant permission",
                 "consumes": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "produces": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "tags": [
                     "role"
@@ -491,10 +519,12 @@ const docTemplate = `{
             "post": {
                 "description": "list role",
                 "consumes": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "produces": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "tags": [
                     "role"
@@ -524,10 +554,12 @@ const docTemplate = `{
             "post": {
                 "description": "revoke permission",
                 "consumes": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "produces": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "tags": [
                     "role"
@@ -557,10 +589,12 @@ const docTemplate = `{
             "post": {
                 "description": "deregister server",
                 "consumes": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "produces": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "tags": [
                     "server"
@@ -590,10 +624,12 @@ const docTemplate = `{
             "post": {
                 "description": "list server",
                 "consumes": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "produces": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "tags": [
                     "server"
@@ -623,10 +659,12 @@ const docTemplate = `{
             "post": {
                 "description": "get user",
                 "consumes": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "produces": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "tags": [
                     "user"
@@ -656,10 +694,12 @@ const docTemplate = `{
             "post": {
                 "description": "login",
                 "consumes": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "produces": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "tags": [
                     "user"
@@ -689,10 +729,12 @@ const docTemplate = `{
             "post": {
                 "description": "logout",
                 "consumes": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "produces": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "tags": [
                     "user"
@@ -722,10 +764,12 @@ const docTemplate = `{
             "post": {
                 "description": "get my info",
                 "consumes": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "produces": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "tags": [
                     "user"
@@ -755,10 +799,12 @@ const docTemplate = `{
             "post": {
                 "description": "add user",
                 "consumes": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "produces": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "tags": [
                     "user"
@@ -788,10 +834,12 @@ const docTemplate = `{
             "post": {
                 "description": "delete user",
                 "consumes": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "produces": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "tags": [
                     "user"
@@ -821,10 +869,12 @@ const docTemplate = `{
             "post": {
                 "description": "grant role",
                 "consumes": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "produces": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "tags": [
                     "user"
@@ -854,10 +904,12 @@ const docTemplate = `{
             "post": {
                 "description": "list user",
                 "consumes": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "produces": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "tags": [
                     "user"
@@ -1420,7 +1472,7 @@ const docTemplate = `{
 
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
-	Version:          "1.0",
+	Version:          "1.4.1",
 	Host:             "localhost:2333",
 	BasePath:         "/",
 	Schemes:          []string{},

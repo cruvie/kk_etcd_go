@@ -13,7 +13,7 @@
             "name": "Secret",
             "url": "http://kk_etcd_go/licenses/LICENSE-2.0.html"
         },
-        "version": "1.0"
+        "version": "1.4.1"
     },
     "host": "localhost:2333",
     "basePath": "/",
@@ -22,10 +22,12 @@
             "post": {
                 "description": "query ai",
                 "consumes": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "produces": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "tags": [
                     "ai"
@@ -56,10 +58,12 @@
             "post": {
                 "description": "all kvs backup",
                 "consumes": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "produces": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "tags": [
                     "backup"
@@ -89,10 +93,12 @@
             "post": {
                 "description": "all kvs restore",
                 "consumes": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "produces": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "tags": [
                     "backup"
@@ -122,10 +128,12 @@
             "post": {
                 "description": "snapshot",
                 "consumes": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "produces": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "tags": [
                     "backup"
@@ -155,10 +163,12 @@
             "post": {
                 "description": "snapshot info",
                 "consumes": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "produces": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "tags": [
                     "backup"
@@ -188,10 +198,12 @@
             "post": {
                 "description": "snapshot restore",
                 "consumes": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "produces": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "tags": [
                     "backup"
@@ -221,10 +233,12 @@
             "post": {
                 "description": "del kv",
                 "consumes": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "produces": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "tags": [
                     "kv"
@@ -254,10 +268,12 @@
             "post": {
                 "description": "get kv",
                 "consumes": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "produces": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "tags": [
                     "kv"
@@ -287,10 +303,12 @@
             "post": {
                 "description": "list kv",
                 "consumes": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "produces": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "tags": [
                     "kv"
@@ -320,10 +338,12 @@
             "post": {
                 "description": "put kv",
                 "consumes": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "produces": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "tags": [
                     "kv"
@@ -353,10 +373,12 @@
             "post": {
                 "description": "add role",
                 "consumes": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "produces": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "tags": [
                     "role"
@@ -386,10 +408,12 @@
             "post": {
                 "description": "delete role",
                 "consumes": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "produces": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "tags": [
                     "role"
@@ -419,10 +443,12 @@
             "post": {
                 "description": "get role",
                 "consumes": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "produces": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "tags": [
                     "role"
@@ -452,10 +478,12 @@
             "post": {
                 "description": "grant permission",
                 "consumes": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "produces": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "tags": [
                     "role"
@@ -485,10 +513,12 @@
             "post": {
                 "description": "list role",
                 "consumes": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "produces": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "tags": [
                     "role"
@@ -518,10 +548,12 @@
             "post": {
                 "description": "revoke permission",
                 "consumes": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "produces": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "tags": [
                     "role"
@@ -551,10 +583,12 @@
             "post": {
                 "description": "deregister server",
                 "consumes": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "produces": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "tags": [
                     "server"
@@ -584,10 +618,12 @@
             "post": {
                 "description": "list server",
                 "consumes": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "produces": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "tags": [
                     "server"
@@ -617,10 +653,12 @@
             "post": {
                 "description": "get user",
                 "consumes": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "produces": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "tags": [
                     "user"
@@ -650,10 +688,12 @@
             "post": {
                 "description": "login",
                 "consumes": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "produces": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "tags": [
                     "user"
@@ -683,10 +723,12 @@
             "post": {
                 "description": "logout",
                 "consumes": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "produces": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "tags": [
                     "user"
@@ -716,10 +758,12 @@
             "post": {
                 "description": "get my info",
                 "consumes": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "produces": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "tags": [
                     "user"
@@ -749,10 +793,12 @@
             "post": {
                 "description": "add user",
                 "consumes": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "produces": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "tags": [
                     "user"
@@ -782,10 +828,12 @@
             "post": {
                 "description": "delete user",
                 "consumes": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "produces": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "tags": [
                     "user"
@@ -815,10 +863,12 @@
             "post": {
                 "description": "grant role",
                 "consumes": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "produces": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "tags": [
                     "user"
@@ -848,10 +898,12 @@
             "post": {
                 "description": "list user",
                 "consumes": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "produces": [
-                    "application/octet-stream"
+                    "application/x-protobuf",
+                    "application/json"
                 ],
                 "tags": [
                     "user"

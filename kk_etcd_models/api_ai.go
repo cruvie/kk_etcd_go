@@ -7,7 +7,7 @@ import (
 )
 
 func (x *QueryParam) BindCheck(stage *kk_stage.Stage) error {
-	err := kk_http.ReadProtoBuf(stage, x)
+	err := kk_http.ReadReq(stage, x)
 	if err != nil {
 		return err
 	}

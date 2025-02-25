@@ -364,12 +364,13 @@ info:
     url: http://kk_etcd_go/licenses/LICENSE-2.0.html
   termsOfService: http://kk_etcd_go/terms/
   title: kk_etcd_go API
-  version: "1.0"
+  version: 1.4.1
 paths:
   /ai/query:
     post:
       consumes:
-        - application/octet-stream
+        - application/x-protobuf
+        - application/json
       description: query ai
       operationId: Query
       parameters:
@@ -380,7 +381,8 @@ paths:
           schema:
             $ref: '#/definitions/kk_etcd_models.QueryParam'
       produces:
-        - application/octet-stream
+        - application/x-protobuf
+        - application/json
       responses:
         "200":
           description: OK
@@ -391,7 +393,8 @@ paths:
   /backup/allKVsBackup:
     post:
       consumes:
-      - application/octet-stream
+        - application/x-protobuf
+        - application/json
       description: all kvs backup
       parameters:
       - description: AllKVsBackupParam
@@ -401,7 +404,8 @@ paths:
         schema:
           $ref: '#/definitions/kk_etcd_models.AllKVsBackupParam'
       produces:
-      - application/octet-stream
+        - application/x-protobuf
+        - application/json
       responses:
         "200":
           description: OK
@@ -412,7 +416,8 @@ paths:
   /backup/allKVsRestore:
     post:
       consumes:
-      - application/octet-stream
+        - application/x-protobuf
+        - application/json
       description: all kvs restore
       parameters:
       - description: AllKVsRestoreParam
@@ -422,7 +427,8 @@ paths:
         schema:
           $ref: '#/definitions/kk_etcd_models.AllKVsRestoreParam'
       produces:
-      - application/octet-stream
+        - application/x-protobuf
+        - application/json
       responses:
         "200":
           description: OK
@@ -433,7 +439,8 @@ paths:
   /backup/snapshot:
     post:
       consumes:
-      - application/octet-stream
+        - application/x-protobuf
+        - application/json
       description: snapshot
       parameters:
       - description: SnapshotParam
@@ -443,7 +450,8 @@ paths:
         schema:
           $ref: '#/definitions/kk_etcd_models.SnapshotParam'
       produces:
-      - application/octet-stream
+        - application/x-protobuf
+        - application/json
       responses:
         "200":
           description: OK
@@ -454,7 +462,8 @@ paths:
   /backup/snapshotInfo:
     post:
       consumes:
-      - application/octet-stream
+        - application/x-protobuf
+        - application/json
       description: snapshot info
       parameters:
       - description: SnapshotInfoParam
@@ -464,7 +473,8 @@ paths:
         schema:
           $ref: '#/definitions/kk_etcd_models.SnapshotInfoParam'
       produces:
-      - application/octet-stream
+        - application/x-protobuf
+        - application/json
       responses:
         "200":
           description: OK
@@ -475,7 +485,8 @@ paths:
   /backup/snapshotRestore:
     post:
       consumes:
-      - application/octet-stream
+        - application/x-protobuf
+        - application/json
       description: snapshot restore
       parameters:
       - description: SnapshotRestoreParam
@@ -485,7 +496,8 @@ paths:
         schema:
           $ref: '#/definitions/kk_etcd_models.SnapshotRestoreParam'
       produces:
-      - application/octet-stream
+        - application/x-protobuf
+        - application/json
       responses:
         "200":
           description: OK
@@ -496,7 +508,8 @@ paths:
   /kv/kVDel:
     post:
       consumes:
-      - application/octet-stream
+        - application/x-protobuf
+        - application/json
       description: del kv
       parameters:
       - description: KVDelParam
@@ -506,7 +519,8 @@ paths:
         schema:
           $ref: '#/definitions/kk_etcd_models.KVDelParam'
       produces:
-      - application/octet-stream
+        - application/x-protobuf
+        - application/json
       responses:
         "200":
           description: OK
@@ -517,7 +531,8 @@ paths:
   /kv/kVGet:
     post:
       consumes:
-      - application/octet-stream
+        - application/x-protobuf
+        - application/json
       description: get kv
       parameters:
       - description: KVGetParam
@@ -527,7 +542,8 @@ paths:
         schema:
           $ref: '#/definitions/kk_etcd_models.KVGetParam'
       produces:
-      - application/octet-stream
+        - application/x-protobuf
+        - application/json
       responses:
         "200":
           description: OK
@@ -538,7 +554,8 @@ paths:
   /kv/kVList:
     post:
       consumes:
-      - application/octet-stream
+        - application/x-protobuf
+        - application/json
       description: list kv
       parameters:
       - description: KVListParam
@@ -548,7 +565,8 @@ paths:
         schema:
           $ref: '#/definitions/kk_etcd_models.KVListParam'
       produces:
-      - application/octet-stream
+        - application/x-protobuf
+        - application/json
       responses:
         "200":
           description: OK
@@ -559,7 +577,8 @@ paths:
   /kv/kVPut:
     post:
       consumes:
-      - application/octet-stream
+        - application/x-protobuf
+        - application/json
       description: put kv
       parameters:
       - description: KVPutParam
@@ -569,7 +588,8 @@ paths:
         schema:
           $ref: '#/definitions/kk_etcd_models.KVPutParam'
       produces:
-      - application/octet-stream
+        - application/x-protobuf
+        - application/json
       responses:
         "200":
           description: OK
@@ -580,7 +600,8 @@ paths:
   /role/roleAdd:
     post:
       consumes:
-      - application/octet-stream
+        - application/x-protobuf
+        - application/json
       description: add role
       parameters:
       - description: RoleAddParam
@@ -590,7 +611,8 @@ paths:
         schema:
           $ref: '#/definitions/kk_etcd_models.RoleAddParam'
       produces:
-      - application/octet-stream
+        - application/x-protobuf
+        - application/json
       responses:
         "200":
           description: OK
@@ -601,7 +623,8 @@ paths:
   /role/roleDelete:
     post:
       consumes:
-      - application/octet-stream
+        - application/x-protobuf
+        - application/json
       description: delete role
       parameters:
       - description: RoleDeleteParam
@@ -611,7 +634,8 @@ paths:
         schema:
           $ref: '#/definitions/kk_etcd_models.RoleDeleteParam'
       produces:
-      - application/octet-stream
+        - application/x-protobuf
+        - application/json
       responses:
         "200":
           description: OK
@@ -622,7 +646,8 @@ paths:
   /role/roleGet:
     post:
       consumes:
-      - application/octet-stream
+        - application/x-protobuf
+        - application/json
       description: get role
       parameters:
       - description: RoleGetParam
@@ -632,7 +657,8 @@ paths:
         schema:
           $ref: '#/definitions/kk_etcd_models.RoleGetParam'
       produces:
-      - application/octet-stream
+        - application/x-protobuf
+        - application/json
       responses:
         "200":
           description: OK
@@ -643,7 +669,8 @@ paths:
   /role/roleGrantPermission:
     post:
       consumes:
-      - application/octet-stream
+        - application/x-protobuf
+        - application/json
       description: grant permission
       parameters:
       - description: RoleGrantPermissionParam
@@ -653,7 +680,8 @@ paths:
         schema:
           $ref: '#/definitions/kk_etcd_models.RoleGrantPermissionParam'
       produces:
-      - application/octet-stream
+        - application/x-protobuf
+        - application/json
       responses:
         "200":
           description: OK
@@ -664,7 +692,8 @@ paths:
   /role/roleList:
     post:
       consumes:
-      - application/octet-stream
+        - application/x-protobuf
+        - application/json
       description: list role
       parameters:
       - description: RoleListParam
@@ -674,7 +703,8 @@ paths:
         schema:
           $ref: '#/definitions/kk_etcd_models.RoleListParam'
       produces:
-      - application/octet-stream
+        - application/x-protobuf
+        - application/json
       responses:
         "200":
           description: OK
@@ -685,7 +715,8 @@ paths:
   /role/roleRevokePermission:
     post:
       consumes:
-      - application/octet-stream
+        - application/x-protobuf
+        - application/json
       description: revoke permission
       parameters:
       - description: RoleRevokePermissionParam
@@ -695,7 +726,8 @@ paths:
         schema:
           $ref: '#/definitions/kk_etcd_models.RoleRevokePermissionParam'
       produces:
-      - application/octet-stream
+        - application/x-protobuf
+        - application/json
       responses:
         "200":
           description: OK
@@ -706,7 +738,8 @@ paths:
   /server/deregisterServer:
     post:
       consumes:
-      - application/octet-stream
+        - application/x-protobuf
+        - application/json
       description: deregister server
       parameters:
       - description: DeregisterServerParam
@@ -716,7 +749,8 @@ paths:
         schema:
           $ref: '#/definitions/kk_etcd_models.DeregisterServerParam'
       produces:
-      - application/octet-stream
+        - application/x-protobuf
+        - application/json
       responses:
         "200":
           description: OK
@@ -727,7 +761,8 @@ paths:
   /server/serverList:
     post:
       consumes:
-      - application/octet-stream
+        - application/x-protobuf
+        - application/json
       description: list server
       parameters:
       - description: ServerListParam
@@ -737,7 +772,8 @@ paths:
         schema:
           $ref: '#/definitions/kk_etcd_models.ServerListParam'
       produces:
-      - application/octet-stream
+        - application/x-protobuf
+        - application/json
       responses:
         "200":
           description: OK
@@ -748,7 +784,8 @@ paths:
   /user/getUser:
     post:
       consumes:
-      - application/octet-stream
+        - application/x-protobuf
+        - application/json
       description: get user
       parameters:
       - description: GetUserParam
@@ -758,7 +795,8 @@ paths:
         schema:
           $ref: '#/definitions/kk_etcd_models.GetUserParam'
       produces:
-      - application/octet-stream
+        - application/x-protobuf
+        - application/json
       responses:
         "200":
           description: OK
@@ -769,7 +807,8 @@ paths:
   /user/login:
     post:
       consumes:
-      - application/octet-stream
+        - application/x-protobuf
+        - application/json
       description: login
       parameters:
       - description: LoginParam
@@ -779,7 +818,8 @@ paths:
         schema:
           $ref: '#/definitions/kk_etcd_models.LoginParam'
       produces:
-      - application/octet-stream
+        - application/x-protobuf
+        - application/json
       responses:
         "200":
           description: OK
@@ -790,7 +830,8 @@ paths:
   /user/logout:
     post:
       consumes:
-      - application/octet-stream
+        - application/x-protobuf
+        - application/json
       description: logout
       parameters:
       - description: LogoutParam
@@ -800,7 +841,8 @@ paths:
         schema:
           $ref: '#/definitions/kk_etcd_models.LogoutParam'
       produces:
-      - application/octet-stream
+        - application/x-protobuf
+        - application/json
       responses:
         "200":
           description: OK
@@ -811,7 +853,8 @@ paths:
   /user/myInfo:
     post:
       consumes:
-      - application/octet-stream
+        - application/x-protobuf
+        - application/json
       description: get my info
       parameters:
       - description: MyInfoParam
@@ -821,7 +864,8 @@ paths:
         schema:
           $ref: '#/definitions/kk_etcd_models.MyInfoParam'
       produces:
-      - application/octet-stream
+        - application/x-protobuf
+        - application/json
       responses:
         "200":
           description: OK
@@ -832,7 +876,8 @@ paths:
   /user/userAdd:
     post:
       consumes:
-      - application/octet-stream
+        - application/x-protobuf
+        - application/json
       description: add user
       parameters:
       - description: UserAddParam
@@ -842,7 +887,8 @@ paths:
         schema:
           $ref: '#/definitions/kk_etcd_models.UserAddParam'
       produces:
-      - application/octet-stream
+        - application/x-protobuf
+        - application/json
       responses:
         "200":
           description: OK
@@ -853,7 +899,8 @@ paths:
   /user/userDelete:
     post:
       consumes:
-      - application/octet-stream
+        - application/x-protobuf
+        - application/json
       description: delete user
       parameters:
       - description: UserDeleteParam
@@ -863,7 +910,8 @@ paths:
         schema:
           $ref: '#/definitions/kk_etcd_models.UserDeleteParam'
       produces:
-      - application/octet-stream
+        - application/x-protobuf
+        - application/json
       responses:
         "200":
           description: OK
@@ -874,7 +922,8 @@ paths:
   /user/userGrantRole:
     post:
       consumes:
-      - application/octet-stream
+        - application/x-protobuf
+        - application/json
       description: grant role
       parameters:
       - description: UserGrantRoleParam
@@ -884,7 +933,8 @@ paths:
         schema:
           $ref: '#/definitions/kk_etcd_models.UserGrantRoleParam'
       produces:
-      - application/octet-stream
+        - application/x-protobuf
+        - application/json
       responses:
         "200":
           description: OK
@@ -895,7 +945,8 @@ paths:
   /user/userList:
     post:
       consumes:
-      - application/octet-stream
+        - application/x-protobuf
+        - application/json
       description: list user
       parameters:
       - description: UserListParam
@@ -905,7 +956,8 @@ paths:
         schema:
           $ref: '#/definitions/kk_etcd_models.UserListParam'
       produces:
-      - application/octet-stream
+        - application/x-protobuf
+        - application/json
       responses:
         "200":
           description: OK

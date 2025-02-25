@@ -6,7 +6,7 @@ import (
 )
 
 func (x *SnapshotParam) BindCheck(stage *kk_stage.Stage) error {
-	err := kk_http.ReadProtoBuf(stage, x)
+	err := kk_http.ReadReq(stage, x)
 	if err != nil {
 		return err
 	}
@@ -14,7 +14,7 @@ func (x *SnapshotParam) BindCheck(stage *kk_stage.Stage) error {
 	return nil
 }
 func (x *SnapshotRestoreParam) BindCheck(stage *kk_stage.Stage) error {
-	err := kk_http.ReadProtoBuf(stage, x)
+	err := kk_http.ReadReq(stage, x)
 	if err != nil {
 		return err
 	}
@@ -23,7 +23,7 @@ func (x *SnapshotRestoreParam) BindCheck(stage *kk_stage.Stage) error {
 }
 
 func (x *SnapshotInfoParam) BindCheck(stage *kk_stage.Stage) error {
-	err := kk_http.ReadProtoBuf(stage, x)
+	err := kk_http.ReadReq(stage, x)
 	if err != nil {
 		return err
 	}
@@ -31,7 +31,7 @@ func (x *SnapshotInfoParam) BindCheck(stage *kk_stage.Stage) error {
 	return nil
 }
 func (x *AllKVsBackupParam) BindCheck(stage *kk_stage.Stage) error {
-	err := kk_http.ReadProtoBuf(stage, x)
+	err := kk_http.ReadReq(stage, x)
 	if err != nil {
 		return err
 	}
@@ -39,7 +39,7 @@ func (x *AllKVsBackupParam) BindCheck(stage *kk_stage.Stage) error {
 	return nil
 }
 func (x *AllKVsRestoreParam) BindCheck(stage *kk_stage.Stage) error {
-	err := kk_http.ReadProtoBuf(stage, x)
+	err := kk_http.ReadReq(stage, x)
 	if err != nil {
 		return err
 	}

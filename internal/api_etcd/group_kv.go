@@ -14,8 +14,8 @@ var hKV handler.HKV
 //
 //	@Tags			kv
 //	@Description	put kv
-//	@Accept			octet-stream
-//	@Produce		octet-stream
+//	@Accept			application/x-protobuf,json
+//	@Produce		application/x-protobuf,json
 //	@Param			KVPutParam	body		kk_etcd_models.KVPutParam	true	"KVPutParam"
 //	@Success		200			{object}	kk_etcd_models.KVPutResponse
 //	@Router			/kv/kVPut [post]
@@ -25,19 +25,19 @@ func kVPut(c *gin.Context) {
 	defer span.End()
 	var param kk_etcd_models.KVPutParam
 	if err := param.BindCheck(stage); err != nil {
-		kk_http.ResponsePB(stage, err, nil)
+		kk_http.WriteResponse(stage, err, nil)
 		return
 	}
 	err, resp := hKV.KVPut(stage, &param)
-	kk_http.ResponsePB(stage, err, resp)
+	kk_http.WriteResponse(stage, err, resp)
 }
 
 // kVGet
 //
 //	@Tags			kv
 //	@Description	get kv
-//	@Accept			octet-stream
-//	@Produce		octet-stream
+//	@Accept			application/x-protobuf,json
+//	@Produce		application/x-protobuf,json
 //	@Param			KVGetParam	body		kk_etcd_models.KVGetParam	true	"KVGetParam"
 //	@Success		200			{object}	kk_etcd_models.KVGetResponse
 //	@Router			/kv/kVGet [post]
@@ -47,19 +47,19 @@ func kVGet(c *gin.Context) {
 	defer span.End()
 	var param kk_etcd_models.KVGetParam
 	if err := param.BindCheck(stage); err != nil {
-		kk_http.ResponsePB(stage, err, nil)
+		kk_http.WriteResponse(stage, err, nil)
 		return
 	}
 	err, resp := hKV.KVGet(stage, &param)
-	kk_http.ResponsePB(stage, err, resp)
+	kk_http.WriteResponse(stage, err, resp)
 }
 
 // kVDel
 //
 //	@Tags			kv
 //	@Description	del kv
-//	@Accept			octet-stream
-//	@Produce		octet-stream
+//	@Accept			application/x-protobuf,json
+//	@Produce		application/x-protobuf,json
 //	@Param			KVDelParam	body		kk_etcd_models.KVDelParam	true	"KVDelParam"
 //	@Success		200			{object}	kk_etcd_models.KVDelResponse
 //	@Router			/kv/kVDel [post]
@@ -69,19 +69,19 @@ func kVDel(c *gin.Context) {
 	defer span.End()
 	var param kk_etcd_models.KVDelParam
 	if err := param.BindCheck(stage); err != nil {
-		kk_http.ResponsePB(stage, err, nil)
+		kk_http.WriteResponse(stage, err, nil)
 		return
 	}
 	err, resp := hKV.KVDel(stage, &param)
-	kk_http.ResponsePB(stage, err, resp)
+	kk_http.WriteResponse(stage, err, resp)
 }
 
 // kVList
 //
 //	@Tags			kv
 //	@Description	list kv
-//	@Accept			octet-stream
-//	@Produce		octet-stream
+//	@Accept			application/x-protobuf,json
+//	@Produce		application/x-protobuf,json
 //	@Param			KVListParam	body		kk_etcd_models.KVListParam	true	"KVListParam"
 //	@Success		200			{object}	kk_etcd_models.KVListResponse
 //	@Router			/kv/kVList [post]
@@ -91,9 +91,9 @@ func kVList(c *gin.Context) {
 	defer span.End()
 	var param kk_etcd_models.KVListParam
 	if err := param.BindCheck(stage); err != nil {
-		kk_http.ResponsePB(stage, err, nil)
+		kk_http.WriteResponse(stage, err, nil)
 		return
 	}
 	err, resp := hKV.KVList(stage, &param)
-	kk_http.ResponsePB(stage, err, resp)
+	kk_http.WriteResponse(stage, err, resp)
 }

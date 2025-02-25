@@ -7,7 +7,7 @@ import (
 )
 
 func (x *KVPutParam) BindCheck(stage *kk_stage.Stage) error {
-	err := kk_http.ReadProtoBuf(stage, x)
+	err := kk_http.ReadReq(stage, x)
 	if err != nil {
 		return err
 	}
@@ -21,7 +21,7 @@ func (x *KVPutParam) BindCheck(stage *kk_stage.Stage) error {
 	return nil
 }
 func (x *KVGetParam) BindCheck(stage *kk_stage.Stage) error {
-	err := kk_http.ReadProtoBuf(stage, x)
+	err := kk_http.ReadReq(stage, x)
 	if err != nil {
 		return err
 	}
@@ -29,7 +29,7 @@ func (x *KVGetParam) BindCheck(stage *kk_stage.Stage) error {
 	return nil
 }
 func (x *KVDelParam) BindCheck(stage *kk_stage.Stage) error {
-	err := kk_http.ReadProtoBuf(stage, x)
+	err := kk_http.ReadReq(stage, x)
 	if err != nil {
 		return err
 	}
@@ -38,7 +38,7 @@ func (x *KVDelParam) BindCheck(stage *kk_stage.Stage) error {
 }
 
 func (x *KVListParam) BindCheck(stage *kk_stage.Stage) error {
-	err := kk_http.ReadProtoBuf(stage, x)
+	err := kk_http.ReadReq(stage, x)
 	if err != nil {
 		return err
 	}

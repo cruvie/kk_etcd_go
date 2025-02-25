@@ -14,8 +14,8 @@ var hServer handler.HServer
 //
 //	@Tags			server
 //	@Description	list server
-//	@Accept			octet-stream
-//	@Produce		octet-stream
+//	@Accept			application/x-protobuf,json
+//	@Produce		application/x-protobuf,json
 //	@Param			ServerListParam	body		kk_etcd_models.ServerListParam	true	"ServerListParam"
 //	@Success		200				{object}	kk_etcd_models.ServerListResponse
 //	@Router			/server/serverList [post]
@@ -25,19 +25,19 @@ func serverList(c *gin.Context) {
 	defer span.End()
 	var param kk_etcd_models.ServerListParam
 	if err := param.BindCheck(stage); err != nil {
-		kk_http.ResponsePB(stage, err, nil)
+		kk_http.WriteResponse(stage, err, nil)
 		return
 	}
 	err, resp := hServer.ServerList(stage, &param)
-	kk_http.ResponsePB(stage, err, resp)
+	kk_http.WriteResponse(stage, err, resp)
 }
 
 // deregisterServer
 //
 //	@Tags			server
 //	@Description	deregister server
-//	@Accept			octet-stream
-//	@Produce		octet-stream
+//	@Accept			application/x-protobuf,json
+//	@Produce		application/x-protobuf,json
 //	@Param			DeregisterServerParam	body		kk_etcd_models.DeregisterServerParam	true	"DeregisterServerParam"
 //	@Success		200						{object}	kk_etcd_models.DeregisterServerResponse
 //	@Router			/server/deregisterServer [post]
@@ -47,9 +47,9 @@ func deregisterServer(c *gin.Context) {
 	defer span.End()
 	var param kk_etcd_models.DeregisterServerParam
 	if err := param.BindCheck(stage); err != nil {
-		kk_http.ResponsePB(stage, err, nil)
+		kk_http.WriteResponse(stage, err, nil)
 		return
 	}
 	err, resp := hServer.DeregisterServer(stage, &param)
-	kk_http.ResponsePB(stage, err, resp)
+	kk_http.WriteResponse(stage, err, resp)
 }

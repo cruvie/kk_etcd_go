@@ -6,7 +6,7 @@ import (
 )
 
 func (x *LoginParam) BindCheck(stage *kk_stage.Stage) error {
-	err := kk_http.ReadProtoBuf(stage, x)
+	err := kk_http.ReadReq(stage, x)
 	if err != nil {
 		return err
 	}
@@ -14,7 +14,7 @@ func (x *LoginParam) BindCheck(stage *kk_stage.Stage) error {
 	return nil
 }
 func (x *LogoutParam) BindCheck(stage *kk_stage.Stage) error {
-	err := kk_http.ReadProtoBuf(stage, x)
+	err := kk_http.ReadReq(stage, x)
 	if err != nil {
 		return err
 	}
@@ -22,7 +22,7 @@ func (x *LogoutParam) BindCheck(stage *kk_stage.Stage) error {
 	return nil
 }
 func (x *UserAddParam) BindCheck(stage *kk_stage.Stage) error {
-	err := kk_http.ReadProtoBuf(stage, x)
+	err := kk_http.ReadReq(stage, x)
 	if err != nil {
 		return err
 	}
@@ -30,7 +30,7 @@ func (x *UserAddParam) BindCheck(stage *kk_stage.Stage) error {
 	return nil
 }
 func (x *UserDeleteParam) BindCheck(stage *kk_stage.Stage) error {
-	err := kk_http.ReadProtoBuf(stage, x)
+	err := kk_http.ReadReq(stage, x)
 	if err != nil {
 		return err
 	}
@@ -38,7 +38,7 @@ func (x *UserDeleteParam) BindCheck(stage *kk_stage.Stage) error {
 	return nil
 }
 func (x *GetUserParam) BindCheck(stage *kk_stage.Stage) error {
-	err := kk_http.ReadProtoBuf(stage, x)
+	err := kk_http.ReadReq(stage, x)
 	if err != nil {
 		return err
 	}
@@ -46,7 +46,7 @@ func (x *GetUserParam) BindCheck(stage *kk_stage.Stage) error {
 	return nil
 }
 func (x *MyInfoParam) BindCheck(stage *kk_stage.Stage) error {
-	err := kk_http.ReadProtoBuf(stage, x)
+	err := kk_http.ReadReq(stage, x)
 	if err != nil {
 		return err
 	}
@@ -54,7 +54,7 @@ func (x *MyInfoParam) BindCheck(stage *kk_stage.Stage) error {
 	return nil
 }
 func (x *UserListParam) BindCheck(stage *kk_stage.Stage) error {
-	err := kk_http.ReadProtoBuf(stage, x)
+	err := kk_http.ReadReq(stage, x)
 	if err != nil {
 		return err
 	}
@@ -62,7 +62,7 @@ func (x *UserListParam) BindCheck(stage *kk_stage.Stage) error {
 	return nil
 }
 func (x *UserGrantRoleParam) BindCheck(stage *kk_stage.Stage) error {
-	err := kk_http.ReadProtoBuf(stage, x)
+	err := kk_http.ReadReq(stage, x)
 	if err != nil {
 		return err
 	}

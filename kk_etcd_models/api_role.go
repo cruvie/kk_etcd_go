@@ -7,7 +7,7 @@ import (
 )
 
 func (x *RoleAddParam) BindCheck(stage *kk_stage.Stage) error {
-	err := kk_http.ReadProtoBuf(stage, x)
+	err := kk_http.ReadReq(stage, x)
 	if err != nil {
 		return err
 	}
@@ -15,7 +15,7 @@ func (x *RoleAddParam) BindCheck(stage *kk_stage.Stage) error {
 	return nil
 }
 func (x *RoleDeleteParam) BindCheck(stage *kk_stage.Stage) error {
-	err := kk_http.ReadProtoBuf(stage, x)
+	err := kk_http.ReadReq(stage, x)
 	if err != nil {
 		return err
 	}
@@ -23,7 +23,7 @@ func (x *RoleDeleteParam) BindCheck(stage *kk_stage.Stage) error {
 	return nil
 }
 func (x *RoleGetParam) BindCheck(stage *kk_stage.Stage) error {
-	err := kk_http.ReadProtoBuf(stage, x)
+	err := kk_http.ReadReq(stage, x)
 	if err != nil {
 		return err
 	}
@@ -31,7 +31,7 @@ func (x *RoleGetParam) BindCheck(stage *kk_stage.Stage) error {
 	return nil
 }
 func (x *RoleListParam) BindCheck(stage *kk_stage.Stage) error {
-	err := kk_http.ReadProtoBuf(stage, x)
+	err := kk_http.ReadReq(stage, x)
 	if err != nil {
 		return err
 	}
@@ -40,7 +40,7 @@ func (x *RoleListParam) BindCheck(stage *kk_stage.Stage) error {
 }
 
 func (x *RoleGrantPermissionParam) BindCheck(stage *kk_stage.Stage) error {
-	err := kk_http.ReadProtoBuf(stage, x)
+	err := kk_http.ReadReq(stage, x)
 	if err != nil {
 		return err
 	}
@@ -51,7 +51,7 @@ func (x *RoleGrantPermissionParam) BindCheck(stage *kk_stage.Stage) error {
 	return nil
 }
 func (x *RoleRevokePermissionParam) BindCheck(stage *kk_stage.Stage) error {
-	err := kk_http.ReadProtoBuf(stage, x)
+	err := kk_http.ReadReq(stage, x)
 	if err != nil {
 		return err
 	}

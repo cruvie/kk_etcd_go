@@ -14,8 +14,8 @@ var hBackup handler.HBackup
 //
 //	@Tags			backup
 //	@Description	snapshot
-//	@Accept			octet-stream
-//	@Produce		octet-stream
+//	@Accept			application/x-protobuf,json
+//	@Produce		application/x-protobuf,json
 //	@Param			SnapshotParam	body		kk_etcd_models.SnapshotParam	true	"SnapshotParam"
 //	@Success		200				{object}	kk_etcd_models.SnapshotResponse
 //	@Router			/backup/snapshot [post]
@@ -25,19 +25,19 @@ func snapshot(c *gin.Context) {
 	defer span.End()
 	var param kk_etcd_models.SnapshotParam
 	if err := param.BindCheck(stage); err != nil {
-		kk_http.ResponsePB(stage, err, nil)
+		kk_http.WriteResponse(stage, err, nil)
 		return
 	}
 	err, resp := hBackup.Snapshot(stage, &param)
-	kk_http.ResponsePB(stage, err, resp)
+	kk_http.WriteResponse(stage, err, resp)
 }
 
 // snapshotRestore
 //
 //	@Tags			backup
 //	@Description	snapshot restore
-//	@Accept			octet-stream
-//	@Produce		octet-stream
+//	@Accept			application/x-protobuf,json
+//	@Produce		application/x-protobuf,json
 //	@Param			SnapshotRestoreParam	body		kk_etcd_models.SnapshotRestoreParam	true	"SnapshotRestoreParam"
 //	@Success		200						{object}	kk_etcd_models.SnapshotRestoreResponse
 //	@Router			/backup/snapshotRestore [post]
@@ -47,19 +47,19 @@ func snapshotRestore(c *gin.Context) {
 	defer span.End()
 	var param kk_etcd_models.SnapshotRestoreParam
 	if err := param.BindCheck(stage); err != nil {
-		kk_http.ResponsePB(stage, err, nil)
+		kk_http.WriteResponse(stage, err, nil)
 		return
 	}
 	err, resp := hBackup.SnapshotRestore(stage, &param)
-	kk_http.ResponsePB(stage, err, resp)
+	kk_http.WriteResponse(stage, err, resp)
 }
 
 // snapshotInfo
 //
 //	@Tags			backup
 //	@Description	snapshot info
-//	@Accept			octet-stream
-//	@Produce		octet-stream
+//	@Accept			application/x-protobuf,json
+//	@Produce		application/x-protobuf,json
 //	@Param			SnapshotInfoParam	body		kk_etcd_models.SnapshotInfoParam	true	"SnapshotInfoParam"
 //	@Success		200					{object}	kk_etcd_models.SnapshotInfoResponse
 //	@Router			/backup/snapshotInfo [post]
@@ -69,19 +69,19 @@ func snapshotInfo(c *gin.Context) {
 	defer span.End()
 	var param kk_etcd_models.SnapshotInfoParam
 	if err := param.BindCheck(stage); err != nil {
-		kk_http.ResponsePB(stage, err, nil)
+		kk_http.WriteResponse(stage, err, nil)
 		return
 	}
 	err, resp := hBackup.SnapshotInfo(stage, &param)
-	kk_http.ResponsePB(stage, err, resp)
+	kk_http.WriteResponse(stage, err, resp)
 }
 
 // allKVsBackup
 //
 //	@Tags			backup
 //	@Description	all kvs backup
-//	@Accept			octet-stream
-//	@Produce		octet-stream
+//	@Accept			application/x-protobuf,json
+//	@Produce		application/x-protobuf,json
 //	@Param			AllKVsBackupParam	body		kk_etcd_models.AllKVsBackupParam	true	"AllKVsBackupParam"
 //	@Success		200					{object}	kk_etcd_models.AllKVsBackupResponse
 //	@Router			/backup/allKVsBackup [post]
@@ -91,19 +91,19 @@ func allKVsBackup(c *gin.Context) {
 	defer span.End()
 	var param kk_etcd_models.AllKVsBackupParam
 	if err := param.BindCheck(stage); err != nil {
-		kk_http.ResponsePB(stage, err, nil)
+		kk_http.WriteResponse(stage, err, nil)
 		return
 	}
 	err, resp := hBackup.AllKVsBackup(stage, &param)
-	kk_http.ResponsePB(stage, err, resp)
+	kk_http.WriteResponse(stage, err, resp)
 }
 
 // allKVsRestore
 //
 //	@Tags			backup
 //	@Description	all kvs restore
-//	@Accept			octet-stream
-//	@Produce		octet-stream
+//	@Accept			application/x-protobuf,json
+//	@Produce		application/x-protobuf,json
 //	@Param			AllKVsRestoreParam	body		kk_etcd_models.AllKVsRestoreParam	true	"AllKVsRestoreParam"
 //	@Success		200					{object}	kk_etcd_models.AllKVsRestoreResponse
 //	@Router			/backup/allKVsRestore [post]
@@ -113,9 +113,9 @@ func allKVsRestore(c *gin.Context) {
 	defer span.End()
 	var param kk_etcd_models.AllKVsRestoreParam
 	if err := param.BindCheck(stage); err != nil {
-		kk_http.ResponsePB(stage, err, nil)
+		kk_http.WriteResponse(stage, err, nil)
 		return
 	}
 	err, resp := hBackup.AllKVsRestore(stage, &param)
-	kk_http.ResponsePB(stage, err, resp)
+	kk_http.WriteResponse(stage, err, resp)
 }

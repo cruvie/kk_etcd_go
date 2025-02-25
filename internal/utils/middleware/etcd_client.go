@@ -28,9 +28,9 @@ func EtcdClient(c *gin.Context) {
 	var err error
 	client, err := clientv3.New(cfg)
 	if err != nil {
-		kk_http.ResponseProtoBuf(c, kk_http.Fail(stage, &kk_models.PBResponse{
+		kk_http.WriteCustomResponse(stage, &kk_models.PBResponse{
 			Code: http.StatusUnauthorized,
-			Msg:  err.Error()}, nil))
+			Msg:  err.Error()})
 		c.Abort()
 		return
 	}
@@ -38,9 +38,9 @@ func EtcdClient(c *gin.Context) {
 	var serUser service.SerUser
 	user, err := serUser.GetUser(stage, global_model.GetRequestHeader(stage).UserName)
 	if err != nil {
-		kk_http.ResponseProtoBuf(c, kk_http.Fail(stage, &kk_models.PBResponse{
+		kk_http.WriteCustomResponse(stage, &kk_models.PBResponse{
 			Code: http.StatusUnauthorized,
-			Msg:  "LogIn again"}, nil))
+			Msg:  "LogIn again"})
 		c.Abort()
 		return
 	}
