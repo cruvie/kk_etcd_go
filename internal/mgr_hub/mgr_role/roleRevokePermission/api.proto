@@ -1,0 +1,15 @@
+syntax = "proto3";
+package roleRevokePermission;
+option go_package = "/roleRevokePermission";
+
+//revoke permission
+message RoleRevokePermission {
+  message Input {
+    string Name = 1;
+    string  Key = 2;
+    string  RangeEnd = 3;
+  }
+
+  message Output {
+  }
+}

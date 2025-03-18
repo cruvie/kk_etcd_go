@@ -1,0 +1,14 @@
+syntax = "proto3";
+package kVGet;
+option go_package = "/kVGet";
+import "kk_etcd_models/pb_kv_kk_etcd.proto";
+//get kv
+message KVGet {
+  message Input {
+    string  Key = 1;
+  }
+
+  message Output {
+    kk_etcd_models.PBKV KV = 1;
+  }
+}

@@ -28,12 +28,12 @@ const docTemplate = `{
             "post": {
                 "description": "query ai",
                 "consumes": [
-                    "application/x-protobuf",
-                    "application/json"
+                    "application/json",
+                    "application/x-protobuf"
                 ],
                 "produces": [
-                    "application/x-protobuf",
-                    "application/json"
+                    "application/json",
+                    "application/x-protobuf"
                 ],
                 "tags": [
                     "ai"
@@ -41,12 +41,12 @@ const docTemplate = `{
                 "operationId": "Query",
                 "parameters": [
                     {
-                        "description": "QueryParam",
-                        "name": "QueryParam",
+                        "description": "Query_Input",
+                        "name": "Query_Input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/kk_etcd_models.QueryParam"
+                            "$ref": "#/definitions/internal_mgr_hub_mgr_ai_query.Query_Input"
                         }
                     }
                 ],
@@ -54,7 +54,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/kk_etcd_models.QueryResponse"
+                            "$ref": "#/definitions/internal_mgr_hub_mgr_ai_query.Query_Output"
                         }
                     }
                 }
@@ -64,24 +64,25 @@ const docTemplate = `{
             "post": {
                 "description": "all kvs backup",
                 "consumes": [
-                    "application/x-protobuf",
-                    "application/json"
+                    "application/json",
+                    "application/x-protobuf"
                 ],
                 "produces": [
-                    "application/x-protobuf",
-                    "application/json"
+                    "application/json",
+                    "application/x-protobuf"
                 ],
                 "tags": [
                     "backup"
                 ],
+                "operationId": "AllKVsBackup",
                 "parameters": [
                     {
-                        "description": "AllKVsBackupParam",
-                        "name": "AllKVsBackupParam",
+                        "description": "AllKVsBackup_Input",
+                        "name": "AllKVsBackup_Input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/kk_etcd_models.AllKVsBackupParam"
+                            "$ref": "#/definitions/internal_mgr_hub_mgr_backup_allKVsBackup.AllKVsBackup_Input"
                         }
                     }
                 ],
@@ -89,7 +90,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/kk_etcd_models.AllKVsBackupResponse"
+                            "$ref": "#/definitions/internal_mgr_hub_mgr_backup_allKVsBackup.AllKVsBackup_Output"
                         }
                     }
                 }
@@ -99,24 +100,25 @@ const docTemplate = `{
             "post": {
                 "description": "all kvs restore",
                 "consumes": [
-                    "application/x-protobuf",
-                    "application/json"
+                    "application/json",
+                    "application/x-protobuf"
                 ],
                 "produces": [
-                    "application/x-protobuf",
-                    "application/json"
+                    "application/json",
+                    "application/x-protobuf"
                 ],
                 "tags": [
                     "backup"
                 ],
+                "operationId": "AllKVsRestore",
                 "parameters": [
                     {
-                        "description": "AllKVsRestoreParam",
-                        "name": "AllKVsRestoreParam",
+                        "description": "AllKVsRestore_Input",
+                        "name": "AllKVsRestore_Input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/kk_etcd_models.AllKVsRestoreParam"
+                            "$ref": "#/definitions/internal_mgr_hub_mgr_backup_allKVsRestore.AllKVsRestore_Input"
                         }
                     }
                 ],
@@ -124,7 +126,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/kk_etcd_models.AllKVsRestoreResponse"
+                            "$ref": "#/definitions/internal_mgr_hub_mgr_backup_allKVsRestore.AllKVsRestore_Output"
                         }
                     }
                 }
@@ -134,24 +136,25 @@ const docTemplate = `{
             "post": {
                 "description": "snapshot",
                 "consumes": [
-                    "application/x-protobuf",
-                    "application/json"
+                    "application/json",
+                    "application/x-protobuf"
                 ],
                 "produces": [
-                    "application/x-protobuf",
-                    "application/json"
+                    "application/json",
+                    "application/x-protobuf"
                 ],
                 "tags": [
                     "backup"
                 ],
+                "operationId": "Snapshot",
                 "parameters": [
                     {
-                        "description": "SnapshotParam",
-                        "name": "SnapshotParam",
+                        "description": "Snapshot_Input",
+                        "name": "Snapshot_Input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/kk_etcd_models.SnapshotParam"
+                            "$ref": "#/definitions/internal_mgr_hub_mgr_backup_snapshot.Snapshot_Input"
                         }
                     }
                 ],
@@ -159,7 +162,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/kk_etcd_models.SnapshotResponse"
+                            "$ref": "#/definitions/internal_mgr_hub_mgr_backup_snapshot.Snapshot_Output"
                         }
                     }
                 }
@@ -169,24 +172,25 @@ const docTemplate = `{
             "post": {
                 "description": "snapshot info",
                 "consumes": [
-                    "application/x-protobuf",
-                    "application/json"
+                    "application/json",
+                    "application/x-protobuf"
                 ],
                 "produces": [
-                    "application/x-protobuf",
-                    "application/json"
+                    "application/json",
+                    "application/x-protobuf"
                 ],
                 "tags": [
                     "backup"
                 ],
+                "operationId": "SnapshotInfo",
                 "parameters": [
                     {
-                        "description": "SnapshotInfoParam",
-                        "name": "SnapshotInfoParam",
+                        "description": "SnapshotInfo_Input",
+                        "name": "SnapshotInfo_Input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/kk_etcd_models.SnapshotInfoParam"
+                            "$ref": "#/definitions/internal_mgr_hub_mgr_backup_snapshotInfo.SnapshotInfo_Input"
                         }
                     }
                 ],
@@ -194,7 +198,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/kk_etcd_models.SnapshotInfoResponse"
+                            "$ref": "#/definitions/internal_mgr_hub_mgr_backup_snapshotInfo.SnapshotInfo_Output"
                         }
                     }
                 }
@@ -204,24 +208,25 @@ const docTemplate = `{
             "post": {
                 "description": "snapshot restore",
                 "consumes": [
-                    "application/x-protobuf",
-                    "application/json"
+                    "application/json",
+                    "application/x-protobuf"
                 ],
                 "produces": [
-                    "application/x-protobuf",
-                    "application/json"
+                    "application/json",
+                    "application/x-protobuf"
                 ],
                 "tags": [
                     "backup"
                 ],
+                "operationId": "SnapshotRestore",
                 "parameters": [
                     {
-                        "description": "SnapshotRestoreParam",
-                        "name": "SnapshotRestoreParam",
+                        "description": "SnapshotRestore_Input",
+                        "name": "SnapshotRestore_Input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/kk_etcd_models.SnapshotRestoreParam"
+                            "$ref": "#/definitions/internal_mgr_hub_mgr_backup_snapshotRestore.SnapshotRestore_Input"
                         }
                     }
                 ],
@@ -229,7 +234,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/kk_etcd_models.SnapshotRestoreResponse"
+                            "$ref": "#/definitions/internal_mgr_hub_mgr_backup_snapshotRestore.SnapshotRestore_Output"
                         }
                     }
                 }
@@ -239,24 +244,25 @@ const docTemplate = `{
             "post": {
                 "description": "del kv",
                 "consumes": [
-                    "application/x-protobuf",
-                    "application/json"
+                    "application/json",
+                    "application/x-protobuf"
                 ],
                 "produces": [
-                    "application/x-protobuf",
-                    "application/json"
+                    "application/json",
+                    "application/x-protobuf"
                 ],
                 "tags": [
                     "kv"
                 ],
+                "operationId": "KVDel",
                 "parameters": [
                     {
-                        "description": "KVDelParam",
-                        "name": "KVDelParam",
+                        "description": "KVDel_Input",
+                        "name": "KVDel_Input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/kk_etcd_models.KVDelParam"
+                            "$ref": "#/definitions/internal_mgr_hub_mgr_kv_kVDel.KVDel_Input"
                         }
                     }
                 ],
@@ -264,7 +270,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/kk_etcd_models.KVDelResponse"
+                            "$ref": "#/definitions/internal_mgr_hub_mgr_kv_kVDel.KVDel_Output"
                         }
                     }
                 }
@@ -274,24 +280,25 @@ const docTemplate = `{
             "post": {
                 "description": "get kv",
                 "consumes": [
-                    "application/x-protobuf",
-                    "application/json"
+                    "application/json",
+                    "application/x-protobuf"
                 ],
                 "produces": [
-                    "application/x-protobuf",
-                    "application/json"
+                    "application/json",
+                    "application/x-protobuf"
                 ],
                 "tags": [
                     "kv"
                 ],
+                "operationId": "KVGet",
                 "parameters": [
                     {
-                        "description": "KVGetParam",
-                        "name": "KVGetParam",
+                        "description": "KVGet_Input",
+                        "name": "KVGet_Input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/kk_etcd_models.KVGetParam"
+                            "$ref": "#/definitions/internal_mgr_hub_mgr_kv_kVGet.KVGet_Input"
                         }
                     }
                 ],
@@ -299,7 +306,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/kk_etcd_models.KVGetResponse"
+                            "$ref": "#/definitions/internal_mgr_hub_mgr_kv_kVGet.KVGet_Output"
                         }
                     }
                 }
@@ -309,24 +316,25 @@ const docTemplate = `{
             "post": {
                 "description": "list kv",
                 "consumes": [
-                    "application/x-protobuf",
-                    "application/json"
+                    "application/json",
+                    "application/x-protobuf"
                 ],
                 "produces": [
-                    "application/x-protobuf",
-                    "application/json"
+                    "application/json",
+                    "application/x-protobuf"
                 ],
                 "tags": [
                     "kv"
                 ],
+                "operationId": "KVList",
                 "parameters": [
                     {
-                        "description": "KVListParam",
-                        "name": "KVListParam",
+                        "description": "KVList_Input",
+                        "name": "KVList_Input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/kk_etcd_models.KVListParam"
+                            "$ref": "#/definitions/internal_mgr_hub_mgr_kv_kVList.KVList_Input"
                         }
                     }
                 ],
@@ -334,7 +342,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/kk_etcd_models.KVListResponse"
+                            "$ref": "#/definitions/internal_mgr_hub_mgr_kv_kVList.KVList_Output"
                         }
                     }
                 }
@@ -344,24 +352,25 @@ const docTemplate = `{
             "post": {
                 "description": "put kv",
                 "consumes": [
-                    "application/x-protobuf",
-                    "application/json"
+                    "application/json",
+                    "application/x-protobuf"
                 ],
                 "produces": [
-                    "application/x-protobuf",
-                    "application/json"
+                    "application/json",
+                    "application/x-protobuf"
                 ],
                 "tags": [
                     "kv"
                 ],
+                "operationId": "KVPut",
                 "parameters": [
                     {
-                        "description": "KVPutParam",
-                        "name": "KVPutParam",
+                        "description": "KVPut_Input",
+                        "name": "KVPut_Input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/kk_etcd_models.KVPutParam"
+                            "$ref": "#/definitions/internal_mgr_hub_mgr_kv_kVPut.KVPut_Input"
                         }
                     }
                 ],
@@ -369,7 +378,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/kk_etcd_models.KVPutResponse"
+                            "$ref": "#/definitions/internal_mgr_hub_mgr_kv_kVPut.KVPut_Output"
                         }
                     }
                 }
@@ -379,24 +388,25 @@ const docTemplate = `{
             "post": {
                 "description": "add role",
                 "consumes": [
-                    "application/x-protobuf",
-                    "application/json"
+                    "application/json",
+                    "application/x-protobuf"
                 ],
                 "produces": [
-                    "application/x-protobuf",
-                    "application/json"
+                    "application/json",
+                    "application/x-protobuf"
                 ],
                 "tags": [
                     "role"
                 ],
+                "operationId": "RoleAdd",
                 "parameters": [
                     {
-                        "description": "RoleAddParam",
-                        "name": "RoleAddParam",
+                        "description": "RoleAdd_Input",
+                        "name": "RoleAdd_Input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/kk_etcd_models.RoleAddParam"
+                            "$ref": "#/definitions/internal_mgr_hub_mgr_role_roleAdd.RoleAdd_Input"
                         }
                     }
                 ],
@@ -404,7 +414,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/kk_etcd_models.RoleAddResponse"
+                            "$ref": "#/definitions/internal_mgr_hub_mgr_role_roleAdd.RoleAdd_Output"
                         }
                     }
                 }
@@ -414,24 +424,25 @@ const docTemplate = `{
             "post": {
                 "description": "delete role",
                 "consumes": [
-                    "application/x-protobuf",
-                    "application/json"
+                    "application/json",
+                    "application/x-protobuf"
                 ],
                 "produces": [
-                    "application/x-protobuf",
-                    "application/json"
+                    "application/json",
+                    "application/x-protobuf"
                 ],
                 "tags": [
                     "role"
                 ],
+                "operationId": "RoleDelete",
                 "parameters": [
                     {
-                        "description": "RoleDeleteParam",
-                        "name": "RoleDeleteParam",
+                        "description": "RoleDelete_Input",
+                        "name": "RoleDelete_Input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/kk_etcd_models.RoleDeleteParam"
+                            "$ref": "#/definitions/internal_mgr_hub_mgr_role_roleDelete.RoleDelete_Input"
                         }
                     }
                 ],
@@ -439,7 +450,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/kk_etcd_models.RoleDeleteResponse"
+                            "$ref": "#/definitions/internal_mgr_hub_mgr_role_roleDelete.RoleDelete_Output"
                         }
                     }
                 }
@@ -449,24 +460,25 @@ const docTemplate = `{
             "post": {
                 "description": "get role",
                 "consumes": [
-                    "application/x-protobuf",
-                    "application/json"
+                    "application/json",
+                    "application/x-protobuf"
                 ],
                 "produces": [
-                    "application/x-protobuf",
-                    "application/json"
+                    "application/json",
+                    "application/x-protobuf"
                 ],
                 "tags": [
                     "role"
                 ],
+                "operationId": "RoleGet",
                 "parameters": [
                     {
-                        "description": "RoleGetParam",
-                        "name": "RoleGetParam",
+                        "description": "RoleGet_Input",
+                        "name": "RoleGet_Input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/kk_etcd_models.RoleGetParam"
+                            "$ref": "#/definitions/internal_mgr_hub_mgr_role_roleGet.RoleGet_Input"
                         }
                     }
                 ],
@@ -474,7 +486,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/kk_etcd_models.RoleGetResponse"
+                            "$ref": "#/definitions/internal_mgr_hub_mgr_role_roleGet.RoleGet_Output"
                         }
                     }
                 }
@@ -484,24 +496,25 @@ const docTemplate = `{
             "post": {
                 "description": "grant permission",
                 "consumes": [
-                    "application/x-protobuf",
-                    "application/json"
+                    "application/json",
+                    "application/x-protobuf"
                 ],
                 "produces": [
-                    "application/x-protobuf",
-                    "application/json"
+                    "application/json",
+                    "application/x-protobuf"
                 ],
                 "tags": [
                     "role"
                 ],
+                "operationId": "RoleGrantPermission",
                 "parameters": [
                     {
-                        "description": "RoleGrantPermissionParam",
-                        "name": "RoleGrantPermissionParam",
+                        "description": "RoleGrantPermission_Input",
+                        "name": "RoleGrantPermission_Input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/kk_etcd_models.RoleGrantPermissionParam"
+                            "$ref": "#/definitions/internal_mgr_hub_mgr_role_roleGrantPermission.RoleGrantPermission_Input"
                         }
                     }
                 ],
@@ -509,7 +522,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/kk_etcd_models.RoleGrantPermissionResponse"
+                            "$ref": "#/definitions/internal_mgr_hub_mgr_role_roleGrantPermission.RoleGrantPermission_Output"
                         }
                     }
                 }
@@ -519,24 +532,25 @@ const docTemplate = `{
             "post": {
                 "description": "list role",
                 "consumes": [
-                    "application/x-protobuf",
-                    "application/json"
+                    "application/json",
+                    "application/x-protobuf"
                 ],
                 "produces": [
-                    "application/x-protobuf",
-                    "application/json"
+                    "application/json",
+                    "application/x-protobuf"
                 ],
                 "tags": [
                     "role"
                 ],
+                "operationId": "RoleList",
                 "parameters": [
                     {
-                        "description": "RoleListParam",
-                        "name": "RoleListParam",
+                        "description": "RoleList_Input",
+                        "name": "RoleList_Input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/kk_etcd_models.RoleListParam"
+                            "$ref": "#/definitions/internal_mgr_hub_mgr_role_roleList.RoleList_Input"
                         }
                     }
                 ],
@@ -544,7 +558,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/kk_etcd_models.RoleListResponse"
+                            "$ref": "#/definitions/internal_mgr_hub_mgr_role_roleList.RoleList_Output"
                         }
                     }
                 }
@@ -554,24 +568,25 @@ const docTemplate = `{
             "post": {
                 "description": "revoke permission",
                 "consumes": [
-                    "application/x-protobuf",
-                    "application/json"
+                    "application/json",
+                    "application/x-protobuf"
                 ],
                 "produces": [
-                    "application/x-protobuf",
-                    "application/json"
+                    "application/json",
+                    "application/x-protobuf"
                 ],
                 "tags": [
                     "role"
                 ],
+                "operationId": "RoleRevokePermission",
                 "parameters": [
                     {
-                        "description": "RoleRevokePermissionParam",
-                        "name": "RoleRevokePermissionParam",
+                        "description": "RoleRevokePermission_Input",
+                        "name": "RoleRevokePermission_Input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/kk_etcd_models.RoleRevokePermissionParam"
+                            "$ref": "#/definitions/internal_mgr_hub_mgr_role_roleRevokePermission.RoleRevokePermission_Input"
                         }
                     }
                 ],
@@ -579,7 +594,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/kk_etcd_models.RoleRevokePermissionResponse"
+                            "$ref": "#/definitions/internal_mgr_hub_mgr_role_roleRevokePermission.RoleRevokePermission_Output"
                         }
                     }
                 }
@@ -589,24 +604,25 @@ const docTemplate = `{
             "post": {
                 "description": "deregister server",
                 "consumes": [
-                    "application/x-protobuf",
-                    "application/json"
+                    "application/json",
+                    "application/x-protobuf"
                 ],
                 "produces": [
-                    "application/x-protobuf",
-                    "application/json"
+                    "application/json",
+                    "application/x-protobuf"
                 ],
                 "tags": [
                     "server"
                 ],
+                "operationId": "DeregisterServer",
                 "parameters": [
                     {
-                        "description": "DeregisterServerParam",
-                        "name": "DeregisterServerParam",
+                        "description": "DeregisterServer_Input",
+                        "name": "DeregisterServer_Input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/kk_etcd_models.DeregisterServerParam"
+                            "$ref": "#/definitions/internal_mgr_hub_mgr_server_deregisterServer.DeregisterServer_Input"
                         }
                     }
                 ],
@@ -614,7 +630,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/kk_etcd_models.DeregisterServerResponse"
+                            "$ref": "#/definitions/internal_mgr_hub_mgr_server_deregisterServer.DeregisterServer_Output"
                         }
                     }
                 }
@@ -624,24 +640,25 @@ const docTemplate = `{
             "post": {
                 "description": "list server",
                 "consumes": [
-                    "application/x-protobuf",
-                    "application/json"
+                    "application/json",
+                    "application/x-protobuf"
                 ],
                 "produces": [
-                    "application/x-protobuf",
-                    "application/json"
+                    "application/json",
+                    "application/x-protobuf"
                 ],
                 "tags": [
                     "server"
                 ],
+                "operationId": "ServerList",
                 "parameters": [
                     {
-                        "description": "ServerListParam",
-                        "name": "ServerListParam",
+                        "description": "ServerList_Input",
+                        "name": "ServerList_Input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/kk_etcd_models.ServerListParam"
+                            "$ref": "#/definitions/internal_mgr_hub_mgr_server_serverList.ServerList_Input"
                         }
                     }
                 ],
@@ -649,7 +666,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/kk_etcd_models.ServerListResponse"
+                            "$ref": "#/definitions/internal_mgr_hub_mgr_server_serverList.ServerList_Output"
                         }
                     }
                 }
@@ -659,24 +676,25 @@ const docTemplate = `{
             "post": {
                 "description": "get user",
                 "consumes": [
-                    "application/x-protobuf",
-                    "application/json"
+                    "application/json",
+                    "application/x-protobuf"
                 ],
                 "produces": [
-                    "application/x-protobuf",
-                    "application/json"
+                    "application/json",
+                    "application/x-protobuf"
                 ],
                 "tags": [
                     "user"
                 ],
+                "operationId": "GetUser",
                 "parameters": [
                     {
-                        "description": "GetUserParam",
-                        "name": "GetUserParam",
+                        "description": "GetUser_Input",
+                        "name": "GetUser_Input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/kk_etcd_models.GetUserParam"
+                            "$ref": "#/definitions/internal_mgr_hub_mgr_user_getUser.GetUser_Input"
                         }
                     }
                 ],
@@ -684,7 +702,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/kk_etcd_models.GetUserResponse"
+                            "$ref": "#/definitions/internal_mgr_hub_mgr_user_getUser.GetUser_Output"
                         }
                     }
                 }
@@ -694,24 +712,25 @@ const docTemplate = `{
             "post": {
                 "description": "login",
                 "consumes": [
-                    "application/x-protobuf",
-                    "application/json"
+                    "application/json",
+                    "application/x-protobuf"
                 ],
                 "produces": [
-                    "application/x-protobuf",
-                    "application/json"
+                    "application/json",
+                    "application/x-protobuf"
                 ],
                 "tags": [
                     "user"
                 ],
+                "operationId": "Login",
                 "parameters": [
                     {
-                        "description": "LoginParam",
-                        "name": "LoginParam",
+                        "description": "Login_Input",
+                        "name": "Login_Input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/kk_etcd_models.LoginParam"
+                            "$ref": "#/definitions/internal_mgr_hub_mgr_user_login.Login_Input"
                         }
                     }
                 ],
@@ -719,7 +738,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/kk_etcd_models.LoginResponse"
+                            "$ref": "#/definitions/internal_mgr_hub_mgr_user_login.Login_Output"
                         }
                     }
                 }
@@ -729,24 +748,25 @@ const docTemplate = `{
             "post": {
                 "description": "logout",
                 "consumes": [
-                    "application/x-protobuf",
-                    "application/json"
+                    "application/json",
+                    "application/x-protobuf"
                 ],
                 "produces": [
-                    "application/x-protobuf",
-                    "application/json"
+                    "application/json",
+                    "application/x-protobuf"
                 ],
                 "tags": [
                     "user"
                 ],
+                "operationId": "Logout",
                 "parameters": [
                     {
-                        "description": "LogoutParam",
-                        "name": "LogoutParam",
+                        "description": "Logout_Input",
+                        "name": "Logout_Input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/kk_etcd_models.LogoutParam"
+                            "$ref": "#/definitions/internal_mgr_hub_mgr_user_logout.Logout_Input"
                         }
                     }
                 ],
@@ -754,7 +774,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/kk_etcd_models.LogoutResponse"
+                            "$ref": "#/definitions/internal_mgr_hub_mgr_user_logout.Logout_Output"
                         }
                     }
                 }
@@ -764,24 +784,25 @@ const docTemplate = `{
             "post": {
                 "description": "get my info",
                 "consumes": [
-                    "application/x-protobuf",
-                    "application/json"
+                    "application/json",
+                    "application/x-protobuf"
                 ],
                 "produces": [
-                    "application/x-protobuf",
-                    "application/json"
+                    "application/json",
+                    "application/x-protobuf"
                 ],
                 "tags": [
                     "user"
                 ],
+                "operationId": "MyInfo",
                 "parameters": [
                     {
-                        "description": "MyInfoParam",
-                        "name": "MyInfoParam",
+                        "description": "MyInfo_Input",
+                        "name": "MyInfo_Input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/kk_etcd_models.MyInfoParam"
+                            "$ref": "#/definitions/internal_mgr_hub_mgr_user_myInfo.MyInfo_Input"
                         }
                     }
                 ],
@@ -789,7 +810,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/kk_etcd_models.MyInfoResponse"
+                            "$ref": "#/definitions/internal_mgr_hub_mgr_user_myInfo.MyInfo_Output"
                         }
                     }
                 }
@@ -799,24 +820,25 @@ const docTemplate = `{
             "post": {
                 "description": "add user",
                 "consumes": [
-                    "application/x-protobuf",
-                    "application/json"
+                    "application/json",
+                    "application/x-protobuf"
                 ],
                 "produces": [
-                    "application/x-protobuf",
-                    "application/json"
+                    "application/json",
+                    "application/x-protobuf"
                 ],
                 "tags": [
                     "user"
                 ],
+                "operationId": "UserAdd",
                 "parameters": [
                     {
-                        "description": "UserAddParam",
-                        "name": "UserAddParam",
+                        "description": "UserAdd_Input",
+                        "name": "UserAdd_Input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/kk_etcd_models.UserAddParam"
+                            "$ref": "#/definitions/internal_mgr_hub_mgr_user_userAdd.UserAdd_Input"
                         }
                     }
                 ],
@@ -824,7 +846,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/kk_etcd_models.UserAddResponse"
+                            "$ref": "#/definitions/internal_mgr_hub_mgr_user_userAdd.UserAdd_Output"
                         }
                     }
                 }
@@ -834,24 +856,25 @@ const docTemplate = `{
             "post": {
                 "description": "delete user",
                 "consumes": [
-                    "application/x-protobuf",
-                    "application/json"
+                    "application/json",
+                    "application/x-protobuf"
                 ],
                 "produces": [
-                    "application/x-protobuf",
-                    "application/json"
+                    "application/json",
+                    "application/x-protobuf"
                 ],
                 "tags": [
                     "user"
                 ],
+                "operationId": "UserDelete",
                 "parameters": [
                     {
-                        "description": "UserDeleteParam",
-                        "name": "UserDeleteParam",
+                        "description": "UserDelete_Input",
+                        "name": "UserDelete_Input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/kk_etcd_models.UserDeleteParam"
+                            "$ref": "#/definitions/internal_mgr_hub_mgr_user_userDelete.UserDelete_Input"
                         }
                     }
                 ],
@@ -859,7 +882,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/kk_etcd_models.UserDeleteResponse"
+                            "$ref": "#/definitions/internal_mgr_hub_mgr_user_userDelete.UserDelete_Output"
                         }
                     }
                 }
@@ -869,24 +892,25 @@ const docTemplate = `{
             "post": {
                 "description": "grant role",
                 "consumes": [
-                    "application/x-protobuf",
-                    "application/json"
+                    "application/json",
+                    "application/x-protobuf"
                 ],
                 "produces": [
-                    "application/x-protobuf",
-                    "application/json"
+                    "application/json",
+                    "application/x-protobuf"
                 ],
                 "tags": [
                     "user"
                 ],
+                "operationId": "UserGrantRole",
                 "parameters": [
                     {
-                        "description": "UserGrantRoleParam",
-                        "name": "UserGrantRoleParam",
+                        "description": "UserGrantRole_Input",
+                        "name": "UserGrantRole_Input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/kk_etcd_models.UserGrantRoleParam"
+                            "$ref": "#/definitions/internal_mgr_hub_mgr_user_userGrantRole.UserGrantRole_Input"
                         }
                     }
                 ],
@@ -894,7 +918,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/kk_etcd_models.UserGrantRoleResponse"
+                            "$ref": "#/definitions/internal_mgr_hub_mgr_user_userGrantRole.UserGrantRole_Output"
                         }
                     }
                 }
@@ -904,24 +928,25 @@ const docTemplate = `{
             "post": {
                 "description": "list user",
                 "consumes": [
-                    "application/x-protobuf",
-                    "application/json"
+                    "application/json",
+                    "application/x-protobuf"
                 ],
                 "produces": [
-                    "application/x-protobuf",
-                    "application/json"
+                    "application/json",
+                    "application/x-protobuf"
                 ],
                 "tags": [
                     "user"
                 ],
+                "operationId": "UserList",
                 "parameters": [
                     {
-                        "description": "UserListParam",
-                        "name": "UserListParam",
+                        "description": "UserList_Input",
+                        "name": "UserList_Input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/kk_etcd_models.UserListParam"
+                            "$ref": "#/definitions/internal_mgr_hub_mgr_user_userList.UserList_Input"
                         }
                     }
                 ],
@@ -929,7 +954,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/kk_etcd_models.UserListResponse"
+                            "$ref": "#/definitions/internal_mgr_hub_mgr_user_userList.UserList_Output"
                         }
                     }
                 }
@@ -937,10 +962,26 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "kk_etcd_models.AllKVsBackupParam": {
+        "internal_mgr_hub_mgr_ai_query.Query_Input": {
+            "type": "object",
+            "properties": {
+                "Question": {
+                    "type": "string"
+                }
+            }
+        },
+        "internal_mgr_hub_mgr_ai_query.Query_Output": {
+            "type": "object",
+            "properties": {
+                "Answer": {
+                    "type": "string"
+                }
+            }
+        },
+        "internal_mgr_hub_mgr_backup_allKVsBackup.AllKVsBackup_Input": {
             "type": "object"
         },
-        "kk_etcd_models.AllKVsBackupResponse": {
+        "internal_mgr_hub_mgr_backup_allKVsBackup.AllKVsBackup_Output": {
             "type": "object",
             "properties": {
                 "File": {
@@ -954,7 +995,7 @@ const docTemplate = `{
                 }
             }
         },
-        "kk_etcd_models.AllKVsRestoreParam": {
+        "internal_mgr_hub_mgr_backup_allKVsRestore.AllKVsRestore_Input": {
             "type": "object",
             "properties": {
                 "File": {
@@ -965,37 +1006,57 @@ const docTemplate = `{
                 }
             }
         },
-        "kk_etcd_models.AllKVsRestoreResponse": {
+        "internal_mgr_hub_mgr_backup_allKVsRestore.AllKVsRestore_Output": {
             "type": "object"
         },
-        "kk_etcd_models.DeregisterServerParam": {
-            "type": "object",
-            "properties": {
-                "Server": {
-                    "$ref": "#/definitions/kk_etcd_models.PBServer"
-                }
-            }
-        },
-        "kk_etcd_models.DeregisterServerResponse": {
+        "internal_mgr_hub_mgr_backup_snapshot.Snapshot_Input": {
             "type": "object"
         },
-        "kk_etcd_models.GetUserParam": {
+        "internal_mgr_hub_mgr_backup_snapshot.Snapshot_Output": {
             "type": "object",
             "properties": {
-                "UserName": {
+                "File": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "Name": {
                     "type": "string"
                 }
             }
         },
-        "kk_etcd_models.GetUserResponse": {
+        "internal_mgr_hub_mgr_backup_snapshotInfo.SnapshotInfo_Input": {
             "type": "object",
             "properties": {
-                "User": {
-                    "$ref": "#/definitions/kk_etcd_models.PBUser"
+                "File": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
                 }
             }
         },
-        "kk_etcd_models.KVDelParam": {
+        "internal_mgr_hub_mgr_backup_snapshotInfo.SnapshotInfo_Output": {
+            "type": "object",
+            "properties": {
+                "Info": {
+                    "type": "string"
+                }
+            }
+        },
+        "internal_mgr_hub_mgr_backup_snapshotRestore.SnapshotRestore_Input": {
+            "type": "object"
+        },
+        "internal_mgr_hub_mgr_backup_snapshotRestore.SnapshotRestore_Output": {
+            "type": "object",
+            "properties": {
+                "CmdStr": {
+                    "type": "string"
+                }
+            }
+        },
+        "internal_mgr_hub_mgr_kv_kVDel.KVDel_Input": {
             "type": "object",
             "properties": {
                 "Key": {
@@ -1003,10 +1064,10 @@ const docTemplate = `{
                 }
             }
         },
-        "kk_etcd_models.KVDelResponse": {
+        "internal_mgr_hub_mgr_kv_kVDel.KVDel_Output": {
             "type": "object"
         },
-        "kk_etcd_models.KVGetParam": {
+        "internal_mgr_hub_mgr_kv_kVGet.KVGet_Input": {
             "type": "object",
             "properties": {
                 "Key": {
@@ -1014,7 +1075,7 @@ const docTemplate = `{
                 }
             }
         },
-        "kk_etcd_models.KVGetResponse": {
+        "internal_mgr_hub_mgr_kv_kVGet.KVGet_Output": {
             "type": "object",
             "properties": {
                 "KV": {
@@ -1022,7 +1083,7 @@ const docTemplate = `{
                 }
             }
         },
-        "kk_etcd_models.KVListParam": {
+        "internal_mgr_hub_mgr_kv_kVList.KVList_Input": {
             "type": "object",
             "properties": {
                 "Prefix": {
@@ -1030,7 +1091,7 @@ const docTemplate = `{
                 }
             }
         },
-        "kk_etcd_models.KVListResponse": {
+        "internal_mgr_hub_mgr_kv_kVList.KVList_Output": {
             "type": "object",
             "properties": {
                 "KVList": {
@@ -1038,7 +1099,7 @@ const docTemplate = `{
                 }
             }
         },
-        "kk_etcd_models.KVPutParam": {
+        "internal_mgr_hub_mgr_kv_kVPut.KVPut_Input": {
             "type": "object",
             "properties": {
                 "Key": {
@@ -1049,10 +1110,136 @@ const docTemplate = `{
                 }
             }
         },
-        "kk_etcd_models.KVPutResponse": {
+        "internal_mgr_hub_mgr_kv_kVPut.KVPut_Output": {
             "type": "object"
         },
-        "kk_etcd_models.LoginParam": {
+        "internal_mgr_hub_mgr_role_roleAdd.RoleAdd_Input": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "type": "string"
+                }
+            }
+        },
+        "internal_mgr_hub_mgr_role_roleAdd.RoleAdd_Output": {
+            "type": "object"
+        },
+        "internal_mgr_hub_mgr_role_roleDelete.RoleDelete_Input": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "type": "string"
+                }
+            }
+        },
+        "internal_mgr_hub_mgr_role_roleDelete.RoleDelete_Output": {
+            "type": "object"
+        },
+        "internal_mgr_hub_mgr_role_roleGet.RoleGet_Input": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "type": "string"
+                }
+            }
+        },
+        "internal_mgr_hub_mgr_role_roleGet.RoleGet_Output": {
+            "type": "object",
+            "properties": {
+                "Role": {
+                    "$ref": "#/definitions/kk_etcd_models.PBRole"
+                }
+            }
+        },
+        "internal_mgr_hub_mgr_role_roleGrantPermission.RoleGrantPermission_Input": {
+            "type": "object",
+            "properties": {
+                "Name": {
+                    "type": "string"
+                },
+                "Perm": {
+                    "$ref": "#/definitions/kk_etcd_models.PBPermission"
+                }
+            }
+        },
+        "internal_mgr_hub_mgr_role_roleGrantPermission.RoleGrantPermission_Output": {
+            "type": "object"
+        },
+        "internal_mgr_hub_mgr_role_roleList.RoleList_Input": {
+            "type": "object"
+        },
+        "internal_mgr_hub_mgr_role_roleList.RoleList_Output": {
+            "type": "object",
+            "properties": {
+                "ListRole": {
+                    "$ref": "#/definitions/kk_etcd_models.PBListRole"
+                }
+            }
+        },
+        "internal_mgr_hub_mgr_role_roleRevokePermission.RoleRevokePermission_Input": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "type": "string"
+                },
+                "Name": {
+                    "type": "string"
+                },
+                "RangeEnd": {
+                    "type": "string"
+                }
+            }
+        },
+        "internal_mgr_hub_mgr_role_roleRevokePermission.RoleRevokePermission_Output": {
+            "type": "object"
+        },
+        "internal_mgr_hub_mgr_server_deregisterServer.DeregisterServer_Input": {
+            "type": "object",
+            "properties": {
+                "Server": {
+                    "$ref": "#/definitions/kk_etcd_models.PBServer"
+                }
+            }
+        },
+        "internal_mgr_hub_mgr_server_deregisterServer.DeregisterServer_Output": {
+            "type": "object"
+        },
+        "internal_mgr_hub_mgr_server_serverList.ServerList_Input": {
+            "type": "object",
+            "properties": {
+                "ServerName": {
+                    "type": "string"
+                },
+                "ServerType": {
+                    "type": "string"
+                }
+            }
+        },
+        "internal_mgr_hub_mgr_server_serverList.ServerList_Output": {
+            "type": "object",
+            "properties": {
+                "ServerList": {
+                    "$ref": "#/definitions/kk_etcd_models.PBListServer"
+                }
+            }
+        },
+        "internal_mgr_hub_mgr_user_getUser.GetUser_Input": {
+            "type": "object",
+            "properties": {
+                "UserName": {
+                    "type": "string"
+                }
+            }
+        },
+        "internal_mgr_hub_mgr_user_getUser.GetUser_Output": {
+            "type": "object",
+            "properties": {
+                "User": {
+                    "$ref": "#/definitions/kk_etcd_models.PBUser"
+                }
+            }
+        },
+        "internal_mgr_hub_mgr_user_login.Login_Input": {
             "type": "object",
             "properties": {
                 "Password": {
@@ -1063,7 +1250,7 @@ const docTemplate = `{
                 }
             }
         },
-        "kk_etcd_models.LoginResponse": {
+        "internal_mgr_hub_mgr_user_login.Login_Output": {
             "type": "object",
             "properties": {
                 "Token": {
@@ -1071,16 +1258,16 @@ const docTemplate = `{
                 }
             }
         },
-        "kk_etcd_models.LogoutParam": {
+        "internal_mgr_hub_mgr_user_logout.Logout_Input": {
             "type": "object"
         },
-        "kk_etcd_models.LogoutResponse": {
+        "internal_mgr_hub_mgr_user_logout.Logout_Output": {
             "type": "object"
         },
-        "kk_etcd_models.MyInfoParam": {
+        "internal_mgr_hub_mgr_user_myInfo.MyInfo_Input": {
             "type": "object"
         },
-        "kk_etcd_models.MyInfoResponse": {
+        "internal_mgr_hub_mgr_user_myInfo.MyInfo_Output": {
             "type": "object",
             "properties": {
                 "Roles": {
@@ -1091,6 +1278,65 @@ const docTemplate = `{
                 },
                 "UserName": {
                     "type": "string"
+                }
+            }
+        },
+        "internal_mgr_hub_mgr_user_userAdd.UserAdd_Input": {
+            "type": "object",
+            "properties": {
+                "Password": {
+                    "type": "string"
+                },
+                "Roles": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "UserName": {
+                    "type": "string"
+                }
+            }
+        },
+        "internal_mgr_hub_mgr_user_userAdd.UserAdd_Output": {
+            "type": "object"
+        },
+        "internal_mgr_hub_mgr_user_userDelete.UserDelete_Input": {
+            "type": "object",
+            "properties": {
+                "UserName": {
+                    "type": "string"
+                }
+            }
+        },
+        "internal_mgr_hub_mgr_user_userDelete.UserDelete_Output": {
+            "type": "object"
+        },
+        "internal_mgr_hub_mgr_user_userGrantRole.UserGrantRole_Input": {
+            "type": "object",
+            "properties": {
+                "Roles": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "UserName": {
+                    "type": "string"
+                }
+            }
+        },
+        "internal_mgr_hub_mgr_user_userGrantRole.UserGrantRole_Output": {
+            "type": "object"
+        },
+        "internal_mgr_hub_mgr_user_userList.UserList_Input": {
+            "type": "object"
+        },
+        "internal_mgr_hub_mgr_user_userList.UserList_Output": {
+            "type": "object",
+            "properties": {
+                "ListUser": {
+                    "$ref": "#/definitions/kk_etcd_models.PBListUser"
                 }
             }
         },
@@ -1230,227 +1476,6 @@ const docTemplate = `{
                 },
                 "UserName": {
                     "type": "string"
-                }
-            }
-        },
-        "kk_etcd_models.QueryParam": {
-            "type": "object",
-            "properties": {
-                "Question": {
-                    "type": "string"
-                }
-            }
-        },
-        "kk_etcd_models.QueryResponse": {
-            "type": "object",
-            "properties": {
-                "Answer": {
-                    "type": "string"
-                }
-            }
-        },
-        "kk_etcd_models.RoleAddParam": {
-            "type": "object",
-            "properties": {
-                "Name": {
-                    "type": "string"
-                }
-            }
-        },
-        "kk_etcd_models.RoleAddResponse": {
-            "type": "object"
-        },
-        "kk_etcd_models.RoleDeleteParam": {
-            "type": "object",
-            "properties": {
-                "Name": {
-                    "type": "string"
-                }
-            }
-        },
-        "kk_etcd_models.RoleDeleteResponse": {
-            "type": "object"
-        },
-        "kk_etcd_models.RoleGetParam": {
-            "type": "object",
-            "properties": {
-                "Name": {
-                    "type": "string"
-                }
-            }
-        },
-        "kk_etcd_models.RoleGetResponse": {
-            "type": "object",
-            "properties": {
-                "Role": {
-                    "$ref": "#/definitions/kk_etcd_models.PBRole"
-                }
-            }
-        },
-        "kk_etcd_models.RoleGrantPermissionParam": {
-            "type": "object",
-            "properties": {
-                "Name": {
-                    "type": "string"
-                },
-                "Perm": {
-                    "$ref": "#/definitions/kk_etcd_models.PBPermission"
-                }
-            }
-        },
-        "kk_etcd_models.RoleGrantPermissionResponse": {
-            "type": "object"
-        },
-        "kk_etcd_models.RoleListParam": {
-            "type": "object"
-        },
-        "kk_etcd_models.RoleListResponse": {
-            "type": "object",
-            "properties": {
-                "ListRole": {
-                    "$ref": "#/definitions/kk_etcd_models.PBListRole"
-                }
-            }
-        },
-        "kk_etcd_models.RoleRevokePermissionParam": {
-            "type": "object",
-            "properties": {
-                "Key": {
-                    "type": "string"
-                },
-                "Name": {
-                    "type": "string"
-                },
-                "RangeEnd": {
-                    "type": "string"
-                }
-            }
-        },
-        "kk_etcd_models.RoleRevokePermissionResponse": {
-            "type": "object"
-        },
-        "kk_etcd_models.ServerListParam": {
-            "type": "object",
-            "properties": {
-                "ServerName": {
-                    "type": "string"
-                },
-                "ServerType": {
-                    "type": "string"
-                }
-            }
-        },
-        "kk_etcd_models.ServerListResponse": {
-            "type": "object",
-            "properties": {
-                "ServerList": {
-                    "$ref": "#/definitions/kk_etcd_models.PBListServer"
-                }
-            }
-        },
-        "kk_etcd_models.SnapshotInfoParam": {
-            "type": "object",
-            "properties": {
-                "File": {
-                    "type": "array",
-                    "items": {
-                        "type": "integer"
-                    }
-                }
-            }
-        },
-        "kk_etcd_models.SnapshotInfoResponse": {
-            "type": "object",
-            "properties": {
-                "Info": {
-                    "type": "string"
-                }
-            }
-        },
-        "kk_etcd_models.SnapshotParam": {
-            "type": "object"
-        },
-        "kk_etcd_models.SnapshotResponse": {
-            "type": "object",
-            "properties": {
-                "File": {
-                    "type": "array",
-                    "items": {
-                        "type": "integer"
-                    }
-                },
-                "Name": {
-                    "type": "string"
-                }
-            }
-        },
-        "kk_etcd_models.SnapshotRestoreParam": {
-            "type": "object"
-        },
-        "kk_etcd_models.SnapshotRestoreResponse": {
-            "type": "object",
-            "properties": {
-                "CmdStr": {
-                    "type": "string"
-                }
-            }
-        },
-        "kk_etcd_models.UserAddParam": {
-            "type": "object",
-            "properties": {
-                "Password": {
-                    "type": "string"
-                },
-                "Roles": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "UserName": {
-                    "type": "string"
-                }
-            }
-        },
-        "kk_etcd_models.UserAddResponse": {
-            "type": "object"
-        },
-        "kk_etcd_models.UserDeleteParam": {
-            "type": "object",
-            "properties": {
-                "UserName": {
-                    "type": "string"
-                }
-            }
-        },
-        "kk_etcd_models.UserDeleteResponse": {
-            "type": "object"
-        },
-        "kk_etcd_models.UserGrantRoleParam": {
-            "type": "object",
-            "properties": {
-                "Roles": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "UserName": {
-                    "type": "string"
-                }
-            }
-        },
-        "kk_etcd_models.UserGrantRoleResponse": {
-            "type": "object"
-        },
-        "kk_etcd_models.UserListParam": {
-            "type": "object"
-        },
-        "kk_etcd_models.UserListResponse": {
-            "type": "object",
-            "properties": {
-                "ListUser": {
-                    "$ref": "#/definitions/kk_etcd_models.PBListUser"
                 }
             }
         },

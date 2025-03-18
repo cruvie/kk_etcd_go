@@ -1,0 +1,15 @@
+syntax = "proto3";
+package myInfo;
+option go_package = "/myInfo";
+
+//get my info
+message MyInfo {
+  message Input {
+
+  }
+
+  message Output {
+    string  UserName = 2;
+    repeated  string  Roles = 4;
+  }
+}

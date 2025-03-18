@@ -1,0 +1,13 @@
+syntax = "proto3";
+package logout;
+option go_package = "/logout";
+
+//logout
+message Logout {
+  message Input {
+
+  }
+
+  message Output {
+  }
+}

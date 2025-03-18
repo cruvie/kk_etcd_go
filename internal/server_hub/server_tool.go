@@ -4,7 +4,7 @@ import (
 	"context"
 	"gitee.com/cruvie/kk_go_kit/kk_log"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
-	"github.com/cruvie/kk_etcd_go/internal/handler/service"
+	"github.com/cruvie/kk_etcd_go/internal/mgr_hub/mgr_kv/util_kv"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
 	"github.com/cruvie/kk_etcd_go/internal/utils/internal_client"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
@@ -30,7 +30,7 @@ func (t *serverTool) serverList(client *clientv3.Client, serverType kk_etcd_mode
 }
 func (t *serverTool) services() (map[string]*serverStatus, error) {
 	services := make(map[string]*serverStatus)
-	err, v := service.SerKV{}.KVList(internal_client.GlobalStage, kk_etcd_models.InternalServerStatus)
+	err, v := util_kv.ListKV(internal_client.GlobalStage, kk_etcd_models.InternalServerStatus)
 	if err != nil {
 		return nil, err
 	}

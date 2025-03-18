@@ -3,6 +3,7 @@ package kk_etcd
 import (
 	"context"
 	"gitee.com/cruvie/kk_go_kit/kk_log"
+	"github.com/cruvie/kk_etcd_go/internal/mgr_hub/mgr_server/serverList"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/health/grpc_health_v1"
@@ -83,7 +84,7 @@ func TestGetGrpcServiceList(t *testing.T) {
 		}
 	}()
 	for {
-		list, err := ServerList(&kk_etcd_models.ServerListParam{ServerType: kk_etcd_models.Grpc.String(), ServerName: "haha_grpc"})
+		list, err := ServerList(&serverList.ServerList_Input{ServerType: kk_etcd_models.Grpc.String(), ServerName: "haha_grpc"})
 		if err != nil {
 			slog.Error("failed to list", "err", err)
 		}
@@ -135,7 +136,7 @@ func TestGetHttpServiceList(t *testing.T) {
 		}
 	}()
 	for {
-		list, err := ServerList(&kk_etcd_models.ServerListParam{ServerType: kk_etcd_models.Http.String(), ServerName: "haha_http"})
+		list, err := ServerList(&serverList.ServerList_Input{ServerType: kk_etcd_models.Http.String(), ServerName: "haha_http"})
 		if err != nil {
 			slog.Error("failed to list", "err", err)
 		}

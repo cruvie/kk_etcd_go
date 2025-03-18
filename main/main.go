@@ -1,9 +1,11 @@
 package main
 
 import (
+	"context"
 	"gitee.com/cruvie/kk_go_kit/kk_log"
 	"gitee.com/cruvie/kk_go_kit/kk_pprof"
 	"gitee.com/cruvie/kk_go_kit/kk_server"
+	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/internal/api_etcd"
 	"github.com/cruvie/kk_etcd_go/internal/config"
 	"github.com/cruvie/kk_etcd_go/internal/etcd_ai"
@@ -33,11 +35,13 @@ import (
 func main() {
 	config.InitConfig()
 
+	stage := kk_stage.NewStage(context.Background(), consts.ServerName, config.Config.DebugMode)
+
 	{
 		//init log
 		configLog := kk_log.ConfigLog{
 			DebugMode:  config.Config.DebugMode,
-			Lumberjack: kk_log.DefaultLogConfig(consts.ServerName),
+			Lumberjack: kk_log.DefaultLogConfig(time.Now(), consts.ServerName),
 		}
 		configLog.Init()
 		defer configLog.Close()
@@ -49,7 +53,7 @@ func main() {
 			EnableBlock: true,
 			EnableMutex: true,
 		}
-		pprof.Init()
+		pprof.Init(stage)
 	}
 
 	internal_client.InitEtcd()
@@ -71,7 +75,7 @@ func main() {
 
 	server_hub.InitServiceHub()
 
-	kkServer := kk_server.NewKKServer(5*time.Second, consts.ServerName)
+	kkServer := kk_server.NewKKServer(5*time.Second, stage)
 	kkServer.Add("http_etcd", 0, api_etcd.ApiEtcd(internal_client.GlobalStage))
 	kkServer.Add("etcd_maintain", 0, server_hub.NewEtcdMaintain())
 	kkServer.Add("etcd_ai", 0, etcd_ai.EtcdAIServer())

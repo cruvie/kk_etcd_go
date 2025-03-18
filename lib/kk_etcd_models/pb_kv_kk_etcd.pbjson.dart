@@ -1,6 +1,6 @@
 //
 //  Generated code. Do not modify.
-//  source: pb_kv_kk_etcd.proto
+//  source: kk_etcd_models/pb_kv_kk_etcd.proto
 //
 // @dart = 2.12
 
@@ -30,7 +30,14 @@ final $typed_data.Uint8List pBKVDescriptor = $convert.base64Decode(
 const PBListKV$json = {
   '1': 'PBListKV',
   '2': [
-    {'1': 'ListKV', '3': 1, '4': 3, '5': 11, '6': '.kk_etcd_models.PBKV', '10': 'ListKV'},
+    {
+      '1': 'ListKV',
+      '3': 1,
+      '4': 3,
+      '5': 11,
+      '6': '.kk_etcd_models.PBKV',
+      '10': 'ListKV'
+    },
   ],
 };
 
@@ -38,4 +45,3 @@ const PBListKV$json = {
 final $typed_data.Uint8List pBListKVDescriptor = $convert.base64Decode(
     'CghQQkxpc3RLVhIsCgZMaXN0S1YYASADKAsyFC5ra19ldGNkX21vZGVscy5QQktWUgZMaXN0S1'
     'Y=');
-

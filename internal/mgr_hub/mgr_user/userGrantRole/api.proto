@@ -1,0 +1,14 @@
+syntax = "proto3";
+package userGrantRole;
+option go_package = "/userGrantRole";
+
+//grant role
+message UserGrantRole {
+  message Input {
+    string  UserName = 2;
+    repeated  string  Roles = 4;
+  }
+
+  message Output {
+  }
+}

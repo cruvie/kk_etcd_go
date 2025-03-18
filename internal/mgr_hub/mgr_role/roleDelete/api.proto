@@ -1,0 +1,13 @@
+syntax = "proto3";
+package roleDelete;
+option go_package = "/roleDelete";
+
+//delete role
+message RoleDelete {
+  message Input {
+    string  Name = 1;
+  }
+
+  message Output {
+  }
+}

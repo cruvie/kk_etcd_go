@@ -1,8 +1,18 @@
 basePath: /
 definitions:
-  kk_etcd_models.AllKVsBackupParam:
+  internal_mgr_hub_mgr_ai_query.Query_Input:
+    properties:
+      Question:
+        type: string
     type: object
-  kk_etcd_models.AllKVsBackupResponse:
+  internal_mgr_hub_mgr_ai_query.Query_Output:
+    properties:
+      Answer:
+        type: string
+    type: object
+  internal_mgr_hub_mgr_backup_allKVsBackup.AllKVsBackup_Input:
+    type: object
+  internal_mgr_hub_mgr_backup_allKVsBackup.AllKVsBackup_Output:
     properties:
       File:
         items:
@@ -11,87 +21,180 @@ definitions:
       Name:
         type: string
     type: object
-  kk_etcd_models.AllKVsRestoreParam:
+  internal_mgr_hub_mgr_backup_allKVsRestore.AllKVsRestore_Input:
     properties:
       File:
         items:
           type: integer
         type: array
     type: object
-  kk_etcd_models.AllKVsRestoreResponse:
+  internal_mgr_hub_mgr_backup_allKVsRestore.AllKVsRestore_Output:
     type: object
-  kk_etcd_models.DeregisterServerParam:
+  internal_mgr_hub_mgr_backup_snapshot.Snapshot_Input:
+    type: object
+  internal_mgr_hub_mgr_backup_snapshot.Snapshot_Output:
     properties:
-      Server:
-        $ref: '#/definitions/kk_etcd_models.PBServer'
-    type: object
-  kk_etcd_models.DeregisterServerResponse:
-    type: object
-  kk_etcd_models.GetUserParam:
-    properties:
-      UserName:
+      File:
+        items:
+          type: integer
+        type: array
+      Name:
         type: string
     type: object
-  kk_etcd_models.GetUserResponse:
+  internal_mgr_hub_mgr_backup_snapshotInfo.SnapshotInfo_Input:
     properties:
-      User:
-        $ref: '#/definitions/kk_etcd_models.PBUser'
+      File:
+        items:
+          type: integer
+        type: array
     type: object
-  kk_etcd_models.KVDelParam:
+  internal_mgr_hub_mgr_backup_snapshotInfo.SnapshotInfo_Output:
+    properties:
+      Info:
+        type: string
+    type: object
+  internal_mgr_hub_mgr_backup_snapshotRestore.SnapshotRestore_Input:
+    type: object
+  internal_mgr_hub_mgr_backup_snapshotRestore.SnapshotRestore_Output:
+    properties:
+      CmdStr:
+        type: string
+    type: object
+  internal_mgr_hub_mgr_kv_kVDel.KVDel_Input:
     properties:
       Key:
         type: string
     type: object
-  kk_etcd_models.KVDelResponse:
+  internal_mgr_hub_mgr_kv_kVDel.KVDel_Output:
     type: object
-  kk_etcd_models.KVGetParam:
+  internal_mgr_hub_mgr_kv_kVGet.KVGet_Input:
     properties:
       Key:
         type: string
     type: object
-  kk_etcd_models.KVGetResponse:
+  internal_mgr_hub_mgr_kv_kVGet.KVGet_Output:
     properties:
       KV:
         $ref: '#/definitions/kk_etcd_models.PBKV'
     type: object
-  kk_etcd_models.KVListParam:
+  internal_mgr_hub_mgr_kv_kVList.KVList_Input:
     properties:
       Prefix:
         type: string
     type: object
-  kk_etcd_models.KVListResponse:
+  internal_mgr_hub_mgr_kv_kVList.KVList_Output:
     properties:
       KVList:
         $ref: '#/definitions/kk_etcd_models.PBListKV'
     type: object
-  kk_etcd_models.KVPutParam:
+  internal_mgr_hub_mgr_kv_kVPut.KVPut_Input:
     properties:
       Key:
         type: string
       Value:
         type: string
     type: object
-  kk_etcd_models.KVPutResponse:
+  internal_mgr_hub_mgr_kv_kVPut.KVPut_Output:
     type: object
-  kk_etcd_models.LoginParam:
+  internal_mgr_hub_mgr_role_roleAdd.RoleAdd_Input:
+    properties:
+      Name:
+        type: string
+    type: object
+  internal_mgr_hub_mgr_role_roleAdd.RoleAdd_Output:
+    type: object
+  internal_mgr_hub_mgr_role_roleDelete.RoleDelete_Input:
+    properties:
+      Name:
+        type: string
+    type: object
+  internal_mgr_hub_mgr_role_roleDelete.RoleDelete_Output:
+    type: object
+  internal_mgr_hub_mgr_role_roleGet.RoleGet_Input:
+    properties:
+      Name:
+        type: string
+    type: object
+  internal_mgr_hub_mgr_role_roleGet.RoleGet_Output:
+    properties:
+      Role:
+        $ref: '#/definitions/kk_etcd_models.PBRole'
+    type: object
+  internal_mgr_hub_mgr_role_roleGrantPermission.RoleGrantPermission_Input:
+    properties:
+      Name:
+        type: string
+      Perm:
+        $ref: '#/definitions/kk_etcd_models.PBPermission'
+    type: object
+  internal_mgr_hub_mgr_role_roleGrantPermission.RoleGrantPermission_Output:
+    type: object
+  internal_mgr_hub_mgr_role_roleList.RoleList_Input:
+    type: object
+  internal_mgr_hub_mgr_role_roleList.RoleList_Output:
+    properties:
+      ListRole:
+        $ref: '#/definitions/kk_etcd_models.PBListRole'
+    type: object
+  internal_mgr_hub_mgr_role_roleRevokePermission.RoleRevokePermission_Input:
+    properties:
+      Key:
+        type: string
+      Name:
+        type: string
+      RangeEnd:
+        type: string
+    type: object
+  internal_mgr_hub_mgr_role_roleRevokePermission.RoleRevokePermission_Output:
+    type: object
+  internal_mgr_hub_mgr_server_deregisterServer.DeregisterServer_Input:
+    properties:
+      Server:
+        $ref: '#/definitions/kk_etcd_models.PBServer'
+    type: object
+  internal_mgr_hub_mgr_server_deregisterServer.DeregisterServer_Output:
+    type: object
+  internal_mgr_hub_mgr_server_serverList.ServerList_Input:
+    properties:
+      ServerName:
+        type: string
+      ServerType:
+        type: string
+    type: object
+  internal_mgr_hub_mgr_server_serverList.ServerList_Output:
+    properties:
+      ServerList:
+        $ref: '#/definitions/kk_etcd_models.PBListServer'
+    type: object
+  internal_mgr_hub_mgr_user_getUser.GetUser_Input:
+    properties:
+      UserName:
+        type: string
+    type: object
+  internal_mgr_hub_mgr_user_getUser.GetUser_Output:
+    properties:
+      User:
+        $ref: '#/definitions/kk_etcd_models.PBUser'
+    type: object
+  internal_mgr_hub_mgr_user_login.Login_Input:
     properties:
       Password:
         type: string
       UserName:
         type: string
     type: object
-  kk_etcd_models.LoginResponse:
+  internal_mgr_hub_mgr_user_login.Login_Output:
     properties:
       Token:
         type: string
     type: object
-  kk_etcd_models.LogoutParam:
+  internal_mgr_hub_mgr_user_logout.Logout_Input:
     type: object
-  kk_etcd_models.LogoutResponse:
+  internal_mgr_hub_mgr_user_logout.Logout_Output:
     type: object
-  kk_etcd_models.MyInfoParam:
+  internal_mgr_hub_mgr_user_myInfo.MyInfo_Input:
     type: object
-  kk_etcd_models.MyInfoResponse:
+  internal_mgr_hub_mgr_user_myInfo.MyInfo_Output:
     properties:
       Roles:
         items:
@@ -99,6 +202,44 @@ definitions:
         type: array
       UserName:
         type: string
+    type: object
+  internal_mgr_hub_mgr_user_userAdd.UserAdd_Input:
+    properties:
+      Password:
+        type: string
+      Roles:
+        items:
+          type: string
+        type: array
+      UserName:
+        type: string
+    type: object
+  internal_mgr_hub_mgr_user_userAdd.UserAdd_Output:
+    type: object
+  internal_mgr_hub_mgr_user_userDelete.UserDelete_Input:
+    properties:
+      UserName:
+        type: string
+    type: object
+  internal_mgr_hub_mgr_user_userDelete.UserDelete_Output:
+    type: object
+  internal_mgr_hub_mgr_user_userGrantRole.UserGrantRole_Input:
+    properties:
+      Roles:
+        items:
+          type: string
+        type: array
+      UserName:
+        type: string
+    type: object
+  internal_mgr_hub_mgr_user_userGrantRole.UserGrantRole_Output:
+    type: object
+  internal_mgr_hub_mgr_user_userList.UserList_Input:
+    type: object
+  internal_mgr_hub_mgr_user_userList.UserList_Output:
+    properties:
+      ListUser:
+        $ref: '#/definitions/kk_etcd_models.PBListUser'
     type: object
   kk_etcd_models.PBKV:
     properties:
@@ -195,147 +336,6 @@ definitions:
       UserName:
         type: string
     type: object
-  kk_etcd_models.QueryParam:
-    properties:
-      Question:
-        type: string
-    type: object
-  kk_etcd_models.QueryResponse:
-    properties:
-      Answer:
-        type: string
-    type: object
-  kk_etcd_models.RoleAddParam:
-    properties:
-      Name:
-        type: string
-    type: object
-  kk_etcd_models.RoleAddResponse:
-    type: object
-  kk_etcd_models.RoleDeleteParam:
-    properties:
-      Name:
-        type: string
-    type: object
-  kk_etcd_models.RoleDeleteResponse:
-    type: object
-  kk_etcd_models.RoleGetParam:
-    properties:
-      Name:
-        type: string
-    type: object
-  kk_etcd_models.RoleGetResponse:
-    properties:
-      Role:
-        $ref: '#/definitions/kk_etcd_models.PBRole'
-    type: object
-  kk_etcd_models.RoleGrantPermissionParam:
-    properties:
-      Name:
-        type: string
-      Perm:
-        $ref: '#/definitions/kk_etcd_models.PBPermission'
-    type: object
-  kk_etcd_models.RoleGrantPermissionResponse:
-    type: object
-  kk_etcd_models.RoleListParam:
-    type: object
-  kk_etcd_models.RoleListResponse:
-    properties:
-      ListRole:
-        $ref: '#/definitions/kk_etcd_models.PBListRole'
-    type: object
-  kk_etcd_models.RoleRevokePermissionParam:
-    properties:
-      Key:
-        type: string
-      Name:
-        type: string
-      RangeEnd:
-        type: string
-    type: object
-  kk_etcd_models.RoleRevokePermissionResponse:
-    type: object
-  kk_etcd_models.ServerListParam:
-    properties:
-      ServerName:
-        type: string
-      ServerType:
-        type: string
-    type: object
-  kk_etcd_models.ServerListResponse:
-    properties:
-      ServerList:
-        $ref: '#/definitions/kk_etcd_models.PBListServer'
-    type: object
-  kk_etcd_models.SnapshotInfoParam:
-    properties:
-      File:
-        items:
-          type: integer
-        type: array
-    type: object
-  kk_etcd_models.SnapshotInfoResponse:
-    properties:
-      Info:
-        type: string
-    type: object
-  kk_etcd_models.SnapshotParam:
-    type: object
-  kk_etcd_models.SnapshotResponse:
-    properties:
-      File:
-        items:
-          type: integer
-        type: array
-      Name:
-        type: string
-    type: object
-  kk_etcd_models.SnapshotRestoreParam:
-    type: object
-  kk_etcd_models.SnapshotRestoreResponse:
-    properties:
-      CmdStr:
-        type: string
-    type: object
-  kk_etcd_models.UserAddParam:
-    properties:
-      Password:
-        type: string
-      Roles:
-        items:
-          type: string
-        type: array
-      UserName:
-        type: string
-    type: object
-  kk_etcd_models.UserAddResponse:
-    type: object
-  kk_etcd_models.UserDeleteParam:
-    properties:
-      UserName:
-        type: string
-    type: object
-  kk_etcd_models.UserDeleteResponse:
-    type: object
-  kk_etcd_models.UserGrantRoleParam:
-    properties:
-      Roles:
-        items:
-          type: string
-        type: array
-      UserName:
-        type: string
-    type: object
-  kk_etcd_models.UserGrantRoleResponse:
-    type: object
-  kk_etcd_models.UserListParam:
-    type: object
-  kk_etcd_models.UserListResponse:
-    properties:
-      ListUser:
-        $ref: '#/definitions/kk_etcd_models.PBListUser'
-    type: object
   timestamppb.Timestamp:
     properties:
       nanos:
@@ -369,600 +369,625 @@ paths:
   /ai/query:
     post:
       consumes:
-        - application/x-protobuf
         - application/json
+        - application/x-protobuf
       description: query ai
       operationId: Query
       parameters:
-        - description: QueryParam
+        - description: Query_Input
           in: body
-          name: QueryParam
+          name: Query_Input
           required: true
           schema:
-            $ref: '#/definitions/kk_etcd_models.QueryParam'
+            $ref: '#/definitions/internal_mgr_hub_mgr_ai_query.Query_Input'
       produces:
-        - application/x-protobuf
         - application/json
+        - application/x-protobuf
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/kk_etcd_models.QueryResponse'
+            $ref: '#/definitions/internal_mgr_hub_mgr_ai_query.Query_Output'
       tags:
         - ai
   /backup/allKVsBackup:
     post:
       consumes:
-        - application/x-protobuf
         - application/json
+        - application/x-protobuf
       description: all kvs backup
+      operationId: AllKVsBackup
       parameters:
-      - description: AllKVsBackupParam
+        - description: AllKVsBackup_Input
         in: body
-        name: AllKVsBackupParam
+          name: AllKVsBackup_Input
         required: true
         schema:
-          $ref: '#/definitions/kk_etcd_models.AllKVsBackupParam'
+          $ref: '#/definitions/internal_mgr_hub_mgr_backup_allKVsBackup.AllKVsBackup_Input'
       produces:
-        - application/x-protobuf
         - application/json
+        - application/x-protobuf
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/kk_etcd_models.AllKVsBackupResponse'
+            $ref: '#/definitions/internal_mgr_hub_mgr_backup_allKVsBackup.AllKVsBackup_Output'
       tags:
       - backup
   /backup/allKVsRestore:
     post:
       consumes:
-        - application/x-protobuf
         - application/json
+        - application/x-protobuf
       description: all kvs restore
+      operationId: AllKVsRestore
       parameters:
-      - description: AllKVsRestoreParam
+        - description: AllKVsRestore_Input
         in: body
-        name: AllKVsRestoreParam
+          name: AllKVsRestore_Input
         required: true
         schema:
-          $ref: '#/definitions/kk_etcd_models.AllKVsRestoreParam'
+          $ref: '#/definitions/internal_mgr_hub_mgr_backup_allKVsRestore.AllKVsRestore_Input'
       produces:
-        - application/x-protobuf
         - application/json
+        - application/x-protobuf
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/kk_etcd_models.AllKVsRestoreResponse'
+            $ref: '#/definitions/internal_mgr_hub_mgr_backup_allKVsRestore.AllKVsRestore_Output'
       tags:
       - backup
   /backup/snapshot:
     post:
       consumes:
-        - application/x-protobuf
         - application/json
+        - application/x-protobuf
       description: snapshot
+      operationId: Snapshot
       parameters:
-      - description: SnapshotParam
+        - description: Snapshot_Input
         in: body
-        name: SnapshotParam
+          name: Snapshot_Input
         required: true
         schema:
-          $ref: '#/definitions/kk_etcd_models.SnapshotParam'
+          $ref: '#/definitions/internal_mgr_hub_mgr_backup_snapshot.Snapshot_Input'
       produces:
-        - application/x-protobuf
         - application/json
+        - application/x-protobuf
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/kk_etcd_models.SnapshotResponse'
+            $ref: '#/definitions/internal_mgr_hub_mgr_backup_snapshot.Snapshot_Output'
       tags:
       - backup
   /backup/snapshotInfo:
     post:
       consumes:
-        - application/x-protobuf
         - application/json
+        - application/x-protobuf
       description: snapshot info
+      operationId: SnapshotInfo
       parameters:
-      - description: SnapshotInfoParam
+        - description: SnapshotInfo_Input
         in: body
-        name: SnapshotInfoParam
+          name: SnapshotInfo_Input
         required: true
         schema:
-          $ref: '#/definitions/kk_etcd_models.SnapshotInfoParam'
+          $ref: '#/definitions/internal_mgr_hub_mgr_backup_snapshotInfo.SnapshotInfo_Input'
       produces:
-        - application/x-protobuf
         - application/json
+        - application/x-protobuf
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/kk_etcd_models.SnapshotInfoResponse'
+            $ref: '#/definitions/internal_mgr_hub_mgr_backup_snapshotInfo.SnapshotInfo_Output'
       tags:
       - backup
   /backup/snapshotRestore:
     post:
       consumes:
-        - application/x-protobuf
         - application/json
+        - application/x-protobuf
       description: snapshot restore
+      operationId: SnapshotRestore
       parameters:
-      - description: SnapshotRestoreParam
+        - description: SnapshotRestore_Input
         in: body
-        name: SnapshotRestoreParam
+          name: SnapshotRestore_Input
         required: true
         schema:
-          $ref: '#/definitions/kk_etcd_models.SnapshotRestoreParam'
+          $ref: '#/definitions/internal_mgr_hub_mgr_backup_snapshotRestore.SnapshotRestore_Input'
       produces:
-        - application/x-protobuf
         - application/json
+        - application/x-protobuf
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/kk_etcd_models.SnapshotRestoreResponse'
+            $ref: '#/definitions/internal_mgr_hub_mgr_backup_snapshotRestore.SnapshotRestore_Output'
       tags:
       - backup
   /kv/kVDel:
     post:
       consumes:
-        - application/x-protobuf
         - application/json
+        - application/x-protobuf
       description: del kv
+      operationId: KVDel
       parameters:
-      - description: KVDelParam
+        - description: KVDel_Input
         in: body
-        name: KVDelParam
+          name: KVDel_Input
         required: true
         schema:
-          $ref: '#/definitions/kk_etcd_models.KVDelParam'
+          $ref: '#/definitions/internal_mgr_hub_mgr_kv_kVDel.KVDel_Input'
       produces:
-        - application/x-protobuf
         - application/json
+        - application/x-protobuf
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/kk_etcd_models.KVDelResponse'
+            $ref: '#/definitions/internal_mgr_hub_mgr_kv_kVDel.KVDel_Output'
       tags:
       - kv
   /kv/kVGet:
     post:
       consumes:
-        - application/x-protobuf
         - application/json
+        - application/x-protobuf
       description: get kv
+      operationId: KVGet
       parameters:
-      - description: KVGetParam
+        - description: KVGet_Input
         in: body
-        name: KVGetParam
+          name: KVGet_Input
         required: true
         schema:
-          $ref: '#/definitions/kk_etcd_models.KVGetParam'
+          $ref: '#/definitions/internal_mgr_hub_mgr_kv_kVGet.KVGet_Input'
       produces:
-        - application/x-protobuf
         - application/json
+        - application/x-protobuf
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/kk_etcd_models.KVGetResponse'
+            $ref: '#/definitions/internal_mgr_hub_mgr_kv_kVGet.KVGet_Output'
       tags:
       - kv
   /kv/kVList:
     post:
       consumes:
-        - application/x-protobuf
         - application/json
+        - application/x-protobuf
       description: list kv
+      operationId: KVList
       parameters:
-      - description: KVListParam
+        - description: KVList_Input
         in: body
-        name: KVListParam
+          name: KVList_Input
         required: true
         schema:
-          $ref: '#/definitions/kk_etcd_models.KVListParam'
+          $ref: '#/definitions/internal_mgr_hub_mgr_kv_kVList.KVList_Input'
       produces:
-        - application/x-protobuf
         - application/json
+        - application/x-protobuf
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/kk_etcd_models.KVListResponse'
+            $ref: '#/definitions/internal_mgr_hub_mgr_kv_kVList.KVList_Output'
       tags:
       - kv
   /kv/kVPut:
     post:
       consumes:
-        - application/x-protobuf
         - application/json
+        - application/x-protobuf
       description: put kv
+      operationId: KVPut
       parameters:
-      - description: KVPutParam
+        - description: KVPut_Input
         in: body
-        name: KVPutParam
+          name: KVPut_Input
         required: true
         schema:
-          $ref: '#/definitions/kk_etcd_models.KVPutParam'
+          $ref: '#/definitions/internal_mgr_hub_mgr_kv_kVPut.KVPut_Input'
       produces:
-        - application/x-protobuf
         - application/json
+        - application/x-protobuf
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/kk_etcd_models.KVPutResponse'
+            $ref: '#/definitions/internal_mgr_hub_mgr_kv_kVPut.KVPut_Output'
       tags:
       - kv
   /role/roleAdd:
     post:
       consumes:
-        - application/x-protobuf
         - application/json
+        - application/x-protobuf
       description: add role
+      operationId: RoleAdd
       parameters:
-      - description: RoleAddParam
+        - description: RoleAdd_Input
         in: body
-        name: RoleAddParam
+          name: RoleAdd_Input
         required: true
         schema:
-          $ref: '#/definitions/kk_etcd_models.RoleAddParam'
+          $ref: '#/definitions/internal_mgr_hub_mgr_role_roleAdd.RoleAdd_Input'
       produces:
-        - application/x-protobuf
         - application/json
+        - application/x-protobuf
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/kk_etcd_models.RoleAddResponse'
+            $ref: '#/definitions/internal_mgr_hub_mgr_role_roleAdd.RoleAdd_Output'
       tags:
       - role
   /role/roleDelete:
     post:
       consumes:
-        - application/x-protobuf
         - application/json
+        - application/x-protobuf
       description: delete role
+      operationId: RoleDelete
       parameters:
-      - description: RoleDeleteParam
+        - description: RoleDelete_Input
         in: body
-        name: RoleDeleteParam
+          name: RoleDelete_Input
         required: true
         schema:
-          $ref: '#/definitions/kk_etcd_models.RoleDeleteParam'
+          $ref: '#/definitions/internal_mgr_hub_mgr_role_roleDelete.RoleDelete_Input'
       produces:
-        - application/x-protobuf
         - application/json
+        - application/x-protobuf
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/kk_etcd_models.RoleDeleteResponse'
+            $ref: '#/definitions/internal_mgr_hub_mgr_role_roleDelete.RoleDelete_Output'
       tags:
       - role
   /role/roleGet:
     post:
       consumes:
-        - application/x-protobuf
         - application/json
+        - application/x-protobuf
       description: get role
+      operationId: RoleGet
       parameters:
-      - description: RoleGetParam
+        - description: RoleGet_Input
         in: body
-        name: RoleGetParam
+          name: RoleGet_Input
         required: true
         schema:
-          $ref: '#/definitions/kk_etcd_models.RoleGetParam'
+          $ref: '#/definitions/internal_mgr_hub_mgr_role_roleGet.RoleGet_Input'
       produces:
-        - application/x-protobuf
         - application/json
+        - application/x-protobuf
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/kk_etcd_models.RoleGetResponse'
+            $ref: '#/definitions/internal_mgr_hub_mgr_role_roleGet.RoleGet_Output'
       tags:
       - role
   /role/roleGrantPermission:
     post:
       consumes:
-        - application/x-protobuf
         - application/json
+        - application/x-protobuf
       description: grant permission
+      operationId: RoleGrantPermission
       parameters:
-      - description: RoleGrantPermissionParam
+        - description: RoleGrantPermission_Input
         in: body
-        name: RoleGrantPermissionParam
+          name: RoleGrantPermission_Input
         required: true
         schema:
-          $ref: '#/definitions/kk_etcd_models.RoleGrantPermissionParam'
+          $ref: '#/definitions/internal_mgr_hub_mgr_role_roleGrantPermission.RoleGrantPermission_Input'
       produces:
-        - application/x-protobuf
         - application/json
+        - application/x-protobuf
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/kk_etcd_models.RoleGrantPermissionResponse'
+            $ref: '#/definitions/internal_mgr_hub_mgr_role_roleGrantPermission.RoleGrantPermission_Output'
       tags:
       - role
   /role/roleList:
     post:
       consumes:
-        - application/x-protobuf
         - application/json
+        - application/x-protobuf
       description: list role
+      operationId: RoleList
       parameters:
-      - description: RoleListParam
+        - description: RoleList_Input
         in: body
-        name: RoleListParam
+          name: RoleList_Input
         required: true
         schema:
-          $ref: '#/definitions/kk_etcd_models.RoleListParam'
+          $ref: '#/definitions/internal_mgr_hub_mgr_role_roleList.RoleList_Input'
       produces:
-        - application/x-protobuf
         - application/json
+        - application/x-protobuf
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/kk_etcd_models.RoleListResponse'
+            $ref: '#/definitions/internal_mgr_hub_mgr_role_roleList.RoleList_Output'
       tags:
       - role
   /role/roleRevokePermission:
     post:
       consumes:
-        - application/x-protobuf
         - application/json
+        - application/x-protobuf
       description: revoke permission
+      operationId: RoleRevokePermission
       parameters:
-      - description: RoleRevokePermissionParam
+        - description: RoleRevokePermission_Input
         in: body
-        name: RoleRevokePermissionParam
+          name: RoleRevokePermission_Input
         required: true
         schema:
-          $ref: '#/definitions/kk_etcd_models.RoleRevokePermissionParam'
+          $ref: '#/definitions/internal_mgr_hub_mgr_role_roleRevokePermission.RoleRevokePermission_Input'
       produces:
-        - application/x-protobuf
         - application/json
+        - application/x-protobuf
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/kk_etcd_models.RoleRevokePermissionResponse'
+            $ref: '#/definitions/internal_mgr_hub_mgr_role_roleRevokePermission.RoleRevokePermission_Output'
       tags:
       - role
   /server/deregisterServer:
     post:
       consumes:
-        - application/x-protobuf
         - application/json
+        - application/x-protobuf
       description: deregister server
+      operationId: DeregisterServer
       parameters:
-      - description: DeregisterServerParam
+        - description: DeregisterServer_Input
         in: body
-        name: DeregisterServerParam
+          name: DeregisterServer_Input
         required: true
         schema:
-          $ref: '#/definitions/kk_etcd_models.DeregisterServerParam'
+          $ref: '#/definitions/internal_mgr_hub_mgr_server_deregisterServer.DeregisterServer_Input'
       produces:
-        - application/x-protobuf
         - application/json
+        - application/x-protobuf
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/kk_etcd_models.DeregisterServerResponse'
+            $ref: '#/definitions/internal_mgr_hub_mgr_server_deregisterServer.DeregisterServer_Output'
       tags:
       - server
   /server/serverList:
     post:
       consumes:
-        - application/x-protobuf
         - application/json
+        - application/x-protobuf
       description: list server
+      operationId: ServerList
       parameters:
-      - description: ServerListParam
+        - description: ServerList_Input
         in: body
-        name: ServerListParam
+          name: ServerList_Input
         required: true
         schema:
-          $ref: '#/definitions/kk_etcd_models.ServerListParam'
+          $ref: '#/definitions/internal_mgr_hub_mgr_server_serverList.ServerList_Input'
       produces:
-        - application/x-protobuf
         - application/json
+        - application/x-protobuf
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/kk_etcd_models.ServerListResponse'
+            $ref: '#/definitions/internal_mgr_hub_mgr_server_serverList.ServerList_Output'
       tags:
       - server
   /user/getUser:
     post:
       consumes:
-        - application/x-protobuf
         - application/json
+        - application/x-protobuf
       description: get user
+      operationId: GetUser
       parameters:
-      - description: GetUserParam
+        - description: GetUser_Input
         in: body
-        name: GetUserParam
+          name: GetUser_Input
         required: true
         schema:
-          $ref: '#/definitions/kk_etcd_models.GetUserParam'
+          $ref: '#/definitions/internal_mgr_hub_mgr_user_getUser.GetUser_Input'
       produces:
-        - application/x-protobuf
         - application/json
+        - application/x-protobuf
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/kk_etcd_models.GetUserResponse'
+            $ref: '#/definitions/internal_mgr_hub_mgr_user_getUser.GetUser_Output'
       tags:
       - user
   /user/login:
     post:
       consumes:
-        - application/x-protobuf
         - application/json
+        - application/x-protobuf
       description: login
+      operationId: Login
       parameters:
-      - description: LoginParam
+        - description: Login_Input
         in: body
-        name: LoginParam
+          name: Login_Input
         required: true
         schema:
-          $ref: '#/definitions/kk_etcd_models.LoginParam'
+          $ref: '#/definitions/internal_mgr_hub_mgr_user_login.Login_Input'
       produces:
-        - application/x-protobuf
         - application/json
+        - application/x-protobuf
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/kk_etcd_models.LoginResponse'
+            $ref: '#/definitions/internal_mgr_hub_mgr_user_login.Login_Output'
       tags:
       - user
   /user/logout:
     post:
       consumes:
-        - application/x-protobuf
         - application/json
+        - application/x-protobuf
       description: logout
+      operationId: Logout
       parameters:
-      - description: LogoutParam
+        - description: Logout_Input
         in: body
-        name: LogoutParam
+          name: Logout_Input
         required: true
         schema:
-          $ref: '#/definitions/kk_etcd_models.LogoutParam'
+          $ref: '#/definitions/internal_mgr_hub_mgr_user_logout.Logout_Input'
       produces:
-        - application/x-protobuf
         - application/json
+        - application/x-protobuf
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/kk_etcd_models.LogoutResponse'
+            $ref: '#/definitions/internal_mgr_hub_mgr_user_logout.Logout_Output'
       tags:
       - user
   /user/myInfo:
     post:
       consumes:
-        - application/x-protobuf
         - application/json
+        - application/x-protobuf
       description: get my info
+      operationId: MyInfo
       parameters:
-      - description: MyInfoParam
+        - description: MyInfo_Input
         in: body
-        name: MyInfoParam
+          name: MyInfo_Input
         required: true
         schema:
-          $ref: '#/definitions/kk_etcd_models.MyInfoParam'
+          $ref: '#/definitions/internal_mgr_hub_mgr_user_myInfo.MyInfo_Input'
       produces:
-        - application/x-protobuf
         - application/json
+        - application/x-protobuf
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/kk_etcd_models.MyInfoResponse'
+            $ref: '#/definitions/internal_mgr_hub_mgr_user_myInfo.MyInfo_Output'
       tags:
       - user
   /user/userAdd:
     post:
       consumes:
-        - application/x-protobuf
         - application/json
+        - application/x-protobuf
       description: add user
+      operationId: UserAdd
       parameters:
-      - description: UserAddParam
+        - description: UserAdd_Input
         in: body
-        name: UserAddParam
+          name: UserAdd_Input
         required: true
         schema:
-          $ref: '#/definitions/kk_etcd_models.UserAddParam'
+          $ref: '#/definitions/internal_mgr_hub_mgr_user_userAdd.UserAdd_Input'
       produces:
-        - application/x-protobuf
         - application/json
+        - application/x-protobuf
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/kk_etcd_models.UserAddResponse'
+            $ref: '#/definitions/internal_mgr_hub_mgr_user_userAdd.UserAdd_Output'
       tags:
       - user
   /user/userDelete:
     post:
       consumes:
-        - application/x-protobuf
         - application/json
+        - application/x-protobuf
       description: delete user
+      operationId: UserDelete
       parameters:
-      - description: UserDeleteParam
+        - description: UserDelete_Input
         in: body
-        name: UserDeleteParam
+          name: UserDelete_Input
         required: true
         schema:
-          $ref: '#/definitions/kk_etcd_models.UserDeleteParam'
+          $ref: '#/definitions/internal_mgr_hub_mgr_user_userDelete.UserDelete_Input'
       produces:
-        - application/x-protobuf
         - application/json
+        - application/x-protobuf
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/kk_etcd_models.UserDeleteResponse'
+            $ref: '#/definitions/internal_mgr_hub_mgr_user_userDelete.UserDelete_Output'
       tags:
       - user
   /user/userGrantRole:
     post:
       consumes:
-        - application/x-protobuf
         - application/json
+        - application/x-protobuf
       description: grant role
+      operationId: UserGrantRole
       parameters:
-      - description: UserGrantRoleParam
+        - description: UserGrantRole_Input
         in: body
-        name: UserGrantRoleParam
+          name: UserGrantRole_Input
         required: true
         schema:
-          $ref: '#/definitions/kk_etcd_models.UserGrantRoleParam'
+          $ref: '#/definitions/internal_mgr_hub_mgr_user_userGrantRole.UserGrantRole_Input'
       produces:
-        - application/x-protobuf
         - application/json
+        - application/x-protobuf
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/kk_etcd_models.UserGrantRoleResponse'
+            $ref: '#/definitions/internal_mgr_hub_mgr_user_userGrantRole.UserGrantRole_Output'
       tags:
       - user
   /user/userList:
     post:
       consumes:
-        - application/x-protobuf
         - application/json
+        - application/x-protobuf
       description: list user
+      operationId: UserList
       parameters:
-      - description: UserListParam
+        - description: UserList_Input
         in: body
-        name: UserListParam
+          name: UserList_Input
         required: true
         schema:
-          $ref: '#/definitions/kk_etcd_models.UserListParam'
+          $ref: '#/definitions/internal_mgr_hub_mgr_user_userList.UserList_Input'
       produces:
-        - application/x-protobuf
         - application/json
+        - application/x-protobuf
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/kk_etcd_models.UserListResponse'
+            $ref: '#/definitions/internal_mgr_hub_mgr_user_userList.UserList_Output'
       tags:
       - user
 swagger: "2.0"

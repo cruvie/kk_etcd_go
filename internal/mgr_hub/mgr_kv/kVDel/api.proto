@@ -1,0 +1,13 @@
+syntax = "proto3";
+package kVDel;
+option go_package = "/kVDel";
+
+//del kv
+message KVDel {
+  message Input {
+    string  Key = 1;
+  }
+
+  message Output {
+  }
+}

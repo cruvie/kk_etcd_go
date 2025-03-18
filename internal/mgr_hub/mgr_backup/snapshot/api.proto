@@ -1,0 +1,15 @@
+syntax = "proto3";
+package snapshot;
+option go_package = "/snapshot";
+
+//snapshot
+message Snapshot {
+  message Input {
+
+  }
+
+  message Output {
+    string  Name = 1;
+    bytes File = 2;
+  }
+}

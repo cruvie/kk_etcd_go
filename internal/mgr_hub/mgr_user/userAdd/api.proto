@@ -1,0 +1,15 @@
+syntax = "proto3";
+package userAdd;
+option go_package = "/userAdd";
+
+//add user
+message UserAdd {
+  message Input {
+    string  UserName = 2;
+    string  Password = 3;
+    repeated  string  Roles = 4;
+  }
+
+  message Output {
+  }
+}

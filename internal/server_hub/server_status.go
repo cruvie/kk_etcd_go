@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"gitee.com/cruvie/kk_go_kit/kk_log"
 	"gitee.com/cruvie/kk_go_kit/kk_time"
-	"github.com/cruvie/kk_etcd_go/internal/handler/service"
+	"github.com/cruvie/kk_etcd_go/internal/mgr_hub/mgr_kv/util_kv"
 	"github.com/cruvie/kk_etcd_go/internal/utils/internal_client"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	"go.etcd.io/etcd/client/v3/naming/endpoints"
@@ -41,7 +41,7 @@ func (x *serverStatus) kVKey() string {
 	return kk_etcd_models.InternalServerStatus + x.EndpointKey()
 }
 func (x *serverStatus) putExistUpdateJson() error {
-	return service.SerKV{}.PutExistUpdateJson(internal_client.GlobalStage, x.kVKey(), x)
+	return util_kv.PutExistUpdateJson(internal_client.GlobalStage, x.kVKey(), x)
 }
 
 func (x *serverStatus) FromJson(data string) (err error) {
@@ -50,7 +50,7 @@ func (x *serverStatus) FromJson(data string) (err error) {
 }
 
 func (x *serverStatus) kVDelWithKey(key string) error {
-	return service.SerKV{}.KVDel(internal_client.GlobalStage, key)
+	return util_kv.DelKV(internal_client.GlobalStage, key)
 }
 
 // fromEndpoint endpoint to ServerStatus

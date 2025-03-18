@@ -5,7 +5,8 @@ import (
 	"gitee.com/cruvie/kk_go_kit/kk_log"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/internal/config"
-	"github.com/cruvie/kk_etcd_go/internal/handler/service"
+	"github.com/cruvie/kk_etcd_go/internal/mgr_hub/mgr_role/util_role"
+	"github.com/cruvie/kk_etcd_go/internal/mgr_hub/mgr_user/util_user"
 	"github.com/cruvie/kk_etcd_go/internal/utils/consts"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_error"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
@@ -55,18 +56,14 @@ func (x *serToolEtcd) initRootRolePermission(stage *kk_stage.Stage) {
 		Roles:    []string{consts.RoleRoot},
 	}
 	//add root user
-	var serUser service.SerUser
-	err := serUser.UserAdd(stage, user)
+	err := util_user.AddUser(stage, user)
 	if err != nil {
 		slog.Error("add root user failed", newLog.Error(err).Args()...)
 		panic(err)
 	}
 
 	//add root role
-	var serRole service.SerRole
-	err = serRole.RoleAdd(stage, &kk_etcd_models.RoleAddParam{
-		Name: consts.RoleRoot,
-	})
+	err = util_role.AddRole(stage, consts.RoleRoot)
 	if err != nil {
 		slog.Error("add etcd role failed", newLog.Error(err).Args()...)
 		panic(err)
@@ -88,7 +85,7 @@ func (x *serToolEtcd) initRootRolePermission(stage *kk_stage.Stage) {
 	//}
 
 	//grant root role to root user
-	err = serUser.UserGrantRole(stage, user)
+	err = util_user.UserGrantRole(stage, user)
 	if err != nil {
 		slog.Error("grant root role to root user failed", newLog.Error(err).Args()...)
 		panic(err)

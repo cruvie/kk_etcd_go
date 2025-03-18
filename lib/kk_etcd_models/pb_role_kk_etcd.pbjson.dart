@@ -1,6 +1,6 @@
 //
 //  Generated code. Do not modify.
-//  source: pb_role_kk_etcd.proto
+//  source: kk_etcd_models/pb_role_kk_etcd.proto
 //
 // @dart = 2.12
 
@@ -18,7 +18,14 @@ const PBRole$json = {
   '1': 'PBRole',
   '2': [
     {'1': 'Name', '3': 1, '4': 1, '5': 9, '10': 'Name'},
-    {'1': 'Perms', '3': 2, '4': 3, '5': 11, '6': '.kk_etcd_models.PBPermission', '10': 'Perms'},
+    {
+      '1': 'Perms',
+      '3': 2,
+      '4': 3,
+      '5': 11,
+      '6': '.kk_etcd_models.PBPermission',
+      '10': 'Perms'
+    },
   ],
 };
 
@@ -46,7 +53,14 @@ final $typed_data.Uint8List pBPermissionDescriptor = $convert.base64Decode(
 const PBListRole$json = {
   '1': 'PBListRole',
   '2': [
-    {'1': 'List', '3': 1, '4': 3, '5': 11, '6': '.kk_etcd_models.PBRole', '10': 'List'},
+    {
+      '1': 'List',
+      '3': 1,
+      '4': 3,
+      '5': 11,
+      '6': '.kk_etcd_models.PBRole',
+      '10': 'List'
+    },
   ],
 };
 
@@ -54,4 +68,3 @@ const PBListRole$json = {
 final $typed_data.Uint8List pBListRoleDescriptor = $convert.base64Decode(
     'CgpQQkxpc3RSb2xlEioKBExpc3QYASADKAsyFi5ra19ldGNkX21vZGVscy5QQlJvbGVSBExpc3'
     'Q=');
-

@@ -1,6 +1,6 @@
 name: kk-etcd-local
 services:
-# https://etcd.io/docs/v3.5/op-guide/container/
+  # https://etcd.io/docs/v3.5/op-guide/container/
   etcd-local:
     image: quay.io/coreos/etcd:v3.5.17-amd64
     container_name: etcd-local

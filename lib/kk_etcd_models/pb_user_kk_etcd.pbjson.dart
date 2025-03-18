@@ -1,6 +1,6 @@
 //
 //  Generated code. Do not modify.
-//  source: pb_user_kk_etcd.proto
+//  source: kk_etcd_models/pb_user_kk_etcd.proto
 //
 // @dart = 2.12
 
@@ -32,7 +32,14 @@ final $typed_data.Uint8List pBUserDescriptor = $convert.base64Decode(
 const PBListUser$json = {
   '1': 'PBListUser',
   '2': [
-    {'1': 'ListUser', '3': 1, '4': 3, '5': 11, '6': '.kk_etcd_models.PBUser', '10': 'ListUser'},
+    {
+      '1': 'ListUser',
+      '3': 1,
+      '4': 3,
+      '5': 11,
+      '6': '.kk_etcd_models.PBUser',
+      '10': 'ListUser'
+    },
   ],
 };
 
@@ -40,4 +47,3 @@ const PBListUser$json = {
 final $typed_data.Uint8List pBListUserDescriptor = $convert.base64Decode(
     'CgpQQkxpc3RVc2VyEjIKCExpc3RVc2VyGAEgAygLMhYua2tfZXRjZF9tb2RlbHMuUEJVc2VyUg'
     'hMaXN0VXNlcg==');
-

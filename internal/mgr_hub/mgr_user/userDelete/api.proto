@@ -1,0 +1,13 @@
+syntax = "proto3";
+package userDelete;
+option go_package = "/userDelete";
+
+//delete user
+message UserDelete {
+  message Input {
+    string UserName = 1;
+  }
+
+  message Output {
+  }
+}

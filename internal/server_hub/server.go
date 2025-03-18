@@ -73,8 +73,7 @@ func (SerServer) ServerList(client *clientv3.Client, serverType kk_etcd_models.S
 	return &pBListServer, nil
 }
 
-func (SerServer) DeregisterServer(stage *kk_stage.Stage, param *kk_etcd_models.DeregisterServerParam) error {
-	serverType := kk_etcd_models.ServerType(param.GetServer().GetServerType())
+func (SerServer) DeregisterServer(stage *kk_stage.Stage, serverType kk_etcd_models.ServerType, endpointKey string) error {
 	endpointManager, err := serverType.NewEndpointManager(global_model.GetClient(stage))
 	if err != nil {
 		return err
@@ -82,7 +81,7 @@ func (SerServer) DeregisterServer(stage *kk_stage.Stage, param *kk_etcd_models.D
 
 	err = endpointManager.DeleteEndpoint(
 		context.Background(),
-		param.GetServer().GetEndpointKey(),
+		endpointKey,
 	)
 	if err != nil {
 		return err

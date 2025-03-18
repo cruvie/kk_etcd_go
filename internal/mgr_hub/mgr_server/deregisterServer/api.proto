@@ -1,0 +1,14 @@
+syntax = "proto3";
+package deregisterServer;
+option go_package = "/deregisterServer";
+import "kk_etcd_models/pb_server_kk_etcd.proto";
+
+//deregister server
+message DeregisterServer {
+  message Input {
+    kk_etcd_models.PBServer Server = 1;
+  }
+
+  message Output {
+  }
+}

@@ -1,0 +1,13 @@
+syntax = "proto3";
+package roleAdd;
+option go_package = "/roleAdd";
+
+//add role
+message RoleAdd {
+  message Input {
+    string  Name = 1;
+  }
+
+  message Output {
+  }
+}

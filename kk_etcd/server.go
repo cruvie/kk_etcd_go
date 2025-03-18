@@ -3,6 +3,7 @@ package kk_etcd
 import (
 	"context"
 	"gitee.com/cruvie/kk_go_kit/kk_log"
+	"github.com/cruvie/kk_etcd_go/internal/mgr_hub/mgr_server/serverList"
 	"github.com/cruvie/kk_etcd_go/internal/server_hub"
 	"github.com/cruvie/kk_etcd_go/internal/utils/internal_client"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
@@ -20,7 +21,7 @@ func RegisterService(registration *kk_etcd_models.ServerRegistration) error {
 // ServerList
 // serverName, should with prefix key_prefix.ServiceGrpc or key_prefix.ServiceHttp
 // only give prefix to get all service list
-func ServerList(param *kk_etcd_models.ServerListParam) (*kk_etcd_models.PBListServer, error) {
+func ServerList(param *serverList.ServerList_Input) (*kk_etcd_models.PBListServer, error) {
 	return serServerHub.ServerList(GetClient(), kk_etcd_models.ServerType(param.GetServerType()))
 }
 

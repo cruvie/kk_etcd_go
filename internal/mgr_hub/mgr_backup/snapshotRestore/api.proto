@@ -1,0 +1,14 @@
+syntax = "proto3";
+package snapshotRestore;
+option go_package = "/snapshotRestore";
+
+//snapshot restore
+message SnapshotRestore {
+  message Input {
+
+  }
+
+  message Output {
+    string  CmdStr = 1;
+  }
+}

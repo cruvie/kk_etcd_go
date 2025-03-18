@@ -1,0 +1,14 @@
+syntax = "proto3";
+package roleList;
+option go_package = "/roleList";
+import "kk_etcd_models/pb_role_kk_etcd.proto";
+//list role
+message RoleList {
+  message Input {
+
+  }
+
+  message Output {
+    kk_etcd_models.PBListRole ListRole = 1;
+  }
+}

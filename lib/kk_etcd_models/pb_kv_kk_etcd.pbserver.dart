@@ -1,6 +1,6 @@
 //
 //  Generated code. Do not modify.
-//  source: pb_kv_kk_etcd.proto
+//  source: kk_etcd_models/pb_kv_kk_etcd.proto
 //
 // @dart = 2.12
 
@@ -11,4 +11,3 @@
 // ignore_for_file: unnecessary_import, unnecessary_this, unused_import
 
 export 'pb_kv_kk_etcd.pb.dart';
-

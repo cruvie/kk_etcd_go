@@ -5,7 +5,7 @@ import (
 	"gitee.com/cruvie/kk_go_kit/kk_http/kk_global_stage"
 	"gitee.com/cruvie/kk_go_kit/kk_models"
 	"github.com/cruvie/kk_etcd_go/internal/config"
-	"github.com/cruvie/kk_etcd_go/internal/handler/service"
+	"github.com/cruvie/kk_etcd_go/internal/mgr_hub/mgr_user/util_user"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
 	"github.com/gin-gonic/gin"
 	clientv3 "go.etcd.io/etcd/client/v3"
@@ -35,8 +35,8 @@ func EtcdClient(c *gin.Context) {
 		return
 	}
 	global_model.SetClient(stage, client)
-	var serUser service.SerUser
-	user, err := serUser.GetUser(stage, global_model.GetRequestHeader(stage).UserName)
+
+	user, err := util_user.GetUser(stage, global_model.GetRequestHeader(stage).UserName)
 	if err != nil {
 		kk_http.WriteCustomResponse(stage, &kk_models.PBResponse{
 			Code: http.StatusUnauthorized,

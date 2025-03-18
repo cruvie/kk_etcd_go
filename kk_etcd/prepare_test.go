@@ -5,6 +5,7 @@ import (
 	"gitee.com/cruvie/kk_go_kit/kk_log"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/internal/utils/consts"
+	"time"
 )
 
 func initTestEnv() CloseFunc {
@@ -13,7 +14,7 @@ func initTestEnv() CloseFunc {
 	)
 	configLog := kk_log.ConfigLog{
 		DebugMode:  stage.DebugMode,
-		Lumberjack: kk_log.DefaultLogConfig(consts.ServerName),
+		Lumberjack: kk_log.DefaultLogConfig(time.Now(), consts.ServerName),
 	}
 	configLog.Init()
 	defer configLog.Close()
