@@ -42,6 +42,7 @@ func main() {
 		configLog := kk_log.ConfigLog{
 			DebugMode:  config.Config.DebugMode,
 			Lumberjack: kk_log.DefaultLogConfig(time.Now(), consts.ServerName),
+			StartTime:  time.Now(),
 		}
 		configLog.Init()
 		defer configLog.Close()
