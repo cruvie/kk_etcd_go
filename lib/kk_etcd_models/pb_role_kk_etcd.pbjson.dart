@@ -68,3 +68,4 @@ const PBListRole$json = {
 final $typed_data.Uint8List pBListRoleDescriptor = $convert.base64Decode(
     'CgpQQkxpc3RSb2xlEioKBExpc3QYASADKAsyFi5ra19ldGNkX21vZGVscy5QQlJvbGVSBExpc3'
     'Q=');
+

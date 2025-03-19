@@ -27,7 +27,6 @@ class PBKV extends $pb.GeneratedMessage {
     }
     return $result;
   }
-
   PBKV._() : super();
 
   factory PBKV.fromBuffer($core.List<$core.int> i,
@@ -61,11 +60,8 @@ class PBKV extends $pb.GeneratedMessage {
 
   @$core.pragma('dart2js:noInline')
   static PBKV create() => PBKV._();
-
   PBKV createEmptyInstance() => create();
-
   static $pb.PbList<PBKV> createRepeated() => $pb.PbList<PBKV>();
-
   @$core.pragma('dart2js:noInline')
   static PBKV getDefault() =>
       _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<PBKV>(create);
@@ -73,7 +69,6 @@ class PBKV extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(1)
   $core.String get key => $_getSZ(0);
-
   @$pb.TagNumber(1)
   set key($core.String v) {
     $_setString(0, v);
@@ -81,13 +76,11 @@ class PBKV extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(1)
   $core.bool hasKey() => $_has(0);
-
   @$pb.TagNumber(1)
   void clearKey() => clearField(1);
 
   @$pb.TagNumber(2)
   $core.String get value => $_getSZ(1);
-
   @$pb.TagNumber(2)
   set value($core.String v) {
     $_setString(1, v);
@@ -95,7 +88,6 @@ class PBKV extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(2)
   $core.bool hasValue() => $_has(1);
-
   @$pb.TagNumber(2)
   void clearValue() => clearField(2);
 }
@@ -110,7 +102,6 @@ class PBListKV extends $pb.GeneratedMessage {
     }
     return $result;
   }
-
   PBListKV._() : super();
 
   factory PBListKV.fromBuffer($core.List<$core.int> i,
@@ -144,11 +135,8 @@ class PBListKV extends $pb.GeneratedMessage {
 
   @$core.pragma('dart2js:noInline')
   static PBListKV create() => PBListKV._();
-
   PBListKV createEmptyInstance() => create();
-
   static $pb.PbList<PBListKV> createRepeated() => $pb.PbList<PBListKV>();
-
   @$core.pragma('dart2js:noInline')
   static PBListKV getDefault() =>
       _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<PBListKV>(create);

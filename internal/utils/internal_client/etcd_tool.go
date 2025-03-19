@@ -5,9 +5,9 @@ import (
 	"gitee.com/cruvie/kk_go_kit/kk_log"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/internal/config"
-	"github.com/cruvie/kk_etcd_go/internal/mgr_hub/mgr_role/util_role"
-	"github.com/cruvie/kk_etcd_go/internal/mgr_hub/mgr_user/util_user"
 	"github.com/cruvie/kk_etcd_go/internal/utils/consts"
+	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/role/util_role"
+	util_user2 "github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/user/util_user"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_error"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	"go.etcd.io/etcd/api/v3/v3rpc/rpctypes"
@@ -56,7 +56,7 @@ func (x *serToolEtcd) initRootRolePermission(stage *kk_stage.Stage) {
 		Roles:    []string{consts.RoleRoot},
 	}
 	//add root user
-	err := util_user.AddUser(stage, user)
+	err := util_user2.AddUser(stage, user)
 	if err != nil {
 		slog.Error("add root user failed", newLog.Error(err).Args()...)
 		panic(err)
@@ -85,7 +85,7 @@ func (x *serToolEtcd) initRootRolePermission(stage *kk_stage.Stage) {
 	//}
 
 	//grant root role to root user
-	err = util_user.UserGrantRole(stage, user)
+	err = util_user2.UserGrantRole(stage, user)
 	if err != nil {
 		slog.Error("grant root role to root user failed", newLog.Error(err).Args()...)
 		panic(err)

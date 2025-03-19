@@ -33,7 +33,6 @@ class PBServer_ServerStatus extends $pb.ProtobufEnum {
 
   static final $core.Map<$core.int, PBServer_ServerStatus> _byValue =
       $pb.ProtobufEnum.initByValue(values);
-
   static PBServer_ServerStatus? valueOf($core.int value) => _byValue[value];
 
   const PBServer_ServerStatus._($core.int v, $core.String n) : super(v, n);

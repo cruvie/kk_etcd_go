@@ -27,7 +27,6 @@ class PBRole extends $pb.GeneratedMessage {
     }
     return $result;
   }
-
   PBRole._() : super();
 
   factory PBRole.fromBuffer($core.List<$core.int> i,
@@ -62,11 +61,8 @@ class PBRole extends $pb.GeneratedMessage {
 
   @$core.pragma('dart2js:noInline')
   static PBRole create() => PBRole._();
-
   PBRole createEmptyInstance() => create();
-
   static $pb.PbList<PBRole> createRepeated() => $pb.PbList<PBRole>();
-
   @$core.pragma('dart2js:noInline')
   static PBRole getDefault() =>
       _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<PBRole>(create);
@@ -74,7 +70,6 @@ class PBRole extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(1)
   $core.String get name => $_getSZ(0);
-
   @$pb.TagNumber(1)
   set name($core.String v) {
     $_setString(0, v);
@@ -82,7 +77,6 @@ class PBRole extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(1)
   $core.bool hasName() => $_has(0);
-
   @$pb.TagNumber(1)
   void clearName() => clearField(1);
 
@@ -108,7 +102,6 @@ class PBPermission extends $pb.GeneratedMessage {
     }
     return $result;
   }
-
   PBPermission._() : super();
 
   factory PBPermission.fromBuffer($core.List<$core.int> i,
@@ -146,12 +139,10 @@ class PBPermission extends $pb.GeneratedMessage {
 
   @$core.pragma('dart2js:noInline')
   static PBPermission create() => PBPermission._();
-
   PBPermission createEmptyInstance() => create();
 
   static $pb.PbList<PBPermission> createRepeated() =>
       $pb.PbList<PBPermission>();
-
   @$core.pragma('dart2js:noInline')
   static PBPermission getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<PBPermission>(create);
@@ -159,7 +150,6 @@ class PBPermission extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(2)
   $core.String get key => $_getSZ(0);
-
   @$pb.TagNumber(2)
   set key($core.String v) {
     $_setString(0, v);
@@ -167,13 +157,11 @@ class PBPermission extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(2)
   $core.bool hasKey() => $_has(0);
-
   @$pb.TagNumber(2)
   void clearKey() => clearField(2);
 
   @$pb.TagNumber(3)
   $core.String get rangeEnd => $_getSZ(1);
-
   @$pb.TagNumber(3)
   set rangeEnd($core.String v) {
     $_setString(1, v);
@@ -181,7 +169,6 @@ class PBPermission extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(3)
   $core.bool hasRangeEnd() => $_has(1);
-
   @$pb.TagNumber(3)
   void clearRangeEnd() => clearField(3);
 
@@ -190,7 +177,6 @@ class PBPermission extends $pb.GeneratedMessage {
   /// authpb.READWRITE 2
   @$pb.TagNumber(4)
   $core.int get permissionType => $_getIZ(2);
-
   @$pb.TagNumber(4)
   set permissionType($core.int v) {
     $_setSignedInt32(2, v);
@@ -198,7 +184,6 @@ class PBPermission extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(4)
   $core.bool hasPermissionType() => $_has(2);
-
   @$pb.TagNumber(4)
   void clearPermissionType() => clearField(4);
 }
@@ -213,7 +198,6 @@ class PBListRole extends $pb.GeneratedMessage {
     }
     return $result;
   }
-
   PBListRole._() : super();
 
   factory PBListRole.fromBuffer($core.List<$core.int> i,
@@ -247,11 +231,8 @@ class PBListRole extends $pb.GeneratedMessage {
 
   @$core.pragma('dart2js:noInline')
   static PBListRole create() => PBListRole._();
-
   PBListRole createEmptyInstance() => create();
-
   static $pb.PbList<PBListRole> createRepeated() => $pb.PbList<PBListRole>();
-
   @$core.pragma('dart2js:noInline')
   static PBListRole getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<PBListRole>(create);

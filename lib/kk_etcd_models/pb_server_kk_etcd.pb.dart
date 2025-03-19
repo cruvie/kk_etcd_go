@@ -48,7 +48,6 @@ class PBServer extends $pb.GeneratedMessage {
     }
     return $result;
   }
-
   PBServer._() : super();
 
   factory PBServer.fromBuffer($core.List<$core.int> i,
@@ -92,11 +91,8 @@ class PBServer extends $pb.GeneratedMessage {
 
   @$core.pragma('dart2js:noInline')
   static PBServer create() => PBServer._();
-
   PBServer createEmptyInstance() => create();
-
   static $pb.PbList<PBServer> createRepeated() => $pb.PbList<PBServer>();
-
   @$core.pragma('dart2js:noInline')
   static PBServer getDefault() =>
       _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<PBServer>(create);
@@ -104,7 +100,6 @@ class PBServer extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(2)
   $core.String get serverType => $_getSZ(0);
-
   @$pb.TagNumber(2)
   set serverType($core.String v) {
     $_setString(0, v);
@@ -112,13 +107,11 @@ class PBServer extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(2)
   $core.bool hasServerType() => $_has(0);
-
   @$pb.TagNumber(2)
   void clearServerType() => clearField(2);
 
   @$pb.TagNumber(3)
   $core.String get endpointKey => $_getSZ(1);
-
   @$pb.TagNumber(3)
   set endpointKey($core.String v) {
     $_setString(1, v);
@@ -126,13 +119,11 @@ class PBServer extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(3)
   $core.bool hasEndpointKey() => $_has(1);
-
   @$pb.TagNumber(3)
   void clearEndpointKey() => clearField(3);
 
   @$pb.TagNumber(4)
   $core.String get endpointAddr => $_getSZ(2);
-
   @$pb.TagNumber(4)
   set endpointAddr($core.String v) {
     $_setString(2, v);
@@ -140,13 +131,11 @@ class PBServer extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(4)
   $core.bool hasEndpointAddr() => $_has(2);
-
   @$pb.TagNumber(4)
   void clearEndpointAddr() => clearField(4);
 
   @$pb.TagNumber(5)
   PBServer_ServerStatus get status => $_getN(3);
-
   @$pb.TagNumber(5)
   set status(PBServer_ServerStatus v) {
     setField(5, v);
@@ -154,13 +143,11 @@ class PBServer extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(5)
   $core.bool hasStatus() => $_has(3);
-
   @$pb.TagNumber(5)
   void clearStatus() => clearField(5);
 
   @$pb.TagNumber(6)
   $1.Timestamp get lastCheck => $_getN(4);
-
   @$pb.TagNumber(6)
   set lastCheck($1.Timestamp v) {
     setField(6, v);
@@ -168,16 +155,13 @@ class PBServer extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(6)
   $core.bool hasLastCheck() => $_has(4);
-
   @$pb.TagNumber(6)
   void clearLastCheck() => clearField(6);
-
   @$pb.TagNumber(6)
   $1.Timestamp ensureLastCheck() => $_ensure(4);
 
   @$pb.TagNumber(7)
   $core.String get msg => $_getSZ(5);
-
   @$pb.TagNumber(7)
   set msg($core.String v) {
     $_setString(5, v);
@@ -185,7 +169,6 @@ class PBServer extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(7)
   $core.bool hasMsg() => $_has(5);
-
   @$pb.TagNumber(7)
   void clearMsg() => clearField(7);
 }
@@ -200,7 +183,6 @@ class PBListServer extends $pb.GeneratedMessage {
     }
     return $result;
   }
-
   PBListServer._() : super();
 
   factory PBListServer.fromBuffer($core.List<$core.int> i,
@@ -235,12 +217,10 @@ class PBListServer extends $pb.GeneratedMessage {
 
   @$core.pragma('dart2js:noInline')
   static PBListServer create() => PBListServer._();
-
   PBListServer createEmptyInstance() => create();
 
   static $pb.PbList<PBListServer> createRepeated() =>
       $pb.PbList<PBListServer>();
-
   @$core.pragma('dart2js:noInline')
   static PBListServer getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<PBListServer>(create);

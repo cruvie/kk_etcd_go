@@ -47,3 +47,4 @@ const PBListUser$json = {
 final $typed_data.Uint8List pBListUserDescriptor = $convert.base64Decode(
     'CgpQQkxpc3RVc2VyEjIKCExpc3RVc2VyGAEgAygLMhYua2tfZXRjZF9tb2RlbHMuUEJVc2VyUg'
     'hMaXN0VXNlcg==');
+

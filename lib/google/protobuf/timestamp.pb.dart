@@ -118,7 +118,6 @@ class Timestamp extends $pb.GeneratedMessage with $mixin.TimestampMixin {
     }
     return $result;
   }
-
   Timestamp._() : super();
 
   factory Timestamp.fromBuffer($core.List<$core.int> i,
@@ -155,11 +154,8 @@ class Timestamp extends $pb.GeneratedMessage with $mixin.TimestampMixin {
 
   @$core.pragma('dart2js:noInline')
   static Timestamp create() => Timestamp._();
-
   Timestamp createEmptyInstance() => create();
-
   static $pb.PbList<Timestamp> createRepeated() => $pb.PbList<Timestamp>();
-
   @$core.pragma('dart2js:noInline')
   static Timestamp getDefault() =>
       _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<Timestamp>(create);
@@ -170,7 +166,6 @@ class Timestamp extends $pb.GeneratedMessage with $mixin.TimestampMixin {
   /// 9999-12-31T23:59:59Z inclusive.
   @$pb.TagNumber(1)
   $fixnum.Int64 get seconds => $_getI64(0);
-
   @$pb.TagNumber(1)
   set seconds($fixnum.Int64 v) {
     $_setInt64(0, v);
@@ -178,7 +173,6 @@ class Timestamp extends $pb.GeneratedMessage with $mixin.TimestampMixin {
 
   @$pb.TagNumber(1)
   $core.bool hasSeconds() => $_has(0);
-
   @$pb.TagNumber(1)
   void clearSeconds() => clearField(1);
 
@@ -188,7 +182,6 @@ class Timestamp extends $pb.GeneratedMessage with $mixin.TimestampMixin {
   /// inclusive.
   @$pb.TagNumber(2)
   $core.int get nanos => $_getIZ(1);
-
   @$pb.TagNumber(2)
   set nanos($core.int v) {
     $_setSignedInt32(1, v);
@@ -196,10 +189,8 @@ class Timestamp extends $pb.GeneratedMessage with $mixin.TimestampMixin {
 
   @$pb.TagNumber(2)
   $core.bool hasNanos() => $_has(1);
-
   @$pb.TagNumber(2)
   void clearNanos() => clearField(2);
-
   /// Creates a new instance from [dateTime].
   ///
   /// Time zone information will not be preserved.

@@ -3,7 +3,7 @@ package kk_etcd
 import (
 	"context"
 	"gitee.com/cruvie/kk_go_kit/kk_log"
-	"github.com/cruvie/kk_etcd_go/internal/mgr_hub/mgr_server/serverList"
+	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/server/serverList"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/health/grpc_health_v1"

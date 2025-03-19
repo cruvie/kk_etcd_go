@@ -3,9 +3,9 @@ package kk_etcd
 import (
 	"context"
 	"gitee.com/cruvie/kk_go_kit/kk_log"
-	"github.com/cruvie/kk_etcd_go/internal/mgr_hub/mgr_server/serverList"
 	"github.com/cruvie/kk_etcd_go/internal/server_hub"
 	"github.com/cruvie/kk_etcd_go/internal/utils/internal_client"
+	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/server/serverList"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	"log/slog"
 )

@@ -31,7 +31,6 @@ class PBUser extends $pb.GeneratedMessage {
     }
     return $result;
   }
-
   PBUser._() : super();
 
   factory PBUser.fromBuffer($core.List<$core.int> i,
@@ -66,11 +65,8 @@ class PBUser extends $pb.GeneratedMessage {
 
   @$core.pragma('dart2js:noInline')
   static PBUser create() => PBUser._();
-
   PBUser createEmptyInstance() => create();
-
   static $pb.PbList<PBUser> createRepeated() => $pb.PbList<PBUser>();
-
   @$core.pragma('dart2js:noInline')
   static PBUser getDefault() =>
       _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<PBUser>(create);
@@ -78,7 +74,6 @@ class PBUser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(2)
   $core.String get userName => $_getSZ(0);
-
   @$pb.TagNumber(2)
   set userName($core.String v) {
     $_setString(0, v);
@@ -86,13 +81,11 @@ class PBUser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(2)
   $core.bool hasUserName() => $_has(0);
-
   @$pb.TagNumber(2)
   void clearUserName() => clearField(2);
 
   @$pb.TagNumber(3)
   $core.String get password => $_getSZ(1);
-
   @$pb.TagNumber(3)
   set password($core.String v) {
     $_setString(1, v);
@@ -100,7 +93,6 @@ class PBUser extends $pb.GeneratedMessage {
 
   @$pb.TagNumber(3)
   $core.bool hasPassword() => $_has(1);
-
   @$pb.TagNumber(3)
   void clearPassword() => clearField(3);
 
@@ -118,7 +110,6 @@ class PBListUser extends $pb.GeneratedMessage {
     }
     return $result;
   }
-
   PBListUser._() : super();
 
   factory PBListUser.fromBuffer($core.List<$core.int> i,
@@ -152,11 +143,8 @@ class PBListUser extends $pb.GeneratedMessage {
 
   @$core.pragma('dart2js:noInline')
   static PBListUser create() => PBListUser._();
-
   PBListUser createEmptyInstance() => create();
-
   static $pb.PbList<PBListUser> createRepeated() => $pb.PbList<PBListUser>();
-
   @$core.pragma('dart2js:noInline')
   static PBListUser getDefault() => _defaultInstance ??=
       $pb.GeneratedMessage.$_defaultFor<PBListUser>(create);

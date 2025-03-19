@@ -1,9 +1,9 @@
 package kk_etcd
 
 import (
-	"github.com/cruvie/kk_etcd_go/internal/mgr_hub/mgr_user/util_user"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
 	"github.com/cruvie/kk_etcd_go/internal/utils/internal_client"
+	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/user/util_user"
 	clientv3 "go.etcd.io/etcd/client/v3"
 	"time"
 )
