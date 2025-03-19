@@ -33,16 +33,18 @@ import (
 // @host		localhost:2333
 // @BasePath	/
 func main() {
+	startTime := time.Now()
+
 	config.InitConfig()
 
-	stage := kk_stage.NewStage(context.Background(), consts.ServerName, config.Config.DebugMode)
+	stage := kk_stage.NewStage(context.Background(), consts.ServerName, config.Config.DebugMode).SetStartTime(startTime)
 
 	{
 		//init log
 		configLog := kk_log.ConfigLog{
 			DebugMode:  config.Config.DebugMode,
 			Lumberjack: kk_log.DefaultLogConfig(time.Now(), consts.ServerName),
-			StartTime:  time.Now(),
+			StartTime:  stage.StartTime,
 		}
 		configLog.Init()
 		defer configLog.Close()
