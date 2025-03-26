@@ -80,7 +80,6 @@ package doc_test
 
 import (
 	"github.com/cruvie/kk_etcd_go/kk_etcd"
-	"gopkg.in/yaml.v3"
 	"log"
 	"log/slog"
 	"os"
@@ -127,13 +126,14 @@ func TestPutYaml(t *testing.T) {
 		panic(err)
 	}
 	//push config to etcd in yaml format
-	err = kk_etcd.PutExistUpdateYaml("my_config", &Config)
+	kv := kk_etcd.NewMgrKV()
+	err = kv.PutExistUpdateYaml("my_config", &Config)
 	if err != nil {
 		panic(err)
 	}
 	//get config from etcd
 	var newConfig myConfig
-	err = kk_etcd.GetYaml("my_config", &newConfig)
+	err = kv.GetYaml("my_config", &newConfig)
 	if err != nil {
 		panic(err)
 	}
