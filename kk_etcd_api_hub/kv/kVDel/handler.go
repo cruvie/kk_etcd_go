@@ -1,10 +1,10 @@
 package kVDel
 
-func (x *api) Handler() (error, *KVDel_Output) {
+func (x *api) Handler() (*KVDel_Output, error) {
 	span := x.stage.StartTrace("handler")
 	defer span.End()
 
 	err := x.service()
-	return err, &KVDel_Output{}
+	return &KVDel_Output{}, err
 
 }

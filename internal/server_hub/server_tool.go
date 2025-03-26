@@ -30,7 +30,7 @@ func (t *serverTool) serverList(client *clientv3.Client, serverType kk_etcd_mode
 }
 func (t *serverTool) services() (map[string]*serverStatus, error) {
 	services := make(map[string]*serverStatus)
-	err, v := util_kv.ListKV(internal_client.GlobalStage, kk_etcd_models.InternalServerStatus)
+	v, err := util_kv.ListKV(internal_client.GlobalStage, kk_etcd_models.InternalServerStatus)
 	if err != nil {
 		return nil, err
 	}

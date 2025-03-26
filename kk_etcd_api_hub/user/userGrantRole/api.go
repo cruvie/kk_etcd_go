@@ -39,6 +39,6 @@ func Handler(c *gin.Context) {
 			kk_http.WriteResponse(x.stage, err, nil)
 			return
 		}
-		err, resp := x.Handler()
+		resp, err := x.Handler()
 		kk_http.WriteResponse(x.stage, err, resp)
 }

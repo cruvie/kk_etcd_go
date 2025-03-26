@@ -15,25 +15,25 @@ func NewMgrKV() *MgrKV {
 	return &MgrKV{}
 }
 
-func (*MgrKV) KVPut(param *kVPut.KVPut_Input) (error, *kVPut.KVPut_Output) {
+func (*MgrKV) KVPut(param *kVPut.KVPut_Input) (*kVPut.KVPut_Output, error) {
 	api := kVPut.NewApi(internal_client.GlobalStage)
 	api.In = param
 	return api.Handler()
 }
 
-func (*MgrKV) KVGet(param *kVGet.KVGet_Input) (error, *kVGet.KVGet_Output) {
+func (*MgrKV) KVGet(param *kVGet.KVGet_Input) (*kVGet.KVGet_Output, error) {
 	api := kVGet.NewApi(internal_client.GlobalStage)
 	api.In = param
 	return api.Handler()
 }
 
-func (*MgrKV) KVDel(param *kVDel.KVDel_Input) (error, *kVDel.KVDel_Output) {
+func (*MgrKV) KVDel(param *kVDel.KVDel_Input) (*kVDel.KVDel_Output, error) {
 	api := kVDel.NewApi(internal_client.GlobalStage)
 	api.In = param
 	return api.Handler()
 }
 
-func (*MgrKV) KVList(param *kVList.KVList_Input) (error, *kVList.KVList_Output) {
+func (*MgrKV) KVList(param *kVList.KVList_Input) (*kVList.KVList_Output, error) {
 	api := kVList.NewApi(internal_client.GlobalStage)
 	api.In = param
 	return api.Handler()

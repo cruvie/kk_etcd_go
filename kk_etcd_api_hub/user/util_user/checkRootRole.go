@@ -13,5 +13,5 @@ func CheckRootRole(stage *kk_stage.Stage) error {
 			return nil
 		}
 	}
-	return kk_etcd_error.NoRootRole
+	return kk_etcd_error.ErrNoRootRole
 }

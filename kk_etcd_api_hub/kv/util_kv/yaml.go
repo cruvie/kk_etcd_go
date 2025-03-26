@@ -16,7 +16,7 @@ func PutExistUpdateYaml(stage *kk_stage.Stage, key string, structPtr any) error 
 // UpdateYaml update struct in etcd, key should exist
 func UpdateYaml(stage *kk_stage.Stage, key string, structPtr any) error {
 	err := CheckKeyExist(stage, key)
-	if !errors.Is(err, kk_etcd_error.KeyAlreadyExists) {
+	if !errors.Is(err, kk_etcd_error.ErrKeyAlreadyExists) {
 		return err
 	}
 	return putYaml(stage, key, structPtr)
@@ -26,7 +26,7 @@ func UpdateYaml(stage *kk_stage.Stage, key string, structPtr any) error {
 // recommend: use PutJson instead which is more efficient
 func PutYaml(stage *kk_stage.Stage, key string, structPtr any) error {
 	err := CheckKeyExist(stage, key)
-	if !errors.Is(err, kk_etcd_error.KeyNotFound) {
+	if !errors.Is(err, kk_etcd_error.ErrKeyNotFound) {
 		return err
 	}
 
@@ -47,7 +47,7 @@ func putYaml(stage *kk_stage.Stage, key string, structPtr any) error {
 // GetYaml get yaml from etcd and unmarshal to structPtr
 // eg: GetYaml("configKey", &Config)
 func GetYaml(stage *kk_stage.Stage, key string, structPtr any) error {
-	err, value := GetKV(stage, key)
+	value, err := GetKV(stage, key)
 	if err != nil {
 		return err
 	}

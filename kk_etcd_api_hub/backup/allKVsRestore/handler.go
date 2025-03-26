@@ -1,11 +1,11 @@
 package allKVsRestore
 
-func (x *api) Handler() (error, *AllKVsRestore_Output) {
+func (x *api) Handler() (*AllKVsRestore_Output, error) {
 	span := x.stage.StartTrace("handler")
 	defer span.End()
 	err := x.service()
 	if err != nil {
-		return err, nil
+		return nil, err
 	}
-	return nil, &AllKVsRestore_Output{}
+	return &AllKVsRestore_Output{}, nil
 }

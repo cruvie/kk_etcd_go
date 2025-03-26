@@ -10,14 +10,14 @@ import (
 	"time"
 )
 
-func (x *api) service() (error, *AllKVsBackup_Output) {
+func (x *api) service() (*AllKVsBackup_Output, error) {
 	span := x.stage.StartTrace("service")
 	defer span.End()
 
 	list := &kk_etcd_models.PBListKV{}
 	getOutput, err := global_model.GetClient(x.stage).Get(context.Background(), "", clientv3.WithPrefix())
 	if err != nil {
-		return err, nil
+		return nil, err
 	}
 	for _, kv := range getOutput.Kvs {
 		pbKV := &kk_etcd_models.PBKV{
@@ -34,12 +34,12 @@ func (x *api) service() (error, *AllKVsBackup_Output) {
 	}
 	marshal, err := json.Marshal(list)
 	if err != nil {
-		return err, nil
+		return nil, err
 	}
 	timeStr := time.Now().Format(time.DateTime)
 	fileName := "etcd_all_kv_" + timeStr + ".json"
-	return nil, &AllKVsBackup_Output{
+	return &AllKVsBackup_Output{
 		Name: fileName,
 		File: marshal,
-	}
+	}, nil
 }

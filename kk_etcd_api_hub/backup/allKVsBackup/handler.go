@@ -1,11 +1,11 @@
 package allKVsBackup
 
-func (x *api) Handler() (error, *AllKVsBackup_Output) {
+func (x *api) Handler() (*AllKVsBackup_Output, error) {
 	span := x.stage.StartTrace("handler")
 	defer span.End()
-	err, response := x.service()
+	response, err := x.service()
 	if err != nil {
-		return err, nil
+		return nil, err
 	}
-	return err, response
+	return response, err
 }

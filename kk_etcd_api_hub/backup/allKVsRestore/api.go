@@ -21,24 +21,24 @@ func NewApi(stage *kk_stage.Stage) *api {
 	}
 }
 
-//  Handler
-//	@Tags			backup
-//	@ID				AllKVsRestore
-//	@Description	all kvs restore
-//	@Accept			json,application/x-protobuf
-//	@Produce		json,application/x-protobuf
-//	@Param			AllKVsRestore_Input	body		AllKVsRestore_Input	true	"AllKVsRestore_Input"
-//	@Success		200					{object}	AllKVsRestore_Output
-//	@Router			/backup/allKVsRestore [post]
+//	 Handler
+//		@Tags			backup
+//		@ID				AllKVsRestore
+//		@Description	all kvs restore
+//		@Accept			json,application/x-protobuf
+//		@Produce		json,application/x-protobuf
+//		@Param			AllKVsRestore_Input	body		AllKVsRestore_Input	true	"AllKVsRestore_Input"
+//		@Success		200					{object}	AllKVsRestore_Output
+//		@Router			/backup/allKVsRestore [post]
 func Handler(c *gin.Context) {
-		x := NewApi(kk_global_stage.GetRequestStage(c))
-		span := x.stage.StartTrace("allKVsRestore")
-		defer span.End()
-	
-		if err := x.bindCheck(); err != nil {
-			kk_http.WriteResponse(x.stage, err, nil)
-			return
-		}
-		err, resp := x.Handler()
-		kk_http.WriteResponse(x.stage, err, resp)
+	x := NewApi(kk_global_stage.GetRequestStage(c))
+	span := x.stage.StartTrace("allKVsRestore")
+	defer span.End()
+
+	if err := x.bindCheck(); err != nil {
+		kk_http.WriteResponse(x.stage, err, nil)
+		return
+	}
+	resp, err := x.Handler()
+	kk_http.WriteResponse(x.stage, err, resp)
 }

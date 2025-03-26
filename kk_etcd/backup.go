@@ -15,32 +15,32 @@ func NewMgrBackup() *MgrBackup {
 	return &MgrBackup{}
 }
 
-func (*MgrBackup) Snapshot() (error, *snapshot.Snapshot_Output) {
+func (*MgrBackup) Snapshot() (*snapshot.Snapshot_Output, error) {
 	api := snapshot.NewApi(internal_client.GlobalStage)
 	api.In = &snapshot.Snapshot_Input{}
 	return api.Handler()
 }
 
-func (*MgrBackup) SnapshotRestore() (error, *snapshotRestore.SnapshotRestore_Output) {
+func (*MgrBackup) SnapshotRestore() (*snapshotRestore.SnapshotRestore_Output, error) {
 	api := snapshotRestore.NewApi(internal_client.GlobalStage)
 	api.In = &snapshotRestore.SnapshotRestore_Input{}
 	return api.Handler()
 }
 
-func (*MgrBackup) SnapshotInfo(param *snapshotInfo.SnapshotInfo_Input) (error, *snapshotInfo.SnapshotInfo_Output) {
+func (*MgrBackup) SnapshotInfo(param *snapshotInfo.SnapshotInfo_Input) (*snapshotInfo.SnapshotInfo_Output, error) {
 	api := snapshotInfo.NewApi(internal_client.GlobalStage)
 	api.In = param
 	return api.Handler()
 }
 
-func (*MgrBackup) AllKVsBackup() (error, *allKVsBackup.AllKVsBackup_Output) {
+func (*MgrBackup) AllKVsBackup() (*allKVsBackup.AllKVsBackup_Output, error) {
 	api := allKVsBackup.NewApi(internal_client.GlobalStage)
 	api.In = &allKVsBackup.AllKVsBackup_Input{}
 	return api.Handler()
 }
 
 // AllKVsRestore will overwrite exist kv
-func (*MgrBackup) AllKVsRestore(param *allKVsRestore.AllKVsRestore_Input) (error, *allKVsRestore.AllKVsRestore_Output) {
+func (*MgrBackup) AllKVsRestore(param *allKVsRestore.AllKVsRestore_Input) (*allKVsRestore.AllKVsRestore_Output, error) {
 	api := allKVsRestore.NewApi(internal_client.GlobalStage)
 	api.In = param
 	return api.Handler()

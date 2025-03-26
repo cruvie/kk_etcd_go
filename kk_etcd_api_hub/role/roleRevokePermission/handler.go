@@ -1,11 +1,11 @@
 package roleRevokePermission
 
-func (x *api) Handler() (error, *RoleRevokePermission_Output) {
+func (x *api) Handler() (*RoleRevokePermission_Output, error) {
 	span := x.stage.StartTrace("handler")
 	defer span.End()
 	err := x.service()
 	if err != nil {
-		return err, nil
+		return nil, err
 	}
-	return nil, &RoleRevokePermission_Output{}
+	return &RoleRevokePermission_Output{}, nil
 }

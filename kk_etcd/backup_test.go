@@ -21,7 +21,7 @@ func TestSnapshot(t *testing.T) {
 	}()
 
 	mgrBackup := NewMgrBackup()
-	err, pBFile := mgrBackup.Snapshot()
+	pBFile, err := mgrBackup.Snapshot()
 	if err != nil {
 		slog.Error("Failed to create snapshot", kk_log.NewLog(nil).Error(err).Args()...)
 		return
@@ -63,7 +63,7 @@ func TestSnapshotInfo(t *testing.T) {
 	if err != nil {
 		slog.Error("Failed to read file", kk_log.NewLog(nil).Error(err).Args()...)
 	}
-	err, response := mgrBackup.SnapshotInfo(&snapshotInfo.SnapshotInfo_Input{File: bytes})
+	response, err := mgrBackup.SnapshotInfo(&snapshotInfo.SnapshotInfo_Input{File: bytes})
 	if err != nil {
 		log.Println(err)
 		return
@@ -80,7 +80,7 @@ func TestAllKVsBackup(t *testing.T) {
 		}
 	}()
 	mgrBackup := NewMgrBackup()
-	err, pbFile := mgrBackup.AllKVsBackup()
+	pbFile, err := mgrBackup.AllKVsBackup()
 	if err != nil {
 		log.Println(err)
 		return

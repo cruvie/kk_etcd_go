@@ -1,9 +1,9 @@
 package kVPut
 
-func (x *api) Handler() (error, *KVPut_Output) {
+func (x *api) Handler() (*KVPut_Output, error) {
 	span := x.stage.StartTrace("handler")
 	defer span.End()
 
 	err := x.service()
-	return err, &KVPut_Output{}
+	return &KVPut_Output{}, err
 }

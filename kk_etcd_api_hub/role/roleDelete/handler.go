@@ -5,12 +5,12 @@ import (
 	"github.com/cruvie/kk_etcd_go/internal/utils/consts"
 )
 
-func (x *api) Handler() (error, *RoleDelete_Output) {
+func (x *api) Handler() (*RoleDelete_Output, error) {
 	span := x.stage.StartTrace("handler")
 	defer span.End()
 	if x.In.GetName() == consts.RoleRoot {
-		return errors.New("illegal delete root role"), nil
+		return nil, errors.New("illegal delete root role")
 	}
 	err := x.service()
-	return err, &RoleDelete_Output{}
+	return &RoleDelete_Output{}, err
 }

@@ -51,8 +51,8 @@ func InitConfig() {
 	//slog.Info("workDir", "dir", workDir)
 
 	//docker
-	data, err := os.ReadFile(workDir + "/kk_etcd_go/internal/config/config.yml")
-	//data, err := os.ReadFile(workDir + "/internal/config/config.yml")
+	//data, err := os.ReadFile(workDir + "/kk_etcd_go/internal/config/config.yml")
+	data, err := os.ReadFile(workDir + "/internal/config/config.yml")
 	if err != nil {
 		slog.Error("unable to read config.yaml", "err", err)
 		panic(err)

@@ -6,10 +6,10 @@ import (
 )
 
 func CheckKeyExist(stage *kk_stage.Stage, key string) error {
-	err, _ := GetKV(stage, key)
+	_, err := GetKV(stage, key)
 	if err != nil {
 		return err
 	} else {
-		return kk_etcd_error.KeyAlreadyExists
+		return kk_etcd_error.ErrKeyAlreadyExists
 	}
 }

@@ -1,13 +1,13 @@
 package userList
 
-func (x *api) Handler() (error, *UserList_Output) {
+func (x *api) Handler() (*UserList_Output, error) {
 	span := x.stage.StartTrace("handler")
 	defer span.End()
-	err, users := x.service()
+	users, err := x.service()
 	if err != nil {
-		return err, nil
+		return nil, err
 	}
-	return err, &UserList_Output{
+	return &UserList_Output{
 		ListUser: users,
-	}
+	}, err
 }

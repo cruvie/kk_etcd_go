@@ -1,9 +1,9 @@
 package logout
 
-func (x *api) Handler() (error, *Logout_Output) {
+func (x *api) Handler() (*Logout_Output, error) {
 	span := x.stage.StartTrace("handler")
 	defer span.End()
 
 	err := x.service()
-	return err, &Logout_Output{}
+	return &Logout_Output{}, err
 }

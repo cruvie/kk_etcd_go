@@ -1,11 +1,11 @@
 package snapshotInfo
 
-func (x *api) Handler() (error, *SnapshotInfo_Output) {
+func (x *api) Handler() (*SnapshotInfo_Output, error) {
 	span := x.stage.StartTrace("handler")
 	defer span.End()
 	info, err := x.service()
 	if err != nil {
-		return err, nil
+		return nil, err
 	}
-	return err, &SnapshotInfo_Output{Info: info}
+	return &SnapshotInfo_Output{Info: info}, err
 }

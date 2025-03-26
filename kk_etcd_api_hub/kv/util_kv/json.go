@@ -17,7 +17,7 @@ func PutExistUpdateJson(stage *kk_stage.Stage, key string, structPtr any) error 
 // GetJson get json from etcd and unmarshal to structPtr
 // eg: GetJson("configKey", &Config)
 func GetJson(stage *kk_stage.Stage, key string, structPtr any) error {
-	err, value := GetKV(stage, key)
+	value, err := GetKV(stage, key)
 	if err != nil {
 		return err
 	}
@@ -35,7 +35,7 @@ func GetJson(stage *kk_stage.Stage, key string, structPtr any) error {
 // PutJson put struct to etcd in json format, key should not exist
 func PutJson(stage *kk_stage.Stage, key string, structPtr any) error {
 	err := CheckKeyExist(stage, key)
-	if !errors.Is(err, kk_etcd_error.KeyNotFound) {
+	if !errors.Is(err, kk_etcd_error.ErrKeyNotFound) {
 		return err
 	}
 	return putJson(stage, key, structPtr)
@@ -44,7 +44,7 @@ func PutJson(stage *kk_stage.Stage, key string, structPtr any) error {
 // UpdateJson update struct in etcd, key should exist
 func UpdateJson(stage *kk_stage.Stage, key string, structPtr any) error {
 	err := CheckKeyExist(stage, key)
-	if !errors.Is(err, kk_etcd_error.KeyAlreadyExists) {
+	if !errors.Is(err, kk_etcd_error.ErrKeyAlreadyExists) {
 		return err
 	}
 	return putJson(stage, key, structPtr)

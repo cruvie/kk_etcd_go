@@ -9,15 +9,15 @@ import (
 	clientv3 "go.etcd.io/etcd/client/v3"
 )
 
-func GetKV(stage *kk_stage.Stage, key string) (err error, value []byte) {
+func GetKV(stage *kk_stage.Stage, key string) (value []byte, err error) {
 	getOutput, err := global_model.GetClient(stage).Get(context.Background(), key)
 	if err != nil {
-		return err, nil
+		return nil, err
 	}
 	if len(getOutput.Kvs) == 0 {
-		return kk_etcd_error.KeyNotFound, nil
+		return nil, kk_etcd_error.ErrKeyNotFound
 	}
-	return nil, getOutput.Kvs[0].Value
+	return getOutput.Kvs[0].Value, nil
 }
 
 func PutKV(stage *kk_stage.Stage, key string, value string) error {
@@ -38,12 +38,12 @@ func DelKV(stage *kk_stage.Stage, key string) error {
 	return nil
 }
 
-func ListKV(stage *kk_stage.Stage, prefix string) (err error, list *kk_etcd_models.PBListKV) {
+func ListKV(stage *kk_stage.Stage, prefix string) (list *kk_etcd_models.PBListKV, err error) {
 
 	list = &kk_etcd_models.PBListKV{}
 	get_Output, err := global_model.GetClient(stage).Get(context.Background(), prefix, clientv3.WithPrefix())
 	if err != nil {
-		return err, nil
+		return nil, err
 	}
 	for _, kv := range get_Output.Kvs {
 		cfg := &kk_etcd_models.PBKV{
@@ -52,5 +52,5 @@ func ListKV(stage *kk_stage.Stage, prefix string) (err error, list *kk_etcd_mode
 		}
 		list.ListKV = append(list.ListKV, cfg)
 	}
-	return nil, list
+	return list, nil
 }

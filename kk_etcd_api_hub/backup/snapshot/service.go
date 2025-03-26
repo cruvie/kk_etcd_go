@@ -9,7 +9,7 @@ import (
 	"time"
 )
 
-func (x *api) service() (error, *Snapshot_Output) {
+func (x *api) service() (*Snapshot_Output, error) {
 	span := x.stage.StartTrace("service")
 	defer span.End()
 
@@ -25,18 +25,18 @@ func (x *api) service() (error, *Snapshot_Output) {
 		}
 	}(backupData)
 	if err != nil {
-		return err, nil
+		return nil, err
 	}
 
 	snapshotBytes, err := io.ReadAll(backupData)
 	if err != nil {
-		return err, nil
+		return nil, err
 	}
 	timeStr := time.Now().Format(time.DateTime)
 	fileName := "etcd_" + timeStr + ".snapshot"
 
-	return nil, &Snapshot_Output{
+	return &Snapshot_Output{
 		Name: fileName,
 		File: snapshotBytes,
-	}
+	}, nil
 }

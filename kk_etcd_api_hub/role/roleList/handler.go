@@ -1,13 +1,13 @@
 package roleList
 
-func (x *api) Handler() (error, *RoleList_Output) {
+func (x *api) Handler() (*RoleList_Output, error) {
 	span := x.stage.StartTrace("handler")
 	defer span.End()
-	err, roles := x.service()
+	roles, err := x.service()
 	if err != nil {
-		return err, nil
+		return nil, err
 	}
-	return nil, &RoleList_Output{
+	return &RoleList_Output{
 		ListRole: roles,
-	}
+	}, nil
 }

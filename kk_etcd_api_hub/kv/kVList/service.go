@@ -5,7 +5,7 @@ import (
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 )
 
-func (x *api) service() (err error, list *kk_etcd_models.PBListKV) {
+func (x *api) service() (list *kk_etcd_models.PBListKV, err error) {
 	span := x.stage.StartTrace("service")
 	defer span.End()
 
