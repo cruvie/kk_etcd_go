@@ -2,7 +2,7 @@
 //  Generated code. Do not modify.
 //  source: kk_etcd_api_hub/role/roleGet/api.proto
 //
-// @dart = 2.12
+// @dart = 3.3
 
 // ignore_for_file: annotate_overrides, camel_case_types, comment_references
 // ignore_for_file: constant_identifier_names, library_prefixes
@@ -31,14 +31,7 @@ const RoleGet_Input$json = {
 const RoleGet_Output$json = {
   '1': 'Output',
   '2': [
-    {
-      '1': 'Role',
-      '3': 1,
-      '4': 1,
-      '5': 11,
-      '6': '.kk_etcd_models.PBRole',
-      '10': 'Role'
-    },
+    {'1': 'Role', '3': 1, '4': 1, '5': 11, '6': '.kk_etcd_models.PBRole', '10': 'Role'},
   ],
 };
 

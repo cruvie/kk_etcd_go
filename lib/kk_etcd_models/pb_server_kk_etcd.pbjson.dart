@@ -2,7 +2,7 @@
 //  Generated code. Do not modify.
 //  source: kk_etcd_models/pb_server_kk_etcd.proto
 //
-// @dart = 2.12
+// @dart = 3.3
 
 // ignore_for_file: annotate_overrides, camel_case_types, comment_references
 // ignore_for_file: constant_identifier_names, library_prefixes
@@ -20,22 +20,8 @@ const PBServer$json = {
     {'1': 'ServerType', '3': 2, '4': 1, '5': 9, '10': 'ServerType'},
     {'1': 'EndpointKey', '3': 3, '4': 1, '5': 9, '10': 'EndpointKey'},
     {'1': 'EndpointAddr', '3': 4, '4': 1, '5': 9, '10': 'EndpointAddr'},
-    {
-      '1': 'Status',
-      '3': 5,
-      '4': 1,
-      '5': 14,
-      '6': '.kk_etcd_models.PBServer.ServerStatus',
-      '10': 'Status'
-    },
-    {
-      '1': 'LastCheck',
-      '3': 6,
-      '4': 1,
-      '5': 11,
-      '6': '.google.protobuf.Timestamp',
-      '10': 'LastCheck'
-    },
+    {'1': 'Status', '3': 5, '4': 1, '5': 14, '6': '.kk_etcd_models.PBServer.ServerStatus', '10': 'Status'},
+    {'1': 'LastCheck', '3': 6, '4': 1, '5': 11, '6': '.google.protobuf.Timestamp', '10': 'LastCheck'},
     {'1': 'Msg', '3': 7, '4': 1, '5': 9, '10': 'Msg'},
   ],
   '4': [PBServer_ServerStatus$json],
@@ -65,14 +51,7 @@ final $typed_data.Uint8List pBServerDescriptor = $convert.base64Decode(
 const PBListServer$json = {
   '1': 'PBListServer',
   '2': [
-    {
-      '1': 'ListServer',
-      '3': 1,
-      '4': 3,
-      '5': 11,
-      '6': '.kk_etcd_models.PBServer',
-      '10': 'ListServer'
-    },
+    {'1': 'ListServer', '3': 1, '4': 3, '5': 11, '6': '.kk_etcd_models.PBServer', '10': 'ListServer'},
   ],
 };
 

@@ -2,7 +2,7 @@
 //  Generated code. Do not modify.
 //  source: kk_etcd_api_hub/user/logout/api.proto
 //
-// @dart = 2.12
+// @dart = 3.3
 
 // ignore_for_file: annotate_overrides, camel_case_types, comment_references
 // ignore_for_file: constant_identifier_names, library_prefixes
@@ -30,5 +30,6 @@ const Logout_Output$json = {
 };
 
 /// Descriptor for `Logout`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List logoutDescriptor =
-    $convert.base64Decode('CgZMb2dvdXQaBwoFSW5wdXQaCAoGT3V0cHV0');
+final $typed_data.Uint8List logoutDescriptor = $convert.base64Decode(
+    'CgZMb2dvdXQaBwoFSW5wdXQaCAoGT3V0cHV0');
+

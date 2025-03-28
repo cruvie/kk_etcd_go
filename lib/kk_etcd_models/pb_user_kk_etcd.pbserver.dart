@@ -1,8 +1,8 @@
 //
 //  Generated code. Do not modify.
-//  source: kk_etcd_models/pb_user_kk_etcd.proto
+//  source: pb_user_kk_etcd.proto
 //
-// @dart = 2.12
+// @dart = 3.3
 
 // ignore_for_file: annotate_overrides, camel_case_types, comment_references
 // ignore_for_file: constant_identifier_names

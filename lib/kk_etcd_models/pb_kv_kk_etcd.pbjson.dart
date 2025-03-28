@@ -2,7 +2,7 @@
 //  Generated code. Do not modify.
 //  source: kk_etcd_models/pb_kv_kk_etcd.proto
 //
-// @dart = 2.12
+// @dart = 3.3
 
 // ignore_for_file: annotate_overrides, camel_case_types, comment_references
 // ignore_for_file: constant_identifier_names, library_prefixes
@@ -30,14 +30,7 @@ final $typed_data.Uint8List pBKVDescriptor = $convert.base64Decode(
 const PBListKV$json = {
   '1': 'PBListKV',
   '2': [
-    {
-      '1': 'ListKV',
-      '3': 1,
-      '4': 3,
-      '5': 11,
-      '6': '.kk_etcd_models.PBKV',
-      '10': 'ListKV'
-    },
+    {'1': 'ListKV', '3': 1, '4': 3, '5': 11, '6': '.kk_etcd_models.PBKV', '10': 'ListKV'},
   ],
 };
 
