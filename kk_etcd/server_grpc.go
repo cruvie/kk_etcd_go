@@ -21,7 +21,9 @@ func GetGrpcClient[T any](serverName string,
 
 	options := []grpc.DialOption{
 		grpc.WithResolvers(etcdResolver),
-		grpc.WithDefaultServiceConfig(`{"loadBalancingPolicy":"round_robin"}`),
+		//bug https://github.com/etcd-io/etcd/issues/19700#issuecomment-2779093288
+		//grpc.WithDefaultServiceConfig(`{"loadBalancingPolicy":"round_robin"}`),
+		grpc.WithDefaultServiceConfig(`{"loadBalancingPolicy":"pick_first"}`),
 	}
 	options = append(options, opts...)
 
