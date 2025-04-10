@@ -15,7 +15,7 @@ import (
 )
 
 // NewEtcdMaintain https://etcd.io/docs/v3.5/op-guide/maintenance/#space-quota
-func NewEtcdMaintain() kk_server.KKRunServer {
+func NewEtcdMaintain() *kk_server.KKRunServer {
 	tick := time.NewTicker(1 * time.Hour)
 	run := func() {
 		maintainEtcd()
@@ -31,7 +31,7 @@ func NewEtcdMaintain() kk_server.KKRunServer {
 		<-quitCh
 		tick.Stop()
 	}
-	return kk_server.KKRunServer{
+	return &kk_server.KKRunServer{
 		Run:  run,
 		Done: done,
 	}

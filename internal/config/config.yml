@@ -17,3 +17,7 @@ AI:
   LLMModel: qwen2.5:0.5b
   # default: http://127.0.0.1:11434
   OllamaServer: http://127.0.0.1:11434
+
+MCPServer:
+  Enable: true
+  Port: 2445

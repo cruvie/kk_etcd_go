@@ -27,6 +27,10 @@ type config struct {
 		//EtcdDocPath    string `yaml:"EtcdDocPath"`
 		//ReInitWeaviate bool   `yaml:"ReInitWeaviate"`
 	} `yaml:"AI"`
+	MCPServer struct {
+		Enable bool `yaml:"Enable"`
+		Port   int  `yaml:"Port"`
+	} `yaml:"MCPServer"`
 	/*
 
 	   AI:

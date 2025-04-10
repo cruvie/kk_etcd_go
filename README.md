@@ -6,6 +6,20 @@ A modern and easy to use Client/UI for `Etcd`
 
 A Configuration center and Service registration and discovery platform based on `Etcd`
 
+## Feature
+
+- [x] Configuration center
+
+- [x] Service registration and discovery for Http/gRPC Server
+
+- [x] MCP Server
+
+- [x] User management
+
+- [x] Role management
+
+- [ ] AI
+
 ## server
 
 ![ui](https://github.com/cruvie/kk_etcd_ui/blob/master/lib/assets/images/ui.png?raw=true)

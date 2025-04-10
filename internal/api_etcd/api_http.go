@@ -38,7 +38,7 @@ import (
 	"time"
 )
 
-func ApiEtcd(stage *kk_stage.Stage) kk_server.KKRunServer {
+func ApiHttp(stage *kk_stage.Stage) *kk_server.KKRunServer {
 	server := kk_http.KKHttpServer{
 		Stage:           stage,
 		ServerAddr:      fmt.Sprintf(":%d", config.Config.Port),

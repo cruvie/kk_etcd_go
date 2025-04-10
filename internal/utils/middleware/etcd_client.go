@@ -1,6 +1,7 @@
 package middleware
 
 import (
+	"fmt"
 	"gitee.com/cruvie/kk_go_kit/kk_http"
 	"gitee.com/cruvie/kk_go_kit/kk_http/kk_global_stage"
 	"gitee.com/cruvie/kk_go_kit/kk_models"
@@ -40,7 +41,7 @@ func EtcdClient(c *gin.Context) {
 	if err != nil {
 		kk_http.WriteCustomResponse(stage, &kk_models.PBResponse{
 			Code: http.StatusUnauthorized,
-			Msg:  "LogIn again"})
+			Msg:  fmt.Sprintf("LogIn again %s", err.Error())})
 		c.Abort()
 		return
 	}

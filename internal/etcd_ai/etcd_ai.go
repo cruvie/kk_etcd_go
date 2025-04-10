@@ -5,16 +5,14 @@ import (
 	"github.com/cruvie/kk_etcd_go/internal/config"
 	"github.com/cruvie/kk_etcd_go/internal/etcd_ai/rag_server"
 	"github.com/tmc/langchaingo/llms/ollama"
-	"log/slog"
 )
 
-func EtcdAIServer() kk_server.KKRunServer {
+func EtcdAIServer() *kk_server.KKRunServer {
+	if !config.Config.AI.Enable {
+		return nil
+	}
 
 	run := func() {
-		if !config.Config.AI.Enable {
-			slog.Info("Etcd AI is disabled skip.")
-			return
-		}
 		opts := []ollama.Option{
 			ollama.WithModel(config.Config.AI.LLMModel),
 		}
@@ -57,7 +55,7 @@ func EtcdAIServer() kk_server.KKRunServer {
 	done := func(quitCh <-chan struct{}) {
 		<-quitCh
 	}
-	return kk_server.KKRunServer{
+	return &kk_server.KKRunServer{
 		Run:  run,
 		Done: done,
 	}
