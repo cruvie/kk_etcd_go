@@ -2,7 +2,7 @@ package global_model
 
 import (
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
-	"go.etcd.io/etcd/client/v3"
+	clientv3 "go.etcd.io/etcd/client/v3"
 	"log/slog"
 )
 

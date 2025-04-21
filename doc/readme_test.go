@@ -2,6 +2,7 @@ package doc_test
 
 import (
 	"github.com/cruvie/kk_etcd_go/kk_etcd"
+	clientv3 "go.etcd.io/etcd/client/v3"
 	"gopkg.in/yaml.v3"
 	"log"
 	"log/slog"
@@ -24,9 +25,11 @@ type myConfig struct {
 func TestPutYaml(t *testing.T) {
 	//init client
 	closeFunc, err := kk_etcd.InitClient(&kk_etcd.InitClientConfig{
-		Endpoints: []string{"http://127.0.0.1:2379"},
-		UserName:  "root",
-		Password:  "root",
+		Config: clientv3.Config{
+			Endpoints: []string{"http://127.0.0.1:2379"},
+			Username:  "root",
+			Password:  "root",
+		},
 		DebugMode: true})
 	if err != nil {
 		panic(err)

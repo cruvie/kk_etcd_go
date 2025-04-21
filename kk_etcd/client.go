@@ -5,13 +5,10 @@ import (
 	"github.com/cruvie/kk_etcd_go/internal/utils/internal_client"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/user/util_user"
 	clientv3 "go.etcd.io/etcd/client/v3"
-	"time"
 )
 
 type InitClientConfig struct {
-	Endpoints []string
-	UserName  string
-	Password  string
+	clientv3.Config
 	DebugMode bool
 }
 
@@ -19,7 +16,7 @@ func (x *InitClientConfig) Check() {
 	if len(x.Endpoints) == 0 {
 		panic("endpoints is empty")
 	}
-	if x.UserName == "" {
+	if x.Username == "" {
 		panic("userName is empty")
 	}
 	if x.Password == "" {
@@ -33,18 +30,13 @@ func InitClient(cfg *InitClientConfig) (CloseFunc, error) {
 	cfg.Check()
 	internal_client.InitGlobalStage(cfg.DebugMode)
 
-	client, err := clientv3.New(clientv3.Config{
-		Endpoints:   cfg.Endpoints,
-		DialTimeout: 5 * time.Second,
-		Username:    cfg.UserName,
-		Password:    cfg.Password,
-	})
+	client, err := clientv3.New(cfg.Config)
 	if err != nil {
 		return nil, err
 	}
 	global_model.SetClient(internal_client.GlobalStage, client)
 
-	user, err := util_user.GetUser(internal_client.GlobalStage, cfg.UserName)
+	user, err := util_user.GetUser(internal_client.GlobalStage, cfg.Username)
 	if err != nil {
 		return nil, err
 	}

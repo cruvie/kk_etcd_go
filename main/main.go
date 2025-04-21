@@ -14,6 +14,7 @@ import (
 	"github.com/cruvie/kk_etcd_go/internal/utils/internal_client"
 	"github.com/cruvie/kk_etcd_go/kk_etcd"
 	_ "github.com/cruvie/kk_etcd_go/swagger"
+	clientv3 "go.etcd.io/etcd/client/v3"
 	"log/slog"
 	"time"
 )
@@ -61,10 +62,14 @@ func main() {
 
 	internal_client.InitEtcd()
 
+	etcdCfg := clientv3.Config{
+		Endpoints:   config.Config.Etcd.Endpoints,
+		DialTimeout: 5 * time.Second,
+		Username:    consts.UserRoot,
+		Password:    config.Config.RootPassword,
+	}
 	closeFunc, err := kk_etcd.InitClient(&kk_etcd.InitClientConfig{
-		Endpoints: config.Config.Etcd.Endpoints,
-		UserName:  consts.UserRoot,
-		Password:  config.Config.RootPassword,
+		Config:    etcdCfg,
 		DebugMode: internal_client.GlobalStage.DebugMode})
 	if err != nil {
 		panic(err)
@@ -76,6 +81,10 @@ func main() {
 		}
 	}()
 
+	//server_hub.InitKubernetesClient(etcdCfg)
+	//defer func() {
+	//	server_hub.CloseKubernetesClient()
+	//}()
 	server_hub.InitServiceHub()
 
 	kkServer := kk_server.NewKKServer(5*time.Second, stage)

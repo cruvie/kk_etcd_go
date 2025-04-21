@@ -60,7 +60,7 @@ func TestConvert(t *testing.T) {
 	if err != nil {
 		panic(err)
 	}
-	resp, err := client.Maintenance.Status(context.Background(), "http://127.0.0.1:2389")
+	resp, err := client.Status(context.Background(), "http://127.0.0.1:2389")
 	if err != nil {
 		t.Error(err)
 	}

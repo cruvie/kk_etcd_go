@@ -9,7 +9,7 @@ import (
 	"testing"
 )
 
-func newClient(t *testing.T) (*client.SSEMCPClient, context.Context) {
+func newClient(t *testing.T) (*client.Client, context.Context) {
 	ssemcpClient, err := client.NewSSEMCPClient("http://127.0.0.1:2445/kk_etcd/sse")
 	if err != nil {
 		t.Fatalf("Failed to create ssemcpClient: %v", err)

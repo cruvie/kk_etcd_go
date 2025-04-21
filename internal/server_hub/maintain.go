@@ -74,7 +74,7 @@ func maintainEtcd() {
 }
 
 func getCurrentRevision(endpoint string) (int64, error) {
-	resp, err := global_model.GetClient(internal_client.GlobalStage).Maintenance.Status(context.Background(), endpoint)
+	resp, err := global_model.GetClient(internal_client.GlobalStage).Status(context.Background(), endpoint)
 	if err != nil {
 		return 0, err
 	}
