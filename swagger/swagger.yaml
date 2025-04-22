@@ -364,7 +364,7 @@ info:
     url: http://kk_etcd_go/licenses/LICENSE-2.0.html
   termsOfService: http://kk_etcd_go/terms/
   title: kk_etcd_go API
-  version: 1.4.1
+  version: 1.4.2
 paths:
   /ai/query:
     post:
