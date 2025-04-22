@@ -28,6 +28,10 @@ type serverHub struct {
 }
 
 func (x *serverHub) register(server *serverStatus) {
+	_, ok := x.hub.Get(server.kVKey())
+	if ok {
+		return
+	}
 	server.ctx, server.cancelFunc = context.WithCancel(context.Background())
 	x.hub.Add(server.kVKey(), server)
 	err := server.putExistUpdateJson()
@@ -133,12 +137,14 @@ func (x *serverHub) watchServiceChange() {
 				return
 			case updates, ok := <-grpcChannel:
 				if !ok {
-					return
+					slog.Error("grpcChannel", kk_log.NewLog(nil).Args()...)
+					continue
 				}
 				updateEndpoint(updates)
 			case updates, ok := <-httpChannel:
 				if !ok {
-					return
+					slog.Error("httpChannel", kk_log.NewLog(nil).Args()...)
+					continue
 				}
 				updateEndpoint(updates)
 			}

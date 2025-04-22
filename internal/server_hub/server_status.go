@@ -93,6 +93,7 @@ func (x *serverStatus) runCheck() {
 		for {
 			select {
 			case <-x.ctx.Done():
+				ticker.Stop()
 				return
 			case <-ticker.C:
 				err := x.checkGrpc(&x.CheckConfig)
@@ -103,6 +104,7 @@ func (x *serverStatus) runCheck() {
 		for {
 			select {
 			case <-x.ctx.Done():
+				ticker.Stop()
 				return
 			case <-ticker.C:
 				err := x.checkHttp(&x.CheckConfig)
