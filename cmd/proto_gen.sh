@@ -27,32 +27,32 @@ echo "gen kk_etcd_api_hub pb"
 cd kk_etcd_api_hub || exit
 
 (
-cd ai || exit
+cd ai/api_def || exit
 sh *_proto.sh
 )
 
 (
-cd backup || exit
+cd backup/api_def || exit
 sh *_proto.sh
 )
 
 (
-cd kv || exit
+cd kv/api_def || exit
 sh *_proto.sh
 )
 
 (
-cd role || exit
+cd role/api_def || exit
 sh *_proto.sh
 )
 
 (
-cd server || exit
+cd server/api_def || exit
 sh *_proto.sh
 )
 
 (
-cd user || exit
+cd user/api_def || exit
 sh *_proto.sh
 )
 )

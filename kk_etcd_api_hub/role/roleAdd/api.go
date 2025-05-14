@@ -6,18 +6,19 @@ import (
 	"gitee.com/cruvie/kk_go_kit/kk_http"
 	"gitee.com/cruvie/kk_go_kit/kk_http/kk_global_stage"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
+	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/role/api_def"
 	"github.com/gin-gonic/gin"
 )
 
 type api struct {
 	stage *kk_stage.Stage
-	In    *RoleAdd_Input
+	In    *api_def.RoleAdd_Input
 }
 
 func NewApi(stage *kk_stage.Stage) *api {
 	return &api{
 		stage: stage,
-		In:    new(RoleAdd_Input),
+		In:    new(api_def.RoleAdd_Input),
 	}
 }
 
@@ -27,8 +28,8 @@ func NewApi(stage *kk_stage.Stage) *api {
 //	@Description	add role
 //	@Accept			json,application/x-protobuf
 //	@Produce		json,application/x-protobuf
-//	@Param			RoleAdd_Input	body		RoleAdd_Input	true	"RoleAdd_Input"
-//	@Success		200				{object}	RoleAdd_Output
+//	@Param			api_def.RoleAdd_Input	body		api_def.RoleAdd_Input	true	"RoleAdd_Input"
+//	@Success		200						{object}	api_def.RoleAdd_Output
 //	@Router			/role/roleAdd [post]
 func Handler(c *gin.Context) {
 		x := NewApi(kk_global_stage.GetRequestStage(c))

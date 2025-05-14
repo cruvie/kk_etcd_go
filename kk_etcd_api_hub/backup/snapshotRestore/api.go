@@ -6,18 +6,19 @@ import (
 	"gitee.com/cruvie/kk_go_kit/kk_http"
 	"gitee.com/cruvie/kk_go_kit/kk_http/kk_global_stage"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
+	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/backup/api_def"
 	"github.com/gin-gonic/gin"
 )
 
 type api struct {
 	stage *kk_stage.Stage
-	In    *SnapshotRestore_Input
+	In    *api_def.SnapshotRestore_Input
 }
 
 func NewApi(stage *kk_stage.Stage) *api {
 	return &api{
 		stage: stage,
-		In:    new(SnapshotRestore_Input),
+		In:    new(api_def.SnapshotRestore_Input),
 	}
 }
 
@@ -27,8 +28,8 @@ func NewApi(stage *kk_stage.Stage) *api {
 //	@Description	snapshot restore
 //	@Accept			json,application/x-protobuf
 //	@Produce		json,application/x-protobuf
-//	@Param			SnapshotRestore_Input	body		SnapshotRestore_Input	true	"SnapshotRestore_Input"
-//	@Success		200						{object}	SnapshotRestore_Output
+//	@Param			api_def.SnapshotRestore_Input	body		api_def.SnapshotRestore_Input	true	"SnapshotRestore_Input"
+//	@Success		200								{object}	api_def.SnapshotRestore_Output
 //	@Router			/backup/snapshotRestore [post]
 func Handler(c *gin.Context) {
 		x := NewApi(kk_global_stage.GetRequestStage(c))

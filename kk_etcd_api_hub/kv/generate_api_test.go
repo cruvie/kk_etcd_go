@@ -7,8 +7,6 @@ import (
 
 func TestKV(t *testing.T) {
 	apiGroupModel := kk_api_gen.ApiGroupModel{
-		ApiPkgName:  "kk_etcd_models",
-		HandlerName: "hKV",
 		Tag:         "kv",
 		GroupUrl:    "/kv/",
 	}

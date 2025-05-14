@@ -2,6 +2,7 @@ package kk_etcd
 
 import (
 	"github.com/cruvie/kk_etcd_go/internal/utils/internal_client"
+	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/kv/api_def"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/kv/kVDel"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/kv/kVGet"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/kv/kVList"
@@ -15,25 +16,25 @@ func NewMgrKV() *MgrKV {
 	return &MgrKV{}
 }
 
-func (*MgrKV) KVPut(param *kVPut.KVPut_Input) (*kVPut.KVPut_Output, error) {
+func (*MgrKV) KVPut(param *api_def.KVPut_Input) (*api_def.KVPut_Output, error) {
 	api := kVPut.NewApi(internal_client.GlobalStage)
 	api.In = param
 	return api.Handler()
 }
 
-func (*MgrKV) KVGet(param *kVGet.KVGet_Input) (*kVGet.KVGet_Output, error) {
+func (*MgrKV) KVGet(param *api_def.KVGet_Input) (*api_def.KVGet_Output, error) {
 	api := kVGet.NewApi(internal_client.GlobalStage)
 	api.In = param
 	return api.Handler()
 }
 
-func (*MgrKV) KVDel(param *kVDel.KVDel_Input) (*kVDel.KVDel_Output, error) {
+func (*MgrKV) KVDel(param *api_def.KVDel_Input) (*api_def.KVDel_Output, error) {
 	api := kVDel.NewApi(internal_client.GlobalStage)
 	api.In = param
 	return api.Handler()
 }
 
-func (*MgrKV) KVList(param *kVList.KVList_Input) (*kVList.KVList_Output, error) {
+func (*MgrKV) KVList(param *api_def.KVList_Input) (*api_def.KVList_Output, error) {
 	api := kVList.NewApi(internal_client.GlobalStage)
 	api.In = param
 	return api.Handler()

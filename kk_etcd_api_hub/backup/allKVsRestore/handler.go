@@ -1,11 +1,13 @@
 package allKVsRestore
 
-func (x *api) Handler() (*AllKVsRestore_Output, error) {
+import "github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/backup/api_def"
+
+func (x *api) Handler() (*api_def.AllKVsRestore_Output, error) {
 	span := x.stage.StartTrace("handler")
 	defer span.End()
 	err := x.service()
 	if err != nil {
 		return nil, err
 	}
-	return &AllKVsRestore_Output{}, nil
+	return &api_def.AllKVsRestore_Output{}, nil
 }

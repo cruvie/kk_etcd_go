@@ -41,11 +41,11 @@ func DelKV(stage *kk_stage.Stage, key string) error {
 func ListKV(stage *kk_stage.Stage, prefix string) (list *kk_etcd_models.PBListKV, err error) {
 
 	list = &kk_etcd_models.PBListKV{}
-	get_Output, err := global_model.GetClient(stage).Get(context.Background(), prefix, clientv3.WithPrefix())
+	getOutput, err := global_model.GetClient(stage).Get(context.Background(), prefix, clientv3.WithPrefix())
 	if err != nil {
 		return nil, err
 	}
-	for _, kv := range get_Output.Kvs {
+	for _, kv := range getOutput.Kvs {
 		cfg := &kk_etcd_models.PBKV{
 			Key:   string(kv.Key),
 			Value: string(kv.Value),

@@ -4,13 +4,14 @@ import (
 	"context"
 	"encoding/json"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
+	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/backup/api_def"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	clientv3 "go.etcd.io/etcd/client/v3"
 	"strings"
 	"time"
 )
 
-func (x *api) service() (*AllKVsBackup_Output, error) {
+func (x *api) service() (*api_def.AllKVsBackup_Output, error) {
 	span := x.stage.StartTrace("service")
 	defer span.End()
 
@@ -38,7 +39,7 @@ func (x *api) service() (*AllKVsBackup_Output, error) {
 	}
 	timeStr := time.Now().Format(time.DateTime)
 	fileName := "etcd_all_kv_" + timeStr + ".json"
-	return &AllKVsBackup_Output{
+	return &api_def.AllKVsBackup_Output{
 		Name: fileName,
 		File: marshal,
 	}, nil

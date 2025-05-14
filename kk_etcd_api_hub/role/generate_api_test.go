@@ -1,4 +1,4 @@
-package role
+package api_def
 
 import (
 	"gitee.com/cruvie/kk_go_kit/kk_http/kk_api_gen"
@@ -7,10 +7,8 @@ import (
 
 func TestRole(t *testing.T) {
 	apiGroupModel := kk_api_gen.ApiGroupModel{
-		ApiPkgName:  "kk_etcd_models",
-		HandlerName: "hRole",
-		Tag:         "role",
-		GroupUrl:    "/role/",
+		Tag:      "role",
+		GroupUrl: "/role/",
 	}
 	apis := []struct {
 		apiModel kk_api_gen.ApiModel

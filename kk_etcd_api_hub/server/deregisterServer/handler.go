@@ -2,10 +2,11 @@ package deregisterServer
 
 import (
 	"github.com/cruvie/kk_etcd_go/internal/server_hub"
+	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/server/api_def"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 )
 
-func (x *api) Handler() (*DeregisterServer_Output, error) {
+func (x *api) Handler() (*api_def.DeregisterServer_Output, error) {
 	span := x.stage.StartTrace("handler")
 	defer span.End()
 	err := server_hub.SerServer{}.DeregisterServer(x.stage,
@@ -14,5 +15,5 @@ func (x *api) Handler() (*DeregisterServer_Output, error) {
 	if err != nil {
 		return nil, err
 	}
-	return &DeregisterServer_Output{}, nil
+	return &api_def.DeregisterServer_Output{}, nil
 }

@@ -6,18 +6,19 @@ import (
 	"gitee.com/cruvie/kk_go_kit/kk_http"
 	"gitee.com/cruvie/kk_go_kit/kk_http/kk_global_stage"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
+	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/user/api_def"
 	"github.com/gin-gonic/gin"
 )
 
 type api struct {
 	stage *kk_stage.Stage
-	In    *UserAdd_Input
+	In    *api_def.UserAdd_Input
 }
 
 func NewApi(stage *kk_stage.Stage) *api {
 	return &api{
 		stage: stage,
-		In:    new(UserAdd_Input),
+		In:    new(api_def.UserAdd_Input),
 	}
 }
 
@@ -27,8 +28,8 @@ func NewApi(stage *kk_stage.Stage) *api {
 //	@Description	add user
 //	@Accept			json,application/x-protobuf
 //	@Produce		json,application/x-protobuf
-//	@Param			UserAdd_Input	body		UserAdd_Input	true	"UserAdd_Input"
-//	@Success		200				{object}	UserAdd_Output
+//	@Param			api_def.UserAdd_Input	body		api_def.UserAdd_Input	true	"UserAdd_Input"
+//	@Success		200						{object}	api_def.UserAdd_Output
 //	@Router			/user/userAdd [post]
 func Handler(c *gin.Context) {
 		x := NewApi(kk_global_stage.GetRequestStage(c))

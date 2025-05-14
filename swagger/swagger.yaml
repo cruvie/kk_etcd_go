@@ -1,18 +1,18 @@
 basePath: /
 definitions:
-  internal_mgr_hub_mgr_ai_query.Query_Input:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_ai_api_def.Query_Input:
     properties:
       Question:
         type: string
     type: object
-  internal_mgr_hub_mgr_ai_query.Query_Output:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_ai_api_def.Query_Output:
     properties:
       Answer:
         type: string
     type: object
-  internal_mgr_hub_mgr_backup_allKVsBackup.AllKVsBackup_Input:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_backup_api_def.AllKVsBackup_Input:
     type: object
-  internal_mgr_hub_mgr_backup_allKVsBackup.AllKVsBackup_Output:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_backup_api_def.AllKVsBackup_Output:
     properties:
       File:
         items:
@@ -21,18 +21,18 @@ definitions:
       Name:
         type: string
     type: object
-  internal_mgr_hub_mgr_backup_allKVsRestore.AllKVsRestore_Input:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_backup_api_def.AllKVsRestore_Input:
     properties:
       File:
         items:
           type: integer
         type: array
     type: object
-  internal_mgr_hub_mgr_backup_allKVsRestore.AllKVsRestore_Output:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_backup_api_def.AllKVsRestore_Output:
     type: object
-  internal_mgr_hub_mgr_backup_snapshot.Snapshot_Input:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_backup_api_def.Snapshot_Input:
     type: object
-  internal_mgr_hub_mgr_backup_snapshot.Snapshot_Output:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_backup_api_def.Snapshot_Output:
     properties:
       File:
         items:
@@ -41,102 +41,102 @@ definitions:
       Name:
         type: string
     type: object
-  internal_mgr_hub_mgr_backup_snapshotInfo.SnapshotInfo_Input:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_backup_api_def.SnapshotInfo_Input:
     properties:
       File:
         items:
           type: integer
         type: array
     type: object
-  internal_mgr_hub_mgr_backup_snapshotInfo.SnapshotInfo_Output:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_backup_api_def.SnapshotInfo_Output:
     properties:
       Info:
         type: string
     type: object
-  internal_mgr_hub_mgr_backup_snapshotRestore.SnapshotRestore_Input:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_backup_api_def.SnapshotRestore_Input:
     type: object
-  internal_mgr_hub_mgr_backup_snapshotRestore.SnapshotRestore_Output:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_backup_api_def.SnapshotRestore_Output:
     properties:
       CmdStr:
         type: string
     type: object
-  internal_mgr_hub_mgr_kv_kVDel.KVDel_Input:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_kv_api_def.KVDel_Input:
     properties:
       Key:
         type: string
     type: object
-  internal_mgr_hub_mgr_kv_kVDel.KVDel_Output:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_kv_api_def.KVDel_Output:
     type: object
-  internal_mgr_hub_mgr_kv_kVGet.KVGet_Input:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_kv_api_def.KVGet_Input:
     properties:
       Key:
         type: string
     type: object
-  internal_mgr_hub_mgr_kv_kVGet.KVGet_Output:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_kv_api_def.KVGet_Output:
     properties:
       KV:
         $ref: '#/definitions/kk_etcd_models.PBKV'
     type: object
-  internal_mgr_hub_mgr_kv_kVList.KVList_Input:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_kv_api_def.KVList_Input:
     properties:
       Prefix:
         type: string
     type: object
-  internal_mgr_hub_mgr_kv_kVList.KVList_Output:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_kv_api_def.KVList_Output:
     properties:
       KVList:
         $ref: '#/definitions/kk_etcd_models.PBListKV'
     type: object
-  internal_mgr_hub_mgr_kv_kVPut.KVPut_Input:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_kv_api_def.KVPut_Input:
     properties:
       Key:
         type: string
       Value:
         type: string
     type: object
-  internal_mgr_hub_mgr_kv_kVPut.KVPut_Output:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_kv_api_def.KVPut_Output:
     type: object
-  internal_mgr_hub_mgr_role_roleAdd.RoleAdd_Input:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleAdd_Input:
     properties:
       Name:
         type: string
     type: object
-  internal_mgr_hub_mgr_role_roleAdd.RoleAdd_Output:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleAdd_Output:
     type: object
-  internal_mgr_hub_mgr_role_roleDelete.RoleDelete_Input:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleDelete_Input:
     properties:
       Name:
         type: string
     type: object
-  internal_mgr_hub_mgr_role_roleDelete.RoleDelete_Output:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleDelete_Output:
     type: object
-  internal_mgr_hub_mgr_role_roleGet.RoleGet_Input:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleGet_Input:
     properties:
       Name:
         type: string
     type: object
-  internal_mgr_hub_mgr_role_roleGet.RoleGet_Output:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleGet_Output:
     properties:
       Role:
         $ref: '#/definitions/kk_etcd_models.PBRole'
     type: object
-  internal_mgr_hub_mgr_role_roleGrantPermission.RoleGrantPermission_Input:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleGrantPermission_Input:
     properties:
       Name:
         type: string
       Perm:
         $ref: '#/definitions/kk_etcd_models.PBPermission'
     type: object
-  internal_mgr_hub_mgr_role_roleGrantPermission.RoleGrantPermission_Output:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleGrantPermission_Output:
     type: object
-  internal_mgr_hub_mgr_role_roleList.RoleList_Input:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleList_Input:
     type: object
-  internal_mgr_hub_mgr_role_roleList.RoleList_Output:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleList_Output:
     properties:
       ListRole:
         $ref: '#/definitions/kk_etcd_models.PBListRole'
     type: object
-  internal_mgr_hub_mgr_role_roleRevokePermission.RoleRevokePermission_Input:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleRevokePermission_Input:
     properties:
       Key:
         type: string
@@ -145,56 +145,56 @@ definitions:
       RangeEnd:
         type: string
     type: object
-  internal_mgr_hub_mgr_role_roleRevokePermission.RoleRevokePermission_Output:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleRevokePermission_Output:
     type: object
-  internal_mgr_hub_mgr_server_deregisterServer.DeregisterServer_Input:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_server_api_def.DeregisterServer_Input:
     properties:
       Server:
         $ref: '#/definitions/kk_etcd_models.PBServer'
     type: object
-  internal_mgr_hub_mgr_server_deregisterServer.DeregisterServer_Output:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_server_api_def.DeregisterServer_Output:
     type: object
-  internal_mgr_hub_mgr_server_serverList.ServerList_Input:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_server_api_def.ServerList_Input:
     properties:
       ServerName:
         type: string
       ServerType:
         type: string
     type: object
-  internal_mgr_hub_mgr_server_serverList.ServerList_Output:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_server_api_def.ServerList_Output:
     properties:
       ServerList:
         $ref: '#/definitions/kk_etcd_models.PBListServer'
     type: object
-  internal_mgr_hub_mgr_user_getUser.GetUser_Input:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.GetUser_Input:
     properties:
       UserName:
         type: string
     type: object
-  internal_mgr_hub_mgr_user_getUser.GetUser_Output:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.GetUser_Output:
     properties:
       User:
         $ref: '#/definitions/kk_etcd_models.PBUser'
     type: object
-  internal_mgr_hub_mgr_user_login.Login_Input:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.Login_Input:
     properties:
       Password:
         type: string
       UserName:
         type: string
     type: object
-  internal_mgr_hub_mgr_user_login.Login_Output:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.Login_Output:
     properties:
       Token:
         type: string
     type: object
-  internal_mgr_hub_mgr_user_logout.Logout_Input:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.Logout_Input:
     type: object
-  internal_mgr_hub_mgr_user_logout.Logout_Output:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.Logout_Output:
     type: object
-  internal_mgr_hub_mgr_user_myInfo.MyInfo_Input:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.MyInfo_Input:
     type: object
-  internal_mgr_hub_mgr_user_myInfo.MyInfo_Output:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.MyInfo_Output:
     properties:
       Roles:
         items:
@@ -203,7 +203,7 @@ definitions:
       UserName:
         type: string
     type: object
-  internal_mgr_hub_mgr_user_userAdd.UserAdd_Input:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.UserAdd_Input:
     properties:
       Password:
         type: string
@@ -214,16 +214,16 @@ definitions:
       UserName:
         type: string
     type: object
-  internal_mgr_hub_mgr_user_userAdd.UserAdd_Output:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.UserAdd_Output:
     type: object
-  internal_mgr_hub_mgr_user_userDelete.UserDelete_Input:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.UserDelete_Input:
     properties:
       UserName:
         type: string
     type: object
-  internal_mgr_hub_mgr_user_userDelete.UserDelete_Output:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.UserDelete_Output:
     type: object
-  internal_mgr_hub_mgr_user_userGrantRole.UserGrantRole_Input:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.UserGrantRole_Input:
     properties:
       Roles:
         items:
@@ -232,11 +232,11 @@ definitions:
       UserName:
         type: string
     type: object
-  internal_mgr_hub_mgr_user_userGrantRole.UserGrantRole_Output:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.UserGrantRole_Output:
     type: object
-  internal_mgr_hub_mgr_user_userList.UserList_Input:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.UserList_Input:
     type: object
-  internal_mgr_hub_mgr_user_userList.UserList_Output:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.UserList_Output:
     properties:
       ListUser:
         $ref: '#/definitions/kk_etcd_models.PBListUser'
@@ -369,625 +369,625 @@ paths:
   /ai/query:
     post:
       consumes:
-        - application/json
-        - application/x-protobuf
+      - application/json
+      - application/x-protobuf
       description: query ai
       operationId: Query
       parameters:
-        - description: Query_Input
-          in: body
-          name: Query_Input
-          required: true
-          schema:
-            $ref: '#/definitions/internal_mgr_hub_mgr_ai_query.Query_Input'
+      - description: Query_Input
+        in: body
+        name: api_def.Query_Input
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_ai_api_def.Query_Input'
       produces:
-        - application/json
-        - application/x-protobuf
+      - application/json
+      - application/x-protobuf
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/internal_mgr_hub_mgr_ai_query.Query_Output'
+            $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_ai_api_def.Query_Output'
       tags:
-        - ai
+      - ai
   /backup/allKVsBackup:
     post:
       consumes:
-        - application/json
-        - application/x-protobuf
+      - application/json
+      - application/x-protobuf
       description: all kvs backup
       operationId: AllKVsBackup
       parameters:
-        - description: AllKVsBackup_Input
+      - description: AllKVsBackup_Input
         in: body
-          name: AllKVsBackup_Input
+        name: api_def.AllKVsBackup_Input
         required: true
         schema:
-          $ref: '#/definitions/internal_mgr_hub_mgr_backup_allKVsBackup.AllKVsBackup_Input'
+          $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_backup_api_def.AllKVsBackup_Input'
       produces:
-        - application/json
-        - application/x-protobuf
+      - application/json
+      - application/x-protobuf
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/internal_mgr_hub_mgr_backup_allKVsBackup.AllKVsBackup_Output'
+            $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_backup_api_def.AllKVsBackup_Output'
       tags:
       - backup
   /backup/allKVsRestore:
     post:
       consumes:
-        - application/json
-        - application/x-protobuf
+      - application/json
+      - application/x-protobuf
       description: all kvs restore
       operationId: AllKVsRestore
       parameters:
-        - description: AllKVsRestore_Input
+      - description: AllKVsRestore_Input
         in: body
-          name: AllKVsRestore_Input
+        name: api_def.AllKVsRestore_Input
         required: true
         schema:
-          $ref: '#/definitions/internal_mgr_hub_mgr_backup_allKVsRestore.AllKVsRestore_Input'
+          $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_backup_api_def.AllKVsRestore_Input'
       produces:
-        - application/json
-        - application/x-protobuf
+      - application/json
+      - application/x-protobuf
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/internal_mgr_hub_mgr_backup_allKVsRestore.AllKVsRestore_Output'
+            $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_backup_api_def.AllKVsRestore_Output'
       tags:
       - backup
   /backup/snapshot:
     post:
       consumes:
-        - application/json
-        - application/x-protobuf
+      - application/json
+      - application/x-protobuf
       description: snapshot
       operationId: Snapshot
       parameters:
-        - description: Snapshot_Input
+      - description: Snapshot_Input
         in: body
-          name: Snapshot_Input
+        name: api_def.Snapshot_Input
         required: true
         schema:
-          $ref: '#/definitions/internal_mgr_hub_mgr_backup_snapshot.Snapshot_Input'
+          $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_backup_api_def.Snapshot_Input'
       produces:
-        - application/json
-        - application/x-protobuf
+      - application/json
+      - application/x-protobuf
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/internal_mgr_hub_mgr_backup_snapshot.Snapshot_Output'
+            $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_backup_api_def.Snapshot_Output'
       tags:
       - backup
   /backup/snapshotInfo:
     post:
       consumes:
-        - application/json
-        - application/x-protobuf
+      - application/json
+      - application/x-protobuf
       description: snapshot info
       operationId: SnapshotInfo
       parameters:
-        - description: SnapshotInfo_Input
+      - description: SnapshotInfo_Input
         in: body
-          name: SnapshotInfo_Input
+        name: api_def.SnapshotInfo_Input
         required: true
         schema:
-          $ref: '#/definitions/internal_mgr_hub_mgr_backup_snapshotInfo.SnapshotInfo_Input'
+          $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_backup_api_def.SnapshotInfo_Input'
       produces:
-        - application/json
-        - application/x-protobuf
+      - application/json
+      - application/x-protobuf
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/internal_mgr_hub_mgr_backup_snapshotInfo.SnapshotInfo_Output'
+            $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_backup_api_def.SnapshotInfo_Output'
       tags:
       - backup
   /backup/snapshotRestore:
     post:
       consumes:
-        - application/json
-        - application/x-protobuf
+      - application/json
+      - application/x-protobuf
       description: snapshot restore
       operationId: SnapshotRestore
       parameters:
-        - description: SnapshotRestore_Input
+      - description: SnapshotRestore_Input
         in: body
-          name: SnapshotRestore_Input
+        name: api_def.SnapshotRestore_Input
         required: true
         schema:
-          $ref: '#/definitions/internal_mgr_hub_mgr_backup_snapshotRestore.SnapshotRestore_Input'
+          $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_backup_api_def.SnapshotRestore_Input'
       produces:
-        - application/json
-        - application/x-protobuf
+      - application/json
+      - application/x-protobuf
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/internal_mgr_hub_mgr_backup_snapshotRestore.SnapshotRestore_Output'
+            $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_backup_api_def.SnapshotRestore_Output'
       tags:
       - backup
   /kv/kVDel:
     post:
       consumes:
-        - application/json
-        - application/x-protobuf
+      - application/json
+      - application/x-protobuf
       description: del kv
       operationId: KVDel
       parameters:
-        - description: KVDel_Input
+      - description: KVDel_Input
         in: body
-          name: KVDel_Input
+        name: api_def.KVDel_Input
         required: true
         schema:
-          $ref: '#/definitions/internal_mgr_hub_mgr_kv_kVDel.KVDel_Input'
+          $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_kv_api_def.KVDel_Input'
       produces:
-        - application/json
-        - application/x-protobuf
+      - application/json
+      - application/x-protobuf
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/internal_mgr_hub_mgr_kv_kVDel.KVDel_Output'
+            $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_kv_api_def.KVDel_Output'
       tags:
       - kv
   /kv/kVGet:
     post:
       consumes:
-        - application/json
-        - application/x-protobuf
+      - application/json
+      - application/x-protobuf
       description: get kv
       operationId: KVGet
       parameters:
-        - description: KVGet_Input
+      - description: KVGet_Input
         in: body
-          name: KVGet_Input
+        name: api_def.KVGet_Input
         required: true
         schema:
-          $ref: '#/definitions/internal_mgr_hub_mgr_kv_kVGet.KVGet_Input'
+          $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_kv_api_def.KVGet_Input'
       produces:
-        - application/json
-        - application/x-protobuf
+      - application/json
+      - application/x-protobuf
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/internal_mgr_hub_mgr_kv_kVGet.KVGet_Output'
+            $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_kv_api_def.KVGet_Output'
       tags:
       - kv
   /kv/kVList:
     post:
       consumes:
-        - application/json
-        - application/x-protobuf
+      - application/json
+      - application/x-protobuf
       description: list kv
       operationId: KVList
       parameters:
-        - description: KVList_Input
+      - description: KVList_Input
         in: body
-          name: KVList_Input
+        name: api_def.KVList_Input
         required: true
         schema:
-          $ref: '#/definitions/internal_mgr_hub_mgr_kv_kVList.KVList_Input'
+          $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_kv_api_def.KVList_Input'
       produces:
-        - application/json
-        - application/x-protobuf
+      - application/json
+      - application/x-protobuf
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/internal_mgr_hub_mgr_kv_kVList.KVList_Output'
+            $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_kv_api_def.KVList_Output'
       tags:
       - kv
   /kv/kVPut:
     post:
       consumes:
-        - application/json
-        - application/x-protobuf
+      - application/json
+      - application/x-protobuf
       description: put kv
       operationId: KVPut
       parameters:
-        - description: KVPut_Input
+      - description: KVPut_Input
         in: body
-          name: KVPut_Input
+        name: api_def.KVPut_Input
         required: true
         schema:
-          $ref: '#/definitions/internal_mgr_hub_mgr_kv_kVPut.KVPut_Input'
+          $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_kv_api_def.KVPut_Input'
       produces:
-        - application/json
-        - application/x-protobuf
+      - application/json
+      - application/x-protobuf
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/internal_mgr_hub_mgr_kv_kVPut.KVPut_Output'
+            $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_kv_api_def.KVPut_Output'
       tags:
       - kv
   /role/roleAdd:
     post:
       consumes:
-        - application/json
-        - application/x-protobuf
+      - application/json
+      - application/x-protobuf
       description: add role
       operationId: RoleAdd
       parameters:
-        - description: RoleAdd_Input
+      - description: RoleAdd_Input
         in: body
-          name: RoleAdd_Input
+        name: api_def.RoleAdd_Input
         required: true
         schema:
-          $ref: '#/definitions/internal_mgr_hub_mgr_role_roleAdd.RoleAdd_Input'
+          $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleAdd_Input'
       produces:
-        - application/json
-        - application/x-protobuf
+      - application/json
+      - application/x-protobuf
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/internal_mgr_hub_mgr_role_roleAdd.RoleAdd_Output'
+            $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleAdd_Output'
       tags:
       - role
   /role/roleDelete:
     post:
       consumes:
-        - application/json
-        - application/x-protobuf
+      - application/json
+      - application/x-protobuf
       description: delete role
       operationId: RoleDelete
       parameters:
-        - description: RoleDelete_Input
+      - description: RoleDelete_Input
         in: body
-          name: RoleDelete_Input
+        name: api_def.RoleDelete_Input
         required: true
         schema:
-          $ref: '#/definitions/internal_mgr_hub_mgr_role_roleDelete.RoleDelete_Input'
+          $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleDelete_Input'
       produces:
-        - application/json
-        - application/x-protobuf
+      - application/json
+      - application/x-protobuf
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/internal_mgr_hub_mgr_role_roleDelete.RoleDelete_Output'
+            $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleDelete_Output'
       tags:
       - role
   /role/roleGet:
     post:
       consumes:
-        - application/json
-        - application/x-protobuf
+      - application/json
+      - application/x-protobuf
       description: get role
       operationId: RoleGet
       parameters:
-        - description: RoleGet_Input
+      - description: RoleGet_Input
         in: body
-          name: RoleGet_Input
+        name: api_def.RoleGet_Input
         required: true
         schema:
-          $ref: '#/definitions/internal_mgr_hub_mgr_role_roleGet.RoleGet_Input'
+          $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleGet_Input'
       produces:
-        - application/json
-        - application/x-protobuf
+      - application/json
+      - application/x-protobuf
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/internal_mgr_hub_mgr_role_roleGet.RoleGet_Output'
+            $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleGet_Output'
       tags:
       - role
   /role/roleGrantPermission:
     post:
       consumes:
-        - application/json
-        - application/x-protobuf
+      - application/json
+      - application/x-protobuf
       description: grant permission
       operationId: RoleGrantPermission
       parameters:
-        - description: RoleGrantPermission_Input
+      - description: RoleGrantPermission_Input
         in: body
-          name: RoleGrantPermission_Input
+        name: api_def.RoleGrantPermission_Input
         required: true
         schema:
-          $ref: '#/definitions/internal_mgr_hub_mgr_role_roleGrantPermission.RoleGrantPermission_Input'
+          $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleGrantPermission_Input'
       produces:
-        - application/json
-        - application/x-protobuf
+      - application/json
+      - application/x-protobuf
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/internal_mgr_hub_mgr_role_roleGrantPermission.RoleGrantPermission_Output'
+            $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleGrantPermission_Output'
       tags:
       - role
   /role/roleList:
     post:
       consumes:
-        - application/json
-        - application/x-protobuf
+      - application/json
+      - application/x-protobuf
       description: list role
       operationId: RoleList
       parameters:
-        - description: RoleList_Input
+      - description: RoleList_Input
         in: body
-          name: RoleList_Input
+        name: api_def.RoleList_Input
         required: true
         schema:
-          $ref: '#/definitions/internal_mgr_hub_mgr_role_roleList.RoleList_Input'
+          $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleList_Input'
       produces:
-        - application/json
-        - application/x-protobuf
+      - application/json
+      - application/x-protobuf
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/internal_mgr_hub_mgr_role_roleList.RoleList_Output'
+            $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleList_Output'
       tags:
       - role
   /role/roleRevokePermission:
     post:
       consumes:
-        - application/json
-        - application/x-protobuf
+      - application/json
+      - application/x-protobuf
       description: revoke permission
       operationId: RoleRevokePermission
       parameters:
-        - description: RoleRevokePermission_Input
+      - description: RoleRevokePermission_Input
         in: body
-          name: RoleRevokePermission_Input
+        name: api_def.RoleRevokePermission_Input
         required: true
         schema:
-          $ref: '#/definitions/internal_mgr_hub_mgr_role_roleRevokePermission.RoleRevokePermission_Input'
+          $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleRevokePermission_Input'
       produces:
-        - application/json
-        - application/x-protobuf
+      - application/json
+      - application/x-protobuf
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/internal_mgr_hub_mgr_role_roleRevokePermission.RoleRevokePermission_Output'
+            $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleRevokePermission_Output'
       tags:
       - role
   /server/deregisterServer:
     post:
       consumes:
-        - application/json
-        - application/x-protobuf
+      - application/json
+      - application/x-protobuf
       description: deregister server
       operationId: DeregisterServer
       parameters:
-        - description: DeregisterServer_Input
+      - description: DeregisterServer_Input
         in: body
-          name: DeregisterServer_Input
+        name: api_def.DeregisterServer_Input
         required: true
         schema:
-          $ref: '#/definitions/internal_mgr_hub_mgr_server_deregisterServer.DeregisterServer_Input'
+          $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_server_api_def.DeregisterServer_Input'
       produces:
-        - application/json
-        - application/x-protobuf
+      - application/json
+      - application/x-protobuf
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/internal_mgr_hub_mgr_server_deregisterServer.DeregisterServer_Output'
+            $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_server_api_def.DeregisterServer_Output'
       tags:
       - server
   /server/serverList:
     post:
       consumes:
-        - application/json
-        - application/x-protobuf
+      - application/json
+      - application/x-protobuf
       description: list server
       operationId: ServerList
       parameters:
-        - description: ServerList_Input
+      - description: ServerList_Input
         in: body
-          name: ServerList_Input
+        name: api_def.ServerList_Input
         required: true
         schema:
-          $ref: '#/definitions/internal_mgr_hub_mgr_server_serverList.ServerList_Input'
+          $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_server_api_def.ServerList_Input'
       produces:
-        - application/json
-        - application/x-protobuf
+      - application/json
+      - application/x-protobuf
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/internal_mgr_hub_mgr_server_serverList.ServerList_Output'
+            $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_server_api_def.ServerList_Output'
       tags:
       - server
   /user/getUser:
     post:
       consumes:
-        - application/json
-        - application/x-protobuf
+      - application/json
+      - application/x-protobuf
       description: get user
       operationId: GetUser
       parameters:
-        - description: GetUser_Input
+      - description: GetUser_Input
         in: body
-          name: GetUser_Input
+        name: api_def.GetUser_Input
         required: true
         schema:
-          $ref: '#/definitions/internal_mgr_hub_mgr_user_getUser.GetUser_Input'
+          $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.GetUser_Input'
       produces:
-        - application/json
-        - application/x-protobuf
+      - application/json
+      - application/x-protobuf
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/internal_mgr_hub_mgr_user_getUser.GetUser_Output'
+            $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.GetUser_Output'
       tags:
       - user
   /user/login:
     post:
       consumes:
-        - application/json
-        - application/x-protobuf
+      - application/json
+      - application/x-protobuf
       description: login
       operationId: Login
       parameters:
-        - description: Login_Input
+      - description: Login_Input
         in: body
-          name: Login_Input
+        name: api_def.Login_Input
         required: true
         schema:
-          $ref: '#/definitions/internal_mgr_hub_mgr_user_login.Login_Input'
+          $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.Login_Input'
       produces:
-        - application/json
-        - application/x-protobuf
+      - application/json
+      - application/x-protobuf
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/internal_mgr_hub_mgr_user_login.Login_Output'
+            $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.Login_Output'
       tags:
       - user
   /user/logout:
     post:
       consumes:
-        - application/json
-        - application/x-protobuf
+      - application/json
+      - application/x-protobuf
       description: logout
       operationId: Logout
       parameters:
-        - description: Logout_Input
+      - description: Logout_Input
         in: body
-          name: Logout_Input
+        name: api_def.Logout_Input
         required: true
         schema:
-          $ref: '#/definitions/internal_mgr_hub_mgr_user_logout.Logout_Input'
+          $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.Logout_Input'
       produces:
-        - application/json
-        - application/x-protobuf
+      - application/json
+      - application/x-protobuf
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/internal_mgr_hub_mgr_user_logout.Logout_Output'
+            $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.Logout_Output'
       tags:
       - user
   /user/myInfo:
     post:
       consumes:
-        - application/json
-        - application/x-protobuf
+      - application/json
+      - application/x-protobuf
       description: get my info
       operationId: MyInfo
       parameters:
-        - description: MyInfo_Input
+      - description: MyInfo_Input
         in: body
-          name: MyInfo_Input
+        name: api_def.MyInfo_Input
         required: true
         schema:
-          $ref: '#/definitions/internal_mgr_hub_mgr_user_myInfo.MyInfo_Input'
+          $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.MyInfo_Input'
       produces:
-        - application/json
-        - application/x-protobuf
+      - application/json
+      - application/x-protobuf
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/internal_mgr_hub_mgr_user_myInfo.MyInfo_Output'
+            $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.MyInfo_Output'
       tags:
       - user
   /user/userAdd:
     post:
       consumes:
-        - application/json
-        - application/x-protobuf
+      - application/json
+      - application/x-protobuf
       description: add user
       operationId: UserAdd
       parameters:
-        - description: UserAdd_Input
+      - description: UserAdd_Input
         in: body
-          name: UserAdd_Input
+        name: api_def.UserAdd_Input
         required: true
         schema:
-          $ref: '#/definitions/internal_mgr_hub_mgr_user_userAdd.UserAdd_Input'
+          $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.UserAdd_Input'
       produces:
-        - application/json
-        - application/x-protobuf
+      - application/json
+      - application/x-protobuf
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/internal_mgr_hub_mgr_user_userAdd.UserAdd_Output'
+            $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.UserAdd_Output'
       tags:
       - user
   /user/userDelete:
     post:
       consumes:
-        - application/json
-        - application/x-protobuf
+      - application/json
+      - application/x-protobuf
       description: delete user
       operationId: UserDelete
       parameters:
-        - description: UserDelete_Input
+      - description: UserDelete_Input
         in: body
-          name: UserDelete_Input
+        name: api_def.UserDelete_Input
         required: true
         schema:
-          $ref: '#/definitions/internal_mgr_hub_mgr_user_userDelete.UserDelete_Input'
+          $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.UserDelete_Input'
       produces:
-        - application/json
-        - application/x-protobuf
+      - application/json
+      - application/x-protobuf
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/internal_mgr_hub_mgr_user_userDelete.UserDelete_Output'
+            $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.UserDelete_Output'
       tags:
       - user
   /user/userGrantRole:
     post:
       consumes:
-        - application/json
-        - application/x-protobuf
+      - application/json
+      - application/x-protobuf
       description: grant role
       operationId: UserGrantRole
       parameters:
-        - description: UserGrantRole_Input
+      - description: UserGrantRole_Input
         in: body
-          name: UserGrantRole_Input
+        name: api_def.UserGrantRole_Input
         required: true
         schema:
-          $ref: '#/definitions/internal_mgr_hub_mgr_user_userGrantRole.UserGrantRole_Input'
+          $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.UserGrantRole_Input'
       produces:
-        - application/json
-        - application/x-protobuf
+      - application/json
+      - application/x-protobuf
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/internal_mgr_hub_mgr_user_userGrantRole.UserGrantRole_Output'
+            $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.UserGrantRole_Output'
       tags:
       - user
   /user/userList:
     post:
       consumes:
-        - application/json
-        - application/x-protobuf
+      - application/json
+      - application/x-protobuf
       description: list user
       operationId: UserList
       parameters:
-        - description: UserList_Input
+      - description: UserList_Input
         in: body
-          name: UserList_Input
+        name: api_def.UserList_Input
         required: true
         schema:
-          $ref: '#/definitions/internal_mgr_hub_mgr_user_userList.UserList_Input'
+          $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.UserList_Input'
       produces:
-        - application/json
-        - application/x-protobuf
+      - application/json
+      - application/x-protobuf
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/internal_mgr_hub_mgr_user_userList.UserList_Output'
+            $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.UserList_Output'
       tags:
       - user
 swagger: "2.0"

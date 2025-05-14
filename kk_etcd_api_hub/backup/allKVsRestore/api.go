@@ -6,30 +6,32 @@ import (
 	"gitee.com/cruvie/kk_go_kit/kk_http"
 	"gitee.com/cruvie/kk_go_kit/kk_http/kk_global_stage"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
+	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/backup/api_def"
 	"github.com/gin-gonic/gin"
 )
 
 type api struct {
 	stage *kk_stage.Stage
-	In    *AllKVsRestore_Input
+	In    *api_def.AllKVsRestore_Input
 }
 
 func NewApi(stage *kk_stage.Stage) *api {
 	return &api{
 		stage: stage,
-		In:    new(AllKVsRestore_Input),
+		In:    new(api_def.AllKVsRestore_Input),
 	}
 }
 
-//	 Handler
-//		@Tags			backup
-//		@ID				AllKVsRestore
-//		@Description	all kvs restore
-//		@Accept			json,application/x-protobuf
-//		@Produce		json,application/x-protobuf
-//		@Param			AllKVsRestore_Input	body		AllKVsRestore_Input	true	"AllKVsRestore_Input"
-//		@Success		200					{object}	AllKVsRestore_Output
-//		@Router			/backup/allKVsRestore [post]
+//	Handler
+//
+// @Tags			backup
+// @ID				AllKVsRestore
+// @Description	all kvs restore
+// @Accept			json,application/x-protobuf
+// @Produce		json,application/x-protobuf
+// @Param			api_def.AllKVsRestore_Input	body		api_def.AllKVsRestore_Input	true	"AllKVsRestore_Input"
+// @Success		200							{object}	api_def.AllKVsRestore_Output
+// @Router			/backup/allKVsRestore [post]
 func Handler(c *gin.Context) {
 	x := NewApi(kk_global_stage.GetRequestStage(c))
 	span := x.stage.StartTrace("allKVsRestore")

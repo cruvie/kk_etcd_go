@@ -42,11 +42,11 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "description": "Query_Input",
-                        "name": "Query_Input",
+                        "name": "api_def.Query_Input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/internal_mgr_hub_mgr_ai_query.Query_Input"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_ai_api_def.Query_Input"
                         }
                     }
                 ],
@@ -54,7 +54,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/internal_mgr_hub_mgr_ai_query.Query_Output"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_ai_api_def.Query_Output"
                         }
                     }
                 }
@@ -78,11 +78,11 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "description": "AllKVsBackup_Input",
-                        "name": "AllKVsBackup_Input",
+                        "name": "api_def.AllKVsBackup_Input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/internal_mgr_hub_mgr_backup_allKVsBackup.AllKVsBackup_Input"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_backup_api_def.AllKVsBackup_Input"
                         }
                     }
                 ],
@@ -90,7 +90,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/internal_mgr_hub_mgr_backup_allKVsBackup.AllKVsBackup_Output"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_backup_api_def.AllKVsBackup_Output"
                         }
                     }
                 }
@@ -114,11 +114,11 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "description": "AllKVsRestore_Input",
-                        "name": "AllKVsRestore_Input",
+                        "name": "api_def.AllKVsRestore_Input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/internal_mgr_hub_mgr_backup_allKVsRestore.AllKVsRestore_Input"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_backup_api_def.AllKVsRestore_Input"
                         }
                     }
                 ],
@@ -126,7 +126,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/internal_mgr_hub_mgr_backup_allKVsRestore.AllKVsRestore_Output"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_backup_api_def.AllKVsRestore_Output"
                         }
                     }
                 }
@@ -150,11 +150,11 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "description": "Snapshot_Input",
-                        "name": "Snapshot_Input",
+                        "name": "api_def.Snapshot_Input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/internal_mgr_hub_mgr_backup_snapshot.Snapshot_Input"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_backup_api_def.Snapshot_Input"
                         }
                     }
                 ],
@@ -162,7 +162,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/internal_mgr_hub_mgr_backup_snapshot.Snapshot_Output"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_backup_api_def.Snapshot_Output"
                         }
                     }
                 }
@@ -186,11 +186,11 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "description": "SnapshotInfo_Input",
-                        "name": "SnapshotInfo_Input",
+                        "name": "api_def.SnapshotInfo_Input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/internal_mgr_hub_mgr_backup_snapshotInfo.SnapshotInfo_Input"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_backup_api_def.SnapshotInfo_Input"
                         }
                     }
                 ],
@@ -198,7 +198,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/internal_mgr_hub_mgr_backup_snapshotInfo.SnapshotInfo_Output"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_backup_api_def.SnapshotInfo_Output"
                         }
                     }
                 }
@@ -222,11 +222,11 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "description": "SnapshotRestore_Input",
-                        "name": "SnapshotRestore_Input",
+                        "name": "api_def.SnapshotRestore_Input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/internal_mgr_hub_mgr_backup_snapshotRestore.SnapshotRestore_Input"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_backup_api_def.SnapshotRestore_Input"
                         }
                     }
                 ],
@@ -234,7 +234,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/internal_mgr_hub_mgr_backup_snapshotRestore.SnapshotRestore_Output"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_backup_api_def.SnapshotRestore_Output"
                         }
                     }
                 }
@@ -258,11 +258,11 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "description": "KVDel_Input",
-                        "name": "KVDel_Input",
+                        "name": "api_def.KVDel_Input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/internal_mgr_hub_mgr_kv_kVDel.KVDel_Input"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_kv_api_def.KVDel_Input"
                         }
                     }
                 ],
@@ -270,7 +270,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/internal_mgr_hub_mgr_kv_kVDel.KVDel_Output"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_kv_api_def.KVDel_Output"
                         }
                     }
                 }
@@ -294,11 +294,11 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "description": "KVGet_Input",
-                        "name": "KVGet_Input",
+                        "name": "api_def.KVGet_Input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/internal_mgr_hub_mgr_kv_kVGet.KVGet_Input"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_kv_api_def.KVGet_Input"
                         }
                     }
                 ],
@@ -306,7 +306,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/internal_mgr_hub_mgr_kv_kVGet.KVGet_Output"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_kv_api_def.KVGet_Output"
                         }
                     }
                 }
@@ -330,11 +330,11 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "description": "KVList_Input",
-                        "name": "KVList_Input",
+                        "name": "api_def.KVList_Input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/internal_mgr_hub_mgr_kv_kVList.KVList_Input"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_kv_api_def.KVList_Input"
                         }
                     }
                 ],
@@ -342,7 +342,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/internal_mgr_hub_mgr_kv_kVList.KVList_Output"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_kv_api_def.KVList_Output"
                         }
                     }
                 }
@@ -366,11 +366,11 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "description": "KVPut_Input",
-                        "name": "KVPut_Input",
+                        "name": "api_def.KVPut_Input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/internal_mgr_hub_mgr_kv_kVPut.KVPut_Input"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_kv_api_def.KVPut_Input"
                         }
                     }
                 ],
@@ -378,7 +378,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/internal_mgr_hub_mgr_kv_kVPut.KVPut_Output"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_kv_api_def.KVPut_Output"
                         }
                     }
                 }
@@ -402,11 +402,11 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "description": "RoleAdd_Input",
-                        "name": "RoleAdd_Input",
+                        "name": "api_def.RoleAdd_Input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/internal_mgr_hub_mgr_role_roleAdd.RoleAdd_Input"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleAdd_Input"
                         }
                     }
                 ],
@@ -414,7 +414,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/internal_mgr_hub_mgr_role_roleAdd.RoleAdd_Output"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleAdd_Output"
                         }
                     }
                 }
@@ -438,11 +438,11 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "description": "RoleDelete_Input",
-                        "name": "RoleDelete_Input",
+                        "name": "api_def.RoleDelete_Input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/internal_mgr_hub_mgr_role_roleDelete.RoleDelete_Input"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleDelete_Input"
                         }
                     }
                 ],
@@ -450,7 +450,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/internal_mgr_hub_mgr_role_roleDelete.RoleDelete_Output"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleDelete_Output"
                         }
                     }
                 }
@@ -474,11 +474,11 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "description": "RoleGet_Input",
-                        "name": "RoleGet_Input",
+                        "name": "api_def.RoleGet_Input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/internal_mgr_hub_mgr_role_roleGet.RoleGet_Input"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleGet_Input"
                         }
                     }
                 ],
@@ -486,7 +486,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/internal_mgr_hub_mgr_role_roleGet.RoleGet_Output"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleGet_Output"
                         }
                     }
                 }
@@ -510,11 +510,11 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "description": "RoleGrantPermission_Input",
-                        "name": "RoleGrantPermission_Input",
+                        "name": "api_def.RoleGrantPermission_Input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/internal_mgr_hub_mgr_role_roleGrantPermission.RoleGrantPermission_Input"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleGrantPermission_Input"
                         }
                     }
                 ],
@@ -522,7 +522,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/internal_mgr_hub_mgr_role_roleGrantPermission.RoleGrantPermission_Output"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleGrantPermission_Output"
                         }
                     }
                 }
@@ -546,11 +546,11 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "description": "RoleList_Input",
-                        "name": "RoleList_Input",
+                        "name": "api_def.RoleList_Input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/internal_mgr_hub_mgr_role_roleList.RoleList_Input"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleList_Input"
                         }
                     }
                 ],
@@ -558,7 +558,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/internal_mgr_hub_mgr_role_roleList.RoleList_Output"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleList_Output"
                         }
                     }
                 }
@@ -582,11 +582,11 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "description": "RoleRevokePermission_Input",
-                        "name": "RoleRevokePermission_Input",
+                        "name": "api_def.RoleRevokePermission_Input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/internal_mgr_hub_mgr_role_roleRevokePermission.RoleRevokePermission_Input"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleRevokePermission_Input"
                         }
                     }
                 ],
@@ -594,7 +594,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/internal_mgr_hub_mgr_role_roleRevokePermission.RoleRevokePermission_Output"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleRevokePermission_Output"
                         }
                     }
                 }
@@ -618,11 +618,11 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "description": "DeregisterServer_Input",
-                        "name": "DeregisterServer_Input",
+                        "name": "api_def.DeregisterServer_Input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/internal_mgr_hub_mgr_server_deregisterServer.DeregisterServer_Input"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_server_api_def.DeregisterServer_Input"
                         }
                     }
                 ],
@@ -630,7 +630,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/internal_mgr_hub_mgr_server_deregisterServer.DeregisterServer_Output"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_server_api_def.DeregisterServer_Output"
                         }
                     }
                 }
@@ -654,11 +654,11 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "description": "ServerList_Input",
-                        "name": "ServerList_Input",
+                        "name": "api_def.ServerList_Input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/internal_mgr_hub_mgr_server_serverList.ServerList_Input"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_server_api_def.ServerList_Input"
                         }
                     }
                 ],
@@ -666,7 +666,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/internal_mgr_hub_mgr_server_serverList.ServerList_Output"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_server_api_def.ServerList_Output"
                         }
                     }
                 }
@@ -690,11 +690,11 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "description": "GetUser_Input",
-                        "name": "GetUser_Input",
+                        "name": "api_def.GetUser_Input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/internal_mgr_hub_mgr_user_getUser.GetUser_Input"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.GetUser_Input"
                         }
                     }
                 ],
@@ -702,7 +702,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/internal_mgr_hub_mgr_user_getUser.GetUser_Output"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.GetUser_Output"
                         }
                     }
                 }
@@ -726,11 +726,11 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "description": "Login_Input",
-                        "name": "Login_Input",
+                        "name": "api_def.Login_Input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/internal_mgr_hub_mgr_user_login.Login_Input"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.Login_Input"
                         }
                     }
                 ],
@@ -738,7 +738,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/internal_mgr_hub_mgr_user_login.Login_Output"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.Login_Output"
                         }
                     }
                 }
@@ -762,11 +762,11 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "description": "Logout_Input",
-                        "name": "Logout_Input",
+                        "name": "api_def.Logout_Input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/internal_mgr_hub_mgr_user_logout.Logout_Input"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.Logout_Input"
                         }
                     }
                 ],
@@ -774,7 +774,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/internal_mgr_hub_mgr_user_logout.Logout_Output"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.Logout_Output"
                         }
                     }
                 }
@@ -798,11 +798,11 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "description": "MyInfo_Input",
-                        "name": "MyInfo_Input",
+                        "name": "api_def.MyInfo_Input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/internal_mgr_hub_mgr_user_myInfo.MyInfo_Input"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.MyInfo_Input"
                         }
                     }
                 ],
@@ -810,7 +810,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/internal_mgr_hub_mgr_user_myInfo.MyInfo_Output"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.MyInfo_Output"
                         }
                     }
                 }
@@ -834,11 +834,11 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "description": "UserAdd_Input",
-                        "name": "UserAdd_Input",
+                        "name": "api_def.UserAdd_Input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/internal_mgr_hub_mgr_user_userAdd.UserAdd_Input"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.UserAdd_Input"
                         }
                     }
                 ],
@@ -846,7 +846,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/internal_mgr_hub_mgr_user_userAdd.UserAdd_Output"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.UserAdd_Output"
                         }
                     }
                 }
@@ -870,11 +870,11 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "description": "UserDelete_Input",
-                        "name": "UserDelete_Input",
+                        "name": "api_def.UserDelete_Input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/internal_mgr_hub_mgr_user_userDelete.UserDelete_Input"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.UserDelete_Input"
                         }
                     }
                 ],
@@ -882,7 +882,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/internal_mgr_hub_mgr_user_userDelete.UserDelete_Output"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.UserDelete_Output"
                         }
                     }
                 }
@@ -906,11 +906,11 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "description": "UserGrantRole_Input",
-                        "name": "UserGrantRole_Input",
+                        "name": "api_def.UserGrantRole_Input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/internal_mgr_hub_mgr_user_userGrantRole.UserGrantRole_Input"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.UserGrantRole_Input"
                         }
                     }
                 ],
@@ -918,7 +918,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/internal_mgr_hub_mgr_user_userGrantRole.UserGrantRole_Output"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.UserGrantRole_Output"
                         }
                     }
                 }
@@ -942,11 +942,11 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "description": "UserList_Input",
-                        "name": "UserList_Input",
+                        "name": "api_def.UserList_Input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/internal_mgr_hub_mgr_user_userList.UserList_Input"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.UserList_Input"
                         }
                     }
                 ],
@@ -954,7 +954,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/internal_mgr_hub_mgr_user_userList.UserList_Output"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.UserList_Output"
                         }
                     }
                 }
@@ -962,7 +962,7 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "internal_mgr_hub_mgr_ai_query.Query_Input": {
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_ai_api_def.Query_Input": {
             "type": "object",
             "properties": {
                 "Question": {
@@ -970,7 +970,7 @@ const docTemplate = `{
                 }
             }
         },
-        "internal_mgr_hub_mgr_ai_query.Query_Output": {
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_ai_api_def.Query_Output": {
             "type": "object",
             "properties": {
                 "Answer": {
@@ -978,10 +978,10 @@ const docTemplate = `{
                 }
             }
         },
-        "internal_mgr_hub_mgr_backup_allKVsBackup.AllKVsBackup_Input": {
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_backup_api_def.AllKVsBackup_Input": {
             "type": "object"
         },
-        "internal_mgr_hub_mgr_backup_allKVsBackup.AllKVsBackup_Output": {
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_backup_api_def.AllKVsBackup_Output": {
             "type": "object",
             "properties": {
                 "File": {
@@ -995,7 +995,7 @@ const docTemplate = `{
                 }
             }
         },
-        "internal_mgr_hub_mgr_backup_allKVsRestore.AllKVsRestore_Input": {
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_backup_api_def.AllKVsRestore_Input": {
             "type": "object",
             "properties": {
                 "File": {
@@ -1006,27 +1006,10 @@ const docTemplate = `{
                 }
             }
         },
-        "internal_mgr_hub_mgr_backup_allKVsRestore.AllKVsRestore_Output": {
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_backup_api_def.AllKVsRestore_Output": {
             "type": "object"
         },
-        "internal_mgr_hub_mgr_backup_snapshot.Snapshot_Input": {
-            "type": "object"
-        },
-        "internal_mgr_hub_mgr_backup_snapshot.Snapshot_Output": {
-            "type": "object",
-            "properties": {
-                "File": {
-                    "type": "array",
-                    "items": {
-                        "type": "integer"
-                    }
-                },
-                "Name": {
-                    "type": "string"
-                }
-            }
-        },
-        "internal_mgr_hub_mgr_backup_snapshotInfo.SnapshotInfo_Input": {
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_backup_api_def.SnapshotInfo_Input": {
             "type": "object",
             "properties": {
                 "File": {
@@ -1037,7 +1020,7 @@ const docTemplate = `{
                 }
             }
         },
-        "internal_mgr_hub_mgr_backup_snapshotInfo.SnapshotInfo_Output": {
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_backup_api_def.SnapshotInfo_Output": {
             "type": "object",
             "properties": {
                 "Info": {
@@ -1045,10 +1028,10 @@ const docTemplate = `{
                 }
             }
         },
-        "internal_mgr_hub_mgr_backup_snapshotRestore.SnapshotRestore_Input": {
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_backup_api_def.SnapshotRestore_Input": {
             "type": "object"
         },
-        "internal_mgr_hub_mgr_backup_snapshotRestore.SnapshotRestore_Output": {
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_backup_api_def.SnapshotRestore_Output": {
             "type": "object",
             "properties": {
                 "CmdStr": {
@@ -1056,18 +1039,24 @@ const docTemplate = `{
                 }
             }
         },
-        "internal_mgr_hub_mgr_kv_kVDel.KVDel_Input": {
-            "type": "object",
-            "properties": {
-                "Key": {
-                    "type": "string"
-                }
-            }
-        },
-        "internal_mgr_hub_mgr_kv_kVDel.KVDel_Output": {
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_backup_api_def.Snapshot_Input": {
             "type": "object"
         },
-        "internal_mgr_hub_mgr_kv_kVGet.KVGet_Input": {
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_backup_api_def.Snapshot_Output": {
+            "type": "object",
+            "properties": {
+                "File": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "Name": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_kv_api_def.KVDel_Input": {
             "type": "object",
             "properties": {
                 "Key": {
@@ -1075,7 +1064,18 @@ const docTemplate = `{
                 }
             }
         },
-        "internal_mgr_hub_mgr_kv_kVGet.KVGet_Output": {
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_kv_api_def.KVDel_Output": {
+            "type": "object"
+        },
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_kv_api_def.KVGet_Input": {
+            "type": "object",
+            "properties": {
+                "Key": {
+                    "type": "string"
+                }
+            }
+        },
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_kv_api_def.KVGet_Output": {
             "type": "object",
             "properties": {
                 "KV": {
@@ -1083,7 +1083,7 @@ const docTemplate = `{
                 }
             }
         },
-        "internal_mgr_hub_mgr_kv_kVList.KVList_Input": {
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_kv_api_def.KVList_Input": {
             "type": "object",
             "properties": {
                 "Prefix": {
@@ -1091,7 +1091,7 @@ const docTemplate = `{
                 }
             }
         },
-        "internal_mgr_hub_mgr_kv_kVList.KVList_Output": {
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_kv_api_def.KVList_Output": {
             "type": "object",
             "properties": {
                 "KVList": {
@@ -1099,7 +1099,7 @@ const docTemplate = `{
                 }
             }
         },
-        "internal_mgr_hub_mgr_kv_kVPut.KVPut_Input": {
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_kv_api_def.KVPut_Input": {
             "type": "object",
             "properties": {
                 "Key": {
@@ -1110,10 +1110,10 @@ const docTemplate = `{
                 }
             }
         },
-        "internal_mgr_hub_mgr_kv_kVPut.KVPut_Output": {
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_kv_api_def.KVPut_Output": {
             "type": "object"
         },
-        "internal_mgr_hub_mgr_role_roleAdd.RoleAdd_Input": {
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleAdd_Input": {
             "type": "object",
             "properties": {
                 "Name": {
@@ -1121,10 +1121,10 @@ const docTemplate = `{
                 }
             }
         },
-        "internal_mgr_hub_mgr_role_roleAdd.RoleAdd_Output": {
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleAdd_Output": {
             "type": "object"
         },
-        "internal_mgr_hub_mgr_role_roleDelete.RoleDelete_Input": {
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleDelete_Input": {
             "type": "object",
             "properties": {
                 "Name": {
@@ -1132,10 +1132,10 @@ const docTemplate = `{
                 }
             }
         },
-        "internal_mgr_hub_mgr_role_roleDelete.RoleDelete_Output": {
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleDelete_Output": {
             "type": "object"
         },
-        "internal_mgr_hub_mgr_role_roleGet.RoleGet_Input": {
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleGet_Input": {
             "type": "object",
             "properties": {
                 "Name": {
@@ -1143,7 +1143,7 @@ const docTemplate = `{
                 }
             }
         },
-        "internal_mgr_hub_mgr_role_roleGet.RoleGet_Output": {
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleGet_Output": {
             "type": "object",
             "properties": {
                 "Role": {
@@ -1151,7 +1151,7 @@ const docTemplate = `{
                 }
             }
         },
-        "internal_mgr_hub_mgr_role_roleGrantPermission.RoleGrantPermission_Input": {
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleGrantPermission_Input": {
             "type": "object",
             "properties": {
                 "Name": {
@@ -1162,13 +1162,13 @@ const docTemplate = `{
                 }
             }
         },
-        "internal_mgr_hub_mgr_role_roleGrantPermission.RoleGrantPermission_Output": {
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleGrantPermission_Output": {
             "type": "object"
         },
-        "internal_mgr_hub_mgr_role_roleList.RoleList_Input": {
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleList_Input": {
             "type": "object"
         },
-        "internal_mgr_hub_mgr_role_roleList.RoleList_Output": {
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleList_Output": {
             "type": "object",
             "properties": {
                 "ListRole": {
@@ -1176,7 +1176,7 @@ const docTemplate = `{
                 }
             }
         },
-        "internal_mgr_hub_mgr_role_roleRevokePermission.RoleRevokePermission_Input": {
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleRevokePermission_Input": {
             "type": "object",
             "properties": {
                 "Key": {
@@ -1190,10 +1190,10 @@ const docTemplate = `{
                 }
             }
         },
-        "internal_mgr_hub_mgr_role_roleRevokePermission.RoleRevokePermission_Output": {
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleRevokePermission_Output": {
             "type": "object"
         },
-        "internal_mgr_hub_mgr_server_deregisterServer.DeregisterServer_Input": {
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_server_api_def.DeregisterServer_Input": {
             "type": "object",
             "properties": {
                 "Server": {
@@ -1201,10 +1201,10 @@ const docTemplate = `{
                 }
             }
         },
-        "internal_mgr_hub_mgr_server_deregisterServer.DeregisterServer_Output": {
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_server_api_def.DeregisterServer_Output": {
             "type": "object"
         },
-        "internal_mgr_hub_mgr_server_serverList.ServerList_Input": {
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_server_api_def.ServerList_Input": {
             "type": "object",
             "properties": {
                 "ServerName": {
@@ -1215,7 +1215,7 @@ const docTemplate = `{
                 }
             }
         },
-        "internal_mgr_hub_mgr_server_serverList.ServerList_Output": {
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_server_api_def.ServerList_Output": {
             "type": "object",
             "properties": {
                 "ServerList": {
@@ -1223,7 +1223,7 @@ const docTemplate = `{
                 }
             }
         },
-        "internal_mgr_hub_mgr_user_getUser.GetUser_Input": {
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.GetUser_Input": {
             "type": "object",
             "properties": {
                 "UserName": {
@@ -1231,7 +1231,7 @@ const docTemplate = `{
                 }
             }
         },
-        "internal_mgr_hub_mgr_user_getUser.GetUser_Output": {
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.GetUser_Output": {
             "type": "object",
             "properties": {
                 "User": {
@@ -1239,7 +1239,7 @@ const docTemplate = `{
                 }
             }
         },
-        "internal_mgr_hub_mgr_user_login.Login_Input": {
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.Login_Input": {
             "type": "object",
             "properties": {
                 "Password": {
@@ -1250,7 +1250,7 @@ const docTemplate = `{
                 }
             }
         },
-        "internal_mgr_hub_mgr_user_login.Login_Output": {
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.Login_Output": {
             "type": "object",
             "properties": {
                 "Token": {
@@ -1258,16 +1258,16 @@ const docTemplate = `{
                 }
             }
         },
-        "internal_mgr_hub_mgr_user_logout.Logout_Input": {
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.Logout_Input": {
             "type": "object"
         },
-        "internal_mgr_hub_mgr_user_logout.Logout_Output": {
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.Logout_Output": {
             "type": "object"
         },
-        "internal_mgr_hub_mgr_user_myInfo.MyInfo_Input": {
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.MyInfo_Input": {
             "type": "object"
         },
-        "internal_mgr_hub_mgr_user_myInfo.MyInfo_Output": {
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.MyInfo_Output": {
             "type": "object",
             "properties": {
                 "Roles": {
@@ -1281,7 +1281,7 @@ const docTemplate = `{
                 }
             }
         },
-        "internal_mgr_hub_mgr_user_userAdd.UserAdd_Input": {
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.UserAdd_Input": {
             "type": "object",
             "properties": {
                 "Password": {
@@ -1298,10 +1298,10 @@ const docTemplate = `{
                 }
             }
         },
-        "internal_mgr_hub_mgr_user_userAdd.UserAdd_Output": {
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.UserAdd_Output": {
             "type": "object"
         },
-        "internal_mgr_hub_mgr_user_userDelete.UserDelete_Input": {
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.UserDelete_Input": {
             "type": "object",
             "properties": {
                 "UserName": {
@@ -1309,10 +1309,10 @@ const docTemplate = `{
                 }
             }
         },
-        "internal_mgr_hub_mgr_user_userDelete.UserDelete_Output": {
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.UserDelete_Output": {
             "type": "object"
         },
-        "internal_mgr_hub_mgr_user_userGrantRole.UserGrantRole_Input": {
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.UserGrantRole_Input": {
             "type": "object",
             "properties": {
                 "Roles": {
@@ -1326,13 +1326,13 @@ const docTemplate = `{
                 }
             }
         },
-        "internal_mgr_hub_mgr_user_userGrantRole.UserGrantRole_Output": {
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.UserGrantRole_Output": {
             "type": "object"
         },
-        "internal_mgr_hub_mgr_user_userList.UserList_Input": {
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.UserList_Input": {
             "type": "object"
         },
-        "internal_mgr_hub_mgr_user_userList.UserList_Output": {
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.UserList_Output": {
             "type": "object",
             "properties": {
                 "ListUser": {

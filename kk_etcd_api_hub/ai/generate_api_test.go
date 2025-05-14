@@ -7,8 +7,6 @@ import (
 
 func TestEtcdAI(t *testing.T) {
 	apiGroupModel := kk_api_gen.ApiGroupModel{
-		ApiPkgName:  "kk_etcd_models",
-		HandlerName: "hAI",
 		Tag:         "ai",
 		GroupUrl:    "/ai/",
 	}

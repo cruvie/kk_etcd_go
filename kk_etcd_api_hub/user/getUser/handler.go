@@ -1,10 +1,11 @@
 package getUser
 
 import (
+	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/user/api_def"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/user/util_user"
 )
 
-func (x *api) Handler() (*GetUser_Output, error) {
+func (x *api) Handler() (*api_def.GetUser_Output, error) {
 	span := x.stage.StartTrace("handler")
 	defer span.End()
 
@@ -12,7 +13,7 @@ func (x *api) Handler() (*GetUser_Output, error) {
 	if err != nil {
 		return nil, err
 	}
-	return &GetUser_Output{
+	return &api_def.GetUser_Output{
 		User: user,
 	}, err
 }

@@ -7,8 +7,6 @@ import (
 
 func TestBackup(t *testing.T) {
 	apiGroupModel := kk_api_gen.ApiGroupModel{
-		ApiPkgName:  "kk_etcd_models",
-		HandlerName: "hBackup",
 		Tag:         "backup",
 		GroupUrl:    "/backup/",
 	}

@@ -7,8 +7,6 @@ import (
 
 func TestServer(t *testing.T) {
 	apiGroupModel := kk_api_gen.ApiGroupModel{
-		ApiPkgName:  "kk_etcd_models",
-		HandlerName: "hServer",
 		Tag:         "server",
 		GroupUrl:    "/server/",
 	}

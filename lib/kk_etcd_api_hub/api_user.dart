@@ -1,28 +1,29 @@
 
 class ApiUser {
-
-  /// delete user
-  static const userDelete = "/user/userDelete";
-
-  /// get user
-  static const getUser = "/user/getUser";
+  ApiUser._();
 
   /// get my info
   static const myInfo = "/user/myInfo";
 
+  /// login
+  static const login = "/user/login";
+
   /// grant role
   static const userGrantRole = "/user/userGrantRole";
+
+  /// delete user
+  static const userDelete = "/user/userDelete";
+
+  /// add user
+  static const userAdd = "/user/userAdd";
 
   /// list user
   static const userList = "/user/userList";
 
-  /// login
-  static const login = "/user/login";
-
   /// logout
   static const logout = "/user/logout";
 
-  /// add user
-  static const userAdd = "/user/userAdd";
+  /// get user
+  static const getUser = "/user/getUser";
 
 }

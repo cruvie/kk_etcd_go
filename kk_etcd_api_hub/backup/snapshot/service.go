@@ -4,12 +4,13 @@ import (
 	"context"
 	"gitee.com/cruvie/kk_go_kit/kk_log"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
+	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/backup/api_def"
 	"io"
 	"log/slog"
 	"time"
 )
 
-func (x *api) service() (*Snapshot_Output, error) {
+func (x *api) service() (*api_def.Snapshot_Output, error) {
 	span := x.stage.StartTrace("service")
 	defer span.End()
 
@@ -35,7 +36,7 @@ func (x *api) service() (*Snapshot_Output, error) {
 	timeStr := time.Now().Format(time.DateTime)
 	fileName := "etcd_" + timeStr + ".snapshot"
 
-	return &Snapshot_Output{
+	return &api_def.Snapshot_Output{
 		Name: fileName,
 		File: snapshotBytes,
 	}, nil
