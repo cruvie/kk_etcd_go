@@ -5,8 +5,17 @@ class ApiUser {
   /// get my info
   static const myInfo = "/user/myInfo";
 
+  /// list user
+  static const userList = "/user/userList";
+
+  /// get user
+  static const getUser = "/user/getUser";
+
   /// login
   static const login = "/user/login";
+
+  /// logout
+  static const logout = "/user/logout";
 
   /// grant role
   static const userGrantRole = "/user/userGrantRole";
@@ -16,14 +25,5 @@ class ApiUser {
 
   /// add user
   static const userAdd = "/user/userAdd";
-
-  /// list user
-  static const userList = "/user/userList";
-
-  /// logout
-  static const logout = "/user/logout";
-
-  /// get user
-  static const getUser = "/user/getUser";
 
 }

@@ -2,6 +2,9 @@
 class ApiBackup {
   ApiBackup._();
 
+  /// snapshot info
+  static const snapshotInfo = "/backup/snapshotInfo";
+
   /// all kvs backup
   static const allKVsBackup = "/backup/allKVsBackup";
 
@@ -13,8 +16,5 @@ class ApiBackup {
 
   /// snapshot restore
   static const snapshotRestore = "/backup/snapshotRestore";
-
-  /// snapshot info
-  static const snapshotInfo = "/backup/snapshotInfo";
 
 }

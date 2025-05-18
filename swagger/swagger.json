@@ -956,6 +956,19 @@
         }
     },
     "definitions": {
+        "durationpb.Duration": {
+            "type": "object",
+            "properties": {
+                "nanos": {
+                    "description": "Signed fractions of a second at nanosecond resolution of the span\nof time. Durations less than one second are represented with a 0\n`seconds` field and a positive or negative `nanos` field. For durations\nof one second or more, a non-zero value for the `nanos` field must be\nof the same sign as the `seconds` field. Must be from -999,999,999\nto +999,999,999 inclusive.",
+                    "type": "integer"
+                },
+                "seconds": {
+                    "description": "Signed seconds of the span of time. Must be from -315,576,000,000\nto +315,576,000,000 inclusive. Note: these bounds are computed from:\n60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years",
+                    "type": "integer"
+                }
+            }
+        },
         "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_ai_api_def.Query_Input": {
             "type": "object",
             "properties": {
@@ -1205,7 +1218,7 @@
                     "type": "string"
                 },
                 "ServerType": {
-                    "type": "string"
+                    "$ref": "#/definitions/kk_etcd_models.PBServerType"
                 }
             }
         },
@@ -1421,39 +1434,88 @@
         "kk_etcd_models.PBServer": {
             "type": "object",
             "properties": {
-                "EndpointAddr": {
-                    "type": "string"
-                },
-                "EndpointKey": {
-                    "type": "string"
-                },
-                "LastCheck": {
-                    "$ref": "#/definitions/timestamppb.Timestamp"
-                },
-                "Msg": {
-                    "type": "string"
-                },
-                "ServerType": {
-                    "type": "string"
+                "ServerRegistration": {
+                    "$ref": "#/definitions/kk_etcd_models.PBServerRegistration"
                 },
                 "Status": {
                     "$ref": "#/definitions/kk_etcd_models.PBServer_ServerStatus"
                 }
             }
         },
+        "kk_etcd_models.PBServerRegistration": {
+            "type": "object",
+            "properties": {
+                "CheckConfig": {
+                    "$ref": "#/definitions/kk_etcd_models.PBServerRegistration_PBCheckConfig"
+                },
+                "ServerAddr": {
+                    "type": "string"
+                },
+                "ServerName": {
+                    "type": "string"
+                },
+                "ServerType": {
+                    "$ref": "#/definitions/kk_etcd_models.PBServerType"
+                }
+            }
+        },
+        "kk_etcd_models.PBServerRegistration_PBCheckConfig": {
+            "type": "object",
+            "properties": {
+                "Addr": {
+                    "description": "Http default http://+Addr+/KKHealthCheck\nGrpc Addr in ServerRegistration",
+                    "type": "string"
+                },
+                "Interval": {
+                    "description": "check interval, kk_etcd will per Interval to send check request\nmust grater than Timeout",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/durationpb.Duration"
+                        }
+                    ]
+                },
+                "Timeout": {
+                    "description": "check timeout\nmust grater than 1 second",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/durationpb.Duration"
+                        }
+                    ]
+                },
+                "Type": {
+                    "description": "Http or Grpc",
+                    "allOf": [
+                        {
+                            "$ref": "#/definitions/kk_etcd_models.PBServerType"
+                        }
+                    ]
+                }
+            }
+        },
+        "kk_etcd_models.PBServerType": {
+            "type": "integer",
+            "enum": [
+                0,
+                1,
+                2
+            ],
+            "x-enum-varnames": [
+                "PBServerType_Unknown",
+                "PBServerType_Http",
+                "PBServerType_Grpc"
+            ]
+        },
         "kk_etcd_models.PBServer_ServerStatus": {
             "type": "integer",
             "enum": [
                 0,
                 1,
-                2,
-                3
+                2
             ],
             "x-enum-varnames": [
                 "PBServer_UnKnown",
                 "PBServer_Running",
-                "PBServer_Stop",
-                "PBServer_Init"
+                "PBServer_Stop"
             ]
         },
         "kk_etcd_models.PBUser": {
@@ -1470,19 +1532,6 @@
                 },
                 "UserName": {
                     "type": "string"
-                }
-            }
-        },
-        "timestamppb.Timestamp": {
-            "type": "object",
-            "properties": {
-                "nanos": {
-                    "description": "Non-negative fractions of a second at nanosecond resolution. Negative\nsecond values with fractions must still have non-negative nanos values\nthat count forward in time. Must be from 0 to 999,999,999\ninclusive.",
-                    "type": "integer"
-                },
-                "seconds": {
-                    "description": "Represents seconds of UTC time since Unix epoch\n1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to\n9999-12-31T23:59:59Z inclusive.",
-                    "type": "integer"
                 }
             }
         }

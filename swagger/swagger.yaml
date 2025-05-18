@@ -1,5 +1,23 @@
 basePath: /
 definitions:
+  durationpb.Duration:
+    properties:
+      nanos:
+        description: |-
+          Signed fractions of a second at nanosecond resolution of the span
+          of time. Durations less than one second are represented with a 0
+          `seconds` field and a positive or negative `nanos` field. For durations
+          of one second or more, a non-zero value for the `nanos` field must be
+          of the same sign as the `seconds` field. Must be from -999,999,999
+          to +999,999,999 inclusive.
+        type: integer
+      seconds:
+        description: |-
+          Signed seconds of the span of time. Must be from -315,576,000,000
+          to +315,576,000,000 inclusive. Note: these bounds are computed from:
+          60 sec/min * 60 min/hr * 24 hr/day * 365.25 days/year * 10000 years
+        type: integer
+    type: object
   github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_ai_api_def.Query_Input:
     properties:
       Question:
@@ -159,7 +177,7 @@ definitions:
       ServerName:
         type: string
       ServerType:
-        type: string
+        $ref: '#/definitions/kk_etcd_models.PBServerType'
     type: object
   github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_server_api_def.ServerList_Output:
     properties:
@@ -300,16 +318,8 @@ definitions:
     type: object
   kk_etcd_models.PBServer:
     properties:
-      EndpointAddr:
-        type: string
-      EndpointKey:
-        type: string
-      LastCheck:
-        $ref: '#/definitions/timestamppb.Timestamp'
-      Msg:
-        type: string
-      ServerType:
-        type: string
+      ServerRegistration:
+        $ref: '#/definitions/kk_etcd_models.PBServerRegistration'
       Status:
         $ref: '#/definitions/kk_etcd_models.PBServer_ServerStatus'
     type: object
@@ -318,13 +328,56 @@ definitions:
     - 0
     - 1
     - 2
-    - 3
     type: integer
     x-enum-varnames:
     - PBServer_UnKnown
     - PBServer_Running
     - PBServer_Stop
-    - PBServer_Init
+  kk_etcd_models.PBServerRegistration:
+    properties:
+      CheckConfig:
+        $ref: '#/definitions/kk_etcd_models.PBServerRegistration_PBCheckConfig'
+      ServerAddr:
+        type: string
+      ServerName:
+        type: string
+      ServerType:
+        $ref: '#/definitions/kk_etcd_models.PBServerType'
+    type: object
+  kk_etcd_models.PBServerRegistration_PBCheckConfig:
+    properties:
+      Addr:
+        description: |-
+          Http default http://+Addr+/KKHealthCheck
+          Grpc Addr in ServerRegistration
+        type: string
+      Interval:
+        allOf:
+        - $ref: '#/definitions/durationpb.Duration'
+        description: |-
+          check interval, kk_etcd will per Interval to send check request
+          must grater than Timeout
+      Timeout:
+        allOf:
+        - $ref: '#/definitions/durationpb.Duration'
+        description: |-
+          check timeout
+          must grater than 1 second
+      Type:
+        allOf:
+        - $ref: '#/definitions/kk_etcd_models.PBServerType'
+        description: Http or Grpc
+    type: object
+  kk_etcd_models.PBServerType:
+    enum:
+    - 0
+    - 1
+    - 2
+    type: integer
+    x-enum-varnames:
+    - PBServerType_Unknown
+    - PBServerType_Http
+    - PBServerType_Grpc
   kk_etcd_models.PBUser:
     properties:
       Password:
@@ -335,22 +388,6 @@ definitions:
         type: array
       UserName:
         type: string
-    type: object
-  timestamppb.Timestamp:
-    properties:
-      nanos:
-        description: |-
-          Non-negative fractions of a second at nanosecond resolution. Negative
-          second values with fractions must still have non-negative nanos values
-          that count forward in time. Must be from 0 to 999,999,999
-          inclusive.
-        type: integer
-      seconds:
-        description: |-
-          Represents seconds of UTC time since Unix epoch
-          1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to
-          9999-12-31T23:59:59Z inclusive.
-        type: integer
     type: object
 host: localhost:2333
 info:
