@@ -47,7 +47,7 @@ func putYaml(stage *kk_stage.Stage, key string, structPtr any) error {
 // GetYaml get yaml from etcd and unmarshal to structPtr
 // eg: GetYaml("configKey", &Config)
 func GetYaml(stage *kk_stage.Stage, key string, structPtr any) error {
-	value, err := GetKV(stage, key)
+	value, err := GetKV(global_model.GetClient(stage), key)
 	if err != nil {
 		return err
 	}

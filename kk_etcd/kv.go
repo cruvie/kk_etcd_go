@@ -1,6 +1,7 @@
 package kk_etcd
 
 import (
+	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
 	"github.com/cruvie/kk_etcd_go/internal/utils/internal_client"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/kv/api_def"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/kv/kVDel"
@@ -64,7 +65,7 @@ func (*MgrKV) PutExistUpdateYaml(key string, structPtr any) error {
 // GetJson get json from etcd and unmarshal to structPtr
 // eg: GetJson("configKey", &Config)
 func (*MgrKV) GetJson(key string, structPtr any) error {
-	return util_kv.GetJson(internal_client.GlobalStage, key, structPtr)
+	return util_kv.GetJson(global_model.GetClient(internal_client.GlobalStage), key, structPtr)
 }
 
 // PutJson put struct to etcd in json format, key should not exist
@@ -78,7 +79,7 @@ func (*MgrKV) UpdateJson(key string, structPtr any) error {
 }
 
 func (*MgrKV) PutExistUpdateJson(key string, structPtr any) error {
-	return util_kv.PutExistUpdateJson(internal_client.GlobalStage, key, structPtr)
+	return util_kv.PutExistUpdateJson(global_model.GetClient(internal_client.GlobalStage), key, structPtr)
 }
 
 func (*MgrKV) CheckKeyExist(key string) error {

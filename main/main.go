@@ -81,16 +81,16 @@ func main() {
 		}
 	}()
 
-	//server_hub.InitKubernetesClient(etcdCfg)
-	//defer func() {
-	//	server_hub.CloseKubernetesClient()
-	//}()
-	server_hub.InitServiceHub()
+	server_hub.InitKubernetesClient(etcdCfg)
+	defer func() {
+		server_hub.CloseKubernetesClient()
+	}()
+	server_hub.InitConnHub()
 
 	kkServer := kk_server.NewKKServer(5*time.Second, stage)
 	kkServer.Add("ApiHttp", 0, api_etcd.ApiHttp(internal_client.GlobalStage))
 	kkServer.Add("ApiMCP", 0, api_etcd.ApiMCP())
-	kkServer.Add("etcd_maintain", 0, server_hub.NewEtcdMaintain())
+	//kkServer.Add("etcd_maintain", 0, server_hub.NewEtcdMaintain())
 	kkServer.Add("etcd_ai", 0, etcd_ai.EtcdAIServer())
 	kkServer.ServeAndWait()
 }

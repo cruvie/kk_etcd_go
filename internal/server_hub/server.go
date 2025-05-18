@@ -1,26 +1,24 @@
 package server_hub
 
 import (
-	"context"
-	"fmt"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
-	"gitee.com/cruvie/kk_go_kit/kk_time"
-	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
+	"github.com/cruvie/kk_etcd_go/kk_etcd_error"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
-	clientv3 "go.etcd.io/etcd/client/v3"
-	"google.golang.org/protobuf/types/known/timestamppb"
+	"slices"
 	"sort"
 )
 
 type SerServer struct{}
 
-func (SerServer) RegisterService(stage *kk_stage.Stage, registration *kk_etcd_models.ServerRegistration) error {
+var serServerInstance = &SerServer{}
+
+func (x *SerServer) RegisterService(registration *kk_etcd_models.PBServerRegistration) error {
 	switch registration.CheckConfig.Type {
-	case kk_etcd_models.Http:
+	case kk_etcd_models.PBServerType_Http:
 		if registration.CheckConfig.Addr == "" {
 			registration.CheckConfig.Addr = "http://" + registration.ServerAddr + kk_etcd_models.HealthCheckPath
 		}
-	case kk_etcd_models.Grpc:
+	case kk_etcd_models.PBServerType_Grpc:
 		if registration.CheckConfig.Addr == "" {
 			registration.CheckConfig.Addr = registration.ServerAddr
 		}
@@ -29,62 +27,78 @@ func (SerServer) RegisterService(stage *kk_stage.Stage, registration *kk_etcd_mo
 	if err != nil {
 		return err
 	}
-	return toolServer.registerServer(stage, registration)
+	return x.registerServer([]*kk_etcd_models.PBServerRegistration{registration})
 }
 
-// ServerList
-// serverName, should with prefix key_prefix.ServiceGrpc or key_prefix.ServiceHttp
-// only give prefix to get all service lists
-func (SerServer) ServerList(client *clientv3.Client, serverType kk_etcd_models.ServerType) (serverList *kk_etcd_models.PBListServer, err error) {
-	endpointMap, err := toolServer.serverList(client, serverType)
+func (x *SerServer) DeregisterServer(stage *kk_stage.Stage, registration *kk_etcd_models.PBServerRegistration) error {
+	return x.deRegisterServer(stage, registration)
+}
+
+func (x *SerServer) ServerList(serverType kk_etcd_models.PBServerType, serverName string) (serverList *kk_etcd_models.PBListServer, err error) {
+	preFix := kk_etcd_models.ServerRegistrationKey + serverType.String()
+	if serverName != "" {
+		preFix += "/" + serverName
+	}
+
+	list, err := x.serverList(preFix)
 	if err != nil {
 		return nil, err
+	}
+
+	aliveStatuMap := hub.aliveHub.Data()
+	deadStatuMap := hub.deadHub.Data()
+
+	getStatus := func(item *kk_etcd_models.PBServerRegistration) kk_etcd_models.PBServer_ServerStatus {
+		serverStatus, ok := aliveStatuMap[item.ServerName]
+		switch {
+		case ok:
+			{
+				index := slices.IndexFunc(serverStatus.Slice(), func(c *kk_etcd_models.PBServerRegistration) bool {
+					return c.Key() == item.Key()
+				})
+				if index != -1 {
+					return kk_etcd_models.PBServer_Running
+				}
+			}
+		default:
+			{
+				serverStatus, ok = deadStatuMap[item.ServerName]
+				if !ok {
+					return kk_etcd_models.PBServer_UnKnown
+				} else {
+					index := slices.IndexFunc(serverStatus.Slice(), func(c *kk_etcd_models.PBServerRegistration) bool {
+						return c.Key() == item.Key()
+					})
+					if index != -1 {
+						return kk_etcd_models.PBServer_Stop
+					}
+				}
+			}
+		}
+		return kk_etcd_models.PBServer_UnKnown
 	}
 	var pBListServer kk_etcd_models.PBListServer
-	serviceStatus, err := toolServer.services()
-	if err != nil {
-		return nil, err
-	}
-	for key, endpoint := range endpointMap {
-		status, ok := serviceStatus[kk_etcd_models.InternalServerStatus+key]
-		if !ok {
-			pBListServer.ListServer = append(pBListServer.ListServer, &kk_etcd_models.PBServer{
-				ServerType:   serverType.String(),
-				EndpointKey:  key,
-				EndpointAddr: endpoint.Addr,
-				Status:       kk_etcd_models.PBServer_UnKnown,
-				LastCheck:    timestamppb.New(kk_time.DefaultTime),
-				Msg:          fmt.Sprintf("could not found sevice %s in service hub \n may not be registered by kk_etcd", key),
-			})
-		} else {
-			pBListServer.ListServer = append(pBListServer.ListServer, &kk_etcd_models.PBServer{
-				ServerType:   serverType.String(),
-				EndpointKey:  key,
-				EndpointAddr: endpoint.Addr,
-				Status:       status.Status,
-				LastCheck:    timestamppb.New(status.LastCheck),
-				Msg:          status.Msg,
-			})
+	for _, item := range list {
+		server := &kk_etcd_models.PBServer{
+			ServerRegistration: item,
+			Status:             getStatus(item),
 		}
+		pBListServer.ListServer = append(pBListServer.ListServer, server)
 	}
+
 	sort.Slice(pBListServer.ListServer, func(i, j int) bool {
-		return pBListServer.ListServer[i].EndpointKey < pBListServer.ListServer[j].EndpointKey
+		return pBListServer.ListServer[i].ServerRegistration.Key() < pBListServer.ListServer[j].ServerRegistration.Key()
 	})
 	return &pBListServer, nil
 }
 
-func (SerServer) DeregisterServer(stage *kk_stage.Stage, serverType kk_etcd_models.ServerType, endpointKey string) error {
-	endpointManager, err := serverType.NewEndpointManager(global_model.GetClient(stage))
+func (x *SerServer) GetConns(connType kk_etcd_models.PBServerType, serverName string) (string, error) {
+	server, err := getOneAliveServer(connType, serverName)
 	if err != nil {
-		return err
+		return "", err
 	}
-
-	err = endpointManager.DeleteEndpoint(
-		context.Background(),
-		endpointKey,
-	)
-	if err != nil {
-		return err
+	if server != nil {
+		return server.ServerAddr, nil
 	}
-	return nil
+	return "", kk_etcd_error.ErrNoAvailableConn
 }

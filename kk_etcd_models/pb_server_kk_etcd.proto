@@ -1,26 +1,16 @@
 syntax = "proto3";
 package kk_etcd_models;
-import "google/protobuf/timestamp.proto";
 option go_package = "github.com/cruvie/kk_etcd_go/kk_etcd_models";
-
-// protoc -I=. --go_out=./ *.proto
-
-
-// protoc -I=. --dart_out=./dart *.proto
+import "kk_etcd_models/pb_server_registration.proto";
 
 message PBServer {
-  string ServerType = 2;
-  string EndpointKey = 3;
-  string EndpointAddr = 4;
+  kk_etcd_models.PBServerRegistration ServerRegistration = 1;
   enum ServerStatus {
     UnKnown = 0;
     Running = 1;
     Stop = 2;
-    Init = 3;
   }
   ServerStatus Status = 5;
-  google.protobuf.Timestamp LastCheck = 6;
-  string Msg = 7;
 }
 
 message PBListServer  {

@@ -1,6 +1,6 @@
 //
 //  Generated code. Do not modify.
-//  source: pb_server_kk_etcd.proto
+//  source: kk_etcd_models/pb_server_kk_etcd.proto
 //
 // @dart = 3.3
 

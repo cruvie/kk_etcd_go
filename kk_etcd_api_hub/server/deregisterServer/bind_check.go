@@ -16,8 +16,8 @@ func (x *api) bindCheck() error {
 		return errors.New("server is empty")
 	}
 
-	if ser.GetEndpointKey() == "" {
-		return errors.New("ServerName is empty")
+	if ser.GetServerRegistration() == nil {
+		return errors.New("ServerRegistration is empty")
 	}
 
 	return nil

@@ -44,7 +44,7 @@ func ApiMCP() *kk_server.KKRunServer {
 
 	sseServer := server.NewSSEServer(
 		mcpServer,
-		server.WithBasePath("/kk_etcd"),
+		server.WithStaticBasePath("/kk_etcd"),
 	)
 
 	run := func() {

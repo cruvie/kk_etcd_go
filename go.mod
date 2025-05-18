@@ -3,14 +3,14 @@ module github.com/cruvie/kk_etcd_go
 go 1.23.0
 
 require (
-	gitee.com/cruvie/kk_go_kit v0.1.3-0.20250513151338-b13cebbb4de7
+	gitee.com/cruvie/kk_go_kit v0.1.3-0.20250518075527-74f3024cbb4f
 	github.com/gin-gonic/gin v1.10.0
-	github.com/mark3labs/mcp-go v0.27.0
+	github.com/mark3labs/mcp-go v0.28.0
 	github.com/swaggo/swag v1.16.4
 	github.com/tmc/langchaingo v0.1.13
-	go.etcd.io/etcd/api/v3 v3.5.21
-	go.etcd.io/etcd/client/v3 v3.5.21
-	google.golang.org/grpc v1.72.0
+	go.etcd.io/etcd/api/v3 v3.6.0
+	go.etcd.io/etcd/client/v3 v3.6.0
+	google.golang.org/grpc v1.72.1
 	google.golang.org/protobuf v1.36.6
 	gopkg.in/yaml.v3 v3.0.1
 )
@@ -59,7 +59,7 @@ require (
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
 	github.com/ugorji/go/codec v1.2.12 // indirect
 	github.com/yosida95/uritemplate/v3 v3.0.2 // indirect
-	go.etcd.io/etcd/client/pkg/v3 v3.6.0-rc.5 // indirect
+	go.etcd.io/etcd/client/pkg/v3 v3.6.0 // indirect
 	go.opentelemetry.io/auto/sdk v1.1.0 // indirect
 	go.opentelemetry.io/otel v1.35.0 // indirect
 	go.opentelemetry.io/otel/exporters/otlp/otlptrace v1.35.0 // indirect

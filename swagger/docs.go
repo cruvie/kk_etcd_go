@@ -1430,7 +1430,7 @@ const docTemplate = `{
                 "EndpointAddr": {
                     "type": "string"
                 },
-                "EndpointKey": {
+                "Key": {
                     "type": "string"
                 },
                 "LastCheck": {

@@ -1,153 +1,208 @@
 package server_hub
 
 import (
-	"context"
+	"bytes"
+	"encoding/json"
 	"gitee.com/cruvie/kk_go_kit/kk_log"
 	"gitee.com/cruvie/kk_go_kit/kk_sync"
-	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
-	"github.com/cruvie/kk_etcd_go/internal/utils/internal_client"
+	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/kv/util_kv"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_error"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
-	"go.etcd.io/etcd/api/v3/v3rpc/rpctypes"
-	"go.etcd.io/etcd/client/v3/naming/endpoints"
+	clientv3 "go.etcd.io/etcd/client/v3"
 	"log/slog"
+	"sync"
 	"time"
 )
 
-func InitServiceHub() {
-	hub = &serverHub{
-		hub: kk_sync.NewMap[string, *serverStatus](),
+type hubT struct {
+	*kk_sync.Map[string, *kk_sync.Slice[*kk_etcd_models.PBServerRegistration]]
+}
+
+func newHubT() *hubT {
+	return &hubT{
+		Map: kk_sync.NewMap[string, *kk_sync.Slice[*kk_etcd_models.PBServerRegistration]](),
 	}
-	hub.watchServiceChange()
+}
+
+func (x *hubT) MarshalJSON() ([]byte, error) {
+	m := make(map[string][]*kk_etcd_models.PBServerRegistration)
+	data := x.Data()
+	for k, v := range data {
+		m[k] = v.Slice()
+	}
+
+	return json.Marshal(m)
+}
+
+func (x *hubT) UnmarshalJSON(b []byte) error {
+	tmp := make(map[string][]*kk_etcd_models.PBServerRegistration)
+	d := json.NewDecoder(bytes.NewReader(b))
+	d.UseNumber()
+	err := d.Decode(&tmp)
+	if err != nil {
+		return err
+	}
+
+	for k, v := range tmp {
+		slice := kk_sync.NewSlice[*kk_etcd_models.PBServerRegistration]()
+		slice.Append(v...)
+		x.Add(k, slice)
+	}
+
+	return nil
 }
 
 var hub *serverHub
 
+// todo 服务在删除时正在检查会有并发问题，检查后可能又被重新注册
+var hubLock sync.RWMutex //nolint
+
 type serverHub struct {
-	hub *kk_sync.Map[string, *serverStatus]
+	aliveHub *hubT
+	deadHub  *hubT
 }
 
-func (x *serverHub) register(server *serverStatus) {
-	_, ok := x.hub.Get(server.kVKey())
-	if ok {
-		return
+func InitConnHub() {
+	hub = &serverHub{
+		aliveHub: newHubT(),
+		deadHub:  newHubT(),
 	}
-	server.ctx, server.cancelFunc = context.WithCancel(context.Background())
-	x.hub.Add(server.kVKey(), server)
-	err := server.putExistUpdateJson()
+	hub.watch()
+	time.Sleep(1 * time.Second)
+
+	list, err := serServerInstance.serverList(kk_etcd_models.ServerRegistrationKey)
 	if err != nil {
-		if kk_etcd_error.ErrorIs(err, rpctypes.ErrGRPCNoSpace) {
-			//https://etcd.io/docs/v3.5/op-guide/maintenance/#space-quota
-			slog.Warn("register server success but has no space warning", kk_log.NewLog(nil).
-				String("func", " PutExistUpdateJson()").
-				Error(err).Args()...)
-		} else {
-			slog.Error("register server failed PutExistUpdateJson()", kk_log.NewLog(nil).
-				Error(err).Any("server", server).Args()...)
-			return
-		}
+		panic(err)
 	}
-	err = server.Check()
-	if err != nil {
-		slog.Error("server may not be registered by kk_etcd", kk_log.NewLog(nil).
-			Error(err).Any("server", server).Args()...)
-		//no need to run checker
-		return
+	for _, registration := range list {
+		hub.putToDeadHub(registration)
 	}
-	//start checker
-	go server.runCheck()
 }
 
-func (x *serverHub) deregister(endpointKey string) {
-	key := kk_etcd_models.InternalServerStatus + endpointKey
-	oldStatus, ok := x.hub.Get(key)
-	if ok {
-		x.hub.Remove(key)
-		//stop check
-		oldStatus.stopCheck()
-	}
-	err := oldStatus.kVDelWithKey(key)
+func (x *serverHub) delFromDeadHub(item *kk_etcd_models.PBServerRegistration) {
+	delFromHub(x.deadHub, item)
+}
+
+func (x *serverHub) putToDeadHub(item *kk_etcd_models.PBServerRegistration) {
+	putToHub(x.deadHub, item)
+	startNewCheck(item)
+}
+
+func (x *serverHub) delFromAliveHub(item *kk_etcd_models.PBServerRegistration) {
+	delFromHub(x.aliveHub, item)
+}
+
+func (x *serverHub) putToAliveHub(item *kk_etcd_models.PBServerRegistration) {
+	putToHub(x.aliveHub, item)
+	//after put into aliveHub, put all alive conn to etcd for App outside to get conn
+	putHubToEtcd(kk_etcd_models.ServerAliveKey, x.aliveHub)
+}
+
+func putHubToEtcd(key string, hub *hubT) {
+	err := util_kv.PutExistUpdateJson(kc.Client, key, hub)
 	if err != nil {
-		slog.Error("deregister server failed server.KVDel()", kk_log.NewLog(nil).Error(err).Any("server", oldStatus).Args()...)
+		slog.Error("failed to put to etcd", kk_log.NewLog(nil).Error(err).Args()...)
+		return
 	}
 }
-func (x *serverHub) updateStatus(status kk_etcd_models.PBServer_ServerStatus, server *serverStatus) {
-	v, ok := x.hub.Get(server.kVKey())
+
+func getHubFromEtcd(key string) (*hubT, error) {
+	newHub := newHubT()
+	err := util_kv.GetJson(kc.Client, key, newHub)
+	if err != nil {
+		slog.Error("failed to get from etcd", kk_log.NewLog(nil).Error(err).Args()...)
+		return nil, err
+	}
+	return newHub, nil
+}
+
+func delFromHub(hub *hubT, item *kk_etcd_models.PBServerRegistration) {
+	conns, ok := hub.Get(item.ServerName)
 	if ok {
-		// update server status
-		v.Status = status
-		v.LastCheck = time.Now()
-		v.Msg = server.Msg
-		x.hub.Add(v.kVKey(), v)
-		err := v.putExistUpdateJson()
-		if err != nil {
-			if kk_etcd_error.ErrorIs(err, rpctypes.ErrGRPCNoSpace) {
-				//https://etcd.io/docs/v3.5/op-guide/maintenance/#space-quota
-				slog.Warn("register server success but has no space warning", kk_log.NewLog(nil).
-					String("func", " PutExistUpdateJson()").
-					Error(err).Args()...)
-			} else {
-				slog.Error("register server failed PutExistUpdateJson()", kk_log.NewLog(nil).
-					Error(err).Any("server", server).Args()...)
-				return
-			}
-		}
+		conns.DeleteFunc(func(c *kk_etcd_models.PBServerRegistration) bool {
+			return c.Key() == item.Key()
+		})
+	}
+}
+
+func putToHub(hub *hubT, item *kk_etcd_models.PBServerRegistration) {
+	conns, ok := hub.Get(item.ServerName)
+	if ok {
+		//replace if exists, append if not
+		conns.ReplaceOrAppend(item, func(r *kk_etcd_models.PBServerRegistration) bool {
+			return r.Key() == item.Key()
+		})
 	} else {
-		slog.Error("update server status failed server not found",
-			kk_log.NewLog(nil).Any("server", server).Args()...)
+		newConns := kk_sync.NewSlice[*kk_etcd_models.PBServerRegistration]()
+		newConns.Append(item)
+		hub.Add(item.ServerName, newConns)
 	}
 }
 
-// watchServiceChange watch server change
-func (x *serverHub) watchServiceChange() {
+// need this for SDK use, which cannot access memory data of running kk_etcd
+func (x *serverHub) watch() {
+	watchGrpcCh := kc.Watch(kc.Ctx(), kk_etcd_models.ServerRegistrationKey, clientv3.WithPrefix())
+	go x.watchCh(watchGrpcCh)
+}
 
-	getChannel := func(serverType kk_etcd_models.ServerType) endpoints.WatchChannel {
-		etcdManager, err := serverType.NewEndpointManager(global_model.GetClient(internal_client.GlobalStage))
-		if err != nil {
-			panic(err)
-		}
-		channel, err := etcdManager.NewWatchChannel(internal_client.GlobalStage.Ctx)
-		if err != nil {
-			panic(err)
-		}
-		return channel
-	}
-	grpcChannel := getChannel(kk_etcd_models.Grpc)
-	httpChannel := getChannel(kk_etcd_models.Http)
-
-	updateEndpoint := func(updates []*endpoints.Update) {
-		for _, update := range updates {
-			go func() {
-				var status serverStatus
-				status.fromEndpoint(update.Endpoint)
-				switch update.Op {
-				case endpoints.Delete:
-					//delete op only has key info
-					hub.deregister(update.Key)
-				case endpoints.Add:
-					hub.register(&status)
-				}
-			}()
-		}
-	}
-	go func() {
-		for {
-			select {
-			case <-internal_client.GlobalStage.Ctx.Done():
-				return
-			case updates, ok := <-grpcChannel:
-				if !ok {
-					slog.Error("grpcChannel", kk_log.NewLog(nil).Args()...)
+func (x *serverHub) watchCh(watchCh clientv3.WatchChan) {
+	for {
+		select {
+		case <-kc.Ctx().Done():
+			return
+		case watchResp := <-watchCh:
+			for _, event := range watchResp.Events {
+				item := new(kk_etcd_models.PBServerRegistration)
+				err := item.UnMarshal(event.Kv.Value)
+				if err != nil {
+					slog.Error("watch EventTypePut", kk_log.NewLog(nil).Error(err).Args()...)
 					continue
 				}
-				updateEndpoint(updates)
-			case updates, ok := <-httpChannel:
-				if !ok {
-					slog.Error("httpChannel", kk_log.NewLog(nil).Args()...)
-					continue
+				switch event.Type {
+				case clientv3.EventTypePut:
+					//new registration putToDeadHub first
+					x.putToDeadHub(item)
+				case clientv3.EventTypeDelete:
+					x.delFromDeadHub(item)
+					x.delFromAliveHub(item)
+					stopCheck(item.Key())
 				}
-				updateEndpoint(updates)
 			}
 		}
-	}()
+	}
+}
+
+func getOneAliveServer(connType kk_etcd_models.PBServerType, serverName string) (*kk_etcd_models.PBServerRegistration, error) {
+	aliveHub, err := getHubFromEtcd(kk_etcd_models.ServerAliveKey)
+	if err != nil {
+		return nil, err
+	}
+	addresses, ok := aliveHub.Get(serverName)
+	if !ok {
+		return nil, kk_etcd_error.ErrNoAvailableConn
+	}
+	//filter connType
+	addresses.DeleteFunc(func(registration *kk_etcd_models.PBServerRegistration) bool {
+		return registration.ServerType != connType
+	})
+	shuffle := addresses.Shuffle()
+	for _, item := range shuffle {
+		switch item.CheckConfig.Type {
+		case kk_etcd_models.PBServerType_Grpc:
+			err := checkGrpc(item.CheckConfig)
+			if err != nil {
+				continue
+			}
+			return item, nil
+		case kk_etcd_models.PBServerType_Http:
+			err := checkHttp(item.CheckConfig)
+			if err != nil {
+				continue
+			}
+			return item, nil
+		default:
+			continue
+		}
+	}
+	return nil, kk_etcd_error.ErrNoAvailableConn
 }

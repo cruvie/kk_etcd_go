@@ -60,9 +60,9 @@ func (*ServerList) Descriptor() ([]byte, []int) {
 }
 
 type ServerList_Input struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	ServerType    string                 `protobuf:"bytes,1,opt,name=ServerType,proto3" json:"ServerType,omitempty"`
-	ServerName    string                 `protobuf:"bytes,2,opt,name=ServerName,proto3" json:"ServerName,omitempty"`
+	state         protoimpl.MessageState      `protogen:"open.v1"`
+	ServerType    kk_etcd_models.PBServerType `protobuf:"varint,1,opt,name=ServerType,proto3,enum=kk_etcd_models.PBServerType" json:"ServerType,omitempty"`
+	ServerName    string                      `protobuf:"bytes,2,opt,name=ServerName,proto3" json:"ServerName,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -97,11 +97,11 @@ func (*ServerList_Input) Descriptor() ([]byte, []int) {
 	return file_kk_etcd_api_hub_server_api_def_ServerList_proto_rawDescGZIP(), []int{0, 0}
 }
 
-func (x *ServerList_Input) GetServerType() string {
+func (x *ServerList_Input) GetServerType() kk_etcd_models.PBServerType {
 	if x != nil {
 		return x.ServerType
 	}
-	return ""
+	return kk_etcd_models.PBServerType(0)
 }
 
 func (x *ServerList_Input) GetServerName() string {
@@ -159,12 +159,12 @@ var File_kk_etcd_api_hub_server_api_def_ServerList_proto protoreflect.FileDescri
 
 const file_kk_etcd_api_hub_server_api_def_ServerList_proto_rawDesc = "" +
 	"\n" +
-	"/kk_etcd_api_hub/server/api_def/ServerList.proto\x12\aapi_def\x1a&kk_etcd_models/pb_server_kk_etcd.proto\"\x9d\x01\n" +
+	"/kk_etcd_api_hub/server/api_def/ServerList.proto\x12\aapi_def\x1a&kk_etcd_models/pb_server_kk_etcd.proto\x1a+kk_etcd_models/pb_server_registration.proto\"\xbb\x01\n" +
 	"\n" +
-	"ServerList\x1aG\n" +
-	"\x05Input\x12\x1e\n" +
+	"ServerList\x1ae\n" +
+	"\x05Input\x12<\n" +
 	"\n" +
-	"ServerType\x18\x01 \x01(\tR\n" +
+	"ServerType\x18\x01 \x01(\x0e2\x1c.kk_etcd_models.PBServerTypeR\n" +
 	"ServerType\x12\x1e\n" +
 	"\n" +
 	"ServerName\x18\x02 \x01(\tR\n" +
@@ -192,15 +192,17 @@ var file_kk_etcd_api_hub_server_api_def_ServerList_proto_goTypes = []any{
 	(*ServerList)(nil),                  // 0: api_def.ServerList
 	(*ServerList_Input)(nil),            // 1: api_def.ServerList.Input
 	(*ServerList_Output)(nil),           // 2: api_def.ServerList.Output
-	(*kk_etcd_models.PBListServer)(nil), // 3: kk_etcd_models.PBListServer
+	(kk_etcd_models.PBServerType)(0),    // 3: kk_etcd_models.PBServerType
+	(*kk_etcd_models.PBListServer)(nil), // 4: kk_etcd_models.PBListServer
 }
 var file_kk_etcd_api_hub_server_api_def_ServerList_proto_depIdxs = []int32{
-	3, // 0: api_def.ServerList.Output.ServerList:type_name -> kk_etcd_models.PBListServer
-	1, // [1:1] is the sub-list for method output_type
-	1, // [1:1] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	3, // 0: api_def.ServerList.Input.ServerType:type_name -> kk_etcd_models.PBServerType
+	4, // 1: api_def.ServerList.Output.ServerList:type_name -> kk_etcd_models.PBListServer
+	2, // [2:2] is the sub-list for method output_type
+	2, // [2:2] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_kk_etcd_api_hub_server_api_def_ServerList_proto_init() }

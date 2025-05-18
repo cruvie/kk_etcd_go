@@ -17,13 +17,11 @@ class PBServer_ServerStatus extends $pb.ProtobufEnum {
   static const PBServer_ServerStatus UnKnown = PBServer_ServerStatus._(0, _omitEnumNames ? '' : 'UnKnown');
   static const PBServer_ServerStatus Running = PBServer_ServerStatus._(1, _omitEnumNames ? '' : 'Running');
   static const PBServer_ServerStatus Stop = PBServer_ServerStatus._(2, _omitEnumNames ? '' : 'Stop');
-  static const PBServer_ServerStatus Init = PBServer_ServerStatus._(3, _omitEnumNames ? '' : 'Init');
 
   static const $core.List<PBServer_ServerStatus> values = <PBServer_ServerStatus> [
     UnKnown,
     Running,
     Stop,
-    Init,
   ];
 
   static final $core.Map<$core.int, PBServer_ServerStatus> _byValue = $pb.ProtobufEnum.initByValue(values);

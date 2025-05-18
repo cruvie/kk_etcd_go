@@ -14,9 +14,7 @@ cd ../
 (
 echo "gen kk_etcd_models pb"
 
-cd kk_etcd_models || exit
-
-sh proto_gen.sh
+sh kk_etcd_models/proto_gen.sh
 
 )
 
@@ -26,33 +24,16 @@ echo "gen kk_etcd_api_hub pb"
 
 cd kk_etcd_api_hub || exit
 
-(
-cd ai/api_def || exit
-sh *_proto.sh
-)
+sh ai/api_def/*_proto.sh
 
-(
-cd backup/api_def || exit
-sh *_proto.sh
-)
+sh backup/api_def/*_proto.sh
 
-(
-cd kv/api_def || exit
-sh *_proto.sh
-)
+sh kv/api_def/*_proto.sh
 
-(
-cd role/api_def || exit
-sh *_proto.sh
-)
+sh role/api_def/*_proto.sh
 
-(
-cd server/api_def || exit
-sh *_proto.sh
-)
+sh server/api_def/*_proto.sh
 
-(
-cd user/api_def || exit
-sh *_proto.sh
-)
+sh user/api_def/*_proto.sh
+
 )

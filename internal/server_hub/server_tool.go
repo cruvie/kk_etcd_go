@@ -4,71 +4,57 @@ import (
 	"context"
 	"gitee.com/cruvie/kk_go_kit/kk_log"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
-	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
-	"github.com/cruvie/kk_etcd_go/internal/utils/internal_client"
-	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/kv/util_kv"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
-	clientv3 "go.etcd.io/etcd/client/v3"
-	"go.etcd.io/etcd/client/v3/naming/endpoints"
+	"go.etcd.io/etcd/client/v3/kubernetes"
 	"log/slog"
 )
 
-type serverTool struct{}
-
-var toolServer serverTool
-
-func (t *serverTool) serverList(client *clientv3.Client, serverType kk_etcd_models.ServerType) (endpoints.Key2EndpointMap, error) {
-	etcdManager, err := serverType.NewEndpointManager(client)
-	if err != nil {
-		return nil, err
-	}
-	endpointMap, err := etcdManager.List(context.Background())
-	if err != nil {
-		return nil, err
-	}
-	return endpointMap, nil
-}
-func (t *serverTool) services() (map[string]*serverStatus, error) {
-	services := make(map[string]*serverStatus)
-	v, err := util_kv.ListKV(internal_client.GlobalStage, kk_etcd_models.InternalServerStatus)
-	if err != nil {
-		return nil, err
-	}
-	for _, kv := range v.GetListKV() {
-		var info serverStatus
-		err := info.FromJson(kv.GetValue())
+func (*SerServer) registerServer(registrations []*kk_etcd_models.PBServerRegistration) error {
+	for _, registration := range registrations {
+		val, err := registration.Marshal()
 		if err != nil {
-			return nil, err
+			slog.Error("failed to get Marshal", kk_log.NewLog(nil).Error(err).Any("server", registration).Args()...)
+			return err
 		}
-		services[info.kVKey()] = &info
+		_, err = kc.Put(context.Background(), registration.Key(), val)
+		if err != nil {
+			slog.Error("failed to put to etcd", kk_log.NewLog(nil).Error(err).Any("server", registration).Error(err).Args()...)
+			return err
+		}
 	}
-
-	return services, nil
+	return nil
 }
 
-func (t *serverTool) registerServer(stage *kk_stage.Stage, registration *kk_etcd_models.ServerRegistration) error {
+func (*SerServer) deRegisterServer(stage *kk_stage.Stage, registration *kk_etcd_models.PBServerRegistration) error {
 	newLog := kk_log.NewLog(&kk_log.LogOption{TraceId: stage.TraceId})
-
-	endpointManager, err := registration.ServerType.NewEndpointManager(global_model.GetClient(stage))
+	_, err := kc.Delete(context.Background(), registration.Key())
 	if err != nil {
-		msg := "failed to create etcd manager"
-		slog.Error(msg, newLog.Error(err).String("key", registration.EndpointKey()).Args()...)
-		return err
-	}
-	info := newServerStatus(registration)
-	endpoint := endpoints.Endpoint{
-		Addr:     registration.ServerAddr,
-		Metadata: info,
-	}
-	//add endpoint to etcd
-	err = endpointManager.AddEndpoint(
-		context.Background(),
-		info.EndpointKey(),
-		endpoint)
-	if err != nil {
-		msg := "failed to add endpoint to etcd"
-		slog.Error(msg, newLog.Error(err).Args()...)
+		slog.Error("failed to delete from etcd", newLog.Error(err).Args()...)
 		return err
 	}
 	return nil
+}
+
+// serverList nil serverType means all serverType
+func (*SerServer) serverList(keyPrefix string) (serverList []*kk_etcd_models.PBServerRegistration, err error) {
+	resp, err := kc.List(context.Background(), keyPrefix, kubernetes.ListOptions{
+		Revision: 0,
+		Limit:    0,
+		Continue: "",
+	})
+	if err != nil {
+		return nil, err
+	}
+	serverList = make([]*kk_etcd_models.PBServerRegistration, 0)
+	for _, kv := range resp.Kvs {
+		if kv.Value != nil {
+			registration := &kk_etcd_models.PBServerRegistration{}
+			err = registration.UnMarshal(kv.Value)
+			if err != nil {
+				return nil, err
+			}
+			serverList = append(serverList, registration)
+		}
+	}
+	return serverList, nil
 }

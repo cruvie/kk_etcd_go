@@ -2,7 +2,8 @@ name: kk_etcd_example
 services:
   # https://etcd.io/docs/v3.5/op-guide/container/
   etcd-rel:
-    image: quay.io/coreos/etcd:v3.5.17-amd64
+    image: quay.io/coreos/etcd:v3.6.0-arm64
+#    image: quay.io/coreos/etcd:v3.6.0-amd64
     container_name: etcd-rel
     command:
       [

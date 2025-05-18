@@ -9,8 +9,8 @@ import (
 	clientv3 "go.etcd.io/etcd/client/v3"
 )
 
-func GetKV(stage *kk_stage.Stage, key string) (value []byte, err error) {
-	getOutput, err := global_model.GetClient(stage).Get(context.Background(), key)
+func GetKV(client *clientv3.Client, key string) (value []byte, err error) {
+	getOutput, err := client.Get(context.Background(), key)
 	if err != nil {
 		return nil, err
 	}
@@ -20,28 +20,28 @@ func GetKV(stage *kk_stage.Stage, key string) (value []byte, err error) {
 	return getOutput.Kvs[0].Value, nil
 }
 
-func PutKV(stage *kk_stage.Stage, key string, value string) error {
+func PutKV(stage *kk_stage.Stage, key string, value string, opts ...clientv3.OpOption) error {
 
 	_, err := global_model.GetClient(stage).
-		Put(context.Background(), key, value)
+		Put(context.Background(), key, value, opts...)
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func DelKV(stage *kk_stage.Stage, key string) error {
-	_, err := global_model.GetClient(stage).Delete(context.Background(), key)
+func DelKV(stage *kk_stage.Stage, key string, opts ...clientv3.OpOption) error {
+	_, err := global_model.GetClient(stage).Delete(context.Background(), key, opts...)
 	if err != nil {
 		return err
 	}
 	return nil
 }
 
-func ListKV(stage *kk_stage.Stage, prefix string) (list *kk_etcd_models.PBListKV, err error) {
+func ListKV(stage *kk_stage.Stage, prefix string, opts ...clientv3.OpOption) (list *kk_etcd_models.PBListKV, err error) {
 
 	list = &kk_etcd_models.PBListKV{}
-	getOutput, err := global_model.GetClient(stage).Get(context.Background(), prefix, clientv3.WithPrefix())
+	getOutput, err := global_model.GetClient(stage).Get(context.Background(), prefix, opts...)
 	if err != nil {
 		return nil, err
 	}

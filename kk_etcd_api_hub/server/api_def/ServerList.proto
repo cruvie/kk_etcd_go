@@ -2,11 +2,12 @@ syntax = "proto3";
 package api_def;
 option go_package = "/api_def";
 import "kk_etcd_models/pb_server_kk_etcd.proto";
+import "kk_etcd_models/pb_server_registration.proto";
 
 //list server
 message ServerList {
   message Input {
-    string  ServerType = 1;
+    kk_etcd_models.PBServerType ServerType = 1;
     string  ServerName = 2;
   }
 

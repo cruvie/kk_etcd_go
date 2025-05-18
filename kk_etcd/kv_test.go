@@ -1,6 +1,7 @@
-package kk_etcd
+package kk_etcd_test
 
 import (
+	"github.com/cruvie/kk_etcd_go/kk_etcd"
 	"log"
 	"testing"
 )
@@ -26,7 +27,7 @@ func TestPutYaml(t *testing.T) {
 		}
 	}()
 
-	mgrKV := NewMgrKV()
+	mgrKV := kk_etcd.NewMgrKV()
 	type args struct {
 		configKey string
 		config    configTest
@@ -72,7 +73,7 @@ func TestGetYaml(t *testing.T) {
 			log.Println(err)
 		}
 	}()
-	mgrKV := NewMgrKV()
+	mgrKV := kk_etcd.NewMgrKV()
 	err := mgrKV.GetYaml("my_config", &GlobalConfig)
 	if err != nil {
 		t.Errorf("MgrKV.GetYaml failed: %v", err)
@@ -89,7 +90,7 @@ func TestPutJson(t *testing.T) {
 		}
 	}()
 
-	mgrKV := NewMgrKV()
+	mgrKV := kk_etcd.NewMgrKV()
 	type args struct {
 		configKey string
 		config    configTest
@@ -135,7 +136,7 @@ func TestGetJson(t *testing.T) {
 			log.Println(err)
 		}
 	}()
-	mgrKV := NewMgrKV()
+	mgrKV := kk_etcd.NewMgrKV()
 	err := mgrKV.GetJson("my_config_json", &GlobalConfig)
 	if err != nil {
 		t.Errorf("MgrKV.GetJson failed: %v", err)

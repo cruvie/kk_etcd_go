@@ -19,12 +19,8 @@ func NewEtcdMaintain() *kk_server.KKRunServer {
 	tick := time.NewTicker(1 * time.Hour)
 	run := func() {
 		maintainEtcd()
-		//maintain will close watch channels, os rerun watches
-		hub.watchServiceChange()
 		for range tick.C {
 			maintainEtcd()
-			//maintain will close watch channels, os rerun watches
-			hub.watchServiceChange()
 		}
 	}
 	done := func(quitCh <-chan struct{}) {
@@ -36,6 +32,7 @@ func NewEtcdMaintain() *kk_server.KKRunServer {
 		Done: done,
 	}
 }
+
 func maintainEtcd() {
 	for _, endpoint := range config.Config.Etcd.Endpoints {
 		// get current revision

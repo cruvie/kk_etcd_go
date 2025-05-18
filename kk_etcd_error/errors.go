@@ -16,6 +16,10 @@ var (
 	ErrNoRootRole = errors.New("no root role")
 )
 
+var (
+	ErrNoAvailableConn = errors.New("no available conn")
+)
+
 // Permission
 var (
 	ErrPermissionDenied = errors.New("permission denied")

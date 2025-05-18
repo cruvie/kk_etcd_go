@@ -16,7 +16,7 @@ func (x *api) Handler() (*api_def.KVList_Output, error) {
 		return nil, err
 	}
 	list.ListKV = slices.DeleteFunc(list.GetListKV(), func(kv *kk_etcd_models.PBKV) bool {
-		return strings.HasPrefix(kv.Key, kk_etcd_models.Server)
+		return strings.HasPrefix(kv.Key, kk_etcd_models.ServerKey)
 	})
 	return &api_def.KVList_Output{KVList: list}, err
 

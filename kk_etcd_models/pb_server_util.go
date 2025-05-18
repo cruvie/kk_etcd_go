@@ -2,8 +2,8 @@ package kk_etcd_models
 
 import (
 	"errors"
-	clientv3 "go.etcd.io/etcd/client/v3"
-	"go.etcd.io/etcd/client/v3/naming/endpoints"
+	"fmt"
+	"google.golang.org/protobuf/encoding/protojson"
 	"time"
 )
 
@@ -11,47 +11,22 @@ const (
 	HealthCheckPath = "/KKHealthCheck"
 )
 
-type ServerType string
-
-func (x ServerType) String() string {
-	return string(x)
-}
-
-func (x ServerType) NewEndpointManager(client *clientv3.Client) (endpoints.Manager, error) {
-	return endpoints.NewManager(client, x.String())
-}
-
 const (
-	Server            = "kk_server/"
-	Http   ServerType = Server + "http"
-	Grpc   ServerType = Server + "grpc"
-	// InternalServerStatus use for store server status as normal kv, cannot use key in endpoint, watch manager will watch any key with same target prefix
-	InternalServerStatus = Server + "internal_server_status/"
+	ServerKey             = "kk_server/"
+	ServerRegistrationKey = ServerKey + "registration/"
+	ServerAliveKey        = ServerKey + "alive/"
 )
 
-type CheckConfig struct {
-	Type ServerType // Http or Grpc
-	// check timeout
-	// must grater than 1 second
-	Timeout time.Duration
-	// check interval, kk_etcd will per Interval to send check request
-	// must grater than Timeout
-	Interval time.Duration
-	// Http default http://+Addr+/KKHealthCheck
-	// Grpc Addr in ServerRegistration
-	Addr string
-}
-
-func (x *CheckConfig) Check() error {
-	if x.Type != Http && x.Type != Grpc {
+func (x *PBServerRegistration_PBCheckConfig) Check() error {
+	if x.Type != PBServerType_Http && x.Type != PBServerType_Grpc {
 		msg := "check type must be Grpc or Http"
 		return errors.New(msg)
 	}
-	if x.Timeout < 1*time.Second {
+	if x.Timeout.AsDuration() < 1*time.Second {
 		msg := "check timeout must grater than 1 second"
 		return errors.New(msg)
 	}
-	if x.Interval < x.Timeout {
+	if x.Interval.AsDuration() < x.Timeout.AsDuration() {
 		msg := "check interval must grater than Timeout"
 		return errors.New(msg)
 	}
@@ -62,15 +37,7 @@ func (x *CheckConfig) Check() error {
 	return nil
 }
 
-type ServerRegistration struct {
-	ServerType  ServerType
-	ServerName  string
-	ServerAddr  string
-	Metadata    any
-	CheckConfig CheckConfig
-}
-
-func (x *ServerRegistration) Check() error {
+func (x *PBServerRegistration) Check() error {
 	if x.ServerName == "" {
 		msg := "server name cannot be empty"
 		return errors.New(msg)
@@ -82,6 +49,16 @@ func (x *ServerRegistration) Check() error {
 	return x.CheckConfig.Check()
 }
 
-func (x *ServerRegistration) EndpointKey() string {
-	return x.ServerType.String() + "/" + x.ServerName + "/" + x.ServerAddr
+func (x *PBServerRegistration) Key() string {
+	return fmt.Sprintf("%s%s/%s/%s", ServerRegistrationKey, x.ServerType.String(), x.ServerName, x.ServerAddr)
+}
+
+func (x *PBServerRegistration) Marshal() (string, error) {
+	marshal, err := protojson.Marshal(x)
+	return string(marshal), err
+}
+
+func (x *PBServerRegistration) UnMarshal(data []byte) error {
+	err := protojson.Unmarshal(data, x)
+	return err
 }

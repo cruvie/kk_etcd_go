@@ -1,12 +1,20 @@
-package kk_etcd
+package kk_etcd_test
 
 import (
 	"context"
+	"fmt"
+	"gitee.com/cruvie/kk_go_kit/kk_http"
 	"gitee.com/cruvie/kk_go_kit/kk_log"
-	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/server/serverList"
+	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
+	"github.com/cruvie/kk_etcd_go/internal/utils/internal_client"
+	"github.com/cruvie/kk_etcd_go/kk_etcd"
+	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/server/api_def"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
+	clientv3 "go.etcd.io/etcd/client/v3"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/grpc/health/grpc_health_v1"
+	"google.golang.org/protobuf/types/known/durationpb"
 	"log"
 	"log/slog"
 	"net"
@@ -30,6 +38,58 @@ func (s *server) Watch(*grpc_health_v1.HealthCheckRequest, grpc_health_v1.Health
 	return nil
 }
 
+func serverList(req *api_def.ServerList_Input) (*api_def.ServerList_Output, error) {
+	header := http.Header{}
+	header.Add("Content-Type", "application/x-protobuf")
+	header.Add("Accept", "application/x-protobuf")
+	header.Add("Username", "root")
+	header.Add("Password", "root")
+	out := &api_def.ServerList_Output{}
+	err := kk_http.SendPBRequest(context.Background(),
+		http.MethodPost, "http://127.0.0.1:2333/server/serverList",
+		header, req, out)
+
+	return out, err
+}
+
+func TestServerList(t *testing.T) {
+	req := &api_def.ServerList_Input{}
+	out, err := serverList(req)
+	if err != nil {
+		log.Fatalf("Error: %v", err)
+	}
+	fmt.Printf("Response: %+v\n", out)
+}
+
+func cleanup(t *testing.T) {
+	client := global_model.GetClient(internal_client.GlobalStage)
+	//kk_server/internal_server_status/kk_server/grpc/ss_msg/192.168.124.118:58754
+	resp, err := client.Get(context.Background(), kk_etcd_models.ServerKey, clientv3.WithPrefix())
+	if err != nil {
+		t.Error(err)
+	}
+	t.Log(resp)
+	_, err = global_model.GetClient(internal_client.GlobalStage).
+		Delete(context.Background(),
+			kk_etcd_models.ServerKey,
+			clientv3.WithPrefix(),
+		)
+	if err != nil {
+		t.Error(err)
+	}
+}
+
+func TestCleanUp(t *testing.T) {
+	closeFunc := initTestEnv()
+	defer func() {
+		err := closeFunc()
+		if err != nil {
+			log.Println(err)
+		}
+	}()
+	cleanup(t)
+}
+
 func TestStartGrpcServer(t *testing.T) {
 	listener, err := net.Listen("tcp", ":34844")
 	defer func(listener net.Listener) {
@@ -49,6 +109,7 @@ func TestStartGrpcServer(t *testing.T) {
 		slog.Error("failed to serve", "err", err)
 	}
 }
+
 func TestRegisterGrpcService(t *testing.T) {
 	closeFunc := initTestEnv()
 	defer func() {
@@ -59,15 +120,14 @@ func TestRegisterGrpcService(t *testing.T) {
 	}()
 
 	//register grpc service
-	err := RegisterService(&kk_etcd_models.ServerRegistration{
-		ServerType: kk_etcd_models.Grpc,
+	err := kk_etcd.RegisterService(&kk_etcd_models.PBServerRegistration{
+		ServerType: kk_etcd_models.PBServerType_Grpc,
 		ServerName: "haha_grpc",
 		ServerAddr: "127.0.0.1:34844",
-		Metadata:   "meta",
-		CheckConfig: kk_etcd_models.CheckConfig{
-			Type:     kk_etcd_models.Grpc,
-			Timeout:  5 * time.Second,
-			Interval: 10 * time.Second,
+		CheckConfig: &kk_etcd_models.PBServerRegistration_PBCheckConfig{
+			Type:     kk_etcd_models.PBServerType_Grpc,
+			Timeout:  durationpb.New(5 * time.Second),
+			Interval: durationpb.New(10 * time.Second),
 			Addr:     "127.0.0.1:34844",
 		},
 	})
@@ -75,7 +135,26 @@ func TestRegisterGrpcService(t *testing.T) {
 		slog.Error("failed to register service", "err", err)
 	}
 }
+
 func TestGetGrpcServiceList(t *testing.T) {
+	closeFunc := initTestEnv()
+	defer func() {
+		err := closeFunc()
+		if err != nil {
+			t.Error(err)
+		}
+	}()
+	for {
+		list, err := serverList(&api_def.ServerList_Input{ServerType: kk_etcd_models.PBServerType_Grpc, ServerName: "haha_grpc"})
+		if err != nil {
+			slog.Error("failed to list", "err", err)
+		}
+		slog.Info("list", "list", list)
+		time.Sleep(time.Second * 5)
+	}
+}
+
+func TestGetGrpcClient(t *testing.T) {
 	closeFunc := initTestEnv()
 	defer func() {
 		err := closeFunc()
@@ -83,14 +162,20 @@ func TestGetGrpcServiceList(t *testing.T) {
 			log.Println(err)
 		}
 	}()
-	for {
-		list, err := ServerList(&serverList.ServerList_Input{ServerType: kk_etcd_models.Grpc.String(), ServerName: "haha_grpc"})
-		if err != nil {
-			slog.Error("failed to list", "err", err)
-		}
-		slog.Info("list", "list", list)
-		time.Sleep(time.Second * 5)
+	conn, client, err := kk_etcd.GetGrpcClient[grpc_health_v1.HealthClient]("haha_grpc",
+		grpc_health_v1.NewHealthClient,
+		grpc.WithTransportCredentials(insecure.NewCredentials()))
+	if err != nil {
+		t.Fatal(err)
 	}
+	defer conn.Close() //nolint
+	response, err := client.Check(context.Background(), &grpc_health_v1.HealthCheckRequest{
+		Service: "empty kk",
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
+	log.Println(response)
 }
 
 func TestStartHttpServer(t *testing.T) {
@@ -111,14 +196,14 @@ func TestRegisterHttpService(t *testing.T) {
 			log.Println(err)
 		}
 	}()
-	err := RegisterService(&kk_etcd_models.ServerRegistration{
-		ServerType: kk_etcd_models.Http,
+	err := kk_etcd.RegisterService(&kk_etcd_models.PBServerRegistration{
+		ServerType: kk_etcd_models.PBServerType_Http,
 		ServerName: "haha_http",
 		ServerAddr: "127.0.0.1:8848",
-		CheckConfig: kk_etcd_models.CheckConfig{
-			Type:     kk_etcd_models.Http,
-			Timeout:  5 * time.Second,
-			Interval: 10 * time.Second,
+		CheckConfig: &kk_etcd_models.PBServerRegistration_PBCheckConfig{
+			Type:     kk_etcd_models.PBServerType_Http,
+			Timeout:  durationpb.New(5 * time.Second),
+			Interval: durationpb.New(10 * time.Second),
 			Addr:     "http://127.0.0.1:8848" + kk_etcd_models.HealthCheckPath,
 		},
 	})
@@ -136,7 +221,7 @@ func TestGetHttpServiceList(t *testing.T) {
 		}
 	}()
 	for {
-		list, err := ServerList(&serverList.ServerList_Input{ServerType: kk_etcd_models.Http.String(), ServerName: "haha_http"})
+		list, err := serverList(&api_def.ServerList_Input{ServerType: kk_etcd_models.PBServerType_Http, ServerName: "haha_http"})
 		if err != nil {
 			slog.Error("failed to list", "err", err)
 		}
@@ -145,33 +230,33 @@ func TestGetHttpServiceList(t *testing.T) {
 	}
 }
 
-func TestWatchServerList(t *testing.T) {
-	closeFunc := initTestEnv()
-	defer func() {
-		err := closeFunc()
-		if err != nil {
-			log.Println(err)
-		}
-	}()
-	serverListChan := make(chan *kk_etcd_models.PBListServer)
-	defer close(serverListChan)
-	ctx, cancel := context.WithCancel(context.Background())
-	defer cancel()
-
-	err := WatchServerList(ctx, kk_etcd_models.Http, "haha_http", serverListChan)
-	if err != nil {
-		slog.Error("WatchServerList failed", "err", err)
-		return
-	}
-
-	for {
-		slog.Info("watching for server list change")
-		select {
-		case <-ctx.Done():
-			slog.Info("ctx done")
-			return
-		case serverList := <-serverListChan:
-			slog.Info("serverListChan", "serverList", serverList)
-		}
-	}
-}
+//func TestWatchServerList(t *testing.T) {
+//	closeFunc := initTestEnv()
+//	defer func() {
+//		err := closeFunc()
+//		if err != nil {
+//			log.Println(err)
+//		}
+//	}()
+//	serverListChan := make(chan *kk_etcd_models.PBListServer)
+//	defer close(serverListChan)
+//	ctx, cancel := context.WithCancel(context.Background())
+//	defer cancel()
+//
+//	err := WatchServerList(ctx, kk_etcd_models.PBServerType_Http, "haha_http", serverListChan)
+//	if err != nil {
+//		slog.Error("WatchServerList failed", "err", err)
+//		return
+//	}
+//
+//	for {
+//		slog.Info("watching for server list change")
+//		select {
+//		case <-ctx.Done():
+//			slog.Info("ctx done")
+//			return
+//		case serverList := <-serverListChan:
+//			slog.Info("serverListChan", "serverList", serverList)
+//		}
+//	}
+//}

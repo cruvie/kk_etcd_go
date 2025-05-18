@@ -48,6 +48,7 @@ func Query(question string, docsContents []string) (answer string, err error) {
 	return generateContent.Choices[0].Content, nil
 }
 
+// nolint
 const ragTemplateStr = `
 I will ask you a question and will provide some additional context information.
 Assume this context information is factual and correct, as part of internal

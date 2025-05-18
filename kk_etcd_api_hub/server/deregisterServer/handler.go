@@ -3,15 +3,14 @@ package deregisterServer
 import (
 	"github.com/cruvie/kk_etcd_go/internal/server_hub"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/server/api_def"
-	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 )
 
 func (x *api) Handler() (*api_def.DeregisterServer_Output, error) {
 	span := x.stage.StartTrace("handler")
 	defer span.End()
-	err := server_hub.SerServer{}.DeregisterServer(x.stage,
-		kk_etcd_models.ServerType(x.In.GetServer().GetServerType()),
-		x.In.GetServer().GetEndpointKey())
+	server := &server_hub.SerServer{}
+	err := server.DeregisterServer(x.stage,
+		x.In.GetServer().GetServerRegistration())
 	if err != nil {
 		return nil, err
 	}

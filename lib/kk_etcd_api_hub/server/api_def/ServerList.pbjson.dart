@@ -23,7 +23,7 @@ const ServerList$json = {
 const ServerList_Input$json = {
   '1': 'Input',
   '2': [
-    {'1': 'ServerType', '3': 1, '4': 1, '5': 9, '10': 'ServerType'},
+    {'1': 'ServerType', '3': 1, '4': 1, '5': 14, '6': '.kk_etcd_models.PBServerType', '10': 'ServerType'},
     {'1': 'ServerName', '3': 2, '4': 1, '5': 9, '10': 'ServerName'},
   ],
 };
@@ -38,7 +38,8 @@ const ServerList_Output$json = {
 
 /// Descriptor for `ServerList`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List serverListDescriptor = $convert.base64Decode(
-    'CgpTZXJ2ZXJMaXN0GkcKBUlucHV0Eh4KClNlcnZlclR5cGUYASABKAlSClNlcnZlclR5cGUSHg'
-    'oKU2VydmVyTmFtZRgCIAEoCVIKU2VydmVyTmFtZRpGCgZPdXRwdXQSPAoKU2VydmVyTGlzdBgB'
-    'IAEoCzIcLmtrX2V0Y2RfbW9kZWxzLlBCTGlzdFNlcnZlclIKU2VydmVyTGlzdA==');
+    'CgpTZXJ2ZXJMaXN0GmUKBUlucHV0EjwKClNlcnZlclR5cGUYASABKA4yHC5ra19ldGNkX21vZG'
+    'Vscy5QQlNlcnZlclR5cGVSClNlcnZlclR5cGUSHgoKU2VydmVyTmFtZRgCIAEoCVIKU2VydmVy'
+    'TmFtZRpGCgZPdXRwdXQSPAoKU2VydmVyTGlzdBgBIAEoCzIcLmtrX2V0Y2RfbW9kZWxzLlBCTG'
+    'lzdFNlcnZlclIKU2VydmVyTGlzdA==');
 

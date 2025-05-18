@@ -1,6 +1,6 @@
 //
 //  Generated code. Do not modify.
-//  source: kk_etcd_models/pb_kv_kk_etcd.proto
+//  source: kk_etcd_models/pb_server_registration.proto
 //
 // @dart = 3.3
 
@@ -10,5 +10,5 @@
 // ignore_for_file: non_constant_identifier_names, prefer_final_fields
 // ignore_for_file: unnecessary_import, unnecessary_this, unused_import
 
-export 'pb_kv_kk_etcd.pb.dart';
+export 'pb_server_registration.pb.dart';
 

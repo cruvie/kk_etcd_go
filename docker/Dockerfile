@@ -33,8 +33,8 @@ FROM alpine:latest
 WORKDIR /
 
 COPY --from=build /kk_etcd/output /kk_etcd/output
-#COPY ./etcd-v3.5.17-linux-amd64/etcdutl /usr/local/bin/etcdutl
-#COPY ./etcd-v3.5.17-linux-arm64/etcdutl /usr/local/bin/etcdutl
+#COPY ./etcd-v3.6.0-linux-amd64/etcdutl /usr/local/bin/etcdutl
+#COPY ./etcd-v3.6.0-linux-arm64/etcdutl /usr/local/bin/etcdutl
 
 EXPOSE 2333
 

@@ -14,12 +14,13 @@ import 'dart:core' as $core;
 import 'package:protobuf/protobuf.dart' as $pb;
 
 import '../../../kk_etcd_models/pb_server_kk_etcd.pb.dart' as $0;
+import '../../../kk_etcd_models/pb_server_registration.pbenum.dart' as $1;
 
 export 'package:protobuf/protobuf.dart' show GeneratedMessageGenericExtensions;
 
 class ServerList_Input extends $pb.GeneratedMessage {
   factory ServerList_Input({
-    $core.String? serverType,
+    $1.PBServerType? serverType,
     $core.String? serverName,
   }) {
     final $result = create();
@@ -36,7 +37,7 @@ class ServerList_Input extends $pb.GeneratedMessage {
   factory ServerList_Input.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'ServerList.Input', package: const $pb.PackageName(_omitMessageNames ? '' : 'api_def'), createEmptyInstance: create)
-    ..aOS(1, _omitFieldNames ? '' : 'ServerType', protoName: 'ServerType')
+    ..e<$1.PBServerType>(1, _omitFieldNames ? '' : 'ServerType', $pb.PbFieldType.OE, protoName: 'ServerType', defaultOrMaker: $1.PBServerType.Unknown, valueOf: $1.PBServerType.valueOf, enumValues: $1.PBServerType.values)
     ..aOS(2, _omitFieldNames ? '' : 'ServerName', protoName: 'ServerName')
     ..hasRequiredFields = false
   ;
@@ -63,9 +64,9 @@ class ServerList_Input extends $pb.GeneratedMessage {
   static ServerList_Input? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $core.String get serverType => $_getSZ(0);
+  $1.PBServerType get serverType => $_getN(0);
   @$pb.TagNumber(1)
-  set serverType($core.String v) { $_setString(0, v); }
+  set serverType($1.PBServerType v) { $_setField(1, v); }
   @$pb.TagNumber(1)
   $core.bool hasServerType() => $_has(0);
   @$pb.TagNumber(1)

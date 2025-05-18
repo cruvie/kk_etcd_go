@@ -2,8 +2,8 @@ package api_etcd
 
 import (
 	"context"
-	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/kv/kVList"
-	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/user/login"
+	apidef2 "github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/kv/api_def"
+	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/user/api_def"
 	"github.com/mark3labs/mcp-go/client"
 	"github.com/mark3labs/mcp-go/mcp"
 	"testing"
@@ -50,7 +50,7 @@ func newClient(t *testing.T) (*client.Client, context.Context) {
 }
 func TestMCPServer(t *testing.T) {
 	cli, _ := newClient(t)
-	defer cli.Close()
+	defer cli.Close() //nolint
 	// Test ListTools
 	toolsRequest := mcp.ListToolsRequest{}
 	res, err := cli.ListTools(context.Background(), toolsRequest)
@@ -62,14 +62,14 @@ func TestMCPServer(t *testing.T) {
 
 func TestLogin(t *testing.T) {
 	cli, ctx := newClient(t)
-	defer cli.Close()
+	defer cli.Close() //nolint
 
 	request := mcp.CallToolRequest{}
 	request.Params.Name = "Login"
 	request.Params.Arguments = map[string]interface{}{
 		"UserName": "root",
 		"Password": "root",
-		"input":    login.Login_Input{},
+		"input":    api_def.Login_Input{},
 		"token":    "asfafdsgds",
 	}
 
@@ -81,14 +81,14 @@ func TestLogin(t *testing.T) {
 }
 func TestCallTool(t *testing.T) {
 	cli, ctx := newClient(t)
-	defer cli.Close()
+	defer cli.Close() //nolint
 
 	request := mcp.CallToolRequest{}
 	request.Params.Name = "KVList"
 	request.Params.Arguments = map[string]interface{}{
 		"UserName": "root",
 		"Password": "root",
-		"input":    kVList.KVList_Input{},
+		"input":    apidef2.KVList_Input{},
 		"token":    "asfafdsgds",
 	}
 

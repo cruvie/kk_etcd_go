@@ -9,7 +9,6 @@ package kk_etcd_models
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -28,7 +27,6 @@ const (
 	PBServer_UnKnown PBServer_ServerStatus = 0
 	PBServer_Running PBServer_ServerStatus = 1
 	PBServer_Stop    PBServer_ServerStatus = 2
-	PBServer_Init    PBServer_ServerStatus = 3
 )
 
 // Enum value maps for PBServer_ServerStatus.
@@ -37,13 +35,11 @@ var (
 		0: "UnKnown",
 		1: "Running",
 		2: "Stop",
-		3: "Init",
 	}
 	PBServer_ServerStatus_value = map[string]int32{
 		"UnKnown": 0,
 		"Running": 1,
 		"Stop":    2,
-		"Init":    3,
 	}
 )
 
@@ -75,15 +71,11 @@ func (PBServer_ServerStatus) EnumDescriptor() ([]byte, []int) {
 }
 
 type PBServer struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	ServerType    string                 `protobuf:"bytes,2,opt,name=ServerType,proto3" json:"ServerType,omitempty"`
-	EndpointKey   string                 `protobuf:"bytes,3,opt,name=EndpointKey,proto3" json:"EndpointKey,omitempty"`
-	EndpointAddr  string                 `protobuf:"bytes,4,opt,name=EndpointAddr,proto3" json:"EndpointAddr,omitempty"`
-	Status        PBServer_ServerStatus  `protobuf:"varint,5,opt,name=Status,proto3,enum=kk_etcd_models.PBServer_ServerStatus" json:"Status,omitempty"`
-	LastCheck     *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=LastCheck,proto3" json:"LastCheck,omitempty"`
-	Msg           string                 `protobuf:"bytes,7,opt,name=Msg,proto3" json:"Msg,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state              protoimpl.MessageState `protogen:"open.v1"`
+	ServerRegistration *PBServerRegistration  `protobuf:"bytes,1,opt,name=ServerRegistration,proto3" json:"ServerRegistration,omitempty"`
+	Status             PBServer_ServerStatus  `protobuf:"varint,5,opt,name=Status,proto3,enum=kk_etcd_models.PBServer_ServerStatus" json:"Status,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
 }
 
 func (x *PBServer) Reset() {
@@ -116,25 +108,11 @@ func (*PBServer) Descriptor() ([]byte, []int) {
 	return file_kk_etcd_models_pb_server_kk_etcd_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *PBServer) GetServerType() string {
+func (x *PBServer) GetServerRegistration() *PBServerRegistration {
 	if x != nil {
-		return x.ServerType
+		return x.ServerRegistration
 	}
-	return ""
-}
-
-func (x *PBServer) GetEndpointKey() string {
-	if x != nil {
-		return x.EndpointKey
-	}
-	return ""
-}
-
-func (x *PBServer) GetEndpointAddr() string {
-	if x != nil {
-		return x.EndpointAddr
-	}
-	return ""
+	return nil
 }
 
 func (x *PBServer) GetStatus() PBServer_ServerStatus {
@@ -142,20 +120,6 @@ func (x *PBServer) GetStatus() PBServer_ServerStatus {
 		return x.Status
 	}
 	return PBServer_UnKnown
-}
-
-func (x *PBServer) GetLastCheck() *timestamppb.Timestamp {
-	if x != nil {
-		return x.LastCheck
-	}
-	return nil
-}
-
-func (x *PBServer) GetMsg() string {
-	if x != nil {
-		return x.Msg
-	}
-	return ""
 }
 
 type PBListServer struct {
@@ -206,21 +170,14 @@ var File_kk_etcd_models_pb_server_kk_etcd_proto protoreflect.FileDescriptor
 
 const file_kk_etcd_models_pb_server_kk_etcd_proto_rawDesc = "" +
 	"\n" +
-	"&kk_etcd_models/pb_server_kk_etcd.proto\x12\x0ekk_etcd_models\x1a\x1fgoogle/protobuf/timestamp.proto\"\xb9\x02\n" +
-	"\bPBServer\x12\x1e\n" +
-	"\n" +
-	"ServerType\x18\x02 \x01(\tR\n" +
-	"ServerType\x12 \n" +
-	"\vEndpointKey\x18\x03 \x01(\tR\vEndpointKey\x12\"\n" +
-	"\fEndpointAddr\x18\x04 \x01(\tR\fEndpointAddr\x12=\n" +
-	"\x06Status\x18\x05 \x01(\x0e2%.kk_etcd_models.PBServer.ServerStatusR\x06Status\x128\n" +
-	"\tLastCheck\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\tLastCheck\x12\x10\n" +
-	"\x03Msg\x18\a \x01(\tR\x03Msg\"<\n" +
+	"&kk_etcd_models/pb_server_kk_etcd.proto\x12\x0ekk_etcd_models\x1a+kk_etcd_models/pb_server_registration.proto\"\xd3\x01\n" +
+	"\bPBServer\x12T\n" +
+	"\x12ServerRegistration\x18\x01 \x01(\v2$.kk_etcd_models.PBServerRegistrationR\x12ServerRegistration\x12=\n" +
+	"\x06Status\x18\x05 \x01(\x0e2%.kk_etcd_models.PBServer.ServerStatusR\x06Status\"2\n" +
 	"\fServerStatus\x12\v\n" +
 	"\aUnKnown\x10\x00\x12\v\n" +
 	"\aRunning\x10\x01\x12\b\n" +
-	"\x04Stop\x10\x02\x12\b\n" +
-	"\x04Init\x10\x03\"H\n" +
+	"\x04Stop\x10\x02\"H\n" +
 	"\fPBListServer\x128\n" +
 	"\n" +
 	"ListServer\x18\x01 \x03(\v2\x18.kk_etcd_models.PBServerR\n" +
@@ -241,14 +198,14 @@ func file_kk_etcd_models_pb_server_kk_etcd_proto_rawDescGZIP() []byte {
 var file_kk_etcd_models_pb_server_kk_etcd_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_kk_etcd_models_pb_server_kk_etcd_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_kk_etcd_models_pb_server_kk_etcd_proto_goTypes = []any{
-	(PBServer_ServerStatus)(0),    // 0: kk_etcd_models.PBServer.ServerStatus
-	(*PBServer)(nil),              // 1: kk_etcd_models.PBServer
-	(*PBListServer)(nil),          // 2: kk_etcd_models.PBListServer
-	(*timestamppb.Timestamp)(nil), // 3: google.protobuf.Timestamp
+	(PBServer_ServerStatus)(0),   // 0: kk_etcd_models.PBServer.ServerStatus
+	(*PBServer)(nil),             // 1: kk_etcd_models.PBServer
+	(*PBListServer)(nil),         // 2: kk_etcd_models.PBListServer
+	(*PBServerRegistration)(nil), // 3: kk_etcd_models.PBServerRegistration
 }
 var file_kk_etcd_models_pb_server_kk_etcd_proto_depIdxs = []int32{
-	0, // 0: kk_etcd_models.PBServer.Status:type_name -> kk_etcd_models.PBServer.ServerStatus
-	3, // 1: kk_etcd_models.PBServer.LastCheck:type_name -> google.protobuf.Timestamp
+	3, // 0: kk_etcd_models.PBServer.ServerRegistration:type_name -> kk_etcd_models.PBServerRegistration
+	0, // 1: kk_etcd_models.PBServer.Status:type_name -> kk_etcd_models.PBServer.ServerStatus
 	1, // 2: kk_etcd_models.PBListServer.ListServer:type_name -> kk_etcd_models.PBServer
 	3, // [3:3] is the sub-list for method output_type
 	3, // [3:3] is the sub-list for method input_type
@@ -262,6 +219,7 @@ func file_kk_etcd_models_pb_server_kk_etcd_proto_init() {
 	if File_kk_etcd_models_pb_server_kk_etcd_proto != nil {
 		return
 	}
+	file_kk_etcd_models_pb_server_registration_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
