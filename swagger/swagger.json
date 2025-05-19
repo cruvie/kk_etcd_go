@@ -13,7 +13,7 @@
             "name": "Secret",
             "url": "http://kk_etcd_go/licenses/LICENSE-2.0.html"
         },
-        "version": "1.4.2"
+        "version": "1.4.3"
     },
     "host": "localhost:2333",
     "basePath": "/",

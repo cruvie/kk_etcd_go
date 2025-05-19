@@ -22,7 +22,7 @@ services:
       - "2380:2380"
 
   kk-etcd-go-rel:
-    image: cruvie/kk_etcd_go:1.4.2-amd64
+    image: cruvie/kk_etcd_go:1.4.3-amd64
     container_name: kk-etcd-go-rel
     ports:
       - "2333:2333"
@@ -36,7 +36,7 @@ services:
       - ./dump:/dump
 
   kk-etcd-ui-rel:
-    image: cruvie/kk_etcd_ui:1.4.2
+    image: cruvie/kk_etcd_ui:1.4.3
     container_name: kk-etcd-ui-rel
     ports:
       - "2334:80"
