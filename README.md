@@ -20,7 +20,7 @@ A Configuration center and Service registration and discovery platform based on 
 
 - [ ] AI
 
-## server
+## service
 
 ![ui](https://github.com/cruvie/kk_etcd_ui/blob/master/lib/assets/images/ui.png?raw=true)
 
@@ -77,29 +77,29 @@ then visit http://localhost:2334
 refers
 to [Put/Get](https://github.com/cruvie/kk_etcd_go/blob/566e340dee0ca3b38bff574fe223887035fe67d6/kk_etcd/kv_test.go)
 
-## Register Http/gRPC Server to etcd
+## Register Http/gRPC Service to etcd
 
 refers
-to [Register Http Server](https://github.com/cruvie/kk_etcd_go/blob/566e340dee0ca3b38bff574fe223887035fe67d6/kk_etcd/server_test.go)
+to [Register Http Service](https://github.com/cruvie/kk_etcd_go/blob/566e340dee0ca3b38bff574fe223887035fe67d6/kk_etcd/service_test.go)
 
 ## Get a grpc client from etcd
 
 refers
-to [GetGrpcClient](https://github.com/cruvie/kk_etcd_go/blob/566e340dee0ca3b38bff574fe223887035fe67d6/kk_etcd/server_grpc.go)
+to [GetGrpcClient](https://github.com/cruvie/kk_etcd_go/blob/566e340dee0ca3b38bff574fe223887035fe67d6/kk_etcd/service_grpc.go)
 
-# Server Hub Design
+# Service Hub Design
 
 ## Register a service
 
 ```mermaid
 sequenceDiagram
     actor Client
-    Client ->> SerServer: RegisterService(registration)
-    SerServer -->> SerServer: CheckConfig
-    SerServer ->> Etcd: Put service info to etcd(kc.Put)
-    Etcd -->> ServerHub: Trigger watch event(EventTypePut)
-    ServerHub ->> DeadHub: putToDeadHub(registration)
-    ServerHub ->> Checker: startNewCheck(registration)
+    Client ->> SerService: RegisterService(registration)
+    SerService -->> SerService: CheckConfig
+    SerService ->> Etcd: Put service info to etcd(kc.Put)
+    Etcd -->> ServiceHub: Trigger watch event(EventTypePut)
+    ServiceHub ->> DeadHub: putToDeadHub(registration)
+    ServiceHub ->> Checker: startNewCheck(registration)
 ```
 
 ## Deregister a service
@@ -107,19 +107,19 @@ sequenceDiagram
 ```mermaid
 sequenceDiagram
     actor Client
-    Client ->> SerServer: DeregisterServer(registration)
-    SerServer ->> Etcd: Delete Service(kc.Delete)
-    Etcd -->> ServerHub: Trigger watch event(EventTypeDelete)
-    ServerHub ->> DeadHub: delFromDeadHub(registration)
-    ServerHub ->> AliveHub: delFromAliveHub(registration)
-    ServerHub ->> Checker: stopCheck(registration.Key())
+    Client ->> SerService: DeregisterService(registration)
+    SerService ->> Etcd: Delete Service(kc.Delete)
+    Etcd -->> ServiceHub: Trigger watch event(EventTypeDelete)
+    ServiceHub ->> DeadHub: delFromDeadHub(registration)
+    ServiceHub ->> AliveHub: delFromAliveHub(registration)
+    ServiceHub ->> Checker: stopCheck(registration.Key())
 ```
 
 ## Health check
 
 ```mermaid
 sequenceDiagram
-    ServerHub ->> Checker: startNewCheck(registration)
+    ServiceHub ->> Checker: startNewCheck(registration)
     loop HealthCheck every service has a health checker with thier own config
         Checker ->> Checker: checkGrpc/checkHttp
         alt if status is healthy and previous status is unhealthy
@@ -135,14 +135,14 @@ sequenceDiagram
 
 ```mermaid
 sequenceDiagram
-    Client ->> SerServer: GetConns(connType, serverName)
-    SerServer ->> Etcd: GetAliveHub(getHubFromEtcd)
-    SerServer -->> SerServer: Filter connection type(getOneAliveServer)
+    Client ->> SerService: GetConns(connType, serviceName)
+    SerService ->> Etcd: GetAliveHub(getHubFromEtcd)
+    SerService -->> SerService: Filter connection type(getOneAliveServer)
     loop HealthCheck
-        SerServer -->> SerServer: Get one random server (getOneAliveServer)
-        SerServer -->> SerServer: Check connection status(checkGrpc)
+        SerService -->> SerService: Get one random service (getOneAliveServer)
+        SerService -->> SerService: Check connection status(checkGrpc)
     end
-    SerServer -->> Client: Return grpc client
+    SerService -->> Client: Return grpc client
 ```
 
 # Contribute

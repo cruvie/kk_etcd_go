@@ -9,7 +9,7 @@ import (
 	"github.com/cruvie/kk_etcd_go/internal/api_etcd"
 	"github.com/cruvie/kk_etcd_go/internal/config"
 	"github.com/cruvie/kk_etcd_go/internal/etcd_ai"
-	"github.com/cruvie/kk_etcd_go/internal/server_hub"
+	"github.com/cruvie/kk_etcd_go/internal/service_hub"
 	"github.com/cruvie/kk_etcd_go/internal/utils/consts"
 	"github.com/cruvie/kk_etcd_go/internal/utils/internal_client"
 	"github.com/cruvie/kk_etcd_go/kk_etcd"
@@ -38,13 +38,13 @@ func main() {
 
 	config.InitConfig()
 
-	stage := kk_stage.NewStage(context.Background(), consts.ServerName, config.Config.DebugMode).SetStartTime(startTime)
+	stage := kk_stage.NewStage(context.Background(), consts.ServiceName, config.Config.DebugMode).SetStartTime(startTime)
 
 	{
 		//init log
 		configLog := kk_log.ConfigLog{
 			DebugMode:  config.Config.DebugMode,
-			Lumberjack: kk_log.DefaultLogConfig(time.Now(), consts.ServerName),
+			Lumberjack: kk_log.DefaultLogConfig(time.Now(), consts.ServiceName),
 			StartTime:  stage.StartTime,
 		}
 		configLog.Init()
@@ -81,16 +81,16 @@ func main() {
 		}
 	}()
 
-	server_hub.InitKubernetesClient(etcdCfg)
+	service_hub.InitKubernetesClient(etcdCfg)
 	defer func() {
-		server_hub.CloseKubernetesClient()
+		service_hub.CloseKubernetesClient()
 	}()
-	server_hub.InitConnHub()
+	service_hub.InitServiceHub()
 
 	kkServer := kk_server.NewKKServer(5*time.Second, stage)
 	kkServer.Add("ApiHttp", 0, api_etcd.ApiHttp(internal_client.GlobalStage))
 	kkServer.Add("ApiMCP", 0, api_etcd.ApiMCP())
-	//kkServer.Add("etcd_maintain", 0, server_hub.NewEtcdMaintain())
-	kkServer.Add("etcd_ai", 0, etcd_ai.EtcdAIServer())
+	//kkServer.Add("etcd_maintain", 0, service_hub.NewEtcdMaintain())
+	kkServer.Add("etcd_ai", 0, etcd_ai.EtcdAIService())
 	kkServer.ServeAndWait()
 }

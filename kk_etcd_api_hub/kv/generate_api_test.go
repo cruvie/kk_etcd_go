@@ -7,8 +7,8 @@ import (
 
 func TestKV(t *testing.T) {
 	apiGroupModel := kk_api_gen.ApiGroupModel{
-		Tag:         "kv",
-		GroupUrl:    "/kv/",
+		Tag:      "kv",
+		GroupUrl: "/kv/",
 	}
 	apis := []struct {
 		apiModel kk_api_gen.ApiModel
@@ -42,9 +42,8 @@ func TestKV(t *testing.T) {
 
 	for _, api := range apis {
 		t.Run(api.apiModel.HandlerFuncName, func(t *testing.T) {
-			//kk_api_gen.GenerateApi(apiGroupModel, api.apiModel)
-			//kk_api_gen.GenerateApiDefProto(api.apiModel)
-			kk_api_gen.GenerateDartApi(apiGroupModel, api.apiModel)
+			kk_api_gen.GenerateApi(apiGroupModel, api.apiModel)
+			kk_api_gen.GenerateApiDefProto(api.apiModel)
 			//kk_api_gen.GenerateTypescriptApi(apiGroupModel, api.apiModel)
 		})
 	}

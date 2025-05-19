@@ -8,10 +8,10 @@ class ApiKv {
   /// put kv
   static const kVPut = "/kv/kVPut";
 
-  /// get kv
-  static const kVGet = "/kv/kVGet";
-
   /// list kv
   static const kVList = "/kv/kVList";
+
+  /// get kv
+  static const kVGet = "/kv/kVGet";
 
 }

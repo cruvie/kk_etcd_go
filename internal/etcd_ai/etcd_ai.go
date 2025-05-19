@@ -7,7 +7,7 @@ import (
 	"github.com/tmc/langchaingo/llms/ollama"
 )
 
-func EtcdAIServer() *kk_server.KKRunServer {
+func EtcdAIService() *kk_server.KKRunServer {
 	if !config.Config.AI.Enable {
 		return nil
 	}
@@ -16,8 +16,8 @@ func EtcdAIServer() *kk_server.KKRunServer {
 		opts := []ollama.Option{
 			ollama.WithModel(config.Config.AI.LLMModel),
 		}
-		if config.Config.AI.OllamaServer != "" {
-			opts = append(opts, ollama.WithServerURL(config.Config.AI.OllamaServer))
+		if config.Config.AI.OllamaService != "" {
+			opts = append(opts, ollama.WithServerURL(config.Config.AI.OllamaService))
 		}
 
 		{

@@ -7,8 +7,8 @@ import (
 
 func TestBackup(t *testing.T) {
 	apiGroupModel := kk_api_gen.ApiGroupModel{
-		Tag:         "backup",
-		GroupUrl:    "/backup/",
+		Tag:      "backup",
+		GroupUrl: "/backup/",
 	}
 	apis := []struct {
 		apiModel kk_api_gen.ApiModel
@@ -48,9 +48,8 @@ func TestBackup(t *testing.T) {
 
 	for _, api := range apis {
 		t.Run(api.apiModel.HandlerFuncName, func(t *testing.T) {
-			//kk_api_gen.GenerateApi(apiGroupModel, api.apiModel)
-			//kk_api_gen.GenerateApiDefProto(api.apiModel)
-			kk_api_gen.GenerateDartApi(apiGroupModel, api.apiModel)
+			kk_api_gen.GenerateApi(apiGroupModel, api.apiModel)
+			kk_api_gen.GenerateApiDefProto(api.apiModel)
 			//kk_api_gen.GenerateTypescriptApi(apiGroupModel, api.apiModel)
 		})
 	}

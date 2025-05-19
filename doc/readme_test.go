@@ -11,8 +11,8 @@ import (
 )
 
 type myConfig struct {
-	ServerAddr string
-	Postgres   struct {
+	ServiceAddr string
+	Postgres    struct {
 		Dsn  string
 		Port int
 	}

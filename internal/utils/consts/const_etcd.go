@@ -1,7 +1,7 @@
 package consts
 
 const (
-	ServerName = "kk_etcd"
-	UserRoot   = "root"
-	RoleRoot   = "root"
+	ServiceName = "kk_etcd"
+	UserRoot    = "root"
+	RoleRoot    = "root"
 )

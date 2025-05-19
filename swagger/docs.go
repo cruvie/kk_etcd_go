@@ -600,9 +600,9 @@ const docTemplate = `{
                 }
             }
         },
-        "/server/deregisterServer": {
+        "/service/deregisterService": {
             "post": {
-                "description": "deregister server",
+                "description": "deregister service",
                 "consumes": [
                     "application/json",
                     "application/x-protobuf"
@@ -612,17 +612,17 @@ const docTemplate = `{
                     "application/x-protobuf"
                 ],
                 "tags": [
-                    "server"
+                    "service"
                 ],
-                "operationId": "DeregisterServer",
+                "operationId": "DeregisterService",
                 "parameters": [
                     {
-                        "description": "DeregisterServer_Input",
-                        "name": "api_def.DeregisterServer_Input",
+                        "description": "DeregisterService_Input",
+                        "name": "api_def.DeregisterService_Input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_server_api_def.DeregisterServer_Input"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_service_api_def.DeregisterService_Input"
                         }
                     }
                 ],
@@ -630,13 +630,13 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_server_api_def.DeregisterServer_Output"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_service_api_def.DeregisterService_Output"
                         }
                     }
                 }
             }
         },
-        "/server/serverList": {
+        "/service/serviceList": {
             "post": {
                 "description": "list server",
                 "consumes": [
@@ -648,17 +648,17 @@ const docTemplate = `{
                     "application/x-protobuf"
                 ],
                 "tags": [
-                    "server"
+                    "service"
                 ],
-                "operationId": "ServerList",
+                "operationId": "ServiceList",
                 "parameters": [
                     {
-                        "description": "ServerList_Input",
-                        "name": "api_def.ServerList_Input",
+                        "description": "ServiceList_Input",
+                        "name": "api_def.ServiceList_Input",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_server_api_def.ServerList_Input"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_service_api_def.ServiceList_Input"
                         }
                     }
                 ],
@@ -666,7 +666,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_server_api_def.ServerList_Output"
+                            "$ref": "#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_service_api_def.ServiceList_Output"
                         }
                     }
                 }
@@ -1206,33 +1206,33 @@ const docTemplate = `{
         "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleRevokePermission_Output": {
             "type": "object"
         },
-        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_server_api_def.DeregisterServer_Input": {
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_service_api_def.DeregisterService_Input": {
             "type": "object",
             "properties": {
-                "Server": {
-                    "$ref": "#/definitions/kk_etcd_models.PBServer"
+                "Service": {
+                    "$ref": "#/definitions/kk_etcd_models.PBService"
                 }
             }
         },
-        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_server_api_def.DeregisterServer_Output": {
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_service_api_def.DeregisterService_Output": {
             "type": "object"
         },
-        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_server_api_def.ServerList_Input": {
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_service_api_def.ServiceList_Input": {
             "type": "object",
             "properties": {
-                "ServerName": {
+                "ServiceName": {
                     "type": "string"
                 },
-                "ServerType": {
-                    "$ref": "#/definitions/kk_etcd_models.PBServerType"
+                "ServiceType": {
+                    "$ref": "#/definitions/kk_etcd_models.PBServiceType"
                 }
             }
         },
-        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_server_api_def.ServerList_Output": {
+        "github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_service_api_def.ServiceList_Output": {
             "type": "object",
             "properties": {
-                "ServerList": {
-                    "$ref": "#/definitions/kk_etcd_models.PBListServer"
+                "ServiceList": {
+                    "$ref": "#/definitions/kk_etcd_models.PBListService"
                 }
             }
         },
@@ -1386,13 +1386,13 @@ const docTemplate = `{
                 }
             }
         },
-        "kk_etcd_models.PBListServer": {
+        "kk_etcd_models.PBListService": {
             "type": "object",
             "properties": {
-                "ListServer": {
+                "ListService": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/kk_etcd_models.PBServer"
+                        "$ref": "#/definitions/kk_etcd_models.PBService"
                     }
                 }
             }
@@ -1437,39 +1437,39 @@ const docTemplate = `{
                 }
             }
         },
-        "kk_etcd_models.PBServer": {
+        "kk_etcd_models.PBService": {
             "type": "object",
             "properties": {
-                "ServerRegistration": {
-                    "$ref": "#/definitions/kk_etcd_models.PBServerRegistration"
+                "ServiceRegistration": {
+                    "$ref": "#/definitions/kk_etcd_models.PBServiceRegistration"
                 },
                 "Status": {
-                    "$ref": "#/definitions/kk_etcd_models.PBServer_ServerStatus"
+                    "$ref": "#/definitions/kk_etcd_models.PBService_ServiceStatus"
                 }
             }
         },
-        "kk_etcd_models.PBServerRegistration": {
+        "kk_etcd_models.PBServiceRegistration": {
             "type": "object",
             "properties": {
                 "CheckConfig": {
-                    "$ref": "#/definitions/kk_etcd_models.PBServerRegistration_PBCheckConfig"
+                    "$ref": "#/definitions/kk_etcd_models.PBServiceRegistration_PBCheckConfig"
                 },
-                "ServerAddr": {
+                "ServiceAddr": {
                     "type": "string"
                 },
-                "ServerName": {
+                "ServiceName": {
                     "type": "string"
                 },
-                "ServerType": {
-                    "$ref": "#/definitions/kk_etcd_models.PBServerType"
+                "ServiceType": {
+                    "$ref": "#/definitions/kk_etcd_models.PBServiceType"
                 }
             }
         },
-        "kk_etcd_models.PBServerRegistration_PBCheckConfig": {
+        "kk_etcd_models.PBServiceRegistration_PBCheckConfig": {
             "type": "object",
             "properties": {
                 "Addr": {
-                    "description": "Http default http://+Addr+/KKHealthCheck\nGrpc Addr in ServerRegistration",
+                    "description": "Http default http://+Addr+/KKHealthCheck\nGrpc Addr in ServiceRegistration",
                     "type": "string"
                 },
                 "Interval": {
@@ -1492,13 +1492,13 @@ const docTemplate = `{
                     "description": "Http or Grpc",
                     "allOf": [
                         {
-                            "$ref": "#/definitions/kk_etcd_models.PBServerType"
+                            "$ref": "#/definitions/kk_etcd_models.PBServiceType"
                         }
                     ]
                 }
             }
         },
-        "kk_etcd_models.PBServerType": {
+        "kk_etcd_models.PBServiceType": {
             "type": "integer",
             "enum": [
                 0,
@@ -1506,12 +1506,12 @@ const docTemplate = `{
                 2
             ],
             "x-enum-varnames": [
-                "PBServerType_Unknown",
-                "PBServerType_Http",
-                "PBServerType_Grpc"
+                "PBServiceType_Unknown",
+                "PBServiceType_Http",
+                "PBServiceType_Grpc"
             ]
         },
-        "kk_etcd_models.PBServer_ServerStatus": {
+        "kk_etcd_models.PBService_ServiceStatus": {
             "type": "integer",
             "enum": [
                 0,
@@ -1519,9 +1519,9 @@ const docTemplate = `{
                 2
             ],
             "x-enum-varnames": [
-                "PBServer_UnKnown",
-                "PBServer_Running",
-                "PBServer_Stop"
+                "PBService_UnKnown",
+                "PBService_Running",
+                "PBService_Stop"
             ]
         },
         "kk_etcd_models.PBUser": {

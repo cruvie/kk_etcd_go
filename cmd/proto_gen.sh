@@ -32,7 +32,7 @@ sh kv/api_def/*_proto.sh
 
 sh role/api_def/*_proto.sh
 
-sh server/api_def/*_proto.sh
+sh service/api_def/*_proto.sh
 
 sh user/api_def/*_proto.sh
 

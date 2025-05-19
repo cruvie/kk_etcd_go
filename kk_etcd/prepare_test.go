@@ -16,7 +16,7 @@ func initTestEnv() kk_etcd.CloseFunc {
 	)
 	configLog := kk_log.ConfigLog{
 		DebugMode:  stage.DebugMode,
-		Lumberjack: kk_log.DefaultLogConfig(time.Now(), consts.ServerName),
+		Lumberjack: kk_log.DefaultLogConfig(time.Now(), consts.ServiceName),
 		StartTime:  time.Now(),
 	}
 	configLog.Init()

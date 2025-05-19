@@ -25,8 +25,8 @@ import (
 	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/role/roleGrantPermission"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/role/roleList"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/role/roleRevokePermission"
-	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/server/deregisterServer"
-	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/server/serverList"
+	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/service/deregisterService"
+	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/service/serviceList"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/user/getUser"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/user/login"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/user/logout"
@@ -91,9 +91,9 @@ func ApiHttp(stage *kk_stage.Stage) *kk_server.KKRunServer {
 	}
 
 	{
-		apiGroup := r.Group("server")
-		apiGroup.POST("serverList", serverList.Handler)
-		apiGroup.POST("deregisterServer", deregisterServer.Handler)
+		apiGroup := r.Group("service")
+		apiGroup.POST("serviceList", serviceList.Handler)
+		apiGroup.POST("deregisterService", deregisterService.Handler)
 	}
 
 	{

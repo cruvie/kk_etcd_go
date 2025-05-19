@@ -165,24 +165,24 @@ definitions:
     type: object
   github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleRevokePermission_Output:
     type: object
-  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_server_api_def.DeregisterServer_Input:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_service_api_def.DeregisterService_Input:
     properties:
-      Server:
-        $ref: '#/definitions/kk_etcd_models.PBServer'
+      Service:
+        $ref: '#/definitions/kk_etcd_models.PBService'
     type: object
-  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_server_api_def.DeregisterServer_Output:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_service_api_def.DeregisterService_Output:
     type: object
-  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_server_api_def.ServerList_Input:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_service_api_def.ServiceList_Input:
     properties:
-      ServerName:
+      ServiceName:
         type: string
-      ServerType:
-        $ref: '#/definitions/kk_etcd_models.PBServerType'
+      ServiceType:
+        $ref: '#/definitions/kk_etcd_models.PBServiceType'
     type: object
-  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_server_api_def.ServerList_Output:
+  github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_service_api_def.ServiceList_Output:
     properties:
-      ServerList:
-        $ref: '#/definitions/kk_etcd_models.PBListServer'
+      ServiceList:
+        $ref: '#/definitions/kk_etcd_models.PBListService'
     type: object
   github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.GetUser_Input:
     properties:
@@ -280,11 +280,11 @@ definitions:
           $ref: '#/definitions/kk_etcd_models.PBRole'
         type: array
     type: object
-  kk_etcd_models.PBListServer:
+  kk_etcd_models.PBListService:
     properties:
-      ListServer:
+      ListService:
         items:
-          $ref: '#/definitions/kk_etcd_models.PBServer'
+          $ref: '#/definitions/kk_etcd_models.PBService'
         type: array
     type: object
   kk_etcd_models.PBListUser:
@@ -316,40 +316,40 @@ definitions:
           $ref: '#/definitions/kk_etcd_models.PBPermission'
         type: array
     type: object
-  kk_etcd_models.PBServer:
+  kk_etcd_models.PBService:
     properties:
-      ServerRegistration:
-        $ref: '#/definitions/kk_etcd_models.PBServerRegistration'
+      ServiceRegistration:
+        $ref: '#/definitions/kk_etcd_models.PBServiceRegistration'
       Status:
-        $ref: '#/definitions/kk_etcd_models.PBServer_ServerStatus'
+        $ref: '#/definitions/kk_etcd_models.PBService_ServiceStatus'
     type: object
-  kk_etcd_models.PBServer_ServerStatus:
+  kk_etcd_models.PBService_ServiceStatus:
     enum:
     - 0
     - 1
     - 2
     type: integer
     x-enum-varnames:
-    - PBServer_UnKnown
-    - PBServer_Running
-    - PBServer_Stop
-  kk_etcd_models.PBServerRegistration:
+    - PBService_UnKnown
+    - PBService_Running
+    - PBService_Stop
+  kk_etcd_models.PBServiceRegistration:
     properties:
       CheckConfig:
-        $ref: '#/definitions/kk_etcd_models.PBServerRegistration_PBCheckConfig'
-      ServerAddr:
+        $ref: '#/definitions/kk_etcd_models.PBServiceRegistration_PBCheckConfig'
+      ServiceAddr:
         type: string
-      ServerName:
+      ServiceName:
         type: string
-      ServerType:
-        $ref: '#/definitions/kk_etcd_models.PBServerType'
+      ServiceType:
+        $ref: '#/definitions/kk_etcd_models.PBServiceType'
     type: object
-  kk_etcd_models.PBServerRegistration_PBCheckConfig:
+  kk_etcd_models.PBServiceRegistration_PBCheckConfig:
     properties:
       Addr:
         description: |-
           Http default http://+Addr+/KKHealthCheck
-          Grpc Addr in ServerRegistration
+          Grpc Addr in ServiceRegistration
         type: string
       Interval:
         allOf:
@@ -365,19 +365,19 @@ definitions:
           must grater than 1 second
       Type:
         allOf:
-        - $ref: '#/definitions/kk_etcd_models.PBServerType'
+        - $ref: '#/definitions/kk_etcd_models.PBServiceType'
         description: Http or Grpc
     type: object
-  kk_etcd_models.PBServerType:
+  kk_etcd_models.PBServiceType:
     enum:
     - 0
     - 1
     - 2
     type: integer
     x-enum-varnames:
-    - PBServerType_Unknown
-    - PBServerType_Http
-    - PBServerType_Grpc
+    - PBServiceType_Unknown
+    - PBServiceType_Http
+    - PBServiceType_Grpc
   kk_etcd_models.PBUser:
     properties:
       Password:
@@ -787,20 +787,20 @@ paths:
             $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleRevokePermission_Output'
       tags:
       - role
-  /server/deregisterServer:
+  /service/deregisterService:
     post:
       consumes:
       - application/json
       - application/x-protobuf
-      description: deregister server
-      operationId: DeregisterServer
+      description: deregister service
+      operationId: DeregisterService
       parameters:
-      - description: DeregisterServer_Input
+      - description: DeregisterService_Input
         in: body
-        name: api_def.DeregisterServer_Input
+        name: api_def.DeregisterService_Input
         required: true
         schema:
-          $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_server_api_def.DeregisterServer_Input'
+          $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_service_api_def.DeregisterService_Input'
       produces:
       - application/json
       - application/x-protobuf
@@ -808,23 +808,23 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_server_api_def.DeregisterServer_Output'
+            $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_service_api_def.DeregisterService_Output'
       tags:
-      - server
-  /server/serverList:
+      - service
+  /service/serviceList:
     post:
       consumes:
       - application/json
       - application/x-protobuf
       description: list server
-      operationId: ServerList
+      operationId: ServiceList
       parameters:
-      - description: ServerList_Input
+      - description: ServiceList_Input
         in: body
-        name: api_def.ServerList_Input
+        name: api_def.ServiceList_Input
         required: true
         schema:
-          $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_server_api_def.ServerList_Input'
+          $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_service_api_def.ServiceList_Input'
       produces:
       - application/json
       - application/x-protobuf
@@ -832,9 +832,9 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_server_api_def.ServerList_Output'
+            $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_service_api_def.ServiceList_Output'
       tags:
-      - server
+      - service
   /user/getUser:
     post:
       consumes:

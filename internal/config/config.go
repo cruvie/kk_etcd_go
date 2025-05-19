@@ -20,9 +20,9 @@ type config struct {
 		ExpireTime int    `yaml:"ExpireTime"`
 	} `yaml:"JWT"`
 	AI struct {
-		Enable       bool   `yaml:"Enable"`
-		LLMModel     string `yaml:"LLMModel"`
-		OllamaServer string `yaml:"OllamaServer"`
+		Enable        bool   `yaml:"Enable"`
+		LLMModel      string `yaml:"LLMModel"`
+		OllamaService string `yaml:"OllamaService"`
 		//WeaviateIpPort string `yaml:"WeaviateIpPort"`
 		//EtcdDocPath    string `yaml:"EtcdDocPath"`
 		//ReInitWeaviate bool   `yaml:"ReInitWeaviate"`
@@ -37,7 +37,7 @@ type config struct {
 	     Enable: true
 	     LLMModel: qwen2.5:0.5b
 	     # default: http://127.0.0.1:11434
-	     OllamaServer: http://127.0.0.1:11434
+	     OllamaService: http://127.0.0.1:11434
 	     # default 127.0.0.1:9035
 	     WeaviateIpPort: 127.0.0.1:9035
 	     EtcdDocPath: /Users/cruvie/cruvie-space/code-hub/temp/etcd-website/content/en/docs/v3.5

@@ -6,7 +6,7 @@ import (
 	"github.com/cruvie/kk_etcd_go/internal/utils/consts"
 )
 
-// GlobalStage for kk_etcd client sdk and main server
+// GlobalStage for kk_etcd client sdk and main service
 var GlobalStage *kk_stage.Stage
 
 var cancelFunc context.CancelFunc
@@ -14,7 +14,7 @@ var cancelFunc context.CancelFunc
 func InitGlobalStage(debugMode bool) {
 	var ctx context.Context
 	ctx, cancelFunc = context.WithCancel(context.Background())
-	GlobalStage = kk_stage.NewStage(ctx, consts.ServerName, debugMode)
+	GlobalStage = kk_stage.NewStage(ctx, consts.ServiceName, debugMode)
 }
 
 func CloseGlobalStage() {

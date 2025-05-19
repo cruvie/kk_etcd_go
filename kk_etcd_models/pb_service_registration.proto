@@ -1,0 +1,33 @@
+syntax = "proto3";
+package kk_etcd_models;
+option go_package = "github.com/cruvie/kk_etcd_go/kk_etcd_models";
+import "google/protobuf/duration.proto";
+
+enum PBServiceType{
+    Unknown = 0;
+    Http = 1;
+    Grpc = 2;
+}
+
+message PBServiceRegistration {
+  PBServiceType ServiceType = 1;
+  string ServiceName = 2;
+  string ServiceAddr = 3;
+  PBCheckConfig CheckConfig = 4;
+  message PBCheckConfig{
+    PBServiceType Type = 1; // Http or Grpc
+    // check timeout
+    // must grater than 1 second
+    google.protobuf.Duration Timeout = 2;
+    // check interval, kk_etcd will per Interval to send check request
+    // must grater than Timeout
+    google.protobuf.Duration Interval = 3;
+    // Http default http://+Addr+/KKHealthCheck
+    // Grpc Addr in ServiceRegistration
+    string Addr = 4;
+  }
+}
+
+message PBListServiceRegistration{
+  repeated PBServiceRegistration List = 1;
+}

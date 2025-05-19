@@ -1,7 +1,7 @@
 package kk_etcd
 
 import (
-	"github.com/cruvie/kk_etcd_go/internal/server_hub"
+	"github.com/cruvie/kk_etcd_go/internal/service_hub"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
 	"github.com/cruvie/kk_etcd_go/internal/utils/internal_client"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/user/util_user"
@@ -43,11 +43,11 @@ func InitClient(cfg *InitClientConfig) (CloseFunc, error) {
 	}
 
 	global_model.SetLoginUser(internal_client.GlobalStage, user)
-	server_hub.InitKubernetesClient(cfg.Config)
+	service_hub.InitKubernetesClient(cfg.Config)
 	closeFunc := func() error {
 		err := GetClient().Close()
 		internal_client.CloseGlobalStage()
-		server_hub.CloseKubernetesClient()
+		service_hub.CloseKubernetesClient()
 		return err
 	}
 	return closeFunc, nil
