@@ -34,15 +34,9 @@ class RoleDelete_Input extends $pb.GeneratedMessage {
     ..hasRequiredFields = false
   ;
 
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   RoleDelete_Input clone() => RoleDelete_Input()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   RoleDelete_Input copyWith(void Function(RoleDelete_Input) updates) => super.copyWith((message) => updates(message as RoleDelete_Input)) as RoleDelete_Input;
 
   $pb.BuilderInfo get info_ => _i;
@@ -75,15 +69,9 @@ class RoleDelete_Output extends $pb.GeneratedMessage {
     ..hasRequiredFields = false
   ;
 
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   RoleDelete_Output clone() => RoleDelete_Output()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   RoleDelete_Output copyWith(void Function(RoleDelete_Output) updates) => super.copyWith((message) => updates(message as RoleDelete_Output)) as RoleDelete_Output;
 
   $pb.BuilderInfo get info_ => _i;
@@ -108,15 +96,9 @@ class RoleDelete extends $pb.GeneratedMessage {
     ..hasRequiredFields = false
   ;
 
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   RoleDelete clone() => RoleDelete()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   RoleDelete copyWith(void Function(RoleDelete) updates) => super.copyWith((message) => updates(message as RoleDelete)) as RoleDelete;
 
   $pb.BuilderInfo get info_ => _i;

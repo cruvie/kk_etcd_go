@@ -44,15 +44,9 @@ class RoleRevokePermission_Input extends $pb.GeneratedMessage {
     ..hasRequiredFields = false
   ;
 
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   RoleRevokePermission_Input clone() => RoleRevokePermission_Input()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   RoleRevokePermission_Input copyWith(void Function(RoleRevokePermission_Input) updates) => super.copyWith((message) => updates(message as RoleRevokePermission_Input)) as RoleRevokePermission_Input;
 
   $pb.BuilderInfo get info_ => _i;
@@ -103,15 +97,9 @@ class RoleRevokePermission_Output extends $pb.GeneratedMessage {
     ..hasRequiredFields = false
   ;
 
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   RoleRevokePermission_Output clone() => RoleRevokePermission_Output()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   RoleRevokePermission_Output copyWith(void Function(RoleRevokePermission_Output) updates) => super.copyWith((message) => updates(message as RoleRevokePermission_Output)) as RoleRevokePermission_Output;
 
   $pb.BuilderInfo get info_ => _i;
@@ -136,15 +124,9 @@ class RoleRevokePermission extends $pb.GeneratedMessage {
     ..hasRequiredFields = false
   ;
 
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   RoleRevokePermission clone() => RoleRevokePermission()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   RoleRevokePermission copyWith(void Function(RoleRevokePermission) updates) => super.copyWith((message) => updates(message as RoleRevokePermission)) as RoleRevokePermission;
 
   $pb.BuilderInfo get info_ => _i;

@@ -13,7 +13,7 @@ import (
 	"time"
 )
 
-var runningCheck = make(map[string]*checkT)
+var runningCheck = make(map[string] /*UniqueKey*/ *checkT)
 
 type checkT struct {
 	ctx          context.Context
@@ -28,34 +28,33 @@ func startNewCheck(registration *kk_etcd_models.PBServiceRegistration) {
 		cancel:       cancel,
 		registration: registration,
 	}
-	stopCheck(registration.Key())
-	runningCheck[registration.Key()] = checker
+	stopCheck(registration.UniqueKey())
+	runningCheck[registration.UniqueKey()] = checker
 	go checker.runCheck()
 }
 
-func stopCheck(key string) {
-	t, ok := runningCheck[key]
+func stopCheck(uniqueKey string) {
+	t, ok := runningCheck[uniqueKey]
 	if !ok {
 		return
 	}
 	t.cancel()
-	delete(runningCheck, key)
+	delete(runningCheck, uniqueKey)
+}
+func (x *checkT) update(err error) {
+	if err == nil {
+		hub.putToAliveHub(x.registration)
+		hub.delFromDeadHub(x.registration)
+	}
 }
 
 func (x *checkT) runCheck() {
-	update := func(err error) {
-		if err == nil {
-			hub.putToAliveHub(x.registration)
-			hub.delFromDeadHub(x.registration)
-		}
-	}
-
 	ticker := time.NewTicker(x.registration.CheckConfig.Interval.AsDuration())
 	switch x.registration.CheckConfig.Type {
 	case kk_etcd_models.PBServiceType_Grpc:
 		//chack instance first
 		err := checkGrpc(x.registration.CheckConfig)
-		update(err)
+		x.update(err)
 		for {
 			select {
 			case <-x.ctx.Done():
@@ -63,12 +62,12 @@ func (x *checkT) runCheck() {
 				return
 			case <-ticker.C:
 				err := checkGrpc(x.registration.CheckConfig)
-				update(err)
+				x.update(err)
 			}
 		}
 	case kk_etcd_models.PBServiceType_Http:
 		err := checkHttp(x.registration.CheckConfig)
-		update(err)
+		x.update(err)
 		for {
 			select {
 			case <-x.ctx.Done():
@@ -76,7 +75,7 @@ func (x *checkT) runCheck() {
 				return
 			case <-ticker.C:
 				err := checkHttp(x.registration.CheckConfig)
-				update(err)
+				x.update(err)
 			}
 		}
 	}

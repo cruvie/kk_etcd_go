@@ -39,15 +39,9 @@ class UserGrantRole_Input extends $pb.GeneratedMessage {
     ..hasRequiredFields = false
   ;
 
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   UserGrantRole_Input clone() => UserGrantRole_Input()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   UserGrantRole_Input copyWith(void Function(UserGrantRole_Input) updates) => super.copyWith((message) => updates(message as UserGrantRole_Input)) as UserGrantRole_Input;
 
   $pb.BuilderInfo get info_ => _i;
@@ -83,15 +77,9 @@ class UserGrantRole_Output extends $pb.GeneratedMessage {
     ..hasRequiredFields = false
   ;
 
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   UserGrantRole_Output clone() => UserGrantRole_Output()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   UserGrantRole_Output copyWith(void Function(UserGrantRole_Output) updates) => super.copyWith((message) => updates(message as UserGrantRole_Output)) as UserGrantRole_Output;
 
   $pb.BuilderInfo get info_ => _i;
@@ -116,15 +104,9 @@ class UserGrantRole extends $pb.GeneratedMessage {
     ..hasRequiredFields = false
   ;
 
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   UserGrantRole clone() => UserGrantRole()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   UserGrantRole copyWith(void Function(UserGrantRole) updates) => super.copyWith((message) => updates(message as UserGrantRole)) as UserGrantRole;
 
   $pb.BuilderInfo get info_ => _i;

@@ -89,17 +89,28 @@ to [GetGrpcClient](https://github.com/cruvie/kk_etcd_go/blob/566e340dee0ca3b38bf
 
 # Service Hub Design
 
+## Server init
+
+```mermaid
+sequenceDiagram
+    actor Server
+    Server ->> ServiceHub: Server init
+    Etcd ->> ServiceHub: Get service from etcd
+    ServiceHub ->> DeadHub: putToDeadHub
+    DeadHub ->> Checker: startNewCheck
+```
+
 ## Register a service
 
 ```mermaid
 sequenceDiagram
     actor Client
-    Client ->> SerService: RegisterService(registration)
+    Client ->> SerService: RegisterService
     SerService -->> SerService: CheckConfig
-    SerService ->> Etcd: Put service info to etcd(kc.Put)
+    SerService ->> Etcd: Put service info to etcd
     Etcd -->> ServiceHub: Trigger watch event(EventTypePut)
-    ServiceHub ->> DeadHub: putToDeadHub(registration)
-    ServiceHub ->> Checker: startNewCheck(registration)
+    ServiceHub ->> DeadHub: putToDeadHub
+    DeadHub ->> Checker: startNewCheck
 ```
 
 ## Deregister a service
@@ -107,26 +118,34 @@ sequenceDiagram
 ```mermaid
 sequenceDiagram
     actor Client
-    Client ->> SerService: DeregisterService(registration)
-    SerService ->> Etcd: Delete Service(kc.Delete)
+    Client ->> SerService: DeregisterService
+    SerService ->> Etcd: Delete Service from etcd
     Etcd -->> ServiceHub: Trigger watch event(EventTypeDelete)
-    ServiceHub ->> DeadHub: delFromDeadHub(registration)
-    ServiceHub ->> AliveHub: delFromAliveHub(registration)
-    ServiceHub ->> Checker: stopCheck(registration.Key())
+    ServiceHub ->> DeadHub: delFromDeadHub
+    ServiceHub ->> AliveHub: delFromAliveHub
+    AliveHub ->> Etcd: putAliveHubToEtcd
+    ServiceHub ->> Checker: stopCheck
 ```
 
 ## Health check
 
+```go
+var runningCheck = make(map[string /*UniqueKey*/ ]*checkT)
+```
+
 ```mermaid
 sequenceDiagram
-    ServiceHub ->> Checker: startNewCheck(registration)
-    loop HealthCheck every service has a health checker with thier own config
+    ServiceHub ->> Checker: startNewCheck
+    Checker ->> stopCheck: stopCheck
+    stopCheck ->> stopCheck: cancel ctx and delete from runningCheck Map
+    Checker ->> Checker: save to runningCheck Map and with cancelCtx
+    loop Check every service with thier own check config
         Checker ->> Checker: checkGrpc/checkHttp
-        alt if status is healthy and previous status is unhealthy
+        alt if status is healthy
             Checker ->> ServerHub: update
-            ServerHub ->> AliveHub: putToAliveHub(registration)
-            ServerHub ->> DeadHub: delFromDeadHub(registration)
-            ServerHub ->> Etcd: Put aliveHub to etcd(putHubToEtcd)
+            ServerHub ->> AliveHub: putToAliveHub(if not exist)
+            AliveHub ->> Etcd: putAliveHubToEtcd
+            ServerHub ->> DeadHub: delFromDeadHub
         end
     end
 ```
@@ -135,14 +154,17 @@ sequenceDiagram
 
 ```mermaid
 sequenceDiagram
-    Client ->> SerService: GetConns(connType, serviceName)
-    SerService ->> Etcd: GetAliveHub(getHubFromEtcd)
-    SerService -->> SerService: Filter connection type(getOneAliveServer)
+    actor Client
+    Client ->> kk_etcd: GetGrpcClient(serviceName)
+    kk_etcd ->> SerService: GetServiceAddr(connType, serviceName)
+    SerService ->> Etcd: getAliveHubFromEtcd(getHubFromEtcd)
     loop HealthCheck
-        SerService -->> SerService: Get one random service (getOneAliveServer)
+        SerService -->> SerService: Get one random service (getOneAliveService)
         SerService -->> SerService: Check connection status(checkGrpc)
+        SerService -->> kk_etcd: status ok
     end
-    SerService -->> Client: Return grpc client
+    kk_etcd -->> kk_etcd: Build grpc client
+    kk_etcd -->> Client: Return grpc client
 ```
 
 # Contribute

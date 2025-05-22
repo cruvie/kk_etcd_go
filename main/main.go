@@ -58,6 +58,8 @@ func main() {
 			EnableMutex: true,
 		}
 		pprof.Init(stage)
+		pprof.Print()
+		defer pprof.Close()
 	}
 
 	internal_client.InitEtcd()
@@ -70,7 +72,8 @@ func main() {
 	}
 	closeFunc, err := kk_etcd.InitClient(&kk_etcd.InitClientConfig{
 		Config:    etcdCfg,
-		DebugMode: internal_client.GlobalStage.DebugMode})
+		DebugMode: internal_client.GlobalStage.DebugMode},
+	)
 	if err != nil {
 		panic(err)
 	}

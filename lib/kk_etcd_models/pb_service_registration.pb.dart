@@ -54,15 +54,9 @@ class PBServiceRegistration_PBCheckConfig extends $pb.GeneratedMessage {
     ..hasRequiredFields = false
   ;
 
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   PBServiceRegistration_PBCheckConfig clone() => PBServiceRegistration_PBCheckConfig()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   PBServiceRegistration_PBCheckConfig copyWith(void Function(PBServiceRegistration_PBCheckConfig) updates) => super.copyWith((message) => updates(message as PBServiceRegistration_PBCheckConfig)) as PBServiceRegistration_PBCheckConfig;
 
   $pb.BuilderInfo get info_ => _i;
@@ -156,15 +150,9 @@ class PBServiceRegistration extends $pb.GeneratedMessage {
     ..hasRequiredFields = false
   ;
 
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   PBServiceRegistration clone() => PBServiceRegistration()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   PBServiceRegistration copyWith(void Function(PBServiceRegistration) updates) => super.copyWith((message) => updates(message as PBServiceRegistration)) as PBServiceRegistration;
 
   $pb.BuilderInfo get info_ => _i;
@@ -235,15 +223,9 @@ class PBListServiceRegistration extends $pb.GeneratedMessage {
     ..hasRequiredFields = false
   ;
 
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   PBListServiceRegistration clone() => PBListServiceRegistration()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   PBListServiceRegistration copyWith(void Function(PBListServiceRegistration) updates) => super.copyWith((message) => updates(message as PBListServiceRegistration)) as PBListServiceRegistration;
 
   $pb.BuilderInfo get info_ => _i;

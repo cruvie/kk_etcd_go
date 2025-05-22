@@ -16,7 +16,7 @@ func (*SerService) registerService(registrations []*kk_etcd_models.PBServiceRegi
 			slog.Error("failed to get Marshal", kk_log.NewLog(nil).Error(err).Any("service", registration).Args()...)
 			return err
 		}
-		_, err = kc.Put(context.Background(), registration.Key(), val)
+		_, err = kc.Put(context.Background(), registration.UniqueKey(), val)
 		if err != nil {
 			slog.Error("failed to put to etcd", kk_log.NewLog(nil).Error(err).Any("service", registration).Error(err).Args()...)
 			return err
@@ -27,7 +27,7 @@ func (*SerService) registerService(registrations []*kk_etcd_models.PBServiceRegi
 
 func (*SerService) deRegisterService(stage *kk_stage.Stage, registration *kk_etcd_models.PBServiceRegistration) error {
 	newLog := kk_log.NewLog(&kk_log.LogOption{TraceId: stage.TraceId})
-	_, err := kc.Delete(context.Background(), registration.Key())
+	_, err := kc.Delete(context.Background(), registration.UniqueKey())
 	if err != nil {
 		slog.Error("failed to delete from etcd", newLog.Error(err).Args()...)
 		return err

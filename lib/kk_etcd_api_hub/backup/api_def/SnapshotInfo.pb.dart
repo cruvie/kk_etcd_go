@@ -34,15 +34,9 @@ class SnapshotInfo_Input extends $pb.GeneratedMessage {
     ..hasRequiredFields = false
   ;
 
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   SnapshotInfo_Input clone() => SnapshotInfo_Input()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   SnapshotInfo_Input copyWith(void Function(SnapshotInfo_Input) updates) => super.copyWith((message) => updates(message as SnapshotInfo_Input)) as SnapshotInfo_Input;
 
   $pb.BuilderInfo get info_ => _i;
@@ -84,15 +78,9 @@ class SnapshotInfo_Output extends $pb.GeneratedMessage {
     ..hasRequiredFields = false
   ;
 
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   SnapshotInfo_Output clone() => SnapshotInfo_Output()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   SnapshotInfo_Output copyWith(void Function(SnapshotInfo_Output) updates) => super.copyWith((message) => updates(message as SnapshotInfo_Output)) as SnapshotInfo_Output;
 
   $pb.BuilderInfo get info_ => _i;
@@ -126,15 +114,9 @@ class SnapshotInfo extends $pb.GeneratedMessage {
     ..hasRequiredFields = false
   ;
 
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   SnapshotInfo clone() => SnapshotInfo()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   SnapshotInfo copyWith(void Function(SnapshotInfo) updates) => super.copyWith((message) => updates(message as SnapshotInfo)) as SnapshotInfo;
 
   $pb.BuilderInfo get info_ => _i;

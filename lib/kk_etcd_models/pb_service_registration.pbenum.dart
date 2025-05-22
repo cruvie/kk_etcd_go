@@ -24,8 +24,8 @@ class PBServiceType extends $pb.ProtobufEnum {
     Grpc,
   ];
 
-  static final $core.Map<$core.int, PBServiceType> _byValue = $pb.ProtobufEnum.initByValue(values);
-  static PBServiceType? valueOf($core.int value) => _byValue[value];
+  static final $core.List<PBServiceType?> _byValue = $pb.ProtobufEnum.$_initByValueList(values, 2);
+  static PBServiceType? valueOf($core.int value) =>  value < 0 || value >= _byValue.length ? null : _byValue[value];
 
   const PBServiceType._(super.v, super.n);
 }

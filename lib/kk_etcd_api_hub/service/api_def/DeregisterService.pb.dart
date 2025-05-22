@@ -36,15 +36,9 @@ class DeregisterService_Input extends $pb.GeneratedMessage {
     ..hasRequiredFields = false
   ;
 
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   DeregisterService_Input clone() => DeregisterService_Input()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   DeregisterService_Input copyWith(void Function(DeregisterService_Input) updates) => super.copyWith((message) => updates(message as DeregisterService_Input)) as DeregisterService_Input;
 
   $pb.BuilderInfo get info_ => _i;
@@ -79,15 +73,9 @@ class DeregisterService_Output extends $pb.GeneratedMessage {
     ..hasRequiredFields = false
   ;
 
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   DeregisterService_Output clone() => DeregisterService_Output()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   DeregisterService_Output copyWith(void Function(DeregisterService_Output) updates) => super.copyWith((message) => updates(message as DeregisterService_Output)) as DeregisterService_Output;
 
   $pb.BuilderInfo get info_ => _i;
@@ -112,15 +100,9 @@ class DeregisterService extends $pb.GeneratedMessage {
     ..hasRequiredFields = false
   ;
 
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   DeregisterService clone() => DeregisterService()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   DeregisterService copyWith(void Function(DeregisterService) updates) => super.copyWith((message) => updates(message as DeregisterService)) as DeregisterService;
 
   $pb.BuilderInfo get info_ => _i;

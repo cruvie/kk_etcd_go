@@ -24,8 +24,8 @@ class PBService_ServiceStatus extends $pb.ProtobufEnum {
     Stop,
   ];
 
-  static final $core.Map<$core.int, PBService_ServiceStatus> _byValue = $pb.ProtobufEnum.initByValue(values);
-  static PBService_ServiceStatus? valueOf($core.int value) => _byValue[value];
+  static final $core.List<PBService_ServiceStatus?> _byValue = $pb.ProtobufEnum.$_initByValueList(values, 2);
+  static PBService_ServiceStatus? valueOf($core.int value) =>  value < 0 || value >= _byValue.length ? null : _byValue[value];
 
   const PBService_ServiceStatus._(super.v, super.n);
 }

@@ -95,7 +95,7 @@ func buildTool(info *kk_swagger.ApiInfo) server.ServerTool {
 			),
 		),
 		Handler: func(ctx context.Context, request mcp.CallToolRequest) (*mcp.CallToolResult, error) {
-			arguments := request.Params.Arguments
+			arguments := request.GetArguments()
 
 			userName, ok := arguments["UserName"].(string)
 			if !ok {

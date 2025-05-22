@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"google.golang.org/protobuf/encoding/protojson"
+	"strings"
 	"time"
 )
 
@@ -49,8 +50,31 @@ func (x *PBServiceRegistration) Check() error {
 	return x.CheckConfig.Check()
 }
 
-func (x *PBServiceRegistration) Key() string {
+// UniqueKey represents every service registration.
+func (x *PBServiceRegistration) UniqueKey() string {
 	return fmt.Sprintf("%s%s/%s/%s", ServiceRegistrationKey, x.ServiceType.String(), x.ServiceName, x.ServiceAddr)
+}
+
+func (x *PBServiceRegistration) BuildFromUniqueKey(uniqueKey string) error {
+	//kk_service/registration/Http/test_http_8843/192.168.0.100:8843
+	s := strings.TrimPrefix(uniqueKey, ServiceRegistrationKey)
+	split := strings.Split(s, "/")
+	if len(split) != 3 {
+		return errors.New("invalid unique key")
+	}
+	x.ServiceType = PBServiceType(PBServiceType_value[split[0]])
+	x.ServiceName = split[1]
+	x.ServiceAddr = split[2]
+	return nil
+}
+
+// HubKey represents service registrations with same ServiceName and ServiceType
+func (x *PBServiceRegistration) HubKey() string {
+	return fmt.Sprintf("%s-%s", x.ServiceType.String(), x.ServiceName)
+}
+
+func (x PBServiceType) HubKey(serviceName string) string {
+	return fmt.Sprintf("%s-%s", x.String(), serviceName)
 }
 
 func (x *PBServiceRegistration) Marshal() (string, error) {
@@ -61,4 +85,8 @@ func (x *PBServiceRegistration) Marshal() (string, error) {
 func (x *PBServiceRegistration) UnMarshal(data []byte) error {
 	err := protojson.Unmarshal(data, x)
 	return err
+}
+
+func (x *PBServiceRegistration) Equal(item *PBServiceRegistration) bool {
+	return x.String() == item.String()
 }

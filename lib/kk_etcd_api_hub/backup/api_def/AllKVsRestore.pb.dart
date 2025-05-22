@@ -34,15 +34,9 @@ class AllKVsRestore_Input extends $pb.GeneratedMessage {
     ..hasRequiredFields = false
   ;
 
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   AllKVsRestore_Input clone() => AllKVsRestore_Input()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   AllKVsRestore_Input copyWith(void Function(AllKVsRestore_Input) updates) => super.copyWith((message) => updates(message as AllKVsRestore_Input)) as AllKVsRestore_Input;
 
   $pb.BuilderInfo get info_ => _i;
@@ -75,15 +69,9 @@ class AllKVsRestore_Output extends $pb.GeneratedMessage {
     ..hasRequiredFields = false
   ;
 
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   AllKVsRestore_Output clone() => AllKVsRestore_Output()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   AllKVsRestore_Output copyWith(void Function(AllKVsRestore_Output) updates) => super.copyWith((message) => updates(message as AllKVsRestore_Output)) as AllKVsRestore_Output;
 
   $pb.BuilderInfo get info_ => _i;
@@ -108,15 +96,9 @@ class AllKVsRestore extends $pb.GeneratedMessage {
     ..hasRequiredFields = false
   ;
 
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   AllKVsRestore clone() => AllKVsRestore()..mergeFromMessage(this);
-  @$core.Deprecated(
-  'Using this can add significant overhead to your binary. '
-  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
-  'Will be removed in next major version')
+  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
   AllKVsRestore copyWith(void Function(AllKVsRestore) updates) => super.copyWith((message) => updates(message as AllKVsRestore)) as AllKVsRestore;
 
   $pb.BuilderInfo get info_ => _i;

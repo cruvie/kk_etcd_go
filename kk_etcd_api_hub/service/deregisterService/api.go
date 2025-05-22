@@ -22,15 +22,16 @@ func NewApi(stage *kk_stage.Stage) *api {
 	}
 }
 
-//	 Handler
-//		@Tags			service
-//		@ID				DeregisterService
-//		@Description	deregister service
-//		@Accept			json,application/x-protobuf
-//		@Produce		json,application/x-protobuf
-//		@Param			api_def.DeregisterService_Input	body		api_def.DeregisterService_Input	true	"DeregisterService_Input"
-//		@Success		200								{object}	api_def.DeregisterService_Output
-//		@Router			/service/deregisterService [post]
+//	Handler
+//
+// @Tags			service
+// @ID				DeregisterService
+// @Description	deregister service
+// @Accept			json,application/x-protobuf
+// @Produce		json,application/x-protobuf
+// @Param			api_def.DeregisterService_Input	body		api_def.DeregisterService_Input	true	"DeregisterService_Input"
+// @Success		200								{object}	api_def.DeregisterService_Output
+// @Router			/service/deregisterService [post]
 func Handler(c *gin.Context) {
 	x := NewApi(kk_global_stage.GetRequestStage(c))
 	span := x.stage.StartTrace("deregisterServer")

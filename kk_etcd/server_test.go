@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"gitee.com/cruvie/kk_go_kit/kk_http"
 	"gitee.com/cruvie/kk_go_kit/kk_log"
+	"gitee.com/cruvie/kk_go_kit/kk_net"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
 	"github.com/cruvie/kk_etcd_go/internal/utils/internal_client"
 	"github.com/cruvie/kk_etcd_go/kk_etcd"
@@ -89,9 +90,8 @@ func TestCleanUp(t *testing.T) {
 	}()
 	cleanup(t)
 }
-
-func TestStartGrpcServer(t *testing.T) {
-	listener, err := net.Listen("tcp", ":34844")
+func runGrpcServiceWithPort(port int) {
+	listener, err := net.Listen("tcp", fmt.Sprintf(":%d", port))
 	defer func(listener net.Listener) {
 		err := listener.Close()
 		if err != nil {
@@ -110,7 +110,11 @@ func TestStartGrpcServer(t *testing.T) {
 	}
 }
 
-func TestRegisterGrpcService(t *testing.T) {
+func registerGrpcService(port int) {
+	localIP, err := kk_net.GetLocalIP()
+	if err != nil {
+		panic(err)
+	}
 	closeFunc := initTestEnv()
 	defer func() {
 		err := closeFunc()
@@ -120,20 +124,37 @@ func TestRegisterGrpcService(t *testing.T) {
 	}()
 
 	//register grpc service
-	err := kk_etcd.RegisterService(&kk_etcd_models.PBServiceRegistration{
+	err = kk_etcd.RegisterService(&kk_etcd_models.PBServiceRegistration{
 		ServiceType: kk_etcd_models.PBServiceType_Grpc,
-		ServiceName: "haha_grpc",
-		ServiceAddr: "127.0.0.1:34844",
+		ServiceName: fmt.Sprintf("test_grpc_%d", port),
+		ServiceAddr: fmt.Sprintf("%s:%d", localIP, port),
 		CheckConfig: &kk_etcd_models.PBServiceRegistration_PBCheckConfig{
 			Type:     kk_etcd_models.PBServiceType_Grpc,
 			Timeout:  durationpb.New(5 * time.Second),
 			Interval: durationpb.New(10 * time.Second),
-			Addr:     "127.0.0.1:34844",
+			Addr:     fmt.Sprintf("%s:%d", localIP, port),
 		},
 	})
 	if err != nil {
 		slog.Error("failed to register service", "err", err)
 	}
+}
+
+func TestStartGrpcServer(t *testing.T) {
+	closeFunc := initTestEnv()
+	defer func() {
+		err := closeFunc()
+		if err != nil {
+			log.Println(err)
+		}
+	}()
+	port := 34000
+	for i := 0; i < 30; i++ {
+		go runGrpcServiceWithPort(port)
+		registerGrpcService(port)
+		port++
+	}
+	select {}
 }
 
 func TestGetGrpcServiceList(t *testing.T) {
@@ -162,7 +183,7 @@ func TestGetGrpcClient(t *testing.T) {
 			log.Println(err)
 		}
 	}()
-	conn, client, err := kk_etcd.GetGrpcClient[grpc_health_v1.HealthClient]("haha_grpc",
+	conn, client, err := kk_etcd.GetGrpcClient[grpc_health_v1.HealthClient]("test_grpc_34004",
 		grpc_health_v1.NewHealthClient,
 		grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
@@ -178,17 +199,41 @@ func TestGetGrpcClient(t *testing.T) {
 	log.Println(response)
 }
 
-func TestStartHttpServer(t *testing.T) {
-	http.HandleFunc(kk_etcd_models.HealthCheckPath, func(writer http.ResponseWriter, request *http.Request) {
+func runHttpServiceWithPort(port int) {
+	serveMux := http.NewServeMux()
+	serveMux.HandleFunc(kk_etcd_models.HealthCheckPath, func(writer http.ResponseWriter, request *http.Request) {
 		slog.Info("Check")
 		writer.WriteHeader(http.StatusOK)
 	})
-	err := http.ListenAndServe(":8848", nil)
+	err := http.ListenAndServe(fmt.Sprintf(":%d", port), serveMux)
 	if err != nil {
 		slog.Error("failed to listen", "err", err)
 	}
 }
-func TestRegisterHttpService(t *testing.T) {
+
+func registerHttpService(port int) {
+	localIP, err := kk_net.GetLocalIP()
+	if err != nil {
+		panic(err)
+	}
+
+	err = kk_etcd.RegisterService(&kk_etcd_models.PBServiceRegistration{
+		ServiceType: kk_etcd_models.PBServiceType_Http,
+		ServiceName: fmt.Sprintf("test_http_%d", port),
+		ServiceAddr: fmt.Sprintf("%s:%d", localIP, port),
+		CheckConfig: &kk_etcd_models.PBServiceRegistration_PBCheckConfig{
+			Type:     kk_etcd_models.PBServiceType_Http,
+			Timeout:  durationpb.New(5 * time.Second),
+			Interval: durationpb.New(10 * time.Second),
+			Addr:     fmt.Sprintf("http://%s:%d%s", localIP, port, kk_etcd_models.HealthCheckPath),
+		},
+	})
+	if err != nil {
+		slog.Error("failed to register service", "err", err)
+	}
+}
+
+func TestStartHttpServer(t *testing.T) {
 	closeFunc := initTestEnv()
 	defer func() {
 		err := closeFunc()
@@ -196,20 +241,13 @@ func TestRegisterHttpService(t *testing.T) {
 			log.Println(err)
 		}
 	}()
-	err := kk_etcd.RegisterService(&kk_etcd_models.PBServiceRegistration{
-		ServiceType: kk_etcd_models.PBServiceType_Http,
-		ServiceName: "haha_http",
-		ServiceAddr: "127.0.0.1:8848",
-		CheckConfig: &kk_etcd_models.PBServiceRegistration_PBCheckConfig{
-			Type:     kk_etcd_models.PBServiceType_Http,
-			Timeout:  durationpb.New(5 * time.Second),
-			Interval: durationpb.New(10 * time.Second),
-			Addr:     "http://127.0.0.1:8848" + kk_etcd_models.HealthCheckPath,
-		},
-	})
-	if err != nil {
-		slog.Error("failed to register service", "err", err)
+	port := 8840
+	for i := 0; i < 30; i++ {
+		go runHttpServiceWithPort(port)
+		registerHttpService(port)
+		port++
 	}
+	select {}
 }
 
 func TestGetHttpServiceList(t *testing.T) {

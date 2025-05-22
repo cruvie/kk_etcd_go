@@ -45,16 +45,16 @@ func (x *SerService) ServiceList(serviceType kk_etcd_models.PBServiceType, servi
 		return nil, err
 	}
 
-	aliveStatuMap := hub.aliveHub.Data()
+	aliveStatuMap := hub.aliveHub.Data() //todo 死锁！！
 	deadStatuMap := hub.deadHub.Data()
 
 	getStatus := func(item *kk_etcd_models.PBServiceRegistration) kk_etcd_models.PBService_ServiceStatus {
-		serviceStatus, ok := aliveStatuMap[item.ServiceName]
+		serviceStatus, ok := aliveStatuMap[item.HubKey()]
 		switch {
 		case ok:
 			{
 				index := slices.IndexFunc(serviceStatus.Slice(), func(c *kk_etcd_models.PBServiceRegistration) bool {
-					return c.Key() == item.Key()
+					return c.Equal(item)
 				})
 				if index != -1 {
 					return kk_etcd_models.PBService_Running
@@ -62,12 +62,12 @@ func (x *SerService) ServiceList(serviceType kk_etcd_models.PBServiceType, servi
 			}
 		default:
 			{
-				serviceStatus, ok = deadStatuMap[item.ServiceName]
+				serviceStatus, ok = deadStatuMap[item.HubKey()]
 				if !ok {
 					return kk_etcd_models.PBService_UnKnown
 				} else {
 					index := slices.IndexFunc(serviceStatus.Slice(), func(c *kk_etcd_models.PBServiceRegistration) bool {
-						return c.Key() == item.Key()
+						return c.Equal(item)
 					})
 					if index != -1 {
 						return kk_etcd_models.PBService_Stop
@@ -87,13 +87,13 @@ func (x *SerService) ServiceList(serviceType kk_etcd_models.PBServiceType, servi
 	}
 
 	sort.Slice(pBListService.ListService, func(i, j int) bool {
-		return pBListService.ListService[i].ServiceRegistration.Key() < pBListService.ListService[j].ServiceRegistration.Key()
+		return pBListService.ListService[i].ServiceRegistration.UniqueKey() < pBListService.ListService[j].ServiceRegistration.UniqueKey()
 	})
 	return &pBListService, nil
 }
 
-func (x *SerService) GetConns(connType kk_etcd_models.PBServiceType, serviceName string) (string, error) {
-	service, err := getOneAliveServer(connType, serviceName)
+func (x *SerService) GetServiceAddr(connType kk_etcd_models.PBServiceType, serviceName string) (string, error) {
+	service, err := getOneAliveService(connType, serviceName)
 	if err != nil {
 		return "", err
 	}
