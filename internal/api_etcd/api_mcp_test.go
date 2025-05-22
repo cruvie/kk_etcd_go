@@ -48,7 +48,7 @@ func newClient(t *testing.T) (*client.Client, context.Context) {
 	}
 	return ssemcpClient, ctx
 }
-func TestMCPServer(t *testing.T) {
+func TestMCPService(t *testing.T) {
 	cli, _ := newClient(t)
 	defer cli.Close() //nolint
 	// Test ListTools

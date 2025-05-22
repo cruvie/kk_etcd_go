@@ -25,7 +25,7 @@ type MCPConfig struct {
 }
 
 func ApiMCP() *kk_server.KKRunServer {
-	if !config.Config.MCPServer.Enable {
+	if !config.Config.MCPService.Enable {
 		return nil
 	}
 
@@ -48,8 +48,8 @@ func ApiMCP() *kk_server.KKRunServer {
 	)
 
 	run := func() {
-		slog.Info(fmt.Sprintf("Starting SSE server http://127.0.0.1:%d/kk_etcd/sse", config.Config.MCPServer.Port))
-		err := sseServer.Start(fmt.Sprintf(":%d", config.Config.MCPServer.Port))
+		slog.Info(fmt.Sprintf("Starting SSE server http://127.0.0.1:%d/kk_etcd/sse", config.Config.MCPService.Port))
+		err := sseServer.Start(fmt.Sprintf(":%d", config.Config.MCPService.Port))
 		if err != nil {
 			panic(err)
 		}

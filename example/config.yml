@@ -19,6 +19,6 @@ AI:
   # default: http://127.0.0.1:11434
   OllamaService: http://127.0.0.1:11434
 
-MCPServer:
+MCPService:
   Enable: false
   Port: 2444
