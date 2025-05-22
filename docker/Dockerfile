@@ -1,7 +1,8 @@
 ##
 ## Build
 ##
-FROM golang:1.23.9 AS build
+ARG GOVERSION
+FROM golang:${GOVERSION} AS build
 
 # docker pull --platform linux/amd64 golang:1.23.9
 # docker pull --platform linux/arm64 golang:1.23.9
@@ -22,8 +23,7 @@ FROM alpine:latest
 WORKDIR /
 
 COPY --from=build /kk_etcd/output /kk_etcd/output
-COPY ./docker/tarball/etcd-v3.6.0-linux-amd64/etcdutl /usr/local/bin/etcdutl
-#COPY ./docker/tarball/etcd-v3.6.0-linux-arm64/etcdutl /usr/local/bin/etcdutl
+COPY ./docker/tarball/etcdutl /usr/local/bin/etcdutl
 
 EXPOSE 2333
 
