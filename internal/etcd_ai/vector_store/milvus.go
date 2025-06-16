@@ -1,6 +1,18 @@
 package vector_store
 
-// InitWeaviate initializes a weaviate client for our application.
+//
+//import (
+//	"fmt"
+//	"gitee.com/cruvie/kk_go_kit/kk_file"
+//	"github.com/cruvie/kk_etcd_go/internal/etcd_ai/rag_server"
+//	"github.com/tmc/langchaingo/schema"
+//	"github.com/weaviate/weaviate-go-client/v5/weaviate"
+//	"github.com/weaviate/weaviate/entities/models"
+//	"log/slog"
+//	"os"
+//)
+//
+//// InitWeaviate initializes a weaviate client for our application.
 //func InitWeaviate(weaviateIpPort string) (initialized bool, err error) {
 //	client, err := weaviate.NewClient(weaviate.Config{
 //		Host:   weaviateIpPort,
@@ -36,7 +48,7 @@ package vector_store
 //	}
 //	return exists, nil
 //}
-
+//
 //func AddEtcdDocuments() error {
 //	var wvDocs []schema.Document
 //	//read all etcd docs

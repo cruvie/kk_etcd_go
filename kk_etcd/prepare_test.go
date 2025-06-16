@@ -1,9 +1,7 @@
 package kk_etcd_test
 
 import (
-	"context"
 	"gitee.com/cruvie/kk_go_kit/kk_log"
-	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/internal/utils/consts"
 	"github.com/cruvie/kk_etcd_go/kk_etcd"
 	clientv3 "go.etcd.io/etcd/client/v3"
@@ -11,11 +9,8 @@ import (
 )
 
 func initTestEnv() kk_etcd.CloseFunc {
-	var (
-		stage = kk_stage.NewStage(context.Background(), "Test", true)
-	)
 	configLog := kk_log.ConfigLog{
-		DebugMode:  stage.DebugMode,
+		DebugMode:  true,
 		Lumberjack: kk_log.DefaultLogConfig(time.Now(), consts.ServiceName),
 		StartTime:  time.Now(),
 	}
@@ -27,7 +22,7 @@ func initTestEnv() kk_etcd.CloseFunc {
 			Username:  "root",
 			Password:  "root",
 		},
-		DebugMode: stage.DebugMode})
+		DebugMode: true})
 	if err != nil {
 		panic(err)
 	}

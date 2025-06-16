@@ -11,10 +11,10 @@ var GlobalStage *kk_stage.Stage
 
 var cancelFunc context.CancelFunc
 
-func InitGlobalStage(debugMode bool) {
+func InitGlobalStage() {
 	var ctx context.Context
 	ctx, cancelFunc = context.WithCancel(context.Background())
-	GlobalStage = kk_stage.NewStage(ctx, consts.ServiceName, debugMode)
+	GlobalStage = kk_stage.NewStage(ctx, consts.ServiceName)
 }
 
 func CloseGlobalStage() {

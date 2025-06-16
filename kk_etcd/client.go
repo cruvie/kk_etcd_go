@@ -29,7 +29,7 @@ type CloseFunc func() error
 
 func InitClient(cfg *InitClientConfig) (CloseFunc, error) {
 	cfg.Check()
-	internal_client.InitGlobalStage(cfg.DebugMode)
+	internal_client.InitGlobalStage()
 
 	client, err := clientv3.New(cfg.Config)
 	if err != nil {

@@ -1,16 +1,32 @@
 package kk_etcd_test
 
 import (
+	"fmt"
+	"gitee.com/cruvie/kk_go_kit/kk_log"
 	"github.com/cruvie/kk_etcd_go/kk_etcd"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/backup/api_def"
+	"github.com/tiktoken-go/tokenizer"
 	"log"
 	"log/slog"
 	"os"
 	"testing"
-
-	"gitee.com/cruvie/kk_go_kit/kk_log"
 )
 
+func TestName(t *testing.T) {
+
+	enc, err := tokenizer.Get(tokenizer.Cl100kBase)
+	if err != nil {
+		panic("oh oh")
+	}
+
+	// this should print a list of token ids
+	ids, _, _ := enc.Encode("我的银行卡密码是123456")
+	fmt.Println(ids)
+
+	// this should print the original string back
+	text, _ := enc.Decode(ids)
+	fmt.Println(text)
+}
 func TestSnapshot(t *testing.T) {
 	closeFunc := initTestEnv()
 	defer func() {

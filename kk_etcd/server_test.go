@@ -46,7 +46,7 @@ func serviceList(req *api_def.ServiceList_Input) (*api_def.ServiceList_Output, e
 	header.Add("Username", "root")
 	header.Add("Password", "root")
 	out := &api_def.ServiceList_Output{}
-	err := kk_http.SendPBRequest(context.Background(),
+	err := kk_http.SendPBRequest(5*time.Second,
 		http.MethodPost, "http://127.0.0.1:2333/service/serviceList",
 		header, req, out)
 

@@ -4,14 +4,15 @@ import (
 	"context"
 	"github.com/tmc/langchaingo/llms"
 	"github.com/tmc/langchaingo/llms/ollama"
+	"github.com/tmc/langchaingo/vectorstores/milvus"
 	"time"
 )
 
 var RagServerClient *RagServer
 
 type RagServer struct {
-	LLM *ollama.LLM
-	//VectorStore *weaviate.Store
+	LLM         *ollama.LLM
+	VectorStore *milvus.Store
 }
 
 func (n *RagServer) EmbedDocuments(ctx context.Context, texts []string) ([][]float32, error) {

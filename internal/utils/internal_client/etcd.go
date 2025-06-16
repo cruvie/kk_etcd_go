@@ -13,7 +13,7 @@ import (
 
 func InitEtcd() {
 	newLog := kk_log.NewLog(&kk_log.LogOption{})
-	InitGlobalStage(config.Config.DebugMode)
+	InitGlobalStage()
 	defer CloseGlobalStage()
 	defer global_model.CloseClient(GlobalStage)
 

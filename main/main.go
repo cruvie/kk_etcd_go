@@ -38,7 +38,7 @@ func main() {
 
 	config.InitConfig()
 
-	stage := kk_stage.NewStage(context.Background(), consts.ServiceName, config.Config.DebugMode).SetStartTime(startTime)
+	stage := kk_stage.NewStage(context.Background(), consts.ServiceName).SetStartTime(startTime)
 
 	{
 		//init log
