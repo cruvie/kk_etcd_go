@@ -23,14 +23,14 @@ func NewApi(stage *kk_stage.Stage) *api {
 }
 
 //  Handler
-//	@Tags			backup
-//	@ID				SnapshotRestore
-//	@Description	snapshot restore
-//	@Accept			json,application/x-protobuf
-//	@Produce		json,application/x-protobuf
-//	@Param			api_def.SnapshotRestore_Input	body		api_def.SnapshotRestore_Input	true	"SnapshotRestore_Input"
-//	@Success		200								{object}	api_def.SnapshotRestore_Output
-//	@Router			/backup/snapshotRestore [post]
+//	@Tags		backup
+//	@ID			SnapshotRestore
+//	@Summary	snapshot restore
+//	@Accept		json,application/x-protobuf
+//	@Produce	json,application/x-protobuf
+//	@Param		api_def.SnapshotRestore_Input	body		api_def.SnapshotRestore_Input	true	"SnapshotRestore_Input"
+//	@Success	200								{object}	api_def.SnapshotRestore_Output
+//	@Router		/backup/snapshotRestore [post]
 func Handler(c *gin.Context) {
 		x := NewApi(kk_global_stage.GetRequestStage(c))
 		span := x.stage.StartTrace("snapshotRestore")

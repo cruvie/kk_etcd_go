@@ -2,7 +2,6 @@ package internal_client
 
 import (
 	"context"
-	"gitee.com/cruvie/kk_go_kit/kk_log"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/internal/config"
 	"github.com/cruvie/kk_etcd_go/internal/utils/consts"
@@ -49,7 +48,7 @@ func (x *serToolEtcd) checkAuthEnabled() (enabled bool) {
 
 func (x *serToolEtcd) initRootRolePermission(stage *kk_stage.Stage) {
 	//https://etcd.io/docs/v3.5/op-guide/authentication/rbac/
-	newLog := kk_log.NewLog(&kk_log.LogOption{})
+	newLog := kk_stage.NewLog(stage)
 	user := &kk_etcd_models.PBUser{
 		UserName: consts.UserRoot,
 		Password: config.Config.RootPassword,

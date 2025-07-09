@@ -23,14 +23,14 @@ func NewApi(stage *kk_stage.Stage) *api {
 }
 
 //  Handler
-//	@Tags			role
-//	@ID				RoleDelete
-//	@Description	delete role
-//	@Accept			json,application/x-protobuf
-//	@Produce		json,application/x-protobuf
-//	@Param			api_def.RoleDelete_Input	body		api_def.RoleDelete_Input	true	"RoleDelete_Input"
-//	@Success		200							{object}	api_def.RoleDelete_Output
-//	@Router			/role/roleDelete [post]
+//	@Tags		role
+//	@ID			RoleDelete
+//	@Summary	delete role
+//	@Accept		json,application/x-protobuf
+//	@Produce	json,application/x-protobuf
+//	@Param		api_def.RoleDelete_Input	body		api_def.RoleDelete_Input	true	"RoleDelete_Input"
+//	@Success	200							{object}	api_def.RoleDelete_Output
+//	@Router		/role/roleDelete [post]
 func Handler(c *gin.Context) {
 		x := NewApi(kk_global_stage.GetRequestStage(c))
 		span := x.stage.StartTrace("roleDelete")

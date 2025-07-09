@@ -23,14 +23,14 @@ func NewApi(stage *kk_stage.Stage) *api {
 }
 
 //  Handler
-//	@Tags			role
-//	@ID				RoleGrantPermission
-//	@Description	grant permission
-//	@Accept			json,application/x-protobuf
-//	@Produce		json,application/x-protobuf
-//	@Param			api_def.RoleGrantPermission_Input	body		api_def.RoleGrantPermission_Input	true	"RoleGrantPermission_Input"
-//	@Success		200									{object}	api_def.RoleGrantPermission_Output
-//	@Router			/role/roleGrantPermission [post]
+//	@Tags		role
+//	@ID			RoleGrantPermission
+//	@Summary	grant permission
+//	@Accept		json,application/x-protobuf
+//	@Produce	json,application/x-protobuf
+//	@Param		api_def.RoleGrantPermission_Input	body		api_def.RoleGrantPermission_Input	true	"RoleGrantPermission_Input"
+//	@Success	200									{object}	api_def.RoleGrantPermission_Output
+//	@Router		/role/roleGrantPermission [post]
 func Handler(c *gin.Context) {
 		x := NewApi(kk_global_stage.GetRequestStage(c))
 		span := x.stage.StartTrace("roleGrantPermission")

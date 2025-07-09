@@ -395,13 +395,9 @@ info:
     email: kk_etcd_go@qq.com
     name: kk_etcd_go
     url: http://kk_etcd_go/support
-  description: kk_etcd_go terms.
   license:
     name: Secret
     url: http://kk_etcd_go/licenses/LICENSE-2.0.html
-  termsOfService: http://kk_etcd_go/terms/
-  title: kk_etcd_go API
-  version: 1.4.3
 paths:
   /ai/query:
     post:
@@ -504,7 +500,6 @@ paths:
       consumes:
       - application/json
       - application/x-protobuf
-      description: snapshot info
       operationId: SnapshotInfo
       parameters:
       - description: SnapshotInfo_Input
@@ -521,6 +516,7 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_backup_api_def.SnapshotInfo_Output'
+      summary: snapshot info
       tags:
       - backup
   /backup/snapshotRestore:
@@ -528,7 +524,6 @@ paths:
       consumes:
       - application/json
       - application/x-protobuf
-      description: snapshot restore
       operationId: SnapshotRestore
       parameters:
       - description: SnapshotRestore_Input
@@ -545,6 +540,7 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_backup_api_def.SnapshotRestore_Output'
+      summary: snapshot restore
       tags:
       - backup
   /kv/kVDel:
@@ -552,7 +548,6 @@ paths:
       consumes:
       - application/json
       - application/x-protobuf
-      description: del kv
       operationId: KVDel
       parameters:
       - description: KVDel_Input
@@ -569,6 +564,7 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_kv_api_def.KVDel_Output'
+      summary: del kv
       tags:
       - kv
   /kv/kVGet:
@@ -576,7 +572,6 @@ paths:
       consumes:
       - application/json
       - application/x-protobuf
-      description: get kv
       operationId: KVGet
       parameters:
       - description: KVGet_Input
@@ -593,6 +588,7 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_kv_api_def.KVGet_Output'
+      summary: get kv
       tags:
       - kv
   /kv/kVList:
@@ -600,7 +596,6 @@ paths:
       consumes:
       - application/json
       - application/x-protobuf
-      description: list kv
       operationId: KVList
       parameters:
       - description: KVList_Input
@@ -617,6 +612,7 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_kv_api_def.KVList_Output'
+      summary: list kv
       tags:
       - kv
   /kv/kVPut:
@@ -624,7 +620,6 @@ paths:
       consumes:
       - application/json
       - application/x-protobuf
-      description: put kv
       operationId: KVPut
       parameters:
       - description: KVPut_Input
@@ -641,6 +636,7 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_kv_api_def.KVPut_Output'
+      summary: put kv
       tags:
       - kv
   /role/roleAdd:
@@ -648,7 +644,6 @@ paths:
       consumes:
       - application/json
       - application/x-protobuf
-      description: add role
       operationId: RoleAdd
       parameters:
       - description: RoleAdd_Input
@@ -665,6 +660,7 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleAdd_Output'
+      summary: add role
       tags:
       - role
   /role/roleDelete:
@@ -672,7 +668,6 @@ paths:
       consumes:
       - application/json
       - application/x-protobuf
-      description: delete role
       operationId: RoleDelete
       parameters:
       - description: RoleDelete_Input
@@ -689,6 +684,7 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleDelete_Output'
+      summary: delete role
       tags:
       - role
   /role/roleGet:
@@ -696,7 +692,6 @@ paths:
       consumes:
       - application/json
       - application/x-protobuf
-      description: get role
       operationId: RoleGet
       parameters:
       - description: RoleGet_Input
@@ -713,6 +708,7 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleGet_Output'
+      summary: get role
       tags:
       - role
   /role/roleGrantPermission:
@@ -720,7 +716,6 @@ paths:
       consumes:
       - application/json
       - application/x-protobuf
-      description: grant permission
       operationId: RoleGrantPermission
       parameters:
       - description: RoleGrantPermission_Input
@@ -737,6 +732,7 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleGrantPermission_Output'
+      summary: grant permission
       tags:
       - role
   /role/roleList:
@@ -744,7 +740,6 @@ paths:
       consumes:
       - application/json
       - application/x-protobuf
-      description: list role
       operationId: RoleList
       parameters:
       - description: RoleList_Input
@@ -761,6 +756,7 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleList_Output'
+      summary: list role
       tags:
       - role
   /role/roleRevokePermission:
@@ -768,7 +764,6 @@ paths:
       consumes:
       - application/json
       - application/x-protobuf
-      description: revoke permission
       operationId: RoleRevokePermission
       parameters:
       - description: RoleRevokePermission_Input
@@ -785,6 +780,7 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_role_api_def.RoleRevokePermission_Output'
+      summary: revoke permission
       tags:
       - role
   /service/deregisterService:
@@ -816,7 +812,6 @@ paths:
       consumes:
       - application/json
       - application/x-protobuf
-      description: list server
       operationId: ServiceList
       parameters:
       - description: ServiceList_Input
@@ -833,6 +828,7 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_service_api_def.ServiceList_Output'
+      summary: list server
       tags:
       - service
   /user/getUser:
@@ -840,7 +836,6 @@ paths:
       consumes:
       - application/json
       - application/x-protobuf
-      description: get user
       operationId: GetUser
       parameters:
       - description: GetUser_Input
@@ -857,6 +852,7 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.GetUser_Output'
+      summary: get user
       tags:
       - user
   /user/login:
@@ -864,7 +860,6 @@ paths:
       consumes:
       - application/json
       - application/x-protobuf
-      description: login
       operationId: Login
       parameters:
       - description: Login_Input
@@ -881,6 +876,7 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.Login_Output'
+      summary: login
       tags:
       - user
   /user/logout:
@@ -888,7 +884,6 @@ paths:
       consumes:
       - application/json
       - application/x-protobuf
-      description: logout
       operationId: Logout
       parameters:
       - description: Logout_Input
@@ -905,6 +900,7 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.Logout_Output'
+      summary: logout
       tags:
       - user
   /user/myInfo:
@@ -912,7 +908,6 @@ paths:
       consumes:
       - application/json
       - application/x-protobuf
-      description: get my info
       operationId: MyInfo
       parameters:
       - description: MyInfo_Input
@@ -929,6 +924,7 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.MyInfo_Output'
+      summary: get my info
       tags:
       - user
   /user/userAdd:
@@ -936,7 +932,6 @@ paths:
       consumes:
       - application/json
       - application/x-protobuf
-      description: add user
       operationId: UserAdd
       parameters:
       - description: UserAdd_Input
@@ -953,6 +948,7 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.UserAdd_Output'
+      summary: add user
       tags:
       - user
   /user/userDelete:
@@ -960,7 +956,6 @@ paths:
       consumes:
       - application/json
       - application/x-protobuf
-      description: delete user
       operationId: UserDelete
       parameters:
       - description: UserDelete_Input
@@ -977,6 +972,7 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.UserDelete_Output'
+      summary: delete user
       tags:
       - user
   /user/userGrantRole:
@@ -984,7 +980,6 @@ paths:
       consumes:
       - application/json
       - application/x-protobuf
-      description: grant role
       operationId: UserGrantRole
       parameters:
       - description: UserGrantRole_Input
@@ -1001,6 +996,7 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.UserGrantRole_Output'
+      summary: grant role
       tags:
       - user
   /user/userList:
@@ -1008,7 +1004,6 @@ paths:
       consumes:
       - application/json
       - application/x-protobuf
-      description: list user
       operationId: UserList
       parameters:
       - description: UserList_Input
@@ -1025,6 +1020,7 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/github_com_cruvie_kk_etcd_go_kk_etcd_api_hub_user_api_def.UserList_Output'
+      summary: list user
       tags:
       - user
 swagger: "2.0"

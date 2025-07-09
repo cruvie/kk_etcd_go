@@ -23,14 +23,14 @@ func NewApi(stage *kk_stage.Stage) *api {
 }
 
 //  Handler
-//	@Tags			kv
-//	@ID				KVList
-//	@Description	list kv
-//	@Accept			json,application/x-protobuf
-//	@Produce		json,application/x-protobuf
-//	@Param			api_def.KVList_Input	body		api_def.KVList_Input	true	"KVList_Input"
-//	@Success		200						{object}	api_def.KVList_Output
-//	@Router			/kv/kVList [post]
+//	@Tags		kv
+//	@ID			KVList
+//	@Summary	list kv
+//	@Accept		json,application/x-protobuf
+//	@Produce	json,application/x-protobuf
+//	@Param		api_def.KVList_Input	body		api_def.KVList_Input	true	"KVList_Input"
+//	@Success	200						{object}	api_def.KVList_Output
+//	@Router		/kv/kVList [post]
 func Handler(c *gin.Context) {
 		x := NewApi(kk_global_stage.GetRequestStage(c))
 		span := x.stage.StartTrace("kVList")

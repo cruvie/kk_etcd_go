@@ -23,14 +23,14 @@ func NewApi(stage *kk_stage.Stage) *api {
 }
 
 //  Handler
-//	@Tags			user
-//	@ID				UserDelete
-//	@Description	delete user
-//	@Accept			json,application/x-protobuf
-//	@Produce		json,application/x-protobuf
-//	@Param			api_def.UserDelete_Input	body		api_def.UserDelete_Input	true	"UserDelete_Input"
-//	@Success		200							{object}	api_def.UserDelete_Output
-//	@Router			/user/userDelete [post]
+//	@Tags		user
+//	@ID			UserDelete
+//	@Summary	delete user
+//	@Accept		json,application/x-protobuf
+//	@Produce	json,application/x-protobuf
+//	@Param		api_def.UserDelete_Input	body		api_def.UserDelete_Input	true	"UserDelete_Input"
+//	@Success	200							{object}	api_def.UserDelete_Output
+//	@Router		/user/userDelete [post]
 func Handler(c *gin.Context) {
 		x := NewApi(kk_global_stage.GetRequestStage(c))
 		span := x.stage.StartTrace("userDelete")

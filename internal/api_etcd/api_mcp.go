@@ -5,8 +5,8 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"gitee.com/cruvie/kk_go_kit/kk_log"
 	"gitee.com/cruvie/kk_go_kit/kk_server"
+	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"gitee.com/cruvie/kk_go_kit/kk_swagger"
 	"github.com/cruvie/kk_etcd_go/internal/config"
 	"github.com/cruvie/kk_etcd_go/swagger"
@@ -62,7 +62,7 @@ func ApiMCP() *kk_server.KKRunServer {
 		ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 		defer cancel()
 		if err := sseServer.Shutdown(ctx); err != nil {
-			slog.Error("ApiMCP shutdown error", kk_log.NewLog(nil).Error(err).Args()...)
+			slog.Error("ApiMCP shutdown error", kk_stage.NewLog(nil).Error(err).Args()...)
 		}
 	}
 
@@ -84,7 +84,7 @@ func genTools() (tools []server.ServerTool) {
 func buildTool(info *kk_swagger.ApiInfo) server.ServerTool {
 	return server.ServerTool{
 		Tool: mcp.NewTool(info.OperationId,
-			mcp.WithDescription(info.Description),
+			mcp.WithDescription(info.Summary),
 			mcp.WithString("token",
 				mcp.Description("auth token")),
 			mcp.WithString("UserName"),

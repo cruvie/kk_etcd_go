@@ -2,8 +2,8 @@ package service_hub
 
 import (
 	"context"
-	"gitee.com/cruvie/kk_go_kit/kk_log"
 	"gitee.com/cruvie/kk_go_kit/kk_server"
+	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/internal/config"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
 	"github.com/cruvie/kk_etcd_go/internal/utils/internal_client"
@@ -38,7 +38,7 @@ func maintainEtcd() {
 		// get current revision
 		currentRevision, err := getCurrentRevision(endpoint)
 		if err != nil {
-			slog.Error("Failed to get current revision", kk_log.NewLog(nil).Error(err).Args()...)
+			slog.Error("Failed to get current revision", kk_stage.NewLog(nil).Error(err).Args()...)
 			return
 		}
 
@@ -47,7 +47,7 @@ func maintainEtcd() {
 		// compact
 		err = executeCompact(currentRevision)
 		if err != nil {
-			slog.Error("Failed to execute compact", kk_log.NewLog(nil).Error(err).Args()...)
+			slog.Error("Failed to execute compact", kk_stage.NewLog(nil).Error(err).Args()...)
 			return
 		}
 		slog.Info("Compact executed successfully.")
@@ -55,7 +55,7 @@ func maintainEtcd() {
 		//  Defragment
 		err = executeDefragment(endpoint)
 		if err != nil {
-			slog.Error("Failed to execute defragment", kk_log.NewLog(nil).Error(err).Args()...)
+			slog.Error("Failed to execute defragment", kk_stage.NewLog(nil).Error(err).Args()...)
 			return
 		}
 		slog.Info("Defrag executed successfully.")
@@ -63,7 +63,7 @@ func maintainEtcd() {
 		// disarm alarm
 		err = disarmAlarm()
 		if err != nil {
-			slog.Error("Failed to disarm alarm", kk_log.NewLog(nil).Error(err).Args()...)
+			slog.Error("Failed to disarm alarm", kk_stage.NewLog(nil).Error(err).Args()...)
 			return
 		}
 		slog.Info("Alarm disarmed.")
@@ -103,7 +103,7 @@ func disarmAlarm() error {
 		if err != nil {
 			return err
 		}
-		slog.Info("Disarmed alarm", kk_log.NewLog(nil).Any("alarm", a).Args()...)
+		slog.Info("Disarmed alarm", kk_stage.NewLog(nil).Any("alarm", a).Args()...)
 	}
 
 	return nil

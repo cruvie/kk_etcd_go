@@ -16,13 +16,13 @@ func TestService(t *testing.T) {
 		//service
 		{
 			apiModel: kk_api_gen.ApiModel{
-				Description:     "list service",
+				Summary:         "list service",
 				HandlerFuncName: "ServiceList",
 			},
 		},
 		{
 			apiModel: kk_api_gen.ApiModel{
-				Description:     "deregister service",
+				Summary:         "deregister service",
 				HandlerFuncName: "DeregisterService",
 			},
 		},
@@ -31,7 +31,7 @@ func TestService(t *testing.T) {
 	for _, api := range apis {
 		t.Run(api.apiModel.HandlerFuncName, func(t *testing.T) {
 			kk_api_gen.GenerateApi(apiGroupModel, api.apiModel)
-			kk_api_gen.GenerateApiDefProto(api.apiModel)
+			kk_api_gen.GenerateApiDefProto(apiGroupModel, api.apiModel)
 			//kk_api_gen.GenerateTypescriptApi(apiGroupModel, api.apiModel)
 		})
 	}

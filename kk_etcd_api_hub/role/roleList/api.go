@@ -23,14 +23,14 @@ func NewApi(stage *kk_stage.Stage) *api {
 }
 
 //  Handler
-//	@Tags			role
-//	@ID				RoleList
-//	@Description	list role
-//	@Accept			json,application/x-protobuf
-//	@Produce		json,application/x-protobuf
-//	@Param			api_def.RoleList_Input	body		api_def.RoleList_Input	true	"RoleList_Input"
-//	@Success		200						{object}	api_def.RoleList_Output
-//	@Router			/role/roleList [post]
+//	@Tags		role
+//	@ID			RoleList
+//	@Summary	list role
+//	@Accept		json,application/x-protobuf
+//	@Produce	json,application/x-protobuf
+//	@Param		api_def.RoleList_Input	body		api_def.RoleList_Input	true	"RoleList_Input"
+//	@Success	200						{object}	api_def.RoleList_Output
+//	@Router		/role/roleList [post]
 func Handler(c *gin.Context) {
 		x := NewApi(kk_global_stage.GetRequestStage(c))
 		span := x.stage.StartTrace("roleList")

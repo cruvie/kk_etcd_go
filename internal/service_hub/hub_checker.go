@@ -3,7 +3,7 @@ package service_hub
 import (
 	"context"
 	"fmt"
-	"gitee.com/cruvie/kk_go_kit/kk_log"
+	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
@@ -93,7 +93,7 @@ func checkGrpc(checkConfig *kk_etcd_models.PBServiceRegistration_PBCheckConfig) 
 		err := conn.Close()
 		if err != nil {
 			msg := "failed to close grpc connection"
-			slog.Error(msg, kk_log.NewLog(nil).Error(err).Args()...)
+			slog.Error(msg, kk_stage.NewLog(nil).Error(err).Args()...)
 		}
 	}(conn)
 	healthClient := grpc_health_v1.NewHealthClient(conn)

@@ -2,7 +2,7 @@ package internal_client
 
 import (
 	"context"
-	"gitee.com/cruvie/kk_go_kit/kk_log"
+	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/internal/config"
 	"github.com/cruvie/kk_etcd_go/internal/utils/consts"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
@@ -11,8 +11,8 @@ import (
 	"time"
 )
 
-func InitEtcd() {
-	newLog := kk_log.NewLog(&kk_log.LogOption{})
+func InitEtcd(stage *kk_stage.Stage) {
+	newLog := kk_stage.NewLog(stage)
 	InitGlobalStage()
 	defer CloseGlobalStage()
 	defer global_model.CloseClient(GlobalStage)

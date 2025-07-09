@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 	"gitee.com/cruvie/kk_go_kit/kk_http"
-	"gitee.com/cruvie/kk_go_kit/kk_log"
 	"gitee.com/cruvie/kk_go_kit/kk_net"
+	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
 	"github.com/cruvie/kk_etcd_go/internal/utils/internal_client"
 	"github.com/cruvie/kk_etcd_go/kk_etcd"
@@ -104,7 +104,7 @@ func runGrpcServiceWithPort(port int) {
 	grpcServer := grpc.NewServer()
 	defer grpcServer.Stop()
 	grpc_health_v1.RegisterHealthServer(grpcServer, &server{})
-	slog.Info("grpc_rec listening at", kk_log.NewLog(nil).Any("addr", listener.Addr()).Args()...)
+	slog.Info("grpc_rec listening at", kk_stage.NewLog(nil).Any("addr", listener.Addr()).Args()...)
 	if err := grpcServer.Serve(listener); err != nil {
 		slog.Error("failed to serve", "err", err)
 	}

@@ -16,25 +16,25 @@ func TestKV(t *testing.T) {
 		//kv
 		{
 			apiModel: kk_api_gen.ApiModel{
-				Description:     "put kv",
+				Summary:         "put kv",
 				HandlerFuncName: "KVPut",
 			},
 		},
 		{
 			apiModel: kk_api_gen.ApiModel{
-				Description:     "get kv",
+				Summary:         "get kv",
 				HandlerFuncName: "KVGet",
 			},
 		},
 		{
 			apiModel: kk_api_gen.ApiModel{
-				Description:     "del kv",
+				Summary:         "del kv",
 				HandlerFuncName: "KVDel",
 			},
 		},
 		{
 			apiModel: kk_api_gen.ApiModel{
-				Description:     "list kv",
+				Summary:         "list kv",
 				HandlerFuncName: "KVList",
 			},
 		},
@@ -43,7 +43,7 @@ func TestKV(t *testing.T) {
 	for _, api := range apis {
 		t.Run(api.apiModel.HandlerFuncName, func(t *testing.T) {
 			kk_api_gen.GenerateApi(apiGroupModel, api.apiModel)
-			kk_api_gen.GenerateApiDefProto(api.apiModel)
+			kk_api_gen.GenerateApiDefProto(apiGroupModel, api.apiModel)
 			//kk_api_gen.GenerateTypescriptApi(apiGroupModel, api.apiModel)
 		})
 	}

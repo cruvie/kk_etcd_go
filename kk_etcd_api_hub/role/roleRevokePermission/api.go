@@ -23,14 +23,14 @@ func NewApi(stage *kk_stage.Stage) *api {
 }
 
 //  Handler
-//	@Tags			role
-//	@ID				RoleRevokePermission
-//	@Description	revoke permission
-//	@Accept			json,application/x-protobuf
-//	@Produce		json,application/x-protobuf
-//	@Param			api_def.RoleRevokePermission_Input	body		api_def.RoleRevokePermission_Input	true	"RoleRevokePermission_Input"
-//	@Success		200									{object}	api_def.RoleRevokePermission_Output
-//	@Router			/role/roleRevokePermission [post]
+//	@Tags		role
+//	@ID			RoleRevokePermission
+//	@Summary	revoke permission
+//	@Accept		json,application/x-protobuf
+//	@Produce	json,application/x-protobuf
+//	@Param		api_def.RoleRevokePermission_Input	body		api_def.RoleRevokePermission_Input	true	"RoleRevokePermission_Input"
+//	@Success	200									{object}	api_def.RoleRevokePermission_Output
+//	@Router		/role/roleRevokePermission [post]
 func Handler(c *gin.Context) {
 		x := NewApi(kk_global_stage.GetRequestStage(c))
 		span := x.stage.StartTrace("roleRevokePermission")

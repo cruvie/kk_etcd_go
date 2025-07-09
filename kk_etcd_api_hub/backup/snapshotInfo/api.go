@@ -22,24 +22,24 @@ func NewApi(stage *kk_stage.Stage) *api {
 	}
 }
 
-//  Handler
-//	@Tags			backup
-//	@ID				SnapshotInfo
-//	@Description	snapshot info
-//	@Accept			json,application/x-protobuf
-//	@Produce		json,application/x-protobuf
-//	@Param			api_def.SnapshotInfo_Input	body		api_def.SnapshotInfo_Input	true	"SnapshotInfo_Input"
-//	@Success		200							{object}	api_def.SnapshotInfo_Output
-//	@Router			/backup/snapshotInfo [post]
+//	 Handler
+//		@Tags		backup
+//		@ID			SnapshotInfo
+//		@Summary	snapshot info
+//		@Accept		json,application/x-protobuf
+//		@Produce	json,application/x-protobuf
+//		@Param		api_def.SnapshotInfo_Input	body		api_def.SnapshotInfo_Input	true	"SnapshotInfo_Input"
+//		@Success	200							{object}	api_def.SnapshotInfo_Output
+//		@Router		/backup/snapshotInfo [post]
 func Handler(c *gin.Context) {
-		x := NewApi(kk_global_stage.GetRequestStage(c))
-		span := x.stage.StartTrace("snapshotInfo")
-		defer span.End()
-	
-		if err := x.bindCheck(); err != nil {
-			kk_http.WriteResponse(x.stage, err, nil)
-			return
-		}
-		resp, err := x.Handler()
-		kk_http.WriteResponse(x.stage, err, resp)
+	x := NewApi(kk_global_stage.GetRequestStage(c))
+	span := x.stage.StartTrace("snapshotInfo")
+	defer span.End()
+
+	if err := x.bindCheck(); err != nil {
+		kk_http.WriteResponse(x.stage, err, nil)
+		return
+	}
+	resp, err := x.Handler()
+	kk_http.WriteResponse(x.stage, err, resp)
 }

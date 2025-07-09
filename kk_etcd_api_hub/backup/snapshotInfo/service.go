@@ -1,7 +1,7 @@
 package snapshotInfo
 
 import (
-	"gitee.com/cruvie/kk_go_kit/kk_log"
+	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"log/slog"
 	"os"
 	"os/exec"
@@ -11,7 +11,7 @@ func (x *api) service() (info string, err error) {
 	span := x.stage.StartTrace("service")
 	defer span.End()
 
-	newLog := kk_log.NewLog(&kk_log.LogOption{TraceId: x.stage.TraceId})
+	newLog := kk_stage.NewLog(x.stage)
 	tempFile, err := os.CreateTemp("", "temp")
 	if err != nil {
 		return "", err

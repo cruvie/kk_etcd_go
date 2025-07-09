@@ -16,31 +16,31 @@ func TestBackup(t *testing.T) {
 		//backup
 		{
 			apiModel: kk_api_gen.ApiModel{
-				Description:     "snapshot",
+				Summary:         "snapshot",
 				HandlerFuncName: "Snapshot",
 			},
 		},
 		{
 			apiModel: kk_api_gen.ApiModel{
-				Description:     "snapshot restore",
+				Summary:         "snapshot restore",
 				HandlerFuncName: "SnapshotRestore",
 			},
 		},
 		{
 			apiModel: kk_api_gen.ApiModel{
-				Description:     "snapshot info",
+				Summary:         "snapshot info",
 				HandlerFuncName: "SnapshotInfo",
 			},
 		},
 		{
 			apiModel: kk_api_gen.ApiModel{
-				Description:     "all kvs backup",
+				Summary:         "all kvs backup",
 				HandlerFuncName: "AllKVsBackup",
 			},
 		},
 		{
 			apiModel: kk_api_gen.ApiModel{
-				Description:     "all kvs restore",
+				Summary:         "all kvs restore",
 				HandlerFuncName: "AllKVsRestore",
 			},
 		},
@@ -49,7 +49,7 @@ func TestBackup(t *testing.T) {
 	for _, api := range apis {
 		t.Run(api.apiModel.HandlerFuncName, func(t *testing.T) {
 			kk_api_gen.GenerateApi(apiGroupModel, api.apiModel)
-			kk_api_gen.GenerateApiDefProto(api.apiModel)
+			kk_api_gen.GenerateApiDefProto(apiGroupModel, api.apiModel)
 			//kk_api_gen.GenerateTypescriptApi(apiGroupModel, api.apiModel)
 		})
 	}

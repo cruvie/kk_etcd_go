@@ -9,7 +9,6 @@ const docTemplate = `{
     "info": {
         "description": "{{escape .Description}}",
         "title": "{{.Title}}",
-        "termsOfService": "http://kk_etcd_go/terms/",
         "contact": {
             "name": "kk_etcd_go",
             "url": "http://kk_etcd_go/support",
@@ -170,7 +169,6 @@ const docTemplate = `{
         },
         "/backup/snapshotInfo": {
             "post": {
-                "description": "snapshot info",
                 "consumes": [
                     "application/json",
                     "application/x-protobuf"
@@ -182,6 +180,7 @@ const docTemplate = `{
                 "tags": [
                     "backup"
                 ],
+                "summary": "snapshot info",
                 "operationId": "SnapshotInfo",
                 "parameters": [
                     {
@@ -206,7 +205,6 @@ const docTemplate = `{
         },
         "/backup/snapshotRestore": {
             "post": {
-                "description": "snapshot restore",
                 "consumes": [
                     "application/json",
                     "application/x-protobuf"
@@ -218,6 +216,7 @@ const docTemplate = `{
                 "tags": [
                     "backup"
                 ],
+                "summary": "snapshot restore",
                 "operationId": "SnapshotRestore",
                 "parameters": [
                     {
@@ -242,7 +241,6 @@ const docTemplate = `{
         },
         "/kv/kVDel": {
             "post": {
-                "description": "del kv",
                 "consumes": [
                     "application/json",
                     "application/x-protobuf"
@@ -254,6 +252,7 @@ const docTemplate = `{
                 "tags": [
                     "kv"
                 ],
+                "summary": "del kv",
                 "operationId": "KVDel",
                 "parameters": [
                     {
@@ -278,7 +277,6 @@ const docTemplate = `{
         },
         "/kv/kVGet": {
             "post": {
-                "description": "get kv",
                 "consumes": [
                     "application/json",
                     "application/x-protobuf"
@@ -290,6 +288,7 @@ const docTemplate = `{
                 "tags": [
                     "kv"
                 ],
+                "summary": "get kv",
                 "operationId": "KVGet",
                 "parameters": [
                     {
@@ -314,7 +313,6 @@ const docTemplate = `{
         },
         "/kv/kVList": {
             "post": {
-                "description": "list kv",
                 "consumes": [
                     "application/json",
                     "application/x-protobuf"
@@ -326,6 +324,7 @@ const docTemplate = `{
                 "tags": [
                     "kv"
                 ],
+                "summary": "list kv",
                 "operationId": "KVList",
                 "parameters": [
                     {
@@ -350,7 +349,6 @@ const docTemplate = `{
         },
         "/kv/kVPut": {
             "post": {
-                "description": "put kv",
                 "consumes": [
                     "application/json",
                     "application/x-protobuf"
@@ -362,6 +360,7 @@ const docTemplate = `{
                 "tags": [
                     "kv"
                 ],
+                "summary": "put kv",
                 "operationId": "KVPut",
                 "parameters": [
                     {
@@ -386,7 +385,6 @@ const docTemplate = `{
         },
         "/role/roleAdd": {
             "post": {
-                "description": "add role",
                 "consumes": [
                     "application/json",
                     "application/x-protobuf"
@@ -398,6 +396,7 @@ const docTemplate = `{
                 "tags": [
                     "role"
                 ],
+                "summary": "add role",
                 "operationId": "RoleAdd",
                 "parameters": [
                     {
@@ -422,7 +421,6 @@ const docTemplate = `{
         },
         "/role/roleDelete": {
             "post": {
-                "description": "delete role",
                 "consumes": [
                     "application/json",
                     "application/x-protobuf"
@@ -434,6 +432,7 @@ const docTemplate = `{
                 "tags": [
                     "role"
                 ],
+                "summary": "delete role",
                 "operationId": "RoleDelete",
                 "parameters": [
                     {
@@ -458,7 +457,6 @@ const docTemplate = `{
         },
         "/role/roleGet": {
             "post": {
-                "description": "get role",
                 "consumes": [
                     "application/json",
                     "application/x-protobuf"
@@ -470,6 +468,7 @@ const docTemplate = `{
                 "tags": [
                     "role"
                 ],
+                "summary": "get role",
                 "operationId": "RoleGet",
                 "parameters": [
                     {
@@ -494,7 +493,6 @@ const docTemplate = `{
         },
         "/role/roleGrantPermission": {
             "post": {
-                "description": "grant permission",
                 "consumes": [
                     "application/json",
                     "application/x-protobuf"
@@ -506,6 +504,7 @@ const docTemplate = `{
                 "tags": [
                     "role"
                 ],
+                "summary": "grant permission",
                 "operationId": "RoleGrantPermission",
                 "parameters": [
                     {
@@ -530,7 +529,6 @@ const docTemplate = `{
         },
         "/role/roleList": {
             "post": {
-                "description": "list role",
                 "consumes": [
                     "application/json",
                     "application/x-protobuf"
@@ -542,6 +540,7 @@ const docTemplate = `{
                 "tags": [
                     "role"
                 ],
+                "summary": "list role",
                 "operationId": "RoleList",
                 "parameters": [
                     {
@@ -566,7 +565,6 @@ const docTemplate = `{
         },
         "/role/roleRevokePermission": {
             "post": {
-                "description": "revoke permission",
                 "consumes": [
                     "application/json",
                     "application/x-protobuf"
@@ -578,6 +576,7 @@ const docTemplate = `{
                 "tags": [
                     "role"
                 ],
+                "summary": "revoke permission",
                 "operationId": "RoleRevokePermission",
                 "parameters": [
                     {
@@ -638,7 +637,6 @@ const docTemplate = `{
         },
         "/service/serviceList": {
             "post": {
-                "description": "list server",
                 "consumes": [
                     "application/json",
                     "application/x-protobuf"
@@ -650,6 +648,7 @@ const docTemplate = `{
                 "tags": [
                     "service"
                 ],
+                "summary": "list server",
                 "operationId": "ServiceList",
                 "parameters": [
                     {
@@ -674,7 +673,6 @@ const docTemplate = `{
         },
         "/user/getUser": {
             "post": {
-                "description": "get user",
                 "consumes": [
                     "application/json",
                     "application/x-protobuf"
@@ -686,6 +684,7 @@ const docTemplate = `{
                 "tags": [
                     "user"
                 ],
+                "summary": "get user",
                 "operationId": "GetUser",
                 "parameters": [
                     {
@@ -710,7 +709,6 @@ const docTemplate = `{
         },
         "/user/login": {
             "post": {
-                "description": "login",
                 "consumes": [
                     "application/json",
                     "application/x-protobuf"
@@ -722,6 +720,7 @@ const docTemplate = `{
                 "tags": [
                     "user"
                 ],
+                "summary": "login",
                 "operationId": "Login",
                 "parameters": [
                     {
@@ -746,7 +745,6 @@ const docTemplate = `{
         },
         "/user/logout": {
             "post": {
-                "description": "logout",
                 "consumes": [
                     "application/json",
                     "application/x-protobuf"
@@ -758,6 +756,7 @@ const docTemplate = `{
                 "tags": [
                     "user"
                 ],
+                "summary": "logout",
                 "operationId": "Logout",
                 "parameters": [
                     {
@@ -782,7 +781,6 @@ const docTemplate = `{
         },
         "/user/myInfo": {
             "post": {
-                "description": "get my info",
                 "consumes": [
                     "application/json",
                     "application/x-protobuf"
@@ -794,6 +792,7 @@ const docTemplate = `{
                 "tags": [
                     "user"
                 ],
+                "summary": "get my info",
                 "operationId": "MyInfo",
                 "parameters": [
                     {
@@ -818,7 +817,6 @@ const docTemplate = `{
         },
         "/user/userAdd": {
             "post": {
-                "description": "add user",
                 "consumes": [
                     "application/json",
                     "application/x-protobuf"
@@ -830,6 +828,7 @@ const docTemplate = `{
                 "tags": [
                     "user"
                 ],
+                "summary": "add user",
                 "operationId": "UserAdd",
                 "parameters": [
                     {
@@ -854,7 +853,6 @@ const docTemplate = `{
         },
         "/user/userDelete": {
             "post": {
-                "description": "delete user",
                 "consumes": [
                     "application/json",
                     "application/x-protobuf"
@@ -866,6 +864,7 @@ const docTemplate = `{
                 "tags": [
                     "user"
                 ],
+                "summary": "delete user",
                 "operationId": "UserDelete",
                 "parameters": [
                     {
@@ -890,7 +889,6 @@ const docTemplate = `{
         },
         "/user/userGrantRole": {
             "post": {
-                "description": "grant role",
                 "consumes": [
                     "application/json",
                     "application/x-protobuf"
@@ -902,6 +900,7 @@ const docTemplate = `{
                 "tags": [
                     "user"
                 ],
+                "summary": "grant role",
                 "operationId": "UserGrantRole",
                 "parameters": [
                     {
@@ -926,7 +925,6 @@ const docTemplate = `{
         },
         "/user/userList": {
             "post": {
-                "description": "list user",
                 "consumes": [
                     "application/json",
                     "application/x-protobuf"
@@ -938,6 +936,7 @@ const docTemplate = `{
                 "tags": [
                     "user"
                 ],
+                "summary": "list user",
                 "operationId": "UserList",
                 "parameters": [
                     {
@@ -1546,12 +1545,12 @@ const docTemplate = `{
 
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
-	Version:          "1.4.3",
+	Version:          "",
 	Host:             "localhost:2333",
 	BasePath:         "/",
 	Schemes:          []string{},
-	Title:            "kk_etcd_go API",
-	Description:      "kk_etcd_go terms.",
+	Title:            "",
+	Description:      "",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
 	LeftDelim:        "{{",

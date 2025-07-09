@@ -15,49 +15,49 @@ func TestUser(t *testing.T) {
 	}{
 		{
 			apiModel: kk_api_gen.ApiModel{
-				Description:     "login",
+				Summary:         "login",
 				HandlerFuncName: "Login",
 			},
 		},
 		{
 			apiModel: kk_api_gen.ApiModel{
-				Description:     "logout",
+				Summary:         "logout",
 				HandlerFuncName: "Logout",
 			},
 		},
 		{
 			apiModel: kk_api_gen.ApiModel{
-				Description:     "add user",
+				Summary:         "add user",
 				HandlerFuncName: "UserAdd",
 			},
 		},
 		{
 			apiModel: kk_api_gen.ApiModel{
-				Description:     "delete user",
+				Summary:         "delete user",
 				HandlerFuncName: "UserDelete",
 			},
 		},
 		{
 			apiModel: kk_api_gen.ApiModel{
-				Description:     "get user",
+				Summary:         "get user",
 				HandlerFuncName: "GetUser",
 			},
 		},
 		{
 			apiModel: kk_api_gen.ApiModel{
-				Description:     "get my info",
+				Summary:         "get my info",
 				HandlerFuncName: "MyInfo",
 			},
 		},
 		{
 			apiModel: kk_api_gen.ApiModel{
-				Description:     "list user",
+				Summary:         "list user",
 				HandlerFuncName: "UserList",
 			},
 		},
 		{
 			apiModel: kk_api_gen.ApiModel{
-				Description:     "grant role",
+				Summary:         "grant role",
 				HandlerFuncName: "UserGrantRole",
 			},
 		},
@@ -66,7 +66,7 @@ func TestUser(t *testing.T) {
 	for _, api := range apis {
 		t.Run(api.apiModel.HandlerFuncName, func(t *testing.T) {
 			kk_api_gen.GenerateApi(apiGroupModel, api.apiModel)
-			kk_api_gen.GenerateApiDefProto(api.apiModel)
+			kk_api_gen.GenerateApiDefProto(apiGroupModel, api.apiModel)
 			//kk_api_gen.GenerateTypescriptApi(apiGroupModel, api.apiModel)
 		})
 	}

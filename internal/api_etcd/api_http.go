@@ -47,14 +47,14 @@ func ApiHttp(stage *kk_stage.Stage) *kk_server.KKRunServer {
 	server.InitEngine()
 	r := server.Engine()
 	r.Use(kk_middleware.DefaultCors())
-	r.Use(kk_middleware.StageInit(stage))
+	r.Use(kk_middleware.StageInit())
 	//swagger
 	kk_swagger.InitSwagger(kk_swagger.Config{
 		Options:   nil,
 		R:         r,
 		Port:      config.Config.Port,
 		UrlPrefix: "",
-		DebugMode: stage.DebugMode,
+		DebugMode: config.Config.DebugMode,
 	})
 
 	r.Use(middleware.ParseHeader)

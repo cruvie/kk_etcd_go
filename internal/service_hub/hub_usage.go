@@ -1,7 +1,7 @@
 package service_hub
 
 import (
-	"gitee.com/cruvie/kk_go_kit/kk_log"
+	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"gitee.com/cruvie/kk_go_kit/kk_sync"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/kv/util_kv"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_error"
@@ -77,7 +77,7 @@ func (x *serverHub) watch() {
 					item := new(kk_etcd_models.PBServiceRegistration)
 					err := item.UnMarshal(event.Kv.Value)
 					if err != nil {
-						slog.Error("watch EventTypePut", kk_log.NewLog(nil).Error(err).Args()...)
+						slog.Error("watch EventTypePut", kk_stage.NewLog(nil).Error(err).Args()...)
 						continue
 					}
 					//new registration putToDeadHub first
@@ -87,7 +87,7 @@ func (x *serverHub) watch() {
 					item := new(kk_etcd_models.PBServiceRegistration)
 					err := item.BuildFromUniqueKey(string(event.Kv.Key))
 					if err != nil {
-						slog.Error("watch EventTypeDelete BuildFromUniqueKey", kk_log.NewLog(nil).Error(err).Args()...)
+						slog.Error("watch EventTypeDelete BuildFromUniqueKey", kk_stage.NewLog(nil).Error(err).Args()...)
 						continue
 					}
 					x.delFromDeadHub(item)
@@ -133,7 +133,7 @@ func getOneAliveService(connType kk_etcd_models.PBServiceType, serviceName strin
 func putAliveHubToEtcd(hub *hubT) {
 	err := util_kv.PutExistUpdateJson(kc.Client, kk_etcd_models.ServiceAliveKey, hub)
 	if err != nil {
-		slog.Error("failed to put to etcd", kk_log.NewLog(nil).Error(err).Args()...)
+		slog.Error("failed to put to etcd", kk_stage.NewLog(nil).Error(err).Args()...)
 		return
 	}
 }
@@ -142,7 +142,7 @@ func getAliveHubFromEtcd() (*hubT, error) {
 	newHub := newHubT()
 	err := util_kv.GetJson(kc.Client, kk_etcd_models.ServiceAliveKey, newHub)
 	if err != nil {
-		slog.Error("failed to get from etcd", kk_log.NewLog(nil).Error(err).Args()...)
+		slog.Error("failed to get from etcd", kk_stage.NewLog(nil).Error(err).Args()...)
 		return nil, err
 	}
 	return newHub, nil

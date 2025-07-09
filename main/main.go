@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"gitee.com/cruvie/kk_go_kit/kk_log"
 	"gitee.com/cruvie/kk_go_kit/kk_pprof"
 	"gitee.com/cruvie/kk_go_kit/kk_server"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
@@ -21,7 +20,7 @@ import (
 
 //	@title			kk_etcd_go API
 //	@version		1.4.3
-//	@description	kk_etcd_go terms.
+//	@Summary		kk_etcd_go terms.
 //	@termsOfService	http://kk_etcd_go/terms/
 
 //	@contact.name	kk_etcd_go
@@ -31,8 +30,8 @@ import (
 //	@license.name	Secret
 //	@license.url	http://kk_etcd_go/licenses/LICENSE-2.0.html
 
-// @host		localhost:2333
-// @BasePath	/
+//	@host		localhost:2333
+//	@BasePath	/
 func main() {
 	startTime := time.Now()
 
@@ -42,9 +41,9 @@ func main() {
 
 	{
 		//init log
-		configLog := kk_log.ConfigLog{
+		configLog := kk_stage.ConfigLog{
 			DebugMode:  config.Config.DebugMode,
-			Lumberjack: kk_log.DefaultLogConfig(time.Now(), consts.ServiceName),
+			Lumberjack: kk_stage.DefaultLogConfig(time.Now(), consts.ServiceName),
 			StartTime:  stage.StartTime,
 		}
 		configLog.Init()
@@ -62,7 +61,7 @@ func main() {
 		defer pprof.Close()
 	}
 
-	internal_client.InitEtcd()
+	internal_client.InitEtcd(stage)
 
 	etcdCfg := clientv3.Config{
 		Endpoints:   config.Config.Etcd.Endpoints,
@@ -72,8 +71,8 @@ func main() {
 	}
 	closeFunc, err := kk_etcd.InitClient(&kk_etcd.InitClientConfig{
 		Config:    etcdCfg,
-		DebugMode: internal_client.GlobalStage.DebugMode},
-	)
+		DebugMode: config.Config.DebugMode,
+	})
 	if err != nil {
 		panic(err)
 	}
