@@ -1,50 +1,17 @@
 package kv
 
 import (
-	"gitee.com/cruvie/kk_go_kit/kk_http/kk_api_gen"
 	"testing"
+
+	"gitee.com/cruvie/kk_go_kit/kk_grpc/grpc_api_gen"
+	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/kv/api_def"
 )
 
-func TestKV(t *testing.T) {
-	apiGroupModel := kk_api_gen.ApiGroupModel{
-		Tag:      "kv",
-		GroupUrl: "/kv/",
-	}
-	apis := []struct {
-		apiModel kk_api_gen.ApiModel
-	}{
-		//kv
-		{
-			apiModel: kk_api_gen.ApiModel{
-				Summary:         "put kv",
-				HandlerFuncName: "KVPut",
-			},
-		},
-		{
-			apiModel: kk_api_gen.ApiModel{
-				Summary:         "get kv",
-				HandlerFuncName: "KVGet",
-			},
-		},
-		{
-			apiModel: kk_api_gen.ApiModel{
-				Summary:         "del kv",
-				HandlerFuncName: "KVDel",
-			},
-		},
-		{
-			apiModel: kk_api_gen.ApiModel{
-				Summary:         "list kv",
-				HandlerFuncName: "KVList",
-			},
-		},
-	}
-
-	for _, api := range apis {
-		t.Run(api.apiModel.HandlerFuncName, func(t *testing.T) {
-			kk_api_gen.GenerateApi(apiGroupModel, api.apiModel)
-			kk_api_gen.GenerateApiDefProto(apiGroupModel, api.apiModel)
-			//kk_api_gen.GenerateTypescriptApi(apiGroupModel, api.apiModel)
-		})
-	}
+func TestGenImpl(t *testing.T) {
+	grpc_api_gen.GenerateImpl(grpc_api_gen.GenerateImplInput{
+		ServerName:      "KV",
+		Methods:         api_def.KV_ServiceDesc.Methods,
+		ApiDefPkgPath:   "github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/kv/api_def",
+		HandlersPkgPath: "github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/kv/api_handlers",
+	})
 }

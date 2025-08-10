@@ -2,11 +2,12 @@ package api_etcd
 
 import (
 	"context"
+	"testing"
+
 	apidef2 "github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/kv/api_def"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/user/api_def"
 	"github.com/mark3labs/mcp-go/client"
 	"github.com/mark3labs/mcp-go/mcp"
-	"testing"
 )
 
 func newClient(t *testing.T) (*client.Client, context.Context) {

@@ -1,0 +1,21 @@
+version: v2
+plugins:
+  - local: protoc-gen-go
+    out: .
+    opt:
+      - paths=source_relative
+  - local: protoc-gen-go-grpc
+    out: .
+    opt:
+      - paths=source_relative
+#  - local: protoc-gen-es
+#    opt: target=ts
+#    include_imports: true
+#    include_wkt: true
+#    out: ./lib_ts
+  - local: protoc-gen-dart
+    out: ./lib
+    opt:
+      - grpc
+    include_imports: true
+    include_wkt: true

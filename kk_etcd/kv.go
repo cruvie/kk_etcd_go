@@ -3,11 +3,6 @@ package kk_etcd
 import (
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
 	"github.com/cruvie/kk_etcd_go/internal/utils/internal_client"
-	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/kv/api_def"
-	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/kv/kVDel"
-	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/kv/kVGet"
-	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/kv/kVList"
-	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/kv/kVPut"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/kv/util_kv"
 )
 
@@ -17,29 +12,29 @@ func NewMgrKV() *MgrKV {
 	return &MgrKV{}
 }
 
-func (*MgrKV) KVPut(param *api_def.KVPut_Input) (*api_def.KVPut_Output, error) {
-	api := kVPut.NewApi(internal_client.GlobalStage)
-	api.In = param
-	return api.Handler()
-}
-
-func (*MgrKV) KVGet(param *api_def.KVGet_Input) (*api_def.KVGet_Output, error) {
-	api := kVGet.NewApi(internal_client.GlobalStage)
-	api.In = param
-	return api.Handler()
-}
-
-func (*MgrKV) KVDel(param *api_def.KVDel_Input) (*api_def.KVDel_Output, error) {
-	api := kVDel.NewApi(internal_client.GlobalStage)
-	api.In = param
-	return api.Handler()
-}
-
-func (*MgrKV) KVList(param *api_def.KVList_Input) (*api_def.KVList_Output, error) {
-	api := kVList.NewApi(internal_client.GlobalStage)
-	api.In = param
-	return api.Handler()
-}
+//func (*MgrKV) KVPut(param *api_def2.KVPut_Input) (*api_def2.KVPut_Output, error) {
+//	api := kVPut.NewApi(internal_client.GlobalStage)
+//	api.In = param
+//	return api.Handler()
+//}
+//
+//func (*MgrKV) KVGet(param *api_def2.KVGet_Input) (*api_def2.KVGet_Output, error) {
+//	api := kVGet.NewApi(internal_client.GlobalStage)
+//	api.In = param
+//	return api.Handler()
+//}
+//
+//func (*MgrKV) KVDel(param *api_def2.KVDel_Input) (*api_def2.KVDel_Output, error) {
+//	api := kVDel.NewApi(internal_client.GlobalStage)
+//	api.In = param
+//	return api.Handler()
+//}
+//
+//func (*MgrKV) KVList(param *api_def2.KVList_Input) (*api_def2.KVList_Output, error) {
+//	api := kVList.NewApi(internal_client.GlobalStage)
+//	api.In = param
+//	return api.Handler()
+//}
 
 // GetYaml get yaml from etcd and unmarshal to structPtr
 // eg: GetYaml("configKey", &Config)

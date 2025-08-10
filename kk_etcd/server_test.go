@@ -3,7 +3,14 @@ package kk_etcd_test
 import (
 	"context"
 	"fmt"
-	"gitee.com/cruvie/kk_go_kit/kk_http"
+
+	"log"
+	"log/slog"
+	"net"
+	"net/http"
+	"testing"
+	"time"
+
 	"gitee.com/cruvie/kk_go_kit/kk_net"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
@@ -16,12 +23,6 @@ import (
 	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/grpc/health/grpc_health_v1"
 	"google.golang.org/protobuf/types/known/durationpb"
-	"log"
-	"log/slog"
-	"net"
-	"net/http"
-	"testing"
-	"time"
 )
 
 type server struct {
@@ -40,17 +41,8 @@ func (s *server) Watch(*grpc_health_v1.HealthCheckRequest, grpc_health_v1.Health
 }
 
 func serviceList(req *api_def.ServiceList_Input) (*api_def.ServiceList_Output, error) {
-	header := http.Header{}
-	header.Add("Content-Type", "application/x-protobuf")
-	header.Add("Accept", "application/x-protobuf")
-	header.Add("Username", "root")
-	header.Add("Password", "root")
-	out := &api_def.ServiceList_Output{}
-	err := kk_http.SendPBRequest(5*time.Second,
-		http.MethodPost, "http://127.0.0.1:2333/service/serviceList",
-		header, req, out)
-
-	return out, err
+	initGrpcClient()
+	return testServiceClient.ServiceList(context.Background(), req)
 }
 
 func TestServiceList(t *testing.T) {
@@ -268,33 +260,33 @@ func TestGetHttpServiceList(t *testing.T) {
 	}
 }
 
-//func TestWatchServiceList(t *testing.T) {
-//	closeFunc := initTestEnv()
-//	defer func() {
-//		err := closeFunc()
+//	func TestWatchServiceList(t *testing.T) {
+//		closeFunc := initTestEnv()
+//		defer func() {
+//			err := closeFunc()
+//			if err != nil {
+//				log.Println(err)
+//			}
+//		}()
+//		serverListChan := make(chan *kk_etcd_models.PBListService)
+//		defer close(serverListChan)
+//		ctx, cancel := context.WithCancel(context.Background())
+//		defer cancel()
+//
+//		err := WatchServiceList(ctx, kk_etcd_models.PBServiceType_Http, "haha_http", serverListChan)
 //		if err != nil {
-//			log.Println(err)
-//		}
-//	}()
-//	serverListChan := make(chan *kk_etcd_models.PBListService)
-//	defer close(serverListChan)
-//	ctx, cancel := context.WithCancel(context.Background())
-//	defer cancel()
-//
-//	err := WatchServiceList(ctx, kk_etcd_models.PBServiceType_Http, "haha_http", serverListChan)
-//	if err != nil {
-//		slog.Error("WatchServiceList failed", "err", err)
-//		return
-//	}
-//
-//	for {
-//		slog.Info("watching for server list change")
-//		select {
-//		case <-ctx.Done():
-//			slog.Info("ctx done")
+//			slog.Error("WatchServiceList failed", "err", err)
 //			return
-//		case serverList := <-serverListChan:
-//			slog.Info("serverListChan", "serverList", serverList)
+//		}
+//
+//		for {
+//			slog.Info("watching for server list change")
+//			select {
+//			case <-ctx.Done():
+//				slog.Info("ctx done")
+//				return
+//			case serverList := <-serverListChan:
+//				slog.Info("serverListChan", "serverList", serverList)
+//			}
 //		}
 //	}
-//}

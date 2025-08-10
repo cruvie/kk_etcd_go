@@ -1,38 +1,17 @@
 package service
 
 import (
-	"gitee.com/cruvie/kk_go_kit/kk_http/kk_api_gen"
 	"testing"
+
+	"gitee.com/cruvie/kk_go_kit/kk_grpc/grpc_api_gen"
+	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/service/api_def"
 )
 
-func TestService(t *testing.T) {
-	apiGroupModel := kk_api_gen.ApiGroupModel{
-		Tag:      "service",
-		GroupUrl: "/service/",
-	}
-	apis := []struct {
-		apiModel kk_api_gen.ApiModel
-	}{
-		//service
-		{
-			apiModel: kk_api_gen.ApiModel{
-				Summary:         "list service",
-				HandlerFuncName: "ServiceList",
-			},
-		},
-		{
-			apiModel: kk_api_gen.ApiModel{
-				Summary:         "deregister service",
-				HandlerFuncName: "DeregisterService",
-			},
-		},
-	}
-
-	for _, api := range apis {
-		t.Run(api.apiModel.HandlerFuncName, func(t *testing.T) {
-			kk_api_gen.GenerateApi(apiGroupModel, api.apiModel)
-			kk_api_gen.GenerateApiDefProto(apiGroupModel, api.apiModel)
-			//kk_api_gen.GenerateTypescriptApi(apiGroupModel, api.apiModel)
-		})
-	}
+func TestGenImpl(t *testing.T) {
+	grpc_api_gen.GenerateImpl(grpc_api_gen.GenerateImplInput{
+		ServerName:      "Service",
+		Methods:         api_def.Service_ServiceDesc.Methods,
+		ApiDefPkgPath:   "github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/service/api_def",
+		HandlersPkgPath: "github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/service/api_handlers",
+	})
 }

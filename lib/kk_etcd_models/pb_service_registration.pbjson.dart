@@ -1,13 +1,14 @@
+// This is a generated file - do not edit.
 //
-//  Generated code. Do not modify.
-//  source: kk_etcd_models/pb_service_registration.proto
-//
+// Generated from kk_etcd_models/pb_service_registration.proto.
+
 // @dart = 3.3
 
 // ignore_for_file: annotate_overrides, camel_case_types, comment_references
-// ignore_for_file: constant_identifier_names, library_prefixes
-// ignore_for_file: non_constant_identifier_names, prefer_final_fields
-// ignore_for_file: unnecessary_import, unnecessary_this, unused_import
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: curly_braces_in_flow_control_structures
+// ignore_for_file: deprecated_member_use_from_same_package, library_prefixes
+// ignore_for_file: non_constant_identifier_names, unused_import
 
 import 'dart:convert' as $convert;
 import 'dart:core' as $core;
@@ -31,10 +32,24 @@ final $typed_data.Uint8List pBServiceTypeDescriptor = $convert.base64Decode(
 const PBServiceRegistration$json = {
   '1': 'PBServiceRegistration',
   '2': [
-    {'1': 'ServiceType', '3': 1, '4': 1, '5': 14, '6': '.kk_etcd_models.PBServiceType', '10': 'ServiceType'},
+    {
+      '1': 'ServiceType',
+      '3': 1,
+      '4': 1,
+      '5': 14,
+      '6': '.kk_etcd_models.PBServiceType',
+      '10': 'ServiceType'
+    },
     {'1': 'ServiceName', '3': 2, '4': 1, '5': 9, '10': 'ServiceName'},
     {'1': 'ServiceAddr', '3': 3, '4': 1, '5': 9, '10': 'ServiceAddr'},
-    {'1': 'CheckConfig', '3': 4, '4': 1, '5': 11, '6': '.kk_etcd_models.PBServiceRegistration.PBCheckConfig', '10': 'CheckConfig'},
+    {
+      '1': 'CheckConfig',
+      '3': 4,
+      '4': 1,
+      '5': 11,
+      '6': '.kk_etcd_models.PBServiceRegistration.PBCheckConfig',
+      '10': 'CheckConfig'
+    },
   ],
   '3': [PBServiceRegistration_PBCheckConfig$json],
 };
@@ -43,9 +58,30 @@ const PBServiceRegistration$json = {
 const PBServiceRegistration_PBCheckConfig$json = {
   '1': 'PBCheckConfig',
   '2': [
-    {'1': 'Type', '3': 1, '4': 1, '5': 14, '6': '.kk_etcd_models.PBServiceType', '10': 'Type'},
-    {'1': 'Timeout', '3': 2, '4': 1, '5': 11, '6': '.google.protobuf.Duration', '10': 'Timeout'},
-    {'1': 'Interval', '3': 3, '4': 1, '5': 11, '6': '.google.protobuf.Duration', '10': 'Interval'},
+    {
+      '1': 'Type',
+      '3': 1,
+      '4': 1,
+      '5': 14,
+      '6': '.kk_etcd_models.PBServiceType',
+      '10': 'Type'
+    },
+    {
+      '1': 'Timeout',
+      '3': 2,
+      '4': 1,
+      '5': 11,
+      '6': '.google.protobuf.Duration',
+      '10': 'Timeout'
+    },
+    {
+      '1': 'Interval',
+      '3': 3,
+      '4': 1,
+      '5': 11,
+      '6': '.google.protobuf.Duration',
+      '10': 'Interval'
+    },
     {'1': 'Addr', '3': 4, '4': 1, '5': 9, '10': 'Addr'},
   ],
 };
@@ -65,12 +101,19 @@ final $typed_data.Uint8List pBServiceRegistrationDescriptor = $convert.base64Dec
 const PBListServiceRegistration$json = {
   '1': 'PBListServiceRegistration',
   '2': [
-    {'1': 'List', '3': 1, '4': 3, '5': 11, '6': '.kk_etcd_models.PBServiceRegistration', '10': 'List'},
+    {
+      '1': 'List',
+      '3': 1,
+      '4': 3,
+      '5': 11,
+      '6': '.kk_etcd_models.PBServiceRegistration',
+      '10': 'List'
+    },
   ],
 };
 
 /// Descriptor for `PBListServiceRegistration`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List pBListServiceRegistrationDescriptor = $convert.base64Decode(
-    'ChlQQkxpc3RTZXJ2aWNlUmVnaXN0cmF0aW9uEjkKBExpc3QYASADKAsyJS5ra19ldGNkX21vZG'
-    'Vscy5QQlNlcnZpY2VSZWdpc3RyYXRpb25SBExpc3Q=');
-
+final $typed_data.Uint8List pBListServiceRegistrationDescriptor =
+    $convert.base64Decode(
+        'ChlQQkxpc3RTZXJ2aWNlUmVnaXN0cmF0aW9uEjkKBExpc3QYASADKAsyJS5ra19ldGNkX21vZG'
+        'Vscy5QQlNlcnZpY2VSZWdpc3RyYXRpb25SBExpc3Q=');

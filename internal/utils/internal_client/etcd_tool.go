@@ -2,6 +2,9 @@ package internal_client
 
 import (
 	"context"
+	"log/slog"
+	"time"
+
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/internal/config"
 	"github.com/cruvie/kk_etcd_go/internal/utils/consts"
@@ -11,8 +14,6 @@ import (
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	"go.etcd.io/etcd/api/v3/v3rpc/rpctypes"
 	clientv3 "go.etcd.io/etcd/client/v3"
-	"log/slog"
-	"time"
 )
 
 type serToolEtcd struct{}

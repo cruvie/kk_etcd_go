@@ -1,13 +1,14 @@
+// This is a generated file - do not edit.
 //
-//  Generated code. Do not modify.
-//  source: kk_etcd_api_hub/backup/api_def/Snapshot.proto
-//
+// Generated from kk_etcd_api_hub/backup/api_def/Snapshot.proto.
+
 // @dart = 3.3
 
 // ignore_for_file: annotate_overrides, camel_case_types, comment_references
-// ignore_for_file: constant_identifier_names, library_prefixes
-// ignore_for_file: non_constant_identifier_names, prefer_final_fields
-// ignore_for_file: unnecessary_import, unnecessary_this, unused_import
+// ignore_for_file: constant_identifier_names
+// ignore_for_file: curly_braces_in_flow_control_structures
+// ignore_for_file: deprecated_member_use_from_same_package, library_prefixes
+// ignore_for_file: non_constant_identifier_names, unused_import
 
 import 'dart:convert' as $convert;
 import 'dart:core' as $core;
@@ -37,4 +38,3 @@ const Snapshot_Output$json = {
 final $typed_data.Uint8List snapshotDescriptor = $convert.base64Decode(
     'CghTbmFwc2hvdBoHCgVJbnB1dBowCgZPdXRwdXQSEgoETmFtZRgBIAEoCVIETmFtZRISCgRGaW'
     'xlGAIgASgMUgRGaWxl');
-

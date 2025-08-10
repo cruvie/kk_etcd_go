@@ -2,16 +2,15 @@ package middleware
 
 import (
 	"fmt"
-	"gitee.com/cruvie/kk_go_kit/kk_http"
-	"gitee.com/cruvie/kk_go_kit/kk_http/kk_global_stage"
+	"net/http"
+	"time"
+
 	"gitee.com/cruvie/kk_go_kit/kk_models"
 	"github.com/cruvie/kk_etcd_go/internal/config"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/user/util_user"
 	"github.com/gin-gonic/gin"
 	clientv3 "go.etcd.io/etcd/client/v3"
-	"net/http"
-	"time"
 )
 
 // EtcdClient set etcd client for current request

@@ -3,6 +3,7 @@ package util_user
 import (
 	"context"
 	"errors"
+
 	"gitee.com/cruvie/kk_go_kit/kk_slice"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"

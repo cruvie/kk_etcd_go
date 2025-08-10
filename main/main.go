@@ -2,6 +2,10 @@ package main
 
 import (
 	"context"
+
+	"log/slog"
+	"time"
+
 	"gitee.com/cruvie/kk_go_kit/kk_pprof"
 	"gitee.com/cruvie/kk_go_kit/kk_server"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
@@ -12,26 +16,9 @@ import (
 	"github.com/cruvie/kk_etcd_go/internal/utils/consts"
 	"github.com/cruvie/kk_etcd_go/internal/utils/internal_client"
 	"github.com/cruvie/kk_etcd_go/kk_etcd"
-	_ "github.com/cruvie/kk_etcd_go/swagger"
 	clientv3 "go.etcd.io/etcd/client/v3"
-	"log/slog"
-	"time"
 )
 
-//	@title			kk_etcd_go API
-//	@version		1.4.3
-//	@Summary		kk_etcd_go terms.
-//	@termsOfService	http://kk_etcd_go/terms/
-
-//	@contact.name	kk_etcd_go
-//	@contact.url	http://kk_etcd_go/support
-//	@contact.email	kk_etcd_go@qq.com
-
-//	@license.name	Secret
-//	@license.url	http://kk_etcd_go/licenses/LICENSE-2.0.html
-
-//	@host		localhost:2333
-//	@BasePath	/
 func main() {
 	startTime := time.Now()
 
@@ -90,8 +77,8 @@ func main() {
 	service_hub.InitServiceHub()
 
 	kkServer := kk_server.NewKKServer(5*time.Second, stage)
-	kkServer.Add("ApiHttp", 0, api_etcd.ApiHttp(internal_client.GlobalStage))
-	kkServer.Add("ApiMCP", 0, api_etcd.ApiMCP())
+	kkServer.Add("ApiGrpc", 0, api_etcd.NewGrpcServer(internal_client.GlobalStage))
+	//kkServer.Add("ApiMCP", 0, api_etcd.ApiMCP())
 	//kkServer.Add("etcd_maintain", 0, service_hub.NewEtcdMaintain())
 	kkServer.Add("etcd_ai", 0, etcd_ai.EtcdAIService())
 	kkServer.ServeAndWait()

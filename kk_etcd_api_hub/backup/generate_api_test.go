@@ -1,56 +1,17 @@
 package backup
 
 import (
-	"gitee.com/cruvie/kk_go_kit/kk_http/kk_api_gen"
 	"testing"
+
+	"gitee.com/cruvie/kk_go_kit/kk_grpc/grpc_api_gen"
+	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/backup/api_def"
 )
 
-func TestBackup(t *testing.T) {
-	apiGroupModel := kk_api_gen.ApiGroupModel{
-		Tag:      "backup",
-		GroupUrl: "/backup/",
-	}
-	apis := []struct {
-		apiModel kk_api_gen.ApiModel
-	}{
-		//backup
-		{
-			apiModel: kk_api_gen.ApiModel{
-				Summary:         "snapshot",
-				HandlerFuncName: "Snapshot",
-			},
-		},
-		{
-			apiModel: kk_api_gen.ApiModel{
-				Summary:         "snapshot restore",
-				HandlerFuncName: "SnapshotRestore",
-			},
-		},
-		{
-			apiModel: kk_api_gen.ApiModel{
-				Summary:         "snapshot info",
-				HandlerFuncName: "SnapshotInfo",
-			},
-		},
-		{
-			apiModel: kk_api_gen.ApiModel{
-				Summary:         "all kvs backup",
-				HandlerFuncName: "AllKVsBackup",
-			},
-		},
-		{
-			apiModel: kk_api_gen.ApiModel{
-				Summary:         "all kvs restore",
-				HandlerFuncName: "AllKVsRestore",
-			},
-		},
-	}
-
-	for _, api := range apis {
-		t.Run(api.apiModel.HandlerFuncName, func(t *testing.T) {
-			kk_api_gen.GenerateApi(apiGroupModel, api.apiModel)
-			kk_api_gen.GenerateApiDefProto(apiGroupModel, api.apiModel)
-			//kk_api_gen.GenerateTypescriptApi(apiGroupModel, api.apiModel)
-		})
-	}
+func TestGenImpl(t *testing.T) {
+	grpc_api_gen.GenerateImpl(grpc_api_gen.GenerateImplInput{
+		ServerName:      "Backup",
+		Methods:         api_def.Backup_ServiceDesc.Methods,
+		ApiDefPkgPath:   "github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/backup/api_def",
+		HandlersPkgPath: "github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/backup/api_handlers",
+	})
 }

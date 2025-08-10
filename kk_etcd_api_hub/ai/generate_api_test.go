@@ -1,31 +1,17 @@
 package ai
 
 import (
-	"gitee.com/cruvie/kk_go_kit/kk_http/kk_api_gen"
 	"testing"
+
+	"gitee.com/cruvie/kk_go_kit/kk_grpc/grpc_api_gen"
+	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/ai/api_def"
 )
 
-func TestEtcdAI(t *testing.T) {
-	apiGroupModel := kk_api_gen.ApiGroupModel{
-		Tag:      "ai",
-		GroupUrl: "/ai/",
-	}
-	apis := []struct {
-		apiModel kk_api_gen.ApiModel
-	}{
-		{
-			apiModel: kk_api_gen.ApiModel{
-				Summary:         "query ai",
-				HandlerFuncName: "Query",
-			},
-		},
-	}
-
-	for _, api := range apis {
-		t.Run(api.apiModel.HandlerFuncName, func(t *testing.T) {
-			kk_api_gen.GenerateApi(apiGroupModel, api.apiModel)
-			kk_api_gen.GenerateApiDefProto(apiGroupModel, api.apiModel)
-			//kk_api_gen.GenerateTypescriptApi(apiGroupModel, api.apiModel)
-		})
-	}
+func TestGenImpl(t *testing.T) {
+	grpc_api_gen.GenerateImpl(grpc_api_gen.GenerateImplInput{
+		ServerName:      "AI",
+		Methods:         api_def.AI_ServiceDesc.Methods,
+		ApiDefPkgPath:   "github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/ai/api_def",
+		HandlersPkgPath: "github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/ai/api_handlers",
+	})
 }

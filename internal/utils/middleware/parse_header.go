@@ -1,8 +1,6 @@
 package middleware
 
 import (
-	"gitee.com/cruvie/kk_go_kit/kk_http"
-	"gitee.com/cruvie/kk_go_kit/kk_http/kk_global_stage"
 	"gitee.com/cruvie/kk_go_kit/kk_models"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
 	"github.com/gin-gonic/gin"

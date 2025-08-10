@@ -12,4 +12,5 @@ dependencies:
   kk_go_kit:
     git:
       url: https://gitee.com/cruvie/kk_go_kit.git
-  protobuf: any # all BSD-3-Clause
+  protobuf: any # all
+  grpc: any # all
