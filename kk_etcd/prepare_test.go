@@ -5,9 +5,9 @@ import (
 	"time"
 
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
+	"github.com/cruvie/kk_etcd_go/internal/service_hub/service/api_def"
 	"github.com/cruvie/kk_etcd_go/internal/utils/consts"
 	"github.com/cruvie/kk_etcd_go/kk_etcd"
-	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/service/api_def"
 	clientv3 "go.etcd.io/etcd/client/v3"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"

@@ -1,51 +1,75 @@
 package middleware
 
 import (
-	"fmt"
-	"net/http"
+	"context"
 	"time"
 
-	"gitee.com/cruvie/kk_go_kit/kk_models"
+	"gitee.com/cruvie/kk_go_kit/kk_grpc"
 	"github.com/cruvie/kk_etcd_go/internal/config"
+	"github.com/cruvie/kk_etcd_go/internal/service_hub/user/util_user"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
-	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/user/util_user"
-	"github.com/gin-gonic/gin"
 	clientv3 "go.etcd.io/etcd/client/v3"
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/metadata"
+	"google.golang.org/grpc/status"
 )
 
 // EtcdClient set etcd client for current request
-func EtcdClient(c *gin.Context) {
-	stage := kk_global_stage.GetRequestStage(c)
+func etcdClient(userName, password string) (*clientv3.Client, error) {
 	//todo use https://github.com/etcd-io/etcd/pull/16803
 	// set verify jwt directly
 	//slog.Info("url", c.Request.URL.Path)
 	cfg := clientv3.Config{
 		Endpoints:   config.Config.Etcd.Endpoints,
 		DialTimeout: 5 * time.Second,
-		Username:    global_model.GetRequestHeader(stage).UserName,
-		Password:    global_model.GetRequestHeader(stage).Password,
+		Username:    userName,
+		Password:    password,
 	}
-	var err error
-	client, err := clientv3.New(cfg)
-	if err != nil {
-		kk_http.WriteCustomResponse(stage, &kk_models.PBResponse{
-			Code: http.StatusUnauthorized,
-			Msg:  err.Error()})
-		c.Abort()
-		return
-	}
-	global_model.SetClient(stage, client)
+	return clientv3.New(cfg)
+}
+func UnaryEtcdClient() grpc.UnaryServerInterceptor {
+	return func(ctx context.Context, req any, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (any, error) {
+		stage := kk_grpc.GetGrpcStage(ctx)
 
-	user, err := util_user.GetUser(stage, global_model.GetRequestHeader(stage).UserName)
-	if err != nil {
-		kk_http.WriteCustomResponse(stage, &kk_models.PBResponse{
-			Code: http.StatusUnauthorized,
-			Msg:  fmt.Sprintf("LogIn again %s", err.Error())})
-		c.Abort()
-		return
+		md, ok := metadata.FromIncomingContext(ctx)
+		if !ok {
+			return nil, status.Error(codes.Unauthenticated, "kk_grpc missing metadata")
+		}
+
+		names := md.Get("UserName")
+		if len(names) == 0 {
+			return nil, status.Error(codes.Unauthenticated, "kk_grpc missing names")
+		}
+		pwds := md.Get("Password")
+		if len(pwds) == 0 {
+			return nil, status.Error(codes.Unauthenticated, "kk_grpc missing pwds")
+		}
+
+		client, err := etcdClient(names[0], pwds[0])
+		if err != nil {
+			return nil, status.Error(codes.Unauthenticated, "kk_grpc missing client")
+		}
+
+		global_model.SetClient(stage, client)
+
+		user, err := util_user.GetUser(stage, names[0])
+		if err != nil {
+			return nil, status.Error(codes.Unauthenticated, "kk_grpc missing user")
+		}
+		//store user to gin context
+		global_model.SetLoginUser(stage, user)
+
+		return handler(ctx, req)
 	}
-	//store user to gin context
-	global_model.SetLoginUser(stage, user)
-	c.Next()
-	global_model.CloseClient(stage)
+}
+
+// todo 如何在结束后关闭客户端
+func UnaryEtcdClientClose() grpc.UnaryServerInterceptor {
+	return func(ctx context.Context, req any, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (any, error) {
+		stage := kk_grpc.GetGrpcStage(ctx)
+		global_model.CloseClient(stage)
+
+		return handler(ctx, req)
+	}
 }

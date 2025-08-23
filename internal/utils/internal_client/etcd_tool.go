@@ -7,10 +7,10 @@ import (
 
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/internal/config"
+	"github.com/cruvie/kk_etcd_go/internal/service_hub/role/util_role"
+	"github.com/cruvie/kk_etcd_go/internal/service_hub/user/util_user"
 	"github.com/cruvie/kk_etcd_go/internal/utils/consts"
-	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/role/util_role"
-	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/user/util_user"
-	"github.com/cruvie/kk_etcd_go/kk_etcd_error"
+	"github.com/cruvie/kk_etcd_go/kk_etcd"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	"go.etcd.io/etcd/api/v3/v3rpc/rpctypes"
 	clientv3 "go.etcd.io/etcd/client/v3"
@@ -38,7 +38,7 @@ func (x *serToolEtcd) checkAuthEnabled() (enabled bool) {
 	}(client)
 	resp, err := client.AuthStatus(context.Background())
 	if err != nil {
-		if kk_etcd_error.ErrorIs(err, rpctypes.ErrGRPCUserEmpty) {
+		if kk_etcd.ErrorIs(err, rpctypes.ErrGRPCUserEmpty) {
 			//means auth enabled
 			return true
 		}

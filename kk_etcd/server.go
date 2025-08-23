@@ -1,12 +1,12 @@
 package kk_etcd
 
 import (
-	"github.com/cruvie/kk_etcd_go/internal/service_hub"
+	"github.com/cruvie/kk_etcd_go/internal/service_housekeeper"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	"google.golang.org/grpc"
 )
 
-var serService service_hub.SerService
+var serService service_housekeeper.SerService
 
 // RegisterService register service to etcd
 func RegisterService(registration *kk_etcd_models.PBServiceRegistration) error {

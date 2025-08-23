@@ -13,10 +13,10 @@ import (
 
 	"gitee.com/cruvie/kk_go_kit/kk_net"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
+	"github.com/cruvie/kk_etcd_go/internal/service_hub/service/api_def"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
 	"github.com/cruvie/kk_etcd_go/internal/utils/internal_client"
 	"github.com/cruvie/kk_etcd_go/kk_etcd"
-	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/service/api_def"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	clientv3 "go.etcd.io/etcd/client/v3"
 	"google.golang.org/grpc"

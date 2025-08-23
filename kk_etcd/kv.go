@@ -1,9 +1,9 @@
 package kk_etcd
 
 import (
+	"github.com/cruvie/kk_etcd_go/internal/service_hub/kv/util_kv"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
 	"github.com/cruvie/kk_etcd_go/internal/utils/internal_client"
-	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/kv/util_kv"
 )
 
 type MgrKV struct{}

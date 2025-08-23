@@ -2,12 +2,12 @@ package kk_etcd
 
 //
 //import (
-//	api_def2 "github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/backup/api_def"
-//	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/backup/api_handlers/allKVsBackup"
-//	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/backup/api_handlers/allKVsRestore"
-//	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/backup/api_handlers/snapshot"
-//	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/backup/api_handlers/snapshotInfo"
-//	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/backup/api_handlers/snapshotRestore"
+//	api_def2 "github.com/cruvie/kk_etcd_go/internal/service_hub/backup/api_def"
+//	"github.com/cruvie/kk_etcd_go/internal/service_hub/backup/api_handlers/allKVsBackup"
+//	"github.com/cruvie/kk_etcd_go/internal/service_hub/backup/api_handlers/allKVsRestore"
+//	"github.com/cruvie/kk_etcd_go/internal/service_hub/backup/api_handlers/snapshot"
+//	"github.com/cruvie/kk_etcd_go/internal/service_hub/backup/api_handlers/snapshotInfo"
+//	"github.com/cruvie/kk_etcd_go/internal/service_hub/backup/api_handlers/snapshotRestore"
 //	"github.com/cruvie/kk_etcd_go/internal/utils/internal_client"
 //)
 //

@@ -12,7 +12,7 @@ import (
 	"github.com/cruvie/kk_etcd_go/internal/api_etcd"
 	"github.com/cruvie/kk_etcd_go/internal/config"
 	"github.com/cruvie/kk_etcd_go/internal/etcd_ai"
-	"github.com/cruvie/kk_etcd_go/internal/service_hub"
+	"github.com/cruvie/kk_etcd_go/internal/service_housekeeper"
 	"github.com/cruvie/kk_etcd_go/internal/utils/consts"
 	"github.com/cruvie/kk_etcd_go/internal/utils/internal_client"
 	"github.com/cruvie/kk_etcd_go/kk_etcd"
@@ -25,16 +25,11 @@ func main() {
 	config.InitConfig()
 
 	stage := kk_stage.NewStage(context.Background(), consts.ServiceName).SetStartTime(startTime)
-
 	{
-		//init log
-		configLog := kk_stage.ConfigLog{
-			DebugMode:  config.Config.DebugMode,
-			Lumberjack: kk_stage.DefaultLogConfig(time.Now(), consts.ServiceName),
-			StartTime:  stage.StartTime,
-		}
-		configLog.Init()
-		defer configLog.Close()
+		config.InitLog(stage)
+		defer func() {
+			config.LogCfg.Close()
+		}()
 	}
 	{
 		//init pprof
@@ -70,11 +65,11 @@ func main() {
 		}
 	}()
 
-	service_hub.InitKubernetesClient(etcdCfg)
+	service_housekeeper.InitKubernetesClient(etcdCfg)
 	defer func() {
-		service_hub.CloseKubernetesClient()
+		service_housekeeper.CloseKubernetesClient()
 	}()
-	service_hub.InitServiceHub()
+	service_housekeeper.InitServiceHub()
 
 	kkServer := kk_server.NewKKServer(5*time.Second, stage)
 	kkServer.Add("ApiGrpc", 0, api_etcd.NewGrpcServer(internal_client.GlobalStage))

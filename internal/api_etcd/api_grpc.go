@@ -6,16 +6,18 @@ import (
 
 	"gitee.com/cruvie/kk_go_kit/kk_file"
 	"gitee.com/cruvie/kk_go_kit/kk_grpc"
-	apiImplAI "github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/ai/api_impl"
-	apiImplBackup "github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/backup/api_impl"
-	apiImplKv "github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/kv/api_impl"
-	apiImplRole "github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/role/api_impl"
-	apiImplService "github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/service/api_impl"
-	apiImplUser "github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/user/api_impl"
-	"google.golang.org/grpc/reflection"
-
+	"gitee.com/cruvie/kk_go_kit/kk_grpc/interceptor"
 	"gitee.com/cruvie/kk_go_kit/kk_server"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
+	apiImplAI "github.com/cruvie/kk_etcd_go/internal/service_hub/ai/api_impl"
+	apiImplBackup "github.com/cruvie/kk_etcd_go/internal/service_hub/backup/api_impl"
+	apiImplKv "github.com/cruvie/kk_etcd_go/internal/service_hub/kv/api_impl"
+	apiImplRole "github.com/cruvie/kk_etcd_go/internal/service_hub/role/api_impl"
+	apiImplService "github.com/cruvie/kk_etcd_go/internal/service_hub/service/api_impl"
+	apiImplUser "github.com/cruvie/kk_etcd_go/internal/service_hub/user/api_impl"
+	"github.com/cruvie/kk_etcd_go/internal/utils/middleware"
+	"github.com/grpc-ecosystem/go-grpc-middleware/v2/interceptors/recovery"
+	"google.golang.org/grpc/reflection"
 
 	"github.com/cruvie/kk_etcd_go/internal/config"
 	"go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc"
@@ -28,16 +30,16 @@ func NewGrpcServer(stage *kk_stage.Stage) *kk_server.KKRunServer {
 		panic(err)
 	}
 
-	//	r.Use(kk_middleware.DefaultCors())
-	//	r.Use(kk_middleware.StageInit())
-	//
-	//	r.Use(middleware.ParseHeader)
-	//	r.Use(middleware.EtcdClient)
-
 	grpcServer := grpc.NewServer(
 		grpc.StatsHandler(otelgrpc.NewServerHandler()),
 		grpc.MaxRecvMsgSize(kk_file.MB.Int()*10),
 		grpc.MaxSendMsgSize(kk_file.MB.Int()*10),
+		grpc.ChainUnaryInterceptor(
+			middleware.UnaryLogging(),
+			interceptor.UnaryStage(kk_grpc.GFileDescHub),
+			middleware.UnaryEtcdClient(),
+			recovery.UnaryServerInterceptor(recovery.WithRecoveryHandler(middleware.PanicRecovery)),
+		),
 	)
 	reflection.Register(grpcServer)
 	//grpcurl -plaintext localhost:2333 list

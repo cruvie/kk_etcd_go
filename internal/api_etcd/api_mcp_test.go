@@ -4,8 +4,8 @@ import (
 	"context"
 	"testing"
 
-	apidef2 "github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/kv/api_def"
-	"github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/user/api_def"
+	api_def2 "github.com/cruvie/kk_etcd_go/internal/service_hub/kv/api_def"
+	"github.com/cruvie/kk_etcd_go/internal/service_hub/user/api_def"
 	"github.com/mark3labs/mcp-go/client"
 	"github.com/mark3labs/mcp-go/mcp"
 )
@@ -89,7 +89,7 @@ func TestCallTool(t *testing.T) {
 	request.Params.Arguments = map[string]interface{}{
 		"UserName": "root",
 		"Password": "root",
-		"input":    apidef2.KVList_Input{},
+		"input":    api_def2.KVList_Input{},
 		"token":    "asfafdsgds",
 	}
 

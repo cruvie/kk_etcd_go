@@ -9,7 +9,7 @@ package kk_etcd_test
 //	"testing"
 //
 //	"gitee.com/cruvie/kk_go_kit/kk_stage"
-//	api_def2 "github.com/cruvie/kk_etcd_go/kk_etcd_api_hub/backup/api_def"
+//	api_def2 "github.com/cruvie/kk_etcd_go/internal/service_hub/backup/api_def"
 //	"github.com/cruvie/kk_etcd_go/kk_etcd"
 //	"github.com/tiktoken-go/tokenizer"
 //)

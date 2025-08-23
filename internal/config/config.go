@@ -1,9 +1,13 @@
 package config
 
 import (
-	"gopkg.in/yaml.v3"
 	"log/slog"
 	"os"
+	"time"
+
+	"gitee.com/cruvie/kk_go_kit/kk_stage"
+	"github.com/cruvie/kk_etcd_go/internal/utils/consts"
+	"gopkg.in/yaml.v3"
 )
 
 var Config config
@@ -67,4 +71,16 @@ func InitConfig() {
 		slog.Error("unable to unmarshal config.yaml", "err", err)
 		panic(err)
 	}
+}
+
+var LogCfg kk_stage.ConfigLog
+
+func InitLog(stage *kk_stage.Stage) {
+
+	LogCfg = kk_stage.ConfigLog{
+		DebugMode:  Config.DebugMode,
+		Lumberjack: kk_stage.DefaultLogConfig(time.Now(), consts.ServiceName),
+		StartTime:  stage.StartTime,
+	}
+	LogCfg.Init()
 }
