@@ -1,11 +1,12 @@
 package service_housekeeper
 
-//todo migrate to what kubernetes does on node update?
+// todo migrate to what kubernetes does on node update?
 
 import (
+	"log/slog"
+
 	clientv3 "go.etcd.io/etcd/client/v3"
 	"go.etcd.io/etcd/client/v3/kubernetes"
-	"log/slog"
 )
 
 var kc *kubernetes.Client

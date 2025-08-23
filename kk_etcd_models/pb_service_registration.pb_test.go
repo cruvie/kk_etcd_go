@@ -1,9 +1,10 @@
 package kk_etcd_models
 
 import (
-	"google.golang.org/protobuf/types/known/durationpb"
 	"testing"
 	"time"
+
+	"google.golang.org/protobuf/types/known/durationpb"
 )
 
 func TestName(t *testing.T) {

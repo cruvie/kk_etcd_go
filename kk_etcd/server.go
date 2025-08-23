@@ -22,7 +22,6 @@ func GetGrpcClient[T any](
 	clientBuilder func(grpcConn grpc.ClientConnInterface) (client T),
 	opts ...grpc.DialOption,
 ) (conn *grpc.ClientConn, client T, err error) {
-
 	addr, err := serService.GetServiceAddr(kk_etcd_models.PBServiceType_Grpc, serviceName)
 	if err != nil {
 		return nil, client, err

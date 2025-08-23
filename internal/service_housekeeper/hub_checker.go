@@ -3,14 +3,15 @@ package service_housekeeper
 import (
 	"context"
 	"fmt"
+	"log/slog"
+	"net/http"
+	"time"
+
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/grpc/health/grpc_health_v1"
-	"log/slog"
-	"net/http"
-	"time"
 )
 
 var runningCheck = make(map[string] /*UniqueKey*/ *checkT)
@@ -41,6 +42,7 @@ func stopCheck(uniqueKey string) {
 	t.cancel()
 	delete(runningCheck, uniqueKey)
 }
+
 func (x *checkT) update(err error) {
 	if err == nil {
 		hub.putToAliveHub(x.registration)
@@ -52,7 +54,7 @@ func (x *checkT) runCheck() {
 	ticker := time.NewTicker(x.registration.CheckConfig.Interval.AsDuration())
 	switch x.registration.CheckConfig.Type {
 	case kk_etcd_models.PBServiceType_Grpc:
-		//chack instance first
+		// chack instance first
 		err := checkGrpc(x.registration.CheckConfig)
 		x.update(err)
 		for {
@@ -112,7 +114,7 @@ func checkGrpc(checkConfig *kk_etcd_models.PBServiceRegistration_PBCheckConfig) 
 }
 
 func checkHttp(checkConfig *kk_etcd_models.PBServiceRegistration_PBCheckConfig) (err error) {
-	var httpClient = &http.Client{
+	httpClient := &http.Client{
 		Timeout: checkConfig.Timeout.AsDuration(),
 	}
 	defer httpClient.CloseIdleConnections()

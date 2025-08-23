@@ -16,7 +16,7 @@ func (x *Api) Service(stage *kk_stage.Stage) (*api_def.Snapshot_Output, error) {
 	defer span.End()
 
 	newLog := kk_stage.NewLog(stage)
-	//etcdctl --endpoints=127.0.0.1:2379 --user kk_etcd:kk_etcd snapshot save /Users/cruvie/KangXH/Coding/Uncomplete-Projects/kk_etcd/kk_etcd_go/backup/snapshot.db
+	// etcdctl --endpoints=127.0.0.1:2379 --user kk_etcd:kk_etcd snapshot save /Users/cruvie/KangXH/Coding/Uncomplete-Projects/kk_etcd/kk_etcd_go/backup/snapshot.db
 	backupData, err := global_model.GetClient(stage).Snapshot(context.Background())
 	defer func(backupData io.ReadCloser) {
 		if backupData != nil {

@@ -1,4 +1,4 @@
-package kk_etcd
+package utils
 
 import (
 	"errors"
@@ -17,9 +17,7 @@ var (
 	ErrNoRootRole = errors.New("no root role")
 )
 
-var (
-	ErrNoAvailableConn = errors.New("no available conn")
-)
+var ErrNoAvailableConn = errors.New("no available conn")
 
 // Permission
 var (

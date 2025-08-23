@@ -7,8 +7,8 @@ import (
 	"errors"
 
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
+	"github.com/cruvie/kk_etcd_go/internal/utils"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
-	"github.com/cruvie/kk_etcd_go/kk_etcd_error"
 	clientv3 "go.etcd.io/etcd/client/v3"
 )
 
@@ -37,7 +37,7 @@ func GetJson(client *clientv3.Client, key string, structPtr any) error {
 // PutJson put struct to etcd in json format, key should not exist
 func PutJson(stage *kk_stage.Stage, key string, structPtr any) error {
 	err := CheckKeyExist(stage, key)
-	if !errors.Is(err, kk_etcd_error.ErrKeyNotFound) {
+	if !errors.Is(err, utils.ErrKeyNotFound) {
 		return err
 	}
 	return putJson(global_model.GetClient(stage), key, structPtr)
@@ -46,7 +46,7 @@ func PutJson(stage *kk_stage.Stage, key string, structPtr any) error {
 // UpdateJson update struct in etcd, key should exist
 func UpdateJson(stage *kk_stage.Stage, key string, structPtr any) error {
 	err := CheckKeyExist(stage, key)
-	if !errors.Is(err, kk_etcd_error.ErrKeyAlreadyExists) {
+	if !errors.Is(err, utils.ErrKeyAlreadyExists) {
 		return err
 	}
 	return putJson(global_model.GetClient(stage), key, structPtr)

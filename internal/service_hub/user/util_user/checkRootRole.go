@@ -2,9 +2,9 @@ package util_user
 
 import (
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
+	"github.com/cruvie/kk_etcd_go/internal/utils"
 	"github.com/cruvie/kk_etcd_go/internal/utils/consts"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
-	"github.com/cruvie/kk_etcd_go/kk_etcd_error"
 )
 
 func CheckRootRole(stage *kk_stage.Stage) error {
@@ -13,5 +13,5 @@ func CheckRootRole(stage *kk_stage.Stage) error {
 			return nil
 		}
 	}
-	return kk_etcd_error.ErrNoRootRole
+	return utils.ErrNoRootRole
 }

@@ -7,7 +7,6 @@ import (
 )
 
 func (x *Api) CheckInput(stage *kk_stage.Stage) error {
-
 	if x.In.GetName() == "" {
 		return errors.New("name is empty")
 	}

@@ -7,7 +7,6 @@ import (
 )
 
 func (x *Api) CheckInput(stage *kk_stage.Stage) error {
-
 	if x.In.GetKey() == "" {
 		return errors.New("key is empty")
 	}

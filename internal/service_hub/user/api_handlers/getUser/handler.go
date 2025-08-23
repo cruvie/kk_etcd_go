@@ -7,7 +7,6 @@ import (
 )
 
 func (x *Api) Handler(stage *kk_stage.Stage) (*api_def.GetUser_Output, error) {
-
 	user, err := util_user.GetUser(stage, x.In.GetUserName())
 	if err != nil {
 		return nil, err

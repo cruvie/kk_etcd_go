@@ -7,7 +7,6 @@ import (
 )
 
 func (x *Api) Handler(stage *kk_stage.Stage) (*api_def.UserAdd_Output, error) {
-
 	err := x.Service(stage, &kk_etcd_models.PBUser{
 		UserName: x.In.GetUserName(),
 		Password: x.In.GetPassword(),

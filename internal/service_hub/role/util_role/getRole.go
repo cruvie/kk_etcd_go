@@ -2,6 +2,7 @@ package util_role
 
 import (
 	"context"
+
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"

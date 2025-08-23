@@ -1,9 +1,10 @@
 package global_model
 
 import (
+	"log/slog"
+
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	clientv3 "go.etcd.io/etcd/client/v3"
-	"log/slog"
 )
 
 const clientKey = "clientKey"

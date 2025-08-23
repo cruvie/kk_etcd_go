@@ -6,7 +6,6 @@ import (
 )
 
 func (x *Api) Handler(stage *kk_stage.Stage) (*api_def.KVPut_Output, error) {
-
 	err := x.Service(stage)
 	return &api_def.KVPut_Output{}, err
 }

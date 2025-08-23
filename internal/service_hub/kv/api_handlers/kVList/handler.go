@@ -10,7 +10,6 @@ import (
 )
 
 func (x *Api) Handler(stage *kk_stage.Stage) (*api_def.KVList_Output, error) {
-
 	list, err := x.Service(stage)
 	if err != nil {
 		return nil, err
@@ -19,5 +18,4 @@ func (x *Api) Handler(stage *kk_stage.Stage) (*api_def.KVList_Output, error) {
 		return strings.HasPrefix(kv.Key, kk_etcd_models.ServiceKey)
 	})
 	return &api_def.KVList_Output{KVList: list}, err
-
 }

@@ -3,7 +3,6 @@ package kk_etcd_test
 import (
 	"context"
 	"fmt"
-
 	"log"
 	"log/slog"
 	"net"
@@ -56,7 +55,7 @@ func TestServiceList(t *testing.T) {
 
 func cleanup(t *testing.T) {
 	client := global_model.GetClient(internal_client.GlobalStage)
-	//kk_service/internal_service_status/kk_service/grpc/ss_msg/192.168.124.118:58754
+	// kk_service/internal_service_status/kk_service/grpc/ss_msg/192.168.124.118:58754
 	resp, err := client.Get(context.Background(), kk_etcd_models.ServiceKey, clientv3.WithPrefix())
 	if err != nil {
 		t.Error(err)
@@ -82,6 +81,7 @@ func TestCleanUp(t *testing.T) {
 	}()
 	cleanup(t)
 }
+
 func runGrpcServiceWithPort(port int) {
 	listener, err := net.Listen("tcp", fmt.Sprintf(":%d", port))
 	defer func(listener net.Listener) {
@@ -115,7 +115,7 @@ func registerGrpcService(port int) {
 		}
 	}()
 
-	//register grpc service
+	// register grpc service
 	err = kk_etcd.RegisterService(&kk_etcd_models.PBServiceRegistration{
 		ServiceType: kk_etcd_models.PBServiceType_Grpc,
 		ServiceName: fmt.Sprintf("test_grpc_%d", port),

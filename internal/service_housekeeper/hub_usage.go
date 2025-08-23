@@ -8,7 +8,7 @@ import (
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"gitee.com/cruvie/kk_go_kit/kk_sync"
 	"github.com/cruvie/kk_etcd_go/internal/service_hub/kv/util_kv"
-	"github.com/cruvie/kk_etcd_go/kk_etcd_error"
+	"github.com/cruvie/kk_etcd_go/internal/utils"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	clientv3 "go.etcd.io/etcd/client/v3"
 )
@@ -59,7 +59,7 @@ func (x *serverHub) delFromAliveHub(item *kk_etcd_models.PBServiceRegistration) 
 func (x *serverHub) putToAliveHub(item *kk_etcd_models.PBServiceRegistration) {
 	alreadyExists := putToHub(x.aliveHub, item)
 	if !alreadyExists {
-		//after put into aliveHub, put all alive conn to etcd for App outside to get conn
+		// after put into aliveHub, put all alive conn to etcd for App outside to get conn
 		putAliveHubToEtcd(x.aliveHub)
 	}
 }
@@ -81,10 +81,10 @@ func (x *serverHub) watch() {
 						slog.Error("watch EventTypePut", kk_stage.NewLog(nil).Error(err).Args()...)
 						continue
 					}
-					//new registration putToDeadHub first
+					// new registration putToDeadHub first
 					x.putToDeadHub(item)
 				case clientv3.EventTypeDelete:
-					//paser HubKey from UniqueKey(event.Kv.Key)
+					// paser HubKey from UniqueKey(event.Kv.Key)
 					item := new(kk_etcd_models.PBServiceRegistration)
 					err := item.BuildFromUniqueKey(string(event.Kv.Key))
 					if err != nil {
@@ -107,7 +107,7 @@ func getOneAliveService(connType kk_etcd_models.PBServiceType, serviceName strin
 	}
 	addresses, ok := aliveHub.Get(connType.HubKey(serviceName))
 	if !ok {
-		return nil, kk_etcd_error.ErrNoAvailableConn
+		return nil, utils.ErrNoAvailableConn
 	}
 	shuffle := addresses.Shuffle()
 	for _, item := range shuffle {
@@ -128,7 +128,7 @@ func getOneAliveService(connType kk_etcd_models.PBServiceType, serviceName strin
 			continue
 		}
 	}
-	return nil, kk_etcd_error.ErrNoAvailableConn
+	return nil, utils.ErrNoAvailableConn
 }
 
 func putAliveHubToEtcd(hub *hubT) {
@@ -167,9 +167,9 @@ func putToHub(hub *hubT, item *kk_etcd_models.PBServiceRegistration) (alreadyExi
 		if firstIndex != -1 {
 			return true
 		} else {
-			//replace if exists, append if not
+			// replace if exists, append if not
 			conns.ReplaceAllOrAppend(item, func(r *kk_etcd_models.PBServiceRegistration) bool {
-				//check key only
+				// check key only
 				return r.HubKey() == item.HubKey()
 			})
 		}

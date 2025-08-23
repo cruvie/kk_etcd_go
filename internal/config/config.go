@@ -27,9 +27,9 @@ type config struct {
 		Enable        bool   `yaml:"Enable"`
 		LLMModel      string `yaml:"LLMModel"`
 		OllamaService string `yaml:"OllamaService"`
-		//WeaviateIpPort string `yaml:"WeaviateIpPort"`
-		//EtcdDocPath    string `yaml:"EtcdDocPath"`
-		//ReInitWeaviate bool   `yaml:"ReInitWeaviate"`
+		// WeaviateIpPort string `yaml:"WeaviateIpPort"`
+		// EtcdDocPath    string `yaml:"EtcdDocPath"`
+		// ReInitWeaviate bool   `yaml:"ReInitWeaviate"`
 	} `yaml:"AI"`
 	MCPService struct {
 		Enable bool `yaml:"Enable"`
@@ -51,15 +51,14 @@ type config struct {
 }
 
 func InitConfig() {
-
 	workDir, err := os.Getwd()
 	if err != nil {
 		panic(err)
 	}
-	//slog.Info("workDir", "dir", workDir)
+	// slog.Info("workDir", "dir", workDir)
 
-	//docker
-	//data, err := os.ReadFile(workDir + "/kk_etcd_go/internal/config/config.yml")
+	// docker
+	// data, err := os.ReadFile(workDir + "/kk_etcd_go/internal/config/config.yml")
 	data, err := os.ReadFile(workDir + "/internal/config/config.yml")
 	if err != nil {
 		slog.Error("unable to read config.yaml", "err", err)
@@ -76,7 +75,6 @@ func InitConfig() {
 var LogCfg kk_stage.ConfigLog
 
 func InitLog(stage *kk_stage.Stage) {
-
 	LogCfg = kk_stage.ConfigLog{
 		DebugMode:  Config.DebugMode,
 		Lumberjack: kk_stage.DefaultLogConfig(time.Now(), consts.ServiceName),

@@ -11,7 +11,6 @@ import (
 )
 
 func UserGrantRole(stage *kk_stage.Stage, user *kk_etcd_models.PBUser) error {
-
 	oldUser, err := GetUser(stage, user.GetUserName())
 	if err != nil {
 		return err

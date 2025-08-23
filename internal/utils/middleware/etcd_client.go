@@ -17,9 +17,9 @@ import (
 
 // EtcdClient set etcd client for current request
 func etcdClient(userName, password string) (*clientv3.Client, error) {
-	//todo use https://github.com/etcd-io/etcd/pull/16803
+	// todo use https://github.com/etcd-io/etcd/pull/16803
 	// set verify jwt directly
-	//slog.Info("url", c.Request.URL.Path)
+	// slog.Info("url", c.Request.URL.Path)
 	cfg := clientv3.Config{
 		Endpoints:   config.Config.Etcd.Endpoints,
 		DialTimeout: 5 * time.Second,
@@ -28,6 +28,7 @@ func etcdClient(userName, password string) (*clientv3.Client, error) {
 	}
 	return clientv3.New(cfg)
 }
+
 func UnaryEtcdClient() grpc.UnaryServerInterceptor {
 	return func(ctx context.Context, req any, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (any, error) {
 		stage := kk_grpc.GetGrpcStage(ctx)
@@ -57,7 +58,7 @@ func UnaryEtcdClient() grpc.UnaryServerInterceptor {
 		if err != nil {
 			return nil, status.Error(codes.Unauthenticated, "kk_grpc missing user")
 		}
-		//store user to gin context
+		// store user to gin context
 		global_model.SetLoginUser(stage, user)
 
 		return handler(ctx, req)

@@ -7,11 +7,11 @@ import (
 )
 
 func (x *Api) Handler(stage *kk_stage.Stage) (*api_def.KVGet_Output, error) {
-
 	value, err := x.Service(stage)
-	return &api_def.KVGet_Output{KV: &kk_etcd_models.PBKV{
-		Key:   x.In.GetKey(),
-		Value: string(value),
-	},
+	return &api_def.KVGet_Output{
+		KV: &kk_etcd_models.PBKV{
+			Key:   x.In.GetKey(),
+			Value: string(value),
+		},
 	}, err
 }

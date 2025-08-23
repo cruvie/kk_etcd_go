@@ -30,7 +30,7 @@ func (x *Api) Service(stage *kk_stage.Stage) (info string, err error) {
 		return "", err
 	}
 
-	//etcdutl --write-out=table snapshot status etcd_backup.snapshot
+	// etcdutl --write-out=table snapshot status etcd_backup.snapshot
 	cmd := exec.Command("etcdutl", "--write-out", "table", "snapshot", "status", tempFile.Name())
 	output, err := cmd.CombinedOutput()
 	if err != nil {

@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-
 	"log/slog"
 	"time"
 
@@ -11,7 +10,6 @@ import (
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/internal/api_etcd"
 	"github.com/cruvie/kk_etcd_go/internal/config"
-	"github.com/cruvie/kk_etcd_go/internal/etcd_ai"
 	"github.com/cruvie/kk_etcd_go/internal/service_housekeeper"
 	"github.com/cruvie/kk_etcd_go/internal/utils/consts"
 	"github.com/cruvie/kk_etcd_go/internal/utils/internal_client"
@@ -32,7 +30,7 @@ func main() {
 		}()
 	}
 	{
-		//init pprof
+		// init pprof
 		pprof := kk_pprof.ConfigPprofWeb{
 			Port:        2444,
 			EnableBlock: true,
@@ -73,8 +71,7 @@ func main() {
 
 	kkServer := kk_server.NewKKServer(5*time.Second, stage)
 	kkServer.Add("ApiGrpc", 0, api_etcd.NewGrpcServer(internal_client.GlobalStage))
-	//kkServer.Add("ApiMCP", 0, api_etcd.ApiMCP())
-	//kkServer.Add("etcd_maintain", 0, service_hub.NewEtcdMaintain())
-	kkServer.Add("etcd_ai", 0, etcd_ai.EtcdAIService())
+	// kkServer.Add("ApiMCP", 0, api_etcd.ApiMCP())
+	// kkServer.Add("etcd_maintain", 0, service_hub.NewEtcdMaintain())
 	kkServer.ServeAndWait()
 }

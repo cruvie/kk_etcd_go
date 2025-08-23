@@ -1,13 +1,14 @@
 package doc_test
 
 import (
-	"github.com/cruvie/kk_etcd_go/kk_etcd"
-	clientv3 "go.etcd.io/etcd/client/v3"
-	"gopkg.in/yaml.v3"
 	"log"
 	"log/slog"
 	"os"
 	"testing"
+
+	"github.com/cruvie/kk_etcd_go/kk_etcd"
+	clientv3 "go.etcd.io/etcd/client/v3"
+	"gopkg.in/yaml.v3"
 )
 
 type myConfig struct {
@@ -23,14 +24,15 @@ type myConfig struct {
 }
 
 func TestPutYaml(t *testing.T) {
-	//init client
+	// init client
 	closeFunc, err := kk_etcd.InitClient(&kk_etcd.InitClientConfig{
 		Config: clientv3.Config{
 			Endpoints: []string{"http://127.0.0.1:2379"},
 			Username:  "root",
 			Password:  "root",
 		},
-		DebugMode: true})
+		DebugMode: true,
+	})
 	if err != nil {
 		panic(err)
 	}
@@ -40,7 +42,7 @@ func TestPutYaml(t *testing.T) {
 			log.Println(err)
 		}
 	}()
-	//load config
+	// load config
 	data, err := os.ReadFile("path/to/my_config.yml")
 	if err != nil {
 		panic(err)
@@ -51,13 +53,13 @@ func TestPutYaml(t *testing.T) {
 		slog.Error("unable to unmarshal config.yaml", "err", err)
 		panic(err)
 	}
-	//push config to etcd in yaml format
-	kv := kk_etcd.NewMgrKV()
+	// push config to etcd in yaml format
+	kv := kk_etcd.NewKVClient()
 	err = kv.PutExistUpdateYaml("my_config", &Config)
 	if err != nil {
 		panic(err)
 	}
-	//get config from etcd
+	// get config from etcd
 	var newConfig myConfig
 	err = kv.GetYaml("my_config", &newConfig)
 	if err != nil {

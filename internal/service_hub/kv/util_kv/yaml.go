@@ -5,8 +5,8 @@ import (
 	"errors"
 
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
+	"github.com/cruvie/kk_etcd_go/internal/utils"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
-	"github.com/cruvie/kk_etcd_go/kk_etcd_error"
 	"gopkg.in/yaml.v3"
 )
 
@@ -17,7 +17,7 @@ func PutExistUpdateYaml(stage *kk_stage.Stage, key string, structPtr any) error 
 // UpdateYaml update struct in etcd, key should exist
 func UpdateYaml(stage *kk_stage.Stage, key string, structPtr any) error {
 	err := CheckKeyExist(stage, key)
-	if !errors.Is(err, kk_etcd_error.ErrKeyAlreadyExists) {
+	if !errors.Is(err, utils.ErrKeyAlreadyExists) {
 		return err
 	}
 	return putYaml(stage, key, structPtr)
@@ -27,12 +27,13 @@ func UpdateYaml(stage *kk_stage.Stage, key string, structPtr any) error {
 // recommend: use PutJson instead which is more efficient
 func PutYaml(stage *kk_stage.Stage, key string, structPtr any) error {
 	err := CheckKeyExist(stage, key)
-	if !errors.Is(err, kk_etcd_error.ErrKeyNotFound) {
+	if !errors.Is(err, utils.ErrKeyNotFound) {
 		return err
 	}
 
 	return putYaml(stage, key, structPtr)
 }
+
 func putYaml(stage *kk_stage.Stage, key string, structPtr any) error {
 	value, err := yaml.Marshal(structPtr)
 	if err != nil {

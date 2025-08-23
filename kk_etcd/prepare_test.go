@@ -13,9 +13,7 @@ import (
 	"google.golang.org/grpc/credentials/insecure"
 )
 
-var (
-	testServiceClient api_def.ServiceClient
-)
+var testServiceClient api_def.ServiceClient
 
 func initGrpcClient() {
 	serverAddress := "localhost:8081"
@@ -23,10 +21,11 @@ func initGrpcClient() {
 	if err != nil {
 		log.Fatalf("failed to connect: %v", err)
 	}
-	defer conn.Close()
+	defer conn.Close() //nolint
 
 	testServiceClient = api_def.NewServiceClient(conn)
 }
+
 func initTestEnv() kk_etcd.CloseFunc {
 	configLog := kk_stage.ConfigLog{
 		DebugMode:  true,
@@ -41,7 +40,8 @@ func initTestEnv() kk_etcd.CloseFunc {
 			Username:  "root",
 			Password:  "root",
 		},
-		DebugMode: true})
+		DebugMode: true,
+	})
 	if err != nil {
 		panic(err)
 	}

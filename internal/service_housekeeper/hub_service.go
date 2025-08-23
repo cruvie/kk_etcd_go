@@ -1,11 +1,12 @@
 package service_housekeeper
 
 import (
-	"gitee.com/cruvie/kk_go_kit/kk_stage"
-	"github.com/cruvie/kk_etcd_go/kk_etcd_error"
-	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	"slices"
 	"sort"
+
+	"gitee.com/cruvie/kk_go_kit/kk_stage"
+	"github.com/cruvie/kk_etcd_go/internal/utils"
+	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 )
 
 type SerService struct{}
@@ -45,7 +46,7 @@ func (x *SerService) ServiceList(serviceType kk_etcd_models.PBServiceType, servi
 		return nil, err
 	}
 
-	aliveStatuMap := hub.aliveHub.Data() //todo 死锁！！
+	aliveStatuMap := hub.aliveHub.Data() // todo 死锁！！
 	deadStatuMap := hub.deadHub.Data()
 
 	getStatus := func(item *kk_etcd_models.PBServiceRegistration) kk_etcd_models.PBService_ServiceStatus {
@@ -100,5 +101,5 @@ func (x *SerService) GetServiceAddr(connType kk_etcd_models.PBServiceType, servi
 	if service != nil {
 		return service.ServiceAddr, nil
 	}
-	return "", kk_etcd_error.ErrNoAvailableConn
+	return "", utils.ErrNoAvailableConn
 }

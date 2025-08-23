@@ -10,7 +10,6 @@ import (
 )
 
 func (x *Api) Handler(stage *kk_stage.Stage) (*api_def.UserGrantRole_Output, error) {
-
 	if x.In.GetUserName() == consts.UserRoot {
 		return nil, errors.New("illegal modify root user's role")
 	}

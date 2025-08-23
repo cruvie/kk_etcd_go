@@ -1,8 +1,9 @@
 package api_def
 
 import (
-	"gitee.com/cruvie/kk_go_kit/kk_protobuf"
 	"testing"
+
+	"gitee.com/cruvie/kk_go_kit/kk_protobuf"
 )
 
 // 此文件必须在HandlerPrePath目录中

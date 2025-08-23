@@ -7,7 +7,6 @@ import (
 )
 
 func (x *Api) Handler(stage *kk_stage.Stage) (*api_def.ServiceList_Output, error) {
-
 	service := &service_housekeeper.SerService{}
 	serviceList, err := service.ServiceList(x.In.GetServiceType(), x.In.GetServiceName())
 	return &api_def.ServiceList_Output{

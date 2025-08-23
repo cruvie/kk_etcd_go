@@ -2,10 +2,9 @@ syntax = "proto3";
 package kk_etcd_models;
 option go_package = "github.com/cruvie/kk_etcd_go/kk_etcd_models";
 
-// protoc -I=. --go_out=./ *.proto
 
 
-// protoc -I=. --dart_out=./dart *.proto
+
 
 message PBKV {
   string  Key = 1;

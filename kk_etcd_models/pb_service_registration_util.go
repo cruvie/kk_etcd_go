@@ -3,9 +3,10 @@ package kk_etcd_models
 import (
 	"errors"
 	"fmt"
-	"google.golang.org/protobuf/encoding/protojson"
 	"strings"
 	"time"
+
+	"google.golang.org/protobuf/encoding/protojson"
 )
 
 const (
@@ -56,7 +57,7 @@ func (x *PBServiceRegistration) UniqueKey() string {
 }
 
 func (x *PBServiceRegistration) BuildFromUniqueKey(uniqueKey string) error {
-	//kk_service/registration/Http/test_http_8843/192.168.0.100:8843
+	// kk_service/registration/Http/test_http_8843/192.168.0.100:8843
 	s := strings.TrimPrefix(uniqueKey, ServiceRegistrationKey)
 	split := strings.Split(s, "/")
 	if len(split) != 3 {

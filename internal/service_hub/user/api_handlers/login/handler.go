@@ -6,7 +6,6 @@ import (
 )
 
 func (x *Api) Handler(stage *kk_stage.Stage) (*api_def.Login_Output, error) {
-
 	tokenString, err := x.Service(stage)
 	return &api_def.Login_Output{
 		Token: tokenString,

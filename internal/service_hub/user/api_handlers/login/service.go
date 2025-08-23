@@ -6,6 +6,6 @@ func (x *Api) Service(stage *kk_stage.Stage) (tokenString string, err error) {
 	span := stage.StartTrace("service")
 	defer span.End()
 
-	//todo gen jwt
+	// todo gen jwt
 	return "todo gen jwt from etcd", nil
 }

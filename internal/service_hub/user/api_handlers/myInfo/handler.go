@@ -7,7 +7,6 @@ import (
 )
 
 func (x *Api) Handler(stage *kk_stage.Stage) (*api_def.MyInfo_Output, error) {
-
 	loginUser := global_model.GetLoginUser(stage)
 	return &api_def.MyInfo_Output{
 		UserName: loginUser.GetUserName(),

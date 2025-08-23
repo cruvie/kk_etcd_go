@@ -9,8 +9,9 @@ import (
 	"github.com/cruvie/kk_etcd_go/internal/config"
 	"github.com/cruvie/kk_etcd_go/internal/service_hub/role/util_role"
 	"github.com/cruvie/kk_etcd_go/internal/service_hub/user/util_user"
+	"github.com/cruvie/kk_etcd_go/internal/utils"
 	"github.com/cruvie/kk_etcd_go/internal/utils/consts"
-	"github.com/cruvie/kk_etcd_go/kk_etcd"
+
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	"go.etcd.io/etcd/api/v3/v3rpc/rpctypes"
 	clientv3 "go.etcd.io/etcd/client/v3"
@@ -38,8 +39,8 @@ func (x *serToolEtcd) checkAuthEnabled() (enabled bool) {
 	}(client)
 	resp, err := client.AuthStatus(context.Background())
 	if err != nil {
-		if kk_etcd.ErrorIs(err, rpctypes.ErrGRPCUserEmpty) {
-			//means auth enabled
+		if utils.ErrorIs(err, rpctypes.ErrGRPCUserEmpty) {
+			// means auth enabled
 			return true
 		}
 		panic(err)
@@ -48,21 +49,21 @@ func (x *serToolEtcd) checkAuthEnabled() (enabled bool) {
 }
 
 func (x *serToolEtcd) initRootRolePermission(stage *kk_stage.Stage) {
-	//https://etcd.io/docs/v3.5/op-guide/authentication/rbac/
+	// https://etcd.io/docs/v3.5/op-guide/authentication/rbac/
 	newLog := kk_stage.NewLog(stage)
 	user := &kk_etcd_models.PBUser{
 		UserName: consts.UserRoot,
 		Password: config.Config.RootPassword,
 		Roles:    []string{consts.RoleRoot},
 	}
-	//add root user
+	// add root user
 	err := util_user.AddUser(stage, user)
 	if err != nil {
 		slog.Error("add root user failed", newLog.Error(err).Args()...)
 		panic(err)
 	}
 
-	//add root role
+	// add root role
 	err = util_role.AddRole(stage, consts.RoleRoot)
 	if err != nil {
 		slog.Error("add etcd role failed", newLog.Error(err).Args()...)
@@ -84,7 +85,7 @@ func (x *serToolEtcd) initRootRolePermission(stage *kk_stage.Stage) {
 	//	panic(err)
 	//}
 
-	//grant root role to root user
+	// grant root role to root user
 	err = util_user.UserGrantRole(stage, user)
 	if err != nil {
 		slog.Error("grant root role to root user failed", newLog.Error(err).Args()...)

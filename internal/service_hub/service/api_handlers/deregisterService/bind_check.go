@@ -7,7 +7,6 @@ import (
 )
 
 func (x *Api) CheckInput(stage *kk_stage.Stage) error {
-
 	ser := x.In.GetService()
 	if ser == nil {
 		return errors.New("server is empty")

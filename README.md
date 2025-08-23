@@ -12,13 +12,10 @@ A Configuration center and Service registration and discovery platform based on 
 
 - [x] Service registration and discovery for Http/gRPC Server
 
-- [x] MCP Server
-
 - [x] User management
 
 - [x] Role management
 
-- [ ] AI
 
 ## service
 

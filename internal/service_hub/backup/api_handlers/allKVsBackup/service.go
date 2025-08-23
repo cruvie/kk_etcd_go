@@ -27,7 +27,7 @@ func (x *Api) Service(stage *kk_stage.Stage) (*api_def.AllKVsBackup_Output, erro
 			Key:   string(kv.Key),
 			Value: string(kv.Value),
 		}
-		//todo only support backup normal kv
+		// todo only support backup normal kv
 		if strings.HasPrefix(pbKV.Key, kk_etcd_models.PBServiceType_Http.String()) ||
 			strings.HasPrefix(pbKV.Key, kk_etcd_models.PBServiceType_Grpc.String()) {
 			continue

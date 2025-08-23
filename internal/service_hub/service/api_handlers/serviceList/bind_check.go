@@ -8,7 +8,6 @@ import (
 )
 
 func (x *Api) CheckInput(stage *kk_stage.Stage) error {
-
 	if x.In.GetServiceType() == kk_etcd_models.PBServiceType_Unknown {
 		return errors.New("ServiceType is Unknow")
 	}

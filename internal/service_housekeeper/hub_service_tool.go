@@ -2,10 +2,11 @@ package service_housekeeper
 
 import (
 	"context"
+	"log/slog"
+
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	"go.etcd.io/etcd/client/v3/kubernetes"
-	"log/slog"
 )
 
 func (*SerService) registerService(registrations []*kk_etcd_models.PBServiceRegistration) error {

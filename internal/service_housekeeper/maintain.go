@@ -2,16 +2,17 @@ package service_housekeeper
 
 import (
 	"context"
+	"log/slog"
+	"time"
+
 	"gitee.com/cruvie/kk_go_kit/kk_server"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/internal/config"
+	"github.com/cruvie/kk_etcd_go/internal/utils"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
 	"github.com/cruvie/kk_etcd_go/internal/utils/internal_client"
-	"github.com/cruvie/kk_etcd_go/kk_etcd_error"
 	"go.etcd.io/etcd/api/v3/v3rpc/rpctypes"
 	clientv3 "go.etcd.io/etcd/client/v3"
-	"log/slog"
-	"time"
 )
 
 // NewEtcdMaintain https://etcd.io/docs/v3.5/op-guide/maintenance/#space-quota
@@ -80,7 +81,7 @@ func getCurrentRevision(endpoint string) (int64, error) {
 
 func executeCompact(revision int64) error {
 	_, err := global_model.GetClient(internal_client.GlobalStage).Compact(context.Background(), revision)
-	if kk_etcd_error.ErrorIs(err, rpctypes.ErrCompacted) {
+	if utils.ErrorIs(err, rpctypes.ErrCompacted) {
 		return nil
 	}
 	return err

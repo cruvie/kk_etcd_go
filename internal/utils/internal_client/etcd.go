@@ -2,13 +2,14 @@ package internal_client
 
 import (
 	"context"
+	"log/slog"
+	"time"
+
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/internal/config"
 	"github.com/cruvie/kk_etcd_go/internal/utils/consts"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
 	clientv3 "go.etcd.io/etcd/client/v3"
-	"log/slog"
-	"time"
 )
 
 func InitEtcd(stage *kk_stage.Stage) {
@@ -23,7 +24,7 @@ func InitEtcd(stage *kk_stage.Stage) {
 		Username:    consts.UserRoot,
 		Password:    config.Config.RootPassword,
 	}
-	//refresh client
+	// refresh client
 	client, err := clientv3.New(cfg)
 	if err != nil {
 		slog.Error("New etcd client failed", newLog.Error(err).Args()...)
@@ -35,7 +36,7 @@ func InitEtcd(stage *kk_stage.Stage) {
 		toolEtcd.initRootRolePermission(GlobalStage)
 	} else {
 		toolEtcd.initRootRolePermission(GlobalStage)
-		//enable etcd auth
+		// enable etcd auth
 		_, err := global_model.GetClient(GlobalStage).AuthEnable(context.Background())
 		if err != nil {
 			slog.Error("Enable Auth failed", newLog.Error(err).Args()...)
