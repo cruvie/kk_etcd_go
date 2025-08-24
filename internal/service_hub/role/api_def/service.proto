@@ -9,11 +9,25 @@ import "internal/service_hub/role/api_def/RoleGrantPermission.proto";
 import "internal/service_hub/role/api_def/RoleList.proto";
 import "internal/service_hub/role/api_def/RoleRevokePermission.proto";
 
+import "vendor/gitee.com/cruvie/kk_go_kit/kk_protobuf/extend_method.proto";
+
 service Role {
-  rpc RoleAdd(RoleAdd.Input) returns (RoleAdd.Output);
-  rpc RoleDelete(RoleDelete.Input) returns (RoleDelete.Output);
-  rpc RoleGet(RoleGet.Input) returns (RoleGet.Output);
-  rpc RoleGrantPermission(RoleGrantPermission.Input) returns (RoleGrantPermission.Output);
-  rpc RoleList(RoleList.Input) returns (RoleList.Output);
-  rpc RoleRevokePermission(RoleRevokePermission.Input) returns (RoleRevokePermission.Output);
+  rpc RoleAdd(RoleAdd.Input) returns (RoleAdd.Output){
+    option (kk_protobuf.interceptor_list) = INTERCEPTOR_TYPE_AUTH;
+  }
+  rpc RoleDelete(RoleDelete.Input) returns (RoleDelete.Output){
+    option (kk_protobuf.interceptor_list) = INTERCEPTOR_TYPE_AUTH;
+  }
+  rpc RoleGet(RoleGet.Input) returns (RoleGet.Output){
+    option (kk_protobuf.interceptor_list) = INTERCEPTOR_TYPE_AUTH;
+  }
+  rpc RoleGrantPermission(RoleGrantPermission.Input) returns (RoleGrantPermission.Output){
+    option (kk_protobuf.interceptor_list) = INTERCEPTOR_TYPE_AUTH;
+  }
+  rpc RoleList(RoleList.Input) returns (RoleList.Output){
+    option (kk_protobuf.interceptor_list) = INTERCEPTOR_TYPE_AUTH;
+  }
+  rpc RoleRevokePermission(RoleRevokePermission.Input) returns (RoleRevokePermission.Output){
+    option (kk_protobuf.interceptor_list) = INTERCEPTOR_TYPE_AUTH;
+  }
 }

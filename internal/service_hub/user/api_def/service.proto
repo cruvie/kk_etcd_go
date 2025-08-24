@@ -11,13 +11,31 @@ import "internal/service_hub/user/api_def/UserDelete.proto";
 import "internal/service_hub/user/api_def/UserGrantRole.proto";
 import "internal/service_hub/user/api_def/UserList.proto";
 
+import "vendor/gitee.com/cruvie/kk_go_kit/kk_protobuf/extend_method.proto";
+
 service User {
-  rpc GetUser(GetUser.Input) returns (GetUser.Output);
-  rpc Login(Login.Input) returns (Login.Output);
-  rpc Logout(Logout.Input) returns (Logout.Output);
-  rpc MyInfo(MyInfo.Input) returns (MyInfo.Output);
-  rpc UserAdd(UserAdd.Input) returns (UserAdd.Output);
-  rpc UserDelete(UserDelete.Input) returns (UserDelete.Output);
-  rpc UserGrantRole(UserGrantRole.Input) returns (UserGrantRole.Output);
-  rpc UserList(UserList.Input) returns (UserList.Output);
+  rpc GetUser(GetUser.Input) returns (GetUser.Output){
+    option (kk_protobuf.interceptor_list) = INTERCEPTOR_TYPE_AUTH;
+  }
+  rpc Login(Login.Input) returns (Login.Output){
+
+  }
+  rpc Logout(Logout.Input) returns (Logout.Output){
+    option (kk_protobuf.interceptor_list) = INTERCEPTOR_TYPE_AUTH;
+  }
+  rpc MyInfo(MyInfo.Input) returns (MyInfo.Output){
+    option (kk_protobuf.interceptor_list) = INTERCEPTOR_TYPE_AUTH;
+  }
+  rpc UserAdd(UserAdd.Input) returns (UserAdd.Output){
+    option (kk_protobuf.interceptor_list) = INTERCEPTOR_TYPE_AUTH;
+  }
+  rpc UserDelete(UserDelete.Input) returns (UserDelete.Output){
+    option (kk_protobuf.interceptor_list) = INTERCEPTOR_TYPE_AUTH;
+  }
+  rpc UserGrantRole(UserGrantRole.Input) returns (UserGrantRole.Output){
+    option (kk_protobuf.interceptor_list) = INTERCEPTOR_TYPE_AUTH;
+  }
+  rpc UserList(UserList.Input) returns (UserList.Output){
+    option (kk_protobuf.interceptor_list) = INTERCEPTOR_TYPE_AUTH;
+  }
 }

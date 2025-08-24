@@ -7,6 +7,7 @@
 package api_def
 
 import (
+	_ "gitee.com/cruvie/kk_go_kit/kk_protobuf"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -24,17 +25,17 @@ var File_internal_service_hub_user_api_def_service_proto protoreflect.FileDescri
 
 const file_internal_service_hub_user_api_def_service_proto_rawDesc = "" +
 	"\n" +
-	"/internal/service_hub/user/api_def/service.proto\x12\aapi_def\x1a/internal/service_hub/user/api_def/GetUser.proto\x1a-internal/service_hub/user/api_def/Login.proto\x1a.internal/service_hub/user/api_def/Logout.proto\x1a.internal/service_hub/user/api_def/MyInfo.proto\x1a/internal/service_hub/user/api_def/UserAdd.proto\x1a2internal/service_hub/user/api_def/UserDelete.proto\x1a5internal/service_hub/user/api_def/UserGrantRole.proto\x1a0internal/service_hub/user/api_def/UserList.proto2\xf8\x03\n" +
-	"\x04User\x12:\n" +
-	"\aGetUser\x12\x16.api_def.GetUser.Input\x1a\x17.api_def.GetUser.Output\x124\n" +
-	"\x05Login\x12\x14.api_def.Login.Input\x1a\x15.api_def.Login.Output\x127\n" +
-	"\x06Logout\x12\x15.api_def.Logout.Input\x1a\x16.api_def.Logout.Output\x127\n" +
-	"\x06MyInfo\x12\x15.api_def.MyInfo.Input\x1a\x16.api_def.MyInfo.Output\x12:\n" +
-	"\aUserAdd\x12\x16.api_def.UserAdd.Input\x1a\x17.api_def.UserAdd.Output\x12C\n" +
+	"/internal/service_hub/user/api_def/service.proto\x12\aapi_def\x1a/internal/service_hub/user/api_def/GetUser.proto\x1a-internal/service_hub/user/api_def/Login.proto\x1a.internal/service_hub/user/api_def/Logout.proto\x1a.internal/service_hub/user/api_def/MyInfo.proto\x1a/internal/service_hub/user/api_def/UserAdd.proto\x1a2internal/service_hub/user/api_def/UserDelete.proto\x1a5internal/service_hub/user/api_def/UserGrantRole.proto\x1a0internal/service_hub/user/api_def/UserList.proto\x1aAvendor/gitee.com/cruvie/kk_go_kit/kk_protobuf/extend_method.proto2\xab\x04\n" +
+	"\x04User\x12A\n" +
+	"\aGetUser\x12\x16.api_def.GetUser.Input\x1a\x17.api_def.GetUser.Output\"\x05\x8a\xa6\x1d\x01\x01\x126\n" +
+	"\x05Login\x12\x14.api_def.Login.Input\x1a\x15.api_def.Login.Output\"\x00\x12>\n" +
+	"\x06Logout\x12\x15.api_def.Logout.Input\x1a\x16.api_def.Logout.Output\"\x05\x8a\xa6\x1d\x01\x01\x12>\n" +
+	"\x06MyInfo\x12\x15.api_def.MyInfo.Input\x1a\x16.api_def.MyInfo.Output\"\x05\x8a\xa6\x1d\x01\x01\x12A\n" +
+	"\aUserAdd\x12\x16.api_def.UserAdd.Input\x1a\x17.api_def.UserAdd.Output\"\x05\x8a\xa6\x1d\x01\x01\x12J\n" +
 	"\n" +
-	"UserDelete\x12\x19.api_def.UserDelete.Input\x1a\x1a.api_def.UserDelete.Output\x12L\n" +
-	"\rUserGrantRole\x12\x1c.api_def.UserGrantRole.Input\x1a\x1d.api_def.UserGrantRole.Output\x12=\n" +
-	"\bUserList\x12\x17.api_def.UserList.Input\x1a\x18.api_def.UserList.OutputB\n" +
+	"UserDelete\x12\x19.api_def.UserDelete.Input\x1a\x1a.api_def.UserDelete.Output\"\x05\x8a\xa6\x1d\x01\x01\x12S\n" +
+	"\rUserGrantRole\x12\x1c.api_def.UserGrantRole.Input\x1a\x1d.api_def.UserGrantRole.Output\"\x05\x8a\xa6\x1d\x01\x01\x12D\n" +
+	"\bUserList\x12\x17.api_def.UserList.Input\x1a\x18.api_def.UserList.Output\"\x05\x8a\xa6\x1d\x01\x01B\n" +
 	"Z\b/api_defb\x06proto3"
 
 var file_internal_service_hub_user_api_def_service_proto_goTypes = []any{

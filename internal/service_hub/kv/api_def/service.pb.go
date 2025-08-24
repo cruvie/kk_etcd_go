@@ -7,6 +7,7 @@
 package api_def
 
 import (
+	_ "gitee.com/cruvie/kk_go_kit/kk_protobuf"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -24,12 +25,12 @@ var File_internal_service_hub_kv_api_def_service_proto protoreflect.FileDescript
 
 const file_internal_service_hub_kv_api_def_service_proto_rawDesc = "" +
 	"\n" +
-	"-internal/service_hub/kv/api_def/service.proto\x12\aapi_def\x1a+internal/service_hub/kv/api_def/KVDel.proto\x1a+internal/service_hub/kv/api_def/KVGet.proto\x1a,internal/service_hub/kv/api_def/KVList.proto\x1a+internal/service_hub/kv/api_def/KVPut.proto2\xdf\x01\n" +
-	"\x02KV\x124\n" +
-	"\x05KVDel\x12\x14.api_def.KVDel.Input\x1a\x15.api_def.KVDel.Output\x124\n" +
-	"\x05KVGet\x12\x14.api_def.KVGet.Input\x1a\x15.api_def.KVGet.Output\x127\n" +
-	"\x06KVList\x12\x15.api_def.KVList.Input\x1a\x16.api_def.KVList.Output\x124\n" +
-	"\x05KVPut\x12\x14.api_def.KVPut.Input\x1a\x15.api_def.KVPut.OutputB\n" +
+	"-internal/service_hub/kv/api_def/service.proto\x12\aapi_def\x1a+internal/service_hub/kv/api_def/KVDel.proto\x1a+internal/service_hub/kv/api_def/KVGet.proto\x1a,internal/service_hub/kv/api_def/KVList.proto\x1a+internal/service_hub/kv/api_def/KVPut.proto\x1aAvendor/gitee.com/cruvie/kk_go_kit/kk_protobuf/extend_method.proto2\xfb\x01\n" +
+	"\x02KV\x12;\n" +
+	"\x05KVDel\x12\x14.api_def.KVDel.Input\x1a\x15.api_def.KVDel.Output\"\x05\x8a\xa6\x1d\x01\x01\x12;\n" +
+	"\x05KVGet\x12\x14.api_def.KVGet.Input\x1a\x15.api_def.KVGet.Output\"\x05\x8a\xa6\x1d\x01\x01\x12>\n" +
+	"\x06KVList\x12\x15.api_def.KVList.Input\x1a\x16.api_def.KVList.Output\"\x05\x8a\xa6\x1d\x01\x01\x12;\n" +
+	"\x05KVPut\x12\x14.api_def.KVPut.Input\x1a\x15.api_def.KVPut.Output\"\x05\x8a\xa6\x1d\x01\x01B\n" +
 	"Z\b/api_defb\x06proto3"
 
 var file_internal_service_hub_kv_api_def_service_proto_goTypes = []any{

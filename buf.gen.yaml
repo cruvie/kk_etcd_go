@@ -1,4 +1,15 @@
 version: v2
+inputs:
+  # Local module at provided directory path
+  - directory: ./
+    paths:
+      - vendor/gitee.com/cruvie/kk_go_kit/kk_models
+      - internal/service_hub/backup/api_def
+      - internal/service_hub/kv/api_def
+      - internal/service_hub/role/api_def
+      - internal/service_hub/service/api_def
+      - internal/service_hub/user/api_def
+      - vendor/gitee.com/cruvie/kk_go_kit/kk_protobuf/extend_method
 plugins:
   - remote: buf.build/protocolbuffers/go:v1.36.7
     out: .

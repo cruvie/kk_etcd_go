@@ -5,7 +5,13 @@ option go_package = "/api_def";
 import "internal/service_hub/service/api_def/DeregisterService.proto";
 import "internal/service_hub/service/api_def/ServiceList.proto";
 
+import "vendor/gitee.com/cruvie/kk_go_kit/kk_protobuf/extend_method.proto";
+
 service Service {
-  rpc DeregisterService(DeregisterService.Input) returns (DeregisterService.Output);
-  rpc ServiceList(ServiceList.Input) returns (ServiceList.Output);
+  rpc DeregisterService(DeregisterService.Input) returns (DeregisterService.Output){
+    option (kk_protobuf.interceptor_list) = INTERCEPTOR_TYPE_AUTH;
+  }
+  rpc ServiceList(ServiceList.Input) returns (ServiceList.Output){
+    option (kk_protobuf.interceptor_list) = INTERCEPTOR_TYPE_AUTH;
+  }
 }

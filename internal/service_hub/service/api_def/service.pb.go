@@ -7,6 +7,7 @@
 package api_def
 
 import (
+	_ "gitee.com/cruvie/kk_go_kit/kk_protobuf"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -24,10 +25,10 @@ var File_internal_service_hub_service_api_def_service_proto protoreflect.FileDes
 
 const file_internal_service_hub_service_api_def_service_proto_rawDesc = "" +
 	"\n" +
-	"2internal/service_hub/service/api_def/service.proto\x12\aapi_def\x1a<internal/service_hub/service/api_def/DeregisterService.proto\x1a6internal/service_hub/service/api_def/ServiceList.proto2\xab\x01\n" +
-	"\aService\x12X\n" +
-	"\x11DeregisterService\x12 .api_def.DeregisterService.Input\x1a!.api_def.DeregisterService.Output\x12F\n" +
-	"\vServiceList\x12\x1a.api_def.ServiceList.Input\x1a\x1b.api_def.ServiceList.OutputB\n" +
+	"2internal/service_hub/service/api_def/service.proto\x12\aapi_def\x1a<internal/service_hub/service/api_def/DeregisterService.proto\x1a6internal/service_hub/service/api_def/ServiceList.proto\x1aAvendor/gitee.com/cruvie/kk_go_kit/kk_protobuf/extend_method.proto2\xb9\x01\n" +
+	"\aService\x12_\n" +
+	"\x11DeregisterService\x12 .api_def.DeregisterService.Input\x1a!.api_def.DeregisterService.Output\"\x05\x8a\xa6\x1d\x01\x01\x12M\n" +
+	"\vServiceList\x12\x1a.api_def.ServiceList.Input\x1a\x1b.api_def.ServiceList.Output\"\x05\x8a\xa6\x1d\x01\x01B\n" +
 	"Z\b/api_defb\x06proto3"
 
 var file_internal_service_hub_service_api_def_service_proto_goTypes = []any{

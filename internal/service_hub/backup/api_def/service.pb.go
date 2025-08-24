@@ -7,6 +7,7 @@
 package api_def
 
 import (
+	_ "gitee.com/cruvie/kk_go_kit/kk_protobuf"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -24,13 +25,13 @@ var File_internal_service_hub_backup_api_def_service_proto protoreflect.FileDesc
 
 const file_internal_service_hub_backup_api_def_service_proto_rawDesc = "" +
 	"\n" +
-	"1internal/service_hub/backup/api_def/service.proto\x12\aapi_def\x1a6internal/service_hub/backup/api_def/AllKVsBackup.proto\x1a7internal/service_hub/backup/api_def/AllKVsRestore.proto\x1a2internal/service_hub/backup/api_def/Snapshot.proto\x1a6internal/service_hub/backup/api_def/SnapshotInfo.proto\x1a9internal/service_hub/backup/api_def/SnapshotRestore.proto2\xff\x02\n" +
-	"\x06Backup\x12I\n" +
-	"\fAllKVsBackup\x12\x1b.api_def.AllKVsBackup.Input\x1a\x1c.api_def.AllKVsBackup.Output\x12L\n" +
-	"\rAllKVsRestore\x12\x1c.api_def.AllKVsRestore.Input\x1a\x1d.api_def.AllKVsRestore.Output\x12=\n" +
-	"\bSnapshot\x12\x17.api_def.Snapshot.Input\x1a\x18.api_def.Snapshot.Output\x12I\n" +
-	"\fSnapshotInfo\x12\x1b.api_def.SnapshotInfo.Input\x1a\x1c.api_def.SnapshotInfo.Output\x12R\n" +
-	"\x0fSnapshotRestore\x12\x1e.api_def.SnapshotRestore.Input\x1a\x1f.api_def.SnapshotRestore.OutputB\n" +
+	"1internal/service_hub/backup/api_def/service.proto\x12\aapi_def\x1a6internal/service_hub/backup/api_def/AllKVsBackup.proto\x1a7internal/service_hub/backup/api_def/AllKVsRestore.proto\x1a2internal/service_hub/backup/api_def/Snapshot.proto\x1a6internal/service_hub/backup/api_def/SnapshotInfo.proto\x1a9internal/service_hub/backup/api_def/SnapshotRestore.proto\x1aAvendor/gitee.com/cruvie/kk_go_kit/kk_protobuf/extend_method.proto2\xa2\x03\n" +
+	"\x06Backup\x12P\n" +
+	"\fAllKVsBackup\x12\x1b.api_def.AllKVsBackup.Input\x1a\x1c.api_def.AllKVsBackup.Output\"\x05\x8a\xa6\x1d\x01\x01\x12S\n" +
+	"\rAllKVsRestore\x12\x1c.api_def.AllKVsRestore.Input\x1a\x1d.api_def.AllKVsRestore.Output\"\x05\x8a\xa6\x1d\x01\x01\x12D\n" +
+	"\bSnapshot\x12\x17.api_def.Snapshot.Input\x1a\x18.api_def.Snapshot.Output\"\x05\x8a\xa6\x1d\x01\x01\x12P\n" +
+	"\fSnapshotInfo\x12\x1b.api_def.SnapshotInfo.Input\x1a\x1c.api_def.SnapshotInfo.Output\"\x05\x8a\xa6\x1d\x01\x01\x12Y\n" +
+	"\x0fSnapshotRestore\x12\x1e.api_def.SnapshotRestore.Input\x1a\x1f.api_def.SnapshotRestore.Output\"\x05\x8a\xa6\x1d\x01\x01B\n" +
 	"Z\b/api_defb\x06proto3"
 
 var file_internal_service_hub_backup_api_def_service_proto_goTypes = []any{

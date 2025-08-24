@@ -5,6 +5,8 @@ import (
 	"time"
 
 	"gitee.com/cruvie/kk_go_kit/kk_grpc"
+	"gitee.com/cruvie/kk_go_kit/kk_grpc/interceptor"
+	"gitee.com/cruvie/kk_go_kit/kk_protobuf"
 	"github.com/cruvie/kk_etcd_go/internal/config"
 	"github.com/cruvie/kk_etcd_go/internal/service_hub/user/util_user"
 	"github.com/cruvie/kk_etcd_go/internal/utils/global_model"
@@ -32,6 +34,14 @@ func etcdClient(userName, password string) (*clientv3.Client, error) {
 func UnaryEtcdClient() grpc.UnaryServerInterceptor {
 	return func(ctx context.Context, req any, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (any, error) {
 		stage := kk_grpc.GetGrpcStage(ctx)
+
+		list, err := interceptor.GetInterceptorTypeListFromStage(stage)
+		if err != nil {
+			return nil, err
+		}
+		if !kk_protobuf.InterceptorType_INTERCEPTOR_TYPE_AUTH.IsIn(list...) {
+			return handler(ctx, req)
+		}
 
 		md, ok := metadata.FromIncomingContext(ctx)
 		if !ok {

@@ -7,9 +7,19 @@ import "internal/service_hub/kv/api_def/KVGet.proto";
 import "internal/service_hub/kv/api_def/KVList.proto";
 import "internal/service_hub/kv/api_def/KVPut.proto";
 
+import "vendor/gitee.com/cruvie/kk_go_kit/kk_protobuf/extend_method.proto";
+
 service KV {
-  rpc KVDel(KVDel.Input) returns (KVDel.Output);
-  rpc KVGet(KVGet.Input) returns (KVGet.Output);
-  rpc KVList(KVList.Input) returns (KVList.Output);
-  rpc KVPut(KVPut.Input) returns (KVPut.Output);
+  rpc KVDel(KVDel.Input) returns (KVDel.Output){
+    option (kk_protobuf.interceptor_list) = INTERCEPTOR_TYPE_AUTH;
+  }
+  rpc KVGet(KVGet.Input) returns (KVGet.Output){
+    option (kk_protobuf.interceptor_list) = INTERCEPTOR_TYPE_AUTH;
+  }
+  rpc KVList(KVList.Input) returns (KVList.Output){
+    option (kk_protobuf.interceptor_list) = INTERCEPTOR_TYPE_AUTH;
+  }
+  rpc KVPut(KVPut.Input) returns (KVPut.Output){
+    option (kk_protobuf.interceptor_list) = INTERCEPTOR_TYPE_AUTH;
+  }
 }

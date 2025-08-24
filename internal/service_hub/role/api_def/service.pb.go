@@ -7,6 +7,7 @@
 package api_def
 
 import (
+	_ "gitee.com/cruvie/kk_go_kit/kk_protobuf"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -24,15 +25,15 @@ var File_internal_service_hub_role_api_def_service_proto protoreflect.FileDescri
 
 const file_internal_service_hub_role_api_def_service_proto_rawDesc = "" +
 	"\n" +
-	"/internal/service_hub/role/api_def/service.proto\x12\aapi_def\x1a/internal/service_hub/role/api_def/RoleAdd.proto\x1a2internal/service_hub/role/api_def/RoleDelete.proto\x1a/internal/service_hub/role/api_def/RoleGet.proto\x1a;internal/service_hub/role/api_def/RoleGrantPermission.proto\x1a0internal/service_hub/role/api_def/RoleList.proto\x1a<internal/service_hub/role/api_def/RoleRevokePermission.proto2\xc5\x03\n" +
-	"\x04Role\x12:\n" +
-	"\aRoleAdd\x12\x16.api_def.RoleAdd.Input\x1a\x17.api_def.RoleAdd.Output\x12C\n" +
+	"/internal/service_hub/role/api_def/service.proto\x12\aapi_def\x1a/internal/service_hub/role/api_def/RoleAdd.proto\x1a2internal/service_hub/role/api_def/RoleDelete.proto\x1a/internal/service_hub/role/api_def/RoleGet.proto\x1a;internal/service_hub/role/api_def/RoleGrantPermission.proto\x1a0internal/service_hub/role/api_def/RoleList.proto\x1a<internal/service_hub/role/api_def/RoleRevokePermission.proto\x1aAvendor/gitee.com/cruvie/kk_go_kit/kk_protobuf/extend_method.proto2\xef\x03\n" +
+	"\x04Role\x12A\n" +
+	"\aRoleAdd\x12\x16.api_def.RoleAdd.Input\x1a\x17.api_def.RoleAdd.Output\"\x05\x8a\xa6\x1d\x01\x01\x12J\n" +
 	"\n" +
-	"RoleDelete\x12\x19.api_def.RoleDelete.Input\x1a\x1a.api_def.RoleDelete.Output\x12:\n" +
-	"\aRoleGet\x12\x16.api_def.RoleGet.Input\x1a\x17.api_def.RoleGet.Output\x12^\n" +
-	"\x13RoleGrantPermission\x12\".api_def.RoleGrantPermission.Input\x1a#.api_def.RoleGrantPermission.Output\x12=\n" +
-	"\bRoleList\x12\x17.api_def.RoleList.Input\x1a\x18.api_def.RoleList.Output\x12a\n" +
-	"\x14RoleRevokePermission\x12#.api_def.RoleRevokePermission.Input\x1a$.api_def.RoleRevokePermission.OutputB\n" +
+	"RoleDelete\x12\x19.api_def.RoleDelete.Input\x1a\x1a.api_def.RoleDelete.Output\"\x05\x8a\xa6\x1d\x01\x01\x12A\n" +
+	"\aRoleGet\x12\x16.api_def.RoleGet.Input\x1a\x17.api_def.RoleGet.Output\"\x05\x8a\xa6\x1d\x01\x01\x12e\n" +
+	"\x13RoleGrantPermission\x12\".api_def.RoleGrantPermission.Input\x1a#.api_def.RoleGrantPermission.Output\"\x05\x8a\xa6\x1d\x01\x01\x12D\n" +
+	"\bRoleList\x12\x17.api_def.RoleList.Input\x1a\x18.api_def.RoleList.Output\"\x05\x8a\xa6\x1d\x01\x01\x12h\n" +
+	"\x14RoleRevokePermission\x12#.api_def.RoleRevokePermission.Input\x1a$.api_def.RoleRevokePermission.Output\"\x05\x8a\xa6\x1d\x01\x01B\n" +
 	"Z\b/api_defb\x06proto3"
 
 var file_internal_service_hub_role_api_def_service_proto_goTypes = []any{

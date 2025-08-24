@@ -31,7 +31,13 @@ func NewGrpcServer(stage *kk_stage.Stage) *kk_server.KKRunServer {
 	if err != nil {
 		panic(err)
 	}
-
+	{
+		apiImplRole.RegisterFileDesc()
+		apiImplUser.RegisterFileDesc()
+		apiImplService.RegisterFileDesc()
+		apiImplKv.RegisterFileDesc()
+		apiImplBackup.RegisterFileDesc()
+	}
 	grpcServer := grpc.NewServer(
 		grpc.StatsHandler(otelgrpc.NewServerHandler()),
 		grpc.MaxRecvMsgSize(kk_file.MB.Int()*10),
@@ -43,15 +49,17 @@ func NewGrpcServer(stage *kk_stage.Stage) *kk_server.KKRunServer {
 			recovery.UnaryServerInterceptor(recovery.WithRecoveryHandler(middleware.PanicRecovery)),
 		),
 	)
-	reflection.Register(grpcServer)
-	// grpcurl -plaintext localhost:2333 list
-	// grpcurl -plaintext localhost:2333 describe api_def.AI
-	kk_grpc.RegisterKKHealthCheckServer(grpcServer)
-	apiImplRole.RegisterServer(grpcServer)
-	apiImplUser.RegisterServer(grpcServer)
-	apiImplService.RegisterServer(grpcServer)
-	apiImplKv.RegisterServer(grpcServer)
-	apiImplBackup.RegisterServer(grpcServer)
+	{
+		reflection.Register(grpcServer)
+		// grpcurl -plaintext localhost:2333 list
+		// grpcurl -plaintext localhost:2333 describe api_def.AI
+		kk_grpc.RegisterKKHealthCheckServer(grpcServer)
+		apiImplRole.RegisterServer(grpcServer)
+		apiImplUser.RegisterServer(grpcServer)
+		apiImplService.RegisterServer(grpcServer)
+		apiImplKv.RegisterServer(grpcServer)
+		apiImplBackup.RegisterServer(grpcServer)
+	}
 
 	// 使用 grpcweb 包装 gRPC 服务端
 	grpcWebServer := grpcweb.WrapServer(grpcServer)
@@ -62,7 +70,7 @@ func NewGrpcServer(stage *kk_stage.Stage) *kk_server.KKRunServer {
 			// 允许跨域请求（根据需要配置）
 			w.Header().Set("Access-Control-Allow-Origin", "*")
 			w.Header().Set("Access-Control-Allow-Methods", "*")
-			w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Grpc-Web")
+			w.Header().Set("Access-Control-Allow-Headers", "*")
 
 			// 如果是预检请求，直接返回
 			if r.Method == http.MethodOptions {
@@ -79,11 +87,11 @@ func NewGrpcServer(stage *kk_stage.Stage) *kk_server.KKRunServer {
 	}
 
 	run := func() {
-		go func() {
-			if err := grpcServer.Serve(listener); err != nil {
-				panic(err)
-			}
-		}()
+		//go func() {
+		//	if err := grpcServer.Serve(listener); err != nil {
+		//		panic(err)
+		//	}
+		//}()
 		if err := httpServer.Serve(listener); err != nil && !errors.Is(err, http.ErrServerClosed) {
 			panic(err)
 		}
