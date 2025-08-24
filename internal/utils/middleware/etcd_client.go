@@ -71,16 +71,12 @@ func UnaryEtcdClient() grpc.UnaryServerInterceptor {
 		// store user to gin context
 		global_model.SetLoginUser(stage, user)
 
-		return handler(ctx, req)
-	}
-}
+		resp, err := handler(ctx, req)
 
-// todo 如何在结束后关闭客户端
-func UnaryEtcdClientClose() grpc.UnaryServerInterceptor {
-	return func(ctx context.Context, req any, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (any, error) {
-		stage := kk_grpc.GetGrpcStage(ctx)
-		global_model.CloseClient(stage)
-
-		return handler(ctx, req)
+		{
+			// end of a request
+			global_model.CloseClient(stage)
+		}
+		return resp, err
 	}
 }
