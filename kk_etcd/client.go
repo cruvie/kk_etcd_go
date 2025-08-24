@@ -62,22 +62,22 @@ func GetClient() *clientv3.Client {
 	return global_model.GetClient(internal_client.GlobalStage)
 }
 
-func NewBackupClient() apiImplBackup.CServer {
-	return apiImplBackup.CServer{}
+func NewBackupClient() *apiImplBackup.CServer {
+	return &apiImplBackup.CServer{}
 }
 
-func NewKVClient() apiImplKv.CServer {
-	return apiImplKv.CServer{}
+func NewKVClient() *apiImplKv.CServer {
+	return &apiImplKv.CServer{}
 }
 
-func NewUserClient() apiImplUser.CServer {
-	return apiImplUser.CServer{}
+func NewUserClient() *apiImplUser.CServer {
+	return &apiImplUser.CServer{}
 }
 
-func NewRoleClient() apiImplRole.CServer {
-	return apiImplRole.CServer{}
+func NewRoleClient() *apiImplRole.CServer {
+	return &apiImplRole.CServer{}
 }
 
-func NewServiceClient() apiImplService.CServer {
-	return apiImplService.CServer{}
+func NewServiceClient() *apiImplService.CServer {
+	return &apiImplService.CServer{}
 }
