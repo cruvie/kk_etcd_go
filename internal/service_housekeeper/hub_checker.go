@@ -7,11 +7,13 @@ import (
 	"net/http"
 	"time"
 
+	"gitee.com/cruvie/kk_go_kit/kk_id"
 	"gitee.com/cruvie/kk_go_kit/kk_stage"
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/grpc/health/grpc_health_v1"
+	"google.golang.org/grpc/metadata"
 )
 
 var runningCheck = make(map[string] /*UniqueKey*/ *checkT)
@@ -99,8 +101,10 @@ func checkGrpc(checkConfig *kk_etcd_models.PBServiceRegistration_PBCheckConfig) 
 		}
 	}(conn)
 	healthClient := grpc_health_v1.NewHealthClient(conn)
+
 	ctx, cancel := context.WithTimeout(context.Background(), checkConfig.Timeout.AsDuration())
 	defer cancel()
+	ctx = metadata.AppendToOutgoingContext(ctx, kk_stage.TraceIdKey, kk_id.MustGenUUID7())
 	resp, err := healthClient.Check(ctx, &grpc_health_v1.HealthCheckRequest{})
 	if err != nil {
 		return fmt.Errorf("failed to checkT grpc health %w", err)
