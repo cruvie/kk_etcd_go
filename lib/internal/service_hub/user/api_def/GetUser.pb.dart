@@ -38,7 +38,7 @@ class GetUser_Input extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'GetUser.Input',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'api_def'),
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd'),
       createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'UserName', protoName: 'UserName')
     ..hasRequiredFields = false;
@@ -94,7 +94,7 @@ class GetUser_Output extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'GetUser.Output',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'api_def'),
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd'),
       createEmptyInstance: create)
     ..aOM<$0.PBUser>(1, _omitFieldNames ? '' : 'User',
         protoName: 'User', subBuilder: $0.PBUser.create)
@@ -148,7 +148,7 @@ class GetUser extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'GetUser',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'api_def'),
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd'),
       createEmptyInstance: create)
     ..hasRequiredFields = false;
 

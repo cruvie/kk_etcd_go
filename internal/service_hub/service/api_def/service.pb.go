@@ -25,23 +25,23 @@ var File_internal_service_hub_service_api_def_service_proto protoreflect.FileDes
 
 const file_internal_service_hub_service_api_def_service_proto_rawDesc = "" +
 	"\n" +
-	"2internal/service_hub/service/api_def/service.proto\x12\aapi_def\x1a<internal/service_hub/service/api_def/DeregisterService.proto\x1a6internal/service_hub/service/api_def/ServiceList.proto\x1aAvendor/gitee.com/cruvie/kk_go_kit/kk_protobuf/extend_method.proto2\xb9\x01\n" +
+	"2internal/service_hub/service/api_def/service.proto\x12\akk_etcd\x1a<internal/service_hub/service/api_def/DeregisterService.proto\x1a6internal/service_hub/service/api_def/ServiceList.proto\x1aAvendor/gitee.com/cruvie/kk_go_kit/kk_protobuf/extend_method.proto2\xb9\x01\n" +
 	"\aService\x12_\n" +
-	"\x11DeregisterService\x12 .api_def.DeregisterService.Input\x1a!.api_def.DeregisterService.Output\"\x05\x8a\xa6\x1d\x01\x01\x12M\n" +
-	"\vServiceList\x12\x1a.api_def.ServiceList.Input\x1a\x1b.api_def.ServiceList.Output\"\x05\x8a\xa6\x1d\x01\x01B\n" +
+	"\x11DeregisterService\x12 .kk_etcd.DeregisterService.Input\x1a!.kk_etcd.DeregisterService.Output\"\x05\x8a\xa6\x1d\x01\x01\x12M\n" +
+	"\vServiceList\x12\x1a.kk_etcd.ServiceList.Input\x1a\x1b.kk_etcd.ServiceList.Output\"\x05\x8a\xa6\x1d\x01\x01B\n" +
 	"Z\b/api_defb\x06proto3"
 
 var file_internal_service_hub_service_api_def_service_proto_goTypes = []any{
-	(*DeregisterService_Input)(nil),  // 0: api_def.DeregisterService.Input
-	(*ServiceList_Input)(nil),        // 1: api_def.ServiceList.Input
-	(*DeregisterService_Output)(nil), // 2: api_def.DeregisterService.Output
-	(*ServiceList_Output)(nil),       // 3: api_def.ServiceList.Output
+	(*DeregisterService_Input)(nil),  // 0: kk_etcd.DeregisterService.Input
+	(*ServiceList_Input)(nil),        // 1: kk_etcd.ServiceList.Input
+	(*DeregisterService_Output)(nil), // 2: kk_etcd.DeregisterService.Output
+	(*ServiceList_Output)(nil),       // 3: kk_etcd.ServiceList.Output
 }
 var file_internal_service_hub_service_api_def_service_proto_depIdxs = []int32{
-	0, // 0: api_def.Service.DeregisterService:input_type -> api_def.DeregisterService.Input
-	1, // 1: api_def.Service.ServiceList:input_type -> api_def.ServiceList.Input
-	2, // 2: api_def.Service.DeregisterService:output_type -> api_def.DeregisterService.Output
-	3, // 3: api_def.Service.ServiceList:output_type -> api_def.ServiceList.Output
+	0, // 0: kk_etcd.Service.DeregisterService:input_type -> kk_etcd.DeregisterService.Input
+	1, // 1: kk_etcd.Service.ServiceList:input_type -> kk_etcd.ServiceList.Input
+	2, // 2: kk_etcd.Service.DeregisterService:output_type -> kk_etcd.DeregisterService.Output
+	3, // 3: kk_etcd.Service.ServiceList:output_type -> kk_etcd.ServiceList.Output
 	2, // [2:4] is the sub-list for method output_type
 	0, // [0:2] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name

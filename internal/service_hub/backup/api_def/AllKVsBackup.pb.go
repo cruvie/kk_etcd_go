@@ -150,7 +150,7 @@ var File_internal_service_hub_backup_api_def_AllKVsBackup_proto protoreflect.Fil
 
 const file_internal_service_hub_backup_api_def_AllKVsBackup_proto_rawDesc = "" +
 	"\n" +
-	"6internal/service_hub/backup/api_def/AllKVsBackup.proto\x12\aapi_def\"I\n" +
+	"6internal/service_hub/backup/api_def/AllKVsBackup.proto\x12\akk_etcd\"I\n" +
 	"\fAllKVsBackup\x1a\a\n" +
 	"\x05Input\x1a0\n" +
 	"\x06Output\x12\x12\n" +
@@ -172,9 +172,9 @@ func file_internal_service_hub_backup_api_def_AllKVsBackup_proto_rawDescGZIP() [
 
 var file_internal_service_hub_backup_api_def_AllKVsBackup_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_internal_service_hub_backup_api_def_AllKVsBackup_proto_goTypes = []any{
-	(*AllKVsBackup)(nil),        // 0: api_def.AllKVsBackup
-	(*AllKVsBackup_Input)(nil),  // 1: api_def.AllKVsBackup.Input
-	(*AllKVsBackup_Output)(nil), // 2: api_def.AllKVsBackup.Output
+	(*AllKVsBackup)(nil),        // 0: kk_etcd.AllKVsBackup
+	(*AllKVsBackup_Input)(nil),  // 1: kk_etcd.AllKVsBackup.Input
+	(*AllKVsBackup_Output)(nil), // 2: kk_etcd.AllKVsBackup.Output
 }
 var file_internal_service_hub_backup_api_def_AllKVsBackup_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type

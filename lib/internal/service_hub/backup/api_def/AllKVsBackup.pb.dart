@@ -30,7 +30,7 @@ class AllKVsBackup_Input extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'AllKVsBackup.Input',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'api_def'),
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd'),
       createEmptyInstance: create)
     ..hasRequiredFields = false;
 
@@ -78,7 +78,7 @@ class AllKVsBackup_Output extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'AllKVsBackup.Output',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'api_def'),
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd'),
       createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'Name', protoName: 'Name')
     ..a<$core.List<$core.int>>(
@@ -141,7 +141,7 @@ class AllKVsBackup extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'AllKVsBackup',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'api_def'),
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd'),
       createEmptyInstance: create)
     ..hasRequiredFields = false;
 

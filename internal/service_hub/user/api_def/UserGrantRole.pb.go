@@ -150,7 +150,7 @@ var File_internal_service_hub_user_api_def_UserGrantRole_proto protoreflect.File
 
 const file_internal_service_hub_user_api_def_UserGrantRole_proto_rawDesc = "" +
 	"\n" +
-	"5internal/service_hub/user/api_def/UserGrantRole.proto\x12\aapi_def\"T\n" +
+	"5internal/service_hub/user/api_def/UserGrantRole.proto\x12\akk_etcd\"T\n" +
 	"\rUserGrantRole\x1a9\n" +
 	"\x05Input\x12\x1a\n" +
 	"\bUserName\x18\x02 \x01(\tR\bUserName\x12\x14\n" +
@@ -172,9 +172,9 @@ func file_internal_service_hub_user_api_def_UserGrantRole_proto_rawDescGZIP() []
 
 var file_internal_service_hub_user_api_def_UserGrantRole_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_internal_service_hub_user_api_def_UserGrantRole_proto_goTypes = []any{
-	(*UserGrantRole)(nil),        // 0: api_def.UserGrantRole
-	(*UserGrantRole_Input)(nil),  // 1: api_def.UserGrantRole.Input
-	(*UserGrantRole_Output)(nil), // 2: api_def.UserGrantRole.Output
+	(*UserGrantRole)(nil),        // 0: kk_etcd.UserGrantRole
+	(*UserGrantRole_Input)(nil),  // 1: kk_etcd.UserGrantRole.Input
+	(*UserGrantRole_Output)(nil), // 2: kk_etcd.UserGrantRole.Output
 }
 var file_internal_service_hub_user_api_def_UserGrantRole_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type

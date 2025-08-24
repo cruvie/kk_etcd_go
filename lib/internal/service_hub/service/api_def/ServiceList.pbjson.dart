@@ -29,7 +29,7 @@ const ServiceList_Input$json = {
       '3': 1,
       '4': 1,
       '5': 14,
-      '6': '.kk_etcd_models.PBServiceType',
+      '6': '.kk_etcd.PBServiceType',
       '10': 'ServiceType'
     },
     {'1': 'ServiceName', '3': 2, '4': 1, '5': 9, '10': 'ServiceName'},
@@ -45,7 +45,7 @@ const ServiceList_Output$json = {
       '3': 1,
       '4': 1,
       '5': 11,
-      '6': '.kk_etcd_models.PBListService',
+      '6': '.kk_etcd.PBListService',
       '10': 'ServiceList'
     },
   ],
@@ -53,7 +53,7 @@ const ServiceList_Output$json = {
 
 /// Descriptor for `ServiceList`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List serviceListDescriptor = $convert.base64Decode(
-    'CgtTZXJ2aWNlTGlzdBpqCgVJbnB1dBI/CgtTZXJ2aWNlVHlwZRgBIAEoDjIdLmtrX2V0Y2RfbW'
-    '9kZWxzLlBCU2VydmljZVR5cGVSC1NlcnZpY2VUeXBlEiAKC1NlcnZpY2VOYW1lGAIgASgJUgtT'
-    'ZXJ2aWNlTmFtZRpJCgZPdXRwdXQSPwoLU2VydmljZUxpc3QYASABKAsyHS5ra19ldGNkX21vZG'
-    'Vscy5QQkxpc3RTZXJ2aWNlUgtTZXJ2aWNlTGlzdA==');
+    'CgtTZXJ2aWNlTGlzdBpjCgVJbnB1dBI4CgtTZXJ2aWNlVHlwZRgBIAEoDjIWLmtrX2V0Y2QuUE'
+    'JTZXJ2aWNlVHlwZVILU2VydmljZVR5cGUSIAoLU2VydmljZU5hbWUYAiABKAlSC1NlcnZpY2VO'
+    'YW1lGkIKBk91dHB1dBI4CgtTZXJ2aWNlTGlzdBgBIAEoCzIWLmtrX2V0Y2QuUEJMaXN0U2Vydm'
+    'ljZVILU2VydmljZUxpc3Q=');

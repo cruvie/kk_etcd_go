@@ -142,7 +142,7 @@ var File_internal_service_hub_role_api_def_RoleAdd_proto protoreflect.FileDescri
 
 const file_internal_service_hub_role_api_def_RoleAdd_proto_rawDesc = "" +
 	"\n" +
-	"/internal/service_hub/role/api_def/RoleAdd.proto\x12\aapi_def\"0\n" +
+	"/internal/service_hub/role/api_def/RoleAdd.proto\x12\akk_etcd\"0\n" +
 	"\aRoleAdd\x1a\x1b\n" +
 	"\x05Input\x12\x12\n" +
 	"\x04Name\x18\x01 \x01(\tR\x04Name\x1a\b\n" +
@@ -163,9 +163,9 @@ func file_internal_service_hub_role_api_def_RoleAdd_proto_rawDescGZIP() []byte {
 
 var file_internal_service_hub_role_api_def_RoleAdd_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_internal_service_hub_role_api_def_RoleAdd_proto_goTypes = []any{
-	(*RoleAdd)(nil),        // 0: api_def.RoleAdd
-	(*RoleAdd_Input)(nil),  // 1: api_def.RoleAdd.Input
-	(*RoleAdd_Output)(nil), // 2: api_def.RoleAdd.Output
+	(*RoleAdd)(nil),        // 0: kk_etcd.RoleAdd
+	(*RoleAdd_Input)(nil),  // 1: kk_etcd.RoleAdd.Input
+	(*RoleAdd_Output)(nil), // 2: kk_etcd.RoleAdd.Output
 }
 var file_internal_service_hub_role_api_def_RoleAdd_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type

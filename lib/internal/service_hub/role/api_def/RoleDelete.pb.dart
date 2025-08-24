@@ -36,7 +36,7 @@ class RoleDelete_Input extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'RoleDelete.Input',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'api_def'),
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd'),
       createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'Name', protoName: 'Name')
     ..hasRequiredFields = false;
@@ -86,7 +86,7 @@ class RoleDelete_Output extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'RoleDelete.Output',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'api_def'),
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd'),
       createEmptyInstance: create)
     ..hasRequiredFields = false;
 
@@ -127,7 +127,7 @@ class RoleDelete extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'RoleDelete',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'api_def'),
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd'),
       createEmptyInstance: create)
     ..hasRequiredFields = false;
 

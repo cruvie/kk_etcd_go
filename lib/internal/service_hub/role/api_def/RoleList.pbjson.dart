@@ -34,7 +34,7 @@ const RoleList_Output$json = {
       '3': 1,
       '4': 1,
       '5': 11,
-      '6': '.kk_etcd_models.PBListRole',
+      '6': '.kk_etcd.PBListRole',
       '10': 'ListRole'
     },
   ],
@@ -42,5 +42,5 @@ const RoleList_Output$json = {
 
 /// Descriptor for `RoleList`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List roleListDescriptor = $convert.base64Decode(
-    'CghSb2xlTGlzdBoHCgVJbnB1dBpACgZPdXRwdXQSNgoITGlzdFJvbGUYASABKAsyGi5ra19ldG'
-    'NkX21vZGVscy5QQkxpc3RSb2xlUghMaXN0Um9sZQ==');
+    'CghSb2xlTGlzdBoHCgVJbnB1dBo5CgZPdXRwdXQSLwoITGlzdFJvbGUYASABKAsyEy5ra19ldG'
+    'NkLlBCTGlzdFJvbGVSCExpc3RSb2xl');

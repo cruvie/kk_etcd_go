@@ -142,7 +142,7 @@ var File_internal_service_hub_backup_api_def_SnapshotRestore_proto protoreflect.
 
 const file_internal_service_hub_backup_api_def_SnapshotRestore_proto_rawDesc = "" +
 	"\n" +
-	"9internal/service_hub/backup/api_def/SnapshotRestore.proto\x12\aapi_def\"<\n" +
+	"9internal/service_hub/backup/api_def/SnapshotRestore.proto\x12\akk_etcd\"<\n" +
 	"\x0fSnapshotRestore\x1a\a\n" +
 	"\x05Input\x1a \n" +
 	"\x06Output\x12\x16\n" +
@@ -163,9 +163,9 @@ func file_internal_service_hub_backup_api_def_SnapshotRestore_proto_rawDescGZIP(
 
 var file_internal_service_hub_backup_api_def_SnapshotRestore_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_internal_service_hub_backup_api_def_SnapshotRestore_proto_goTypes = []any{
-	(*SnapshotRestore)(nil),        // 0: api_def.SnapshotRestore
-	(*SnapshotRestore_Input)(nil),  // 1: api_def.SnapshotRestore.Input
-	(*SnapshotRestore_Output)(nil), // 2: api_def.SnapshotRestore.Output
+	(*SnapshotRestore)(nil),        // 0: kk_etcd.SnapshotRestore
+	(*SnapshotRestore_Input)(nil),  // 1: kk_etcd.SnapshotRestore.Input
+	(*SnapshotRestore_Output)(nil), // 2: kk_etcd.SnapshotRestore.Output
 }
 var file_internal_service_hub_backup_api_def_SnapshotRestore_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type

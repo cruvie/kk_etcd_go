@@ -142,7 +142,7 @@ var File_internal_service_hub_user_api_def_UserDelete_proto protoreflect.FileDes
 
 const file_internal_service_hub_user_api_def_UserDelete_proto_rawDesc = "" +
 	"\n" +
-	"2internal/service_hub/user/api_def/UserDelete.proto\x12\aapi_def\";\n" +
+	"2internal/service_hub/user/api_def/UserDelete.proto\x12\akk_etcd\";\n" +
 	"\n" +
 	"UserDelete\x1a#\n" +
 	"\x05Input\x12\x1a\n" +
@@ -164,9 +164,9 @@ func file_internal_service_hub_user_api_def_UserDelete_proto_rawDescGZIP() []byt
 
 var file_internal_service_hub_user_api_def_UserDelete_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_internal_service_hub_user_api_def_UserDelete_proto_goTypes = []any{
-	(*UserDelete)(nil),        // 0: api_def.UserDelete
-	(*UserDelete_Input)(nil),  // 1: api_def.UserDelete.Input
-	(*UserDelete_Output)(nil), // 2: api_def.UserDelete.Output
+	(*UserDelete)(nil),        // 0: kk_etcd.UserDelete
+	(*UserDelete_Input)(nil),  // 1: kk_etcd.UserDelete.Input
+	(*UserDelete_Output)(nil), // 2: kk_etcd.UserDelete.Output
 }
 var file_internal_service_hub_user_api_def_UserDelete_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type

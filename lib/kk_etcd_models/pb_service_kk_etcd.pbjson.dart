@@ -23,7 +23,7 @@ const PBService$json = {
       '3': 1,
       '4': 1,
       '5': 11,
-      '6': '.kk_etcd_models.PBServiceRegistration',
+      '6': '.kk_etcd.PBServiceRegistration',
       '10': 'ServiceRegistration'
     },
     {
@@ -31,7 +31,7 @@ const PBService$json = {
       '3': 5,
       '4': 1,
       '5': 14,
-      '6': '.kk_etcd_models.PBService.ServiceStatus',
+      '6': '.kk_etcd.PBService.ServiceStatus',
       '10': 'Status'
     },
   ],
@@ -50,10 +50,10 @@ const PBService_ServiceStatus$json = {
 
 /// Descriptor for `PBService`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List pBServiceDescriptor = $convert.base64Decode(
-    'CglQQlNlcnZpY2USVwoTU2VydmljZVJlZ2lzdHJhdGlvbhgBIAEoCzIlLmtrX2V0Y2RfbW9kZW'
-    'xzLlBCU2VydmljZVJlZ2lzdHJhdGlvblITU2VydmljZVJlZ2lzdHJhdGlvbhI/CgZTdGF0dXMY'
-    'BSABKA4yJy5ra19ldGNkX21vZGVscy5QQlNlcnZpY2UuU2VydmljZVN0YXR1c1IGU3RhdHVzIj'
-    'MKDVNlcnZpY2VTdGF0dXMSCwoHVW5Lbm93bhAAEgsKB1J1bm5pbmcQARIICgRTdG9wEAI=');
+    'CglQQlNlcnZpY2USUAoTU2VydmljZVJlZ2lzdHJhdGlvbhgBIAEoCzIeLmtrX2V0Y2QuUEJTZX'
+    'J2aWNlUmVnaXN0cmF0aW9uUhNTZXJ2aWNlUmVnaXN0cmF0aW9uEjgKBlN0YXR1cxgFIAEoDjIg'
+    'LmtrX2V0Y2QuUEJTZXJ2aWNlLlNlcnZpY2VTdGF0dXNSBlN0YXR1cyIzCg1TZXJ2aWNlU3RhdH'
+    'VzEgsKB1VuS25vd24QABILCgdSdW5uaW5nEAESCAoEU3RvcBAC');
 
 @$core.Deprecated('Use pBListServiceDescriptor instead')
 const PBListService$json = {
@@ -64,7 +64,7 @@ const PBListService$json = {
       '3': 1,
       '4': 3,
       '5': 11,
-      '6': '.kk_etcd_models.PBService',
+      '6': '.kk_etcd.PBService',
       '10': 'ListService'
     },
   ],
@@ -72,5 +72,5 @@ const PBListService$json = {
 
 /// Descriptor for `PBListService`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List pBListServiceDescriptor = $convert.base64Decode(
-    'Cg1QQkxpc3RTZXJ2aWNlEjsKC0xpc3RTZXJ2aWNlGAEgAygLMhkua2tfZXRjZF9tb2RlbHMuUE'
-    'JTZXJ2aWNlUgtMaXN0U2VydmljZQ==');
+    'Cg1QQkxpc3RTZXJ2aWNlEjQKC0xpc3RTZXJ2aWNlGAEgAygLMhIua2tfZXRjZC5QQlNlcnZpY2'
+    'VSC0xpc3RTZXJ2aWNl');

@@ -27,7 +27,7 @@ import 'UserList.pb.dart' as $7;
 
 export 'service.pb.dart';
 
-@$pb.GrpcServiceName('api_def.User')
+@$pb.GrpcServiceName('kk_etcd.User')
 class UserClient extends $grpc.Client {
   /// The hostname for this service.
   static const $core.String defaultHost = '';
@@ -99,46 +99,46 @@ class UserClient extends $grpc.Client {
 
   static final _$getUser =
       $grpc.ClientMethod<$0.GetUser_Input, $0.GetUser_Output>(
-          '/api_def.User/GetUser',
+          '/kk_etcd.User/GetUser',
           ($0.GetUser_Input value) => value.writeToBuffer(),
           $0.GetUser_Output.fromBuffer);
   static final _$login = $grpc.ClientMethod<$1.Login_Input, $1.Login_Output>(
-      '/api_def.User/Login',
+      '/kk_etcd.User/Login',
       ($1.Login_Input value) => value.writeToBuffer(),
       $1.Login_Output.fromBuffer);
   static final _$logout = $grpc.ClientMethod<$2.Logout_Input, $2.Logout_Output>(
-      '/api_def.User/Logout',
+      '/kk_etcd.User/Logout',
       ($2.Logout_Input value) => value.writeToBuffer(),
       $2.Logout_Output.fromBuffer);
   static final _$myInfo = $grpc.ClientMethod<$3.MyInfo_Input, $3.MyInfo_Output>(
-      '/api_def.User/MyInfo',
+      '/kk_etcd.User/MyInfo',
       ($3.MyInfo_Input value) => value.writeToBuffer(),
       $3.MyInfo_Output.fromBuffer);
   static final _$userAdd =
       $grpc.ClientMethod<$4.UserAdd_Input, $4.UserAdd_Output>(
-          '/api_def.User/UserAdd',
+          '/kk_etcd.User/UserAdd',
           ($4.UserAdd_Input value) => value.writeToBuffer(),
           $4.UserAdd_Output.fromBuffer);
   static final _$userDelete =
       $grpc.ClientMethod<$5.UserDelete_Input, $5.UserDelete_Output>(
-          '/api_def.User/UserDelete',
+          '/kk_etcd.User/UserDelete',
           ($5.UserDelete_Input value) => value.writeToBuffer(),
           $5.UserDelete_Output.fromBuffer);
   static final _$userGrantRole =
       $grpc.ClientMethod<$6.UserGrantRole_Input, $6.UserGrantRole_Output>(
-          '/api_def.User/UserGrantRole',
+          '/kk_etcd.User/UserGrantRole',
           ($6.UserGrantRole_Input value) => value.writeToBuffer(),
           $6.UserGrantRole_Output.fromBuffer);
   static final _$userList =
       $grpc.ClientMethod<$7.UserList_Input, $7.UserList_Output>(
-          '/api_def.User/UserList',
+          '/kk_etcd.User/UserList',
           ($7.UserList_Input value) => value.writeToBuffer(),
           $7.UserList_Output.fromBuffer);
 }
 
-@$pb.GrpcServiceName('api_def.User')
+@$pb.GrpcServiceName('kk_etcd.User')
 abstract class UserServiceBase extends $grpc.Service {
-  $core.String get $name => 'api_def.User';
+  $core.String get $name => 'kk_etcd.User';
 
   UserServiceBase() {
     $addMethod($grpc.ServiceMethod<$0.GetUser_Input, $0.GetUser_Output>(

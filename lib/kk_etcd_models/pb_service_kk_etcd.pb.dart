@@ -44,7 +44,7 @@ class PBService extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'PBService',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd_models'),
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd'),
       createEmptyInstance: create)
     ..aOM<$0.PBServiceRegistration>(
         1, _omitFieldNames ? '' : 'ServiceRegistration',
@@ -119,7 +119,7 @@ class PBListService extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'PBListService',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd_models'),
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd'),
       createEmptyInstance: create)
     ..pc<PBService>(1, _omitFieldNames ? '' : 'ListService', $pb.PbFieldType.PM,
         protoName: 'ListService', subBuilder: PBService.create)

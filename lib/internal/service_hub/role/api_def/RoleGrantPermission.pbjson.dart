@@ -30,7 +30,7 @@ const RoleGrantPermission_Input$json = {
       '3': 2,
       '4': 1,
       '5': 11,
-      '6': '.kk_etcd_models.PBPermission',
+      '6': '.kk_etcd.PBPermission',
       '10': 'Perm'
     },
   ],
@@ -43,5 +43,5 @@ const RoleGrantPermission_Output$json = {
 
 /// Descriptor for `RoleGrantPermission`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List roleGrantPermissionDescriptor = $convert.base64Decode(
-    'ChNSb2xlR3JhbnRQZXJtaXNzaW9uGk0KBUlucHV0EhIKBE5hbWUYASABKAlSBE5hbWUSMAoEUG'
-    'VybRgCIAEoCzIcLmtrX2V0Y2RfbW9kZWxzLlBCUGVybWlzc2lvblIEUGVybRoICgZPdXRwdXQ=');
+    'ChNSb2xlR3JhbnRQZXJtaXNzaW9uGkYKBUlucHV0EhIKBE5hbWUYASABKAlSBE5hbWUSKQoEUG'
+    'VybRgCIAEoCzIVLmtrX2V0Y2QuUEJQZXJtaXNzaW9uUgRQZXJtGggKBk91dHB1dA==');

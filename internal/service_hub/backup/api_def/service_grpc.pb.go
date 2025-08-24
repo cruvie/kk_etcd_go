@@ -19,11 +19,11 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Backup_AllKVsBackup_FullMethodName    = "/api_def.Backup/AllKVsBackup"
-	Backup_AllKVsRestore_FullMethodName   = "/api_def.Backup/AllKVsRestore"
-	Backup_Snapshot_FullMethodName        = "/api_def.Backup/Snapshot"
-	Backup_SnapshotInfo_FullMethodName    = "/api_def.Backup/SnapshotInfo"
-	Backup_SnapshotRestore_FullMethodName = "/api_def.Backup/SnapshotRestore"
+	Backup_AllKVsBackup_FullMethodName    = "/kk_etcd.Backup/AllKVsBackup"
+	Backup_AllKVsRestore_FullMethodName   = "/kk_etcd.Backup/AllKVsRestore"
+	Backup_Snapshot_FullMethodName        = "/kk_etcd.Backup/Snapshot"
+	Backup_SnapshotInfo_FullMethodName    = "/kk_etcd.Backup/SnapshotInfo"
+	Backup_SnapshotRestore_FullMethodName = "/kk_etcd.Backup/SnapshotRestore"
 )
 
 // BackupClient is the client API for Backup service.
@@ -244,7 +244,7 @@ func _Backup_SnapshotRestore_Handler(srv interface{}, ctx context.Context, dec f
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Backup_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "api_def.Backup",
+	ServiceName: "kk_etcd.Backup",
 	HandlerType: (*BackupServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

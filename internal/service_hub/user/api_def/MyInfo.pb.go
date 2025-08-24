@@ -150,7 +150,7 @@ var File_internal_service_hub_user_api_def_MyInfo_proto protoreflect.FileDescrip
 
 const file_internal_service_hub_user_api_def_MyInfo_proto_rawDesc = "" +
 	"\n" +
-	".internal/service_hub/user/api_def/MyInfo.proto\x12\aapi_def\"M\n" +
+	".internal/service_hub/user/api_def/MyInfo.proto\x12\akk_etcd\"M\n" +
 	"\x06MyInfo\x1a\a\n" +
 	"\x05Input\x1a:\n" +
 	"\x06Output\x12\x1a\n" +
@@ -172,9 +172,9 @@ func file_internal_service_hub_user_api_def_MyInfo_proto_rawDescGZIP() []byte {
 
 var file_internal_service_hub_user_api_def_MyInfo_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_internal_service_hub_user_api_def_MyInfo_proto_goTypes = []any{
-	(*MyInfo)(nil),        // 0: api_def.MyInfo
-	(*MyInfo_Input)(nil),  // 1: api_def.MyInfo.Input
-	(*MyInfo_Output)(nil), // 2: api_def.MyInfo.Output
+	(*MyInfo)(nil),        // 0: kk_etcd.MyInfo
+	(*MyInfo_Input)(nil),  // 1: kk_etcd.MyInfo.Input
+	(*MyInfo_Output)(nil), // 2: kk_etcd.MyInfo.Output
 }
 var file_internal_service_hub_user_api_def_MyInfo_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type

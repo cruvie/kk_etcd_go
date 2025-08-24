@@ -38,7 +38,7 @@ class PBKV extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'PBKV',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd_models'),
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd'),
       createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'Key', protoName: 'Key')
     ..aOS(2, _omitFieldNames ? '' : 'Value', protoName: 'Value')
@@ -102,7 +102,7 @@ class PBListKV extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'PBListKV',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd_models'),
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd'),
       createEmptyInstance: create)
     ..pc<PBKV>(1, _omitFieldNames ? '' : 'ListKV', $pb.PbFieldType.PM,
         protoName: 'ListKV', subBuilder: PBKV.create)

@@ -40,7 +40,7 @@ class UserAdd_Input extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'UserAdd.Input',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'api_def'),
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd'),
       createEmptyInstance: create)
     ..aOS(2, _omitFieldNames ? '' : 'UserName', protoName: 'UserName')
     ..aOS(3, _omitFieldNames ? '' : 'Password', protoName: 'Password')
@@ -104,7 +104,7 @@ class UserAdd_Output extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'UserAdd.Output',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'api_def'),
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd'),
       createEmptyInstance: create)
     ..hasRequiredFields = false;
 
@@ -145,7 +145,7 @@ class UserAdd extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'UserAdd',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'api_def'),
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd'),
       createEmptyInstance: create)
     ..hasRequiredFields = false;
 

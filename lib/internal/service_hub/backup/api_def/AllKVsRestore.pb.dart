@@ -36,7 +36,7 @@ class AllKVsRestore_Input extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'AllKVsRestore.Input',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'api_def'),
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd'),
       createEmptyInstance: create)
     ..a<$core.List<$core.int>>(
         2, _omitFieldNames ? '' : 'File', $pb.PbFieldType.OY,
@@ -88,7 +88,7 @@ class AllKVsRestore_Output extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'AllKVsRestore.Output',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'api_def'),
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd'),
       createEmptyInstance: create)
     ..hasRequiredFields = false;
 
@@ -130,7 +130,7 @@ class AllKVsRestore extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'AllKVsRestore',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'api_def'),
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd'),
       createEmptyInstance: create)
     ..hasRequiredFields = false;
 

@@ -134,7 +134,7 @@ var File_internal_service_hub_user_api_def_Logout_proto protoreflect.FileDescrip
 
 const file_internal_service_hub_user_api_def_Logout_proto_rawDesc = "" +
 	"\n" +
-	".internal/service_hub/user/api_def/Logout.proto\x12\aapi_def\"\x1b\n" +
+	".internal/service_hub/user/api_def/Logout.proto\x12\akk_etcd\"\x1b\n" +
 	"\x06Logout\x1a\a\n" +
 	"\x05Input\x1a\b\n" +
 	"\x06OutputB\n" +
@@ -154,9 +154,9 @@ func file_internal_service_hub_user_api_def_Logout_proto_rawDescGZIP() []byte {
 
 var file_internal_service_hub_user_api_def_Logout_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_internal_service_hub_user_api_def_Logout_proto_goTypes = []any{
-	(*Logout)(nil),        // 0: api_def.Logout
-	(*Logout_Input)(nil),  // 1: api_def.Logout.Input
-	(*Logout_Output)(nil), // 2: api_def.Logout.Output
+	(*Logout)(nil),        // 0: kk_etcd.Logout
+	(*Logout_Input)(nil),  // 1: kk_etcd.Logout.Input
+	(*Logout_Output)(nil), // 2: kk_etcd.Logout.Output
 }
 var file_internal_service_hub_user_api_def_Logout_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type

@@ -37,7 +37,7 @@ const PBServiceRegistration$json = {
       '3': 1,
       '4': 1,
       '5': 14,
-      '6': '.kk_etcd_models.PBServiceType',
+      '6': '.kk_etcd.PBServiceType',
       '10': 'ServiceType'
     },
     {'1': 'ServiceName', '3': 2, '4': 1, '5': 9, '10': 'ServiceName'},
@@ -47,7 +47,7 @@ const PBServiceRegistration$json = {
       '3': 4,
       '4': 1,
       '5': 11,
-      '6': '.kk_etcd_models.PBServiceRegistration.PBCheckConfig',
+      '6': '.kk_etcd.PBServiceRegistration.PBCheckConfig',
       '10': 'CheckConfig'
     },
   ],
@@ -63,7 +63,7 @@ const PBServiceRegistration_PBCheckConfig$json = {
       '3': 1,
       '4': 1,
       '5': 14,
-      '6': '.kk_etcd_models.PBServiceType',
+      '6': '.kk_etcd.PBServiceType',
       '10': 'Type'
     },
     {
@@ -88,14 +88,14 @@ const PBServiceRegistration_PBCheckConfig$json = {
 
 /// Descriptor for `PBServiceRegistration`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List pBServiceRegistrationDescriptor = $convert.base64Decode(
-    'ChVQQlNlcnZpY2VSZWdpc3RyYXRpb24SPwoLU2VydmljZVR5cGUYASABKA4yHS5ra19ldGNkX2'
-    '1vZGVscy5QQlNlcnZpY2VUeXBlUgtTZXJ2aWNlVHlwZRIgCgtTZXJ2aWNlTmFtZRgCIAEoCVIL'
-    'U2VydmljZU5hbWUSIAoLU2VydmljZUFkZHIYAyABKAlSC1NlcnZpY2VBZGRyElUKC0NoZWNrQ2'
-    '9uZmlnGAQgASgLMjMua2tfZXRjZF9tb2RlbHMuUEJTZXJ2aWNlUmVnaXN0cmF0aW9uLlBCQ2hl'
-    'Y2tDb25maWdSC0NoZWNrQ29uZmlnGsIBCg1QQkNoZWNrQ29uZmlnEjEKBFR5cGUYASABKA4yHS'
-    '5ra19ldGNkX21vZGVscy5QQlNlcnZpY2VUeXBlUgRUeXBlEjMKB1RpbWVvdXQYAiABKAsyGS5n'
-    'b29nbGUucHJvdG9idWYuRHVyYXRpb25SB1RpbWVvdXQSNQoISW50ZXJ2YWwYAyABKAsyGS5nb2'
-    '9nbGUucHJvdG9idWYuRHVyYXRpb25SCEludGVydmFsEhIKBEFkZHIYBCABKAlSBEFkZHI=');
+    'ChVQQlNlcnZpY2VSZWdpc3RyYXRpb24SOAoLU2VydmljZVR5cGUYASABKA4yFi5ra19ldGNkLl'
+    'BCU2VydmljZVR5cGVSC1NlcnZpY2VUeXBlEiAKC1NlcnZpY2VOYW1lGAIgASgJUgtTZXJ2aWNl'
+    'TmFtZRIgCgtTZXJ2aWNlQWRkchgDIAEoCVILU2VydmljZUFkZHISTgoLQ2hlY2tDb25maWcYBC'
+    'ABKAsyLC5ra19ldGNkLlBCU2VydmljZVJlZ2lzdHJhdGlvbi5QQkNoZWNrQ29uZmlnUgtDaGVj'
+    'a0NvbmZpZxq7AQoNUEJDaGVja0NvbmZpZxIqCgRUeXBlGAEgASgOMhYua2tfZXRjZC5QQlNlcn'
+    'ZpY2VUeXBlUgRUeXBlEjMKB1RpbWVvdXQYAiABKAsyGS5nb29nbGUucHJvdG9idWYuRHVyYXRp'
+    'b25SB1RpbWVvdXQSNQoISW50ZXJ2YWwYAyABKAsyGS5nb29nbGUucHJvdG9idWYuRHVyYXRpb2'
+    '5SCEludGVydmFsEhIKBEFkZHIYBCABKAlSBEFkZHI=');
 
 @$core.Deprecated('Use pBListServiceRegistrationDescriptor instead')
 const PBListServiceRegistration$json = {
@@ -106,7 +106,7 @@ const PBListServiceRegistration$json = {
       '3': 1,
       '4': 3,
       '5': 11,
-      '6': '.kk_etcd_models.PBServiceRegistration',
+      '6': '.kk_etcd.PBServiceRegistration',
       '10': 'List'
     },
   ],
@@ -115,5 +115,5 @@ const PBListServiceRegistration$json = {
 /// Descriptor for `PBListServiceRegistration`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List pBListServiceRegistrationDescriptor =
     $convert.base64Decode(
-        'ChlQQkxpc3RTZXJ2aWNlUmVnaXN0cmF0aW9uEjkKBExpc3QYASADKAsyJS5ra19ldGNkX21vZG'
-        'Vscy5QQlNlcnZpY2VSZWdpc3RyYXRpb25SBExpc3Q=');
+        'ChlQQkxpc3RTZXJ2aWNlUmVnaXN0cmF0aW9uEjIKBExpc3QYASADKAsyHi5ra19ldGNkLlBCU2'
+        'VydmljZVJlZ2lzdHJhdGlvblIETGlzdA==');

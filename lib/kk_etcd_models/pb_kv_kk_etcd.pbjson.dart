@@ -36,7 +36,7 @@ const PBListKV$json = {
       '3': 1,
       '4': 3,
       '5': 11,
-      '6': '.kk_etcd_models.PBKV',
+      '6': '.kk_etcd.PBKV',
       '10': 'ListKV'
     },
   ],
@@ -44,5 +44,4 @@ const PBListKV$json = {
 
 /// Descriptor for `PBListKV`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List pBListKVDescriptor = $convert.base64Decode(
-    'CghQQkxpc3RLVhIsCgZMaXN0S1YYASADKAsyFC5ra19ldGNkX21vZGVscy5QQktWUgZMaXN0S1'
-    'Y=');
+    'CghQQkxpc3RLVhIlCgZMaXN0S1YYASADKAsyDS5ra19ldGNkLlBCS1ZSBkxpc3RLVg==');

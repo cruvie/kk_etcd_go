@@ -61,7 +61,7 @@ func (*ServiceList) Descriptor() ([]byte, []int) {
 
 type ServiceList_Input struct {
 	state         protoimpl.MessageState       `protogen:"open.v1"`
-	ServiceType   kk_etcd_models.PBServiceType `protobuf:"varint,1,opt,name=ServiceType,proto3,enum=kk_etcd_models.PBServiceType" json:"ServiceType,omitempty"`
+	ServiceType   kk_etcd_models.PBServiceType `protobuf:"varint,1,opt,name=ServiceType,proto3,enum=kk_etcd.PBServiceType" json:"ServiceType,omitempty"`
 	ServiceName   string                       `protobuf:"bytes,2,opt,name=ServiceName,proto3" json:"ServiceName,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -159,13 +159,13 @@ var File_internal_service_hub_service_api_def_ServiceList_proto protoreflect.Fil
 
 const file_internal_service_hub_service_api_def_ServiceList_proto_rawDesc = "" +
 	"\n" +
-	"6internal/service_hub/service/api_def/ServiceList.proto\x12\aapi_def\x1a'kk_etcd_models/pb_service_kk_etcd.proto\x1a,kk_etcd_models/pb_service_registration.proto\"\xc4\x01\n" +
-	"\vServiceList\x1aj\n" +
-	"\x05Input\x12?\n" +
-	"\vServiceType\x18\x01 \x01(\x0e2\x1d.kk_etcd_models.PBServiceTypeR\vServiceType\x12 \n" +
-	"\vServiceName\x18\x02 \x01(\tR\vServiceName\x1aI\n" +
-	"\x06Output\x12?\n" +
-	"\vServiceList\x18\x01 \x01(\v2\x1d.kk_etcd_models.PBListServiceR\vServiceListB\n" +
+	"6internal/service_hub/service/api_def/ServiceList.proto\x12\akk_etcd\x1a'kk_etcd_models/pb_service_kk_etcd.proto\x1a,kk_etcd_models/pb_service_registration.proto\"\xb6\x01\n" +
+	"\vServiceList\x1ac\n" +
+	"\x05Input\x128\n" +
+	"\vServiceType\x18\x01 \x01(\x0e2\x16.kk_etcd.PBServiceTypeR\vServiceType\x12 \n" +
+	"\vServiceName\x18\x02 \x01(\tR\vServiceName\x1aB\n" +
+	"\x06Output\x128\n" +
+	"\vServiceList\x18\x01 \x01(\v2\x16.kk_etcd.PBListServiceR\vServiceListB\n" +
 	"Z\b/api_defb\x06proto3"
 
 var (
@@ -182,15 +182,15 @@ func file_internal_service_hub_service_api_def_ServiceList_proto_rawDescGZIP() [
 
 var file_internal_service_hub_service_api_def_ServiceList_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_internal_service_hub_service_api_def_ServiceList_proto_goTypes = []any{
-	(*ServiceList)(nil),                  // 0: api_def.ServiceList
-	(*ServiceList_Input)(nil),            // 1: api_def.ServiceList.Input
-	(*ServiceList_Output)(nil),           // 2: api_def.ServiceList.Output
-	(kk_etcd_models.PBServiceType)(0),    // 3: kk_etcd_models.PBServiceType
-	(*kk_etcd_models.PBListService)(nil), // 4: kk_etcd_models.PBListService
+	(*ServiceList)(nil),                  // 0: kk_etcd.ServiceList
+	(*ServiceList_Input)(nil),            // 1: kk_etcd.ServiceList.Input
+	(*ServiceList_Output)(nil),           // 2: kk_etcd.ServiceList.Output
+	(kk_etcd_models.PBServiceType)(0),    // 3: kk_etcd.PBServiceType
+	(*kk_etcd_models.PBListService)(nil), // 4: kk_etcd.PBListService
 }
 var file_internal_service_hub_service_api_def_ServiceList_proto_depIdxs = []int32{
-	3, // 0: api_def.ServiceList.Input.ServiceType:type_name -> kk_etcd_models.PBServiceType
-	4, // 1: api_def.ServiceList.Output.ServiceList:type_name -> kk_etcd_models.PBListService
+	3, // 0: kk_etcd.ServiceList.Input.ServiceType:type_name -> kk_etcd.PBServiceType
+	4, // 1: kk_etcd.ServiceList.Output.ServiceList:type_name -> kk_etcd.PBListService
 	2, // [2:2] is the sub-list for method output_type
 	2, // [2:2] is the sub-list for method input_type
 	2, // [2:2] is the sub-list for extension type_name

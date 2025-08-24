@@ -1,5 +1,5 @@
 syntax = "proto3";
-package kk_etcd_models;
+package kk_etcd;
 option go_package = "github.com/cruvie/kk_etcd_go/kk_etcd_models";
 
 

@@ -158,7 +158,7 @@ var File_internal_service_hub_user_api_def_UserAdd_proto protoreflect.FileDescri
 
 const file_internal_service_hub_user_api_def_UserAdd_proto_rawDesc = "" +
 	"\n" +
-	"/internal/service_hub/user/api_def/UserAdd.proto\x12\aapi_def\"j\n" +
+	"/internal/service_hub/user/api_def/UserAdd.proto\x12\akk_etcd\"j\n" +
 	"\aUserAdd\x1aU\n" +
 	"\x05Input\x12\x1a\n" +
 	"\bUserName\x18\x02 \x01(\tR\bUserName\x12\x1a\n" +
@@ -181,9 +181,9 @@ func file_internal_service_hub_user_api_def_UserAdd_proto_rawDescGZIP() []byte {
 
 var file_internal_service_hub_user_api_def_UserAdd_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_internal_service_hub_user_api_def_UserAdd_proto_goTypes = []any{
-	(*UserAdd)(nil),        // 0: api_def.UserAdd
-	(*UserAdd_Input)(nil),  // 1: api_def.UserAdd.Input
-	(*UserAdd_Output)(nil), // 2: api_def.UserAdd.Output
+	(*UserAdd)(nil),        // 0: kk_etcd.UserAdd
+	(*UserAdd_Input)(nil),  // 1: kk_etcd.UserAdd.Input
+	(*UserAdd_Output)(nil), // 2: kk_etcd.UserAdd.Output
 }
 var file_internal_service_hub_user_api_def_UserAdd_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type

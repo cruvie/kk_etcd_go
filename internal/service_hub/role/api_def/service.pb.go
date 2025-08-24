@@ -25,44 +25,44 @@ var File_internal_service_hub_role_api_def_service_proto protoreflect.FileDescri
 
 const file_internal_service_hub_role_api_def_service_proto_rawDesc = "" +
 	"\n" +
-	"/internal/service_hub/role/api_def/service.proto\x12\aapi_def\x1a/internal/service_hub/role/api_def/RoleAdd.proto\x1a2internal/service_hub/role/api_def/RoleDelete.proto\x1a/internal/service_hub/role/api_def/RoleGet.proto\x1a;internal/service_hub/role/api_def/RoleGrantPermission.proto\x1a0internal/service_hub/role/api_def/RoleList.proto\x1a<internal/service_hub/role/api_def/RoleRevokePermission.proto\x1aAvendor/gitee.com/cruvie/kk_go_kit/kk_protobuf/extend_method.proto2\xef\x03\n" +
+	"/internal/service_hub/role/api_def/service.proto\x12\akk_etcd\x1a/internal/service_hub/role/api_def/RoleAdd.proto\x1a2internal/service_hub/role/api_def/RoleDelete.proto\x1a/internal/service_hub/role/api_def/RoleGet.proto\x1a;internal/service_hub/role/api_def/RoleGrantPermission.proto\x1a0internal/service_hub/role/api_def/RoleList.proto\x1a<internal/service_hub/role/api_def/RoleRevokePermission.proto\x1aAvendor/gitee.com/cruvie/kk_go_kit/kk_protobuf/extend_method.proto2\xef\x03\n" +
 	"\x04Role\x12A\n" +
-	"\aRoleAdd\x12\x16.api_def.RoleAdd.Input\x1a\x17.api_def.RoleAdd.Output\"\x05\x8a\xa6\x1d\x01\x01\x12J\n" +
+	"\aRoleAdd\x12\x16.kk_etcd.RoleAdd.Input\x1a\x17.kk_etcd.RoleAdd.Output\"\x05\x8a\xa6\x1d\x01\x01\x12J\n" +
 	"\n" +
-	"RoleDelete\x12\x19.api_def.RoleDelete.Input\x1a\x1a.api_def.RoleDelete.Output\"\x05\x8a\xa6\x1d\x01\x01\x12A\n" +
-	"\aRoleGet\x12\x16.api_def.RoleGet.Input\x1a\x17.api_def.RoleGet.Output\"\x05\x8a\xa6\x1d\x01\x01\x12e\n" +
-	"\x13RoleGrantPermission\x12\".api_def.RoleGrantPermission.Input\x1a#.api_def.RoleGrantPermission.Output\"\x05\x8a\xa6\x1d\x01\x01\x12D\n" +
-	"\bRoleList\x12\x17.api_def.RoleList.Input\x1a\x18.api_def.RoleList.Output\"\x05\x8a\xa6\x1d\x01\x01\x12h\n" +
-	"\x14RoleRevokePermission\x12#.api_def.RoleRevokePermission.Input\x1a$.api_def.RoleRevokePermission.Output\"\x05\x8a\xa6\x1d\x01\x01B\n" +
+	"RoleDelete\x12\x19.kk_etcd.RoleDelete.Input\x1a\x1a.kk_etcd.RoleDelete.Output\"\x05\x8a\xa6\x1d\x01\x01\x12A\n" +
+	"\aRoleGet\x12\x16.kk_etcd.RoleGet.Input\x1a\x17.kk_etcd.RoleGet.Output\"\x05\x8a\xa6\x1d\x01\x01\x12e\n" +
+	"\x13RoleGrantPermission\x12\".kk_etcd.RoleGrantPermission.Input\x1a#.kk_etcd.RoleGrantPermission.Output\"\x05\x8a\xa6\x1d\x01\x01\x12D\n" +
+	"\bRoleList\x12\x17.kk_etcd.RoleList.Input\x1a\x18.kk_etcd.RoleList.Output\"\x05\x8a\xa6\x1d\x01\x01\x12h\n" +
+	"\x14RoleRevokePermission\x12#.kk_etcd.RoleRevokePermission.Input\x1a$.kk_etcd.RoleRevokePermission.Output\"\x05\x8a\xa6\x1d\x01\x01B\n" +
 	"Z\b/api_defb\x06proto3"
 
 var file_internal_service_hub_role_api_def_service_proto_goTypes = []any{
-	(*RoleAdd_Input)(nil),               // 0: api_def.RoleAdd.Input
-	(*RoleDelete_Input)(nil),            // 1: api_def.RoleDelete.Input
-	(*RoleGet_Input)(nil),               // 2: api_def.RoleGet.Input
-	(*RoleGrantPermission_Input)(nil),   // 3: api_def.RoleGrantPermission.Input
-	(*RoleList_Input)(nil),              // 4: api_def.RoleList.Input
-	(*RoleRevokePermission_Input)(nil),  // 5: api_def.RoleRevokePermission.Input
-	(*RoleAdd_Output)(nil),              // 6: api_def.RoleAdd.Output
-	(*RoleDelete_Output)(nil),           // 7: api_def.RoleDelete.Output
-	(*RoleGet_Output)(nil),              // 8: api_def.RoleGet.Output
-	(*RoleGrantPermission_Output)(nil),  // 9: api_def.RoleGrantPermission.Output
-	(*RoleList_Output)(nil),             // 10: api_def.RoleList.Output
-	(*RoleRevokePermission_Output)(nil), // 11: api_def.RoleRevokePermission.Output
+	(*RoleAdd_Input)(nil),               // 0: kk_etcd.RoleAdd.Input
+	(*RoleDelete_Input)(nil),            // 1: kk_etcd.RoleDelete.Input
+	(*RoleGet_Input)(nil),               // 2: kk_etcd.RoleGet.Input
+	(*RoleGrantPermission_Input)(nil),   // 3: kk_etcd.RoleGrantPermission.Input
+	(*RoleList_Input)(nil),              // 4: kk_etcd.RoleList.Input
+	(*RoleRevokePermission_Input)(nil),  // 5: kk_etcd.RoleRevokePermission.Input
+	(*RoleAdd_Output)(nil),              // 6: kk_etcd.RoleAdd.Output
+	(*RoleDelete_Output)(nil),           // 7: kk_etcd.RoleDelete.Output
+	(*RoleGet_Output)(nil),              // 8: kk_etcd.RoleGet.Output
+	(*RoleGrantPermission_Output)(nil),  // 9: kk_etcd.RoleGrantPermission.Output
+	(*RoleList_Output)(nil),             // 10: kk_etcd.RoleList.Output
+	(*RoleRevokePermission_Output)(nil), // 11: kk_etcd.RoleRevokePermission.Output
 }
 var file_internal_service_hub_role_api_def_service_proto_depIdxs = []int32{
-	0,  // 0: api_def.Role.RoleAdd:input_type -> api_def.RoleAdd.Input
-	1,  // 1: api_def.Role.RoleDelete:input_type -> api_def.RoleDelete.Input
-	2,  // 2: api_def.Role.RoleGet:input_type -> api_def.RoleGet.Input
-	3,  // 3: api_def.Role.RoleGrantPermission:input_type -> api_def.RoleGrantPermission.Input
-	4,  // 4: api_def.Role.RoleList:input_type -> api_def.RoleList.Input
-	5,  // 5: api_def.Role.RoleRevokePermission:input_type -> api_def.RoleRevokePermission.Input
-	6,  // 6: api_def.Role.RoleAdd:output_type -> api_def.RoleAdd.Output
-	7,  // 7: api_def.Role.RoleDelete:output_type -> api_def.RoleDelete.Output
-	8,  // 8: api_def.Role.RoleGet:output_type -> api_def.RoleGet.Output
-	9,  // 9: api_def.Role.RoleGrantPermission:output_type -> api_def.RoleGrantPermission.Output
-	10, // 10: api_def.Role.RoleList:output_type -> api_def.RoleList.Output
-	11, // 11: api_def.Role.RoleRevokePermission:output_type -> api_def.RoleRevokePermission.Output
+	0,  // 0: kk_etcd.Role.RoleAdd:input_type -> kk_etcd.RoleAdd.Input
+	1,  // 1: kk_etcd.Role.RoleDelete:input_type -> kk_etcd.RoleDelete.Input
+	2,  // 2: kk_etcd.Role.RoleGet:input_type -> kk_etcd.RoleGet.Input
+	3,  // 3: kk_etcd.Role.RoleGrantPermission:input_type -> kk_etcd.RoleGrantPermission.Input
+	4,  // 4: kk_etcd.Role.RoleList:input_type -> kk_etcd.RoleList.Input
+	5,  // 5: kk_etcd.Role.RoleRevokePermission:input_type -> kk_etcd.RoleRevokePermission.Input
+	6,  // 6: kk_etcd.Role.RoleAdd:output_type -> kk_etcd.RoleAdd.Output
+	7,  // 7: kk_etcd.Role.RoleDelete:output_type -> kk_etcd.RoleDelete.Output
+	8,  // 8: kk_etcd.Role.RoleGet:output_type -> kk_etcd.RoleGet.Output
+	9,  // 9: kk_etcd.Role.RoleGrantPermission:output_type -> kk_etcd.RoleGrantPermission.Output
+	10, // 10: kk_etcd.Role.RoleList:output_type -> kk_etcd.RoleList.Output
+	11, // 11: kk_etcd.Role.RoleRevokePermission:output_type -> kk_etcd.RoleRevokePermission.Output
 	6,  // [6:12] is the sub-list for method output_type
 	0,  // [0:6] is the sub-list for method input_type
 	0,  // [0:0] is the sub-list for extension type_name

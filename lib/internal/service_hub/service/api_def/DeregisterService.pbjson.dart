@@ -29,7 +29,7 @@ const DeregisterService_Input$json = {
       '3': 1,
       '4': 1,
       '5': 11,
-      '6': '.kk_etcd_models.PBService',
+      '6': '.kk_etcd.PBService',
       '10': 'Service'
     },
   ],
@@ -42,5 +42,5 @@ const DeregisterService_Output$json = {
 
 /// Descriptor for `DeregisterService`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List deregisterServiceDescriptor = $convert.base64Decode(
-    'ChFEZXJlZ2lzdGVyU2VydmljZRo8CgVJbnB1dBIzCgdTZXJ2aWNlGAEgASgLMhkua2tfZXRjZF'
-    '9tb2RlbHMuUEJTZXJ2aWNlUgdTZXJ2aWNlGggKBk91dHB1dA==');
+    'ChFEZXJlZ2lzdGVyU2VydmljZRo1CgVJbnB1dBIsCgdTZXJ2aWNlGAEgASgLMhIua2tfZXRjZC'
+    '5QQlNlcnZpY2VSB1NlcnZpY2UaCAoGT3V0cHV0');

@@ -1,10 +1,10 @@
 syntax = "proto3";
-package kk_etcd_models;
+package kk_etcd;
 option go_package = "github.com/cruvie/kk_etcd_go/kk_etcd_models";
 import "kk_etcd_models/pb_service_registration.proto";
 
 message PBService {
-  kk_etcd_models.PBServiceRegistration ServiceRegistration = 1;
+  kk_etcd.PBServiceRegistration ServiceRegistration = 1;
   enum ServiceStatus {
     UnKnown = 0;
     Running = 1;

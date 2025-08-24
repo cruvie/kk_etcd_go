@@ -48,7 +48,7 @@ class PBServiceRegistration_PBCheckConfig extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'PBServiceRegistration.PBCheckConfig',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd_models'),
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd'),
       createEmptyInstance: create)
     ..e<PBServiceType>(1, _omitFieldNames ? '' : 'Type', $pb.PbFieldType.OE,
         protoName: 'Type',
@@ -161,7 +161,7 @@ class PBServiceRegistration extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'PBServiceRegistration',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd_models'),
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd'),
       createEmptyInstance: create)
     ..e<PBServiceType>(
         1, _omitFieldNames ? '' : 'ServiceType', $pb.PbFieldType.OE,
@@ -260,7 +260,7 @@ class PBListServiceRegistration extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'PBListServiceRegistration',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd_models'),
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd'),
       createEmptyInstance: create)
     ..pc<PBServiceRegistration>(
         1, _omitFieldNames ? '' : 'List', $pb.PbFieldType.PM,

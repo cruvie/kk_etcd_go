@@ -143,11 +143,11 @@ var File_internal_service_hub_role_api_def_RoleList_proto protoreflect.FileDescr
 
 const file_internal_service_hub_role_api_def_RoleList_proto_rawDesc = "" +
 	"\n" +
-	"0internal/service_hub/role/api_def/RoleList.proto\x12\aapi_def\x1a$kk_etcd_models/pb_role_kk_etcd.proto\"U\n" +
+	"0internal/service_hub/role/api_def/RoleList.proto\x12\akk_etcd\x1a$kk_etcd_models/pb_role_kk_etcd.proto\"N\n" +
 	"\bRoleList\x1a\a\n" +
-	"\x05Input\x1a@\n" +
-	"\x06Output\x126\n" +
-	"\bListRole\x18\x01 \x01(\v2\x1a.kk_etcd_models.PBListRoleR\bListRoleB\n" +
+	"\x05Input\x1a9\n" +
+	"\x06Output\x12/\n" +
+	"\bListRole\x18\x01 \x01(\v2\x13.kk_etcd.PBListRoleR\bListRoleB\n" +
 	"Z\b/api_defb\x06proto3"
 
 var (
@@ -164,13 +164,13 @@ func file_internal_service_hub_role_api_def_RoleList_proto_rawDescGZIP() []byte 
 
 var file_internal_service_hub_role_api_def_RoleList_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_internal_service_hub_role_api_def_RoleList_proto_goTypes = []any{
-	(*RoleList)(nil),                  // 0: api_def.RoleList
-	(*RoleList_Input)(nil),            // 1: api_def.RoleList.Input
-	(*RoleList_Output)(nil),           // 2: api_def.RoleList.Output
-	(*kk_etcd_models.PBListRole)(nil), // 3: kk_etcd_models.PBListRole
+	(*RoleList)(nil),                  // 0: kk_etcd.RoleList
+	(*RoleList_Input)(nil),            // 1: kk_etcd.RoleList.Input
+	(*RoleList_Output)(nil),           // 2: kk_etcd.RoleList.Output
+	(*kk_etcd_models.PBListRole)(nil), // 3: kk_etcd.PBListRole
 }
 var file_internal_service_hub_role_api_def_RoleList_proto_depIdxs = []int32{
-	3, // 0: api_def.RoleList.Output.ListRole:type_name -> kk_etcd_models.PBListRole
+	3, // 0: kk_etcd.RoleList.Output.ListRole:type_name -> kk_etcd.PBListRole
 	1, // [1:1] is the sub-list for method output_type
 	1, // [1:1] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name

@@ -21,7 +21,7 @@ import 'ServiceList.pb.dart' as $1;
 
 export 'service.pb.dart';
 
-@$pb.GrpcServiceName('api_def.Service')
+@$pb.GrpcServiceName('kk_etcd.Service')
 class ServiceClient extends $grpc.Client {
   /// The hostname for this service.
   static const $core.String defaultHost = '';
@@ -51,19 +51,19 @@ class ServiceClient extends $grpc.Client {
 
   static final _$deregisterService = $grpc.ClientMethod<
           $0.DeregisterService_Input, $0.DeregisterService_Output>(
-      '/api_def.Service/DeregisterService',
+      '/kk_etcd.Service/DeregisterService',
       ($0.DeregisterService_Input value) => value.writeToBuffer(),
       $0.DeregisterService_Output.fromBuffer);
   static final _$serviceList =
       $grpc.ClientMethod<$1.ServiceList_Input, $1.ServiceList_Output>(
-          '/api_def.Service/ServiceList',
+          '/kk_etcd.Service/ServiceList',
           ($1.ServiceList_Input value) => value.writeToBuffer(),
           $1.ServiceList_Output.fromBuffer);
 }
 
-@$pb.GrpcServiceName('api_def.Service')
+@$pb.GrpcServiceName('kk_etcd.Service')
 abstract class ServiceBase extends $grpc.Service {
-  $core.String get $name => 'api_def.Service';
+  $core.String get $name => 'kk_etcd.Service';
 
   ServiceBase() {
     $addMethod($grpc.ServiceMethod<$0.DeregisterService_Input,

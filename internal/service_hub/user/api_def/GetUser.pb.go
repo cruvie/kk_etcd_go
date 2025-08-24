@@ -151,12 +151,12 @@ var File_internal_service_hub_user_api_def_GetUser_proto protoreflect.FileDescri
 
 const file_internal_service_hub_user_api_def_GetUser_proto_rawDesc = "" +
 	"\n" +
-	"/internal/service_hub/user/api_def/GetUser.proto\x12\aapi_def\x1a$kk_etcd_models/pb_user_kk_etcd.proto\"d\n" +
+	"/internal/service_hub/user/api_def/GetUser.proto\x12\akk_etcd\x1a$kk_etcd_models/pb_user_kk_etcd.proto\"]\n" +
 	"\aGetUser\x1a#\n" +
 	"\x05Input\x12\x1a\n" +
-	"\bUserName\x18\x01 \x01(\tR\bUserName\x1a4\n" +
-	"\x06Output\x12*\n" +
-	"\x04User\x18\x01 \x01(\v2\x16.kk_etcd_models.PBUserR\x04UserB\n" +
+	"\bUserName\x18\x01 \x01(\tR\bUserName\x1a-\n" +
+	"\x06Output\x12#\n" +
+	"\x04User\x18\x01 \x01(\v2\x0f.kk_etcd.PBUserR\x04UserB\n" +
 	"Z\b/api_defb\x06proto3"
 
 var (
@@ -173,13 +173,13 @@ func file_internal_service_hub_user_api_def_GetUser_proto_rawDescGZIP() []byte {
 
 var file_internal_service_hub_user_api_def_GetUser_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_internal_service_hub_user_api_def_GetUser_proto_goTypes = []any{
-	(*GetUser)(nil),               // 0: api_def.GetUser
-	(*GetUser_Input)(nil),         // 1: api_def.GetUser.Input
-	(*GetUser_Output)(nil),        // 2: api_def.GetUser.Output
-	(*kk_etcd_models.PBUser)(nil), // 3: kk_etcd_models.PBUser
+	(*GetUser)(nil),               // 0: kk_etcd.GetUser
+	(*GetUser_Input)(nil),         // 1: kk_etcd.GetUser.Input
+	(*GetUser_Output)(nil),        // 2: kk_etcd.GetUser.Output
+	(*kk_etcd_models.PBUser)(nil), // 3: kk_etcd.PBUser
 }
 var file_internal_service_hub_user_api_def_GetUser_proto_depIdxs = []int32{
-	3, // 0: api_def.GetUser.Output.User:type_name -> kk_etcd_models.PBUser
+	3, // 0: kk_etcd.GetUser.Output.User:type_name -> kk_etcd.PBUser
 	1, // [1:1] is the sub-list for method output_type
 	1, // [1:1] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name

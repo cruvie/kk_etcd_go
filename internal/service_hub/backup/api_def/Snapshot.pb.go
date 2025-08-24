@@ -150,7 +150,7 @@ var File_internal_service_hub_backup_api_def_Snapshot_proto protoreflect.FileDes
 
 const file_internal_service_hub_backup_api_def_Snapshot_proto_rawDesc = "" +
 	"\n" +
-	"2internal/service_hub/backup/api_def/Snapshot.proto\x12\aapi_def\"E\n" +
+	"2internal/service_hub/backup/api_def/Snapshot.proto\x12\akk_etcd\"E\n" +
 	"\bSnapshot\x1a\a\n" +
 	"\x05Input\x1a0\n" +
 	"\x06Output\x12\x12\n" +
@@ -172,9 +172,9 @@ func file_internal_service_hub_backup_api_def_Snapshot_proto_rawDescGZIP() []byt
 
 var file_internal_service_hub_backup_api_def_Snapshot_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_internal_service_hub_backup_api_def_Snapshot_proto_goTypes = []any{
-	(*Snapshot)(nil),        // 0: api_def.Snapshot
-	(*Snapshot_Input)(nil),  // 1: api_def.Snapshot.Input
-	(*Snapshot_Output)(nil), // 2: api_def.Snapshot.Output
+	(*Snapshot)(nil),        // 0: kk_etcd.Snapshot
+	(*Snapshot_Input)(nil),  // 1: kk_etcd.Snapshot.Input
+	(*Snapshot_Output)(nil), // 2: kk_etcd.Snapshot.Output
 }
 var file_internal_service_hub_backup_api_def_Snapshot_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type

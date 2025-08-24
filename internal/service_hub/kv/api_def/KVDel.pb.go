@@ -142,7 +142,7 @@ var File_internal_service_hub_kv_api_def_KVDel_proto protoreflect.FileDescriptor
 
 const file_internal_service_hub_kv_api_def_KVDel_proto_rawDesc = "" +
 	"\n" +
-	"+internal/service_hub/kv/api_def/KVDel.proto\x12\aapi_def\",\n" +
+	"+internal/service_hub/kv/api_def/KVDel.proto\x12\akk_etcd\",\n" +
 	"\x05KVDel\x1a\x19\n" +
 	"\x05Input\x12\x10\n" +
 	"\x03Key\x18\x01 \x01(\tR\x03Key\x1a\b\n" +
@@ -163,9 +163,9 @@ func file_internal_service_hub_kv_api_def_KVDel_proto_rawDescGZIP() []byte {
 
 var file_internal_service_hub_kv_api_def_KVDel_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_internal_service_hub_kv_api_def_KVDel_proto_goTypes = []any{
-	(*KVDel)(nil),        // 0: api_def.KVDel
-	(*KVDel_Input)(nil),  // 1: api_def.KVDel.Input
-	(*KVDel_Output)(nil), // 2: api_def.KVDel.Output
+	(*KVDel)(nil),        // 0: kk_etcd.KVDel
+	(*KVDel_Input)(nil),  // 1: kk_etcd.KVDel.Input
+	(*KVDel_Output)(nil), // 2: kk_etcd.KVDel.Output
 }
 var file_internal_service_hub_kv_api_def_KVDel_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type

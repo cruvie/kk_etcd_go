@@ -143,10 +143,10 @@ var File_internal_service_hub_service_api_def_DeregisterService_proto protorefle
 
 const file_internal_service_hub_service_api_def_DeregisterService_proto_rawDesc = "" +
 	"\n" +
-	"<internal/service_hub/service/api_def/DeregisterService.proto\x12\aapi_def\x1a'kk_etcd_models/pb_service_kk_etcd.proto\"[\n" +
-	"\x11DeregisterService\x1a<\n" +
-	"\x05Input\x123\n" +
-	"\aService\x18\x01 \x01(\v2\x19.kk_etcd_models.PBServiceR\aService\x1a\b\n" +
+	"<internal/service_hub/service/api_def/DeregisterService.proto\x12\akk_etcd\x1a'kk_etcd_models/pb_service_kk_etcd.proto\"T\n" +
+	"\x11DeregisterService\x1a5\n" +
+	"\x05Input\x12,\n" +
+	"\aService\x18\x01 \x01(\v2\x12.kk_etcd.PBServiceR\aService\x1a\b\n" +
 	"\x06OutputB\n" +
 	"Z\b/api_defb\x06proto3"
 
@@ -164,13 +164,13 @@ func file_internal_service_hub_service_api_def_DeregisterService_proto_rawDescGZ
 
 var file_internal_service_hub_service_api_def_DeregisterService_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_internal_service_hub_service_api_def_DeregisterService_proto_goTypes = []any{
-	(*DeregisterService)(nil),        // 0: api_def.DeregisterService
-	(*DeregisterService_Input)(nil),  // 1: api_def.DeregisterService.Input
-	(*DeregisterService_Output)(nil), // 2: api_def.DeregisterService.Output
-	(*kk_etcd_models.PBService)(nil), // 3: kk_etcd_models.PBService
+	(*DeregisterService)(nil),        // 0: kk_etcd.DeregisterService
+	(*DeregisterService_Input)(nil),  // 1: kk_etcd.DeregisterService.Input
+	(*DeregisterService_Output)(nil), // 2: kk_etcd.DeregisterService.Output
+	(*kk_etcd_models.PBService)(nil), // 3: kk_etcd.PBService
 }
 var file_internal_service_hub_service_api_def_DeregisterService_proto_depIdxs = []int32{
-	3, // 0: api_def.DeregisterService.Input.Service:type_name -> kk_etcd_models.PBService
+	3, // 0: kk_etcd.DeregisterService.Input.Service:type_name -> kk_etcd.PBService
 	1, // [1:1] is the sub-list for method output_type
 	1, // [1:1] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name

@@ -37,7 +37,7 @@ const GetUser_Output$json = {
       '3': 1,
       '4': 1,
       '5': 11,
-      '6': '.kk_etcd_models.PBUser',
+      '6': '.kk_etcd.PBUser',
       '10': 'User'
     },
   ],
@@ -45,5 +45,5 @@ const GetUser_Output$json = {
 
 /// Descriptor for `GetUser`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List getUserDescriptor = $convert.base64Decode(
-    'CgdHZXRVc2VyGiMKBUlucHV0EhoKCFVzZXJOYW1lGAEgASgJUghVc2VyTmFtZRo0CgZPdXRwdX'
-    'QSKgoEVXNlchgBIAEoCzIWLmtrX2V0Y2RfbW9kZWxzLlBCVXNlclIEVXNlcg==');
+    'CgdHZXRVc2VyGiMKBUlucHV0EhoKCFVzZXJOYW1lGAEgASgJUghVc2VyTmFtZRotCgZPdXRwdX'
+    'QSIwoEVXNlchgBIAEoCzIPLmtrX2V0Y2QuUEJVc2VyUgRVc2Vy');

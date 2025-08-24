@@ -23,7 +23,7 @@ import 'KVPut.pb.dart' as $3;
 
 export 'service.pb.dart';
 
-@$pb.GrpcServiceName('api_def.KV')
+@$pb.GrpcServiceName('kk_etcd.KV')
 class KVClient extends $grpc.Client {
   /// The hostname for this service.
   static const $core.String defaultHost = '';
@@ -66,26 +66,26 @@ class KVClient extends $grpc.Client {
   // method descriptors
 
   static final _$kVDel = $grpc.ClientMethod<$0.KVDel_Input, $0.KVDel_Output>(
-      '/api_def.KV/KVDel',
+      '/kk_etcd.KV/KVDel',
       ($0.KVDel_Input value) => value.writeToBuffer(),
       $0.KVDel_Output.fromBuffer);
   static final _$kVGet = $grpc.ClientMethod<$1.KVGet_Input, $1.KVGet_Output>(
-      '/api_def.KV/KVGet',
+      '/kk_etcd.KV/KVGet',
       ($1.KVGet_Input value) => value.writeToBuffer(),
       $1.KVGet_Output.fromBuffer);
   static final _$kVList = $grpc.ClientMethod<$2.KVList_Input, $2.KVList_Output>(
-      '/api_def.KV/KVList',
+      '/kk_etcd.KV/KVList',
       ($2.KVList_Input value) => value.writeToBuffer(),
       $2.KVList_Output.fromBuffer);
   static final _$kVPut = $grpc.ClientMethod<$3.KVPut_Input, $3.KVPut_Output>(
-      '/api_def.KV/KVPut',
+      '/kk_etcd.KV/KVPut',
       ($3.KVPut_Input value) => value.writeToBuffer(),
       $3.KVPut_Output.fromBuffer);
 }
 
-@$pb.GrpcServiceName('api_def.KV')
+@$pb.GrpcServiceName('kk_etcd.KV')
 abstract class KVServiceBase extends $grpc.Service {
-  $core.String get $name => 'api_def.KV';
+  $core.String get $name => 'kk_etcd.KV';
 
   KVServiceBase() {
     $addMethod($grpc.ServiceMethod<$0.KVDel_Input, $0.KVDel_Output>(

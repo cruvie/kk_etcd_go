@@ -37,7 +37,7 @@ const KVList_Output$json = {
       '3': 1,
       '4': 1,
       '5': 11,
-      '6': '.kk_etcd_models.PBListKV',
+      '6': '.kk_etcd.PBListKV',
       '10': 'KVList'
     },
   ],
@@ -45,5 +45,5 @@ const KVList_Output$json = {
 
 /// Descriptor for `KVList`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List kVListDescriptor = $convert.base64Decode(
-    'CgZLVkxpc3QaHwoFSW5wdXQSFgoGUHJlZml4GAEgASgJUgZQcmVmaXgaOgoGT3V0cHV0EjAKBk'
-    'tWTGlzdBgBIAEoCzIYLmtrX2V0Y2RfbW9kZWxzLlBCTGlzdEtWUgZLVkxpc3Q=');
+    'CgZLVkxpc3QaHwoFSW5wdXQSFgoGUHJlZml4GAEgASgJUgZQcmVmaXgaMwoGT3V0cHV0EikKBk'
+    'tWTGlzdBgBIAEoCzIRLmtrX2V0Y2QuUEJMaXN0S1ZSBktWTGlzdA==');

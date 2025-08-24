@@ -24,7 +24,7 @@ import 'SnapshotRestore.pb.dart' as $4;
 
 export 'service.pb.dart';
 
-@$pb.GrpcServiceName('api_def.Backup')
+@$pb.GrpcServiceName('kk_etcd.Backup')
 class BackupClient extends $grpc.Client {
   /// The hostname for this service.
   static const $core.String defaultHost = '';
@@ -75,34 +75,34 @@ class BackupClient extends $grpc.Client {
 
   static final _$allKVsBackup =
       $grpc.ClientMethod<$0.AllKVsBackup_Input, $0.AllKVsBackup_Output>(
-          '/api_def.Backup/AllKVsBackup',
+          '/kk_etcd.Backup/AllKVsBackup',
           ($0.AllKVsBackup_Input value) => value.writeToBuffer(),
           $0.AllKVsBackup_Output.fromBuffer);
   static final _$allKVsRestore =
       $grpc.ClientMethod<$1.AllKVsRestore_Input, $1.AllKVsRestore_Output>(
-          '/api_def.Backup/AllKVsRestore',
+          '/kk_etcd.Backup/AllKVsRestore',
           ($1.AllKVsRestore_Input value) => value.writeToBuffer(),
           $1.AllKVsRestore_Output.fromBuffer);
   static final _$snapshot =
       $grpc.ClientMethod<$2.Snapshot_Input, $2.Snapshot_Output>(
-          '/api_def.Backup/Snapshot',
+          '/kk_etcd.Backup/Snapshot',
           ($2.Snapshot_Input value) => value.writeToBuffer(),
           $2.Snapshot_Output.fromBuffer);
   static final _$snapshotInfo =
       $grpc.ClientMethod<$3.SnapshotInfo_Input, $3.SnapshotInfo_Output>(
-          '/api_def.Backup/SnapshotInfo',
+          '/kk_etcd.Backup/SnapshotInfo',
           ($3.SnapshotInfo_Input value) => value.writeToBuffer(),
           $3.SnapshotInfo_Output.fromBuffer);
   static final _$snapshotRestore =
       $grpc.ClientMethod<$4.SnapshotRestore_Input, $4.SnapshotRestore_Output>(
-          '/api_def.Backup/SnapshotRestore',
+          '/kk_etcd.Backup/SnapshotRestore',
           ($4.SnapshotRestore_Input value) => value.writeToBuffer(),
           $4.SnapshotRestore_Output.fromBuffer);
 }
 
-@$pb.GrpcServiceName('api_def.Backup')
+@$pb.GrpcServiceName('kk_etcd.Backup')
 abstract class BackupServiceBase extends $grpc.Service {
-  $core.String get $name => 'api_def.Backup';
+  $core.String get $name => 'kk_etcd.Backup';
 
   BackupServiceBase() {
     $addMethod(

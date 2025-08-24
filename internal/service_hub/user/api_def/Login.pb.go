@@ -158,7 +158,7 @@ var File_internal_service_hub_user_api_def_Login_proto protoreflect.FileDescript
 
 const file_internal_service_hub_user_api_def_Login_proto_rawDesc = "" +
 	"\n" +
-	"-internal/service_hub/user/api_def/Login.proto\x12\aapi_def\"h\n" +
+	"-internal/service_hub/user/api_def/Login.proto\x12\akk_etcd\"h\n" +
 	"\x05Login\x1a?\n" +
 	"\x05Input\x12\x1a\n" +
 	"\bUserName\x18\x01 \x01(\tR\bUserName\x12\x1a\n" +
@@ -181,9 +181,9 @@ func file_internal_service_hub_user_api_def_Login_proto_rawDescGZIP() []byte {
 
 var file_internal_service_hub_user_api_def_Login_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_internal_service_hub_user_api_def_Login_proto_goTypes = []any{
-	(*Login)(nil),        // 0: api_def.Login
-	(*Login_Input)(nil),  // 1: api_def.Login.Input
-	(*Login_Output)(nil), // 2: api_def.Login.Output
+	(*Login)(nil),        // 0: kk_etcd.Login
+	(*Login_Input)(nil),  // 1: kk_etcd.Login.Input
+	(*Login_Output)(nil), // 2: kk_etcd.Login.Output
 }
 var file_internal_service_hub_user_api_def_Login_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type

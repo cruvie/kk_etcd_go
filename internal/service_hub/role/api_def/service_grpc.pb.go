@@ -19,12 +19,12 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Role_RoleAdd_FullMethodName              = "/api_def.Role/RoleAdd"
-	Role_RoleDelete_FullMethodName           = "/api_def.Role/RoleDelete"
-	Role_RoleGet_FullMethodName              = "/api_def.Role/RoleGet"
-	Role_RoleGrantPermission_FullMethodName  = "/api_def.Role/RoleGrantPermission"
-	Role_RoleList_FullMethodName             = "/api_def.Role/RoleList"
-	Role_RoleRevokePermission_FullMethodName = "/api_def.Role/RoleRevokePermission"
+	Role_RoleAdd_FullMethodName              = "/kk_etcd.Role/RoleAdd"
+	Role_RoleDelete_FullMethodName           = "/kk_etcd.Role/RoleDelete"
+	Role_RoleGet_FullMethodName              = "/kk_etcd.Role/RoleGet"
+	Role_RoleGrantPermission_FullMethodName  = "/kk_etcd.Role/RoleGrantPermission"
+	Role_RoleList_FullMethodName             = "/kk_etcd.Role/RoleList"
+	Role_RoleRevokePermission_FullMethodName = "/kk_etcd.Role/RoleRevokePermission"
 )
 
 // RoleClient is the client API for Role service.
@@ -278,7 +278,7 @@ func _Role_RoleRevokePermission_Handler(srv interface{}, ctx context.Context, de
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Role_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "api_def.Role",
+	ServiceName: "kk_etcd.Role",
 	HandlerType: (*RoleServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

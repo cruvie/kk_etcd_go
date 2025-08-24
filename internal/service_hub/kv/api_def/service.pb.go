@@ -25,33 +25,33 @@ var File_internal_service_hub_kv_api_def_service_proto protoreflect.FileDescript
 
 const file_internal_service_hub_kv_api_def_service_proto_rawDesc = "" +
 	"\n" +
-	"-internal/service_hub/kv/api_def/service.proto\x12\aapi_def\x1a+internal/service_hub/kv/api_def/KVDel.proto\x1a+internal/service_hub/kv/api_def/KVGet.proto\x1a,internal/service_hub/kv/api_def/KVList.proto\x1a+internal/service_hub/kv/api_def/KVPut.proto\x1aAvendor/gitee.com/cruvie/kk_go_kit/kk_protobuf/extend_method.proto2\xfb\x01\n" +
+	"-internal/service_hub/kv/api_def/service.proto\x12\akk_etcd\x1a+internal/service_hub/kv/api_def/KVDel.proto\x1a+internal/service_hub/kv/api_def/KVGet.proto\x1a,internal/service_hub/kv/api_def/KVList.proto\x1a+internal/service_hub/kv/api_def/KVPut.proto\x1aAvendor/gitee.com/cruvie/kk_go_kit/kk_protobuf/extend_method.proto2\xfb\x01\n" +
 	"\x02KV\x12;\n" +
-	"\x05KVDel\x12\x14.api_def.KVDel.Input\x1a\x15.api_def.KVDel.Output\"\x05\x8a\xa6\x1d\x01\x01\x12;\n" +
-	"\x05KVGet\x12\x14.api_def.KVGet.Input\x1a\x15.api_def.KVGet.Output\"\x05\x8a\xa6\x1d\x01\x01\x12>\n" +
-	"\x06KVList\x12\x15.api_def.KVList.Input\x1a\x16.api_def.KVList.Output\"\x05\x8a\xa6\x1d\x01\x01\x12;\n" +
-	"\x05KVPut\x12\x14.api_def.KVPut.Input\x1a\x15.api_def.KVPut.Output\"\x05\x8a\xa6\x1d\x01\x01B\n" +
+	"\x05KVDel\x12\x14.kk_etcd.KVDel.Input\x1a\x15.kk_etcd.KVDel.Output\"\x05\x8a\xa6\x1d\x01\x01\x12;\n" +
+	"\x05KVGet\x12\x14.kk_etcd.KVGet.Input\x1a\x15.kk_etcd.KVGet.Output\"\x05\x8a\xa6\x1d\x01\x01\x12>\n" +
+	"\x06KVList\x12\x15.kk_etcd.KVList.Input\x1a\x16.kk_etcd.KVList.Output\"\x05\x8a\xa6\x1d\x01\x01\x12;\n" +
+	"\x05KVPut\x12\x14.kk_etcd.KVPut.Input\x1a\x15.kk_etcd.KVPut.Output\"\x05\x8a\xa6\x1d\x01\x01B\n" +
 	"Z\b/api_defb\x06proto3"
 
 var file_internal_service_hub_kv_api_def_service_proto_goTypes = []any{
-	(*KVDel_Input)(nil),   // 0: api_def.KVDel.Input
-	(*KVGet_Input)(nil),   // 1: api_def.KVGet.Input
-	(*KVList_Input)(nil),  // 2: api_def.KVList.Input
-	(*KVPut_Input)(nil),   // 3: api_def.KVPut.Input
-	(*KVDel_Output)(nil),  // 4: api_def.KVDel.Output
-	(*KVGet_Output)(nil),  // 5: api_def.KVGet.Output
-	(*KVList_Output)(nil), // 6: api_def.KVList.Output
-	(*KVPut_Output)(nil),  // 7: api_def.KVPut.Output
+	(*KVDel_Input)(nil),   // 0: kk_etcd.KVDel.Input
+	(*KVGet_Input)(nil),   // 1: kk_etcd.KVGet.Input
+	(*KVList_Input)(nil),  // 2: kk_etcd.KVList.Input
+	(*KVPut_Input)(nil),   // 3: kk_etcd.KVPut.Input
+	(*KVDel_Output)(nil),  // 4: kk_etcd.KVDel.Output
+	(*KVGet_Output)(nil),  // 5: kk_etcd.KVGet.Output
+	(*KVList_Output)(nil), // 6: kk_etcd.KVList.Output
+	(*KVPut_Output)(nil),  // 7: kk_etcd.KVPut.Output
 }
 var file_internal_service_hub_kv_api_def_service_proto_depIdxs = []int32{
-	0, // 0: api_def.KV.KVDel:input_type -> api_def.KVDel.Input
-	1, // 1: api_def.KV.KVGet:input_type -> api_def.KVGet.Input
-	2, // 2: api_def.KV.KVList:input_type -> api_def.KVList.Input
-	3, // 3: api_def.KV.KVPut:input_type -> api_def.KVPut.Input
-	4, // 4: api_def.KV.KVDel:output_type -> api_def.KVDel.Output
-	5, // 5: api_def.KV.KVGet:output_type -> api_def.KVGet.Output
-	6, // 6: api_def.KV.KVList:output_type -> api_def.KVList.Output
-	7, // 7: api_def.KV.KVPut:output_type -> api_def.KVPut.Output
+	0, // 0: kk_etcd.KV.KVDel:input_type -> kk_etcd.KVDel.Input
+	1, // 1: kk_etcd.KV.KVGet:input_type -> kk_etcd.KVGet.Input
+	2, // 2: kk_etcd.KV.KVList:input_type -> kk_etcd.KVList.Input
+	3, // 3: kk_etcd.KV.KVPut:input_type -> kk_etcd.KVPut.Input
+	4, // 4: kk_etcd.KV.KVDel:output_type -> kk_etcd.KVDel.Output
+	5, // 5: kk_etcd.KV.KVGet:output_type -> kk_etcd.KVGet.Output
+	6, // 6: kk_etcd.KV.KVList:output_type -> kk_etcd.KVList.Output
+	7, // 7: kk_etcd.KV.KVPut:output_type -> kk_etcd.KVPut.Output
 	4, // [4:8] is the sub-list for method output_type
 	0, // [0:4] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name

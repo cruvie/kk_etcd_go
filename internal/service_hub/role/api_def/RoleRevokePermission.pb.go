@@ -158,7 +158,7 @@ var File_internal_service_hub_role_api_def_RoleRevokePermission_proto protorefle
 
 const file_internal_service_hub_role_api_def_RoleRevokePermission_proto_rawDesc = "" +
 	"\n" +
-	"<internal/service_hub/role/api_def/RoleRevokePermission.proto\x12\aapi_def\"k\n" +
+	"<internal/service_hub/role/api_def/RoleRevokePermission.proto\x12\akk_etcd\"k\n" +
 	"\x14RoleRevokePermission\x1aI\n" +
 	"\x05Input\x12\x12\n" +
 	"\x04Name\x18\x01 \x01(\tR\x04Name\x12\x10\n" +
@@ -181,9 +181,9 @@ func file_internal_service_hub_role_api_def_RoleRevokePermission_proto_rawDescGZ
 
 var file_internal_service_hub_role_api_def_RoleRevokePermission_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_internal_service_hub_role_api_def_RoleRevokePermission_proto_goTypes = []any{
-	(*RoleRevokePermission)(nil),        // 0: api_def.RoleRevokePermission
-	(*RoleRevokePermission_Input)(nil),  // 1: api_def.RoleRevokePermission.Input
-	(*RoleRevokePermission_Output)(nil), // 2: api_def.RoleRevokePermission.Output
+	(*RoleRevokePermission)(nil),        // 0: kk_etcd.RoleRevokePermission
+	(*RoleRevokePermission_Input)(nil),  // 1: kk_etcd.RoleRevokePermission.Input
+	(*RoleRevokePermission_Output)(nil), // 2: kk_etcd.RoleRevokePermission.Output
 }
 var file_internal_service_hub_role_api_def_RoleRevokePermission_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type

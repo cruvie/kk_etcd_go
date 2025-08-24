@@ -150,7 +150,7 @@ var File_internal_service_hub_kv_api_def_KVPut_proto protoreflect.FileDescriptor
 
 const file_internal_service_hub_kv_api_def_KVPut_proto_rawDesc = "" +
 	"\n" +
-	"+internal/service_hub/kv/api_def/KVPut.proto\x12\aapi_def\"B\n" +
+	"+internal/service_hub/kv/api_def/KVPut.proto\x12\akk_etcd\"B\n" +
 	"\x05KVPut\x1a/\n" +
 	"\x05Input\x12\x10\n" +
 	"\x03Key\x18\x01 \x01(\tR\x03Key\x12\x14\n" +
@@ -172,9 +172,9 @@ func file_internal_service_hub_kv_api_def_KVPut_proto_rawDescGZIP() []byte {
 
 var file_internal_service_hub_kv_api_def_KVPut_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_internal_service_hub_kv_api_def_KVPut_proto_goTypes = []any{
-	(*KVPut)(nil),        // 0: api_def.KVPut
-	(*KVPut_Input)(nil),  // 1: api_def.KVPut.Input
-	(*KVPut_Output)(nil), // 2: api_def.KVPut.Output
+	(*KVPut)(nil),        // 0: kk_etcd.KVPut
+	(*KVPut_Input)(nil),  // 1: kk_etcd.KVPut.Input
+	(*KVPut_Output)(nil), // 2: kk_etcd.KVPut.Output
 }
 var file_internal_service_hub_kv_api_def_KVPut_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type

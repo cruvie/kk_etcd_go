@@ -151,11 +151,11 @@ var File_internal_service_hub_role_api_def_RoleGrantPermission_proto protoreflec
 
 const file_internal_service_hub_role_api_def_RoleGrantPermission_proto_rawDesc = "" +
 	"\n" +
-	";internal/service_hub/role/api_def/RoleGrantPermission.proto\x12\aapi_def\x1a$kk_etcd_models/pb_role_kk_etcd.proto\"n\n" +
-	"\x13RoleGrantPermission\x1aM\n" +
+	";internal/service_hub/role/api_def/RoleGrantPermission.proto\x12\akk_etcd\x1a$kk_etcd_models/pb_role_kk_etcd.proto\"g\n" +
+	"\x13RoleGrantPermission\x1aF\n" +
 	"\x05Input\x12\x12\n" +
-	"\x04Name\x18\x01 \x01(\tR\x04Name\x120\n" +
-	"\x04Perm\x18\x02 \x01(\v2\x1c.kk_etcd_models.PBPermissionR\x04Perm\x1a\b\n" +
+	"\x04Name\x18\x01 \x01(\tR\x04Name\x12)\n" +
+	"\x04Perm\x18\x02 \x01(\v2\x15.kk_etcd.PBPermissionR\x04Perm\x1a\b\n" +
 	"\x06OutputB\n" +
 	"Z\b/api_defb\x06proto3"
 
@@ -173,13 +173,13 @@ func file_internal_service_hub_role_api_def_RoleGrantPermission_proto_rawDescGZI
 
 var file_internal_service_hub_role_api_def_RoleGrantPermission_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_internal_service_hub_role_api_def_RoleGrantPermission_proto_goTypes = []any{
-	(*RoleGrantPermission)(nil),         // 0: api_def.RoleGrantPermission
-	(*RoleGrantPermission_Input)(nil),   // 1: api_def.RoleGrantPermission.Input
-	(*RoleGrantPermission_Output)(nil),  // 2: api_def.RoleGrantPermission.Output
-	(*kk_etcd_models.PBPermission)(nil), // 3: kk_etcd_models.PBPermission
+	(*RoleGrantPermission)(nil),         // 0: kk_etcd.RoleGrantPermission
+	(*RoleGrantPermission_Input)(nil),   // 1: kk_etcd.RoleGrantPermission.Input
+	(*RoleGrantPermission_Output)(nil),  // 2: kk_etcd.RoleGrantPermission.Output
+	(*kk_etcd_models.PBPermission)(nil), // 3: kk_etcd.PBPermission
 }
 var file_internal_service_hub_role_api_def_RoleGrantPermission_proto_depIdxs = []int32{
-	3, // 0: api_def.RoleGrantPermission.Input.Perm:type_name -> kk_etcd_models.PBPermission
+	3, // 0: kk_etcd.RoleGrantPermission.Input.Perm:type_name -> kk_etcd.PBPermission
 	1, // [1:1] is the sub-list for method output_type
 	1, // [1:1] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name

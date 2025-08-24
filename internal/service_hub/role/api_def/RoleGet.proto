@@ -1,5 +1,5 @@
 syntax = "proto3";
-package api_def;
+package kk_etcd;
 option go_package = "/api_def";
 import "kk_etcd_models/pb_role_kk_etcd.proto";
 //get role
@@ -9,6 +9,6 @@ message RoleGet {
   }
 
   message Output {
-    kk_etcd_models.PBRole Role = 1;
+    kk_etcd.PBRole Role = 1;
   }
 }

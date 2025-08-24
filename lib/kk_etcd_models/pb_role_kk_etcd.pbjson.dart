@@ -24,7 +24,7 @@ const PBRole$json = {
       '3': 2,
       '4': 3,
       '5': 11,
-      '6': '.kk_etcd_models.PBPermission',
+      '6': '.kk_etcd.PBPermission',
       '10': 'Perms'
     },
   ],
@@ -32,8 +32,8 @@ const PBRole$json = {
 
 /// Descriptor for `PBRole`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List pBRoleDescriptor = $convert.base64Decode(
-    'CgZQQlJvbGUSEgoETmFtZRgBIAEoCVIETmFtZRIyCgVQZXJtcxgCIAMoCzIcLmtrX2V0Y2RfbW'
-    '9kZWxzLlBCUGVybWlzc2lvblIFUGVybXM=');
+    'CgZQQlJvbGUSEgoETmFtZRgBIAEoCVIETmFtZRIrCgVQZXJtcxgCIAMoCzIVLmtrX2V0Y2QuUE'
+    'JQZXJtaXNzaW9uUgVQZXJtcw==');
 
 @$core.Deprecated('Use pBPermissionDescriptor instead')
 const PBPermission$json = {
@@ -59,7 +59,7 @@ const PBListRole$json = {
       '3': 1,
       '4': 3,
       '5': 11,
-      '6': '.kk_etcd_models.PBRole',
+      '6': '.kk_etcd.PBRole',
       '10': 'List'
     },
   ],
@@ -67,5 +67,4 @@ const PBListRole$json = {
 
 /// Descriptor for `PBListRole`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List pBListRoleDescriptor = $convert.base64Decode(
-    'CgpQQkxpc3RSb2xlEioKBExpc3QYASADKAsyFi5ra19ldGNkX21vZGVscy5QQlJvbGVSBExpc3'
-    'Q=');
+    'CgpQQkxpc3RSb2xlEiMKBExpc3QYASADKAsyDy5ra19ldGNkLlBCUm9sZVIETGlzdA==');

@@ -19,10 +19,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	KV_KVDel_FullMethodName  = "/api_def.KV/KVDel"
-	KV_KVGet_FullMethodName  = "/api_def.KV/KVGet"
-	KV_KVList_FullMethodName = "/api_def.KV/KVList"
-	KV_KVPut_FullMethodName  = "/api_def.KV/KVPut"
+	KV_KVDel_FullMethodName  = "/kk_etcd.KV/KVDel"
+	KV_KVGet_FullMethodName  = "/kk_etcd.KV/KVGet"
+	KV_KVList_FullMethodName = "/kk_etcd.KV/KVList"
+	KV_KVPut_FullMethodName  = "/kk_etcd.KV/KVPut"
 )
 
 // KVClient is the client API for KV service.
@@ -210,7 +210,7 @@ func _KV_KVPut_Handler(srv interface{}, ctx context.Context, dec func(interface{
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var KV_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "api_def.KV",
+	ServiceName: "kk_etcd.KV",
 	HandlerType: (*KVServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

@@ -19,8 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Service_DeregisterService_FullMethodName = "/api_def.Service/DeregisterService"
-	Service_ServiceList_FullMethodName       = "/api_def.Service/ServiceList"
+	Service_DeregisterService_FullMethodName = "/kk_etcd.Service/DeregisterService"
+	Service_ServiceList_FullMethodName       = "/kk_etcd.Service/ServiceList"
 )
 
 // ServiceClient is the client API for Service service.
@@ -142,7 +142,7 @@ func _Service_ServiceList_Handler(srv interface{}, ctx context.Context, dec func
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Service_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "api_def.Service",
+	ServiceName: "kk_etcd.Service",
 	HandlerType: (*ServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

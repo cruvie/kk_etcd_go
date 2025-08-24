@@ -19,14 +19,14 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	User_GetUser_FullMethodName       = "/api_def.User/GetUser"
-	User_Login_FullMethodName         = "/api_def.User/Login"
-	User_Logout_FullMethodName        = "/api_def.User/Logout"
-	User_MyInfo_FullMethodName        = "/api_def.User/MyInfo"
-	User_UserAdd_FullMethodName       = "/api_def.User/UserAdd"
-	User_UserDelete_FullMethodName    = "/api_def.User/UserDelete"
-	User_UserGrantRole_FullMethodName = "/api_def.User/UserGrantRole"
-	User_UserList_FullMethodName      = "/api_def.User/UserList"
+	User_GetUser_FullMethodName       = "/kk_etcd.User/GetUser"
+	User_Login_FullMethodName         = "/kk_etcd.User/Login"
+	User_Logout_FullMethodName        = "/kk_etcd.User/Logout"
+	User_MyInfo_FullMethodName        = "/kk_etcd.User/MyInfo"
+	User_UserAdd_FullMethodName       = "/kk_etcd.User/UserAdd"
+	User_UserDelete_FullMethodName    = "/kk_etcd.User/UserDelete"
+	User_UserGrantRole_FullMethodName = "/kk_etcd.User/UserGrantRole"
+	User_UserList_FullMethodName      = "/kk_etcd.User/UserList"
 )
 
 // UserClient is the client API for User service.
@@ -346,7 +346,7 @@ func _User_UserList_Handler(srv interface{}, ctx context.Context, dec func(inter
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var User_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "api_def.User",
+	ServiceName: "kk_etcd.User",
 	HandlerType: (*UserServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

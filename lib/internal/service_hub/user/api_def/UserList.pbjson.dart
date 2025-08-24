@@ -34,7 +34,7 @@ const UserList_Output$json = {
       '3': 1,
       '4': 1,
       '5': 11,
-      '6': '.kk_etcd_models.PBListUser',
+      '6': '.kk_etcd.PBListUser',
       '10': 'ListUser'
     },
   ],
@@ -42,5 +42,5 @@ const UserList_Output$json = {
 
 /// Descriptor for `UserList`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List userListDescriptor = $convert.base64Decode(
-    'CghVc2VyTGlzdBoHCgVJbnB1dBpACgZPdXRwdXQSNgoITGlzdFVzZXIYASABKAsyGi5ra19ldG'
-    'NkX21vZGVscy5QQkxpc3RVc2VyUghMaXN0VXNlcg==');
+    'CghVc2VyTGlzdBoHCgVJbnB1dBo5CgZPdXRwdXQSLwoITGlzdFVzZXIYASABKAsyEy5ra19ldG'
+    'NkLlBCTGlzdFVzZXJSCExpc3RVc2Vy');

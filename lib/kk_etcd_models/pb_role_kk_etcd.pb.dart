@@ -38,7 +38,7 @@ class PBRole extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'PBRole',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd_models'),
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd'),
       createEmptyInstance: create)
     ..aOS(1, _omitFieldNames ? '' : 'Name', protoName: 'Name')
     ..pc<PBPermission>(2, _omitFieldNames ? '' : 'Perms', $pb.PbFieldType.PM,
@@ -101,7 +101,7 @@ class PBPermission extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'PBPermission',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd_models'),
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd'),
       createEmptyInstance: create)
     ..aOS(2, _omitFieldNames ? '' : 'Key', protoName: 'Key')
     ..aOS(3, _omitFieldNames ? '' : 'RangeEnd', protoName: 'RangeEnd')
@@ -182,7 +182,7 @@ class PBListRole extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'PBListRole',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd_models'),
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd'),
       createEmptyInstance: create)
     ..pc<PBRole>(1, _omitFieldNames ? '' : 'List', $pb.PbFieldType.PM,
         protoName: 'List', subBuilder: PBRole.create)

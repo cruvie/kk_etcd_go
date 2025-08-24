@@ -1,5 +1,5 @@
 syntax = "proto3";
-package api_def;
+package kk_etcd;
 option go_package = "/api_def";
 import "kk_etcd_models/pb_user_kk_etcd.proto";
 
@@ -10,6 +10,6 @@ message GetUser {
   }
 
   message Output {
-    kk_etcd_models.PBUser User = 1;
+    kk_etcd.PBUser User = 1;
   }
 }

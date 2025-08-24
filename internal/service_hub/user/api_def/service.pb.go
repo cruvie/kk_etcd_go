@@ -25,54 +25,54 @@ var File_internal_service_hub_user_api_def_service_proto protoreflect.FileDescri
 
 const file_internal_service_hub_user_api_def_service_proto_rawDesc = "" +
 	"\n" +
-	"/internal/service_hub/user/api_def/service.proto\x12\aapi_def\x1a/internal/service_hub/user/api_def/GetUser.proto\x1a-internal/service_hub/user/api_def/Login.proto\x1a.internal/service_hub/user/api_def/Logout.proto\x1a.internal/service_hub/user/api_def/MyInfo.proto\x1a/internal/service_hub/user/api_def/UserAdd.proto\x1a2internal/service_hub/user/api_def/UserDelete.proto\x1a5internal/service_hub/user/api_def/UserGrantRole.proto\x1a0internal/service_hub/user/api_def/UserList.proto\x1aAvendor/gitee.com/cruvie/kk_go_kit/kk_protobuf/extend_method.proto2\xab\x04\n" +
+	"/internal/service_hub/user/api_def/service.proto\x12\akk_etcd\x1a/internal/service_hub/user/api_def/GetUser.proto\x1a-internal/service_hub/user/api_def/Login.proto\x1a.internal/service_hub/user/api_def/Logout.proto\x1a.internal/service_hub/user/api_def/MyInfo.proto\x1a/internal/service_hub/user/api_def/UserAdd.proto\x1a2internal/service_hub/user/api_def/UserDelete.proto\x1a5internal/service_hub/user/api_def/UserGrantRole.proto\x1a0internal/service_hub/user/api_def/UserList.proto\x1aAvendor/gitee.com/cruvie/kk_go_kit/kk_protobuf/extend_method.proto2\xab\x04\n" +
 	"\x04User\x12A\n" +
-	"\aGetUser\x12\x16.api_def.GetUser.Input\x1a\x17.api_def.GetUser.Output\"\x05\x8a\xa6\x1d\x01\x01\x126\n" +
-	"\x05Login\x12\x14.api_def.Login.Input\x1a\x15.api_def.Login.Output\"\x00\x12>\n" +
-	"\x06Logout\x12\x15.api_def.Logout.Input\x1a\x16.api_def.Logout.Output\"\x05\x8a\xa6\x1d\x01\x01\x12>\n" +
-	"\x06MyInfo\x12\x15.api_def.MyInfo.Input\x1a\x16.api_def.MyInfo.Output\"\x05\x8a\xa6\x1d\x01\x01\x12A\n" +
-	"\aUserAdd\x12\x16.api_def.UserAdd.Input\x1a\x17.api_def.UserAdd.Output\"\x05\x8a\xa6\x1d\x01\x01\x12J\n" +
+	"\aGetUser\x12\x16.kk_etcd.GetUser.Input\x1a\x17.kk_etcd.GetUser.Output\"\x05\x8a\xa6\x1d\x01\x01\x126\n" +
+	"\x05Login\x12\x14.kk_etcd.Login.Input\x1a\x15.kk_etcd.Login.Output\"\x00\x12>\n" +
+	"\x06Logout\x12\x15.kk_etcd.Logout.Input\x1a\x16.kk_etcd.Logout.Output\"\x05\x8a\xa6\x1d\x01\x01\x12>\n" +
+	"\x06MyInfo\x12\x15.kk_etcd.MyInfo.Input\x1a\x16.kk_etcd.MyInfo.Output\"\x05\x8a\xa6\x1d\x01\x01\x12A\n" +
+	"\aUserAdd\x12\x16.kk_etcd.UserAdd.Input\x1a\x17.kk_etcd.UserAdd.Output\"\x05\x8a\xa6\x1d\x01\x01\x12J\n" +
 	"\n" +
-	"UserDelete\x12\x19.api_def.UserDelete.Input\x1a\x1a.api_def.UserDelete.Output\"\x05\x8a\xa6\x1d\x01\x01\x12S\n" +
-	"\rUserGrantRole\x12\x1c.api_def.UserGrantRole.Input\x1a\x1d.api_def.UserGrantRole.Output\"\x05\x8a\xa6\x1d\x01\x01\x12D\n" +
-	"\bUserList\x12\x17.api_def.UserList.Input\x1a\x18.api_def.UserList.Output\"\x05\x8a\xa6\x1d\x01\x01B\n" +
+	"UserDelete\x12\x19.kk_etcd.UserDelete.Input\x1a\x1a.kk_etcd.UserDelete.Output\"\x05\x8a\xa6\x1d\x01\x01\x12S\n" +
+	"\rUserGrantRole\x12\x1c.kk_etcd.UserGrantRole.Input\x1a\x1d.kk_etcd.UserGrantRole.Output\"\x05\x8a\xa6\x1d\x01\x01\x12D\n" +
+	"\bUserList\x12\x17.kk_etcd.UserList.Input\x1a\x18.kk_etcd.UserList.Output\"\x05\x8a\xa6\x1d\x01\x01B\n" +
 	"Z\b/api_defb\x06proto3"
 
 var file_internal_service_hub_user_api_def_service_proto_goTypes = []any{
-	(*GetUser_Input)(nil),        // 0: api_def.GetUser.Input
-	(*Login_Input)(nil),          // 1: api_def.Login.Input
-	(*Logout_Input)(nil),         // 2: api_def.Logout.Input
-	(*MyInfo_Input)(nil),         // 3: api_def.MyInfo.Input
-	(*UserAdd_Input)(nil),        // 4: api_def.UserAdd.Input
-	(*UserDelete_Input)(nil),     // 5: api_def.UserDelete.Input
-	(*UserGrantRole_Input)(nil),  // 6: api_def.UserGrantRole.Input
-	(*UserList_Input)(nil),       // 7: api_def.UserList.Input
-	(*GetUser_Output)(nil),       // 8: api_def.GetUser.Output
-	(*Login_Output)(nil),         // 9: api_def.Login.Output
-	(*Logout_Output)(nil),        // 10: api_def.Logout.Output
-	(*MyInfo_Output)(nil),        // 11: api_def.MyInfo.Output
-	(*UserAdd_Output)(nil),       // 12: api_def.UserAdd.Output
-	(*UserDelete_Output)(nil),    // 13: api_def.UserDelete.Output
-	(*UserGrantRole_Output)(nil), // 14: api_def.UserGrantRole.Output
-	(*UserList_Output)(nil),      // 15: api_def.UserList.Output
+	(*GetUser_Input)(nil),        // 0: kk_etcd.GetUser.Input
+	(*Login_Input)(nil),          // 1: kk_etcd.Login.Input
+	(*Logout_Input)(nil),         // 2: kk_etcd.Logout.Input
+	(*MyInfo_Input)(nil),         // 3: kk_etcd.MyInfo.Input
+	(*UserAdd_Input)(nil),        // 4: kk_etcd.UserAdd.Input
+	(*UserDelete_Input)(nil),     // 5: kk_etcd.UserDelete.Input
+	(*UserGrantRole_Input)(nil),  // 6: kk_etcd.UserGrantRole.Input
+	(*UserList_Input)(nil),       // 7: kk_etcd.UserList.Input
+	(*GetUser_Output)(nil),       // 8: kk_etcd.GetUser.Output
+	(*Login_Output)(nil),         // 9: kk_etcd.Login.Output
+	(*Logout_Output)(nil),        // 10: kk_etcd.Logout.Output
+	(*MyInfo_Output)(nil),        // 11: kk_etcd.MyInfo.Output
+	(*UserAdd_Output)(nil),       // 12: kk_etcd.UserAdd.Output
+	(*UserDelete_Output)(nil),    // 13: kk_etcd.UserDelete.Output
+	(*UserGrantRole_Output)(nil), // 14: kk_etcd.UserGrantRole.Output
+	(*UserList_Output)(nil),      // 15: kk_etcd.UserList.Output
 }
 var file_internal_service_hub_user_api_def_service_proto_depIdxs = []int32{
-	0,  // 0: api_def.User.GetUser:input_type -> api_def.GetUser.Input
-	1,  // 1: api_def.User.Login:input_type -> api_def.Login.Input
-	2,  // 2: api_def.User.Logout:input_type -> api_def.Logout.Input
-	3,  // 3: api_def.User.MyInfo:input_type -> api_def.MyInfo.Input
-	4,  // 4: api_def.User.UserAdd:input_type -> api_def.UserAdd.Input
-	5,  // 5: api_def.User.UserDelete:input_type -> api_def.UserDelete.Input
-	6,  // 6: api_def.User.UserGrantRole:input_type -> api_def.UserGrantRole.Input
-	7,  // 7: api_def.User.UserList:input_type -> api_def.UserList.Input
-	8,  // 8: api_def.User.GetUser:output_type -> api_def.GetUser.Output
-	9,  // 9: api_def.User.Login:output_type -> api_def.Login.Output
-	10, // 10: api_def.User.Logout:output_type -> api_def.Logout.Output
-	11, // 11: api_def.User.MyInfo:output_type -> api_def.MyInfo.Output
-	12, // 12: api_def.User.UserAdd:output_type -> api_def.UserAdd.Output
-	13, // 13: api_def.User.UserDelete:output_type -> api_def.UserDelete.Output
-	14, // 14: api_def.User.UserGrantRole:output_type -> api_def.UserGrantRole.Output
-	15, // 15: api_def.User.UserList:output_type -> api_def.UserList.Output
+	0,  // 0: kk_etcd.User.GetUser:input_type -> kk_etcd.GetUser.Input
+	1,  // 1: kk_etcd.User.Login:input_type -> kk_etcd.Login.Input
+	2,  // 2: kk_etcd.User.Logout:input_type -> kk_etcd.Logout.Input
+	3,  // 3: kk_etcd.User.MyInfo:input_type -> kk_etcd.MyInfo.Input
+	4,  // 4: kk_etcd.User.UserAdd:input_type -> kk_etcd.UserAdd.Input
+	5,  // 5: kk_etcd.User.UserDelete:input_type -> kk_etcd.UserDelete.Input
+	6,  // 6: kk_etcd.User.UserGrantRole:input_type -> kk_etcd.UserGrantRole.Input
+	7,  // 7: kk_etcd.User.UserList:input_type -> kk_etcd.UserList.Input
+	8,  // 8: kk_etcd.User.GetUser:output_type -> kk_etcd.GetUser.Output
+	9,  // 9: kk_etcd.User.Login:output_type -> kk_etcd.Login.Output
+	10, // 10: kk_etcd.User.Logout:output_type -> kk_etcd.Logout.Output
+	11, // 11: kk_etcd.User.MyInfo:output_type -> kk_etcd.MyInfo.Output
+	12, // 12: kk_etcd.User.UserAdd:output_type -> kk_etcd.UserAdd.Output
+	13, // 13: kk_etcd.User.UserDelete:output_type -> kk_etcd.UserDelete.Output
+	14, // 14: kk_etcd.User.UserGrantRole:output_type -> kk_etcd.UserGrantRole.Output
+	15, // 15: kk_etcd.User.UserList:output_type -> kk_etcd.UserList.Output
 	8,  // [8:16] is the sub-list for method output_type
 	0,  // [0:8] is the sub-list for method input_type
 	0,  // [0:0] is the sub-list for extension type_name

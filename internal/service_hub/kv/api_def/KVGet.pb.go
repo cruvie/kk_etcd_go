@@ -151,12 +151,12 @@ var File_internal_service_hub_kv_api_def_KVGet_proto protoreflect.FileDescriptor
 
 const file_internal_service_hub_kv_api_def_KVGet_proto_rawDesc = "" +
 	"\n" +
-	"+internal/service_hub/kv/api_def/KVGet.proto\x12\aapi_def\x1a\"kk_etcd_models/pb_kv_kk_etcd.proto\"R\n" +
+	"+internal/service_hub/kv/api_def/KVGet.proto\x12\akk_etcd\x1a\"kk_etcd_models/pb_kv_kk_etcd.proto\"K\n" +
 	"\x05KVGet\x1a\x19\n" +
 	"\x05Input\x12\x10\n" +
-	"\x03Key\x18\x01 \x01(\tR\x03Key\x1a.\n" +
-	"\x06Output\x12$\n" +
-	"\x02KV\x18\x01 \x01(\v2\x14.kk_etcd_models.PBKVR\x02KVB\n" +
+	"\x03Key\x18\x01 \x01(\tR\x03Key\x1a'\n" +
+	"\x06Output\x12\x1d\n" +
+	"\x02KV\x18\x01 \x01(\v2\r.kk_etcd.PBKVR\x02KVB\n" +
 	"Z\b/api_defb\x06proto3"
 
 var (
@@ -173,13 +173,13 @@ func file_internal_service_hub_kv_api_def_KVGet_proto_rawDescGZIP() []byte {
 
 var file_internal_service_hub_kv_api_def_KVGet_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_internal_service_hub_kv_api_def_KVGet_proto_goTypes = []any{
-	(*KVGet)(nil),               // 0: api_def.KVGet
-	(*KVGet_Input)(nil),         // 1: api_def.KVGet.Input
-	(*KVGet_Output)(nil),        // 2: api_def.KVGet.Output
-	(*kk_etcd_models.PBKV)(nil), // 3: kk_etcd_models.PBKV
+	(*KVGet)(nil),               // 0: kk_etcd.KVGet
+	(*KVGet_Input)(nil),         // 1: kk_etcd.KVGet.Input
+	(*KVGet_Output)(nil),        // 2: kk_etcd.KVGet.Output
+	(*kk_etcd_models.PBKV)(nil), // 3: kk_etcd.PBKV
 }
 var file_internal_service_hub_kv_api_def_KVGet_proto_depIdxs = []int32{
-	3, // 0: api_def.KVGet.Output.KV:type_name -> kk_etcd_models.PBKV
+	3, // 0: kk_etcd.KVGet.Output.KV:type_name -> kk_etcd.PBKV
 	1, // [1:1] is the sub-list for method output_type
 	1, // [1:1] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name

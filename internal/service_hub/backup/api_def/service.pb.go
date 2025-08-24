@@ -25,38 +25,38 @@ var File_internal_service_hub_backup_api_def_service_proto protoreflect.FileDesc
 
 const file_internal_service_hub_backup_api_def_service_proto_rawDesc = "" +
 	"\n" +
-	"1internal/service_hub/backup/api_def/service.proto\x12\aapi_def\x1a6internal/service_hub/backup/api_def/AllKVsBackup.proto\x1a7internal/service_hub/backup/api_def/AllKVsRestore.proto\x1a2internal/service_hub/backup/api_def/Snapshot.proto\x1a6internal/service_hub/backup/api_def/SnapshotInfo.proto\x1a9internal/service_hub/backup/api_def/SnapshotRestore.proto\x1aAvendor/gitee.com/cruvie/kk_go_kit/kk_protobuf/extend_method.proto2\xa2\x03\n" +
+	"1internal/service_hub/backup/api_def/service.proto\x12\akk_etcd\x1a6internal/service_hub/backup/api_def/AllKVsBackup.proto\x1a7internal/service_hub/backup/api_def/AllKVsRestore.proto\x1a2internal/service_hub/backup/api_def/Snapshot.proto\x1a6internal/service_hub/backup/api_def/SnapshotInfo.proto\x1a9internal/service_hub/backup/api_def/SnapshotRestore.proto\x1aAvendor/gitee.com/cruvie/kk_go_kit/kk_protobuf/extend_method.proto2\xa2\x03\n" +
 	"\x06Backup\x12P\n" +
-	"\fAllKVsBackup\x12\x1b.api_def.AllKVsBackup.Input\x1a\x1c.api_def.AllKVsBackup.Output\"\x05\x8a\xa6\x1d\x01\x01\x12S\n" +
-	"\rAllKVsRestore\x12\x1c.api_def.AllKVsRestore.Input\x1a\x1d.api_def.AllKVsRestore.Output\"\x05\x8a\xa6\x1d\x01\x01\x12D\n" +
-	"\bSnapshot\x12\x17.api_def.Snapshot.Input\x1a\x18.api_def.Snapshot.Output\"\x05\x8a\xa6\x1d\x01\x01\x12P\n" +
-	"\fSnapshotInfo\x12\x1b.api_def.SnapshotInfo.Input\x1a\x1c.api_def.SnapshotInfo.Output\"\x05\x8a\xa6\x1d\x01\x01\x12Y\n" +
-	"\x0fSnapshotRestore\x12\x1e.api_def.SnapshotRestore.Input\x1a\x1f.api_def.SnapshotRestore.Output\"\x05\x8a\xa6\x1d\x01\x01B\n" +
+	"\fAllKVsBackup\x12\x1b.kk_etcd.AllKVsBackup.Input\x1a\x1c.kk_etcd.AllKVsBackup.Output\"\x05\x8a\xa6\x1d\x01\x01\x12S\n" +
+	"\rAllKVsRestore\x12\x1c.kk_etcd.AllKVsRestore.Input\x1a\x1d.kk_etcd.AllKVsRestore.Output\"\x05\x8a\xa6\x1d\x01\x01\x12D\n" +
+	"\bSnapshot\x12\x17.kk_etcd.Snapshot.Input\x1a\x18.kk_etcd.Snapshot.Output\"\x05\x8a\xa6\x1d\x01\x01\x12P\n" +
+	"\fSnapshotInfo\x12\x1b.kk_etcd.SnapshotInfo.Input\x1a\x1c.kk_etcd.SnapshotInfo.Output\"\x05\x8a\xa6\x1d\x01\x01\x12Y\n" +
+	"\x0fSnapshotRestore\x12\x1e.kk_etcd.SnapshotRestore.Input\x1a\x1f.kk_etcd.SnapshotRestore.Output\"\x05\x8a\xa6\x1d\x01\x01B\n" +
 	"Z\b/api_defb\x06proto3"
 
 var file_internal_service_hub_backup_api_def_service_proto_goTypes = []any{
-	(*AllKVsBackup_Input)(nil),     // 0: api_def.AllKVsBackup.Input
-	(*AllKVsRestore_Input)(nil),    // 1: api_def.AllKVsRestore.Input
-	(*Snapshot_Input)(nil),         // 2: api_def.Snapshot.Input
-	(*SnapshotInfo_Input)(nil),     // 3: api_def.SnapshotInfo.Input
-	(*SnapshotRestore_Input)(nil),  // 4: api_def.SnapshotRestore.Input
-	(*AllKVsBackup_Output)(nil),    // 5: api_def.AllKVsBackup.Output
-	(*AllKVsRestore_Output)(nil),   // 6: api_def.AllKVsRestore.Output
-	(*Snapshot_Output)(nil),        // 7: api_def.Snapshot.Output
-	(*SnapshotInfo_Output)(nil),    // 8: api_def.SnapshotInfo.Output
-	(*SnapshotRestore_Output)(nil), // 9: api_def.SnapshotRestore.Output
+	(*AllKVsBackup_Input)(nil),     // 0: kk_etcd.AllKVsBackup.Input
+	(*AllKVsRestore_Input)(nil),    // 1: kk_etcd.AllKVsRestore.Input
+	(*Snapshot_Input)(nil),         // 2: kk_etcd.Snapshot.Input
+	(*SnapshotInfo_Input)(nil),     // 3: kk_etcd.SnapshotInfo.Input
+	(*SnapshotRestore_Input)(nil),  // 4: kk_etcd.SnapshotRestore.Input
+	(*AllKVsBackup_Output)(nil),    // 5: kk_etcd.AllKVsBackup.Output
+	(*AllKVsRestore_Output)(nil),   // 6: kk_etcd.AllKVsRestore.Output
+	(*Snapshot_Output)(nil),        // 7: kk_etcd.Snapshot.Output
+	(*SnapshotInfo_Output)(nil),    // 8: kk_etcd.SnapshotInfo.Output
+	(*SnapshotRestore_Output)(nil), // 9: kk_etcd.SnapshotRestore.Output
 }
 var file_internal_service_hub_backup_api_def_service_proto_depIdxs = []int32{
-	0, // 0: api_def.Backup.AllKVsBackup:input_type -> api_def.AllKVsBackup.Input
-	1, // 1: api_def.Backup.AllKVsRestore:input_type -> api_def.AllKVsRestore.Input
-	2, // 2: api_def.Backup.Snapshot:input_type -> api_def.Snapshot.Input
-	3, // 3: api_def.Backup.SnapshotInfo:input_type -> api_def.SnapshotInfo.Input
-	4, // 4: api_def.Backup.SnapshotRestore:input_type -> api_def.SnapshotRestore.Input
-	5, // 5: api_def.Backup.AllKVsBackup:output_type -> api_def.AllKVsBackup.Output
-	6, // 6: api_def.Backup.AllKVsRestore:output_type -> api_def.AllKVsRestore.Output
-	7, // 7: api_def.Backup.Snapshot:output_type -> api_def.Snapshot.Output
-	8, // 8: api_def.Backup.SnapshotInfo:output_type -> api_def.SnapshotInfo.Output
-	9, // 9: api_def.Backup.SnapshotRestore:output_type -> api_def.SnapshotRestore.Output
+	0, // 0: kk_etcd.Backup.AllKVsBackup:input_type -> kk_etcd.AllKVsBackup.Input
+	1, // 1: kk_etcd.Backup.AllKVsRestore:input_type -> kk_etcd.AllKVsRestore.Input
+	2, // 2: kk_etcd.Backup.Snapshot:input_type -> kk_etcd.Snapshot.Input
+	3, // 3: kk_etcd.Backup.SnapshotInfo:input_type -> kk_etcd.SnapshotInfo.Input
+	4, // 4: kk_etcd.Backup.SnapshotRestore:input_type -> kk_etcd.SnapshotRestore.Input
+	5, // 5: kk_etcd.Backup.AllKVsBackup:output_type -> kk_etcd.AllKVsBackup.Output
+	6, // 6: kk_etcd.Backup.AllKVsRestore:output_type -> kk_etcd.AllKVsRestore.Output
+	7, // 7: kk_etcd.Backup.Snapshot:output_type -> kk_etcd.Snapshot.Output
+	8, // 8: kk_etcd.Backup.SnapshotInfo:output_type -> kk_etcd.SnapshotInfo.Output
+	9, // 9: kk_etcd.Backup.SnapshotRestore:output_type -> kk_etcd.SnapshotRestore.Output
 	5, // [5:10] is the sub-list for method output_type
 	0, // [0:5] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name

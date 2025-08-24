@@ -32,18 +32,11 @@ const KVGet_Input$json = {
 const KVGet_Output$json = {
   '1': 'Output',
   '2': [
-    {
-      '1': 'KV',
-      '3': 1,
-      '4': 1,
-      '5': 11,
-      '6': '.kk_etcd_models.PBKV',
-      '10': 'KV'
-    },
+    {'1': 'KV', '3': 1, '4': 1, '5': 11, '6': '.kk_etcd.PBKV', '10': 'KV'},
   ],
 };
 
 /// Descriptor for `KVGet`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List kVGetDescriptor = $convert.base64Decode(
-    'CgVLVkdldBoZCgVJbnB1dBIQCgNLZXkYASABKAlSA0tleRouCgZPdXRwdXQSJAoCS1YYASABKA'
-    'syFC5ra19ldGNkX21vZGVscy5QQktWUgJLVg==');
+    'CgVLVkdldBoZCgVJbnB1dBIQCgNLZXkYASABKAlSA0tleRonCgZPdXRwdXQSHQoCS1YYASABKA'
+    'syDS5ra19ldGNkLlBCS1ZSAktW');

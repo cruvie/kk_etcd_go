@@ -1,5 +1,5 @@
 syntax = "proto3";
-package api_def;
+package kk_etcd;
 option go_package = "/api_def";
 
 //add role

@@ -40,7 +40,7 @@ class PBUser extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'PBUser',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd_models'),
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd'),
       createEmptyInstance: create)
     ..aOS(2, _omitFieldNames ? '' : 'UserName', protoName: 'UserName')
     ..aOS(3, _omitFieldNames ? '' : 'Password', protoName: 'Password')
@@ -108,7 +108,7 @@ class PBListUser extends $pb.GeneratedMessage {
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
       _omitMessageNames ? '' : 'PBListUser',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd_models'),
+      package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd'),
       createEmptyInstance: create)
     ..pc<PBUser>(1, _omitFieldNames ? '' : 'ListUser', $pb.PbFieldType.PM,
         protoName: 'ListUser', subBuilder: PBUser.create)

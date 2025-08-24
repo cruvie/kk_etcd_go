@@ -25,7 +25,7 @@ import 'RoleRevokePermission.pb.dart' as $5;
 
 export 'service.pb.dart';
 
-@$pb.GrpcServiceName('api_def.Role')
+@$pb.GrpcServiceName('kk_etcd.Role')
 class RoleClient extends $grpc.Client {
   /// The hostname for this service.
   static const $core.String defaultHost = '';
@@ -83,39 +83,39 @@ class RoleClient extends $grpc.Client {
 
   static final _$roleAdd =
       $grpc.ClientMethod<$0.RoleAdd_Input, $0.RoleAdd_Output>(
-          '/api_def.Role/RoleAdd',
+          '/kk_etcd.Role/RoleAdd',
           ($0.RoleAdd_Input value) => value.writeToBuffer(),
           $0.RoleAdd_Output.fromBuffer);
   static final _$roleDelete =
       $grpc.ClientMethod<$1.RoleDelete_Input, $1.RoleDelete_Output>(
-          '/api_def.Role/RoleDelete',
+          '/kk_etcd.Role/RoleDelete',
           ($1.RoleDelete_Input value) => value.writeToBuffer(),
           $1.RoleDelete_Output.fromBuffer);
   static final _$roleGet =
       $grpc.ClientMethod<$2.RoleGet_Input, $2.RoleGet_Output>(
-          '/api_def.Role/RoleGet',
+          '/kk_etcd.Role/RoleGet',
           ($2.RoleGet_Input value) => value.writeToBuffer(),
           $2.RoleGet_Output.fromBuffer);
   static final _$roleGrantPermission = $grpc.ClientMethod<
           $3.RoleGrantPermission_Input, $3.RoleGrantPermission_Output>(
-      '/api_def.Role/RoleGrantPermission',
+      '/kk_etcd.Role/RoleGrantPermission',
       ($3.RoleGrantPermission_Input value) => value.writeToBuffer(),
       $3.RoleGrantPermission_Output.fromBuffer);
   static final _$roleList =
       $grpc.ClientMethod<$4.RoleList_Input, $4.RoleList_Output>(
-          '/api_def.Role/RoleList',
+          '/kk_etcd.Role/RoleList',
           ($4.RoleList_Input value) => value.writeToBuffer(),
           $4.RoleList_Output.fromBuffer);
   static final _$roleRevokePermission = $grpc.ClientMethod<
           $5.RoleRevokePermission_Input, $5.RoleRevokePermission_Output>(
-      '/api_def.Role/RoleRevokePermission',
+      '/kk_etcd.Role/RoleRevokePermission',
       ($5.RoleRevokePermission_Input value) => value.writeToBuffer(),
       $5.RoleRevokePermission_Output.fromBuffer);
 }
 
-@$pb.GrpcServiceName('api_def.Role')
+@$pb.GrpcServiceName('kk_etcd.Role')
 abstract class RoleServiceBase extends $grpc.Service {
-  $core.String get $name => 'api_def.Role';
+  $core.String get $name => 'kk_etcd.Role';
 
   RoleServiceBase() {
     $addMethod($grpc.ServiceMethod<$0.RoleAdd_Input, $0.RoleAdd_Output>(

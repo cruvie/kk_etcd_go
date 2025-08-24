@@ -1,5 +1,5 @@
 syntax = "proto3";
-package api_def;
+package kk_etcd;
 option go_package = "/api_def";
 import "kk_etcd_models/pb_kv_kk_etcd.proto";
 //list kv
@@ -9,6 +9,6 @@ message KVList {
   }
 
   message Output {
-    kk_etcd_models.PBListKV KVList = 1;
+    kk_etcd.PBListKV KVList = 1;
   }
 }
