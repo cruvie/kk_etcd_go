@@ -9,8 +9,5 @@ environment:
   sdk: '>=3.9.0'
 
 dependencies:
-  kk_go_kit:
-    git:
-      url: https://gitee.com/cruvie/kk_go_kit.git
   protobuf: any # all
   grpc: any # all
