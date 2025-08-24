@@ -28,6 +28,7 @@ fix:
 update-dep:
 	go get -u ./...
 	go mod tidy
+	go mod vendor
 
 
 update_self_dependence_in_one_mod:

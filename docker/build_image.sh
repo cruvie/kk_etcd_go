@@ -1,15 +1,21 @@
 clear
 cd ..
 
-export GOVERSION=1.23.9
 
-#export PLATFORM=linux/amd64
-#export EtcdPath=./docker/tarball/etcd-v3.6.0-linux-amd64/etcdutl
-#export TAG=1.4.3-amd64
+#docker pull --platform linux/amd64 golang:1.24.6
+#docker pull --platform linux/arm64 golang:1.24.6
+#docker pull --platform linux/amd64 alpine:latest
+#docker pull --platform linux/arm64 alpine:latest
 
-export PLATFORM=linux/arm64
-export EtcdPath=./docker/tarball/etcd-v3.6.0-linux-arm64/etcdutl
-export TAG=1.4.3-arm64
+export GOVERSION=1.24.6
+
+export PLATFORM=linux/amd64
+export EtcdPath=./docker/tarball/etcd-v3.6.0-linux-amd64/etcdutl
+export TAG=1.4.4-amd64
+
+#export PLATFORM=linux/arm64
+#export EtcdPath=./docker/tarball/etcd-v3.6.0-linux-arm64/etcdutl
+#export TAG=1.4.4-arm64
 
 #since COPY doesn't support interpolation, so cp a temp file
 cp ${EtcdPath} ./docker/tarball/etcdutl
@@ -21,4 +27,4 @@ docker buildx build --platform ${PLATFORM} \
             -f docker/Dockerfile . \
             --push
 
-rm -f ./docker/tarball/etcdutl
+#rm -f ./docker/tarball/etcdutl

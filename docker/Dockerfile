@@ -4,8 +4,6 @@
 ARG GOVERSION
 FROM golang:${GOVERSION} AS build
 
-# docker pull --platform linux/amd64 golang:1.23.9
-# docker pull --platform linux/arm64 golang:1.23.9
 
 ENV GOPROXY=https://goproxy.cn,direct
 
@@ -36,10 +34,10 @@ CMD ["/kk_etcd/output"]
 
 # 多平台构建-发布
 # docker login
-# docker buildx build --platform linux/amd64,linux/arm64 -t cruvie/kk_etcd_go:1.4.3 -f Dockerfile . --push
-# docker buildx build --platform linux/amd64 -t cruvie/kk_etcd_go:1.4.3-amd64 -f Dockerfile . --push
-# docker buildx build --platform linux/arm64 -t cruvie/kk_etcd_go:1.4.3-arm64 -f Dockerfile . --push
+# docker buildx build --platform linux/amd64,linux/arm64 -t cruvie/kk_etcd_go:1.4.4 -f Dockerfile . --push
+# docker buildx build --platform linux/amd64 -t cruvie/kk_etcd_go:1.4.4-amd64 -f Dockerfile . --push
+# docker buildx build --platform linux/arm64 -t cruvie/kk_etcd_go:1.4.4-arm64 -f Dockerfile . --push
 
 # 测试
-# docker pull cruvie/kk_etcd_go:1.4.3
-# docker run --name kk_etcd_go -p 2333:2333 -v ./config/config.yml:/kk_etcd_go/config/config.yml cruvie/kk_etcd_go:1.4.3
+# docker pull cruvie/kk_etcd_go:1.4.4
+# docker run --name kk_etcd_go -p 2333:2333 -v ./config/config.yml:/kk_etcd_go/config/config.yml cruvie/kk_etcd_go:1.4.4
