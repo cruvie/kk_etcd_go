@@ -7,7 +7,7 @@ import (
 	clientv3 "go.etcd.io/etcd/client/v3"
 )
 
-func (x *Api) Service(stage *kk_stage.Stage) (list *kk_etcd_models.PBListKV, err error) {
+func (x *Api) Service(stage *kk_stage.Stage) (list []*kk_etcd_models.PBKV, err error) {
 	span := stage.StartTrace("service")
 	defer span.End()
 

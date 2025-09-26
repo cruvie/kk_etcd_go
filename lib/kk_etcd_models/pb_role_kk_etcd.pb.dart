@@ -162,55 +162,6 @@ class PBPermission extends $pb.GeneratedMessage {
   void clearPermissionType() => $_clearField(4);
 }
 
-class PBListRole extends $pb.GeneratedMessage {
-  factory PBListRole({
-    $core.Iterable<PBRole>? list,
-  }) {
-    final result = create();
-    if (list != null) result.list.addAll(list);
-    return result;
-  }
-
-  PBListRole._();
-
-  factory PBListRole.fromBuffer($core.List<$core.int> data,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
-  factory PBListRole.fromJson($core.String json,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
-
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'PBListRole',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd'),
-      createEmptyInstance: create)
-    ..pc<PBRole>(1, _omitFieldNames ? '' : 'List', $pb.PbFieldType.PM,
-        protoName: 'List', subBuilder: PBRole.create)
-    ..hasRequiredFields = false;
-
-  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  PBListRole clone() => PBListRole()..mergeFromMessage(this);
-  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  PBListRole copyWith(void Function(PBListRole) updates) =>
-      super.copyWith((message) => updates(message as PBListRole)) as PBListRole;
-
-  @$core.override
-  $pb.BuilderInfo get info_ => _i;
-
-  @$core.pragma('dart2js:noInline')
-  static PBListRole create() => PBListRole._();
-  @$core.override
-  PBListRole createEmptyInstance() => create();
-  static $pb.PbList<PBListRole> createRepeated() => $pb.PbList<PBListRole>();
-  @$core.pragma('dart2js:noInline')
-  static PBListRole getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<PBListRole>(create);
-  static PBListRole? _defaultInstance;
-
-  @$pb.TagNumber(1)
-  $pb.PbList<PBRole> get list => $_getList(0);
-}
-
 const $core.bool _omitFieldNames =
     $core.bool.fromEnvironment('protobuf.omit_field_names');
 const $core.bool _omitMessageNames =

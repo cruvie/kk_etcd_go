@@ -9,6 +9,6 @@ message UserList {
   }
 
   message Output {
-    kk_etcd.PBListUser ListUser = 1;
+    repeated kk_etcd.PBUser ListUser = 1;
   }
 }

@@ -10,8 +10,3 @@ message PBKV {
   string  Key = 1;
   string  Value = 2;
 }
-
-
-message PBListKV {
-  repeated PBKV ListKV = 1;
-}

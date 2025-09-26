@@ -88,55 +88,6 @@ class PBUser extends $pb.GeneratedMessage {
   $pb.PbList<$core.String> get roles => $_getList(2);
 }
 
-class PBListUser extends $pb.GeneratedMessage {
-  factory PBListUser({
-    $core.Iterable<PBUser>? listUser,
-  }) {
-    final result = create();
-    if (listUser != null) result.listUser.addAll(listUser);
-    return result;
-  }
-
-  PBListUser._();
-
-  factory PBListUser.fromBuffer($core.List<$core.int> data,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
-  factory PBListUser.fromJson($core.String json,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
-
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'PBListUser',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd'),
-      createEmptyInstance: create)
-    ..pc<PBUser>(1, _omitFieldNames ? '' : 'ListUser', $pb.PbFieldType.PM,
-        protoName: 'ListUser', subBuilder: PBUser.create)
-    ..hasRequiredFields = false;
-
-  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  PBListUser clone() => PBListUser()..mergeFromMessage(this);
-  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  PBListUser copyWith(void Function(PBListUser) updates) =>
-      super.copyWith((message) => updates(message as PBListUser)) as PBListUser;
-
-  @$core.override
-  $pb.BuilderInfo get info_ => _i;
-
-  @$core.pragma('dart2js:noInline')
-  static PBListUser create() => PBListUser._();
-  @$core.override
-  PBListUser createEmptyInstance() => create();
-  static $pb.PbList<PBListUser> createRepeated() => $pb.PbList<PBListUser>();
-  @$core.pragma('dart2js:noInline')
-  static PBListUser getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<PBListUser>(create);
-  static PBListUser? _defaultInstance;
-
-  @$pb.TagNumber(1)
-  $pb.PbList<PBUser> get listUser => $_getList(0);
-}
-
 const $core.bool _omitFieldNames =
     $core.bool.fromEnvironment('protobuf.omit_field_names');
 const $core.bool _omitMessageNames =

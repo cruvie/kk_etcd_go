@@ -9,7 +9,7 @@ import (
 	"github.com/cruvie/kk_etcd_go/kk_etcd_models"
 )
 
-func (x *Api) Service(stage *kk_stage.Stage) (users *kk_etcd_models.PBListUser, err error) {
+func (x *Api) Service(stage *kk_stage.Stage) (users []*kk_etcd_models.PBUser, err error) {
 	span := stage.StartTrace("service")
 	defer span.End()
 
@@ -17,13 +17,13 @@ func (x *Api) Service(stage *kk_stage.Stage) (users *kk_etcd_models.PBListUser, 
 	if err != nil {
 		return nil, err
 	}
-	users = &kk_etcd_models.PBListUser{}
+	users = make([]*kk_etcd_models.PBUser, 0)
 	for _, userName := range list.Users {
 		user, err := util_user.GetUser(stage, userName)
 		if err != nil {
 			return nil, err
 		}
-		users.ListUser = append(users.ListUser, user)
+		users = append(users, user)
 	}
 	return users, nil
 }

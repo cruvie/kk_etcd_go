@@ -9,6 +9,6 @@ message RoleList {
   }
 
   message Output {
-    kk_etcd.PBListRole ListRole = 1;
+    repeated kk_etcd.PBRole ListRole = 1;
   }
 }

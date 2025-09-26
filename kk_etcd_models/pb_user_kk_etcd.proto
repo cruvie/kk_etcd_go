@@ -12,7 +12,3 @@ message PBUser {
   string  Password = 3;
   repeated  string  Roles = 4;
 }
-
-message PBListUser {
-  repeated PBUser ListUser = 1;
-}

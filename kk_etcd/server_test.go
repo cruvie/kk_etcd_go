@@ -268,7 +268,7 @@ func TestGetHttpServiceList(t *testing.T) {
 //				log.Println(err)
 //			}
 //		}()
-//		serverListChan := make(chan *kk_etcd_models.PBListService)
+//		serverListChan := make(chan []*kk_etcd_models.PBService)
 //		defer close(serverListChan)
 //		ctx, cancel := context.WithCancel(context.Background())
 //		defer cancel()

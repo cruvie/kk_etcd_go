@@ -33,3 +33,26 @@ func GetGrpcClient[T any](
 	client = clientBuilder(conn)
 	return conn, client, err
 }
+
+// RegisterSimpleTarget register service target to etcd
+func RegisterSimpleTarget(registration *kk_etcd_models.PBServiceRegistrationSimpleTarget) error {
+	err := serService.RegisterSimpleTarget(registration)
+	return err
+}
+
+func GetGrpcClientBySimpleTarget[T any](
+	serviceName string,
+	clientBuilder func(grpcConn grpc.ClientConnInterface) (client T),
+	opts ...grpc.DialOption,
+) (conn *grpc.ClientConn, client T, err error) {
+	addr, err := serService.GetServiceSimpleTarget(serviceName)
+	if err != nil {
+		return nil, client, err
+	}
+
+	conn, err = grpc.NewClient(addr,
+		opts...,
+	)
+	client = clientBuilder(conn)
+	return conn, client, err
+}

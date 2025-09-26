@@ -240,58 +240,79 @@ class PBServiceRegistration extends $pb.GeneratedMessage {
   PBServiceRegistration_PBCheckConfig ensureCheckConfig() => $_ensure(3);
 }
 
-class PBListServiceRegistration extends $pb.GeneratedMessage {
-  factory PBListServiceRegistration({
-    $core.Iterable<PBServiceRegistration>? list,
+class PBServiceRegistrationSimpleTarget extends $pb.GeneratedMessage {
+  factory PBServiceRegistrationSimpleTarget({
+    $core.String? serviceName,
+    $core.int? port,
   }) {
     final result = create();
-    if (list != null) result.list.addAll(list);
+    if (serviceName != null) result.serviceName = serviceName;
+    if (port != null) result.port = port;
     return result;
   }
 
-  PBListServiceRegistration._();
+  PBServiceRegistrationSimpleTarget._();
 
-  factory PBListServiceRegistration.fromBuffer($core.List<$core.int> data,
+  factory PBServiceRegistrationSimpleTarget.fromBuffer(
+          $core.List<$core.int> data,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromBuffer(data, registry);
-  factory PBListServiceRegistration.fromJson($core.String json,
+  factory PBServiceRegistrationSimpleTarget.fromJson($core.String json,
           [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
       create()..mergeFromJson(json, registry);
 
   static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'PBListServiceRegistration',
+      _omitMessageNames ? '' : 'PBServiceRegistrationSimpleTarget',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd'),
       createEmptyInstance: create)
-    ..pc<PBServiceRegistration>(
-        1, _omitFieldNames ? '' : 'List', $pb.PbFieldType.PM,
-        protoName: 'List', subBuilder: PBServiceRegistration.create)
+    ..aOS(1, _omitFieldNames ? '' : 'ServiceName', protoName: 'ServiceName')
+    ..a<$core.int>(2, _omitFieldNames ? '' : 'Port', $pb.PbFieldType.O3,
+        protoName: 'Port')
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  PBListServiceRegistration clone() =>
-      PBListServiceRegistration()..mergeFromMessage(this);
+  PBServiceRegistrationSimpleTarget clone() =>
+      PBServiceRegistrationSimpleTarget()..mergeFromMessage(this);
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  PBListServiceRegistration copyWith(
-          void Function(PBListServiceRegistration) updates) =>
-      super.copyWith((message) => updates(message as PBListServiceRegistration))
-          as PBListServiceRegistration;
+  PBServiceRegistrationSimpleTarget copyWith(
+          void Function(PBServiceRegistrationSimpleTarget) updates) =>
+      super.copyWith((message) =>
+              updates(message as PBServiceRegistrationSimpleTarget))
+          as PBServiceRegistrationSimpleTarget;
 
   @$core.override
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  static PBListServiceRegistration create() => PBListServiceRegistration._();
+  static PBServiceRegistrationSimpleTarget create() =>
+      PBServiceRegistrationSimpleTarget._();
   @$core.override
-  PBListServiceRegistration createEmptyInstance() => create();
-  static $pb.PbList<PBListServiceRegistration> createRepeated() =>
-      $pb.PbList<PBListServiceRegistration>();
+  PBServiceRegistrationSimpleTarget createEmptyInstance() => create();
+  static $pb.PbList<PBServiceRegistrationSimpleTarget> createRepeated() =>
+      $pb.PbList<PBServiceRegistrationSimpleTarget>();
   @$core.pragma('dart2js:noInline')
-  static PBListServiceRegistration getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<PBListServiceRegistration>(create);
-  static PBListServiceRegistration? _defaultInstance;
+  static PBServiceRegistrationSimpleTarget getDefault() => _defaultInstance ??=
+      $pb.GeneratedMessage.$_defaultFor<PBServiceRegistrationSimpleTarget>(
+          create);
+  static PBServiceRegistrationSimpleTarget? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $pb.PbList<PBServiceRegistration> get list => $_getList(0);
+  $core.String get serviceName => $_getSZ(0);
+  @$pb.TagNumber(1)
+  set serviceName($core.String value) => $_setString(0, value);
+  @$pb.TagNumber(1)
+  $core.bool hasServiceName() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearServiceName() => $_clearField(1);
+
+  @$pb.TagNumber(2)
+  $core.int get port => $_getIZ(1);
+  @$pb.TagNumber(2)
+  set port($core.int value) => $_setSignedInt32(1, value);
+  @$pb.TagNumber(2)
+  $core.bool hasPort() => $_has(1);
+  @$pb.TagNumber(2)
+  void clearPort() => $_clearField(2);
 }
 
 const $core.bool _omitFieldNames =

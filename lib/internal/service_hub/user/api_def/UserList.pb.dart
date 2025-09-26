@@ -60,10 +60,10 @@ class UserList_Input extends $pb.GeneratedMessage {
 
 class UserList_Output extends $pb.GeneratedMessage {
   factory UserList_Output({
-    $0.PBListUser? listUser,
+    $core.Iterable<$0.PBUser>? listUser,
   }) {
     final result = create();
-    if (listUser != null) result.listUser = listUser;
+    if (listUser != null) result.listUser.addAll(listUser);
     return result;
   }
 
@@ -80,8 +80,8 @@ class UserList_Output extends $pb.GeneratedMessage {
       _omitMessageNames ? '' : 'UserList.Output',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd'),
       createEmptyInstance: create)
-    ..aOM<$0.PBListUser>(1, _omitFieldNames ? '' : 'ListUser',
-        protoName: 'ListUser', subBuilder: $0.PBListUser.create)
+    ..pc<$0.PBUser>(1, _omitFieldNames ? '' : 'ListUser', $pb.PbFieldType.PM,
+        protoName: 'ListUser', subBuilder: $0.PBUser.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -106,15 +106,7 @@ class UserList_Output extends $pb.GeneratedMessage {
   static UserList_Output? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $0.PBListUser get listUser => $_getN(0);
-  @$pb.TagNumber(1)
-  set listUser($0.PBListUser value) => $_setField(1, value);
-  @$pb.TagNumber(1)
-  $core.bool hasListUser() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearListUser() => $_clearField(1);
-  @$pb.TagNumber(1)
-  $0.PBListUser ensureListUser() => $_ensure(0);
+  $pb.PbList<$0.PBUser> get listUser => $_getList(0);
 }
 
 /// list user

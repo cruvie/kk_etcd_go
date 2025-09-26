@@ -17,7 +17,7 @@ func (x *Api) Service(stage *kk_stage.Stage) (*api_def.AllKVsBackup_Output, erro
 	span := stage.StartTrace("service")
 	defer span.End()
 
-	list := &kk_etcd_models.PBListKV{}
+	list := make([]*kk_etcd_models.PBKV, 0)
 	getOutput, err := global_model.GetClient(stage).Get(context.Background(), "", clientv3.WithPrefix())
 	if err != nil {
 		return nil, err
@@ -33,7 +33,7 @@ func (x *Api) Service(stage *kk_stage.Stage) (*api_def.AllKVsBackup_Output, erro
 			continue
 		}
 
-		list.ListKV = append(list.ListKV, pbKV)
+		list = append(list, pbKV)
 	}
 	marshal, err := json.Marshal(list)
 	if err != nil {

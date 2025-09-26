@@ -32,9 +32,9 @@ const RoleList_Output$json = {
     {
       '1': 'ListRole',
       '3': 1,
-      '4': 1,
+      '4': 3,
       '5': 11,
-      '6': '.kk_etcd.PBListRole',
+      '6': '.kk_etcd.PBRole',
       '10': 'ListRole'
     },
   ],
@@ -42,5 +42,5 @@ const RoleList_Output$json = {
 
 /// Descriptor for `RoleList`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List roleListDescriptor = $convert.base64Decode(
-    'CghSb2xlTGlzdBoHCgVJbnB1dBo5CgZPdXRwdXQSLwoITGlzdFJvbGUYASABKAsyEy5ra19ldG'
-    'NkLlBCTGlzdFJvbGVSCExpc3RSb2xl');
+    'CghSb2xlTGlzdBoHCgVJbnB1dBo1CgZPdXRwdXQSKwoITGlzdFJvbGUYASADKAsyDy5ra19ldG'
+    'NkLlBCUm9sZVIITGlzdFJvbGU=');

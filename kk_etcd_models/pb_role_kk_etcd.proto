@@ -20,7 +20,3 @@ message PBPermission{
   //authpb.READWRITE 2
   int32  PermissionType = 4;
 }
-
-message PBListRole {
-  repeated PBRole  List = 1;
-}

@@ -76,10 +76,10 @@ class KVList_Input extends $pb.GeneratedMessage {
 
 class KVList_Output extends $pb.GeneratedMessage {
   factory KVList_Output({
-    $0.PBListKV? kVList,
+    $core.Iterable<$0.PBKV>? kVList,
   }) {
     final result = create();
-    if (kVList != null) result.kVList = kVList;
+    if (kVList != null) result.kVList.addAll(kVList);
     return result;
   }
 
@@ -96,8 +96,8 @@ class KVList_Output extends $pb.GeneratedMessage {
       _omitMessageNames ? '' : 'KVList.Output',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd'),
       createEmptyInstance: create)
-    ..aOM<$0.PBListKV>(1, _omitFieldNames ? '' : 'KVList',
-        protoName: 'KVList', subBuilder: $0.PBListKV.create)
+    ..pc<$0.PBKV>(1, _omitFieldNames ? '' : 'KVList', $pb.PbFieldType.PM,
+        protoName: 'KVList', subBuilder: $0.PBKV.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -122,15 +122,7 @@ class KVList_Output extends $pb.GeneratedMessage {
   static KVList_Output? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $0.PBListKV get kVList => $_getN(0);
-  @$pb.TagNumber(1)
-  set kVList($0.PBListKV value) => $_setField(1, value);
-  @$pb.TagNumber(1)
-  $core.bool hasKVList() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearKVList() => $_clearField(1);
-  @$pb.TagNumber(1)
-  $0.PBListKV ensureKVList() => $_ensure(0);
+  $pb.PbList<$0.PBKV> get kVList => $_getList(0);
 }
 
 /// list kv

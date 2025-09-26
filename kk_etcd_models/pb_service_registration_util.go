@@ -17,7 +17,24 @@ const (
 	ServiceKey             = "kk_service/"
 	ServiceRegistrationKey = ServiceKey + "registration/"
 	ServiceAliveKey        = ServiceKey + "alive/"
+
+	SimpleTarget = ServiceKey + "target"
 )
+
+func (x *PBServiceRegistrationSimpleTarget) Check() error {
+	if x.GetServiceName() == "" {
+		msg := "service name cannot be empty"
+		return errors.New(msg)
+	}
+	if x.GetPort() < 1 || x.GetPort() > 65535 {
+		msg := "port must be between 1 and 65535"
+		return errors.New(msg)
+	}
+	return nil
+}
+func (x *PBServiceRegistrationSimpleTarget) TargetKey() string {
+	return fmt.Sprintf("%s/%s", SimpleTarget, x.GetServiceName())
+}
 
 func (x *PBServiceRegistration_PBCheckConfig) Check() error {
 	if x.Type != PBServiceType_Http && x.Type != PBServiceType_Grpc {

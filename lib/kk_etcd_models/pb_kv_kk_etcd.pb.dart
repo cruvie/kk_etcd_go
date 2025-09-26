@@ -82,55 +82,6 @@ class PBKV extends $pb.GeneratedMessage {
   void clearValue() => $_clearField(2);
 }
 
-class PBListKV extends $pb.GeneratedMessage {
-  factory PBListKV({
-    $core.Iterable<PBKV>? listKV,
-  }) {
-    final result = create();
-    if (listKV != null) result.listKV.addAll(listKV);
-    return result;
-  }
-
-  PBListKV._();
-
-  factory PBListKV.fromBuffer($core.List<$core.int> data,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
-  factory PBListKV.fromJson($core.String json,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
-
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'PBListKV',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd'),
-      createEmptyInstance: create)
-    ..pc<PBKV>(1, _omitFieldNames ? '' : 'ListKV', $pb.PbFieldType.PM,
-        protoName: 'ListKV', subBuilder: PBKV.create)
-    ..hasRequiredFields = false;
-
-  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  PBListKV clone() => PBListKV()..mergeFromMessage(this);
-  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  PBListKV copyWith(void Function(PBListKV) updates) =>
-      super.copyWith((message) => updates(message as PBListKV)) as PBListKV;
-
-  @$core.override
-  $pb.BuilderInfo get info_ => _i;
-
-  @$core.pragma('dart2js:noInline')
-  static PBListKV create() => PBListKV._();
-  @$core.override
-  PBListKV createEmptyInstance() => create();
-  static $pb.PbList<PBListKV> createRepeated() => $pb.PbList<PBListKV>();
-  @$core.pragma('dart2js:noInline')
-  static PBListKV getDefault() =>
-      _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<PBListKV>(create);
-  static PBListKV? _defaultInstance;
-
-  @$pb.TagNumber(1)
-  $pb.PbList<PBKV> get listKV => $_getList(0);
-}
-
 const $core.bool _omitFieldNames =
     $core.bool.fromEnvironment('protobuf.omit_field_names');
 const $core.bool _omitMessageNames =

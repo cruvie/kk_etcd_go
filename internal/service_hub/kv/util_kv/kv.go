@@ -38,8 +38,8 @@ func DelKV(stage *kk_stage.Stage, key string, opts ...clientv3.OpOption) error {
 	return nil
 }
 
-func ListKV(stage *kk_stage.Stage, prefix string, opts ...clientv3.OpOption) (list *kk_etcd_models.PBListKV, err error) {
-	list = &kk_etcd_models.PBListKV{}
+func ListKV(stage *kk_stage.Stage, prefix string, opts ...clientv3.OpOption) (list []*kk_etcd_models.PBKV, err error) {
+	list = make([]*kk_etcd_models.PBKV, 0)
 	getOutput, err := global_model.GetClient(stage).Get(context.Background(), prefix, opts...)
 	if err != nil {
 		return nil, err
@@ -49,7 +49,7 @@ func ListKV(stage *kk_stage.Stage, prefix string, opts ...clientv3.OpOption) (li
 			Key:   string(kv.Key),
 			Value: string(kv.Value),
 		}
-		list.ListKV = append(list.ListKV, cfg)
+		list = append(list, cfg)
 	}
 	return list, nil
 }

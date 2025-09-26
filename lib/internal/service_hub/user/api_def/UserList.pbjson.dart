@@ -32,9 +32,9 @@ const UserList_Output$json = {
     {
       '1': 'ListUser',
       '3': 1,
-      '4': 1,
+      '4': 3,
       '5': 11,
-      '6': '.kk_etcd.PBListUser',
+      '6': '.kk_etcd.PBUser',
       '10': 'ListUser'
     },
   ],
@@ -42,5 +42,5 @@ const UserList_Output$json = {
 
 /// Descriptor for `UserList`. Decode as a `google.protobuf.DescriptorProto`.
 final $typed_data.Uint8List userListDescriptor = $convert.base64Decode(
-    'CghVc2VyTGlzdBoHCgVJbnB1dBo5CgZPdXRwdXQSLwoITGlzdFVzZXIYASABKAsyEy5ra19ldG'
-    'NkLlBCTGlzdFVzZXJSCExpc3RVc2Vy');
+    'CghVc2VyTGlzdBoHCgVJbnB1dBo1CgZPdXRwdXQSKwoITGlzdFVzZXIYASADKAsyDy5ra19ldG'
+    'NkLlBCVXNlclIITGlzdFVzZXI=');

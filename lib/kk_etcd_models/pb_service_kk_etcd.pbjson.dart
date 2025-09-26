@@ -54,23 +54,3 @@ final $typed_data.Uint8List pBServiceDescriptor = $convert.base64Decode(
     'J2aWNlUmVnaXN0cmF0aW9uUhNTZXJ2aWNlUmVnaXN0cmF0aW9uEjgKBlN0YXR1cxgFIAEoDjIg'
     'LmtrX2V0Y2QuUEJTZXJ2aWNlLlNlcnZpY2VTdGF0dXNSBlN0YXR1cyIzCg1TZXJ2aWNlU3RhdH'
     'VzEgsKB1VuS25vd24QABILCgdSdW5uaW5nEAESCAoEU3RvcBAC');
-
-@$core.Deprecated('Use pBListServiceDescriptor instead')
-const PBListService$json = {
-  '1': 'PBListService',
-  '2': [
-    {
-      '1': 'ListService',
-      '3': 1,
-      '4': 3,
-      '5': 11,
-      '6': '.kk_etcd.PBService',
-      '10': 'ListService'
-    },
-  ],
-};
-
-/// Descriptor for `PBListService`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List pBListServiceDescriptor = $convert.base64Decode(
-    'Cg1QQkxpc3RTZXJ2aWNlEjQKC0xpc3RTZXJ2aWNlGAEgAygLMhIua2tfZXRjZC5QQlNlcnZpY2'
-    'VSC0xpc3RTZXJ2aWNl');

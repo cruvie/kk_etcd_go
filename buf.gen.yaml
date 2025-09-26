@@ -4,22 +4,23 @@ inputs:
   - directory: ./
     paths:
       - vendor/gitee.com/cruvie/kk_go_kit/kk_models
+      - vendor/gitee.com/cruvie/kk_go_kit/kk_protobuf/extend_method
       - internal/service_hub/backup/api_def
       - internal/service_hub/kv/api_def
       - internal/service_hub/role/api_def
       - internal/service_hub/service/api_def
       - internal/service_hub/user/api_def
-      - vendor/gitee.com/cruvie/kk_go_kit/kk_protobuf/extend_method
+      - kk_etcd_models
 plugins:
-  - remote: buf.build/protocolbuffers/go:v1.36.7
+  - remote: buf.build/protocolbuffers/go
     out: .
     opt:
       - paths=source_relative
-  - remote: buf.build/grpc/go:v1.5.1
+  - remote: buf.build/grpc/go
     out: .
     opt:
       - paths=source_relative
-  - remote: buf.build/protocolbuffers/dart:v22.5.0
+  - remote: buf.build/protocolbuffers/dart
     out: ./lib
     opt:
       - grpc

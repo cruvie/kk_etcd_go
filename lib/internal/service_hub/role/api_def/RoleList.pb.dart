@@ -60,10 +60,10 @@ class RoleList_Input extends $pb.GeneratedMessage {
 
 class RoleList_Output extends $pb.GeneratedMessage {
   factory RoleList_Output({
-    $0.PBListRole? listRole,
+    $core.Iterable<$0.PBRole>? listRole,
   }) {
     final result = create();
-    if (listRole != null) result.listRole = listRole;
+    if (listRole != null) result.listRole.addAll(listRole);
     return result;
   }
 
@@ -80,8 +80,8 @@ class RoleList_Output extends $pb.GeneratedMessage {
       _omitMessageNames ? '' : 'RoleList.Output',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd'),
       createEmptyInstance: create)
-    ..aOM<$0.PBListRole>(1, _omitFieldNames ? '' : 'ListRole',
-        protoName: 'ListRole', subBuilder: $0.PBListRole.create)
+    ..pc<$0.PBRole>(1, _omitFieldNames ? '' : 'ListRole', $pb.PbFieldType.PM,
+        protoName: 'ListRole', subBuilder: $0.PBRole.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -106,15 +106,7 @@ class RoleList_Output extends $pb.GeneratedMessage {
   static RoleList_Output? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $0.PBListRole get listRole => $_getN(0);
-  @$pb.TagNumber(1)
-  set listRole($0.PBListRole value) => $_setField(1, value);
-  @$pb.TagNumber(1)
-  $core.bool hasListRole() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearListRole() => $_clearField(1);
-  @$pb.TagNumber(1)
-  $0.PBListRole ensureListRole() => $_ensure(0);
+  $pb.PbList<$0.PBRole> get listRole => $_getList(0);
 }
 
 /// list role

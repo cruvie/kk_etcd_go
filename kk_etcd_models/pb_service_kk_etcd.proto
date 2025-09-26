@@ -12,7 +12,3 @@ message PBService {
   }
   ServiceStatus Status = 5;
 }
-
-message PBListService  {
-  repeated PBService ListService = 1;
-}

@@ -99,57 +99,6 @@ class PBService extends $pb.GeneratedMessage {
   void clearStatus() => $_clearField(5);
 }
 
-class PBListService extends $pb.GeneratedMessage {
-  factory PBListService({
-    $core.Iterable<PBService>? listService,
-  }) {
-    final result = create();
-    if (listService != null) result.listService.addAll(listService);
-    return result;
-  }
-
-  PBListService._();
-
-  factory PBListService.fromBuffer($core.List<$core.int> data,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromBuffer(data, registry);
-  factory PBListService.fromJson($core.String json,
-          [$pb.ExtensionRegistry registry = $pb.ExtensionRegistry.EMPTY]) =>
-      create()..mergeFromJson(json, registry);
-
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(
-      _omitMessageNames ? '' : 'PBListService',
-      package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd'),
-      createEmptyInstance: create)
-    ..pc<PBService>(1, _omitFieldNames ? '' : 'ListService', $pb.PbFieldType.PM,
-        protoName: 'ListService', subBuilder: PBService.create)
-    ..hasRequiredFields = false;
-
-  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  PBListService clone() => PBListService()..mergeFromMessage(this);
-  @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
-  PBListService copyWith(void Function(PBListService) updates) =>
-      super.copyWith((message) => updates(message as PBListService))
-          as PBListService;
-
-  @$core.override
-  $pb.BuilderInfo get info_ => _i;
-
-  @$core.pragma('dart2js:noInline')
-  static PBListService create() => PBListService._();
-  @$core.override
-  PBListService createEmptyInstance() => create();
-  static $pb.PbList<PBListService> createRepeated() =>
-      $pb.PbList<PBListService>();
-  @$core.pragma('dart2js:noInline')
-  static PBListService getDefault() => _defaultInstance ??=
-      $pb.GeneratedMessage.$_defaultFor<PBListService>(create);
-  static PBListService? _defaultInstance;
-
-  @$pb.TagNumber(1)
-  $pb.PbList<PBService> get listService => $_getList(0);
-}
-
 const $core.bool _omitFieldNames =
     $core.bool.fromEnvironment('protobuf.omit_field_names');
 const $core.bool _omitMessageNames =

@@ -16,15 +16,15 @@ func (x *Api) Service(stage *kk_stage.Stage) (err error) {
 	defer span.End()
 
 	newLog := kk_stage.NewLog(stage)
-	list := &kk_etcd_models.PBListKV{}
+	list := make([]*kk_etcd_models.PBKV, 0)
 	d := json.NewDecoder(bytes.NewReader(x.In.GetFile()))
 	d.UseNumber()
-	err = d.Decode(list)
+	err = d.Decode(&list)
 	if err != nil {
 		slog.Error("failed to Unmarshal kv", newLog.Error(err).Args()...)
 		return err
 	}
-	for _, pbkv := range list.ListKV {
+	for _, pbkv := range list {
 		err := util_kv.PutKV(stage, pbkv.GetKey(), pbkv.GetValue())
 		if err != nil {
 			return err

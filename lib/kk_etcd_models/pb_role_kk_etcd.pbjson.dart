@@ -49,22 +49,3 @@ const PBPermission$json = {
 final $typed_data.Uint8List pBPermissionDescriptor = $convert.base64Decode(
     'CgxQQlBlcm1pc3Npb24SEAoDS2V5GAIgASgJUgNLZXkSGgoIUmFuZ2VFbmQYAyABKAlSCFJhbm'
     'dlRW5kEiYKDlBlcm1pc3Npb25UeXBlGAQgASgFUg5QZXJtaXNzaW9uVHlwZQ==');
-
-@$core.Deprecated('Use pBListRoleDescriptor instead')
-const PBListRole$json = {
-  '1': 'PBListRole',
-  '2': [
-    {
-      '1': 'List',
-      '3': 1,
-      '4': 3,
-      '5': 11,
-      '6': '.kk_etcd.PBRole',
-      '10': 'List'
-    },
-  ],
-};
-
-/// Descriptor for `PBListRole`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List pBListRoleDescriptor = $convert.base64Decode(
-    'CgpQQkxpc3RSb2xlEiMKBExpc3QYASADKAsyDy5ra19ldGNkLlBCUm9sZVIETGlzdA==');

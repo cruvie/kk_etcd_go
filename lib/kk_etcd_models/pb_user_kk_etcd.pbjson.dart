@@ -28,23 +28,3 @@ const PBUser$json = {
 final $typed_data.Uint8List pBUserDescriptor = $convert.base64Decode(
     'CgZQQlVzZXISGgoIVXNlck5hbWUYAiABKAlSCFVzZXJOYW1lEhoKCFBhc3N3b3JkGAMgASgJUg'
     'hQYXNzd29yZBIUCgVSb2xlcxgEIAMoCVIFUm9sZXM=');
-
-@$core.Deprecated('Use pBListUserDescriptor instead')
-const PBListUser$json = {
-  '1': 'PBListUser',
-  '2': [
-    {
-      '1': 'ListUser',
-      '3': 1,
-      '4': 3,
-      '5': 11,
-      '6': '.kk_etcd.PBUser',
-      '10': 'ListUser'
-    },
-  ],
-};
-
-/// Descriptor for `PBListUser`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List pBListUserDescriptor = $convert.base64Decode(
-    'CgpQQkxpc3RVc2VyEisKCExpc3RVc2VyGAEgAygLMg8ua2tfZXRjZC5QQlVzZXJSCExpc3RVc2'
-    'Vy');

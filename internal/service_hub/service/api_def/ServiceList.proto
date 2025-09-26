@@ -12,6 +12,6 @@ message ServiceList {
   }
 
   message Output {
-    kk_etcd.PBListService ServiceList = 1;
+    repeated kk_etcd.PBService ServiceList = 1;
   }
 }

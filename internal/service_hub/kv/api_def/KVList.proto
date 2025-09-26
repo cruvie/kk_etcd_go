@@ -9,6 +9,6 @@ message KVList {
   }
 
   message Output {
-    kk_etcd.PBListKV KVList = 1;
+    repeated kk_etcd.PBKV KVList = 1;
   }
 }

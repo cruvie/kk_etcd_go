@@ -94,10 +94,10 @@ class ServiceList_Input extends $pb.GeneratedMessage {
 
 class ServiceList_Output extends $pb.GeneratedMessage {
   factory ServiceList_Output({
-    $0.PBListService? serviceList,
+    $core.Iterable<$0.PBService>? serviceList,
   }) {
     final result = create();
-    if (serviceList != null) result.serviceList = serviceList;
+    if (serviceList != null) result.serviceList.addAll(serviceList);
     return result;
   }
 
@@ -114,8 +114,9 @@ class ServiceList_Output extends $pb.GeneratedMessage {
       _omitMessageNames ? '' : 'ServiceList.Output',
       package: const $pb.PackageName(_omitMessageNames ? '' : 'kk_etcd'),
       createEmptyInstance: create)
-    ..aOM<$0.PBListService>(1, _omitFieldNames ? '' : 'ServiceList',
-        protoName: 'ServiceList', subBuilder: $0.PBListService.create)
+    ..pc<$0.PBService>(
+        1, _omitFieldNames ? '' : 'ServiceList', $pb.PbFieldType.PM,
+        protoName: 'ServiceList', subBuilder: $0.PBService.create)
     ..hasRequiredFields = false;
 
   @$core.Deprecated('See https://github.com/google/protobuf.dart/issues/998.')
@@ -140,15 +141,7 @@ class ServiceList_Output extends $pb.GeneratedMessage {
   static ServiceList_Output? _defaultInstance;
 
   @$pb.TagNumber(1)
-  $0.PBListService get serviceList => $_getN(0);
-  @$pb.TagNumber(1)
-  set serviceList($0.PBListService value) => $_setField(1, value);
-  @$pb.TagNumber(1)
-  $core.bool hasServiceList() => $_has(0);
-  @$pb.TagNumber(1)
-  void clearServiceList() => $_clearField(1);
-  @$pb.TagNumber(1)
-  $0.PBListService ensureServiceList() => $_ensure(0);
+  $pb.PbList<$0.PBService> get serviceList => $_getList(0);
 }
 
 /// list server

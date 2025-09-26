@@ -97,23 +97,17 @@ final $typed_data.Uint8List pBServiceRegistrationDescriptor = $convert.base64Dec
     'b25SB1RpbWVvdXQSNQoISW50ZXJ2YWwYAyABKAsyGS5nb29nbGUucHJvdG9idWYuRHVyYXRpb2'
     '5SCEludGVydmFsEhIKBEFkZHIYBCABKAlSBEFkZHI=');
 
-@$core.Deprecated('Use pBListServiceRegistrationDescriptor instead')
-const PBListServiceRegistration$json = {
-  '1': 'PBListServiceRegistration',
+@$core.Deprecated('Use pBServiceRegistrationSimpleTargetDescriptor instead')
+const PBServiceRegistrationSimpleTarget$json = {
+  '1': 'PBServiceRegistrationSimpleTarget',
   '2': [
-    {
-      '1': 'List',
-      '3': 1,
-      '4': 3,
-      '5': 11,
-      '6': '.kk_etcd.PBServiceRegistration',
-      '10': 'List'
-    },
+    {'1': 'ServiceName', '3': 1, '4': 1, '5': 9, '10': 'ServiceName'},
+    {'1': 'Port', '3': 2, '4': 1, '5': 5, '10': 'Port'},
   ],
 };
 
-/// Descriptor for `PBListServiceRegistration`. Decode as a `google.protobuf.DescriptorProto`.
-final $typed_data.Uint8List pBListServiceRegistrationDescriptor =
+/// Descriptor for `PBServiceRegistrationSimpleTarget`. Decode as a `google.protobuf.DescriptorProto`.
+final $typed_data.Uint8List pBServiceRegistrationSimpleTargetDescriptor =
     $convert.base64Decode(
-        'ChlQQkxpc3RTZXJ2aWNlUmVnaXN0cmF0aW9uEjIKBExpc3QYASADKAsyHi5ra19ldGNkLlBCU2'
-        'VydmljZVJlZ2lzdHJhdGlvblIETGlzdA==');
+        'CiFQQlNlcnZpY2VSZWdpc3RyYXRpb25TaW1wbGVUYXJnZXQSIAoLU2VydmljZU5hbWUYASABKA'
+        'lSC1NlcnZpY2VOYW1lEhIKBFBvcnQYAiABKAVSBFBvcnQ=');

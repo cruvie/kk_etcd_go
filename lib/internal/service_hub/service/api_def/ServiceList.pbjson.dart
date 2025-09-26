@@ -43,9 +43,9 @@ const ServiceList_Output$json = {
     {
       '1': 'ServiceList',
       '3': 1,
-      '4': 1,
+      '4': 3,
       '5': 11,
-      '6': '.kk_etcd.PBListService',
+      '6': '.kk_etcd.PBService',
       '10': 'ServiceList'
     },
   ],
@@ -55,5 +55,5 @@ const ServiceList_Output$json = {
 final $typed_data.Uint8List serviceListDescriptor = $convert.base64Decode(
     'CgtTZXJ2aWNlTGlzdBpjCgVJbnB1dBI4CgtTZXJ2aWNlVHlwZRgBIAEoDjIWLmtrX2V0Y2QuUE'
     'JTZXJ2aWNlVHlwZVILU2VydmljZVR5cGUSIAoLU2VydmljZU5hbWUYAiABKAlSC1NlcnZpY2VO'
-    'YW1lGkIKBk91dHB1dBI4CgtTZXJ2aWNlTGlzdBgBIAEoCzIWLmtrX2V0Y2QuUEJMaXN0U2Vydm'
-    'ljZVILU2VydmljZUxpc3Q=');
+    'YW1lGj4KBk91dHB1dBI0CgtTZXJ2aWNlTGlzdBgBIAMoCzISLmtrX2V0Y2QuUEJTZXJ2aWNlUg'
+    'tTZXJ2aWNlTGlzdA==');

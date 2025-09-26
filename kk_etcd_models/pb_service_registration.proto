@@ -28,6 +28,7 @@ message PBServiceRegistration {
   }
 }
 
-message PBListServiceRegistration{
-  repeated PBServiceRegistration List = 1;
+message PBServiceRegistrationSimpleTarget{
+  string ServiceName = 1;
+  int32 Port = 2;
 }
